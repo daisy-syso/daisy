@@ -1,0 +1,33 @@
+<div class="card">
+  <ul class="table-view media">
+
+    <li class="table-view-cell media-title" ng-show="listTitle">
+      {{listTitle}}
+    </li>
+
+    <li class="table-view-cell" ng-repeat="data in listData">
+      <a ng-href="{{data.link}}" class="react">
+        <img class="media-object pull-left" ng-src="{{data.image}}">
+        <div class="media-body">
+          {{data.title}}
+          <p>{{data.desc}}</p>
+        </div>
+        <div class="media-detail" ng-if="data.type == 'hospital'">
+          综合评分
+          <strong>{{data.rating}}</strong>
+          <p class="pull-right">{{data.distance}}</p>
+        </div>
+        <div class="media-detail" ng-if="data.type == 'drug'">
+          <strong>{{data.discounted_price}}</strong>元
+          <del>{{data.original_price}}元</del>
+          <p class="pull-right">已售{{data.sold_count}}件</p>
+        </div>
+      </a>
+    </li>
+
+    <li class="table-view-cell media-more" ng-show="listMore && listMoreLink">
+      <a class="react" ng-href="{{listMoreLink}}">{{listMore}}</a>
+    </li>
+
+  </ul>
+</div>

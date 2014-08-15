@@ -1,0 +1,16 @@
+<div class="segmented-control">
+  <div class="control-item" ng-repeat="data in filterData">
+    <a ng-class="{active: currIndex == $index}" ng-click="toggle($index)">
+      {{data.title}} 
+      <span ng-class="{'ion-arrow-down-b': currIndex == $index, 'ion-arrow-up-b': currIndex != $index}"></span>
+    </a>
+  </div>
+</div>
+<div class="dropdown-menu card segmented-control" ng-show="currMenu">
+  <ul class="table-view control-item media huge">
+    <li class="table-view-cell" ng-class="{'media-more': data.children, active: currSubIndex == $index}" ng-repeat="data in currMenu"><a ng-href="{{data.link}}" ng-click="toggleSub($index)">{{data.title}}</a></li>
+  </ul> 
+  <ul class="table-view control-item media secondary" ng-show="currSubMenu">
+    <li class="table-view-cell" ng-repeat="data in currSubMenu"><a ng-href="{{data.link}}">{{data.title}}</a></li>
+  </ul> 
+</div>

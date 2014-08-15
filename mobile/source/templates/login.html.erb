@@ -1,0 +1,32 @@
+<%= partial 'header', locals: { title: "登陆账号" } %>
+
+<div class="content">
+  
+  <div class="card">
+    <div class="content-padded">
+      <form class="login">
+        <input type="text" placeholder="请输入帐号">
+        <input type="password" placeholder="请输入密码">
+        <button class="btn btn-block">登　录</button>
+      </form>
+      
+      <div class="login-actions">
+        <a href="#/register">免费注册</a>
+        <a class="pull-right" href="#/retrieve">找回密码</a>
+      </div>
+<!-- 
+      <div class="login-oauth">
+        <a href="#">
+          <img src="images/sina.gif" width="140">
+        </a>
+        <a class="pull-right" href="#">
+          <img src="images/qq.gif" width="140">
+        </a>
+      </div>
+ -->
+    </div>
+  </div>
+
+  <%= partial 'related' %>
+
+</div>

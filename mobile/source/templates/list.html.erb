@@ -1,0 +1,9 @@
+<%= partial 'header', locals: { title: "分类名称" } %>
+
+<div class="bar bar-header-secondary dropdown" filter filter-data="data['filters']"></div>
+
+<div class="content">
+  <div list list-data="data['data']"></div>
+</div>
+
+<div load-json="api/list.json"></div>

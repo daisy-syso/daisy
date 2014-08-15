@@ -1,0 +1,31 @@
+<header class="bar bar-nav">
+  <a class="react brand pull-left" href="#/home">
+    <img src="images/logo.png">
+  </a>
+  <a class="react pull-right" href="#">
+    诊疗导航
+  </a>
+</header>
+
+<div class="content">
+
+  <div class="slides">
+    <ul rn-carousel><li><img src="images/samples/720x334.png" /></li><li><img src="images/samples/720x334.png" /></li><li><img src="images/samples/720x334.png" /></li><li><img src="images/samples/720x334.png" /></li><li><img src="images/samples/720x334.png" /></li></ul>
+  </div>
+
+  <div class="card">
+    <ul class="button-view">
+
+      <li class="button-view-cell" ng-repeat="button in appData.home.buttons">
+        <a class="react" href="#">
+          <img ng-src="{{button.icon}}" />
+          <span>{{button.title}}</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <%= partial 'related' %> 
+
+</div>

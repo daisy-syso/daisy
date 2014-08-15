@@ -1,0 +1,25 @@
+<% p1 = { 
+  type: :hospital,
+  is_new_arrival: false,
+  link: "#/detail",
+  image: "images/samples/yy.gif",
+  title: "无锡市第二人民医院",
+  desc: "无锡市第二人民医院始建于1908年，是江苏省为数不多的几家百年老医院",
+  rating: 4.7,
+  distance: "2.5Km"
+} %>
+<% p2 = { 
+  type: :drug,
+  is_new_arrival: true,
+  link: "#/detail",
+  image: "images/samples/sds.jpg",
+  title: "斯达舒胶囊",
+  desc: "斯达舒为修正药业著名品牌，以“斯达舒胶囊”产品为主，也包括“斯达",
+  original_price: 736,
+  discounted_price: 255,
+  sold_count: 3
+} %>
+
+<%= JSON.generate({
+  data: [ p1, p2, p1 ]
+}) %>

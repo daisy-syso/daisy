@@ -1,0 +1,19 @@
+<%= partial 'header', locals: { title: "注册帐号" } %>
+
+<div class="content">
+  
+  <div class="card">
+    <div class="content-padded">
+      <form class="register">
+        <input class="login" type="text" placeholder="请输入帐号"><button class="btn pull-right token">获取验证码</button>
+        <input type="text" placeholder="请输入验证码">
+        <input type="password" placeholder="请输入密码">
+        <button class="btn btn-block">注册帐号</button>
+      </form>
+      
+    </div>
+  </div>
+
+  <%= partial 'related' %>
+
+</div>

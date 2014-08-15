@@ -1,0 +1,44 @@
+<% c0 = { title: "全部分类", url: "#/list" } %>
+<% c1 = { title: "一级分类", url: "#/list" } %>
+<% c2 = { title: "二级分类", url: "#/list" } %>
+<% c3 = { title: "三级分类", url: "#/list" } %>
+<% c4 = { title: "四级分类", url: "#/list" } %>
+<% cc1 = c1.merge(children: [c0, c1, c2, c3, c4]) %>
+<% cc2 = c2.merge(children: [c0, c1, c2, c3]) %>
+<% cc3 = c3.merge(children: [c0, c1, c2]) %>
+
+<% p1 = { 
+  type: :hospital,
+  is_new_arrival: false,
+  link: "#/detail",
+  image: "images/samples/yy.gif",
+  title: "无锡市第二人民医院",
+  desc: "无锡市第二人民医院始建于1908年，是江苏省为数不多的几家百年老医院",
+  rating: 4.7,
+  distance: "2.5Km"
+} %>
+<% p2 = { 
+  type: :drug,
+  is_new_arrival: true,
+  link: "#/detail",
+  image: "images/samples/sds.jpg",
+  title: "斯达舒胶囊",
+  desc: "斯达舒为修正药业著名品牌，以“斯达舒胶囊”产品为主，也包括“斯达",
+  original_price: 736,
+  discounted_price: 255,
+  sold_count: 3
+} %>
+
+<%= JSON.generate({
+  filters: [{
+    title: "分类名称",
+    children: [ c0, cc1, cc2, cc3, c4 ]
+  }, {
+    title: "位置过滤",
+    children: [ c0, cc1, c2, c3 ]
+  }, {
+    title: "分类名称",
+    children: [ c0, c1, c2 ]
+  }],
+  data: [ p1, p2, p1, p2, p1, p2 ]
+}) %>
