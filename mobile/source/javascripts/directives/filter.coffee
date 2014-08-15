@@ -12,8 +12,9 @@ angular.module('DaisyApp').directive 'filter', ($http) ->
         else
           scope.currIndex = index
           scope.currMenu = scope.filterData[index]?.children
+          scope.currSubIndex = -1
+          scope.currSubMenu = null
 
       scope.toggleSub = (index) ->
         scope.currSubIndex = index
         scope.currSubMenu = scope.currMenu[index]?.children
-        console.log scope.currSubMenu

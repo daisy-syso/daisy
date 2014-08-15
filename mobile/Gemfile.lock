@@ -1,12 +1,13 @@
-PATH
-  remote: ../..
+GIT
+  remote: git://github.com/bbtfr/middleman-bower.git
+  revision: 636852d3045ff7ac026f6b1a3ab869e3d1b714c0
   specs:
     middleman-bower (0.0.1)
       bower-rails (~> 0.8.3)
       middleman-core (>= 3.0.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     activesupport (3.2.18)
       i18n (~> 0.6, >= 0.6.4)

@@ -45,3 +45,6 @@ angular.module 'DaisyApp', [
   $rootScope.back = () ->
     prevUrl = if history.length > 1 then history.splice(-2)[0] else "/"
     $location.path(prevUrl)
+
+  $rootScope.search = (query) ->
+    $location.path("/search/#{query}")

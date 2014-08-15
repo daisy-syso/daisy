@@ -187,7 +187,12 @@ a[ng-click] {
       background-color: #fafafa;
       border: 0;
 
+      &:active {
+        background-color: #fafafa;
+      }
+
       .table-view-cell {
+        border-left: solid 1px #ddd;
         border: 0;
       }
     }
