@@ -1,9 +1,7 @@
-<%= partial 'header', locals: { title: "分类名称" } %>
+<%= partial 'header', locals: { title: "{{data['title']}}" } %>
 
-<div class="bar bar-header-secondary dropdown" filter filter-data="data['filters']"></div>
+<nav class="bar bar-header-secondary dropdown" filter filter-data="data['filters']" ng-show="data['filters']"></nav>
 
-<div class="content">
-  <div list list-data="data['data']"></div>
+<div class="content" ng-show="data['data']">
+  <div list list-data="data['data']" list-load-more="查看更多"></div>
 </div>
-
-<div load-json="api/list.json"></div>

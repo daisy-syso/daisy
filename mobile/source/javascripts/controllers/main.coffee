@@ -1,4 +1,4 @@
 angular.module('DaisyApp').controller 'MainCtrl', ($rootScope, $http) ->
-  $http.get("/api/app.json")
+  $http.get("/config/app.json")
   .success (data) ->
     $rootScope.appData = data

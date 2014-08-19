@@ -24,8 +24,8 @@ module Daisy
 
     # For grape api
     config.paths.add "api/apis", eager_load: true
-    config.paths.add "api/entities"
-    config.paths.add "api/formatters"
-    config.paths.add "api/helpers"
+    config.paths.add "api/entities", eager_load: true
+    config.paths.add "api/formatters", eager_load: true
+    config.paths.add "api/helpers", eager_load: true
   end
 end

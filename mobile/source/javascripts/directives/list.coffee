@@ -8,6 +8,7 @@ angular.module('DaisyApp').directive 'list', ($http) ->
       listTitle: "@"
       listMore: "@"
       listMoreLink: "@"
+      listLoadMore: "@"
     link: (scope, element, attrs) ->
       if scope.listUrl
         $http.get(scope.listUrl)

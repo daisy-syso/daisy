@@ -10,7 +10,7 @@ angular.module 'DaisyApp', [
   "ngRoute"
   "ngTouch"
   "angular-carousel"
-  # "angular-loading-bar"
+  "angular-loading-bar"
   "angular-local-storage"
 ]
 
@@ -23,7 +23,29 @@ angular.module 'DaisyApp', [
   $routeProvider.when '/search',    templateUrl: "templates/search.html"
   $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
   $routeProvider.when '/detail',    templateUrl: "templates/detail.html"
-  $routeProvider.when '/list',      templateUrl: "templates/list.html"
+  
+  $routeProvider.when '/list/:path',
+    templateUrl: "templates/list.html"
+    controller: ($scope, $route, $http) ->
+      $scope.$watch 'loadJson', (options = {}) ->
+        page = $scope.page = 1
+        path = options.path || $route.current.params.path
+        url = options.url || "api/#{path}.json"
+        params = angular.extend { page: page }, options.params
+        $http.get(url, params: params)
+          .success (data) ->
+            $scope.data = data
+
+      $scope.loadMore = () ->
+        options = $scope.loadJson || {}
+        page = $scope.page += 1
+        path = options.path || $route.current.params.path
+        url = options.url || "api/#{path}.json"
+        params = angular.extend { page: page }, options.params
+        $http.get(url, params: params)
+          .success (data) ->
+            $scope.data['data'] = $scope.data['data'].concat data['data']
+
   $routeProvider.when '/search/:query',   
     templateUrl: "templates/list.html"
     controller: ($scope, $route, $localStorage) ->

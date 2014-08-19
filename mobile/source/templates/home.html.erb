@@ -17,7 +17,7 @@
     <ul class="button-view">
 
       <li class="button-view-cell" ng-repeat="button in appData.home.buttons">
-        <a class="react" href="#">
+        <a class="react" ng-href="{{button.link}}">
           <img ng-src="{{button.icon}}" />
           <span>{{button.title}}</span>
         </a>

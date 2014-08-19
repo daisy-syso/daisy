@@ -119,6 +119,7 @@ a[ng-click] {
     
     .control-item {
       padding: 0;
+      border-left: 0;
 
       a {
         padding: 15px;
@@ -158,6 +159,12 @@ a[ng-click] {
       }
     }
 
+    .table-view {
+      background-color: transparent;
+      max-height: 315px;
+      overflow-y: scroll;
+    }
+
     .table-view-cell {
       color: #666;
       font-size: 14px;
@@ -186,6 +193,7 @@ a[ng-click] {
     .secondary {
       background-color: #fafafa;
       border: 0;
+      // width: 50%;
 
       &:active {
         background-color: #fafafa;
@@ -397,6 +405,10 @@ a[ng-click] {
     .pull-right {
       margin-right: 15px;
     }
+  }
+  .media-load-more {
+    font-size: 15px;
+    color: #2bb2a3;
   }
 }
 
