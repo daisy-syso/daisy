@@ -1,0 +1,29 @@
+zh-CN:
+  view:
+    common:
+      back: "返回"
+      save: "保存"
+      edit: "修改"
+      new: "新建"
+      delete: "删除"
+      list: "列表"
+      add: "添加"
+      action: "操作"
+      show: "查看"
+      filter: "过滤器"
+      delete_confirm: "确认要删除吗？"
+      delete_successful_alert: "删除成功！"
+      update_successful_alert: "修改成功！"
+      create_successful_alert: "添加成功！"
+      account_or_password_error_alert: "用户名或者密码错误"
+      select_prompt: "====请选择===="
+      login: "登陆"
+      logout: "退出"
+      relogin: "请重新登陆"
+      next_page: "下一页"
+      previous_page: '上一页'
+      error_occurs: '操作发生错误'
+    error:
+      500: "系统出现错误！"
+      404: "网页不存在！"
+      422: "没有访问的权限！"

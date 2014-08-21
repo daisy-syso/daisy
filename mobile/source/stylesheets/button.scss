@@ -1,0 +1,22 @@
+// Button
+.btn {
+  height: 40px;
+  padding: 10px 25px;
+  background: #06c1ae;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+}
+
+.btn-strong {
+  background-color: #fdb338;
+}
+
+input, button {
+  border-radius: 0!important;
+}
+
+input[type="text"], input[type="password"] {
+  height: 40px;
+}

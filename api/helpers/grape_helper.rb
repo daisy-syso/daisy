@@ -1,19 +1,32 @@
 module GrapeHelper
+
+  def apply_scopes! resource
+    if params[:page]
+      resource = resource.paginate(page: params[:page],
+        per_page: params[:per_page] || 10)
+      no_more_record! if resource.out_of_bounds?
+    end
+    apply_scopes resource
+  end
+
   def failure! resource
-    error! resource.errors.full_messages.first, 422
+    error! resource.errors.full_messages, 422
   end
 
   def present! resource, options = {}
     if resource
       options[:with] ||= get_entity_class(resource)
 
-      resource = paginate(resource).to_a
-
+      if resource.respond_to? :to_a
+        resource = resource.to_a 
+        # record_not_found! if resource.empty?
+      end
+      
       present options[:meta]
       present :data, resource, options
       
     else
-      error! "404 Record Not Found", 404
+      record_not_found!
     end
   end
 
@@ -36,31 +49,42 @@ module GrapeHelper
 
   end
 
+  def no_more_record!
+    error! "404 No More Record", 404
+  end
+
+  def record_not_found!
+    error! "404 Record Not Found", 404
+  end
+
+  def not_found!
+    error! "404 Not Found", 404
+  end
+
+  def unauthorized!
+    error! "401 Unauthorized", 401
+  end
+
   def warden
     env['warden']
   end
 
   def authenticated
     return true if warden.authenticated?
-    params[:access_token] && @account = Account.find_by(authentication_token: params[:access_token])
   end
 
-  def current_account
-    warden.account || @account
+  def current_user
+    warden.user(scope: :account).tap do |user|
+      unauthorized! unless user
+    end
   end
 
-  def paginate resource
-    resource.paginate(page: params[:page], per_page: params[:per_page] || 10)
+  def sign_in account
+    warden.set_user(account, scope: :account)
   end
 
-  def filter_cities_cached
-    # Rails.cache.fetch([:api, :filter, :cities]) do
-      Province.includes(:cities).map do |province|
-        children = province.cities.map do |city|
-          { title: city.name, params: { city: city.id } }
-        end
-        { title: province.name, children: children }
-      end
-    # end
+  def sign_out
+    warden.logout(:account)
   end
+
 end

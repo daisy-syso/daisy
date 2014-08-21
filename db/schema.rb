@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818035021) do
+ActiveRecord::Schema.define(version: 20140820021700) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -132,6 +132,17 @@ ActiveRecord::Schema.define(version: 20140818035021) do
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
   add_index "examinations", ["examination_type_id"], name: "index_examinations_on_examination_type_id", using: :btree
+
+  create_table "favorites", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["account_id"], name: "index_favorites_on_account_id", using: :btree
+  add_index "favorites", ["item_id", "item_type"], name: "index_favorites_on_item_id_and_item_type", using: :btree
 
   create_table "friendly_link_types", force: true do |t|
     t.string "name"

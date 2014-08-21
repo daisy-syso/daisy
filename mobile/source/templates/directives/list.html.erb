@@ -6,21 +6,23 @@
     </li>
 
     <li class="table-view-cell" ng-repeat="data in listData">
-      <a ng-href="{{data.link}}" class="react">
+      <a ng-href="#/detail/{{data.type}}/{{data.id}}" class="react">
         <img class="media-object pull-left" ng-src="{{data.image_url}}">
         <div class="media-body">
           {{data.name}}
           <p>{{data.desc}}</p>
         </div>
-        <div class="media-detail" ng-if="data.type == 'hospital'">
-          综合评分
-          <strong>{{data.rating}}</strong>
-          <p class="pull-right">{{data.distance}}</p>
-        </div>
-        <div class="media-detail" ng-if="data.type == 'drug'">
-          <strong>{{data.discounted_price}}</strong>元
-          <del>{{data.original_price}}元</del>
-          <p class="pull-right">已售{{data.sold_count}}件</p>
+        <div class="media-detail" ng-switch="data.type">
+          <div ng-switch-when="hospital">
+            综合评分
+            <strong>{{data.rating}}</strong>
+            <p class="pull-right">{{data.distance}}</p>
+          </div>
+          <div ng-switch-when="drug">
+            <strong>{{data.sale_price}}</strong>元
+            <del>{{data.ori_price}}元</del>
+            <p class="pull-right">已售{{data.sold_count}}件</p>
+          </div>
         </div>
       </a>
     </li>

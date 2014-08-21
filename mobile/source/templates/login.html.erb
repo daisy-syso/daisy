@@ -4,14 +4,14 @@
   
   <div class="card">
     <div class="content-padded">
-      <form class="login">
-        <input type="text" placeholder="请输入帐号">
-        <input type="password" placeholder="请输入密码">
+      <form class="login" ng-controller="FormCtrl" ng-submit="submit('api/sign_in', {account: account}, afterLogin)" name="form">
+        <input type="text" placeholder="请输入电子邮箱" ng-model="account.email">
+        <input type="password" placeholder="请输入密码" ng-model="account.password">
         <button class="btn btn-block">登　录</button>
       </form>
       
       <div class="login-actions">
-        <a href="#/register">免费注册</a>
+        <a ng-href="#/register/{{redirectToPath}}">免费注册</a>
         <a class="pull-right" href="#/retrieve">找回密码</a>
       </div>
 <!-- 

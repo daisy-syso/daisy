@@ -3,13 +3,22 @@ class DaisyAPI < Grape::API
 
   rescue_from :all, :backtrace => true
   error_formatter :json, ErrorFormatter
-  
-  # before do
-  #   error!("401 Unauthorized", 401) unless authenticated
-  # end
 
   helpers GrapeHelper
 
-  mount Hospitals::HospitalAPI
+  mount AccountsAPI
+  mount FavoritesAPI
+  mount FiltersAPI
+
+  mount Hospitals::HospitalsAPI
+  mount Hospitals::DoctorsAPI
+
+  mount Drugs::DrugsAPI
+  
+  mount NetInfos::HotSearchKeywordsAPI
+
+  route :any, '*path' do
+    not_found!
+  end
 
 end

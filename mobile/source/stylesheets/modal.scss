@@ -1,0 +1,24 @@
+// Modal
+.modal {
+  left: 5%;
+  right: 5%;
+  top: 30%;
+  width: 90%;
+  min-height: 30%;
+  z-index: 20;
+  background-color: #f0efed;
+  box-shadow: 0 2px 3px #555;
+  
+  opacity: initial;
+  @include transition(none);
+  @include transform(none);
+
+  .bar {
+    position: absolute;
+  }
+
+  .content {
+    position: static;
+    padding-bottom: 0!important;
+  }
+}

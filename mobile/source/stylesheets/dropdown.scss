@@ -1,0 +1,129 @@
+// Dropdown
+@mixin control-item ($color, $nextColor) {
+  background-color: $color;
+  border: 0;
+
+  &:active {
+    background-color: $color;
+  }
+
+  .table-view {
+    background-color: $color;
+  }
+
+  .table-view-cell {
+    &.active {
+      background-color: $nextColor;
+      border-left: solid 6px #2bb2a3;
+      padding-left: 14px;
+    }
+  }
+}
+
+.dropdown {
+  padding: 0;
+  background-color: transparent;
+  height: 52px;
+
+  .segmented-control {
+    height: 45px;
+    border: 0;
+    border-bottom: #CCC 1px solid;
+    border-radius: 0;
+    background-color: #FFF;
+    margin-bottom: 15px;
+    font-size: 14px;
+    
+    .control-item {
+      padding: 0;
+
+      a {
+        padding: 15px;
+        display: block;
+        color: inherit;
+        height: 100%;
+
+        span {
+          color: #999;
+        }
+
+        &.active, &:active {
+          color: #2bb2a3;
+
+          span {
+            color: #2bb2a3;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    float: left;
+    width: 100%;
+    z-index: -1;
+
+    .control-item {
+      padding: 0;
+      
+      &:active {
+        background-color: transparent;
+      }
+    }
+
+    .control-item:not(:first-child) {
+      border: 0;
+
+      .table-view-cell {
+        border: 0;
+      }
+    }
+
+    .control-item:nth-child(2) {
+      @include control-item(#fafafa, #eee);
+    }
+    
+    .control-item:nth-child(3) {
+      @include control-item(#eee, #ddd);
+    }
+
+    .dropdown-scroll {
+      max-height: 315px;
+      overflow-y: scroll;
+      position: relative;
+    }
+
+    .table-view {
+      // min-height: 315px;
+      // @include transform(translateZ(0));
+    }
+
+    .table-view-cell {
+      color: #666;
+      font-size: 14px;
+      text-align: left;
+      padding-top: 12px;
+      padding-left: 20px;
+      border-right: solid 1px #ddd;
+
+      a:not(.btn) {
+        margin-top: -12px;
+        margin-left: -20px;
+      }
+
+      &:after {
+        border-color: #999;
+      }
+
+      &.active {
+        background-color: #fafafa;
+        border-left: solid 6px #2bb2a3;
+        border-right: solid 1px #fafafa;
+        padding-left: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+// Header & Footer
+.bar-nav {
+  height: 52px;
+  color: #fff;
+  background: #2dbeae;
+  border-bottom: 1px solid #00a795;
+  overflow: hidden;
+
+  a {
+    position: relative;
+    font-size: 20px;
+    padding-top: 15px;
+  }
+
+  a.brand {
+    padding-top: 12px;
+  }
+
+  a.action {
+    padding-top: 10px;
+  }
+
+  h1.title {
+    padding-top: 3px;
+    font-size: 24px;
+    color: inherit;
+  }
+
+  .input-wrapper {
+    position: absolute;
+    width: 100%;
+    padding: 5px 25px 0 45px;
+
+    input.search {
+      padding-left: 50px;
+      color: #333;
+    }
+
+    span {
+      position: absolute;
+      margin-top: 5px;
+      margin-left: 5px;
+      font-size: 30px;
+      color: #999;
+    }
+  }
+}
+
+.bar-tab {
+  .tab-item {
+    .ionicon ~ .tab-label {
+      display: block;
+      font-size: 11px;
+      line-height: 11px;
+    }
+
+    &.active, &:active {
+      color: #2bb2a3;
+    }
+  }
+}
+
+.bar .ionicon {
+  position: relative;
+  width: 40px;
+  height: 32px;
+  z-index: 20;
+  font-size: 32px;
+  text-align: center;
+}

@@ -1,3 +1,6 @@
 class Drugs::Drug < ActiveRecord::Base
-  belongs_to :drug_type, class_name: 'DrugType'
+  belongs_to :drug_type
+
+  scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
+
 end

@@ -1,4 +1,4 @@
-angular.module('DaisyApp').directive 'list', ($http) ->
+angular.module('DaisyApp').directive 'list', ($loader) ->
   directive =
     restrict: 'A'
     templateUrl: "templates/directives/list.html"
@@ -11,6 +11,6 @@ angular.module('DaisyApp').directive 'list', ($http) ->
       listLoadMore: "@"
     link: (scope, element, attrs) ->
       if scope.listUrl
-        $http.get(scope.listUrl)
+        $loader.get(scope.listUrl)
           .success (json) ->
             scope.listData = json.data

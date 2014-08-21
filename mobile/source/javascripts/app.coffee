@@ -9,55 +9,81 @@ angular.module 'DaisyApp', [
   # "ngAnimate"
   "ngRoute"
   "ngTouch"
+  "angular-local-storage"
   "angular-carousel"
   "angular-loading-bar"
-  "angular-local-storage"
 ]
 
 .config ($routeProvider, $locationProvider) ->
   $routeProvider.when '/',          templateUrl: "templates/home.html"
   $routeProvider.when '/home',      templateUrl: "templates/home.html"
-  $routeProvider.when '/login',     templateUrl: "templates/login.html"
-  $routeProvider.when '/register',  templateUrl: "templates/register.html"
+
+  $routeProvider.when '/login/:redirectToPath*',
+    templateUrl: "templates/login.html",
+    controller: ($scope, $rootScope, $routeParams) ->
+      $scope.redirectToPath = $routeParams.redirectToPath
+      $rootScope.redirectTo($scope.redirectToPath) if $rootScope.account
+      
+  $routeProvider.when '/register/:redirectToPath*',
+    templateUrl: "templates/register.html"
+
   $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
   $routeProvider.when '/search',    templateUrl: "templates/search.html"
   $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
-  $routeProvider.when '/detail',    templateUrl: "templates/detail.html"
   
-  $routeProvider.when '/list/:path',
+  $routeProvider.when '/detail/:type/:id',
+    templateUrl: ($routeParams) ->
+      "templates/details/#{$routeParams.type}.html"
+    controller: ($scope, $routeParams, $loader) ->
+      $scope.type = $routeParams.type
+      $scope.id = $routeParams.id
+      url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
+
+      $loader.get(url)
+        .success (data) ->
+          $scope.data = data
+
+  
+  $routeProvider.when '/list/:type',
     templateUrl: "templates/list.html"
-    controller: ($scope, $route, $http) ->
-      $scope.$watch 'loadJson', (options = {}) ->
+    controller: ($scope, $routeParams, $loader) ->
+      $scope.type = $routeParams.type
+      url = "/api/#{$routeParams.type}.json"
+
+      $scope.$watch 'redirectToParams', (redirectToParams) ->
         page = $scope.page = 1
-        path = options.path || $route.current.params.path
-        url = options.url || "api/#{path}.json"
-        params = angular.extend { page: page }, options.params
-        $http.get(url, params: params)
+        params = angular.extend { page: page }, redirectToParams
+        $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data
 
       $scope.loadMore = () ->
-        options = $scope.loadJson || {}
         page = $scope.page += 1
-        path = options.path || $route.current.params.path
-        url = options.url || "api/#{path}.json"
-        params = angular.extend { page: page }, options.params
-        $http.get(url, params: params)
+        redirectToParams = $scope.redirectToParams
+        params = angular.extend { page: page }, redirectToParams
+        $loader.get(url, params: params)
           .success (data) ->
             $scope.data['data'] = $scope.data['data'].concat data['data']
 
   $routeProvider.when '/search/:query',   
     templateUrl: "templates/list.html"
-    controller: ($scope, $route, $localStorage) ->
-      query = $route.current.params.query
+    controller: ($scope, $routeParams, $localStorage) ->
+      query = $routeParams.query
       searchHistory = $localStorage.get("searchHistory")
         .filter (word) -> word != query
       searchHistory.unshift query
       $localStorage.set("searchHistory", searchHistory)
 
-  $routeProvider.otherwise redirectTo: '/'
+  # $routeProvider.otherwise redirectTo: '/'
 
-# For route#back
+.config (cfpLoadingBarProvider) ->
+  cfpLoadingBarProvider.latencyThreshold = 0;
+
+# Local Storage account binding
+.run ($rootScope, $localStorage) ->
+  $localStorage.bind($rootScope, "account", null)
+
+# Helpers $location
 .run ($rootScope, $location) ->
   history = []
 
@@ -68,5 +94,38 @@ angular.module 'DaisyApp', [
     prevUrl = if history.length > 1 then history.splice(-2)[0] else "/"
     $location.path(prevUrl)
 
+  $rootScope.redirectTo = (path) ->
+    $location.path(path)
+
   $rootScope.search = (query) ->
     $location.path("/search/#{query}")
+
+# Helpers $share
+.run ($rootScope, $modal) ->
+  $rootScope.share = () ->
+    $modal.show "分享", templateUrl: "templates/baiduShare.html", onload: () ->
+      console.log "onload"
+      window._bd_share_config = 
+        common:
+          bdText: ""
+          bdPic: ""
+          bdMini: 2
+          bdMiniList: false
+          bdStyle: 0
+          bdSize: 32
+        share: {}
+      window._bd_share_main.init()
+  
+  (document.getElementsByTagName('head')[0] || body)
+  .appendChild(document.createElement('script'))
+  .src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
+
+# Helpers $favorite
+.run ($rootScope, $loader, $location, $alert) ->
+  $rootScope.favorite = (type, id) ->
+    if $rootScope.account
+      $loader.post("/api/favorites/#{type}/#{id}")
+        .success (data) ->
+          $alert.info("成功加入收藏")
+    else
+      $location.path("/login#{$location.$$path}")

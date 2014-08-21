@@ -1,4 +1,4 @@
-<header class="bar bar-nav">
+<header class="bar bar-nav" ng-init="header = true">
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
   </a>
@@ -9,7 +9,7 @@
 </header>
 
 <div class="content">
-  <div keyword keyword-url="api/keywords.json"></div>
+  <div keyword keyword-url="/api/keywords.json"></div>
 
   <div history></div>
   

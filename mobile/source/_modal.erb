@@ -1,0 +1,14 @@
+<div class="backdrop" ng-show="backdrop.show" ng-click="backdrop.click()"></div>
+
+<div class="modal" ng-show="modal.show">
+ <header class="bar bar-nav">
+    <a class="react action pull-right" ng-click="$modal.hide()">
+      <span class="ionicon ion-close"></span>
+    </a>
+    <h1 class="title">{{modal.title}}</h1>
+  </header>
+
+  <div class="content" ng-if="modal.content" ng-bind-html="modal.content"></div>
+  <div class="content" ng-if="modal.templateUrl" ng-include="modal.templateUrl" onload="modal.onload()"></div>
+
+</div>

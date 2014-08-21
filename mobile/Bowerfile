@@ -8,6 +8,7 @@ asset 'angular-touch'
 asset 'angular-carousel'
 asset 'angular-loading-bar'
 asset 'angular-local-storage'
+asset 'angular-growl-v2'
 
 asset 'ionicons'
 

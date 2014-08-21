@@ -1,0 +1,73 @@
+// Detail
+.album {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+
+  img {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    min-height: 100%;
+    @include transform(translateY(-50%));
+  }
+
+  .desc {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, .5);
+  }
+}
+
+.media .actions {
+  list-style-type: none;
+  padding: 0;
+  font-size: 14px;
+
+  li {
+    float: left;
+    padding-right: 15px;
+    line-height: 20px;
+
+    img {
+      float: left;
+    }
+    span, a {
+      color: #666;
+      padding-left: 3px;
+      padding-top: 5px;
+    }
+  }
+}
+
+.media .review {
+  color: #999;
+
+  .ionicon {
+    color: #fdb338;
+  }
+  strong {
+    font-size: 24px;
+  }
+
+  &:after {
+    border-color: #999;
+  }
+}
+
+
+// Icon
+.ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  font-size: 24px;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}

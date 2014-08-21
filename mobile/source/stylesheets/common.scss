@@ -1,0 +1,35 @@
+
+// Common
+.content > * {
+  @include transform(none);
+}
+
+a.react {
+  display: block;
+  color: inherit;
+  height: 100%;
+}
+a.react:active,
+a.react.react-active {
+  background:rgba(0,0,0,.1)
+}
+
+a[ng-click] {
+  cursor: pointer;
+}
+
+.content {
+  color: #333;
+  background-color: #f0efed;
+  overflow-x: hidden;
+  font-size: 14px;
+  padding-bottom: 50px!important;
+}
+
+.bar-nav ~ .content {
+  padding-top: 50px;
+}
+
+.bar-header-secondary ~ .content {
+  padding-top: 105px;
+}

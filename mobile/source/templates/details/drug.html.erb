@@ -1,4 +1,4 @@
-<header class="bar bar-nav">
+<header class="bar bar-nav" ng-init="header = true">
   <h1 class="title">详细信息</h1>
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
@@ -7,7 +7,7 @@
     <span class="ionicon ion-star">
   </a>
   <a class="react action pull-right">
-    <span class="ionicon ion-share">
+    <span class="ionicon ion-share" ng-click="share()">
   </a>
 </header>
 

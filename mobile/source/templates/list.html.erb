@@ -1,7 +1,7 @@
 <%= partial 'header', locals: { title: "{{data['title']}}" } %>
 
-<nav class="bar bar-header-secondary dropdown" filter filter-data="data['filters']" ng-show="data['filters']"></nav>
+<nav filter filter-data="data['filters']" ng-show="data['filters']" ng-class="{'bar bar-header-secondary dropdown': data['filters']}"></nav>
 
-<div class="content" ng-show="data['data']">
-  <div list list-data="data['data']" list-load-more="查看更多"></div>
+<div class="content">
+  <div list list-data="data['data']" list-load-more="查看更多" ng-if="data['data']"></div>
 </div>
