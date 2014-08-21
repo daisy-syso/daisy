@@ -1,3 +1,5 @@
+@import 'bourbon/bourbon';
+
 // Dropdown
 @mixin control-item ($color, $nextColor) {
   background-color: $color;

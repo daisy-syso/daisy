@@ -91,3 +91,13 @@ configure :build do
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
 end
+
+activate :deploy do |deploy|
+  deploy.method   = :sftp
+  deploy.host     = '223.4.33.119'
+  deploy.port     = 22
+  deploy.path     = '/var/www/daisy/shared/public/mobile'
+  # Optional Settings
+  deploy.user     = 'deploy' # no default
+  # deploy.password = 'secret' # no default
+end
