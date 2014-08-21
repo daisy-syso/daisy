@@ -1,4 +1,5 @@
-angular.module('DaisyApp').controller 'FormCtrl', 
+angular.module('DaisyApp').controller 'FormCtrl', [
+  '$scope', '$rootScope', '$loader', '$routeParams', '$location'
   ($scope, $rootScope, $loader, $routeParams, $location) ->
     $scope.submit = (url, data, callback) ->
       $loader.post(url, data)
@@ -12,4 +13,5 @@ angular.module('DaisyApp').controller 'FormCtrl',
     $scope.afterLogin = (data) ->
       $rootScope.account = data['data']
       $scope.redirectTo()
+]
 
