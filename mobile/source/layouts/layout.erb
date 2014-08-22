@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="DaisyApp">
   <head>
     <meta charset="utf-8">
     
@@ -15,13 +15,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "The Middleman" %></title>
+    <title>搜医搜</title>
     
     <%= stylesheet_link_tag "all" %>
     <%= javascript_include_tag  "all" %>
   </head>
   
-  <body class="<%= page_classes %>" ng-app="DaisyApp">
+  <body class="<%= page_classes %>">
     <%= yield %>
   </body>
 </html>

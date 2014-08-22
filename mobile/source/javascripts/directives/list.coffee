@@ -16,4 +16,7 @@ angular.module('DaisyApp').directive 'list', [
           $loader.get(scope.listUrl)
             .success (json) ->
               scope.listData = json.data
+
+        scope.link = (data) ->
+          data.link || "#/detail/#{data.type}/#{data.id}"
 ]

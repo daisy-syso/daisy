@@ -6,7 +6,7 @@
     </li>
 
     <li class="table-view-cell" ng-repeat="data in listData">
-      <a ng-href="#/detail/{{data.type}}/{{data.id}}" class="react">
+      <a ng-href="{{link(data)}}" class="react">
         <img class="media-object pull-left" ng-src="{{data.image_url}}">
         <div class="media-body">
           {{data.name}}
