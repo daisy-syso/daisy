@@ -4,7 +4,7 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :city, -> (city) { where(city: city) }
   scope :hospital_type, -> (type) { type ? joins(:hospital_types)
-    .where(:"hospitals_types.type_id" => type) : all }
+    .where(hospitals_types: { type_id: type }) : all }
 
   class << self
     include Cacheable
@@ -20,5 +20,12 @@ class Hospitals::Hospital < ActiveRecord::Base
 
     define_cached_methods :filters
   end
+
+  include Exclamationable
+  def click
+    self.click_count ||= 0
+    self.click_count  += 1
+  end
+  define_exclamation_and_method :click
 
 end

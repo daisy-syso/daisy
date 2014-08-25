@@ -2,6 +2,12 @@ module Hospitals
   class HospitalsAPI < Grape::API
     extend ResourcesHelper
 
+    get "hospital/:id" do
+      hospital = Hospitals::Hospital.find params[:id]
+      present! hospital
+      hospital.click!
+    end
+
     resources :hospitals, 
       class: Hospitals::Hospital,
       title: "医院大全",

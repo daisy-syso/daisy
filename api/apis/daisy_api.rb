@@ -13,9 +13,11 @@ class DaisyAPI < Grape::API
   mount Hospitals::HospitalsAPI
   mount Hospitals::DoctorsAPI
   mount Hospitals::NursingRoomsAPI
+  mount Hospitals::ExaminationsAPI
 
   mount Drugs::DrugsAPI
   mount Drugs::DrugstoresAPI
+  mount Drugs::DiseasesAPI
 
   mount SocialSecurities::SocialSecuritiesAPI
 

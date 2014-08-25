@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820021700) do
+ActiveRecord::Schema.define(version: 20140823025955) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -43,6 +43,22 @@ ActiveRecord::Schema.define(version: 20140820021700) do
   end
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree
+
+  create_table "diseases", force: true do |t|
+    t.string   "name"
+    t.text     "etiology"
+    t.text     "symptoms"
+    t.text     "examination"
+    t.text     "treatment"
+    t.text     "prevention"
+    t.text     "diet"
+    t.text     "desc"
+    t.integer  "drug_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diseases", ["drug_type_id"], name: "index_diseases_on_drug_type_id", using: :btree
 
   create_table "doctors", force: true do |t|
     t.string   "name"
@@ -194,9 +210,11 @@ ActiveRecord::Schema.define(version: 20140820021700) do
     t.boolean "is_national_hot"
     t.boolean "is_best_reputation"
     t.string  "level"
+    t.integer "click_count",        default: 0
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
+  add_index "hospitals", ["click_count"], name: "index_hospitals_on_click_count", using: :btree
 
   create_table "hospitals_types", force: true do |t|
     t.integer "hospital_id"

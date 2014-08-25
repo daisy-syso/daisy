@@ -34,3 +34,13 @@ a[ng-click] {
 .bar-header-secondary ~ .content {
   padding-top: 105px;
 }
+
+// Icon
+.ionicon {
+  display: inline-block;
+  font-family: "Ionicons";
+  font-size: 24px;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+}

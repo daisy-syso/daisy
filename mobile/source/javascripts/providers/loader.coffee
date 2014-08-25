@@ -1,10 +1,15 @@
 angular.module("DaisyApp").factory '$loader', [
-  '$http', '$alert'
-  ($http, $alert) ->
+  '$rootScope', '$http', '$location', '$alert'
+  ($rootScope, $http, $location, $alert) ->
     error = (data, status) ->
       if data.error
-        console.log data
+        console.error data
         $alert.error(data.error)
+
+        # if access denied
+        if status == 401 && not /^\/login/.test $location.$$path
+          $rootScope.account = null
+          $location.path "/login#{$location.$$path}"
 
     loader =
       get: (url, config) ->

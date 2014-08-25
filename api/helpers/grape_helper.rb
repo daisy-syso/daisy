@@ -98,7 +98,7 @@ AppConfig = {
       icon: "images/icons/1-1.gif"
     }, {
       title: "疾病查询",
-      link: "#/home",
+      link: "#/list/diseases",
       icon: "images/icons/1-2.gif"
     }, {
       title: "找医生",
@@ -132,6 +132,14 @@ AppConfig = {
       title: "热门诊所",
       link: "#/home",
       icon: "images/icons/1-10.gif"
+    }, {
+      title: "全国体检",
+      link: "#/list/examinations",
+      icon: "images/icons/2-3.gif"
+    }, {
+      title: "养老服务",
+      link: "#/list/nursing_rooms",
+      icon: "images/icons/2-5.gif"
     }, {
       title: "返利优惠",
       link: "#/home",
