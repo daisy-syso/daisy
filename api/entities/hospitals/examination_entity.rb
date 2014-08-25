@@ -3,7 +3,7 @@ module Hospitals
     expose :id, :name
 
     expose :type do |object, options|
-      "hospital"
+      "examination"
     end
 
   end

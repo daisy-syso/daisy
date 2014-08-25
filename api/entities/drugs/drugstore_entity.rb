@@ -3,7 +3,7 @@ module Drugs
     expose :id, :name, :image_url, :address
 
     expose :type do |object, options|
-      "hospital"
+      "drugstore"
     end
 
   end

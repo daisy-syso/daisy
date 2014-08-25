@@ -3,7 +3,7 @@ module Hospitals
     expose :id, :name, :image_url, :address
 
     expose :type do |object, options|
-      "hospital"
+      "nursing_room"
     end
 
   end
