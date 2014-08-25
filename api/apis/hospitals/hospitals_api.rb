@@ -4,7 +4,7 @@ module Hospitals
 
     get "hospital/:id" do
       hospital = Hospitals::Hospital.find params[:id]
-      present! hospital
+      present! hospital, detail: true
       hospital.click!
     end
 

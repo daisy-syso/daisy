@@ -10,5 +10,9 @@ module SocialSecurities
       object.url
     end
 
+    expose :type do |object, options|
+      "social_security"
+    end
+
   end
 end

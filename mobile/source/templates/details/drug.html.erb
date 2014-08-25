@@ -1,104 +1,16 @@
-<header class="bar bar-nav" ng-init="header = true">
-  <h1 class="title">详细信息</h1>
-  <a class="react action pull-left" ng-click="back()">
-    <span class="ionicon ion-chevron-left">
-  </a>
-  <a class="react action pull-right">
-    <span class="ionicon ion-star">
-  </a>
-  <a class="react action pull-right">
-    <span class="ionicon ion-share" ng-click="share()">
-  </a>
-</header>
+<%= partial 'header' %>
 
 <div class="content">
 
-  <div class="album">
-    <img src="images/samples/dkn.jpg" />
-    <!-- <div class="desc">点击图片查看相册</div> -->
-  </div>
+  <%= partial 'album' %>
 
-  <div class="card">
-    <ul class="table-view media">
-      <li class="table-view-cell">
-        <div class="media-detail huge">
-          <strong>255</strong>元
-          <del>736元</del>
-          <a class="btn btn-strong pull-right" href="#">立即购买</a>
-        </div>
-      </li>
-      <li class="table-view-cell">
-        <div class="media-detail">
-          <h1>达克宁家族</h1>
-          <p>达克宁乳膏每克含硝酸咪康唑0.02克，辅料为：单硬脂酸甘油酯、硬脂酸、三乙醇胺、十八醇、甘油、羟苯乙酯、白凡士林、液状石蜡、纯化。适应由真菌引起的皮肤、指（趾）甲感染。</p>
-        </div>
-      </li>
-      <li class="table-view-cell">
-        <ul class="actions">
-          <li>
-            <img src="images/rs.gif" width="20"> 
-            <span>已有2222人购买</span>
-          </li>
-          <li>
-            <img src="images/jiang.gif" width="20"> 
-            <a href="#">降价通知</a>
-          </li>
-          <li>
-            <img src="images/sc2.gif" width="20"> 
-            <a href="#">我要收藏</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+  <%= partial 'desc' %>
 
-  <div class="card">
-    <ul class="table-view media">
-      <li class="table-view-cell media-more review">
-        <span class="ionicon ion-ios7-star"></span>
-        <span class="ionicon ion-ios7-star"></span>
-        <span class="ionicon ion-ios7-star"></span>
-        <span class="ionicon ion-ios7-star"></span>
-        <span class="ionicon ion-ios7-star-half"></span>
-        &nbsp;
-        <strong>4.7</strong>
-        <span class="pull-right">14670人评价</span>
-      </li>
-    </ul>
-  </div>
+  <%= partial 'review' %>
+  
+  <%= partial 'map' %>
 
-  <div class="card">
-    <ul class="table-view media">
-      <li class="table-view-cell media-title">
-        商家信息
-      </li>
-      <li class="table-view-cell media-detail">
-        <h1>普仁大药房</h1>
-        <p>崇安区新生弄4号（朝阳广场市民卡充值点往里 150米）</p>
-        <div class="map" map map-data="data['map']"></div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <ul class="table-view media">
-      <li class="table-view-cell media-title">
-        商品信息
-      </li>
-      <li class="table-view-cell media-detail">
-        <p>【药品名称】</p>
-        <p>通用名称：硝酸咪康唑乳膏</p>
-        <p>英文名称：Miconazole Nitrate Cream</p>
-        <p>汉语拼音：Xiaosuan Mikangzuo Rugao</p>
-        <p>【性状】本品为白色或类白色乳膏。</p>
-        <p>【作用类别】本品为皮肤科及妇科用药类非处方药药品。</p>
-        <p>【适应症】</p>
-        <p>1. 由皮真菌、酵母菌及其他真菌引起的皮肤、指（趾）甲感染，如：体股癣、手足癣、花斑癣、头癣、须癣、甲癣；皮肤、指（趾）甲念珠菌病；口角炎、外耳炎。由于本品对革兰阳性菌有抗菌作用，可用于此类细菌引起的继发性感染。</p>
-        <p>2. 由酵母菌（如念珠菌等）和革兰阳性细菌引起的阴道感染和继发感染。</p>
-        <p>【规格】每克含硝酸咪康唑20毫克（2%）。</p>
-      </li>
-    </ul>
-  </div>
+  <%= partial 'detail' %>
 
   <%= partial 'related' %> 
 

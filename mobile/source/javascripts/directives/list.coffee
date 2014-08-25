@@ -19,4 +19,8 @@ angular.module('DaisyApp').directive 'list', [
 
         scope.link = (data) ->
           data.link || "#/detail/#{data.type}/#{data.id}"
+          
+        scope.templateUrl = (data) ->
+          "templates/lists/#{data.type}.html"
+
 ]
