@@ -122,7 +122,7 @@ AppConfig = {
       icon: "images/icons/1-7.gif"
     }, {
       title: "价格搜索",
-      link: "#/home",
+      link: "#/list/price_search",
       icon: "images/icons/1-8.gif"
     }, {
       title: "热门专科",

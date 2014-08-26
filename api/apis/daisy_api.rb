@@ -10,6 +10,8 @@ class DaisyAPI < Grape::API
   mount FavoritesAPI
   mount FiltersAPI
 
+  mount PriceSearchAPI
+
   mount Hospitals::HospitalsAPI
   mount Hospitals::DoctorsAPI
   mount Hospitals::NursingRoomsAPI

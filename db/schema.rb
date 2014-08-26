@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823025955) do
+ActiveRecord::Schema.define(version: 20140826085443) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140823025955) do
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree
 
+  create_table "disease_types", force: true do |t|
+    t.string  "name"
+    t.integer "parent_id"
+  end
+
+  add_index "disease_types", ["parent_id"], name: "index_disease_types_on_parent_id", using: :btree
+
   create_table "diseases", force: true do |t|
     t.string   "name"
     t.text     "etiology"
@@ -53,12 +60,10 @@ ActiveRecord::Schema.define(version: 20140823025955) do
     t.text     "prevention"
     t.text     "diet"
     t.text     "desc"
-    t.integer  "drug_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "disease_type_id"
   end
-
-  add_index "diseases", ["drug_type_id"], name: "index_diseases_on_drug_type_id", using: :btree
 
   create_table "doctors", force: true do |t|
     t.string   "name"
@@ -90,7 +95,10 @@ ActiveRecord::Schema.define(version: 20140823025955) do
     t.string  "code"
     t.string  "expiry_date"
     t.string  "spec"
+    t.integer "disease_id"
   end
+
+  add_index "drugs", ["disease_id"], name: "index_drugs_on_disease_id", using: :btree
 
   create_table "drugs_types", force: true do |t|
     t.integer "drug_type_id"
@@ -329,6 +337,13 @@ ActiveRecord::Schema.define(version: 20140823025955) do
 
   create_table "provinces", force: true do |t|
     t.string "name"
+  end
+
+  create_table "settings", force: true do |t|
+    t.string   "name"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "shaping_items", force: true do |t|

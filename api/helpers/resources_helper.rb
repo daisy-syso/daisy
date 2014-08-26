@@ -24,9 +24,13 @@ module ResourcesHelper
         meta[:filters].push title: options[:title], children: children, current: current
       end
 
-      includes = options[:includes]
       data = klass.all
+      includes = options[:includes]
       data = data.includes(includes) if includes
+      scopes = Array.wrap(options[:scopes])
+      scopes.each do |scope|
+        data = data.send(scope)
+      end if scopes.any?
       data = apply_scopes!(data)
       present! data, meta: meta
     end
