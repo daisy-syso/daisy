@@ -2,7 +2,7 @@ module Hospitals
   class NursingRoomsAPI < Grape::API
     extend ResourcesHelper
 
-    resources :nursing_rooms, 
+    index! :nursing_rooms, 
       class: Hospitals::NursingRoom,
       title: "养老服务",
       filters: { 

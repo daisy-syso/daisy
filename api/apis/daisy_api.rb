@@ -9,8 +9,7 @@ class DaisyAPI < Grape::API
   mount AccountsAPI
   mount FavoritesAPI
   mount FiltersAPI
-
-  mount PriceSearchAPI
+  mount MenusAPI
 
   mount Hospitals::HospitalsAPI
   mount Hospitals::DoctorsAPI
@@ -24,6 +23,8 @@ class DaisyAPI < Grape::API
   mount SocialSecurities::SocialSecuritiesAPI
 
   mount NetInfos::HotSearchKeywordsAPI
+
+  mount Shapings::ShapingItemsAPI
 
   get :config do
     AppConfig

@@ -1,6 +1,6 @@
 module ResourcesHelper
 
-  def resources path, options = {}
+  def index! path, options = {}
 
     klass = options[:class]
     filters = options[:filters] || []
@@ -12,16 +12,30 @@ module ResourcesHelper
       end
     end
     get path do
-
+      
       meta = options[:meta] || {}
       meta[:title] ||= options[:title]
       meta[:filters] = [] if filters.any?
 
       filters.each do |filter, options|
-        has_scope filter
-        children = options[:class].filters_with_cache
-        current = params[filter] ? options[:class].find(params[filter]).name : "全部"
-        meta[:filters].push title: options[:title], children: children, current: current
+        children_proc = options[:children] || proc do
+          options[:class].filters_with_cache
+        end
+        children = children_proc.call
+
+        current_proc = options[:current] || proc do |id|
+          id ? options[:class].find(id).name : "全部"
+        end
+        current = current_proc.call params[filter]
+
+        meta[:filters].push title: options[:title], 
+          children: children, current: current
+      end
+
+      filters.each do |filter, options|
+        options = options.slice(:type, :using)
+        options[:type] = options[:type].name.downcase.to_sym if options[:type]
+        has_scope filter, options
       end
 
       data = klass.all
@@ -35,13 +49,15 @@ module ResourcesHelper
       present! data, meta: meta
     end
 
+  end
+
+  def show! path, options = {}
     params do
       requires :id, type: Integer
     end
-    get "#{path.to_s.singularize}/:id" do
+    get "#{path}/:id" do
       present! klass.find(params[:id])
     end
-
   end
 
 end

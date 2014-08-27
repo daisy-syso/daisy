@@ -2,7 +2,7 @@ module Drugs
   class DiseasesAPI < Grape::API
     extend ResourcesHelper
 
-    resources :diseases, 
+    index! :diseases, 
       class: Drugs::Disease,
       title: "疾病查询",
       filters: { 

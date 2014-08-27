@@ -2,7 +2,7 @@ module Hospitals
   class ExaminationsAPI < Grape::API
     extend ResourcesHelper
 
-    resources :examinations, 
+    index! :examinations, 
       class: Hospitals::Examination,
       title: "全国体检",
       filters: { 

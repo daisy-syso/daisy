@@ -2,7 +2,7 @@ module Hospitals
   class DoctorsAPI < Grape::API
     extend ResourcesHelper
 
-    resources :doctors, 
+    index! :doctors, 
       class: Hospitals::Doctor,
       title: "找医生",
       filters: { 

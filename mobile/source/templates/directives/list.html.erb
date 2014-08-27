@@ -6,7 +6,7 @@
     </li>
 
     <li class="table-view-cell" ng-repeat="data in listData">
-      <a ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)">
+      <a ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)" ng-cloak>
       </a>
     </li>
 

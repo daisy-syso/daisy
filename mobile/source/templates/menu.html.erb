@@ -1,0 +1,19 @@
+<%= partial 'header', locals: { title: "{{data['title']}}" } %>
+
+<div class="content">
+  <div class="card">
+    <ul class="table-view media">
+
+      <li class="table-view-cell media-title" ng-show="listTitle">
+        {{listTitle}}
+      </li>
+
+      <li class="table-view-cell media-menu" ng-repeat="data in data['data']">
+        <a ng-href="{{data.link}}" class="react">
+          {{data.title}}
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>

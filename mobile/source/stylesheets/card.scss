@@ -111,9 +111,13 @@
   }
   .media-body {
     min-height: 65px;
+
     p {
       font-size: 13px;
     }
+  }
+  .media-body-only {
+    padding: 10px 0;
   }
   .media-detail {
     font-size: 15px;
@@ -167,6 +171,24 @@
       left: -14px;
       border: 7px solid #2bb2a3;
       border-left: 7px solid transparent;
+    }
+  }
+  .media-menu {
+    a {
+      padding: 20px 10px 20px 15px;
+    }
+    
+    &:after {
+      position: absolute;
+      right: 10px;
+      top: 25px;
+      display: block;
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-left: 2px solid #2bb2a3;
+      border-bottom: 2px solid #2bb2a3;
+      @include transform(scaleY(0.7) rotateZ(-135deg));
     }
   }
   .media-more {

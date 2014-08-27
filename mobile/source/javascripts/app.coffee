@@ -36,6 +36,19 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     
+    $routeProvider.when '/menu/:type',
+      templateUrl: "templates/menu.html"
+      controller: [
+        '$scope', '$routeParams', '$loader'
+        ($scope, $routeParams, $loader) ->
+          $scope.type = $routeParams.type
+          url = "/api/#{$routeParams.type}.json"
+
+          $loader.get(url)
+            .success (data) ->
+              $scope.data = data
+      ]
+
     $routeProvider.when '/detail/:type/:id',
       templateUrl: (routeParams) ->
           "templates/details/#{routeParams.type}.html"
@@ -51,7 +64,7 @@ angular.module 'DaisyApp', [
               $scope.data = data
       ]
     
-    $routeProvider.when '/list/:type',
+    $routeProvider.when '/list/:type*',
       templateUrl: "templates/list.html"
       controller: [
         '$scope', '$routeParams', '$loader'

@@ -1,27 +1,20 @@
-module Drugs
-  class DrugsAPI < Grape::API
+module Shapings
+  class ShapingItemsAPI < Grape::API
     extend ResourcesHelper
     extend FilterHelper
 
-    index! :drugs, 
-      class: Drugs::Drug,
-      title: "药品大全",
-      filters: { 
-        drug_type: { class: Drugs::DrugType, title: "药品类别" },
-      }
-
     namespace :price_search do
-      index! :drugs, 
-        class: Drugs::Drug,
-        title: "价格搜索 药品",
+      index! :shaping_items, 
+        class: Shapings::ShapingItem,
+        title: "价格搜索 整形",
         filters: { 
-          disease: { class: Drugs::Disease, title: "疾病类别" },
+          shaping_type: { class: Shapings::ShapingType, title: "整形类别" },
           price: { 
             title: "价格区间", 
             type: Hash,
             using: [:from, :to],
             children: proc {
-              generate_price_filters Setting.get("price_search.drugs.filters.price", 
+              generate_price_filters Setting.get("price_search.shaping_items.filters.price", 
                 [0, 100, 200, 500])
             }, 
             current: proc { |price| 

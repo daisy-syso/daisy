@@ -8,7 +8,7 @@ module Hospitals
       hospital.click!
     end
 
-    resources :hospitals, 
+    index! :hospitals, 
       class: Hospitals::Hospital,
       title: "医院大全",
       filters: { 

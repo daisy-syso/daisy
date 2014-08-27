@@ -2,7 +2,7 @@ module Drugs
   class DrugstoresAPI < Grape::API
     extend ResourcesHelper
 
-    resources :drugstores, 
+    index! :drugstores, 
       class: Drugs::Drugstore,
       title: "身边药房",
       filters: { 
