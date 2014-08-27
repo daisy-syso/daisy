@@ -20,7 +20,7 @@ angular.module('DaisyApp').directive 'map', [
         map.addOverlay(marker)              
 
         # 创建信息窗口
-        infoWindow = new BMap.InfoWindow("普通标注")
+        infoWindow = new BMap.InfoWindow(scope.mapData.name)
         marker.addEventListener "click", () ->
           this.openInfoWindow infoWindow
 ]

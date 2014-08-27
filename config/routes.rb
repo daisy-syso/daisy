@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   # Mobile JSON API
   mount DaisyAPI => '/api'
 
+  root to: "home#index"
+
 end
