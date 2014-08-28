@@ -10,6 +10,9 @@ module Drugs
         drug_type: { class: Drugs::DrugType, title: "药品类别" },
       }
 
+    show! :drug,
+      class: Drugs::Drug
+
     namespace :price_search do
       index! :drugs, 
         class: Drugs::Drug,

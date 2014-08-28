@@ -52,6 +52,9 @@ module ResourcesHelper
   end
 
   def show! path, options = {}
+    
+    klass = options[:class]
+
     params do
       requires :id, type: Integer
     end

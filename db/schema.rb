@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826085443) do
+ActiveRecord::Schema.define(version: 20140827101542) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -118,9 +118,13 @@ ActiveRecord::Schema.define(version: 20140826085443) do
     t.boolean  "is_national_hot"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "geohash"
+    t.float    "lat",             limit: 24
+    t.float    "lng",             limit: 24
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
+  add_index "drugstores", ["geohash"], name: "index_drugstores_on_geohash", using: :btree
 
   create_table "eldercares", force: true do |t|
     t.string   "name"
@@ -152,10 +156,14 @@ ActiveRecord::Schema.define(version: 20140826085443) do
     t.string  "feature"
     t.float   "price",               limit: 24
     t.float   "save_price",          limit: 24
+    t.string  "geohash"
+    t.float   "lat",                 limit: 24
+    t.float   "lng",                 limit: 24
   end
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
   add_index "examinations", ["examination_type_id"], name: "index_examinations_on_examination_type_id", using: :btree
+  add_index "examinations", ["geohash"], name: "index_examinations_on_geohash", using: :btree
 
   create_table "favorites", force: true do |t|
     t.integer  "account_id"
@@ -218,11 +226,15 @@ ActiveRecord::Schema.define(version: 20140826085443) do
     t.boolean "is_national_hot"
     t.boolean "is_best_reputation"
     t.string  "level"
-    t.integer "click_count",        default: 0
+    t.integer "click_count",                   default: 0
+    t.string  "geohash"
+    t.float   "lat",                limit: 24
+    t.float   "lng",                limit: 24
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
   add_index "hospitals", ["click_count"], name: "index_hospitals_on_click_count", using: :btree
+  add_index "hospitals", ["geohash"], name: "index_hospitals_on_geohash", using: :btree
 
   create_table "hospitals_types", force: true do |t|
     t.integer "hospital_id"
@@ -331,9 +343,13 @@ ActiveRecord::Schema.define(version: 20140826085443) do
     t.string  "telephone"
     t.string  "image_url"
     t.integer "city_id"
+    t.string  "geohash"
+    t.float   "lat",       limit: 24
+    t.float   "lng",       limit: 24
   end
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree
+  add_index "nursing_rooms", ["geohash"], name: "index_nursing_rooms_on_geohash", using: :btree
 
   create_table "provinces", force: true do |t|
     t.string "name"

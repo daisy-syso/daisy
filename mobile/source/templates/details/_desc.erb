@@ -2,15 +2,17 @@
   <ul class="table-view media">
     <li class="table-view-cell">
       <div class="media-detail">
-        <h1>{{data['data'].name}}</h1>
-        <p>{{data['data'].desc}}</p>
+        <h1>{{data.name}}</h1>
+        <p>{{data.desc}}</p>
       </div>
     </li>
     <li class="table-view-cell">
       <ul class="actions">
         <li>
-          <img src="images/rs.gif" width="20"> 
-          <span>已有2222人就诊</span>
+          <span>
+            <img src="images/rs.gif" width="20"> 
+            已有2222人就诊
+          </span>
         </li>
         <li>
           <a ng-click="favorite(type, id)">

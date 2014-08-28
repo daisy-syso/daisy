@@ -61,7 +61,7 @@ angular.module 'DaisyApp', [
 
           $loader.get(url)
             .success (data) ->
-              $scope.data = data
+              $scope.data = data['data']
       ]
     
     $routeProvider.when '/list/:type*',
@@ -149,24 +149,18 @@ angular.module 'DaisyApp', [
 .run [
   '$rootScope', '$modal'
   ($rootScope, $modal) ->
-    $rootScope.share = () ->
+    $rootScope.share = (data) ->
       $modal.open "分享", 
         templateUrl: "templates/baiduShare.html", 
         onload: () ->
-          window._bd_share_config = 
-            common:
-              bdText: ""
-              bdPic: ""
-              bdMini: 2
-              bdMiniList: false
-              bdStyle: 0
-              bdSize: 32
-            share: {}
-          window._bd_share_main.init()
-    
-    # (document.getElementsByTagName('head')[0] || body)
-    # .appendChild(document.createElement('script'))
-    # .src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
+          baidu.socShare.init
+            afterInit: (urls) ->
+              $rootScope.shareUrls = urls
+            client_id: "lev6yFpuN4BDsG9dDaNsNWQj"
+            content: "您要分享的内容"
+            u: encodeURIComponent("分享成功后或者分享编辑也取消分享时的返回地址")
+            url: encodeURIComponent("您要分享的URL")
+            pic_url: encodeURIComponent("您要分享的图片URL")
 ]
 
 # Helpers $favorite

@@ -17,6 +17,53 @@
 @import 'modal';
 
 // Baidu Share
-.bdshare-button-style0-32 a {
-  margin: 5px!important;
+.bd-share {
+  list-style-type: none;
+  display: inline-block;
+
+  a {
+    background-image: url(http://openapi.baidu.com/static/07081126/social-api/img/share/share_popupx.png);
+    background-repeat: no-repeat;
+  }
+  @media (-webkit-min-device-pixel-ratio: 2),(-o-min-device-pixel-ratio: 2/1),(min--moz-device-pixel-ratio: 2),(min-resolute:300dpi){
+    a {
+      background-image: url(http://openapi.baidu.com/static/07081126/social-api/img/share/share_popup2x.png);
+      -webkit-background-size: 437px 217px;
+      -moz-background-size: 437px 217px;
+      -o-background-size: 437px 217px;
+      background-size: 437px 217px;
+    }
+  }
+
+  a {
+    display: block;
+    padding-top: 38px;
+    height: 25px;
+    width: 25px;
+    
+    font-size: 13px;
+    color: #111;
+    text-align: center;
+    &.renren {
+      background-position: -380px 4px;
+    }
+    &.sinaweibo {
+      background-position: 19px 0;
+    }
+    &.qqweibo {
+      background-position: -181px 0;
+    }
+    &.kaixin {
+      background-position: -181px -100px;
+    }
+    &.qqdenglu {
+      background-position: -81px 0;
+    }
+    &.sms {
+      background-position: -81px -100px;
+    }
+    &.mail {
+      background-position: -281px -100px;
+    }
+  }
 }
