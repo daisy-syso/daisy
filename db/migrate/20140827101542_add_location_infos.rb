@@ -6,12 +6,6 @@ class AddLocationInfos < ActiveRecord::Migration
       t.float  :lat
       t.float  :lng
     end
-    change_table :examinations do |t|
-      t.string :geohash
-      t.index  :geohash
-      t.float  :lat
-      t.float  :lng
-    end
     change_table :hospitals do |t|
       t.string :geohash
       t.index  :geohash
