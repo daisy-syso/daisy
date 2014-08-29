@@ -8,7 +8,7 @@ module Reviewable
     include Cacheable
 
     def star
-      reviews.average(:star)
+      reviews.average(:star) || 5.0
     end
     
     def reviews_count

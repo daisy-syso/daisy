@@ -4,7 +4,10 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :city, -> (city) { where(city: city) }
   scope :hospital_type, -> (type) { type ? joins(:hospital_types)
-    .where(hospitals_types: { type_id: type }) : all }
+    .where(hospitals_types: { type_id: type }).distinct : all }
+
+  scope :top_specialists, -> () { joins(:hospital_types)
+    .where.not(hospitals_types: { type_id: 7 }).distinct.order(click_count: :desc) }
 
   include Reviewable
 

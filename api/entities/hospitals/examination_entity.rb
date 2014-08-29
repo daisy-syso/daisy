@@ -1,5 +1,6 @@
 module Hospitals
-  class ExaminationEntity < Bases::PlaceEntity
+  class ExaminationEntity < ApplicationEntity
+    expose :id, :name, :star
 
   end
 end

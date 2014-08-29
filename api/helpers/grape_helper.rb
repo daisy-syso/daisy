@@ -126,7 +126,7 @@ AppConfig = {
       icon: "images/icons/1-8.gif"
     }, {
       title: "热门专科",
-      link: "#/home",
+      link: "#/list/hospitals/top_specialists",
       icon: "images/icons/1-9.gif"
     }, {
       title: "热门诊所",

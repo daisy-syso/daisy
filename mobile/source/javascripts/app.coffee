@@ -176,3 +176,17 @@ angular.module 'DaisyApp', [
         $location.path("/login#{$location.$$path}")
 ]
 
+# Helper $coords
+.run [
+  '$rootScope',
+  ($rootScope) ->
+    navigator.geolocation.getCurrentPosition (coords) ->
+      $rootScope.coords = coords
+
+    $rootScope.getDistance = (data) ->
+      if data && data.lat && data.lng && coords = $rootScope.coords
+        Math.sqrt((data.lat-coords.latitude)^2+(data.lng-coords.longitude)^2)
+      else
+        0
+]
+
