@@ -9,22 +9,26 @@ class DaisyAPI < Grape::API
   mount AccountsAPI
   mount FavoritesAPI
   mount FiltersAPI
-  mount MenusAPI
+  mount PriceSearchAPI
 
-  mount Hospitals::HospitalsAPI
-  mount Hospitals::DoctorsAPI
-  mount Hospitals::NursingRoomsAPI
-  mount Hospitals::ExaminationsAPI
+  namespace :hospitals do
+    mount Hospitals::HospitalsAPI
+    mount Hospitals::DoctorsAPI
+    mount Hospitals::NursingRoomsAPI
+    mount Hospitals::ExaminationsAPI
+  end
 
-  mount Drugs::DrugsAPI
-  mount Drugs::DrugstoresAPI
-  mount Drugs::DiseasesAPI
+  namespace :drugs do
+    mount Drugs::DrugsAPI
+    mount Drugs::DrugstoresAPI
+    mount Drugs::DiseasesAPI
+  end
 
-  mount SocialSecurities::SocialSecuritiesAPI
+  namespace :social_securities do
+    mount SocialSecurities::SocialSecuritiesAPI
+  end
 
   mount NetInfos::HotSearchKeywordsAPI
-
-  mount Shapings::ShapingItemsAPI
 
   get :config do
     AppConfig

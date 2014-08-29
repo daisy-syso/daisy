@@ -3,4 +3,6 @@ class Drugs::Drugstore < ActiveRecord::Base
   
   scope :city, -> (city) { where(city: city) }
   
+  include Reviewable
+  
 end

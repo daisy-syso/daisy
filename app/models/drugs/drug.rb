@@ -7,4 +7,7 @@ class Drugs::Drug < ActiveRecord::Base
   scope :price, -> (from, to) {
     to ? where(ori_price: from..to) : where(arel_table[:ori_price].gt(from))
   }
+  
+  include Reviewable
+
 end

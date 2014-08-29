@@ -1,14 +1,10 @@
 <div class="card">
   <ul class="table-view media">
     <li class="table-view-cell media-more review">
-      <span class="ionicon ion-ios7-star"></span>
-      <span class="ionicon ion-ios7-star"></span>
-      <span class="ionicon ion-ios7-star"></span>
-      <span class="ionicon ion-ios7-star"></span>
-      <span class="ionicon ion-ios7-star-half"></span>
+      <div stars="data.star" class="stars"></div>
       &nbsp;
-      <strong>4.7</strong>
-      <span class="pull-right">14670人评价</span>
+      <strong>{{data.star | number:2}}</strong>
+      <span class="pull-right">{{data.reviews_count}}人评价</span>
     </li>
   </ul>
 </div>

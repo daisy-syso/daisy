@@ -1,5 +1,5 @@
 module SocialSecurities
-  class SocialSecurityEntity < Grape::Entity
+  class SocialSecurityEntity < ApplicationEntity
     expose :id
 
     expose :name do |object, options|
@@ -8,10 +8,6 @@ module SocialSecurities
 
     expose :link do |object, options|
       object.url
-    end
-
-    expose :type do |object, options|
-      "social_security"
     end
 
   end

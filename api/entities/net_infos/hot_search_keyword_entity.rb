@@ -1,5 +1,5 @@
 module NetInfos
-  class HotSearchKeywordEntity < Grape::Entity
+  class HotSearchKeywordEntity < ApplicationEntity
     expose :id, :name
 
   end

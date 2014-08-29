@@ -6,6 +6,8 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :hospital_type, -> (type) { type ? joins(:hospital_types)
     .where(hospitals_types: { type_id: type }) : all }
 
+  include Reviewable
+
   class << self
     include Cacheable
 

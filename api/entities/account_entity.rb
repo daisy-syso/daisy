@@ -1,4 +1,4 @@
-class AccountEntity < Grape::Entity
+class AccountEntity < ApplicationEntity
   expose :id, :email, :username, :authentication_token
 
 end

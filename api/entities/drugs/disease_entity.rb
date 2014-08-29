@@ -1,10 +1,6 @@
 module Drugs
-  class DiseaseEntity < Grape::Entity
+  class DiseaseEntity < ApplicationEntity
     expose :id, :name
-
-    expose :type do |object, options|
-      "disease"
-    end
 
   end
 end

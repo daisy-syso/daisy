@@ -94,15 +94,15 @@ AppConfig = {
   home: {
     buttons: [{
       title: "医院大全",
-      link: "#/list/hospitals",
+      link: "#/list/hospitals/hospitals",
       icon: "images/icons/1-1.gif"
     }, {
       title: "疾病查询",
-      link: "#/list/diseases",
+      link: "#/list/drugs/diseases",
       icon: "images/icons/1-2.gif"
     }, {
       title: "找医生",
-      link: "#/list/doctors",
+      link: "#/list/hospitals/doctors",
       icon: "images/icons/1-3.gif"
     }, {
       title: "手机挂号",
@@ -110,15 +110,15 @@ AppConfig = {
       icon: "images/icons/1-4.gif"
     }, {
       title: "药品大全",
-      link: "#/list/drugs",
+      link: "#/list/drugs/drugs",
       icon: "images/icons/1-5.gif"
     }, {
       title: "身边药房",
-      link: "#/list/drugstores",
+      link: "#/list/drugs/drugstores",
       icon: "images/icons/1-6.gif"
     }, {
       title: "医保查询",
-      link: "#/list/social_securities",
+      link: "#/list/social_securities/social_securities",
       icon: "images/icons/1-7.gif"
     }, {
       title: "价格搜索",
@@ -134,11 +134,11 @@ AppConfig = {
       icon: "images/icons/1-10.gif"
     }, {
       title: "全国体检",
-      link: "#/list/examinations",
+      link: "#/list/hospitals/examinations",
       icon: "images/icons/2-3.gif"
     }, {
       title: "养老服务",
-      link: "#/list/nursing_rooms",
+      link: "#/list/hospitals/nursing_rooms",
       icon: "images/icons/2-5.gif"
     }, {
       title: "返利优惠",

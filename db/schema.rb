@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827101542) do
+ActiveRecord::Schema.define(version: 20140829021159) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -354,6 +354,21 @@ ActiveRecord::Schema.define(version: 20140827101542) do
   create_table "provinces", force: true do |t|
     t.string "name"
   end
+
+  create_table "reviews", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "order_id"
+    t.integer  "star"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["account_id"], name: "index_reviews_on_account_id", using: :btree
+  add_index "reviews", ["item_id", "item_type"], name: "index_reviews_on_item_id_and_item_type", using: :btree
+  add_index "reviews", ["order_id"], name: "index_reviews_on_order_id", using: :btree
 
   create_table "settings", force: true do |t|
     t.string   "name"

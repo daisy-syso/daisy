@@ -1,10 +1,6 @@
 module Hospitals
-  class DoctorEntity < Grape::Entity
+  class DoctorEntity < ApplicationEntity
     expose :id, :name, :desc
-
-    expose :type do |object, options|
-      "doctor"
-    end
 
   end
 end

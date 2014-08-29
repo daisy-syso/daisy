@@ -1,8 +1,6 @@
 <div class="content-padded">
   <h4>将内容分享到：</h4>
-  <ul class="bd-share">
-    <li ng-repeat="(type, url) in shareUrls">
-      <a ng-class="type" ng-href="{{url}}"></a>
-    </li>
-  </ul>
+  <div class="bd-share">
+    <a ng-class="type" ng-href="{{url}}" ng-repeat="(type, url) in shareUrls"></a>
+  </div>
 </div>

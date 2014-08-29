@@ -5,4 +5,6 @@ class Hospitals::Examination < ActiveRecord::Base
   scope :city, -> (city) { where(city: city) }
   scope :examination_type, -> (type) { type ? where(examination_type: type) : all }
 
+  include Reviewable
+  
 end

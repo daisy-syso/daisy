@@ -49,7 +49,7 @@ angular.module 'DaisyApp', [
               $scope.data = data
       ]
 
-    $routeProvider.when '/detail/:type/:id',
+    $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
           "templates/details/#{routeParams.type}.html"
       controller: [

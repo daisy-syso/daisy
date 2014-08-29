@@ -1,8 +1,7 @@
 module ResourcesHelper
 
-  def index! path, options = {}
+  def index! klass, options = {}
 
-    klass = options[:class]
     filters = options[:filters] || []
 
     params do
@@ -11,8 +10,7 @@ module ResourcesHelper
         optional filter, options.reverse_merge(type: Integer)
       end
     end
-    get path do
-      
+    get do
       meta = options[:meta] || {}
       meta[:title] ||= options[:title]
       meta[:filters] = [] if filters.any?
@@ -51,15 +49,13 @@ module ResourcesHelper
 
   end
 
-  def show! path, options = {}
+  def show! klass, options = {}
     
-    klass = options[:class]
-
     params do
       requires :id, type: Integer
     end
-    get "#{path}/:id" do
-      present! klass.find(params[:id])
+    get ":id" do
+      present! klass.find(params[:id]), detail: true
     end
   end
 

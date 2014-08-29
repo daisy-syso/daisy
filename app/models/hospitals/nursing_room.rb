@@ -3,4 +3,6 @@ class Hospitals::NursingRoom < ActiveRecord::Base
   
   scope :city, -> (city) { where(city: city) }
 
+  include Reviewable
+  
 end
