@@ -34,6 +34,7 @@ zh-CN:
       friendly_link_type: "友情链接类型"
       friendly_link: "友情链接"
       hot_search_keyword: "热门关键词设定"
+      price_notification: "降价通知"
     errors:
       messages:
         blank: "不能为空"
@@ -217,3 +218,5 @@ zh-CN:
         friendly_link_type: "类型"
       hot_search_keyword:
         name: "名称"
+      price_notification:
+        price: "价格"

@@ -9,6 +9,7 @@ class Account < ActiveRecord::Base
   validates_uniqueness_of :username
 
   has_many :favorites
+  has_many :price_notifications
 
   def favorite_items
     self.favorites.includes(:item).map(&:item)
@@ -16,5 +17,9 @@ class Account < ActiveRecord::Base
 
   def add_favorite_item item
     self.favorites.push Favorite.new(item: item)
+  end
+
+  def add_price_notification_item item, price
+    self.price_notifications.push PriceNotification.new(item: item, price: price)
   end
 end

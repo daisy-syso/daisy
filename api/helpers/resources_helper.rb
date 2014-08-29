@@ -58,5 +58,5 @@ module ResourcesHelper
       present! klass.find(params[:id]), detail: true
     end
   end
-
+  
 end

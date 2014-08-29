@@ -151,7 +151,7 @@ angular.module 'DaisyApp', [
   ($rootScope, $modal) ->
     $rootScope.share = (data) ->
       $modal.open "分享", 
-        templateUrl: "templates/baiduShare.html", 
+        templateUrl: "templates/modals/baiduShare.html"
         onload: () ->
           baidu.socShare.init
             afterInit: (urls) ->
@@ -172,6 +172,23 @@ angular.module 'DaisyApp', [
         $loader.post("/api/favorites/#{type}/#{id}")
           .success (data) ->
             $alert.info("成功加入收藏")
+      else
+        $location.path("/login#{$location.$$path}")
+]
+
+# Helpers $priceNotification
+.run [
+  '$rootScope', '$location', '$loader', '$alert', '$modal'
+  ($rootScope, $location, $loader, $alert, $modal) ->
+    $rootScope.priceNotification = (type, id) ->
+      if $rootScope.account
+        $modal.open "降价通知", 
+          templateUrl: "templates/modals/priceNotification.html"
+          onload: (scope) ->
+            scope.priceNotificationUrl = "/api/price_notifications/#{type}/#{id}"
+            scope.priceNotificationCallback = () ->
+              $modal.close()
+              $alert.info("成功添加降价通知")
       else
         $location.path("/login#{$location.$$path}")
 ]

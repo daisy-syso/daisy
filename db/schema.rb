@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829021159) do
+ActiveRecord::Schema.define(version: 20140829063341) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -350,6 +350,18 @@ ActiveRecord::Schema.define(version: 20140829021159) do
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree
   add_index "nursing_rooms", ["geohash"], name: "index_nursing_rooms_on_geohash", using: :btree
+
+  create_table "price_notifications", force: true do |t|
+    t.integer  "account_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.float    "price",      limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "price_notifications", ["account_id"], name: "index_price_notifications_on_account_id", using: :btree
+  add_index "price_notifications", ["item_id", "item_type"], name: "index_price_notifications_on_item_id_and_item_type", using: :btree
 
   create_table "provinces", force: true do |t|
     t.string "name"

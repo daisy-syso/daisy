@@ -10,25 +10,16 @@ class FavoritesAPI < Grape::API
 
     namespace :hospitals do
       post :"hospitals/:id" do
-        current_user.add_favorite_item Hospitals::Hospital.find(params[:id])
+        current_user!.add_favorite_item Hospitals::Hospital.find(params[:id])
       end
     end
 
-  end
-
-  RelatedClasses = [Drugs::Drug, Drugs::Drugstore, Hospitals::Hospital]
-  helpers do
-    def related_resources_count klass
-      Rails.cache.fetch([:api, :related, klass.name, :count]) do
-        klass.count
+    namespace :drugs do
+      post :"drugs/:id" do
+        current_user!.add_favorite_item Drugs::Drug.find(params[:id])
       end
     end
-  end
-  get :related do
-    relateds = (RelatedClasses * 3).sample(3).map do |klass|
-      klass.offset(Random.rand(related_resources_count(klass))).first
-    end
-    present! relateds, with: PolymorphicEntity
+
   end
 
 end

@@ -75,7 +75,11 @@ module GrapeHelper
   end
 
   def current_user
-    warden.user(scope: :account).tap do |user|
+    warden.user(scope: :account)
+  end
+
+  def current_user!
+    current_user.tap do |user|
       unauthorized! unless user
     end
   end
