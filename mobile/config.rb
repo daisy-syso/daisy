@@ -93,7 +93,7 @@ configure :build do
 end
 
 after_build do |builder|
-  Dir["#{config[:build_dir]}/templates/lists/*"].each do |file|
+  Dir["#{config[:build_dir]}/templates/lists/**/*.html"].each do |file|
     af = File.open "#{config[:build_dir]}/templates/list.html", "a"
     File.open file do |f|
       path = file[/templates\/lists\/.*/]
