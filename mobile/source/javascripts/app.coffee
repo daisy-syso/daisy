@@ -197,12 +197,15 @@ angular.module 'DaisyApp', [
 .run [
   '$rootScope',
   ($rootScope) ->
-    navigator.geolocation.getCurrentPosition (coords) ->
-      $rootScope.coords = coords
+    navigator.geolocation.getCurrentPosition (geoposition) ->
+      $rootScope.coords = geoposition.coords
 
     $rootScope.getDistance = (data) ->
-      if data && data.lat && data.lng && coords = $rootScope.coords
-        Math.sqrt((data.lat-coords.latitude)^2+(data.lng-coords.longitude)^2)
+      coords = $rootScope.coords
+      if data && data.lat && data.lng && coords
+        dLat = (data.lat-coords.latitude)*110.54
+        dLng = (data.lng-coords.longitude)*Math.cos(data.lat)*111.32
+        Math.sqrt(dLat*dLat+dLng*dLng)
       else
         0
 ]

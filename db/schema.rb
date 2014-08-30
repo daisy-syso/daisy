@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829063341) do
+ActiveRecord::Schema.define(version: 20140830020913) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 20140829063341) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "geohash"
-    t.float    "lat",             limit: 24
-    t.float    "lng",             limit: 24
+    t.float    "lat",             limit: 53
+    t.float    "lng",             limit: 53
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
@@ -228,8 +228,8 @@ ActiveRecord::Schema.define(version: 20140829063341) do
     t.string  "level"
     t.integer "click_count",                   default: 0
     t.string  "geohash"
-    t.float   "lat",                limit: 24
-    t.float   "lng",                limit: 24
+    t.float   "lat",                limit: 53
+    t.float   "lng",                limit: 53
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
@@ -344,8 +344,8 @@ ActiveRecord::Schema.define(version: 20140829063341) do
     t.string  "image_url"
     t.integer "city_id"
     t.string  "geohash"
-    t.float   "lat",       limit: 24
-    t.float   "lng",       limit: 24
+    t.float   "lat",       limit: 53
+    t.float   "lng",       limit: 53
   end
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree

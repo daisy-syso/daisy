@@ -10,6 +10,7 @@ class Hospitals::Hospital < ActiveRecord::Base
     .where.not(hospitals_types: { type_id: 7 }).distinct.order(click_count: :desc) }
 
   include Reviewable
+  include Localizable
 
   class << self
     include Cacheable

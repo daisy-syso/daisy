@@ -17,9 +17,13 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape_has_scope'
+gem 'rest-client'
 
 # Use Devise to manage user sessions
 gem 'devise'
+
+# Use Geohash to LBS
+gem 'geohash', github: 'RyanNaughton/geohash'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -47,4 +51,6 @@ gem 'capistrano3-unicorn', group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem "will_paginate"
+
+
 
