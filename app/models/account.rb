@@ -5,6 +5,8 @@ class Account < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable
 
+  devise :omniauthable, :omniauth_providers => [:weibo]
+
   validates_presence_of :username
   validates_uniqueness_of :username
 

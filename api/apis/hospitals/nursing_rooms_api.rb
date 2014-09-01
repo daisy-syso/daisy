@@ -8,6 +8,8 @@ module Hospitals
         filters: { 
           city: { default: 1, class: City, title: "位置" },
         }
+
+      show! Hospitals::NursingRoom
     end
     
   end

@@ -28,8 +28,7 @@ class PriceSearchAPI < Grape::API
             type: Hash,
             using: [:from, :to],
             children: proc {
-              generate_price_filters Setting.get("price_search.shaping_items.filters.price", 
-                [0, 100, 200, 500])
+              generate_price_filters Setting["price_search.shaping_items.filters.price"]
             }, 
             current: proc { |price| 
               price ? "#{price[:from]} ~ #{price[:to]} 元" : "全部"
@@ -48,8 +47,7 @@ class PriceSearchAPI < Grape::API
             type: Hash,
             using: [:from, :to],
             children: proc {
-              generate_price_filters Setting.get("price_search.drugs.filters.price", 
-                [0, 100, 200, 500])
+              generate_price_filters Setting["price_search.drugs.filters.price"]
             }, 
             current: proc { |price| 
               price ? generate_price_title(price[:from], price[:to]) : "全部"

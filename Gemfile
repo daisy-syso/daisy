@@ -22,6 +22,12 @@ gem 'rest-client'
 # Use Devise to manage user sessions
 gem 'devise'
 
+# OmniAuth
+gem 'omniauth-weibo-oauth2'
+
+# Settings
+gem "rails-settings-cached"
+
 # Use Geohash to LBS
 gem 'geohash', github: 'RyanNaughton/geohash'
 
