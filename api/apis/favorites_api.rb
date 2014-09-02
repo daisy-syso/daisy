@@ -10,13 +10,15 @@ class FavoritesAPI < Grape::API
 
     namespace :hospitals do
       post :"hospitals/:id" do
-        current_user!.add_favorite_item Hospitals::Hospital.find(params[:id])
+        current_user!.add_favorite! Hospitals::Hospital.find(params[:id])
+        present :info, "成功加入收藏"
       end
     end
 
     namespace :drugs do
       post :"drugs/:id" do
-        current_user!.add_favorite_item Drugs::Drug.find(params[:id])
+        current_user!.add_favorite! Drugs::Drug.find(params[:id])
+        present :info, "成功加入收藏"
       end
     end
 

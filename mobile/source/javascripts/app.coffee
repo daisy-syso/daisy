@@ -171,7 +171,7 @@ angular.module 'DaisyApp', [
       if $rootScope.account
         $loader.post("/api/favorites/#{type}/#{id}")
           .success (data) ->
-            $alert.info("成功加入收藏")
+            $alert.info(data["info"])
       else
         $location.path("/login#{$location.$$path}")
 ]
@@ -186,9 +186,9 @@ angular.module 'DaisyApp', [
           templateUrl: "templates/modals/priceNotification.html"
           onload: (scope) ->
             scope.priceNotificationUrl = "/api/price_notifications/#{type}/#{id}"
-            scope.priceNotificationCallback = () ->
+            scope.priceNotificationCallback = (data) ->
+              $alert.info(data["info"])
               $modal.close()
-              $alert.info("成功添加降价通知")
       else
         $location.path("/login#{$location.$$path}")
 ]

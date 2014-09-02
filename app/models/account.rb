@@ -17,11 +17,13 @@ class Account < ActiveRecord::Base
     self.favorites.includes(:item).map(&:item)
   end
 
-  def add_favorite_item item
-    self.favorites.push Favorite.new(item: item)
+  include Exclamationable
+  def add_favorite item
+    self.favorites.new(item: item)
   end
 
-  def add_price_notification_item item, price
-    self.price_notifications.push PriceNotification.new(item: item, price: price)
+  def add_price_notification item, price
+    self.price_notifications.new(item: item, price: price)
   end
+  define_exclamation_and_methods :add_favorite, :add_price_notification
 end

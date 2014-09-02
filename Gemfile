@@ -25,6 +25,9 @@ gem 'devise'
 # OmniAuth
 gem 'omniauth-weibo-oauth2'
 
+# Alipay
+gem 'alipay'
+
 # Settings
 gem "rails-settings-cached"
 
