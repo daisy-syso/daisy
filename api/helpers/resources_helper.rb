@@ -44,7 +44,10 @@ module ResourcesHelper
         data = data.send(scope)
       end if scopes.any?
       data = apply_scopes!(data)
-      present! data, meta: meta
+
+      options = options.slice(:with)
+      options[:meta] = meta
+      present! data, options
     end
 
   end

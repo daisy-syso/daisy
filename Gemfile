@@ -52,9 +52,6 @@ gem 'spring', group: :development
 # Use unicorn as the app server
 gem 'unicorn'
 
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'capistrano3-unicorn', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -62,4 +59,13 @@ gem 'capistrano3-unicorn', group: :development
 gem "will_paginate"
 
 
+group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
+  
+  gem 'quiet_assets'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 
+end

@@ -110,7 +110,7 @@ AppConfig = {
       icon: "images/icons/1-3.gif"
     }, {
       title: "手机挂号",
-      link: "#/home",
+      link: "#/list/hospitals/registrations",
       icon: "images/icons/1-4.gif"
     }, {
       title: "药品大全",

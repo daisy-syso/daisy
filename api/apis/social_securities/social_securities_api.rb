@@ -5,7 +5,10 @@ module SocialSecurities
     namespace :social_securities do
       index! SocialSecurities::SocialSecurity,
         title: "医保查询",
-        includes: :city
+        includes: :city,
+        filters: { 
+          province: { class: Province, title: "位置" },
+        }
     end
     
   end
