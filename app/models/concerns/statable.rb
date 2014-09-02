@@ -1,4 +1,4 @@
-module UserInfos::Order::Statable
+module Statable
   extend ActiveSupport::Concern
 
   included do
