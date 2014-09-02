@@ -7,25 +7,35 @@ class DaisyAPI < Grape::API
   helpers GrapeHelper
 
   mount AccountsAPI
-  mount FavoritesAPI
-  mount PriceNotificationsAPI
   mount RelatedResourcesAPI
   mount FiltersAPI
   mount PriceSearchAPI
 
+  mount UserInfos::FavoritesAPI
+  mount UserInfos::PriceNotificationsAPI
+
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
     mount Hospitals::DoctorsAPI
-    mount Hospitals::NursingRoomsAPI
-    mount Hospitals::ExaminationsAPI
     mount Hospitals::TopSpecialistsAPI
     mount Hospitals::RegistrationsAPI
+  end
+
+  namespace :examinations do
+    mount Examinations::ExaminationsAPI
+  end
+
+  namespace :eldercares do
+    mount Eldercares::NursingRoomsAPI
   end
 
   namespace :drugs do
     mount Drugs::DrugsAPI
     mount Drugs::DrugstoresAPI
-    mount Drugs::DiseasesAPI
+  end
+
+  namespace :diseases do
+    mount Diseases::DiseasesAPI
   end
 
   namespace :social_securities do

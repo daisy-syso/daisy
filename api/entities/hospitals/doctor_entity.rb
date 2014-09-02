@@ -1,6 +1,4 @@
-module Hospitals
-  class DoctorEntity < ApplicationEntity
-    expose :id, :name, :desc
+class Hospitals::DoctorEntity < ApplicationEntity
+  expose :id, :name, :desc
 
-  end
 end

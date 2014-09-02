@@ -1,9 +1,7 @@
-module NetInfos
-  class HotSearchKeywordsAPI < Grape::API
+class NetInfos::HotSearchKeywordsAPI < Grape::API
 
-    get :keywords do
-      present! NetInfos::HotSearchKeyword.all
-    end
-
+  get :keywords do
+    present! NetInfos::HotSearchKeyword.all
   end
+
 end

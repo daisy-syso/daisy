@@ -1,6 +1,4 @@
-module Shapings
-  class ShapingItemEntity < ApplicationEntity
-    expose :id, :name
+class Shapings::ShapingItemEntity < ApplicationEntity
+  expose :id, :name
 
-  end
 end

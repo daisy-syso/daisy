@@ -3,9 +3,9 @@ module GrapeHelper
   def apply_scopes! resource
     resource = apply_scopes resource
     if params[:page]
-      resource = resource.paginate(page: params[:page],
-        per_page: params[:per_page] || 10)
-      no_more_record! if resource.out_of_bounds?
+      resource = resource.page(params[:page])
+      resource = resource.per(params[:per] || 10)
+      # no_more_record! if resource.count < 10
     end
     resource
   end
@@ -102,7 +102,7 @@ AppConfig = {
       icon: "images/icons/1-1.gif"
     }, {
       title: "疾病查询",
-      link: "#/list/drugs/diseases",
+      link: "#/list/diseases/diseases",
       icon: "images/icons/1-2.gif"
     }, {
       title: "找医生",
@@ -138,11 +138,11 @@ AppConfig = {
       icon: "images/icons/1-10.gif"
     }, {
       title: "全国体检",
-      link: "#/list/hospitals/examinations",
+      link: "#/list/examinations/examinations",
       icon: "images/icons/2-3.gif"
     }, {
       title: "养老服务",
-      link: "#/list/hospitals/nursing_rooms",
+      link: "#/list/eldercares/nursing_rooms",
       icon: "images/icons/2-5.gif"
     }, {
       title: "返利优惠",

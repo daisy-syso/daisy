@@ -1,5 +1,3 @@
-module Hospitals
-  class HospitalEntity < Bases::PlaceEntity
+class Hospitals::HospitalEntity < Bases::PlaceEntity
 
-  end
 end

@@ -1,5 +1,5 @@
 class Hospitals::Hospital < ActiveRecord::Base
-  belongs_to :city
+  belongs_to :city, class_name: "Categories::City"
   has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types', foreign_key: 'hospital_id', association_foreign_key: 'type_id'
 
   scope :city, -> (city) { where(city: city) }

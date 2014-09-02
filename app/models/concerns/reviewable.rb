@@ -3,7 +3,7 @@ module Reviewable
   
 
   included do
-    has_many :reviews, as: :item
+    has_many :reviews, as: :item, class_name: 'UserInfos::Review'
     
     include Cacheable
 

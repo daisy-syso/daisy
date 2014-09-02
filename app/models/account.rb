@@ -10,8 +10,8 @@ class Account < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
-  has_many :favorites
-  has_many :price_notifications
+  has_many :favorites, class_name: "UserInfos::Favorite"
+  has_many :price_notifications, class_name: "UserInfos::PriceNotification"
 
   def favorite_items
     self.favorites.includes(:item).map(&:item)

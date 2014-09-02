@@ -1,6 +1,6 @@
 class Drugs::Drug < ActiveRecord::Base
   belongs_to :drug_type
-  belongs_to :disease
+  belongs_to :disease, class_name: 'Diseases::Disease'
 
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   scope :disease, -> (type) { type ? where(disease: type) : all }

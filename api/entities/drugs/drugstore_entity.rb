@@ -1,5 +1,3 @@
-module Drugs
-  class DrugstoreEntity < Bases::PlaceEntity
+class Drugs::DrugstoreEntity < Bases::PlaceEntity
 
-  end
 end

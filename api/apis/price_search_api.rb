@@ -41,7 +41,7 @@ class PriceSearchAPI < Grape::API
       index! Drugs::Drug,
         title: "价格搜索 药品",
         filters: { 
-          disease: { class: Drugs::Disease, title: "疾病类别" },
+          disease: { class: Diseases::Disease, title: "疾病类别" },
           price: { 
             title: "价格区间", 
             type: Hash,

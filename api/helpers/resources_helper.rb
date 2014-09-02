@@ -17,7 +17,7 @@ module ResourcesHelper
 
       filters.each do |filter, options|
         children_proc = options[:children] || proc do
-          options[:class].filters_with_cache
+          options[:class].filters
         end
         children = children_proc.call
 

@@ -1,6 +1,4 @@
-module NetInfos
-  class HotSearchKeywordEntity < ApplicationEntity
-    expose :id, :name
+class NetInfos::HotSearchKeywordEntity < ApplicationEntity
+  expose :id, :name
 
-  end
 end

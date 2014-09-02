@@ -1,5 +1,5 @@
 class Hospitals::HospitalType < ActiveRecord::Base
-  has_and_belongs_to_many :hospitals, join_table: 'hospitals_types', foreign_key: 'type_id'
+  # has_and_belongs_to_many :hospitals, join_table: 'hospitals_types', foreign_key: 'type_id'
 
   scope :top_specialists, -> { where.not(id: 7)}
 
@@ -18,7 +18,7 @@ class Hospitals::HospitalType < ActiveRecord::Base
       end
     end
 
-    define_cached_methods :filters
+    define_cached_methods :filters, :top_specialists_filters
   end
 
 end
