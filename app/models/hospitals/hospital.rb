@@ -16,7 +16,7 @@ class Hospitals::Hospital < ActiveRecord::Base
     include Cacheable
 
     def filters
-      Province.includes(:cities).map do |province|
+      Categories::Province.includes(:cities).map do |province|
         children = province.cities.map do |city|
           { title: city.name, children: children, link: "filters/hospitals?city=#{city.id}" }
         end

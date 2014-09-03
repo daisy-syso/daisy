@@ -1,0 +1,15 @@
+<%= partial 'templates/details/header' %>
+
+<div class="content">
+
+  <%= partial 'templates/details/desc', locals: { price: true, subtitle: :hospital_name } %>
+
+  <%= partial 'templates/details/review' %>
+  
+  <%= partial 'templates/details/detail', locals: { title: "套餐特点", detail: :feature} %>
+
+  <%= partial 'templates/details/detail', locals: { title: "适应人群", detail: :applicable} %>
+
+  <%= partial 'related' %> 
+
+</div>

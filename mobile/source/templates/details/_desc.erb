@@ -1,9 +1,18 @@
 <div class="card">
   <ul class="table-view media">
+    <% if defined?(price) && price %>
+      <li class="table-view-cell">
+        <div class="media-detail huge">
+          <span><strong>{{data.sale_price}}</strong>元</span>
+          <del>{{data.ori_price}}元</del>
+          <a class="btn btn-strong pull-right" href="#">立即购买</a>
+        </div>
+      </li>
+    <% end %>
     <li class="table-view-cell">
       <div class="media-detail">
-        <h1>{{data.name}}</h1>
-        <p>{{data.desc}}</p>
+        <h1>{{data.<%= defined?(title) ? title : :name %>}}</h1>
+        <p>{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p>
       </div>
     </li>
     <li class="table-view-cell">
@@ -11,8 +20,14 @@
         <li>
           <span>
             <img src="images/rs.gif" width="20"> 
-            已有2222人就诊
+            已有2222人购买
           </span>
+        </li>
+        <li>
+          <a ng-click="priceNotification(type, id)">
+            <img src="images/jiang.gif" width="20"> 
+            降价通知
+          </a>
         </li>
         <li>
           <a ng-click="favorite(type, id)">

@@ -1,7 +1,5 @@
 class Hospitals::RegistrationEntity < Bases::PlaceEntity
 
-  expose :link do |object, options|
-    object.url
-  end
+  expose :url, as: :link
 
 end

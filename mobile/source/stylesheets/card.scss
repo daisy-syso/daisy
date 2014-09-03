@@ -101,17 +101,30 @@
 }
 
 .media {
-  font-size: 17px;
-  // .media-title {
-  //   font-weight: bold;
-  // }
+  font-size: 15px;
+
+  h1 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: normal;
+
+    span {
+      margin-left: 5px;
+      font-size: 14px;
+      color: #777;
+    }
+  }
+  
+  .media-title {
+    font-size: 17px;
+    // font-weight: bold;
+  }
   .media-object {
     width: 100px;
     height: 85px;
   }
   .media-body {
     min-height: 65px;
-
     p {
       font-size: 13px;
     }
@@ -144,7 +157,7 @@
     &.huge {
       strong {
         font-size: 32px;
-        line-height: 32px;
+        line-height: 40px;
       }
     }
   }

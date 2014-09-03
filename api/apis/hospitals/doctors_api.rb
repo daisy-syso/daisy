@@ -8,5 +8,7 @@ class Hospitals::DoctorsAPI < Grape::API
         hospital: { class: Hospitals::Hospital, title: "医院" },
         hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" }
       }
+
+    show! Hospitals::Doctor
   end
 end

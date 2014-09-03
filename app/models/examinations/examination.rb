@@ -7,4 +7,9 @@ class Examinations::Examination < ActiveRecord::Base
 
   include Reviewable
   
+  alias_attribute :sale_price, :price
+  def ori_price
+    sale_price + save_price
+  end
+  
 end

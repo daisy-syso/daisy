@@ -8,5 +8,7 @@ class Examinations::ExaminationsAPI < Grape::API
         city: { default: 1, class: Categories::City, title: "位置" },
         examination_type: { class: Examinations::ExaminationType, title: "体检类型" }
       }
+      
+    show! Examinations::Examination
   end
 end

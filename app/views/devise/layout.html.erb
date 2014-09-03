@@ -1,0 +1,13 @@
+<div class="col-md-4 col-md-offset-4">
+  <%= bootstrap_devise_error_messages! %>
+  <%= render "shared/flash_messages" %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= yield :heading %>
+    </div>
+    <div class="panel-body">
+      <%= yield :form %>
+    </div>
+  </div>
+  <%= render "devise/shared/links" %>
+</div>
