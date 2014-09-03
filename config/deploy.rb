@@ -18,7 +18,8 @@ set :deploy_to, '/var/www/daisy'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-set :log_level, :debug
+# set :log_level, :debug
+set :log_level, :info
 
 # Default value for :pty is false
 # set :pty, true
@@ -50,10 +51,22 @@ namespace :deploy do
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+      within release_path do
+        rake 'tmp:clear'
+      end
     end
   end
+
+  desc "Update mobile files"
+  task :update_mobile do
+    run_locally do
+      within "mobile" do
+        execute :middleman, :build
+        execute :middleman, :deploy
+      end
+    end
+  end
+
+  after :publishing, :update_mobile
 
 end
