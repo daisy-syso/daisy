@@ -45,9 +45,9 @@ module ResourcesHelper
       end if scopes.any?
       data = apply_scopes!(data)
 
-      options = options.slice(:with)
-      options[:meta] = meta
-      present! data, options
+      opts = options.slice(:with)
+      opts[:meta] = meta
+      present! data, opts
     end
 
   end
