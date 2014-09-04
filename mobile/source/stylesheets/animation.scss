@@ -32,9 +32,6 @@ body {
   }
 }
 
-.dropdown-menu {
-  min-height: 315px!important;
-}
 .dropdown-menu.ng-animate {
   @include animation-duration(250ms);
 }
