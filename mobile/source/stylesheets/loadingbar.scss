@@ -1,5 +1,6 @@
 // Loading Bar
 #loading-bar .bar {
+  z-index: 13;
   top: 51px;
   height: 3px;
   background: #077;
@@ -10,6 +11,7 @@
 }
 
 #loading-bar-spinner {
+  z-index: 13;
   top: 61px;
 
   .spinner-icon {
