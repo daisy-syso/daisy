@@ -26,6 +26,7 @@
   padding: 0;
   background-color: transparent;
   height: 52px;
+  z-index: 9;
 
   .segmented-control {
     height: 45px;
@@ -38,6 +39,10 @@
     
     .control-item {
       padding: 0;
+
+      &.leave {
+        background: white;
+      }
 
       a {
         padding: 15px;

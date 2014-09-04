@@ -1,0 +1,75 @@
+//= require animate.css/animate
+@import 'bourbon/bourbon';
+
+body {
+  background-color: #f0efed;
+}
+
+.main.ready.ng-animate {
+  @include animation-duration(500ms);
+  @include animation-fill-mode(both);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.main.ng-enter {
+  @include animation-name(fadeInRight);
+}
+.main.ng-leave {
+  @include animation-name(fadeOutLeft);
+}
+
+.back {
+  .main.ng-enter {
+    @include animation-name(fadeInLeft);
+  }
+  .main.ng-leave {
+    @include animation-name(fadeOutRight);
+  }
+}
+
+.dropdown-menu {
+  height: 315px!important;
+}
+.dropdown-menu.ng-animate {
+  @include animation-duration(250ms);
+}
+.dropdown-menu.ng-hide-remove {
+  @include animation-name(fadeInDown);
+}
+.dropdown-menu.ng-hide-add {
+  @include animation-name(fadeOutUp);
+}
+
+.modal.ng-animate {
+  @include animation-duration(250ms);
+}
+.modal.ng-hide-remove {
+  @include animation-name(fadeInUp);
+}
+.modal.ng-hide-add {
+  @include animation-name(fadeOutDown);
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, .5);
+}
+.backdrop.ng-animate {
+  @include animation-duration(250ms);
+}
+.backdrop.ng-hide-remove {
+  @include animation-name(fadeIn);
+}
+.backdrop.ng-hide-add {
+  @include animation-name(fadeOut);
+}
+
+.alert.ng-animate {
+  @include animation-duration(250ms);
+}
+.alert.ng-hide-remove {
+  @include animation-name(fadeInUp);
+}
+.alert.ng-hide-add {
+  @include animation-name(fadeOutDown);
+}

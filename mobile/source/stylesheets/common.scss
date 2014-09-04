@@ -22,9 +22,12 @@ a[ng-click] {
 .content {
   color: #333;
   background-color: #f0efed;
-  overflow-x: hidden;
   font-size: 14px;
   padding-bottom: 50px!important;
+}
+
+.bar-nav.background {
+  z-index: -1;
 }
 
 .bar-nav ~ .content {
