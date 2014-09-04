@@ -5,6 +5,10 @@ body {
   background-color: #f0efed;
 }
 
+.ng-hide:not(.ng-animate) {
+  display: none;
+}
+
 .main.ready.ng-animate {
   @include animation-duration(500ms);
   @include animation-fill-mode(both);
