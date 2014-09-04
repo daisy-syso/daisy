@@ -1,4 +1,4 @@
-<div class="alert" ng-show="alert.show" ng-class="alert.type ? 'alert-'+alert.type : 'alert-info'">
+<div class="alert" ng-cloak ng-show="alert.show" ng-class="alert.type ? 'alert-'+alert.type : 'alert-info'">
   <span class="close ionicon ion-close" ng-click="alert.close()"></span>
   <p ng-if="alert.message" ng-bind="alert.message"></p>
   <ul ng-if="alert.messages">

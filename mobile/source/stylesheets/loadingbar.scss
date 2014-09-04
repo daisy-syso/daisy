@@ -1,9 +1,7 @@
 // Loading Bar
-.header ~ #loading-bar .bar {
-  top: 51px;
-}
-
 #loading-bar .bar {
+  z-index: 13;
+  top: 51px;
   height: 3px;
   background: #077;
 }
@@ -12,11 +10,12 @@
   box-shadow: #099 1px 0 6px 1px;
 }
 
-.header ~ #loading-bar-spinner {
+#loading-bar-spinner {
+  z-index: 13;
   top: 61px;
-}
 
-#loading-bar-spinner .spinner-icon {
-  border-top-color:  #2bb2a3;
-  border-left-color: #2bb2a3;
+  .spinner-icon {
+    border-top-color:  #2bb2a3;
+    border-left-color: #2bb2a3;
+  }
 }

@@ -10,6 +10,6 @@ asset 'angular-loading-bar'
 asset 'angular-local-storage'
 asset 'angular-growl-v2'
 
-asset 'ionicons'
-
 asset 'ratchet'
+asset 'ionicons'
+asset 'animate.css'

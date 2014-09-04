@@ -3,7 +3,7 @@ class UserInfos::FavoritesAPI < Grape::API
   namespace :favorites do
 
     get do
-      present! apply_scopes!(current_user.favorites.includes(:item)).map(&:item), 
+      present! apply_scopes!(current_user!.favorites.includes(:item)).map(&:item), 
         with: PolymorphicEntity,
         meta: { title: "我的收藏" }
     end

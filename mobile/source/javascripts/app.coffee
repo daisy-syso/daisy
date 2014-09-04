@@ -6,7 +6,7 @@
 #= require angular-loading-bar/build/loading-bar
 
 angular.module 'DaisyApp', [
-  # "ngAnimate"
+  "ngAnimate"
   "ngRoute"
   "ngTouch"
   "angular-local-storage"
@@ -17,7 +17,6 @@ angular.module 'DaisyApp', [
 .config [
   '$routeProvider', '$locationProvider'
   ($routeProvider, $locationProvider) ->
-    $routeProvider.when '/',          templateUrl: "templates/home.html"
     $routeProvider.when '/home',      templateUrl: "templates/home.html"
 
     $routeProvider.when '/login/:redirectToPath*',
@@ -100,7 +99,7 @@ angular.module 'DaisyApp', [
           $localStorage.set("searchHistory", searchHistory)
       ]
 
-    $routeProvider.otherwise redirectTo: '/'
+    $routeProvider.otherwise redirectTo: '/home'
 ]
 
 .config [
@@ -130,11 +129,20 @@ angular.module 'DaisyApp', [
   '$rootScope', '$location'
   ($rootScope, $location) ->
     history = []
+    locationBack = false
+    pageReady = false
+
+    $rootScope.$on '$routeChangeStart', () ->
+      $rootScope.pageReady = pageReady
+      pageReady = true
+      $rootScope.locationBack = locationBack
+      locationBack = false
 
     $rootScope.$on '$routeChangeSuccess', () ->
       history.push($location.$$path)
 
     $rootScope.back = () ->
+      locationBack = true
       prevUrl = if history.length > 1 then history.splice(-2)[0] else "/"
       $location.path(prevUrl)
 
