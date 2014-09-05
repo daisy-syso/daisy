@@ -1,8 +1,8 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.references :user
-      t.references :item
+      t.references :account
+      t.references :item, index: true, polymorphic: true
 
       t.integer :quantity
       t.float  :price

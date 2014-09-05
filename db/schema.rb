@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901085335) do
+ActiveRecord::Schema.define(version: 20140905011355) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 20140901085335) do
   end
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree
+
+  create_table "coupons", force: true do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "coupons", ["item_id", "item_type"], name: "index_coupons_on_item_id_and_item_type", using: :btree
 
   create_table "disease_types", force: true do |t|
     t.string  "name"
@@ -354,8 +363,9 @@ ActiveRecord::Schema.define(version: 20140901085335) do
   add_index "nursing_rooms", ["geohash"], name: "index_nursing_rooms_on_geohash", using: :btree
 
   create_table "orders", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "account_id"
     t.integer  "item_id"
+    t.string   "item_type"
     t.integer  "quantity"
     t.float    "price",             limit: 24
     t.float    "discount",          limit: 24
@@ -374,6 +384,8 @@ ActiveRecord::Schema.define(version: 20140901085335) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "orders", ["item_id", "item_type"], name: "index_orders_on_item_id_and_item_type", using: :btree
 
   create_table "price_notifications", force: true do |t|
     t.integer  "account_id"
