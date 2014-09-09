@@ -146,7 +146,7 @@ AppConfig = {
       icon: "images/icons/2-5.gif"
     }, {
       title: "返利优惠",
-      link: "#/home",
+      link: "#/list/coupons/coupons",
       icon: "images/icons/1-11.gif"
     }]
   }

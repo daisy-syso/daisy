@@ -1,6 +1,5 @@
 class Drugs::DrugsAPI < Grape::API
   extend ResourcesHelper
-  extend FilterHelper
 
   namespace :drugs do 
     index! Drugs::Drug,

@@ -50,7 +50,7 @@ zh-CN:
       net_infos/medical_post: 网友口碑
       net_infos/medical_tip: 资讯
       net_infos/hospital_type_news: 医疗资讯
-      coupons/coupon: 优惠
+      coupons/coupon: 优惠返利
     errors:
       messages:
         blank: 不能为空

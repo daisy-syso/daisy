@@ -38,8 +38,16 @@ class DaisyAPI < Grape::API
     mount Diseases::DiseasesAPI
   end
 
+  namespace :shapings do
+    mount Shapings::ShapingItemsAPI
+  end
+
   namespace :social_securities do
     mount SocialSecurities::SocialSecuritiesAPI
+  end
+
+  namespace :coupons do
+    mount Coupons::CouponsAPI
   end
 
   mount NetInfos::HotSearchKeywordsAPI

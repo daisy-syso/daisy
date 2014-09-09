@@ -1,0 +1,15 @@
+<%= partial 'templates/details/header' %>
+
+<div class="content">
+
+  <%= partial 'templates/details/album' %>
+
+  <%= partial 'templates/details/desc', locals: { price: true, subtitle: :target } %>
+
+  <%= partial 'templates/details/review' %>
+  
+  <%= partial 'templates/details/detail', locals: { title: "适应人群", detail: :target } %>
+
+  <%= partial 'related' %> 
+
+</div>
