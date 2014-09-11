@@ -108,10 +108,10 @@ end
 
 activate :deploy do |deploy|
   deploy.method   = :sftp
-  deploy.host     = '223.4.33.119'
+  deploy.host     = '101.69.181.251'
   deploy.port     = 22
   deploy.path     = '/var/www/daisy/shared/public/mobile'
   # Optional Settings
-  deploy.user     = 'deploy' # no default
+  deploy.user     = 'ubuntu' # no default
   # deploy.password = 'secret' # no default
 end

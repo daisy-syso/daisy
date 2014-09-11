@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'daisy'
-set :repo_url, 'https://github.com/bbtfr/daisy.git'
+set :repo_url, 'https://github.com/daisy-syso/daisy.git'
 set :branch, 'deploy'
 
 # Default branch is :master
@@ -18,8 +18,8 @@ set :deploy_to, '/var/www/daisy'
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
-set :log_level, :info
+set :log_level, :debug
+# set :log_level, :info
 
 # Default value for :pty is false
 # set :pty, true

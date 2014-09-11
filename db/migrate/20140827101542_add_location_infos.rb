@@ -3,20 +3,20 @@ class AddLocationInfos < ActiveRecord::Migration
     change_table :drugstores do |t|
       t.string :geohash
       t.index  :geohash
-      t.double :lng
-      t.double :lat
+      t.float  :lng, limit: 53
+      t.float  :lat, limit: 53
     end
     change_table :hospitals do |t|
       t.string :geohash
       t.index  :geohash
-      t.double :lng
-      t.double :lat
+      t.float  :lng, limit: 53
+      t.float  :lat, limit: 53
     end
     change_table :nursing_rooms do |t|
       t.string :geohash
       t.index  :geohash
-      t.double :lng
-      t.double :lat
+      t.float  :lng, limit: 53
+      t.float  :lat, limit: 53
     end
   end
 end
