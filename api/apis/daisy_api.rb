@@ -50,6 +50,11 @@ class DaisyAPI < Grape::API
     mount Coupons::CouponsAPI
   end
 
+  namespace :maternals do
+    mount Maternals::MaternalHallsAPI
+    mount Maternals::ConfinementCentersAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   get :config do

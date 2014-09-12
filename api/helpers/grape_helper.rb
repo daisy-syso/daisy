@@ -145,6 +145,14 @@ AppConfig = {
       link: "#/list/eldercares/nursing_rooms",
       icon: "images/icons/2-5.gif"
     }, {
+      title: "月子中心",
+      link: "#/list/maternals/confinement_centers",
+      icon: "images/icons/2-10.gif"
+    }, {
+      title: "母婴会馆",
+      link: "#/list/maternals/maternal_halls",
+      icon: "images/icons/2-11.gif"
+    }, {
       title: "返利优惠",
       link: "#/list/coupons/coupons",
       icon: "images/icons/1-11.gif"
