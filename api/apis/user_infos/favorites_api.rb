@@ -8,18 +8,11 @@ class UserInfos::FavoritesAPI < Grape::API
         meta: { title: "我的收藏" }
     end
 
-    namespace :hospitals do
-      post :"hospitals/:id" do
-        current_user!.add_favorite! Hospitals::Hospital.find(params[:id])
-        present :info, "成功加入收藏"
-      end
-    end
-
-    namespace :drugs do
-      post :"drugs/:id" do
-        current_user!.add_favorite! Drugs::Drug.find(params[:id])
-        present :info, "成功加入收藏"
-      end
+    post :"(*:type_and_id)", anchor: false do
+      match = env["PATH_INFO"].match(/(?<type>.*)\/(?<id>[^\/.?]+)/)
+      klass = match[:type].classify.constantize
+      current_user!.add_favorite! klass.find(match[:id])
+      present :info, "成功加入收藏"
     end
 
   end

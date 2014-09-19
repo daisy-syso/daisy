@@ -16,3 +16,20 @@ form.register {
     padding: 10px 0;
   }
 }
+
+form {
+  .stars {
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    padding: 10px 0;
+    .ionicon {
+      color: #fdb338;
+      font-size: 36px;
+      padding-right: 5px;
+    }
+  }
+  textarea {
+    padding: 10px 15px;
+  }
+}

@@ -14,10 +14,10 @@ angular.module("DaisyApp").factory '$modal', [
         $rootScope.modal.title = title
         $rootScope.modal.content = options.content
         $rootScope.modal.templateUrl = options.templateUrl
-        $rootScope.modal.onload = options.onload
         $rootScope.backdrop.click = $rootScope.modal.close
         $rootScope.backdrop.show = true
         $rootScope.modal.show = true
+        options.onload() if options.onload
 
       close: () -> 
         $rootScope.backdrop.click = null

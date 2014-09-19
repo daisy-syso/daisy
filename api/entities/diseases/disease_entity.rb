@@ -1,5 +1,5 @@
 class Diseases::DiseaseEntity < ApplicationEntity
   
-  expose :id, :name
+  expose :id, :name, :etiology
 
 end

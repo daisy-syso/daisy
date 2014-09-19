@@ -64,27 +64,18 @@ zh-CN:
         email: 邮箱
         username: 用户名
         password: 密码
-      user:
-        name: 姓名
-        account: 账号
-        password: 密码
-        email: 电子邮件
-        first_login_at: 第一次登陆时间
-        last_login_at: 最后一次登陆时间
-      menu:
-        title: 标题
-        name: 名称
-        seq: 序号
-        parent: 父节点
-        icon: 图标
-        url: 地址
-      hospital_type:
-        name: 名称
+      user_infos/review:
+        star: 评分
+        desc: 评价内容
+      user_infos/price_notification:
+        price: 价格
       province:
         name: 名称
       city:
         index: 顺序
         province: 省份
+        name: 名称
+      hospital_type:
         name: 名称
       net_info:
         title: 标题

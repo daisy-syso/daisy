@@ -17,7 +17,16 @@ angular.module 'DaisyApp', [
 .config [
   '$routeProvider', '$locationProvider'
   ($routeProvider, $locationProvider) ->
-    $routeProvider.when '/home',      templateUrl: "templates/home.html"
+    $routeProvider.when '/home',
+      templateUrl: "templates/home.html"
+      controller: [
+        '$rootScope', '$loader'
+        ($rootScope, $loader) ->
+          unless $rootScope.homeData
+            $loader.get("/api/home.json")
+              .success (data) ->
+                $rootScope.homeData = data
+      ]
 
     $routeProvider.when '/login/:redirectToPath*',
       templateUrl: "templates/login.html",
@@ -108,15 +117,6 @@ angular.module 'DaisyApp', [
     cfpLoadingBarProvider.latencyThreshold = 0;
 ]
 
-# Load App Config
-.run [
-  '$rootScope', '$loader'
-  ($rootScope, $loader) ->
-    $loader.get("/api/config.json")
-      .success (data) ->
-        $rootScope.appData = data
-]
-
 # Local Storage account binding
 .run [
   '$rootScope', '$localStorage'
@@ -165,10 +165,10 @@ angular.module 'DaisyApp', [
             afterInit: (urls) ->
               $rootScope.shareUrls = urls
             client_id: "lev6yFpuN4BDsG9dDaNsNWQj"
-            content: "您要分享的内容"
-            u: encodeURIComponent("分享成功后或者分享编辑也取消分享时的返回地址")
-            url: encodeURIComponent("您要分享的URL")
-            pic_url: encodeURIComponent("您要分享的图片URL")
+            content: data.name
+            u: encodeURIComponent(window.location.href)
+            url: encodeURIComponent(window.location.href)
+            pic_url: encodeURIComponent(data.image_url)
 ]
 
 # Helpers $favorite
@@ -192,9 +192,26 @@ angular.module 'DaisyApp', [
       if $rootScope.account
         $modal.open "降价通知", 
           templateUrl: "templates/modals/priceNotification.html"
-          onload: (scope) ->
-            scope.priceNotificationUrl = "/api/price_notifications/#{type}/#{id}"
-            scope.priceNotificationCallback = (data) ->
+          onload: () ->
+            $rootScope.priceNotificationUrl = "/api/price_notifications/#{type}/#{id}"
+            $rootScope.priceNotificationCallback = (data) ->
+              $alert.info(data["info"])
+              $modal.close()
+      else
+        $location.path("/login#{$location.$$path}")
+]
+
+# Helpers $review
+.run [
+  '$rootScope', '$location', '$loader', '$alert', '$modal'
+  ($rootScope, $location, $loader, $alert, $modal) ->
+    $rootScope.review = (type, id) ->
+      if $rootScope.account
+        $modal.open "评价", 
+          templateUrl: "templates/modals/review.html"
+          onload: () ->
+            $rootScope.reviewUrl = "/api/reviews/#{type}/#{id}"
+            $rootScope.reviewCallback = (data) ->
               $alert.info(data["info"])
               $modal.close()
       else

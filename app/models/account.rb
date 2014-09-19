@@ -12,6 +12,7 @@ class Account < ActiveRecord::Base
 
   has_many :favorites, class_name: "UserInfos::Favorite"
   has_many :price_notifications, class_name: "UserInfos::PriceNotification"
+  has_many :reviews, class_name: "UserInfos::Review"
 
   def favorite_items
     self.favorites.includes(:item).map(&:item)
@@ -24,6 +25,10 @@ class Account < ActiveRecord::Base
 
   def add_price_notification item, price
     self.price_notifications.new(item: item, price: price)
+  end
+
+  def add_review item, star, desc
+    self.reviews.new(item: item, star: star, desc: desc)
   end
   define_exclamation_and_methods :add_favorite, :add_price_notification
 end

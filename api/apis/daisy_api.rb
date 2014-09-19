@@ -6,6 +6,7 @@ class DaisyAPI < Grape::API
 
   helpers GrapeHelper
 
+  mount HomeAPI
   mount AccountsAPI
   mount RelatedResourcesAPI
   mount FiltersAPI
@@ -13,6 +14,7 @@ class DaisyAPI < Grape::API
 
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
+  mount UserInfos::ReviewsAPI
 
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
@@ -56,10 +58,6 @@ class DaisyAPI < Grape::API
   end
 
   mount NetInfos::HotSearchKeywordsAPI
-
-  get :config do
-    AppConfig
-  end
 
   route :any, '*path' do
     not_found!
