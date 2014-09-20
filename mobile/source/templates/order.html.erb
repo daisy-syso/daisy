@@ -1,0 +1,75 @@
+<%= partial 'header', locals: { title: "创建订单" } %>
+
+<div class="content">
+  <form class="register" ng-controller="FormCtrl" ng-submit="submit('/api/orders/'+data.type+'/'+data.id, {order: order}, afterLogin)" name="form">
+  
+    <div class="input-row">
+      <h3>{{data.name}}</h3>
+    </div>
+
+    <div class="card">
+      <div class="content-padded">
+        
+        <div class="input-row">
+          <label>单价</label>
+          <label class="pull-right">
+            {{data.sale_price}} 元
+          </label>
+        </div>
+
+
+        <div class="input-row">
+          <label>数量</label>
+          <div class="buttons pull-right" ng-init="order.quantity = 1">
+            <span class="btn btn-small ionicon ion-minus" ng-click="order.quantity = order.quantity - 1"></span>
+            <input type="number" ng-model="order.quantity">
+            <span class="btn btn-small ionicon ion-plus" ng-click="order.quantity = order.quantity + 1"></span>
+          </div>
+        </div>
+
+        <div class="input-row">
+          <label>总价</label>
+          <label class="pull-right">
+            {{data.sale_price * order.quantity}} 元
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="input-row">
+      <h4>收货人信息</h4>
+    </div>
+
+    <div class="card">
+      <div class="content-padded">
+        
+        <div class="input-row">
+          <label>收货人姓名</label>
+          <input type="text" placeholder="收货人姓名" ng-model="order.receive_name">
+        </div>
+
+        <div class="input-row">
+          <label>联系电话</label>
+          <input type="text" placeholder="联系电话" ng-model="order.receive_mobile">
+        </div>
+
+        <div class="input-row">
+          <label>邮编</label>
+          <input type="text" placeholder="邮编" ng-model="order.receive_zip">
+        </div>
+
+        <div class="input-row">
+          <label>收货地址</label>
+          <textarea placeholder="收货地址" ng-model="order.receive_address"></textarea>
+        </div>
+      
+        <button class="btn btn-large btn-block">确认购买</button>
+      
+      </div>
+    </div>
+  </form>
+
+  <%= partial 'related' %>
+
+</div>

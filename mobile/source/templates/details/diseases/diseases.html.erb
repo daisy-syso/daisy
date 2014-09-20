@@ -1,0 +1,16 @@
+<%= partial 'templates/details/header' %>
+
+<div class="content">
+
+  <%= partial 'templates/details/desc', locals: { subtitle: :desc } %>
+
+  <%= partial 'templates/details/detail', locals: { title: "病因", detail: :etiology } %>
+  <%= partial 'templates/details/detail', locals: { title: "症状", detail: :symptoms } %>
+  <%= partial 'templates/details/detail', locals: { title: "测试", detail: :examination } %>
+  <%= partial 'templates/details/detail', locals: { title: "治疗", detail: :treatment } %>
+  <%= partial 'templates/details/detail', locals: { title: "预防", detail: :prevention } %>
+  <%= partial 'templates/details/detail', locals: { title: "饮食", detail: :diet } %>
+
+  <%= partial 'related' %> 
+
+</div>

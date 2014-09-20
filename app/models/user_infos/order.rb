@@ -2,11 +2,17 @@ class UserInfos::Order < ActiveRecord::Base
   belongs_to :account
   belongs_to :item, polymorphic: true
 
-  include Statable
+  validates_presence_of :quantity, :price, :discount
+  # validates_presence_of :logistics_type, :logistics_name, :logistics_fee, :logistics_payment, :transport_type
+  validates_presence_of :receive_name, :receive_address, :receive_zip, :receive_mobile
 
-  def name
-    "#{item.name} x #{quantity}"
+  before_validation do
+    self.name ||= "#{item.name} x #{quantity}"
+    self.price ||= item.sale_price
+    self.discount ||= 0
   end
+
+  include Statable
 
   def total_fee
     price * quantity - discount

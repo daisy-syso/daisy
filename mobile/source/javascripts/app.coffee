@@ -57,6 +57,20 @@ angular.module 'DaisyApp', [
               $scope.data = data
       ]
 
+    $routeProvider.when '/order/:type*/:id', 
+      templateUrl: "templates/order.html"
+      controller: [
+        '$scope', '$routeParams', '$loader'
+        ($scope, $routeParams, $loader) ->
+          $scope.type = $routeParams.type
+          $scope.id = $routeParams.id
+          url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
+
+          $loader.get(url)
+            .success (data) ->
+              $scope.data = data['data']
+      ]
+      
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
           "templates/details/#{routeParams.type}.html"

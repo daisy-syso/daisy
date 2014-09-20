@@ -1,10 +1,17 @@
 // Button
-.btn {
+.btn-large {
   height: 40px;
   padding: 10px 25px;
   background: #06c1ae;
   font-size: 20px;
   font-weight: bold;
+  color: #fff;
+  border: none;
+}
+
+.btn-small {
+  padding: 3px 5px;
+  background: #06c1ae;
   color: #fff;
   border: none;
 }

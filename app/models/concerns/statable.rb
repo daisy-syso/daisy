@@ -5,6 +5,10 @@ module Statable
     STATE = %w(opening pending paid completed canceled)
     validates_inclusion_of :state, :in => STATE
 
+    before_validation do
+      self.state ||= 'opening'
+    end
+
     # 添加 paid? completed? 等方法
     STATE.each do |state|
       define_method "#{state}?" do

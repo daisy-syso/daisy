@@ -15,6 +15,7 @@ class DaisyAPI < Grape::API
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
   mount UserInfos::ReviewsAPI
+  mount UserInfos::OrdersAPI
 
   namespace :hospitals do
     mount Hospitals::HospitalsAPI

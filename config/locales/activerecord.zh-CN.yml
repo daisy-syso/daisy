@@ -69,6 +69,12 @@ zh-CN:
         desc: 评价内容
       user_infos/price_notification:
         price: 价格
+      user_infos/order:
+        price: 价格
+        receive_name: 收货人姓名
+        receive_mobile: 联系电话
+        receive_address: 收货地址
+        receive_zip: 邮编
       province:
         name: 名称
       city:

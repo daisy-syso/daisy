@@ -32,4 +32,39 @@ form {
   textarea {
     padding: 10px 15px;
   }
+  h3 {
+    padding: 20px 20px 0;
+  }
+  h4 {
+    padding: 10px 20px 0;
+  }
+  .input-row {
+    height: auto;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+    
+    .pull-right {
+      text-align: right;
+      float: right!important;
+      width: 65%;
+    }
+    label {
+      font-size: 17px;
+      white-space: nowrap;
+      padding: 11px 15px;
+    }
+    .buttons {
+      .btn {
+        margin-top: 5px;
+      }
+      input {
+        float: none;
+        width: 50px;
+        padding: 2px 0 0 5px;
+        text-align: center;
+      }
+    }
+  }
 }

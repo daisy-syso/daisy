@@ -7,6 +7,8 @@ class Diseases::DiseasesAPI < Grape::API
       filters: { 
         disease_type: { class: Diseases::DiseaseType, title: "疾病类别" },
       }
+
+    show! Diseases::Disease
   end
 
 end

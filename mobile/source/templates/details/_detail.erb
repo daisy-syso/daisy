@@ -4,7 +4,7 @@
       <%= defined?(title) ? title : "商品信息" %>
     </li>
     <li class="table-view-cell">
-      {{data.<%= defined?(detail) ? detail : :desc %>}}
+      <p class="pre">{{data.<%= defined?(detail) ? detail : :desc %>}}</p>
     </li>
   </ul>
 </div>

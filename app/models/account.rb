@@ -13,6 +13,7 @@ class Account < ActiveRecord::Base
   has_many :favorites, class_name: "UserInfos::Favorite"
   has_many :price_notifications, class_name: "UserInfos::PriceNotification"
   has_many :reviews, class_name: "UserInfos::Review"
+  has_many :orders, class_name: "UserInfos::Order"
 
   def favorite_items
     self.favorites.includes(:item).map(&:item)
