@@ -1,23 +1,35 @@
 // Button
+.btn-primary {
+  color: #fff;
+  background-color: #06c1ae;
+  border: 1px solid #06c1ae;
+}
+.btn-primary:active, .btn-primary.active {
+  color: #fff;
+  background-color: darken(#06c1ae, 10%);
+  border: 1px solid darken(#06c1ae, 10%);
+}
+.btn-warning {
+  color: #fff;
+  background-color: #fdb338;
+  border: 1px solid #fdb338;
+}
+.btn-warning:active, .btn-warning.active {
+  color: #fff;
+  background-color: darken(#fdb338, 10%);
+  border: 1px solid darken(#fdb338, 10%);
+}
+
+
 .btn-large {
   height: 40px;
   padding: 10px 25px;
-  background: #06c1ae;
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
-  border: none;
 }
 
 .btn-small {
   padding: 3px 5px;
-  background: #06c1ae;
-  color: #fff;
-  border: none;
-}
-
-.btn-strong {
-  background-color: #fdb338;
 }
 
 input, button {

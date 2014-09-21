@@ -19,9 +19,8 @@ form.register {
 
 form {
   .stars {
+    @include hide-text;
     display: inline-block;
-    font-size: 0;
-    line-height: 0;
     padding: 10px 0;
     .ionicon {
       color: #fdb338;

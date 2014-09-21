@@ -5,6 +5,7 @@ class UserInfos::Order < ActiveRecord::Base
   validates_presence_of :quantity, :price, :discount
   # validates_presence_of :logistics_type, :logistics_name, :logistics_fee, :logistics_payment, :transport_type
   validates_presence_of :receive_name, :receive_address, :receive_zip, :receive_mobile
+  validates_numericality_of :quantity, greater_than: 0
 
   before_validation do
     self.name ||= "#{item.name} x #{quantity}"

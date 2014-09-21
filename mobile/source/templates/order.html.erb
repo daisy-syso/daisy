@@ -21,9 +21,9 @@
         <div class="input-row">
           <label>数量</label>
           <div class="buttons pull-right" ng-init="order.quantity = 1">
-            <span class="btn btn-small ionicon ion-minus" ng-click="order.quantity = order.quantity - 1"></span>
-            <input type="number" ng-model="order.quantity">
-            <span class="btn btn-small ionicon ion-plus" ng-click="order.quantity = order.quantity + 1"></span>
+            <span class="btn btn-small btn-primary ionicon ion-minus" ng-click="order.quantity = order.quantity > 1 ? order.quantity - 1 : 1"></span>
+            <input type="text" ng-model="order.quantity">
+            <span class="btn btn-small btn-primary ionicon ion-plus" ng-click="order.quantity = order.quantity + 1"></span>
           </div>
         </div>
 
@@ -64,7 +64,7 @@
           <textarea placeholder="收货地址" ng-model="order.receive_address"></textarea>
         </div>
       
-        <button class="btn btn-large btn-block">确认购买</button>
+        <button class="btn btn-large btn-primary btn-block">确认购买</button>
       
       </div>
     </div>
