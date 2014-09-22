@@ -1,6 +1,4 @@
-class PriceSearchAPI < Grape::API
-  extend ResourcesHelper
-  extend FilterHelper
+class PriceSearchAPI < ApplicationAPI
 
   namespace :price_search do
 
@@ -23,17 +21,8 @@ class PriceSearchAPI < Grape::API
         title: "价格搜索 整形",
         filters: { 
           shaping_type: { class: Shapings::ShapingType, title: "整形类别" },
-          price: { 
-            title: "价格区间", 
-            type: Hash,
-            using: [:from, :to],
-            children: proc {
-              generate_price_filters Setting["price_search.shaping_items.filters.price"]
-            }, 
-            current: proc { |price| 
-              price ? "#{price[:from]} ~ #{price[:to]} 元" : "全部"
-            }
-          }
+          price: price_filters(Shapings::ShapingItem),
+          order_by: order_by_filters(Shapings::ShapingItem)
         }
     end
 
@@ -42,17 +31,8 @@ class PriceSearchAPI < Grape::API
         title: "价格搜索 药品",
         filters: { 
           disease: { class: Diseases::Disease, title: "疾病类别" },
-          price: { 
-            title: "价格区间", 
-            type: Hash,
-            using: [:from, :to],
-            children: proc {
-              generate_price_filters Setting["price_search.drugs.filters.price"]
-            }, 
-            current: proc { |price| 
-              price ? generate_price_title(price[:from], price[:to]) : "全部"
-            }
-          }
+          price: price_filters(Drugs::Drug),
+          order_by: order_by_filters(Drugs::Drug)
         }
     end
   end

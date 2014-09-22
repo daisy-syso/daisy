@@ -2,6 +2,17 @@ module Localizable
   extend ActiveSupport::Concern
 
   included do
+    %w(lat lng geohash).each do |column|
+      raise "column `#{column}` not found in table `#{table_name}`" unless attribute_names.include? column
+    end
+
+    scope :nearest, -> (lat, lng) {
+      dlat = (arel_table[:lat] - lat).to_sql
+      dlng = (arel_table[:lng] - lng).to_sql
+      where.not(lng: nil, lat: nil)
+        .order("(#{dlat} * #{dlat} + #{dlng} * #{dlng}) ASC")
+    }
+
     validates_each :address do |record, attr, value|
       if record.address.present? and record.address_changed?
         begin

@@ -1,6 +1,4 @@
-class CouponsAPI < Grape::API
-  extend ResourcesHelper
-  extend FilterHelper
+class CouponsAPI < ApplicationAPI
 
   namespace :coupons do
 
@@ -23,17 +21,8 @@ class CouponsAPI < Grape::API
         title: "返利优惠 药品",
         filters: { 
           disease: { class: Diseases::Disease, title: "疾病类别" },
-          price: { 
-            title: "价格区间", 
-            type: Hash,
-            using: [:from, :to],
-            children: proc {
-              generate_price_filters Setting["price_search.drugs.filters.price"]
-            }, 
-            current: proc { |price| 
-              price ? generate_price_title(price[:from], price[:to]) : "全部"
-            }
-          }
+          price: price_filters(Drugs::Drug),
+          order_by: order_by_filters(Drugs::Drug)
         }
     end
 
@@ -46,5 +35,4 @@ class CouponsAPI < Grape::API
       end
     end
   end
-
 end

@@ -3,7 +3,7 @@ class Maternals::MaternalHall < ActiveRecord::Base
 
   scope :city, -> (city) { where(city: city) }
 
-  include Reviewable
   include Localizable
+  include Reviewable
   
 end

@@ -1,5 +1,4 @@
-class Shapings::ShapingItemsAPI < Grape::API
-  extend ResourcesHelper
+class Shapings::ShapingItemsAPI < ApplicationAPI
 
   namespace :shaping_items do
     show! Shapings::ShapingItem

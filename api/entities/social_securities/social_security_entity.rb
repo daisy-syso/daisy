@@ -3,7 +3,7 @@ class SocialSecurities::SocialSecurityEntity < ApplicationEntity
   expose :id
 
   expose :name do |object, options|
-    object.city.name
+    object.city.name rescue "未知"
   end
 
   expose :url, as: :link

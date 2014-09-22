@@ -1,5 +1,4 @@
-class Hospitals::TopSpecialistsAPI < Grape::API
-  extend ResourcesHelper
+class Hospitals::TopSpecialistsAPI < ApplicationAPI
 
   namespace :top_specialists do
     index! Hospitals::Hospital,
@@ -13,7 +12,8 @@ class Hospitals::TopSpecialistsAPI < Grape::API
           children: proc {
             Hospitals::HospitalType.top_specialists_filters
           }
-        }
+        },
+        order_by: order_by_filters(Hospitals::Hospital)
       }
   end
 end

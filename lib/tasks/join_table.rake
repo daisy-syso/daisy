@@ -3,7 +3,7 @@ namespace :join_table do
   desc "Update join tables"
   task :update => :environment do
     count, n = Diseases::Disease.count, 0
-    Diseases::Disease.all.each do |disease|
+    Diseases::Disease.offset(131).each do |disease|
       # puts "  #{disease.name} ( #{n+=1} / #{count} )" 
       doctors = Hospitals::Doctor.where(
         Hospitals::Doctor.arel_table[:desc].matches("%#{disease.name}%"))

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922015251) do
+ActiveRecord::Schema.define(version: 20140922120311) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -74,14 +74,18 @@ ActiveRecord::Schema.define(version: 20140922015251) do
     t.string   "address"
     t.string   "telephone"
     t.string   "url"
-    t.float    "lng",        limit: 53
-    t.float    "lat",        limit: 53
+    t.float    "lng",           limit: 53
+    t.float    "lat",           limit: 53
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",          limit: 24, default: 5.0
+    t.integer  "reviews_count",            default: 0
   end
 
   add_index "confinement_centers", ["city_id"], name: "index_confinement_centers_on_city_id", using: :btree
+  add_index "confinement_centers", ["reviews_count"], name: "index_confinement_centers_on_reviews_count", using: :btree
+  add_index "confinement_centers", ["star"], name: "index_confinement_centers_on_star", using: :btree
 
   create_table "coupons", force: true do |t|
     t.integer  "item_id"
@@ -141,11 +145,15 @@ ActiveRecord::Schema.define(version: 20140922015251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "drugstore_id"
+    t.float    "star",             limit: 24, default: 5.0
+    t.integer  "reviews_count",               default: 0
   end
 
   add_index "doctors", ["drugstore_id"], name: "index_doctors_on_drugstore_id", using: :btree
   add_index "doctors", ["hospital_id"], name: "index_doctors_on_hospital_id", using: :btree
   add_index "doctors", ["hospital_room_id"], name: "index_doctors_on_hospital_room_id", using: :btree
+  add_index "doctors", ["reviews_count"], name: "index_doctors_on_reviews_count", using: :btree
+  add_index "doctors", ["star"], name: "index_doctors_on_star", using: :btree
 
   create_table "down_prices", force: true do |t|
     t.integer  "drug_id"
@@ -163,21 +171,27 @@ ActiveRecord::Schema.define(version: 20140922015251) do
   end
 
   create_table "drugs", force: true do |t|
-    t.string  "name"
-    t.string  "manufactory"
-    t.decimal "ori_price",    precision: 10, scale: 0
-    t.decimal "sale_price",   precision: 10, scale: 0
-    t.text    "introduction"
-    t.string  "image_url"
-    t.integer "drug_type_id"
-    t.string  "brand"
-    t.string  "code"
-    t.string  "expiry_date"
-    t.string  "spec"
-    t.integer "disease_id"
+    t.string   "name"
+    t.string   "manufactory"
+    t.decimal  "ori_price",                precision: 10, scale: 0
+    t.decimal  "sale_price",               precision: 10, scale: 0
+    t.text     "introduction"
+    t.string   "image_url"
+    t.integer  "drug_type_id"
+    t.string   "brand"
+    t.string   "code"
+    t.string   "expiry_date"
+    t.string   "spec"
+    t.integer  "disease_id"
+    t.float    "star",          limit: 24,                          default: 5.0
+    t.integer  "reviews_count",                                     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "drugs", ["disease_id"], name: "index_drugs_on_disease_id", using: :btree
+  add_index "drugs", ["reviews_count"], name: "index_drugs_on_reviews_count", using: :btree
+  add_index "drugs", ["star"], name: "index_drugs_on_star", using: :btree
 
   create_table "drugs_types", force: true do |t|
     t.integer "drug_type_id"
@@ -207,10 +221,14 @@ ActiveRecord::Schema.define(version: 20140922015251) do
     t.float    "lng",             limit: 53
     t.float    "lat",             limit: 53
     t.string   "geohash"
+    t.float    "star",            limit: 24, default: 5.0
+    t.integer  "reviews_count",              default: 0
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
   add_index "drugstores", ["geohash"], name: "index_drugstores_on_geohash", using: :btree
+  add_index "drugstores", ["reviews_count"], name: "index_drugstores_on_reviews_count", using: :btree
+  add_index "drugstores", ["star"], name: "index_drugstores_on_star", using: :btree
 
   create_table "drugstores_users", force: true do |t|
     t.integer  "drugstore_id"
@@ -241,20 +259,26 @@ ActiveRecord::Schema.define(version: 20140922015251) do
   add_index "examination_types", ["parent_id"], name: "index_examination_types_on_parent_id", using: :btree
 
   create_table "examinations", force: true do |t|
-    t.string  "name"
-    t.integer "examination_type_id"
-    t.integer "city_id"
-    t.string  "hospital_name"
-    t.string  "applicable"
-    t.string  "feature"
-    t.float   "price",               limit: 24
-    t.float   "save_price",          limit: 24
-    t.string  "geohash"
+    t.string   "name"
+    t.integer  "examination_type_id"
+    t.integer  "city_id"
+    t.string   "hospital_name"
+    t.string   "applicable"
+    t.string   "feature"
+    t.float    "price",               limit: 24
+    t.float    "save_price",          limit: 24
+    t.string   "geohash"
+    t.float    "star",                limit: 24, default: 5.0
+    t.integer  "reviews_count",                  default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
   add_index "examinations", ["examination_type_id"], name: "index_examinations_on_examination_type_id", using: :btree
   add_index "examinations", ["geohash"], name: "index_examinations_on_geohash", using: :btree
+  add_index "examinations", ["reviews_count"], name: "index_examinations_on_reviews_count", using: :btree
+  add_index "examinations", ["star"], name: "index_examinations_on_star", using: :btree
 
   create_table "favorites", force: true do |t|
     t.integer  "account_id"
@@ -307,25 +331,31 @@ ActiveRecord::Schema.define(version: 20140922015251) do
   end
 
   create_table "hospitals", force: true do |t|
-    t.string  "name"
-    t.string  "telephone"
-    t.string  "address"
-    t.string  "image_url"
-    t.string  "url"
-    t.integer "city_id"
-    t.boolean "is_local_hot"
-    t.boolean "is_national_hot"
-    t.boolean "is_best_reputation"
-    t.string  "level"
-    t.integer "click_count",                   default: 0
-    t.float   "lng",                limit: 53
-    t.float   "lat",                limit: 53
-    t.string  "geohash"
+    t.string   "name"
+    t.string   "telephone"
+    t.string   "address"
+    t.string   "image_url"
+    t.string   "url"
+    t.integer  "city_id"
+    t.boolean  "is_local_hot"
+    t.boolean  "is_national_hot"
+    t.boolean  "is_best_reputation"
+    t.string   "level"
+    t.integer  "click_count",                   default: 0
+    t.float    "lng",                limit: 53
+    t.float    "lat",                limit: 53
+    t.string   "geohash"
+    t.integer  "reviews_count",                 default: 0
+    t.float    "star",               limit: 24, default: 5.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
   add_index "hospitals", ["click_count"], name: "index_hospitals_on_click_count", using: :btree
   add_index "hospitals", ["geohash"], name: "index_hospitals_on_geohash", using: :btree
+  add_index "hospitals", ["reviews_count"], name: "index_hospitals_on_reviews_count", using: :btree
+  add_index "hospitals", ["star"], name: "index_hospitals_on_star", using: :btree
 
   create_table "hospitals_types", force: true do |t|
     t.integer "hospital_id"
@@ -379,14 +409,18 @@ ActiveRecord::Schema.define(version: 20140922015251) do
     t.string   "name"
     t.string   "address"
     t.string   "telephone"
-    t.float    "lng",        limit: 53
-    t.float    "lat",        limit: 53
+    t.float    "lng",           limit: 53
+    t.float    "lat",           limit: 53
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",          limit: 24, default: 5.0
+    t.integer  "reviews_count",            default: 0
   end
 
   add_index "maternal_halls", ["city_id"], name: "index_maternal_halls_on_city_id", using: :btree
+  add_index "maternal_halls", ["reviews_count"], name: "index_maternal_halls_on_reviews_count", using: :btree
+  add_index "maternal_halls", ["star"], name: "index_maternal_halls_on_star", using: :btree
 
   create_table "medical_articles", force: true do |t|
     t.string   "name"
@@ -450,18 +484,24 @@ ActiveRecord::Schema.define(version: 20140922015251) do
   add_index "net_infos", ["hospital_type_id"], name: "index_net_infos_on_hospital_type_id", using: :btree
 
   create_table "nursing_rooms", force: true do |t|
-    t.string  "name"
-    t.string  "address"
-    t.string  "telephone"
-    t.string  "image_url"
-    t.integer "city_id"
-    t.string  "geohash"
-    t.float   "lat",       limit: 53
-    t.float   "lng",       limit: 53
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.string   "image_url"
+    t.integer  "city_id"
+    t.string   "geohash"
+    t.float    "lat",           limit: 53
+    t.float    "lng",           limit: 53
+    t.float    "star",          limit: 24, default: 5.0
+    t.integer  "reviews_count",            default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree
   add_index "nursing_rooms", ["geohash"], name: "index_nursing_rooms_on_geohash", using: :btree
+  add_index "nursing_rooms", ["reviews_count"], name: "index_nursing_rooms_on_reviews_count", using: :btree
+  add_index "nursing_rooms", ["star"], name: "index_nursing_rooms_on_star", using: :btree
 
   create_table "orders", force: true do |t|
     t.integer  "quantity"
@@ -542,18 +582,24 @@ ActiveRecord::Schema.define(version: 20140922015251) do
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "shaping_items", force: true do |t|
-    t.string  "name"
-    t.string  "price_scope"
-    t.string  "target"
-    t.string  "operation_time"
-    t.string  "note"
-    t.string  "life_note"
-    t.string  "remark"
-    t.integer "shaping_type_id"
-    t.string  "image_url"
+    t.string   "name"
+    t.string   "price_scope"
+    t.string   "target"
+    t.string   "operation_time"
+    t.string   "note"
+    t.string   "life_note"
+    t.string   "remark"
+    t.integer  "shaping_type_id"
+    t.string   "image_url"
+    t.float    "star",            limit: 24, default: 5.0
+    t.integer  "reviews_count",              default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_index "shaping_items", ["reviews_count"], name: "index_shaping_items_on_reviews_count", using: :btree
   add_index "shaping_items", ["shaping_type_id"], name: "index_shaping_items_on_shaping_type_id", using: :btree
+  add_index "shaping_items", ["star"], name: "index_shaping_items_on_star", using: :btree
 
   create_table "shaping_types", force: true do |t|
     t.string  "name"

@@ -1,0 +1,28 @@
+<ul class="actions">
+  <% if defined?(price) && price %>
+    <li>
+      <span>
+        <img src="images/rs.gif" width="20"> 
+        已有{{data.sold_count||0}}人购买
+      </span>
+    </li>
+    <li>
+      <a ng-click="priceNotification(type, id)">
+        <img src="images/jiang.gif" width="20"> 
+        降价通知
+      </a>
+    </li>
+  <% end %>
+  <li>
+    <a ng-click="favorite(type, id)">
+      <img src="images/sc2.gif" width="20"> 
+      我要收藏
+    </a>
+  </li>
+  <li ng-show="data.reviewable">
+    <a ng-click="review(type, id)">
+      <img src="images/sc2.gif" width="20"> 
+      我要评价
+    </a>
+  </li>
+</ul>

@@ -1,5 +1,4 @@
-class SocialSecurities::SocialSecuritiesAPI < Grape::API
-  extend ResourcesHelper
+class SocialSecurities::SocialSecuritiesAPI < ApplicationAPI
 
   namespace :social_securities do
     index! SocialSecurities::SocialSecurity,

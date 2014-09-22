@@ -13,7 +13,15 @@ angular.module("DaisyApp").factory '$loader', [
         $alert "未知错误"
 
     loader =
-      get: (url, config) ->
+      get: (url, config = {}) ->
+        config.params ||= {}
+
+        if $rootScope.coords
+          angular.extend config.params, 
+            "location": true
+            "location:lat": $rootScope.coords.latitude
+            "location:lng": $rootScope.coords.longitude
+
         $http.get(url, config).error(error)
 
       post: (url, data, config = {}) ->

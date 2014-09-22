@@ -1,20 +1,12 @@
 module Reviewable
   extend ActiveSupport::Concern
-  
 
   included do
-    has_many :reviews, as: :item, class_name: 'UserInfos::Review'
-    
-    include Cacheable
+    %w(reviews_count star).each do |column|
+      raise "column `#{column}` not found in table `#{table_name}`" unless attribute_names.include? column
+    end
 
-    def star
-      reviews.average(:star) || 5.0
-    end
-    
-    def reviews_count
-      reviews.count
-    end
-    define_cached_methods :star, :reviews_count
+    has_many :reviews, as: :item, class_name: 'UserInfos::Review'
   end
 
 

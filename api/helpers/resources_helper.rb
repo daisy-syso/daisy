@@ -1,5 +1,11 @@
 module ResourcesHelper
 
+  TYPES = {
+    Array   => :array,
+    Hash    => :hash,
+    Object  => :boolean
+  }
+
   def index! klass, options = {}
 
     filters = options[:filters] || []
@@ -19,21 +25,26 @@ module ResourcesHelper
         children_proc = options[:children] || proc do
           options[:class].filters
         end
-        children = children_proc.call
+        children = instance_exec &children_proc
 
         current_proc = options[:current] || proc do |id|
           id ? options[:class].find(id).name : "全部"
         end
-        current = current_proc.call params[filter]
+        current = instance_exec params[filter], &current_proc
 
         meta[:filters].push title: options[:title], 
           children: children, current: current
       end
 
       filters.each do |filter, options|
+        has_scope_proc = options[:has_scope]
         options = options.slice(:type, :using)
-        options[:type] = options[:type].name.downcase.to_sym if options[:type]
-        has_scope filter, options
+        options[:type] = TYPES[options[:type]] || :default if options[:type]
+        if has_scope_proc
+          has_scope filter, options, &has_scope_proc
+        else
+          has_scope filter, options
+        end
       end
 
       if options[:parent]

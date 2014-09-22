@@ -1,5 +1,4 @@
-class Diseases::DiseasesAPI < Grape::API
-  extend ResourcesHelper
+class Diseases::DiseasesAPI < ApplicationAPI
 
   namespace :diseases do
     index! Diseases::Disease,
@@ -41,5 +40,4 @@ class Diseases::DiseasesAPI < Grape::API
         }
     end
   end
-
 end
