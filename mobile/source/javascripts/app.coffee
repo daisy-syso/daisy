@@ -157,7 +157,7 @@ angular.module 'DaisyApp', [
 
     $rootScope.back = () ->
       locationBack = true
-      prevUrl = if history.length > 1 then history.splice(-2)[0] else "/"
+      prevUrl = if history.length > 1 then history.splice(-2)[0] else "/home"
       $location.path(prevUrl)
 
     $rootScope.redirectTo = (path) ->
