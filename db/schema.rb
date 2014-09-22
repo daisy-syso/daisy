@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905011355) do
+ActiveRecord::Schema.define(version: 20140922015251) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 20140905011355) do
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   add_index "accounts", ["type", "id"], name: "index_accounts_on_type_and_id", unique: true, using: :btree
 
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
+
   create_table "cities", force: true do |t|
     t.integer "index"
     t.integer "province_id"
@@ -45,6 +54,34 @@ ActiveRecord::Schema.define(version: 20140905011355) do
   end
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.string   "content"
+    t.integer  "rating"
+    t.integer  "comment_type"
+    t.integer  "hospital_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["hospital_id"], name: "index_comments_on_hospital_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "confinement_centers", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.string   "url"
+    t.float    "lng",        limit: 53
+    t.float    "lat",        limit: 53
+    t.string   "geohash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "confinement_centers", ["city_id"], name: "index_confinement_centers_on_city_id", using: :btree
 
   create_table "coupons", force: true do |t|
     t.integer  "item_id"
@@ -76,18 +113,49 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.integer  "disease_type_id"
   end
 
+  create_table "diseases_doctors", id: false, force: true do |t|
+    t.integer "doctor_id",  null: false
+    t.integer "disease_id", null: false
+  end
+
+  create_table "diseases_drugs", force: true do |t|
+    t.integer  "drug_id",    default: 0
+    t.integer  "disease_id", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases_hospitals", id: false, force: true do |t|
+    t.integer "hospital_id", null: false
+    t.integer "disease_id",  null: false
+  end
+
   create_table "doctors", force: true do |t|
     t.string   "name"
     t.integer  "hospital_id"
     t.integer  "hospital_room_id"
     t.string   "position"
+    t.string   "hospital_room"
     t.text     "desc"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "drugstore_id"
+  end
+
+  add_index "doctors", ["drugstore_id"], name: "index_doctors_on_drugstore_id", using: :btree
+  add_index "doctors", ["hospital_id"], name: "index_doctors_on_hospital_id", using: :btree
+  add_index "doctors", ["hospital_room_id"], name: "index_doctors_on_hospital_room_id", using: :btree
+
+  create_table "down_prices", force: true do |t|
+    t.integer  "drug_id"
+    t.float    "price",      limit: 24
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "doctors", ["hospital_id"], name: "index_doctors_on_hospital_id", using: :btree
-  add_index "doctors", ["hospital_room_id"], name: "index_doctors_on_hospital_room_id", using: :btree
+  add_index "down_prices", ["drug_id"], name: "index_down_prices_on_drug_id", using: :btree
 
   create_table "drug_types", force: true do |t|
     t.string  "name"
@@ -119,6 +187,13 @@ ActiveRecord::Schema.define(version: 20140905011355) do
   add_index "drugs_types", ["drug_id"], name: "index_drugs_types_on_drug_id", using: :btree
   add_index "drugs_types", ["drug_type_id"], name: "index_drugs_types_on_drug_type_id", using: :btree
 
+  create_table "drugs_users", force: true do |t|
+    t.integer  "drug_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "drugstores", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -129,13 +204,20 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.boolean  "is_national_hot"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "geohash"
-    t.float    "lat",             limit: 53
     t.float    "lng",             limit: 53
+    t.float    "lat",             limit: 53
+    t.string   "geohash"
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
   add_index "drugstores", ["geohash"], name: "index_drugstores_on_geohash", using: :btree
+
+  create_table "drugstores_users", force: true do |t|
+    t.integer  "drugstore_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "eldercares", force: true do |t|
     t.string   "name"
@@ -168,8 +250,6 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.float   "price",               limit: 24
     t.float   "save_price",          limit: 24
     t.string  "geohash"
-    t.float   "lat",                 limit: 24
-    t.float   "lng",                 limit: 24
   end
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
@@ -238,9 +318,9 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.boolean "is_best_reputation"
     t.string  "level"
     t.integer "click_count",                   default: 0
-    t.string  "geohash"
-    t.float   "lat",                limit: 53
     t.float   "lng",                limit: 53
+    t.float   "lat",                limit: 53
+    t.string  "geohash"
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
@@ -254,6 +334,13 @@ ActiveRecord::Schema.define(version: 20140905011355) do
 
   add_index "hospitals_types", ["hospital_id"], name: "index_hospitals_types_on_hospital_id", using: :btree
   add_index "hospitals_types", ["type_id"], name: "index_hospitals_types_on_type_id", using: :btree
+
+  create_table "hospitals_users", force: true do |t|
+    t.integer  "hospital_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "hot_news", force: true do |t|
     t.string   "title"
@@ -286,6 +373,20 @@ ActiveRecord::Schema.define(version: 20140905011355) do
 
   add_index "insurances", ["insurance_category_id"], name: "index_insurances_on_insurance_category_id", using: :btree
   add_index "insurances", ["insurance_company_id"], name: "index_insurances_on_insurance_company_id", using: :btree
+
+  create_table "maternal_halls", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.float    "lng",        limit: 53
+    t.float    "lat",        limit: 53
+    t.string   "geohash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "maternal_halls", ["city_id"], name: "index_maternal_halls_on_city_id", using: :btree
 
   create_table "medical_articles", force: true do |t|
     t.string   "name"
@@ -363,9 +464,6 @@ ActiveRecord::Schema.define(version: 20140905011355) do
   add_index "nursing_rooms", ["geohash"], name: "index_nursing_rooms_on_geohash", using: :btree
 
   create_table "orders", force: true do |t|
-    t.integer  "account_id"
-    t.integer  "item_id"
-    t.string   "item_type"
     t.integer  "quantity"
     t.float    "price",             limit: 24
     t.float    "discount",          limit: 24
@@ -383,9 +481,23 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.string   "receive_mobile"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.string   "name"
   end
 
-  add_index "orders", ["item_id", "item_type"], name: "index_orders_on_item_id_and_item_type", using: :btree
+  add_index "orders", ["account_id"], name: "index_orders_on_account_id", using: :btree
+  add_index "orders", ["item_type", "item_id"], name: "index_orders_on_item_type_and_item_id", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.string   "picture"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "category_id"
+  end
+
+  add_index "photos", ["category_id"], name: "index_photos_on_category_id", using: :btree
 
   create_table "price_notifications", force: true do |t|
     t.integer  "account_id"
@@ -500,6 +612,19 @@ ActiveRecord::Schema.define(version: 20140905011355) do
     t.datetime "last_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

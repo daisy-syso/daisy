@@ -1,6 +1,6 @@
 <%= partial 'templates/lists/body', locals: { subtitle: :desc } %>
 <div class="buttons">
-  <a class="btn btn-outlined">相关医生</a>
-  <a class="btn btn-outlined">相关医院</a>
-  <a class="btn btn-outlined">相关药品</a>
+  <a class="btn btn-outlined" ng-href="#/list/{{data.type}}/{{data.id}}/doctors">相关医生</a>
+  <a class="btn btn-outlined" ng-href="#/list/{{data.type}}/{{data.id}}/hospitals">相关医院</a>
+  <a class="btn btn-outlined" ng-href="#/list/{{data.type}}/{{data.id}}/drugs">相关药品</a>
 </div>

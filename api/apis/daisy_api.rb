@@ -11,6 +11,7 @@ class DaisyAPI < Grape::API
   mount RelatedResourcesAPI
   mount FiltersAPI
   mount PriceSearchAPI
+  mount CouponsAPI
 
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
@@ -47,10 +48,6 @@ class DaisyAPI < Grape::API
 
   namespace :social_securities do
     mount SocialSecurities::SocialSecuritiesAPI
-  end
-
-  namespace :coupons do
-    mount Coupons::CouponsAPI
   end
 
   namespace :maternals do

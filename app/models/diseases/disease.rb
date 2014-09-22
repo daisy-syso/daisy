@@ -1,6 +1,10 @@
 class Diseases::Disease < ActiveRecord::Base
   belongs_to :disease_type
 
+  has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
+  has_and_belongs_to_many :doctors, class_name: "Hospitals::Doctor"
+  has_and_belongs_to_many :hospitals, class_name: "Hospitals::Hospital"
+
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
   class << self

@@ -36,13 +36,17 @@ module ResourcesHelper
         has_scope filter, options
       end
 
-      data = klass.all
-      includes = options[:includes]
-      data = data.includes(includes) if includes
-      scopes = Array.wrap(options[:scopes])
-      scopes.each do |scope|
-        data = data.send(scope)
-      end if scopes.any?
+      if options[:parent]
+        data = options[:parent].call(params)
+      else
+        data = klass.all
+        includes = options[:includes]
+        data = data.includes(includes) if includes
+        scopes = Array.wrap(options[:scopes])
+        scopes.each do |scope|
+          data = data.send(scope)
+        end if scopes.any?
+      end
       data = apply_scopes!(data)
 
       opts = options.slice(:with)

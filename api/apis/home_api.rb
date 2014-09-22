@@ -60,7 +60,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-11.gif"
       }, {
         title: "返利优惠",
-        link: "#/list/coupons/coupons",
+        link: "#/menu/coupons",
         icon: "images/icons/1-11.gif"
       }]
     }
