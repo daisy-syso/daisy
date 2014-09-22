@@ -13,6 +13,7 @@ zh-CN:
       net_infos: 网络资讯
       user_infos: 用户信息
       maternals: 母婴
+      coupons: 优惠
     models:
       account: 用户
       setting: 设置
@@ -52,6 +53,7 @@ zh-CN:
       net_infos/hospital_type_news: 医疗资讯
       maternals/confinement_center: 月子中心
       maternals/maternal_hall: 母婴会馆
+      coupons/coupon: 优惠
     errors:
       messages:
         blank: 不能为空
