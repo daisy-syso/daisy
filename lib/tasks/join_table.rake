@@ -6,7 +6,7 @@ namespace :join_table do
       doctors = Hospitals::Doctor.where(
         Hospitals::Doctor.arel_table[:desc].matches("%#{disease.name}%"))
       disease.doctors = doctors
-      disease.hospitals = doctors.map(&:hospital)
+      disease.hospitals = doctors.map(&:hospital).compact
       disease.save
     end
   end
