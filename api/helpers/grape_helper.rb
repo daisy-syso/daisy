@@ -17,14 +17,15 @@ module GrapeHelper
     if resource
       options[:with] ||= get_entity_class(resource)
 
+      present options[:meta]
+
       if resource.respond_to? :to_a
         resource = resource.to_a 
         # record_not_found! if resource.empty?
+        present :fin, true if resource.count < (params[:per] || 10)
       end
       
-      present options[:meta]
       present :data, resource, options
-      present :fin, true if resource.count < (params[:per] || 10)
       
     else
       record_not_found!
