@@ -1,6 +1,6 @@
 class Hospitals::DoctorEntity < Bases::ItemEntity
 
-  expose :id, :position
+  expose :id, :position, :image_url
 
   with_options if: { detail: true } do
     expose :desc

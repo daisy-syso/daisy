@@ -139,6 +139,10 @@
     width: 100px;
     height: 85px;
   }
+  .media-object.height-auto {
+    min-height: 85px;
+    height: auto;
+  }
   .media-body {
     min-height: 60px;
     margin-bottom: 5px;
