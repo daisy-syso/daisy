@@ -7,6 +7,7 @@ angular.module('DaisyApp').directive 'list', [
       scope:
         listUrl: "@"
         listData: "=?"
+        listFin: "=?"
         listTitle: "@"
         listMore: "@"
         listMoreLink: "@"
@@ -15,6 +16,7 @@ angular.module('DaisyApp').directive 'list', [
         if scope.listUrl
           $loader.get(scope.listUrl)
             .success (json) ->
+              scope.listFin = json.fin
               scope.listData = json.data
 
         scope.link = (data) ->

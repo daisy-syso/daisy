@@ -4,9 +4,9 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: "医院大全",
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         hospital_type: { class: Hospitals::HospitalType, title: "医院类型" },
-        order_by: order_by_filters(Hospitals::Hospital)
+        order_by: hospital_order_by_filters
       }
 
     get ":id" do

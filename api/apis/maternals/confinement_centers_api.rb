@@ -4,7 +4,7 @@ class Maternals::ConfinementCentersAPI < ApplicationAPI
     index! Maternals::ConfinementCenter,
       title: "月子中心",
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         order_by: order_by_filters(Maternals::ConfinementCenter)
       }
 

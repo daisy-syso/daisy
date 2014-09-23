@@ -1,0 +1,20 @@
+table.table-view {
+  table-layout: fixed;
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+  tr.last {
+    border-bottom: 0;
+  }
+
+  .table-view-cell {
+    border-right: 1px solid #ddd;
+    border-bottom: 0;
+  }
+
+  .table-view-cell:last-child {
+    border-right: 0;
+  }
+}

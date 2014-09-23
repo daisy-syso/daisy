@@ -15,6 +15,9 @@ module ResourcesHelper
         options = options.slice(:type, :default)
         optional filter, options.reverse_merge(type: Integer)
       end
+      options[:params].to_a.each do |filter, options|
+        optional filter, options.reverse_merge(type: Integer)
+      end
     end
     get do
       meta = options[:meta] || {}
@@ -28,12 +31,16 @@ module ResourcesHelper
         children = instance_exec &children_proc
 
         current_proc = options[:current] || proc do |id|
-          id ? options[:class].find(id).name : "全部"
+          id ? options[:class].find(id).name : options[:title]
         end
         current = instance_exec params[filter], &current_proc
 
-        meta[:filters].push title: options[:title], 
-          children: children, current: current
+        meta[:filters].push children: children, current: current
+
+        if options[:titleize]
+          meta[:subtitle] = meta[:title]
+          meta[:title] = current
+        end
       end
 
       filters.each do |filter, options|
@@ -48,7 +55,7 @@ module ResourcesHelper
       end
 
       if options[:parent]
-        data = options[:parent].call(params)
+        data = instance_exec &options[:parent]
       else
         data = klass.all
         includes = options[:includes]

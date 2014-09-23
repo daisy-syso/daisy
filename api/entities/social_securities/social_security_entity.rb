@@ -8,4 +8,8 @@ class SocialSecurities::SocialSecurityEntity < ApplicationEntity
 
   expose :url, as: :link
 
+  expose :type do |object, options|
+    "social_securities/social_securities"
+  end
+
 end

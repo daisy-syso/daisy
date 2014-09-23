@@ -47,7 +47,7 @@ class DaisyAPI < Grape::API
   end
 
   namespace :social_securities do
-    mount SocialSecurities::SocialSecuritiesAPI
+    mount SocialSecuritiesAPI
   end
 
   namespace :maternals do

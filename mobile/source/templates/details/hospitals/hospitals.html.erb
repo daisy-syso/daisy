@@ -3,11 +3,46 @@
 <div class="content">
 
   <%= partial 'templates/details/album' %>
+  
+  <div class="card">
+    <ul class="table-view media">
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <a class="btn btn-primary pull-right" ng-href="{{data.link}}">挂号</a>
+          <a class="btn btn-primary pull-right" ng-href="{{data.link}}">查询</a>
+          <h1>{{data.name}}</h1>
+        </div>
+      </li>
 
-  <%= partial 'templates/details/desc' %>
+      <li class="table-view-cell">
+        <%= partial 'templates/details/actions' %>
+      </li>
+    </ul>
+  </div>
 
   <%= partial 'templates/details/review' %>
   
+  <div class="card">
+    <ul class="table-view media">
+
+      <% titles = { equipment: "检查设备", skill: "医疗技术水平", service: "服务水平", environment: "医院环境" } %>
+      <% %i(equipment skill service environment).each do |key| %>
+        <li class="table-view-cell">
+          <div class="media-detail">
+            <div class="block">
+              <h4>
+                <%= titles[key] %>：
+                <span stars="data.<%= key %>_star" class="stars"></span>
+              </h4>
+              <p class="pre">{{data.<%= key %>_desc}}</p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+
   <%= partial 'templates/details/map' %>
 
   <%= partial 'related' %> 

@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "star",          limit: 24, default: 5.0
+    t.float    "star",          limit: 24, default: 0.0
     t.integer  "reviews_count",            default: 0
   end
 
@@ -117,16 +117,19 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.integer  "disease_type_id"
   end
 
+  add_index "diseases", ["disease_type_id"], name: "index_diseases_on_disease_type_id", using: :btree
+
   create_table "diseases_doctors", id: false, force: true do |t|
     t.integer "doctor_id",  null: false
     t.integer "disease_id", null: false
   end
 
-  create_table "diseases_drugs", force: true do |t|
-    t.integer  "drug_id",    default: 0
-    t.integer  "disease_id", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  add_index "diseases_doctors", ["disease_id"], name: "index_diseases_doctors_on_disease_id", using: :btree
+  add_index "diseases_doctors", ["doctor_id"], name: "index_diseases_doctors_on_doctor_id", using: :btree
+
+  create_table "diseases_drugs", id: false, force: true do |t|
+    t.integer "drug_id"
+    t.integer "disease_id"
   end
 
   create_table "diseases_hospitals", id: false, force: true do |t|
@@ -145,7 +148,7 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "drugstore_id"
-    t.float    "star",             limit: 24, default: 5.0
+    t.float    "star",             limit: 24, default: 0.0
     t.integer  "reviews_count",               default: 0
   end
 
@@ -183,10 +186,10 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "expiry_date"
     t.string   "spec"
     t.integer  "disease_id"
-    t.float    "star",          limit: 24,                          default: 5.0
-    t.integer  "reviews_count",                                     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",          limit: 24,                          default: 0.0
+    t.integer  "reviews_count",                                     default: 0
   end
 
   add_index "drugs", ["disease_id"], name: "index_drugs_on_disease_id", using: :btree
@@ -221,7 +224,7 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.float    "lng",             limit: 53
     t.float    "lat",             limit: 53
     t.string   "geohash"
-    t.float    "star",            limit: 24, default: 5.0
+    t.float    "star",            limit: 24, default: 0.0
     t.integer  "reviews_count",              default: 0
   end
 
@@ -268,10 +271,10 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.float    "price",               limit: 24
     t.float    "save_price",          limit: 24
     t.string   "geohash"
-    t.float    "star",                limit: 24, default: 5.0
-    t.integer  "reviews_count",                  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",                limit: 24, default: 0.0
+    t.integer  "reviews_count",                  default: 0
   end
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
@@ -345,10 +348,10 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.float    "lng",                limit: 53
     t.float    "lat",                limit: 53
     t.string   "geohash"
-    t.integer  "reviews_count",                 default: 0
-    t.float    "star",               limit: 24, default: 5.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",               limit: 24, default: 0.0
+    t.integer  "reviews_count",                 default: 0
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
@@ -414,7 +417,7 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "star",          limit: 24, default: 5.0
+    t.float    "star",          limit: 24, default: 0.0
     t.integer  "reviews_count",            default: 0
   end
 
@@ -492,10 +495,10 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "geohash"
     t.float    "lat",           limit: 53
     t.float    "lng",           limit: 53
-    t.float    "star",          limit: 24, default: 5.0
-    t.integer  "reviews_count",            default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "star",          limit: 24, default: 0.0
+    t.integer  "reviews_count",            default: 0
   end
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree
@@ -592,9 +595,9 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.integer  "shaping_type_id"
     t.string   "image_url"
     t.float    "star",            limit: 24, default: 5.0
-    t.integer  "reviews_count",              default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "reviews_count",              default: 0
   end
 
   add_index "shaping_items", ["reviews_count"], name: "index_shaping_items_on_reviews_count", using: :btree

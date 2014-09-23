@@ -57,6 +57,10 @@
     }
   }
 
+  .table-view-cell.last {
+    border-bottom: 0;
+  }
+
   .buttons {
     .btn {
       height: auto;
@@ -109,11 +113,15 @@
 
 .media {
   font-size: 15px;
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #666;
+    margin-bottom: 0;
+    font-size: 17px;
+  }
 
   h1 {
-    margin-bottom: 0;
     line-height: 25px;
-    font-size: 17px;
     font-weight: normal;
 
     span {
@@ -152,8 +160,8 @@
       color: #666;
       font-size: 18px;
       font-weight: bold;
-      line-height: 20px;
-      margin-bottom: 5px;
+      line-height: 30px;
+      // margin-bottom: 5px;
     }
     p {
       font-size: 14px;
@@ -240,3 +248,4 @@
     color: #2bb2a3;
   }
 }
+

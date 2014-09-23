@@ -4,7 +4,7 @@ class Eldercares::NursingRoomsAPI < ApplicationAPI
     index! Eldercares::NursingRoom,
       title: "养老服务",
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         order_by: order_by_filters(Eldercares::NursingRoom)
       }
 

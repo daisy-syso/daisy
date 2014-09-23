@@ -57,58 +57,57 @@ angular.module 'DaisyApp', [
               $scope.data = data
       ]
 
+    detailCtrl = [
+      '$scope', '$routeParams', '$loader'
+      ($scope, $routeParams, $loader) ->
+        $scope.type = $routeParams.type
+        $scope.id = $routeParams.id
+        url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
+
+        $loader.get(url)
+          .success (data) ->
+            $scope.data = data['data']
+    ]
+
     $routeProvider.when '/order/:type*/:id', 
       templateUrl: "templates/order.html"
-      controller: [
-        '$scope', '$routeParams', '$loader'
-        ($scope, $routeParams, $loader) ->
-          $scope.type = $routeParams.type
-          $scope.id = $routeParams.id
-          url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
-
-          $loader.get(url)
-            .success (data) ->
-              $scope.data = data['data']
-      ]
+      controller: detailCtrl
       
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
           "templates/details/#{routeParams.type}.html"
-      controller: [
-        '$scope', '$routeParams', '$loader'
-        ($scope, $routeParams, $loader) ->
-          $scope.type = $routeParams.type
-          $scope.id = $routeParams.id
-          url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
+      controller: detailCtrl
 
-          $loader.get(url)
+    listCtrl = [
+      '$scope', '$routeParams', '$loader'
+      ($scope, $routeParams, $loader) ->
+        $scope.type = $routeParams.type
+        url = "/api/#{$routeParams.type}.json"
+
+        $scope.$watch 'redirectToParams', (redirectToParams) ->
+          page = $scope.page = 1
+          params = angular.extend { page: page }, redirectToParams
+          $loader.get(url, params: params)
             .success (data) ->
-              $scope.data = data['data']
-      ]
+              $scope.data = data
+
+        $scope.loadMore = () ->
+          page = $scope.page += 1
+          redirectToParams = $scope.redirectToParams
+          params = angular.extend { page: page }, redirectToParams
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.data['fin'] = data['fin']
+              $scope.data['data'] = $scope.data['data'].concat data['data']
+    ]
     
     $routeProvider.when '/list/:type*',
       templateUrl: "templates/list.html"
-      controller: [
-        '$scope', '$routeParams', '$loader'
-        ($scope, $routeParams, $loader) ->
-          $scope.type = $routeParams.type
-          url = "/api/#{$routeParams.type}.json"
+      controller: listCtrl
 
-          $scope.$watch 'redirectToParams', (redirectToParams) ->
-            page = $scope.page = 1
-            params = angular.extend { page: page }, redirectToParams
-            $loader.get(url, params: params)
-              .success (data) ->
-                $scope.data = data
-
-          $scope.loadMore = () ->
-            page = $scope.page += 1
-            redirectToParams = $scope.redirectToParams
-            params = angular.extend { page: page }, redirectToParams
-            $loader.get(url, params: params)
-              .success (data) ->
-                $scope.data['data'] = $scope.data['data'].concat data['data']
-      ]
+    $routeProvider.when '/table/:type*',
+      templateUrl: "templates/table.html"
+      controller: listCtrl
 
     $routeProvider.when '/search/:query',   
       templateUrl: "templates/list.html"

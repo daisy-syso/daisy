@@ -5,7 +5,7 @@ class Hospitals::TopSpecialistsAPI < ApplicationAPI
       title: "热门专科",
       scopes: :top_specialists,
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         hospital_type: {
           class: Hospitals::HospitalType,
           title: "专科类型", 

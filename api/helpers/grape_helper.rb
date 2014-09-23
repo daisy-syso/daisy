@@ -5,7 +5,6 @@ module GrapeHelper
     if params[:page]
       resource = resource.page(params[:page])
       resource = resource.per(params[:per] || 10)
-      # no_more_record! if resource.count < 10
     end
     resource
   end
@@ -25,6 +24,7 @@ module GrapeHelper
       
       present options[:meta]
       present :data, resource, options
+      present :fin, true if resource.count < (params[:per] || 10)
       
     else
       record_not_found!

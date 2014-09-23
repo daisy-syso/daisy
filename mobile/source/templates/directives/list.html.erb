@@ -5,7 +5,7 @@
       {{listTitle}}
     </li>
 
-    <li class="table-view-cell" ng-repeat="data in listData">
+    <li class="table-view-cell media-content" ng-repeat="data in listData" ng-class="{last: listFin && $last}">
       <a ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)" ng-cloak>
       </a>
     </li>
@@ -14,7 +14,7 @@
       <a class="react" ng-href="{{listMoreLink}}">{{listMore}}</a>
     </li>
 
-    <li class="table-view-cell media-load-more" ng-show="listLoadMore && $parent.loadMore">
+    <li class="table-view-cell media-load-more" ng-show="listLoadMore && $parent.loadMore && !listFin">
       <a class="react" ng-click="$parent.loadMore()">{{listLoadMore}}</a>
     </li>
 

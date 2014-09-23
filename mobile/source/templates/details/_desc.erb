@@ -3,7 +3,7 @@
     <% if defined?(price) && price %>
       <li class="table-view-cell">
         <div class="media-detail huge">
-          <span><strong>{{data.sale_price}}</strong>元</span>
+          <span><strong>{{data.sale_price||"&nbsp;"}}</strong>元</span>
           <del>{{data.ori_price}}元</del>
           <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}">立即购买</a>
         </div>

@@ -4,7 +4,7 @@ class Drugs::DrugstoresAPI < ApplicationAPI
     index! Drugs::Drugstore,
       title: "身边药房",
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         order_by: order_by_filters(Drugs::Drugstore)
       }
 

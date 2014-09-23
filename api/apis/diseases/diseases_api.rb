@@ -14,9 +14,9 @@ class Diseases::DiseasesAPI < ApplicationAPI
     namespace :hospitals do
       index! Hospitals::Hospital,
         title: "相关医院",
-        parent: -> (params) { Diseases::Disease.find(params[:id]).hospitals },
+        parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
-          city: { default: 1, class: Categories::City, title: "位置" },
+          city: city_filters,
           hospital_type: { class: Hospitals::HospitalType, title: "医院类型" }
         }
     end
@@ -24,7 +24,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
     namespace :doctors do
       index! Hospitals::Doctor,
         title: "相关医生",
-        parent: -> (params) { Diseases::Disease.find(params[:id]).doctors },
+        parent: proc { Diseases::Disease.find(params[:id]).doctors },
         filters: { 
           hospital: { class: Hospitals::Hospital, title: "医院" },
           hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" }
@@ -34,7 +34,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
     namespace :drugs do
       index! Drugs::Drug,
         title: "相关药品",
-        parent: -> (params) { Diseases::Disease.find(params[:id]).drugs },
+        parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
           drug_type: { class: Drugs::DrugType, title: "药品类别" },
         }

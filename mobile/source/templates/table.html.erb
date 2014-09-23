@@ -11,5 +11,10 @@
 <nav filter filter-data="data['filters']" ng-show="data['filters']" ng-class="{'bar bar-header-secondary dropdown': data['filters']}"></nav>
 
 <div class="content" ng-class="type">
-  <div list list-data="data['data']" list-load-more="查看更多" list-fin="data['fin']" ng-if="data['data']"></div>
+
+  <div table table-data="data['data']" table-per="data['per']" table-load-more="查看更多" table-fin="data['fin']" ng-if="data['data']"></div>
+  
+  <%= partial 'related' %>
+
 </div>
+

@@ -2,9 +2,9 @@ class Maternals::MaternalHallsAPI < ApplicationAPI
 
   namespace :maternal_halls do
     index! Maternals::MaternalHall,
-      title: "月子中心",
+      title: "母婴会馆",
       filters: { 
-        city: { default: 1, class: Categories::City, title: "位置" },
+        city: city_filters,
         order_by: order_by_filters(Maternals::MaternalHall)
       }
 

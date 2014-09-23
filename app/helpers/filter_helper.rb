@@ -1,5 +1,9 @@
 module FilterHelper
 
+  def city_filters
+    { default: 1, class: Categories::City, title: "位置", titleize: true }
+  end
+
   def price_filters klass
 
     price_title = proc do |from, to = nil|
@@ -7,7 +11,6 @@ module FilterHelper
     end
 
     { 
-      title: "价格区间", 
       type: Hash,
       using: [:from, :to],
       children: proc {
@@ -25,7 +28,7 @@ module FilterHelper
         filters + [ last ]
       }, 
       current: proc { |price| 
-        price ? price_title.call(price[:from], price[:to]) : "全部"
+        price ? price_title.call(price[:from], price[:to]) : "价格区间"
       }
     }
   end
@@ -40,12 +43,14 @@ module FilterHelper
     most_expensive: "价格最高"
   }
 
-  def order_by_filters klass
+  def order_by_filters klass, options = {}
     {
-      title: "排序",
+      default: :auto,
       type: String,
       current: proc { |id|
-        id ? OrderByMap[id.to_sym] : "智能排序"
+        OrderByMap[id.to_sym] || if options[:current]
+          instance_exec(id, &options[:current])
+        end
       },
       children: proc {
         filters = []
@@ -62,6 +67,7 @@ module FilterHelper
           filters << { title: "价格最低" , params: { order_by: :cheapest }}
           filters << { title: "价格最高" , params: { order_by: :most_expensive }}
         end
+        filters.concat instance_exec(&options[:children]) if options[:children]
         filters
       },
       has_scope: proc { |endpoint, collection, key|
@@ -83,6 +89,32 @@ module FilterHelper
           collection.order(sale_price: :asc)
         when :most_expensive
           collection.order(sale_price: :desc)
+        else
+          if options[:has_scope]
+            instance_exec(endpoint, collection, key, &options[:has_scope])
+          else
+            collection
+          end
+        end
+      }
+    }
+  end
+
+  def hospital_order_by_filters
+    order_by_filters Hospitals::Hospital, {
+      current: proc { |id|
+        "医院等级" if id.to_sym == :level
+      },
+      children: proc {
+        if params[:hospital_type].to_i == 7
+          [{ title: "医院等级" , params: { order_by: :level }}]
+        else
+          []
+        end
+      },
+      has_scope: proc { |endpoint, collection, key|
+        if key.to_sym == :level
+          collection.order(level: :desc)
         else
           collection
         end
