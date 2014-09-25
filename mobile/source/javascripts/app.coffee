@@ -150,6 +150,7 @@ angular.module 'DaisyApp', [
       pageReady = true
       $rootScope.locationBack = locationBack
       locationBack = false
+      $rootScope.backdrop.show = false
 
     $rootScope.$on '$routeChangeSuccess', () ->
       history.push($location.$$path)

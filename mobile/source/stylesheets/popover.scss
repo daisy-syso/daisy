@@ -1,0 +1,26 @@
+.popover {
+  top: 70px;
+  left: 10px;
+  right: 10px;
+  width: auto;
+  margin-left: 0;
+  display: block;
+  opacity: inherit;
+  
+  color: #666;
+  font-size: 14px;
+  box-shadow: 0 0 3px #ddd8ce;
+
+  .segmented-control {
+    border-radius: 6px;
+  }
+}
+
+.popover:before {
+  left: auto;
+  right: 10px;
+}
+
+.popover-2:before {
+  border-bottom: 15px solid #fafafa;
+}

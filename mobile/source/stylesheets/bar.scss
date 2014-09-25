@@ -47,6 +47,8 @@
 }
 
 .bar-tab {
+  z-index: 5;
+
   .tab-item {
     .ionicon ~ .tab-label {
       display: block;

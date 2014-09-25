@@ -1,0 +1,10 @@
+.filters {
+  padding: 0;
+  background-color: transparent;
+  height: 52px;
+  z-index: 9;
+
+  .segmented-control {
+    border-radius: 0;
+  }
+}

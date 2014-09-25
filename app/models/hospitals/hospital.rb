@@ -31,12 +31,9 @@ class Hospitals::Hospital < ActiveRecord::Base
   class << self
     include Cacheable
 
-    def filters
-      Categories::Province.includes(:cities).map do |province|
-        children = province.cities.map do |city|
-          { title: city.name, children: children, link: "filters/hospitals?city=#{city.id}" }
-        end
-        { title: province.name, children: children }
+    def filters(city)
+      self.city(city).where.not(level: nil).map do |hospital|
+        { title: hospital.name, params: { hospital: hospital.id }}
       end
     end
 

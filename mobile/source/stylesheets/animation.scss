@@ -74,3 +74,13 @@ body {
 .alert.ng-hide-add {
   @include animation-name(fadeOutDown);
 }
+
+.popover.ng-animate {
+  @include animation-duration(250ms);
+}
+.popover.ng-hide-remove {
+  @include animation-name(fadeIn);
+}
+.popover.ng-hide-add {
+  @include animation-name(fadeOut);
+}

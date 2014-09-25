@@ -23,16 +23,10 @@
 }
 
 .dropdown {
-  padding: 0;
-  background-color: transparent;
-  height: 52px;
-  z-index: 9;
-
   .segmented-control {
     height: 45px;
     border: 0;
     border-bottom: #CCC 1px solid;
-    border-radius: 0;
     background-color: #FFF;
     margin-bottom: 15px;
     font-size: 14px;
@@ -72,6 +66,8 @@
     float: left;
     width: 100%;
     z-index: -1;
+    
+    box-shadow: 0 0 3px #ddd8ce;
 
     .control-item {
       padding: 0;
@@ -90,11 +86,11 @@
     }
 
     .control-item:nth-child(2) {
-      @include control-item(#fafafa, #eee);
+      @include control-item(#fafafa, darken(#fafafa, 10%));
     }
     
     .control-item:nth-child(3) {
-      @include control-item(#eee, #ddd);
+      @include control-item(darken(#fafafa, 10%), darken(#fafafa, 20%));
     }
 
     .dropdown-scroll {

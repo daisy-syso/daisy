@@ -3,12 +3,15 @@
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
   </a>
-  <a class="react pull-right">
-    {{data['subtitle']}}
+  <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
+    {{data['subtitle'].current}}
+    <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
 </header>
 
-<nav filter filter-data="data['filters']" ng-show="data['filters']" ng-class="{'bar bar-header-secondary dropdown': data['filters']}"></nav>
+<nav popover popover-data="data['subtitle']"></nav>
+
+<nav ng-class="{'bar bar-header-secondary filters': data['filters']}" filter filter-data="data['filters']" ng-show="data['filters']"></nav>
 
 <div class="content" ng-class="type">
   <div list list-data="data['data']" list-load-more="查看更多" list-fin="data['fin']" ng-if="data['data']"></div>

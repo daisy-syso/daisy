@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'filter', [
-  '$location', '$loader'
-  ($location, $loader) ->
+  '$location', '$loader', '$rootScope'
+  ($location, $loader, $rootScope) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/filter.html"
@@ -12,6 +12,9 @@ angular.module('DaisyApp').directive 'filter', [
           if scope.currIndex == index
             scope.closeMenu()
           else
+            $rootScope.backdrop.click = scope.closeMenu
+            $rootScope.backdrop.zindex = 8
+            $rootScope.backdrop.show = true
             scope.currIndex = index
             scope.currIndexes = []
             scope.currMenus = [ children ]
@@ -34,6 +37,7 @@ angular.module('DaisyApp').directive 'filter', [
           scope.closeMenu()
 
         scope.closeMenu = () ->
+          $rootScope.backdrop.show = false
           scope.currIndex = -1
           scope.currMenus = null
 ]

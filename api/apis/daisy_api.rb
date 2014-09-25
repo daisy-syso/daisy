@@ -9,7 +9,6 @@ class DaisyAPI < Grape::API
   mount HomeAPI
   mount AccountsAPI
   mount RelatedResourcesAPI
-  mount FiltersAPI
   mount PriceSearchAPI
   mount CouponsAPI
 

@@ -1,17 +1,19 @@
-<div class="segmented-control">
-  <div class="control-item" ng-repeat="data in filterData">
-    <a ng-class="{active: currIndex == $index}" ng-click="toggleMenu($index, data.children)">
-      {{data.current}}
-      <span ng-class="{'ion-arrow-down-b': currIndex == $index, 'ion-arrow-up-b': currIndex != $index}"></span>
-    </a>
+<div class="dropdown">
+  <div class="segmented-control">
+    <div class="control-item" ng-repeat="data in filterData">
+      <a ng-class="{active: currIndex == $index}" ng-click="toggleMenu($index, data.children)">
+        {{data.current}}
+        <span ng-class="currIndex == $index ? 'ion-arrow-down-b' : 'ion-arrow-up-b'"></span>
+      </a>
+    </div>
   </div>
-</div>
-<div class="dropdown-menu card segmented-control ng-hide" ng-cloak ng-show="currMenus" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
-  <div class="control-item" ng-repeat="(i, menu) in currMenus">
-    <div class="dropdown-scroll">
-      <ul class="table-view media huge">
-        <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in menu"><a ng-click="column.children ? toggleColumn(i, j, column.children) : column.link ? toggleColumnLink(i, j, column) : redirectTo(column.params)">{{column.title}}</a></li>
-      </ul> 
+  <div class="dropdown-menu card segmented-control ng-hide" ng-cloak ng-show="currMenus" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
+    <div class="control-item" ng-repeat="(i, menu) in currMenus">
+      <div class="dropdown-scroll">
+        <ul class="table-view media huge">
+          <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in menu"><a ng-click="column.children ? toggleColumn(i, j, column.children) : redirectTo(column.params)">{{column.title}}</a></li>
+        </ul> 
+      </div>
     </div>
   </div>
 </div>
