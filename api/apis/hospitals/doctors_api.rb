@@ -3,12 +3,14 @@ class Hospitals::DoctorsAPI < ApplicationAPI
   namespace :doctors do
     index! Hospitals::Doctor,
       title: "找医生",
+      before: proc {
+        if params[:hospital] && !Hospitals::Hospital.exists?(
+          id: params[:hospital], city: params[:city])
+          params.delete :hospital
+        end
+      },
       filters: {
-        city: city_filters.merge({
-          has_scope: proc { |endpoint, collection, key|
-            collection
-          }  
-        }),
+        city: city_filters,
         hospital: { 
           class: Hospitals::Hospital, 
           title: "医院",

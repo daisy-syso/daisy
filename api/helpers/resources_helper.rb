@@ -24,6 +24,10 @@ module ResourcesHelper
       meta[:title] ||= options[:title]
       meta[:filters] = [] if filters.any?
 
+      if options[:before]
+        instance_exec &options[:before]
+      end
+
       filters.each do |name, options|
         filter = {}
 
