@@ -142,15 +142,17 @@ angular.module 'DaisyApp', [
   '$rootScope', '$location'
   ($rootScope, $location) ->
     history = []
+    # If back button clicked
     locationBack = false
+    # If first page initialized
     pageReady = false
 
     $rootScope.$on '$routeChangeStart', () ->
+      $rootScope.backdrop.remove()
       $rootScope.pageReady = pageReady
       pageReady = true
       $rootScope.locationBack = locationBack
       locationBack = false
-      $rootScope.backdrop.show = false
 
     $rootScope.$on '$routeChangeSuccess', () ->
       history.push($location.$$path)

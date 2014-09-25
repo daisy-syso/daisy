@@ -12,9 +12,7 @@ angular.module('DaisyApp').directive 'filter', [
           if scope.currIndex == index
             scope.closeMenu()
           else
-            $rootScope.backdrop.click = scope.closeMenu
-            $rootScope.backdrop.zindex = 8
-            $rootScope.backdrop.show = true
+            $rootScope.backdrop.open(scope.closeMenu, 8)
             scope.currIndex = index
             scope.currIndexes = []
             scope.currMenus = [ children ]
@@ -37,7 +35,7 @@ angular.module('DaisyApp').directive 'filter', [
           scope.closeMenu()
 
         scope.closeMenu = () ->
-          $rootScope.backdrop.show = false
+          $rootScope.backdrop.close()
           scope.currIndex = -1
           scope.currMenus = null
 ]
