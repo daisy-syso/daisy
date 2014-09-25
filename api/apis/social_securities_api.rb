@@ -23,7 +23,7 @@ class SocialSecuritiesAPI < ApplicationAPI
       end
     },
     filters: { 
-      province: { class: Categories::Province, title: "位置" },
+      province: { class: Categories::Province, title: "位置", titleize: true },
       type: { 
         default: :social_securities,
         type: String,

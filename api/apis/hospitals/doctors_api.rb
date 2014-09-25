@@ -14,6 +14,7 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         hospital: { 
           class: Hospitals::Hospital, 
           title: "医院",
+          meta: { filterable: true },
           children: proc {
             Hospitals::Hospital.filters(params[:city])
           }

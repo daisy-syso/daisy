@@ -29,7 +29,7 @@ module ResourcesHelper
       end
 
       filters.each do |name, options|
-        filter = {}
+        filter = options[:meta] || {}
 
         children_proc = options[:children] || proc do
           options[:class].filters

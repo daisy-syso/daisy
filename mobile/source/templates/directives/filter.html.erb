@@ -7,12 +7,15 @@
       </a>
     </div>
   </div>
-  <div class="dropdown-menu card segmented-control ng-hide" ng-cloak ng-show="currMenus" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
-    <div class="control-item" ng-repeat="(i, menu) in currMenus">
-      <div class="dropdown-scroll">
-        <ul class="table-view media huge">
-          <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in menu"><a ng-click="column.children ? toggleColumn(i, j, column.children) : redirectTo(column.params)">{{column.title}}</a></li>
-        </ul> 
+  <div class="dropdown-menu card ng-hide" ng-cloak ng-show="currMenus">
+    <input type="text" placeholder="搜索" class="ng-hide" ng-model="filter" ng-show="filterData[currIndex].filterable">
+    <div class="segmented-control" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
+      <div class="control-item" ng-repeat="(i, menu) in currMenus">
+        <div class="dropdown-scroll">
+          <ul class="table-view media huge">
+            <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in filtered(menu)"><a ng-click="column.children ? toggleColumn(i, j, column.children) : redirectTo(column.params)">{{column.title}}</a></li>
+          </ul> 
+        </div>
       </div>
     </div>
   </div>

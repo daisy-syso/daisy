@@ -38,4 +38,17 @@ angular.module('DaisyApp').directive 'filter', [
           $rootScope.backdrop.close()
           scope.currIndex = -1
           scope.currMenus = null
+
+        scope.filtered = (menus) ->
+          filtered = (menus) ->
+            ret = []
+            for menu in menus
+              if menu.title.indexOf(scope.filter) >= 0
+                ret.push menu
+            ret
+
+          if scope.filter
+            filtered(menus)
+          else
+            menus
 ]

@@ -1,14 +1,4 @@
-<header class="bar bar-nav">
-  <h1 class="title">{{data['title']}}</h1>
-  <a class="react action pull-left" ng-click="back()">
-    <span class="ionicon ion-chevron-left">
-  </a>
-  <a class="react pull-right">
-    {{data['subtitle']}}
-  </a>
-</header>
-
-<nav filter filter-data="data['filters']" ng-show="data['filters']" ng-class="{'bar bar-header-secondary filters': data['filters']}"></nav>
+<%= partial 'templates/header' %>
 
 <div class="content" ng-class="type">
 

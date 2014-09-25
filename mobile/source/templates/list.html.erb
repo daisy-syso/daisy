@@ -1,17 +1,4 @@
-<header class="bar bar-nav">
-  <h1 class="title">{{data['title']}}</h1>
-  <a class="react action pull-left" ng-click="back()">
-    <span class="ionicon ion-chevron-left">
-  </a>
-  <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
-    {{data['subtitle'].current}}
-    <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
-  </a>
-</header>
-
-<nav popover popover-data="data['subtitle']"></nav>
-
-<nav ng-class="{'bar bar-header-secondary filters': data['filters']}" filter filter-data="data['filters']" ng-show="data['filters']"></nav>
+<%= partial 'templates/header' %>
 
 <div class="content" ng-class="type">
   <div list list-data="data['data']" list-load-more="查看更多" list-fin="data['fin']" ng-if="data['data']"></div>
