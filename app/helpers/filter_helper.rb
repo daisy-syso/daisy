@@ -122,4 +122,19 @@ module FilterHelper
     }
   end
 
+  def type_filters hash, current = nil
+    { 
+      type: String,
+      current: proc { |id|
+        hash[current] || "类别"
+      },
+      children: proc {
+        hash.map { |key, value| { title: value, url: key } }
+      },
+      has_scope: proc { |endpoint, collection, key|
+        collection
+      }
+    }
+  end
+
 end

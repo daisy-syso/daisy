@@ -85,6 +85,7 @@ angular.module 'DaisyApp', [
         url = "/api/#{$routeParams.type}.json"
 
         $scope.$watch 'redirectToParams', (redirectToParams) ->
+          url = "/api/#{$scope.redirectToUrl}.json" if $scope.redirectToUrl
           page = $scope.page = 1
           params = angular.extend { page: page }, redirectToParams
           $loader.get(url, params: params)

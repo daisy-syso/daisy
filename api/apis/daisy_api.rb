@@ -45,9 +45,7 @@ class DaisyAPI < Grape::API
     mount Shapings::ShapingItemsAPI
   end
 
-  namespace :social_securities do
-    mount SocialSecuritiesAPI
-  end
+  mount SocialSecuritiesAPI
 
   namespace :maternals do
     mount Maternals::MaternalHallsAPI

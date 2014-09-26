@@ -29,9 +29,13 @@ angular.module('DaisyApp').directive 'filter', [
               column.children = data['data']
               scope.toggleColumn i, j, column.children
 
-        scope.redirectTo = (options) ->
-          scope.$parent.redirectToParams = angular.extend {}, 
-            scope.$parent.redirectToParams, options
+        scope.redirectTo = (data) ->
+          if data.url
+            scope.$parent.redirectToUrl = data.url
+            scope.$parent.redirectToParams = data.params || {}
+          else
+            scope.$parent.redirectToParams = angular.extend {}, 
+              scope.$parent.redirectToParams, data.params
           scope.closeMenu()
 
         scope.closeMenu = () ->

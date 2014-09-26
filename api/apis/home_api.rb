@@ -28,11 +28,11 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-6.gif"
       }, {
         title: "医保查询",
-        link: "#/table/social_securities",
+        link: "#/table/social_securities/social_securities",
         icon: "images/icons/1-7.gif"
       }, {
         title: "价格搜索",
-        link: "#/menu/price_search",
+        link: "#/list/price_search/drugs",
         icon: "images/icons/1-8.gif"
       }, {
         title: "热门专科",
@@ -60,7 +60,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-11.gif"
       }, {
         title: "返利优惠",
-        link: "#/menu/coupons",
+        link: "#/list/coupons/drugs",
         icon: "images/icons/1-11.gif"
       }]
     }
