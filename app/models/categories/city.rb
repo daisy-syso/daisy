@@ -9,12 +9,16 @@ class Categories::City < ActiveRecord::Base
     def filters
       Categories::Province.includes(:cities).map do |province|
         cities = province.cities.load
+        city_proc = proc do |city|
+          { title: city.name, params: { city: city.id, province: city.province_id }}
+        end
+        
         if cities.length == 1
           city = cities.first
-          { title: city.name, params: { city: city.id }}
+          city_proc.call city
         else
           children = cities.map do |city|
-            { title: city.name, params: { city: city.id }}
+            city_proc.call city
           end
           { title: province.name, children: children }
         end
