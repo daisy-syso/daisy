@@ -14,14 +14,18 @@ angular.module("DaisyApp").factory '$loader', [
 
     loader =
       get: (url, config = {}) ->
-        config.params ||= {}
+        defaultParams = {}
 
         if $rootScope.coords
-          angular.extend config.params, 
+          angular.extend defaultParams, 
             "location": true
             "location:lat": $rootScope.coords.latitude
             "location:lng": $rootScope.coords.longitude
 
+        if $rootScope.city
+          angular.extend defaultParams, $rootScope.city.params
+
+        config.params = angular.extend defaultParams, config.params
         $http.get(url, config).error(error)
 
       post: (url, data, config = {}) ->

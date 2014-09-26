@@ -64,6 +64,7 @@ gem 'rails_admin'#, github: 'sferik/rails_admin'
 # Use kaminari to pagerate
 gem "kaminari"
 
+gem "squeel"
 
 group :development do
   # Use Capistrano for deployment

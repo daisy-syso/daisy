@@ -6,6 +6,7 @@ angular.module('DaisyApp').directive 'popover', [
       templateUrl: "templates/directives/popover.html"
       scope:
         popoverData: "="
+        popoverKeep: "@"
       link: (scope, element, attrs) ->
         
         $rootScope.popover =
@@ -16,7 +17,7 @@ angular.module('DaisyApp').directive 'popover', [
               $rootScope.backdrop.open($rootScope.popover.close, 9)
               $rootScope.popover.show = true
               scope.currIndexes = []
-              scope.currMenus = [ scope.popoverData.children ]
+              scope.currMenus = [ scope.popoverData ]
 
           close: () ->
             $rootScope.backdrop.close()
@@ -28,9 +29,14 @@ angular.module('DaisyApp').directive 'popover', [
           scope.currMenus.splice i + 1
           scope.currMenus.push children
 
-        scope.redirectTo = (options) ->
-          scope.$parent.redirectToParams = angular.extend {}, 
-            scope.$parent.redirectToParams, options
+        scope.redirectTo = (data) ->
+          if data.url
+            scope.$parent.redirectToUrl = data.url
+            scope.$parent.redirectToParams = data.params || {}
+          else
+            scope.$parent.redirectToParams = angular.extend {}, 
+              scope.$parent.redirectToParams, data.params
+          $rootScope[scope.popoverKeep] = data if scope.popoverKeep
           $rootScope.popover.close()
 
 ]

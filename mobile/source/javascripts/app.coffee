@@ -20,8 +20,8 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/home',
       templateUrl: "templates/home.html"
       controller: [
-        '$rootScope', '$loader'
-        ($rootScope, $loader) ->
+        '$rootScope', '$scope', '$loader'
+        ($rootScope, $scope, $loader) ->
           unless $rootScope.homeData
             $loader.get("/api/home.json")
               .success (data) ->
@@ -41,8 +41,8 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/register.html"
 
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
-    $routeProvider.when '/search',    templateUrl: "templates/search.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
+    $routeProvider.when '/search',    templateUrl: "templates/search.html"
     
     $routeProvider.when '/menu/:type',
       templateUrl: "templates/menu.html"
@@ -156,7 +156,8 @@ angular.module 'DaisyApp', [
       locationBack = false
 
     $rootScope.$on '$routeChangeSuccess', () ->
-      history.push($location.$$path)
+      unless /^\/login/.test $location.$$path
+        history.push($location.$$path) 
 
     $rootScope.back = () ->
       locationBack = true
@@ -233,6 +234,13 @@ angular.module 'DaisyApp', [
               $modal.close()
       else
         $location.path("/login#{$location.$$path}")
+]
+
+# Local Storage city binding
+.run [
+  '$rootScope', '$localStorage'
+  ($rootScope, $localStorage) ->
+    $localStorage.bind($rootScope, "city", null)
 ]
 
 # Helper $coords

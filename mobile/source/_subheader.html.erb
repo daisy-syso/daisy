@@ -9,6 +9,6 @@
   </a>
 </header>
 
-<nav popover popover-data="data['subtitle']"></nav>
+<nav popover popover-data="data['subtitle'].children" popover-keep="{{data['subtitle'].keep}}"></nav>
 
 <nav ng-class="{'bar bar-header-secondary filters': data['filters']}" filter filter-data="data['filters']" ng-show="data['filters']"></nav>

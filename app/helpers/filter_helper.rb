@@ -1,7 +1,13 @@
 module FilterHelper
 
   def city_filters
-    { default: 1, class: Categories::City, title: "位置", titleize: true }
+    { 
+      default: 1, 
+      class: Categories::City, 
+      title: "位置", 
+      titleize: true, 
+      meta: { keep: :city }
+    }
   end
 
   def price_filters klass

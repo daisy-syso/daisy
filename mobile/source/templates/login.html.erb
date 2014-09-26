@@ -5,8 +5,14 @@
   <div class="card">
     <div class="content-padded">
       <form class="login" ng-controller="FormCtrl" ng-submit="submit('/api/sign_in', {account: account}, afterLogin)" name="form">
-        <input type="text" placeholder="请输入电子邮箱" ng-model="account.email">
-        <input type="password" placeholder="请输入密码" ng-model="account.password">
+        <div class="input-wrapper">
+          <span class="ionicon ion-ios7-email-outline"></span>
+          <input type="text" placeholder="请输入电子邮箱" ng-model="account.email">
+        </div>
+        <div class="input-wrapper">
+          <span class="ionicon ion-ios7-keypad-outline"></span>
+          <input type="password" placeholder="请输入密码" ng-model="account.password">
+        </div>
         <button class="btn btn-large btn-primary btn-block">登　录</button>
       </form>
       

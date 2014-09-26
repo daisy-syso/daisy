@@ -1,11 +1,15 @@
 <header class="bar bar-nav">
-  <a class="react brand pull-left" href="#/home">
-    <img src="images/logo.png">
+  <a class="react pull-left" ng-click="$root.popover.toggle()" ng-if="homeData['subtitle']">
+    {{ city.title || "北京市" }}
+    <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
-  <a class="react pull-right" href="#">
-    诊疗导航
-  </a>
+  <div class="input-wrapper fake-input">
+    <span class="ionicon ion-ios7-search-strong"></span>
+    <input class="search" type="text" value="请输入您要搜索的内容" ng-click="redirectTo('/search')" readonly>
+  </div>
 </header>
+
+<nav popover popover-data="homeData['subtitle']" popover-keep="city" class="popover-left"></nav>
 
 <div class="content">
 

@@ -6,7 +6,7 @@ class Drugs::Drug < ActiveRecord::Base
   scope :disease, -> (type) { type ? joins(:diseases)
     .where(diseases_drugs: { disease_id: type }) : all }
   scope :price, -> (from, to) {
-    to ? where(ori_price: from..to) : where(arel_table[:ori_price].gt(from))
+    to ? where(ori_price: from..to) : where{ori_price > from}
   }
   
   include Reviewable
