@@ -9,7 +9,7 @@ class SocialSecuritiesAPI < ApplicationAPI
   class << self
     def index_options current
       {
-        title: "医保查询",
+        title: Types[current],
         includes: :city,
         with: SocialSecurities::SocialSecurityEntity,
         params: {
