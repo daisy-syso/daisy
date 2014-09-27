@@ -31,13 +31,13 @@ class Hospitals::Hospital < ActiveRecord::Base
   class << self
     include Cacheable
 
-    def filters(city)
+    def filters city
       self.city(city).where.not(level: nil).map do |hospital|
         { title: hospital.name, params: { hospital: hospital.id }}
       end
     end
 
-    define_cached_methods :filters
+    # define_cached_methods :filters
   end
 
   include Exclamationable

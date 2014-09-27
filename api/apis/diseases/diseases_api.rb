@@ -26,7 +26,15 @@ class Diseases::DiseasesAPI < ApplicationAPI
         title: "相关医生",
         parent: proc { Diseases::Disease.find(params[:id]).doctors },
         filters: { 
-          hospital: { class: Hospitals::Hospital, title: "医院" },
+          city: city_filters,
+          hospital: { 
+            class: Hospitals::Hospital, 
+            title: "医院",
+            meta: { filterable: true },
+            children: proc {
+              Hospitals::Hospital.limit(100).filters(params[:city])
+            }
+          },
           hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" }
         }
     end
