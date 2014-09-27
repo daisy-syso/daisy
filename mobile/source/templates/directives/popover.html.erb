@@ -1,8 +1,9 @@
+<div class="backdrop ng-hide" ng-cloak ng-show="$root.popover.show" ng-click="$root.popover.close()" style="z-index: 9"></div>
 <div class="popover dropdown ng-hide" ng-class="'popover-'+currMenus.length" ng-show="$root.popover.show" ng-cloak>
   <div class="dropdown-menu segmented-control">
     <div class="control-item" ng-repeat="(i, menu) in currMenus">
       <div class="dropdown-scroll">
-        <ul class="table-view media huge">
+        <ul class="table-view media huge" ng-class="{last: $last}">
           <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in menu"><a ng-click="column.children ? toggleColumn(i, j, column.children) : column.link ? toggleColumnLink(i, j, column) : redirectTo(column)">{{column.title}}</a></li>
         </ul> 
       </div>

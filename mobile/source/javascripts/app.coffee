@@ -149,7 +149,6 @@ angular.module 'DaisyApp', [
     pageReady = false
 
     $rootScope.$on '$routeChangeStart', () ->
-      $rootScope.backdrop.remove()
       $rootScope.pageReady = pageReady
       pageReady = true
       $rootScope.locationBack = locationBack

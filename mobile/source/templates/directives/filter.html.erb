@@ -1,3 +1,4 @@
+<div class="backdrop ng-hide" ng-cloak ng-show="currMenus" ng-click="closeMenu()" style="z-index: -1"></div>
 <div class="dropdown">
   <div class="segmented-control">
     <div class="control-item" ng-repeat="data in filterData">
@@ -12,7 +13,7 @@
     <div class="segmented-control" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
       <div class="control-item" ng-repeat="(i, menu) in currMenus">
         <div class="dropdown-scroll">
-          <ul class="table-view media huge">
+          <ul class="table-view media huge" ng-class="{last: $last}">
             <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in filtered(menu)"><a ng-click="column.children ? toggleColumn(i, j, column.children) : redirectTo(column)">{{column.title}}</a></li>
           </ul> 
         </div>

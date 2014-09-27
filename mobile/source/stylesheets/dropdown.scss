@@ -105,6 +105,12 @@
     .table-view {
       // min-height: 315px;
       // @include transform(translateZ(0));
+
+      &.last {
+        .table-view-cell {
+          border-right: 0;
+        }
+      }
     }
 
     .table-view-cell {

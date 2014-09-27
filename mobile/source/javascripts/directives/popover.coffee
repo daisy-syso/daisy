@@ -14,13 +14,11 @@ angular.module('DaisyApp').directive 'popover', [
             if $rootScope.popover.show
               $rootScope.popover.close()
             else
-              $rootScope.backdrop.open($rootScope.popover.close, 9)
               $rootScope.popover.show = true
               scope.currIndexes = []
               scope.currMenus = [ scope.popoverData ]
 
           close: () ->
-            $rootScope.backdrop.close()
             $rootScope.popover.show = false
 
         scope.toggleColumn = (i, j, children) ->
