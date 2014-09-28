@@ -18,6 +18,71 @@ module FilterHelper
     }
   end
 
+  def zone_filters
+    { 
+      meta: { 
+        current: "商圈",
+        children: [],
+      },
+      filter_only: true
+    }
+  end
+
+  def form_filters template, current
+    {
+      meta: { 
+        template: template,
+        current: current,
+        children: [],
+      },
+      filter_only: true
+    }
+  end
+
+  def type_filters hash, current = nil
+
+    children_url = proc do |array, url|
+      array.each do |hash|
+        hash[:url] = url if hash[:params]
+        children_url.call(hash[:children], url) if hash[:children]
+      end
+    end
+
+    { 
+      type: String,
+      current: proc { |id|
+        hash.each do |key, value|
+          if value.is_a?(Hash) && params[value[:id]]
+            break value[:class].find(params[value[:id]]).name
+          end
+        end
+        if hash[current]
+          if hash[current].is_a?(Hash) 
+            hash[current][:title]
+          else
+            hash[current]
+          end
+        else
+          "类别"
+        end
+      },
+      children: proc {
+        hash.map do |key, value|
+          case value
+          when String
+            { title: value, url: key }
+          when Hash
+            {
+              title: value[:title],
+              children: children_url.call(value[:class].filters, key)
+            }
+          end
+        end
+      },
+      filter_only: true
+    }
+  end
+
   OrderByMap = {
     auto: "智能排序",
     nearest: "离我最近",
@@ -129,30 +194,6 @@ module FilterHelper
         children.push last
         filters.push({ title: "价格区间" , children: children})
       }
-    }
-  end
-
-  def type_filters hash, current = nil
-    { 
-      type: String,
-      current: proc { |id|
-        "类别"
-      },
-      children: proc {
-        hash.map { |key, value| { title: value, url: key } }
-      },
-      filter_only: true
-    }
-  end
-
-  def form_filters template, current
-    {
-      meta: { 
-        template: template,
-        current: current,
-        children: [],
-      },
-      filter_only: true
     }
   end
 

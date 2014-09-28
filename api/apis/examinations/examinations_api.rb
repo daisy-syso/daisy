@@ -6,6 +6,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         examination_type: { class: Examinations::ExaminationType, title: "体检类型" },
+        zone: zone_filters,
         order_by: order_by_filters(Examinations::Examination)
       }
       

@@ -8,11 +8,12 @@ class Hospitals::TopSpecialistsAPI < ApplicationAPI
         city: city_filters,
         hospital_type: {
           class: Hospitals::HospitalType,
-          title: "专科类型", 
+          title: "类别", 
           children: proc {
             Hospitals::HospitalType.top_specialists_filters
           }
         },
+        zone: zone_filters,
         order_by: order_by_filters(Hospitals::Hospital)
       }
   end

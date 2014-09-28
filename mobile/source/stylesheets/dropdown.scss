@@ -96,6 +96,10 @@
       @include control-item(darken(#fafafa, 10%), darken(#fafafa, 20%));
     }
 
+    .control-item:nth-child(4) {
+      @include control-item(darken(#fafafa, 20%), darken(#fafafa, 30%));
+    }
+
     .dropdown-scroll {
       max-height: 315px;
       overflow-y: scroll;

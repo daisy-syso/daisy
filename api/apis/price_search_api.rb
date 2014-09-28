@@ -1,8 +1,8 @@
 class PriceSearchAPI < ApplicationAPI
 
   Types = {
-    :"price_search/drugs" => "药品",
-    :"price_search/shaping_items" => "整形",
+    :"price_search/drugs" => { class: Diseases::Disease, title: "药品", id: :disease },
+    :"price_search/shaping_items" => { class: Shapings::ShapingType, title: "整形", id: :shaping_type },
   }
 
   namespace :price_search do
@@ -12,7 +12,7 @@ class PriceSearchAPI < ApplicationAPI
         title: "价格搜索 药品",
         filters: { 
           type: type_filters(Types, :"price_search/drugs"),
-          disease: { class: Diseases::Disease, title: "疾病类别" },
+          disease: {class: Diseases::Disease, scope_only: true },
           price: price_filters,
           order_by: price_search_order_by_filters(Drugs::Drug)
         }
@@ -23,8 +23,9 @@ class PriceSearchAPI < ApplicationAPI
         title: "价格搜索 整形",
         filters: {
           type: type_filters(Types, :"price_search/shaping_items"),
-          shaping_type: { class: Shapings::ShapingType, title: "整形类别" },
+          shaping_type: { class: Shapings::ShapingType, scope_only: true },
           price: price_filters,
+          zone: zone_filters,
           order_by: price_search_order_by_filters(Shapings::ShapingItem)
         }
     end

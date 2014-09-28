@@ -2,7 +2,7 @@ class CouponsAPI < ApplicationAPI
 
   Types = {
     :"coupons/coupons" => "主编推荐",
-    :"coupons/drugs" => "药品",
+    :"coupons/drugs" => { class: Diseases::Disease, title: "药品", id: :disease },
   }
 
   namespace :coupons do
@@ -12,7 +12,7 @@ class CouponsAPI < ApplicationAPI
         title: "返利优惠 药品",
         filters: { 
           type: type_filters(Types, :"coupons/drugs"),
-          disease: { class: Diseases::Disease, title: "疾病类别" },
+          disease: { class: Diseases::Disease, scope_only: true },
           price: price_filters,
           order_by: price_search_order_by_filters(Drugs::Drug)
         }
