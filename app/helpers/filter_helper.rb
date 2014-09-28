@@ -51,11 +51,10 @@ module FilterHelper
     { 
       type: String,
       current: proc { |id|
-        hash.each do |key, value|
-          if value.is_a?(Hash) && params[value[:id]]
-            break value[:class].find(params[value[:id]]).name
-          end
+        value = hash.values.find do |value|
+          value.is_a?(Hash) && params[value[:id]]
         end
+        next value[:class].find(params[value[:id]]).name if value
         if hash[current]
           if hash[current].is_a?(Hash) 
             hash[current][:title]
