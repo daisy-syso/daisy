@@ -26,6 +26,10 @@ angular.module 'DaisyApp', [
             $loader.get("/api/home.json")
               .success (data) ->
                 $rootScope.homeData = data
+                $rootScope.city ||= data.subtitle[0]
+
+          $rootScope.$watch "city", (value) ->
+            $rootScope.searchLeft = "#{20*value.title.length+40}px"
       ]
 
     $routeProvider.when '/login/:redirectToPath*',

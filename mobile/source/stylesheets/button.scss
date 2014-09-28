@@ -23,7 +23,6 @@
   border: 1px solid darken(#fdb338, 10%);
 }
 
-
 .btn-large {
   height: 40px;
   padding: 10px 25px;
@@ -41,4 +40,21 @@ input, button {
 
 input[type="text"], input[type="password"] {
   height: 40px;
+}
+
+.btns-block {
+  position: relative;
+  display: table;
+  border-spacing: 10px 0;
+  margin-bottom: 10px;
+
+  .btn {
+    display: table-cell;
+    width: 1%;
+    padding-right: 20px;
+  }
+}
+
+.content > .btns-block .btn, .content > .btn {
+  box-shadow: 0 1px 3px darken(#ddd8ce, 20%);
 }
