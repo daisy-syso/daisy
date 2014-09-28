@@ -1,0 +1,16 @@
+<form class="register" ng-controller="FormCtrl" ng-submit="submit('/api/sign_up', {account: account}, afterLogin)" name="form">
+  <div class="input-wrapper input-group">
+    <div class="input-radio">
+      <label for="">二甲医院</label>
+      <input type="radio" name="teacher" value="教师" />
+    </div>
+    <div class="input-radio">
+      <label for="">三甲医院</label>
+      <input type="radio" name="teacher" value="教师" />
+    </div>
+  </div>
+  <div class="input-group">
+    <a>重置</a>
+    <a class="pull-right">搜索</a>
+  </div>
+</form>

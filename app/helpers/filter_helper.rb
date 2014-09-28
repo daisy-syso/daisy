@@ -10,32 +10,11 @@ module FilterHelper
     }
   end
 
-  def price_filters klass
-
-    price_title = proc do |from, to = nil|
-      to ? "#{from} ~ #{to} 元" : "#{from} 元 以上"
-    end
-
+  def price_filters
     { 
       type: Hash,
       using: [:from, :to],
-      children: proc {
-        prices = Setting["price_search.#{klass.table_name}.filters.price"]
-        filters = prices.each_cons(2).map do |from, to|
-          Hash.new.tap do |ret|
-            ret[:title] = price_title.call from, to
-            ret[:params] = { "price[from]" => from, "price[to]" => to }
-          end
-        end
-        last = Hash.new.tap do |ret|
-          ret[:title] = price_title.call prices.last
-          ret[:params] = { "price[from]" => prices.last, "price[to]" => nil }
-        end
-        filters + [ last ]
-      }, 
-      current: proc { |price| 
-        price ? price_title.call(price[:from], price[:to]) : "价格区间"
-      }
+      scope_only: true
     }
   end
 
@@ -73,7 +52,7 @@ module FilterHelper
           filters << { title: "价格最低" , params: { order_by: :cheapest }}
           filters << { title: "价格最高" , params: { order_by: :most_expensive }}
         end
-        filters.concat instance_exec(&options[:children]) if options[:children]
+        instance_exec(filters, &options[:children]) if options[:children]
         filters
       },
       has_scope: proc { |endpoint, collection, key|
@@ -111,12 +90,8 @@ module FilterHelper
       current: proc { |id|
         "医院等级" if id.to_sym == :level
       },
-      children: proc {
-        if params[:hospital_type].to_i == 7
-          [{ title: "医院等级" , params: { order_by: :level }}]
-        else
-          []
-        end
+      children: proc { |filters|
+        filters.insert(1, { title: "医院等级" , params: { order_by: :level }})
       },
       has_scope: proc { |endpoint, collection, key|
         if key.to_sym == :level
@@ -124,6 +99,35 @@ module FilterHelper
         else
           collection
         end
+      }
+    }
+  end
+
+  def price_search_order_by_filters klass
+
+    price_title = proc do |from, to = nil|
+      to ? "#{from} ~ #{to} 元" : "#{from} 元 以上"
+    end
+
+    order_by_filters klass, {
+      current: proc { |id|
+        price = params[:price]
+        price ? price_title.call(price[:from], price[:to]) : "价格区间"
+      },
+      children: proc { |filters|
+        prices = Setting["price_search.#{klass.table_name}.filters.price"]
+        children = prices.each_cons(2).map do |from, to|
+          Hash.new.tap do |ret|
+            ret[:title] = price_title.call from, to
+            ret[:params] = { "price[from]" => from, "price[to]" => to }
+          end
+        end
+        last = Hash.new.tap do |ret|
+          ret[:title] = price_title.call prices.last
+          ret[:params] = { "price[from]" => prices.last, "price[to]" => nil }
+        end
+        children.push last
+        filters.push({ title: "价格区间" , children: children})
       }
     }
   end
@@ -137,9 +141,18 @@ module FilterHelper
       children: proc {
         hash.map { |key, value| { title: value, url: key } }
       },
-      has_scope: proc { |endpoint, collection, key|
-        collection
-      }
+      filter_only: true
+    }
+  end
+
+  def form_filters template, current
+    {
+      meta: { 
+        template: template,
+        current: current,
+        children: [],
+      },
+      filter_only: true
     }
   end
 

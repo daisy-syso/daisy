@@ -13,8 +13,8 @@ class CouponsAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types, :"coupons/drugs"),
           disease: { class: Diseases::Disease, title: "疾病类别" },
-          price: price_filters(Drugs::Drug),
-          order_by: order_by_filters(Drugs::Drug)
+          price: price_filters,
+          order_by: price_search_order_by_filters(Drugs::Drug)
         }
     end
 

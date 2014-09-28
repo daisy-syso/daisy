@@ -15,6 +15,7 @@ angular.module('DaisyApp').directive 'filter', [
             scope.currIndex = index
             scope.currIndexes = []
             scope.currMenus = [ children ]
+            scope.currData = scope.filterData[index]
 
         scope.toggleColumn = (i, j, children) ->
           scope.currIndexes.splice i
@@ -53,4 +54,7 @@ angular.module('DaisyApp').directive 'filter', [
             filtered(menus)
           else
             menus
+
+        scope.templateUrl = (data) ->
+          "templates/filters/#{data.template}.html"
 ]

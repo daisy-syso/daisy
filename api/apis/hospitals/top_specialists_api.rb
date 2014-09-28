@@ -3,7 +3,7 @@ class Hospitals::TopSpecialistsAPI < ApplicationAPI
   namespace :top_specialists do
     index! Hospitals::Hospital,
       title: "热门专科",
-      scopes: :top_specialists,
+      parent: proc { Hospitals::Hospital.top_specialists },
       filters: { 
         city: city_filters,
         hospital_type: {

@@ -9,8 +9,25 @@
   }
 
   input {
-    border-top: 0;
+    border: 0;
+    border-bottom: 1px solid #ddd;
     margin-bottom: 0;
     font-size: 14px;
+  }
+  label {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .input-wrapper {
+    border-bottom: 1px solid #ddd;
+
+    input {
+      border-bottom: 0;
+    }
+  }
+
+  .input-group {
+    padding: 15px;
   }
 }

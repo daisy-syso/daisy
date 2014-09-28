@@ -13,8 +13,8 @@ class PriceSearchAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types, :"price_search/drugs"),
           disease: { class: Diseases::Disease, title: "疾病类别" },
-          price: price_filters(Drugs::Drug),
-          order_by: order_by_filters(Drugs::Drug)
+          price: price_filters,
+          order_by: price_search_order_by_filters(Drugs::Drug)
         }
     end
 
@@ -24,8 +24,8 @@ class PriceSearchAPI < ApplicationAPI
         filters: {
           type: type_filters(Types, :"price_search/shaping_items"),
           shaping_type: { class: Shapings::ShapingType, title: "整形类别" },
-          price: price_filters(Shapings::ShapingItem),
-          order_by: order_by_filters(Shapings::ShapingItem)
+          price: price_filters,
+          order_by: price_search_order_by_filters(Shapings::ShapingItem)
         }
     end
 

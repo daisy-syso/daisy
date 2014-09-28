@@ -29,17 +29,18 @@ module ResourcesHelper
       end
 
       filters.each do |name, options|
+        next if options[:scope_only]
         filter = options[:meta] || {}
 
         children_proc = options[:children] || proc do
           options[:class].filters
         end
-        filter[:children] = instance_exec &children_proc
+        filter[:children] ||= instance_exec &children_proc
 
         current_proc = options[:current] || proc do |id|
           id ? options[:class].find(id).name : options[:title]
         end
-        filter[:current] = instance_exec params[name], &current_proc
+        filter[:current] ||= instance_exec params[name], &current_proc
 
         if options[:titleize]
           meta[:subtitle] = filter
@@ -49,6 +50,7 @@ module ResourcesHelper
       end
 
       filters.each do |filter, options|
+        next if options[:filter_only]
         has_scope_proc = options[:has_scope]
         options = options.slice(:type, :using)
         options[:type] = TYPES[options[:type]] || :default if options[:type]
@@ -65,10 +67,6 @@ module ResourcesHelper
         data = klass.all
         includes = options[:includes]
         data = data.includes(includes) if includes
-        scopes = Array.wrap(options[:scopes])
-        scopes.each do |scope|
-          data = data.send(scope)
-        end if scopes.any?
       end
       data = apply_scopes!(data)
 
