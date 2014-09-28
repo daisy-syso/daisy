@@ -241,11 +241,6 @@
       border-bottom: 2px solid #2bb2a3;
       @include transform(scaleY(0.7) rotateZ(-135deg));
     }
-
-    .pull-right {
-      // margin-right: 15px;
-      margin-top: 3px;
-    }
   }
   .media-load-more {
     font-size: 15px;
