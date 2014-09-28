@@ -20,7 +20,7 @@ module ResourcesHelper
       end
     end
     get do
-      meta = options[:meta] || {}
+      meta = options[:meta] ? options[:meta].dup : {}
       meta[:title] ||= options[:title]
       meta[:filters] = [] if filters.any?
 
@@ -30,7 +30,7 @@ module ResourcesHelper
 
       filters.each do |name, options|
         next if options[:scope_only]
-        filter = options[:meta] || {}
+        filter = options[:meta] ? options[:meta].dup : {}
 
         children_proc = options[:children] || proc do
           options[:class].filters
@@ -72,6 +72,7 @@ module ResourcesHelper
 
       opts = options.slice(:with)
       opts[:meta] = meta
+
       present! data, opts
     end
 
