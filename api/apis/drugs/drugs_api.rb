@@ -4,7 +4,8 @@ class Drugs::DrugsAPI < ApplicationAPI
     index! Drugs::Drug,
       title: "药品大全",
       filters: { 
-        drug_type: { class: Drugs::DrugType, title: "类别" },
+        drug_type: { class: Drugs::DrugType, title: "药品类别" },
+        zone: zone_filters,
         order_by: order_by_filters(Drugs::Drug)
       }
 

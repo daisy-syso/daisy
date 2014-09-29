@@ -14,6 +14,7 @@ class PriceSearchAPI < ApplicationAPI
           type: type_filters(Types, :"price_search/drugs"),
           disease: {class: Diseases::Disease, scope_only: true },
           price: price_filters,
+          zone: zone_filters,
           order_by: price_search_order_by_filters(Drugs::Drug)
         }
     end

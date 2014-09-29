@@ -9,14 +9,16 @@ class SocialSecuritiesAPI < ApplicationAPI
   }
 
   class << self
-    def index_options current, title = nil
+    def index_options klass, current, title = nil
       {
         title: title || Types[current],
         includes: :city,
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
           province: { class: Categories::Province, title: "位置", titleize: true },
-          type: type_filters(Types, current)
+          type: type_filters(Types, current),
+          zone: zone_filters,
+          order_by: order_by_filters(klass)
         },
         params: {
           per: { default: 15 }
@@ -32,22 +34,26 @@ class SocialSecuritiesAPI < ApplicationAPI
 
     namespace :social_securities do
       index! SocialSecurities::SocialSecurity, 
-        index_options(:"social_securities/social_securities", "医保查询 机构")
+        index_options(SocialSecurities::SocialSecurity, 
+          :"social_securities/social_securities", "医保查询 机构")
     end
 
     namespace :social_security_hospitals do
       index! SocialSecurities::SocialSecurityHospital, 
-        index_options(:"social_securities/social_security_hospitals", "医保查询 医院")
+        index_options(SocialSecurities::SocialSecurityHospital, 
+          :"social_securities/social_security_hospitals", "医保查询 医院")
     end
 
     namespace :social_security_drugstores do
       index! SocialSecurities::SocialSecurityDrugstore, 
-        index_options(:"social_securities/social_security_drugstores", "医保查询 药店")
+        index_options(SocialSecurities::SocialSecurityDrugstore, 
+          :"social_securities/social_security_drugstores", "医保查询 药店")
     end
 
     namespace :social_security_drugs do
       index! SocialSecurities::SocialSecurityDrug, 
-        index_options(:"social_securities/social_security_drugs", "医保查询 药品")
+        index_options(SocialSecurities::SocialSecurityDrug, 
+          :"social_securities/social_security_drugs", "医保查询 药品")
     end
 
     namespace :social_security_endowments do
@@ -57,7 +63,9 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEndowmentEntity,
         filters: { 
           province: { class: Categories::Province, title: "位置", titleize: true },
-          type: type_filters(Types, :"social_securities/social_security_endowments")
+          type: type_filters(Types, :"social_securities/social_security_endowments"),
+          zone: zone_filters,
+          order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment)
         },
         params: {
           per: { default: 15 }

@@ -22,7 +22,7 @@ module FilterHelper
     { 
       meta: { 
         current: "商圈",
-        children: [],
+        children: Categories::City.filters,
       },
       filter_only: true
     }
@@ -94,7 +94,7 @@ module FilterHelper
 
   def order_by_filters klass, options = {}
     {
-      default: :auto,
+      default: options[:default] || :auto,
       type: String,
       current: proc { |id|
         OrderByMap[id.to_sym] || if options[:current]
@@ -151,15 +151,16 @@ module FilterHelper
 
   def hospital_order_by_filters
     order_by_filters Hospitals::Hospital, {
+      default: :hospital_level,
       current: proc { |id|
-        "医院等级" if id.to_sym == :level
+        "医院等级" if id.to_sym == :hospital_level
       },
       children: proc { |filters|
-        filters.insert(1, { title: "医院等级" , params: { order_by: :level }})
+        filters.insert(1, { title: "医院等级" , params: { order_by: :hospital_level }})
       },
       has_scope: proc { |endpoint, collection, key|
-        if key.to_sym == :level
-          collection.order(level: :desc)
+        if key.to_sym == :hospital_level
+          collection.hospital_level
         else
           collection
         end

@@ -21,10 +21,14 @@ class Hospitals::Hospital < ActiveRecord::Base
     end
   }
 
-  scope :top_specialists, -> () { 
+  scope :top_specialists, -> { 
     joins(:hospital_types)
       .where.not(hospitals_types: { type_id: 7 })
       .distinct
+  }
+
+  scope :hospital_level, -> {
+    joins(:hospital_level).order{hospital_levels.position.asc}
   }
 
   include Localizable

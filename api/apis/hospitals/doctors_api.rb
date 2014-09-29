@@ -11,15 +11,16 @@ class Hospitals::DoctorsAPI < ApplicationAPI
       },
       filters: {
         city: city_filters,
-        hospital: { 
-          class: Hospitals::Hospital, 
-          title: "医院",
-          meta: { filterable: true },
-          children: proc {
-            Hospitals::Hospital.limit(100).filters(params[:city])
-          }
-        },
+        # hospital: { 
+        #   class: Hospitals::Hospital, 
+        #   title: "医院",
+        #   meta: { filterable: true },
+        #   children: proc {
+        #     Hospitals::Hospital.limit(100).filters(params[:city])
+        #   }
+        # },
         hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" },
+        zone: zone_filters,
         order_by: order_by_filters(Hospitals::Doctor)
       }
 

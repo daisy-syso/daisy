@@ -14,6 +14,7 @@ class CouponsAPI < ApplicationAPI
           type: type_filters(Types, :"coupons/drugs"),
           disease: { class: Diseases::Disease, scope_only: true },
           price: price_filters,
+          zone: zone_filters,
           order_by: price_search_order_by_filters(Drugs::Drug)
         }
     end
@@ -23,6 +24,7 @@ class CouponsAPI < ApplicationAPI
         title: "返利优惠 主编推荐",
         filters: { 
           type: type_filters(Types, :"coupons/coupons"),
+          zone: zone_filters,
           order_by: order_by_filters(Coupons::Coupon)
         }
     end
