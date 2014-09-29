@@ -29,7 +29,7 @@ class AccountsAPI < Grape::API
     sign_in_params = account_params.slice(:email, :username)
     password = account_params[:password]
     account = Account.find_for_database_authentication(sign_in_params)
-    unauthorized! unless account && account.valid_password?(password)
+    unvalid_account! unless account && account.valid_password?(password)
     sign_in account
     present! account
   end

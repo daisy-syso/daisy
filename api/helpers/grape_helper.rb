@@ -52,19 +52,23 @@ module GrapeHelper
   end
 
   def no_more_record!
-    error! "404 No More Record", 404
+    error! "没有更多的数据", 404
   end
 
   def record_not_found!
-    error! "404 Record Not Found", 404
+    error! "数据不存在", 404
   end
 
   def not_found!
-    error! "404 Not Found", 404
+    error! "页面不存在", 404
   end
 
   def unauthorized!
-    error! "401 Unauthorized", 401
+    error! "请先登录", 401
+  end
+
+  def unvalid_account!
+    error! "用户名或密码错误", 401
   end
 
   def warden
