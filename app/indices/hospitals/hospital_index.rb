@@ -6,4 +6,5 @@ ThinkingSphinx::Index.define :"hospitals/hospital", :with => :active_record do
 
   has "RADIANS(lat)", as: :latitude,  type: :float
   has "RADIANS(lng)", as: :longitude, type: :float
+  
 end
