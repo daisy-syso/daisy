@@ -129,11 +129,11 @@ angular.module 'DaisyApp', [
     $routeProvider.otherwise redirectTo: '/home'
 ]
 
-.config [
-  'cfpLoadingBarProvider'
-  (cfpLoadingBarProvider) ->
-    cfpLoadingBarProvider.latencyThreshold = 0;
-]
+# .config [
+#   'cfpLoadingBarProvider'
+#   (cfpLoadingBarProvider) ->
+#     cfpLoadingBarProvider.latencyThreshold = 0;
+# ]
 
 # Local Storage account binding
 .run [
