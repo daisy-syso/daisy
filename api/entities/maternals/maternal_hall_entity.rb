@@ -1,9 +1,3 @@
-class Maternals::MaternalHallEntity < ApplicationEntity
+class Maternals::MaternalHallEntity < Bases::PlaceNIEntity
   
-  expose :id, :name, :lat, :lng, :star
-
-  with_options if: { detail: true } do
-    expose :address, :reviews_count
-  end
-
 end

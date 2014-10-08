@@ -117,13 +117,17 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/search/:query',   
       templateUrl: "templates/list.html"
       controller: [
-        '$scope', '$routeParams', '$localStorage'
-        ($scope, $routeParams, $localStorage) ->
+        '$scope', '$routeParams', '$localStorage', '$loader'
+        ($scope, $routeParams, $localStorage, $loader) ->
           query = $routeParams.query
           searchHistory = $localStorage.get("searchHistory")
             .filter (word) -> word != query
           searchHistory.unshift query
           $localStorage.set("searchHistory", searchHistory)
+
+          $loader.post("/api/search.json", query: query)
+            .success (data) ->
+              $scope.data = data
       ]
 
     $routeProvider.otherwise redirectTo: '/home'
