@@ -5,6 +5,7 @@ class DaisyAPI < Grape::API
   error_formatter :json, ErrorFormatter
 
   helpers GrapeHelper
+  helpers FilterHelper
 
   mount HomeAPI
   mount AccountsAPI

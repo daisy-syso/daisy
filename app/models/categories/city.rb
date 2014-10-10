@@ -4,23 +4,27 @@ class Categories::City < ActiveRecord::Base
   validates :name, uniqueness: true
 
   class << self
-    include Cacheable
+    include Filterable
+
+    def generate_filter record, key = nil
+      Hash.new.tap do |ret|
+        ret[:title] = record.name
+        ret[:params] = { city: record.id, province: record.province_id }
+      end
+    end
 
     def filters
       Categories::Province.includes(:cities).map do |province|
         cities = province.cities.load
-        city_proc = proc do |city|
-          { title: city.name, params: { city: city.id, province: city.province_id }}
-        end
-        
+
         if cities.length == 1
           city = cities.first
-          city_proc.call city
+          generate_filter city
         else
-          children = cities.map do |city|
-            city_proc.call city
+          Hash.new.tap do |ret|
+            ret[:title] = province.name
+            ret[:children] = generate_filters(cities)
           end
-          { title: province.name, children: children }
         end
       end
     end

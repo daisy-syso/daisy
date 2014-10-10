@@ -1,16 +1,11 @@
 class Hospitals::HospitalLevel < ActiveRecord::Base
-  # has_and_belongs_to_many :hospitals, join_table: 'hospitals_types', foreign_key: 'type_id'
 
   class << self
-    include Cacheable
+    include Filterable
 
-    def filters
-      self.all.map do |hospital_level|
-        { title: hospital_level.name, params: { hospital_level: hospital_level.id } }
-      end
+    define_filter_method :filters, :hospital_level do
+      self.all
     end
-
-    define_cached_methods :filters
   end
 
   before_save do

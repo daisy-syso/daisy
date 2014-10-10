@@ -3,15 +3,11 @@ class Categories::Province < ActiveRecord::Base
   has_many :cities
 
   class << self
-    include Cacheable
+    include Filterable
 
-    def filters
-      self.all.map do |province|
-        { title: province.name, params: { province: province.id } }
-      end
+    define_filter_method :filters, :province do
+      self.all
     end
-
-    define_cached_methods :filters
   end
 
 end

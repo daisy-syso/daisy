@@ -8,36 +8,22 @@ class Diseases::Disease < ActiveRecord::Base
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
   class << self
-    include Cacheable
+    include Filterable
+
+    def collect_nested_filter records, parent_id = nil
+      return unless records[parent_id]
+      records[parent_id].map do |record|
+        generate_filter(record).tap do |ret|
+          children = self.collect_nested_filter(records, record.id)
+          ret[:children] = children || 
+            generate_filters(record.diseases, :disease)
+        end
+      end
+    end
 
     def filters
-      disease_types = Diseases::DiseaseType.includes(:diseases).all.to_a
-      disease_types_by_parent = proc do |parent_id|
-        disease_types.select do |disease_type|
-          disease_type.parent_id == parent_id
-        end
-      end
-
-      collect_filter = proc do |parent_id|
-        disease_types_by_parent.call(parent_id).map do |disease_type|
-          children = collect_filter.call(disease_type.id)
-          Hash.new.tap do |ret|
-            ret[:title] = disease_type.name
-            if children.any?
-              ret[:children] = children
-            else
-              ret[:children] = disease_type.diseases.map do |disease|
-                Hash.new.tap do |ret|
-                  ret[:title] = disease.name
-                  ret[:params] = { disease: disease.id }
-                end
-              end
-            end
-          end
-        end
-      end
-      
-      collect_filter.call(nil)
+      records = Diseases::DiseaseType.includes(:diseases).all.group_by(&:parent_id)
+      collect_nested_filter records
     end
 
     define_cached_methods :filters

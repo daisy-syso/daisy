@@ -1,91 +1,82 @@
 module ResourcesHelper
+  extend ActiveSupport::Concern
 
-  TYPES = {
-    Array   => :array,
-    Hash    => :hash,
-    Object  => :boolean
-  }
+  module ClassMethods
+    TYPES = {
+      Array   => :array,
+      Hash    => :hash,
+      Object  => :boolean
+    }
 
-  def index! klass, options = {}
+    def index! klass, options = {}
+      filters = options[:filters] || []
 
-    filters = options[:filters] || []
-
-    params do
-      filters.each do |name, options|
-        options = options.slice(:type, :default)
-        optional name, options.reverse_merge(type: Integer)
-      end
-      options[:params].to_a.each do |name, options|
-        optional name, options.reverse_merge(type: Integer)
-      end
-    end
-    get do
-      meta = options[:meta] ? options[:meta].dup : {}
-      meta[:title] ||= options[:title]
-      meta[:filters] = [] if filters.any?
-
-      if options[:before]
-        instance_exec &options[:before]
-      end
-
-      filters.each do |name, options|
-        next if options[:scope_only]
-        filter = options[:meta] ? options[:meta].dup : {}
-
-        children_proc = options[:children] || proc do
-          options[:class].filters
+      params do
+        filters.each do |name, options|
+          options = options.slice(:type, :default)
+          optional name, options.reverse_merge(type: Integer)
         end
-        filter[:children] ||= instance_exec &children_proc
-
-        current_proc = options[:current] || proc do |id|
-          id ? options[:class].find(id).name : options[:title]
-        end
-        filter[:current] ||= instance_exec params[name], &current_proc
-
-        if options[:titleize]
-          meta[:subtitle] = filter
-        else
-          meta[:filters].push filter
+        options[:params].to_a.each do |name, options|
+          optional name, options.reverse_merge(type: Integer)
         end
       end
+      get do
+        meta = options[:meta] ? options[:meta].dup : {}
+        meta[:title] ||= parse_option_value options[:title]
+        meta[:filters] = [] if filters.any?
 
-      filters.each do |filter, options|
-        next if options[:filter_only]
-        has_scope_proc = options[:has_scope]
-        options = options.slice(:type, :using)
-        options[:type] = TYPES[options[:type]] || :default if options[:type]
-        if has_scope_proc
-          has_scope filter, options, &has_scope_proc
-        else
-          has_scope filter, options
+        parse_option_value options[:before]
+
+        filters.each do |key, options|
+          next if options[:scope_only]
+
+          filter = generate_filter key, options
+          if options[:titleize]
+            meta[:subtitle] = filter
+          else
+            meta[:filters].push filter
+          end
         end
+
+        filters.each do |filter, options|
+          next if options[:filter_only]
+          
+          soptions = options.slice(:using)
+          if options[:type]
+            soptions[:type] = TYPES[options[:type]] || :default
+          end
+
+          if options[:has_scope]
+            has_scope filter, soptions, &options[:has_scope]
+          else
+            has_scope filter, soptions
+          end
+        end
+
+        data = parse_option_value options[:parent] do
+          if options[:includes]
+            klass.includes(options[:includes])
+          else
+            klass.all
+          end
+        end
+        data = apply_scopes!(data)
+
+        opts = options.slice(:with)
+        opts[:meta] = meta
+
+        present! data, opts
       end
 
-      if options[:parent]
-        data = instance_exec &options[:parent]
-      else
-        data = klass.all
-        includes = options[:includes]
-        data = data.includes(includes) if includes
-      end
-      data = apply_scopes!(data)
-
-      opts = options.slice(:with)
-      opts[:meta] = meta
-
-      present! data, opts
     end
 
-  end
-
-  def show! klass, options = {}
-    
-    params do
-      requires :id, type: Integer
-    end
-    get ":id" do
-      present! klass.find(params[:id]), detail: true
+    def show! klass, options = {}
+      params do
+        requires :id, type: Integer
+      end
+      get ":id" do
+        present! klass.find(params[:id]), detail: true
+      end
     end
   end
-  
 end

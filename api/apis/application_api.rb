@@ -1,5 +1,5 @@
 class ApplicationAPI < Grape::API
-  extend ResourcesHelper
-  extend FilterHelper
+  extend ResourcesHelper::ClassMethods
+  extend FilterHelper::ClassMethods
 
 end
