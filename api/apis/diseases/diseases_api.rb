@@ -4,7 +4,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
     index! Diseases::Disease,
       title: "疾病查询",
       filters: { 
-        disease_type: { class: Diseases::DiseaseType, title: "疾病类别" },
+        disease_type: { class: Diseases::DiseaseType, title: "类别" },
         order_by: order_by_filters(Diseases::Disease)
       }
 
@@ -18,8 +18,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
           city: city_filters,
-          hospital_type: { class: Hospitals::HospitalType, title: "医院类型" },
-          zone: zone_filters,
+          hospital_type: { class: Hospitals::HospitalType, title: "类别" },
+          zone: fake_zone_filters,
           order_by: order_by_filters(Diseases::Disease)
         }
     end
@@ -36,8 +36,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
           #   meta: { filterable: true },
           #   children: proc { Hospitals::Hospital.limit(100).filters(params[:city]) }
           # },
-          hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" },
-          zone: zone_filters,
+          hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
+          zone: fake_zone_filters,
           order_by: order_by_filters(Diseases::Disease)
         }
     end
@@ -47,8 +47,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
         title: "相关药品",
         parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
-          drug_type: { class: Drugs::DrugType, title: "药品类别" },
-          zone: zone_filters,
+          drug_type: { class: Drugs::DrugType, title: "类别" },
+          zone: fake_zone_filters,
           order_by: order_by_filters(Diseases::Disease)
         }
     end

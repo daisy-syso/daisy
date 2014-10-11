@@ -5,7 +5,7 @@ class Maternals::MaternalHallsAPI < ApplicationAPI
       title: "母婴会馆",
       filters: { 
         city: city_filters,
-        zone: zone_filters,
+        zone: fake_zone_filters,
         order_by: order_by_filters(Maternals::MaternalHall)
       }
 

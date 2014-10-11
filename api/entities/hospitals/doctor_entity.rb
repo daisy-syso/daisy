@@ -5,6 +5,10 @@ class Hospitals::DoctorEntity < Bases::ItemEntity
   with_options if: { detail: true } do
     expose :desc
 
+    expose :link do |object, options|
+      object.hospital.url
+    end
+
     expose :reviewable do |object, options|
       true
     end

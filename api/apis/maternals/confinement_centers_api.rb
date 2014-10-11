@@ -5,7 +5,7 @@ class Maternals::ConfinementCentersAPI < ApplicationAPI
       title: "月子中心",
       filters: { 
         city: city_filters,
-        zone: zone_filters,
+        zone: fake_zone_filters,
         order_by: order_by_filters(Maternals::ConfinementCenter)
       }
 

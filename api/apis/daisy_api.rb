@@ -19,6 +19,9 @@ class DaisyAPI < Grape::API
   mount UserInfos::ReviewsAPI
   mount UserInfos::OrdersAPI
 
+  mount SocialSecuritiesAPI
+  mount EldercaresAPI
+
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
     mount Hospitals::DoctorsAPI
@@ -28,10 +31,6 @@ class DaisyAPI < Grape::API
 
   namespace :examinations do
     mount Examinations::ExaminationsAPI
-  end
-
-  namespace :eldercares do
-    mount Eldercares::NursingRoomsAPI
   end
 
   namespace :drugs do
@@ -46,8 +45,6 @@ class DaisyAPI < Grape::API
   namespace :shapings do
     mount Shapings::ShapingItemsAPI
   end
-
-  mount SocialSecuritiesAPI
 
   namespace :maternals do
     mount Maternals::MaternalHallsAPI

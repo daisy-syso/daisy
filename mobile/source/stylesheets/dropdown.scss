@@ -128,6 +128,11 @@
       a:not(.btn) {
         margin-top: -12px;
         margin-left: -20px;
+        
+        img {
+          width: 16px;
+          margin: -1px 5px 0 0;
+        }
       }
 
       &:after {

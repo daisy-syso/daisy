@@ -34,11 +34,26 @@ module FilterHelper
 
     def city_filters
       { 
+        meta: { 
+          keep: :city 
+        },
+        default: 1, 
+        class: Categories::City, 
+        title: "位置", 
+        titleize: true
+      }
+    end
+
+    def fake_city_filters
+      { 
+        meta: { 
+          keep: :city 
+        },
         default: 1, 
         class: Categories::City, 
         title: "位置", 
         titleize: true, 
-        meta: { keep: :city }
+        filter_only: true
       }
     end
 
@@ -51,6 +66,15 @@ module FilterHelper
     end
 
     def zone_filters
+      { 
+        meta: { 
+          current: "商圈",
+        },
+        children: proc { Categories::County.filters(params[:city]) },
+      }
+    end
+
+    def fake_zone_filters
       { 
         meta: { 
           current: "商圈",
@@ -72,19 +96,21 @@ module FilterHelper
     end
 
     def type_filters hash, current = nil
+      
+      hash = Hash[hash.map do |key, value| 
+        [key, value.is_a?(Hash) ? value : { title: value, url: key }] 
+      end]
+
       { 
         type: String,
         current: proc do |id|
           value = hash.values.find do |value|
-            value.is_a?(Hash) && params[value[:id]]
+            params[value[:id]]
           end
-          next value[:class].find(params[value[:id]]).name if value
-          if hash[current]
-            if hash[current].is_a?(Hash) 
-              hash[current][:title]
-            else
-              hash[current]
-            end
+          if value
+            value[:class].find(params[value[:id]]).name
+          elsif hash[current]
+            hash[current][:title]
           else
             "类别"
           end
@@ -92,13 +118,12 @@ module FilterHelper
         children: proc do
           filters = []
           hash.each do |key, options|
-            case options
-            when String
-              filters.push(title: options, url: key)
-            when Hash
-              parse_option_value filters, options[:children] do
+            parse_option_value filters, options[:children] do
+              if options[:class]
                 filters.push(title: options[:title], 
                   children: append_url_to_filters(options[:class].filters, key))
+              else
+                filters.push(options)
               end
             end
           end
@@ -173,7 +198,6 @@ module FilterHelper
 
     def hospital_order_by_filters
       order_by_filters Hospitals::Hospital, {
-        default: :hospital_level,
         current: proc do |id|
           "医院等级" if id.to_sym == :hospital_level
         end,

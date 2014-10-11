@@ -6,8 +6,8 @@ class Hospitals::RegistrationsAPI < ApplicationAPI
       title: "手机挂号",
       filters: { 
         city: city_filters,
-        hospital_type: { class: Hospitals::HospitalType, title: "医院类型" },
-        zone: zone_filters,
+        hospital_type: { class: Hospitals::HospitalType, title: "类别" },
+        zone: fake_zone_filters,
         order_by: hospital_order_by_filters
       }
   end

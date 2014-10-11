@@ -17,8 +17,8 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         #   meta: { filterable: true },
         #   children: proc { Hospitals::Hospital.limit(100).filters(params[:city]) }
         # },
-        hospital_room: { class: Hospitals::HospitalRoom, title: "医院科室" },
-        zone: zone_filters,
+        hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
+        zone: fake_zone_filters,
         order_by: order_by_filters(Hospitals::Doctor)
       }
 
