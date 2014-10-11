@@ -188,7 +188,9 @@ module FilterHelper
           when :most_expensive
             collection.order(sale_price: :desc)
           else
-            parse_option_value endpoint, collection, key, options[:has_scope] do
+            if options[:has_scope]
+              instance_exec endpoint, collection, key, &options[:has_scope]
+            else
               collection
             end
           end
