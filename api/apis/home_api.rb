@@ -36,7 +36,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-8.gif"
       }, {
         title: "热门专科",
-        link: "#/list/hospitals/top_specialists",
+        link: "#/list/hospitals/specialists",
         icon: "images/icons/1-9.gif"
       }, {
         title: "热门诊所",

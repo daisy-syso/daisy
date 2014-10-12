@@ -1,6 +1,6 @@
 class Hospitals::HospitalLevel < ActiveRecord::Base
 
-  scope :form, -> { where(id: [8,9,4]).order(:position) }
+  scope :form, -> { where(form: true).order(:position) }
 
   class << self
     include Filterable

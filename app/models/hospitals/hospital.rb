@@ -6,19 +6,9 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :city, -> (city) { where(city: city) }
   scope :hospital_type, -> (type) { 
-    case type
-    when 1..6
-      joins(:hospital_types)
-        .where(hospitals_types: { type_id: type })
-        .distinct
-    when 7
-      joins(:hospital_types)
-        .where(hospitals_types: { type_id: type })
-        .where.not(level: nil)
-        .distinct
-    else
-      all
-    end
+    type ? joins(:hospital_types)
+      .where{hospitals_types.type_id == type}
+      .distinct : all
   }
 
   scope :hospital_level, -> (level = nil) {
@@ -29,9 +19,9 @@ class Hospitals::Hospital < ActiveRecord::Base
     end
   }
 
-  scope :top_specialists, -> { 
+  scope :specialist, -> { 
     joins(:hospital_types)
-      .where.not(hospitals_types: { type_id: 7 })
+      .where{hospital_types.specialist == true}
       .distinct
   }
 

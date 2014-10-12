@@ -7,6 +7,24 @@ class Diseases::Disease < ActiveRecord::Base
 
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
+  scope :drug_query, -> (query) {
+    query.present? ? joins(:drugs)
+      .where{drugs.name.like("%#{query}%")}
+      .distinct : all
+  }
+
+  scope :doctor_query, -> (query) {
+    query.present? ? joins(:doctors)
+      .where{doctors.name.like("%#{query}%")}
+      .distinct : all
+  }
+
+  scope :hospital_query, -> (query) {
+    query.present? ? joins(:hospitals)
+      .where{hospitals.name.like("%#{query}%")}
+      .distinct : all
+  }
+
   class << self
     include Filterable
 

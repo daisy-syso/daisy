@@ -5,7 +5,12 @@ class Diseases::DiseasesAPI < ApplicationAPI
       title: "疾病查询",
       filters: { 
         disease_type: { class: Diseases::DiseaseType, title: "类别" },
-        order_by: order_by_filters(Diseases::Disease)
+        order_by: order_by_filters(Diseases::Disease),
+        form: form_filters,
+        drug_query: form_query_filters("相关药品", :drug_query), 
+        doctor_query: form_query_filters("相关医生", :doctor_query), 
+        hospital_query: form_query_filters("相关医院", :hospital_query), 
+        alphabet: form_alphabet_filters,
       }
 
     show! Diseases::Disease

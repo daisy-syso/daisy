@@ -22,13 +22,15 @@
   .input-group {
     padding: 15px;
     border-bottom: 1px solid #ddd;
-
-    input.pull-right {
-      width: 65%;
-    }
   }
 
   form {
+    .checkboxes, .string {
+      .pull-right {
+        min-width: 65%;
+      }
+    }
+    
     .checkboxes {
       line-height: 36px;
     }
@@ -44,6 +46,7 @@
     .string {
       line-height: 32px;
       input {
+        width: 65%;
         padding-left: 15px;
         height: 32px;
       }

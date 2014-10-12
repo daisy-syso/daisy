@@ -108,12 +108,12 @@ module FilterHelper
       }
     end
 
-    def form_query_filters
+    def form_query_filters title = "搜索", key = :query
       {
-        title: "搜索", 
+        title: title, 
         template: :string,
         type: String,
-        current: proc { params[:query] },
+        current: proc { params[key] },
         nochildren: true,
         append: :form,
       }

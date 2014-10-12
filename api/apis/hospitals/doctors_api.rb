@@ -19,7 +19,11 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         # },
         hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
         zone: fake_zone_filters,
-        order_by: order_by_filters(Hospitals::Doctor)
+        order_by: order_by_filters(Hospitals::Doctor),
+        form: form_filters,
+        position_query: form_query_filters("职称", :position_query), 
+        hospital_query: form_query_filters("所属医院", :hospital_query), 
+        alphabet: form_alphabet_filters,
       }
 
     show! Hospitals::Doctor
