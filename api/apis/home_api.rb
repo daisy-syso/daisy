@@ -28,7 +28,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-6.gif"
       }, {
         title: "医保查询",
-        link: "#/table/social_securities/social_securities",
+        link: "#/table/social_securities/social_security_endowments",
         icon: "images/icons/1-7.gif"
       }, {
         title: "价格搜索",

@@ -1,11 +1,11 @@
 class SocialSecuritiesAPI < ApplicationAPI
 
   Types = {
+    :"social_securities/social_security_endowments" => "医保查询",
     :"social_securities/social_securities" => "医保指定机构",
     :"social_securities/social_security_hospitals" => "医保指定医院",
     :"social_securities/social_security_drugstores" => "医保指定药店",
     :"social_securities/social_security_drugs" => "医保指定药品",
-    :"social_securities/social_security_endowments" => "养老保险",
   }
 
   class << self
@@ -18,7 +18,8 @@ class SocialSecuritiesAPI < ApplicationAPI
           type: type_filters(Types, current),
           province: { class: Categories::Province, title: "位置", titleize: true },
           zone: fake_zone_filters,
-          order_by: order_by_filters(klass)
+          order_by: order_by_filters(klass),
+          form: form_filters
         },
         params: {
           per: { default: 15 }
@@ -65,7 +66,8 @@ class SocialSecuritiesAPI < ApplicationAPI
           type: type_filters(Types, :"social_securities/social_security_endowments"),
           province: { class: Categories::Province, title: "位置", titleize: true },
           zone: fake_zone_filters,
-          order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment)
+          order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment),
+          form: form_filters
         },
         params: {
           per: { default: 15 }
