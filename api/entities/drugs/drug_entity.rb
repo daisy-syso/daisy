@@ -6,6 +6,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
   end
   
   with_options if: { detail: true } do
+    expose :introduction
   end
 
 end
