@@ -26,22 +26,31 @@ module Filterable
         end
       end
     end
+
+    def prepend_filter_all filters, key
+      filters.unshift(title: "全部", params: { key => nil })
+    end
+
   end
 
 
   module ClassMethods
-    def define_filter_method method, key, &block
+    def define_filter_method method, key, all = true, &block
       define_method method do
-        generate_filters class_eval(&block), key
+        generate_filters(class_eval(&block), key).tap do |ret|
+          prepend_filter_all ret, key if all
+        end
       end
 
       define_cached_methods method
     end
 
-    def define_nested_filter_method method, key, &block
+    def define_nested_filter_method method, key, all = true, &block
       define_method method do
         records = class_eval(&block).group_by(&:parent_id)
-        collect_nested_filter records, key
+        collect_nested_filter(records, key).tap do |ret|
+          prepend_filter_all ret, key if all
+        end
       end
 
       define_cached_methods method
