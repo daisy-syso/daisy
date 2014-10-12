@@ -21,7 +21,8 @@ module FilterHelper
       options[:class].filters
     end unless options[:nochildren]
     filter[:current] ||= parse_option_value params[key], options[:current] do |id|
-      id ? options[:class].find(id).name : options[:title]
+      params[key] = nil if id && id.zero?
+      id ? id.nonzero? ? options[:class].find(id).name : "全部" : options[:title]
     end
     filter
   end
@@ -41,8 +42,21 @@ module FilterHelper
           keep: :city 
         },
         default: 1, 
-        class: Categories::City, 
-        title: "位置", 
+        class: Categories::City,
+        current: proc do |id|
+          if id
+            if id.zero?
+              params[:city] = nil
+              has_scope :province
+              Categories::Province.find(params[:province]).name
+            else
+              Categories::City.find(id).name
+            end
+          else
+            "位置"
+          end
+        end, 
+        title: "位置",
         titleize: true
       }
     end
@@ -63,8 +77,23 @@ module FilterHelper
     def price_filters
       { 
         type: Hash,
-        using: [:from, :to],
+        using: [:to, :from],
         scope_only: true
+      }
+    end
+
+    def form_price_filters
+      { 
+        meta: { 
+          key: :price,
+          title: "价格区间", 
+          template: :price,
+        },
+        type: Hash,
+        using: [:to, :from],
+        current: proc { params[:price] },
+        nochildren: true,
+        append: :form 
       }
     end
 
@@ -100,18 +129,38 @@ module FilterHelper
 
     def form_radio_filters klass, title, key
       { 
-        title: title, 
-        template: :radio,
+        meta: { 
+          key: key,
+          title: title, 
+          template: :radio,
+        },
         current: proc { params[key] },
         children: proc { klass.form_filters },
         append: :form 
       }
     end
 
+    def form_radio_array_filters array, title, key
+      { 
+        meta: { 
+          key: key,
+          title: title, 
+          template: :radio,
+        },
+        type: String,
+        current: proc { params[key] },
+        children: proc { array.map { |title| { title: title, id: title }}},
+        append: :form 
+      }
+    end
+
     def form_query_filters title = "搜索", key = :query
       {
-        title: title, 
-        template: :string,
+        meta: { 
+          key: key,
+          title: title, 
+          template: :string,
+        },
         type: String,
         current: proc { params[key] },
         nochildren: true,
@@ -121,8 +170,11 @@ module FilterHelper
 
     def form_alphabet_filters
       {
-        title: "字母搜索", 
-        template: :alphabet,
+        meta: { 
+          key: :alphabet,
+          title: "字母搜索", 
+          template: :alphabet,
+        },
         type: String,
         current: proc { params[:alphabet] },
         nochildren: true,
@@ -133,9 +185,12 @@ module FilterHelper
 
     def form_switch_filters title, key
       {
-        title: title,
+        meta: { 
+          key: key,
+          title: title,
+          template: :switch,
+        },
         type: Object,
-        template: :switch,
         current: proc { params[key] == "true" },
         nochildren: true,
         append: :form
@@ -154,8 +209,14 @@ module FilterHelper
           value = hash.values.find do |value|
             params[value[:id]]
           end
-          if value
-            value[:class].find(params[value[:id]]).name
+          if value 
+            id = params[value[:id]]
+            if id.zero?
+              params[value[:id]] = nil
+              hash[current][:title]
+            else
+              value[:class].find(params[value[:id]]).name
+            end
           elsif hash[current]
             hash[current][:title]
           else
@@ -195,7 +256,9 @@ module FilterHelper
         default: options[:default] || :auto,
         type: String,
         current: proc do |id|
-          OrderByMap[id.to_sym] || parse_option_value(id, options[:current])
+          parse_option_value(id, options[:current]) do
+            OrderByMap[id.to_sym]
+          end
         end,
         children: proc do
           filters = []
@@ -231,9 +294,9 @@ module FilterHelper
           when :newest
             collection.order(created_at: :desc)
           when :cheapest
-            collection.order(sale_price: :asc)
+            collection.order(ori_price: :asc)
           when :most_expensive
-            collection.order(sale_price: :desc)
+            collection.order(ori_price: :desc)
           else
             if options[:has_scope]
               instance_exec endpoint, collection, key, &options[:has_scope]
@@ -248,7 +311,7 @@ module FilterHelper
     def hospital_order_by_filters
       order_by_filters Hospitals::Hospital, {
         current: proc do |id|
-          "医院等级" if id.to_sym == :hospital_level
+          id == "hospital_level" ? "医院等级" : OrderByMap[id.to_sym]
         end,
         children: proc do |filters|
           filters.insert(1, { title: "医院等级" , params: { order_by: :hospital_level }})
@@ -271,20 +334,25 @@ module FilterHelper
 
       order_by_filters klass, {
         current: proc do |id|
-          price = params[:price]
-          price ? price_title.call(price[:from], price[:to]) : "价格区间"
+          if id == "price"
+            price = params[:price]
+            price ? price_title.call(price[:from], price[:to]) : "价格区间"
+          else
+            params[:price] = nil
+            OrderByMap[id.to_sym]
+          end
         end,
         children: proc do |filters|
           prices = Setting["price_search.#{klass.table_name}.filters.price"]
           children = prices.each_cons(2).map do |from, to|
             Hash.new.tap do |ret|
               ret[:title] = price_title.call from, to
-              ret[:params] = { "price[from]" => from, "price[to]" => to }
+              ret[:params] = { order_by: :price, "price[from]" => from, "price[to]" => to }
             end
           end
           last = Hash.new.tap do |ret|
             ret[:title] = price_title.call prices.last
-            ret[:params] = { "price[from]" => prices.last, "price[to]" => nil }
+            ret[:params] = { order_by: :price, "price[from]" => prices.last, "price[to]" => nil }
           end
           children.push last
           filters.push({ title: "价格区间" , children: children})

@@ -3,6 +3,10 @@ class Eldercares::NursingRoom < ActiveRecord::Base
   
   scope :city, -> (city) { where(city: city) }
 
+  scope :query, -> (query) {
+    query.present? ? where{name.like("%#{query}%")} : all
+  }
+  
   include Reviewable
   
 end

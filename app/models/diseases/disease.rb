@@ -7,6 +7,10 @@ class Diseases::Disease < ActiveRecord::Base
 
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
+  scope :query, -> (query) {
+    query.present? ? where{name.like("%#{query}%")} : all
+  }
+  
   scope :drug_query, -> (query) {
     query.present? ? joins(:drugs)
       .where{drugs.name.like("%#{query}%")}
@@ -41,7 +45,7 @@ class Diseases::Disease < ActiveRecord::Base
 
     def filters
       records = Diseases::DiseaseType.includes(:diseases).all.group_by(&:parent_id)
-      collect_nested_filter records
+      prepend_filter_all collect_nested_filter(records), { title: "全部", params: { disease: 0 }}
     end
 
     define_cached_methods :filters

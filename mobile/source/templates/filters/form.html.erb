@@ -14,6 +14,16 @@
       <input type="text" class="pull-right" ng-model="form[data.key]" ng-init="form[data.key] = data.current"></input>
     </div>
 
+    <div class="input-group price" ng-switch-when="price">
+      <label>{{data.title}}</label>
+      <div class="inputs pull-right" ng-init="fromkey = data.key+'[from]'; tokey = data.key+'[to]'; form[fromkey] = data.current.from; form[tokey] = data.current.to">
+        <input type="number" ng-model="form[fromkey]"></input>
+        到
+        <input type="number" ng-model="form[tokey]"></input>
+        元
+      </div>
+    </div>
+
     <div class="input-group checkboxes alphabet" ng-switch-when="alphabet">
       <label>{{data.title}}</label>
       <div class="btn-multi-group pull-right">
@@ -36,7 +46,7 @@
 
   <div class="input-group">
     <a class="btn btn-large btn-negative right-angle" ng-click="form = {}">重置</a>
-    <a class="btn btn-large btn-primary pull-right" ng-click="redirectTo({params: form})">搜索</a>
+    <a class="btn btn-large btn-primary pull-right" ng-click="redirectTo({params: form})">完成</a>
   </div>
 
 </form>

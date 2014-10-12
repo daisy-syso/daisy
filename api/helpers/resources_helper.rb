@@ -35,8 +35,6 @@ module ResourcesHelper
           if options[:titleize]
             meta[:subtitle] = filter
           elsif options[:append]
-            filter[:key] = key
-            filter[:title] = parse_option_value options[:title]
             hfilters[options[:append]][:children] ||= []
             hfilters[options[:append]][:children].push filter
           else

@@ -10,7 +10,15 @@ class Drugs::Drug < ActiveRecord::Base
       .distinct : all 
   }
 
-  scope :price, -> (from, to) {
+  scope :query, -> (query) {
+    query.present? ? where{name.like("%#{query}%")} : all
+  }
+  
+  scope :manufactory_query, -> (query) {
+    query.present? ? where{manufactory.like("%#{query}%")} : all
+  }
+  
+  scope :price, -> (to, from = 0) {
     to ? where(ori_price: from..to) : where{ori_price > from}
   }
   

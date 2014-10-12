@@ -21,7 +21,7 @@ class Hospitals::HospitalType < ActiveRecord::Base
       self.specialist
     end
 
-    define_filter_method :price_search_filters, :hospital_type do
+    define_filter_method :price_search_filters, :hospital_type, false do
       self.price_search
     end
   end

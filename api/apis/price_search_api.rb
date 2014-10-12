@@ -17,10 +17,10 @@ class PriceSearchAPI < ApplicationAPI
     :"price_search/maternal_halls" => "母婴会馆",
     :"price_search/insurances" => {
       class: Insurances::InsuranceType, 
-      title: "专科", 
+      title: "保险", 
       id: :insurance_type,
       children: proc do |children| 
-        filters = append_url_to_filters Insurances::InsuranceType.filters, 
+        filters = append_url_to_filters Insurances::InsuranceType.price_search_filters, 
           :"price_search/insurances"
         children.concat filters
       end
@@ -35,9 +35,14 @@ class PriceSearchAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types, :"price_search/drugs"),
           disease: { class: Diseases::Disease, scope_only: true },
-          price: price_filters,
           zone: fake_zone_filters,
-          order_by: price_search_order_by_filters(Drugs::Drug)
+          order_by: order_by_filters(Drugs::Drug),
+          form: form_filters,
+          query: form_query_filters, 
+          price: form_price_filters,
+          manufactory_query: form_radio_array_filters(
+            %w(三精制药 同仁堂 修正药业 太极集团), "品牌", :manufactory_query),
+          alphabet: form_alphabet_filters
         }
     end
 
@@ -49,7 +54,11 @@ class PriceSearchAPI < ApplicationAPI
           shaping_type: { class: Shapings::ShapingType, scope_only: true },
           price: price_filters,
           zone: fake_zone_filters,
-          order_by: price_search_order_by_filters(Shapings::ShapingItem)
+          order_by: order_by_filters(Shapings::ShapingItem),
+          form: form_filters,
+          query: form_query_filters, 
+          price: form_price_filters,
+          alphabet: form_alphabet_filters
         }
     end
 
@@ -61,7 +70,14 @@ class PriceSearchAPI < ApplicationAPI
           type: type_filters(Types, :"price_search/hospitals"),
           hospital_type: { class: Hospitals::HospitalType, scope_only: true },
           zone: fake_zone_filters,
-          order_by: hospital_order_by_filters
+          order_by: hospital_order_by_filters,
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters,
+          hospital_level: form_radio_filters(Hospitals::HospitalLevel, 
+            "医院等级", :hospital_level),
+          has_url: form_switch_filters("网址", :has_url),
+          is_local_hot: form_switch_filters("热门医院", :is_local_hot)
         }
     end
 
@@ -72,7 +88,11 @@ class PriceSearchAPI < ApplicationAPI
           city: city_filters,
           type: type_filters(Types, :"price_search/confinement_centers"),
           zone: fake_zone_filters,
-          order_by: order_by_filters(Maternals::ConfinementCenter)
+          order_by: order_by_filters(Maternals::ConfinementCenter),
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters,
+          has_url: form_switch_filters("网址", :has_url)
         }
     end
 
@@ -83,7 +103,10 @@ class PriceSearchAPI < ApplicationAPI
           city: city_filters,
           type: type_filters(Types, :"price_search/maternal_halls"),
           zone: fake_zone_filters,
-          order_by: order_by_filters(Maternals::MaternalHall)
+          order_by: order_by_filters(Maternals::MaternalHall),
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters
         }
     end
 
@@ -94,7 +117,10 @@ class PriceSearchAPI < ApplicationAPI
           type: type_filters(Types, :"price_search/insurances"),
           insurance_type: { class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
-          order_by: order_by_filters(Insurances::Insurance)
+          order_by: order_by_filters(Insurances::Insurance),
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters
         }
     end
 

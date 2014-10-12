@@ -51,6 +51,15 @@
         height: 32px;
       }
     }
+    .price {
+      line-height: 32px;
+      .inputs {
+        width: 65%;
+        input {
+          width: 30%;
+        }
+      }
+    }
     .switch {
       line-height: 30px;
       .toggle:before {

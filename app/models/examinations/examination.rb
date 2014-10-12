@@ -5,6 +5,18 @@ class Examinations::Examination < ActiveRecord::Base
   scope :city, -> (city) { where(city: city) }
   scope :examination_type, -> (type) { type ? where(examination_type: type) : all }
 
+  scope :price, -> (to, from = 0) {
+    to ? where(price: from..to) : where{price > from}
+  }
+
+  scope :hospital_query, -> (query) {
+    query.present? ? where{hospital_name.like("%#{query}%")} : all
+  }
+
+  scope :applicable_query, -> (query) {
+    query.present? ? where{applicable.like("%#{query}%")} : all
+  }
+
   include Reviewable
   
   alias_attribute :sale_price, :price

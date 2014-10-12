@@ -6,10 +6,8 @@ class Categories::County < ActiveRecord::Base
   class << self
     include Filterable
 
-    def filters city
-      generate_filters self.city(city), :county
+    define_filter_method :filters, :county do |city|
+      self.city(city)
     end
-
-    define_cached_methods :filters
   end
 end

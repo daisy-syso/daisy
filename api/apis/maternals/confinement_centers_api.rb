@@ -6,7 +6,11 @@ class Maternals::ConfinementCentersAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         zone: fake_zone_filters,
-        order_by: order_by_filters(Maternals::ConfinementCenter)
+        order_by: order_by_filters(Maternals::ConfinementCenter),
+        form: form_filters,
+        query: form_query_filters, 
+        alphabet: form_alphabet_filters,
+        has_url: form_switch_filters("网址", :has_url)
       }
 
     show! Maternals::ConfinementCenter

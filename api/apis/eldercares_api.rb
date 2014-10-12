@@ -15,7 +15,10 @@ class EldercaresAPI < ApplicationAPI
           city: city_filters,
           type: type_filters(Types),
           zone: fake_zone_filters,
-          order_by: order_by_filters(Eldercares::NursingRoom)
+          order_by: order_by_filters(Eldercares::NursingRoom),
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters
         }
 
       show! Eldercares::NursingRoom
@@ -41,7 +44,10 @@ class EldercaresAPI < ApplicationAPI
           type: type_filters(Types, :"eldercares/insurances"),
           insurance_type: { default: 8435, class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
-          order_by: order_by_filters(Insurances::Insurance)
+          order_by: order_by_filters(Insurances::Insurance),
+          form: form_filters,
+          query: form_query_filters, 
+          alphabet: form_alphabet_filters
         }
     end
 
