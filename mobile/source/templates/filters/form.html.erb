@@ -1,0 +1,42 @@
+<form ng-init="form = {}">
+
+  <div ng-repeat="data in currMenus[0]" ng-switch="data.template">
+
+    <div class="input-group checkboxes" ng-switch-when="radio">
+      <label>{{data.title}}</label>
+      <div class="btn-group pull-right">
+        <span class="btn" ng-repeat="column in data.children" ng-class="{'btn-primary': form[data.key] == column.id}" ng-click="form[data.key] = column.id" ng-init="form[data.key] = data.current">{{column.title}}</span>
+      </div>
+    </div>
+
+    <div class="input-group string" ng-switch-when="string">
+      <label>{{data.title}}</label>
+      <input type="text" class="pull-right" ng-model="form[data.key]" ng-init="form[data.key] = data.current"></input>
+    </div>
+
+    <div class="input-group checkboxes alphabet" ng-switch-when="alphabet">
+      <label>{{data.title}}</label>
+      <div class="btn-multi-group pull-right">
+        <div class="btn-group" ng-repeat="column in ['ABCDEFG','HIJKLMN','OPQRST','UVWXYZ']">
+          <span class="btn" ng-repeat="row in column" ng-class="{'btn-primary': form[data.key] == row}" ng-click="form[data.key] = row" ng-init="form[data.key] = data.current">{{row}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group switch" ng-switch-when="switch">
+      <label>{{data.title}}</label>
+      <div class="pull-right">
+        <div class="toggle" ng-class="{active: form[data.key]}" ng-click="form[data.key] = !form[data.key]" ng-init="form[data.key] = data.current">
+          <div class="toggle-handle"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="input-group">
+    <a class="btn btn-large btn-negative right-angle" ng-click="form = {}">重置</a>
+    <a class="btn btn-large btn-primary pull-right" ng-click="redirectTo({params: form})">搜索</a>
+  </div>
+
+</form>

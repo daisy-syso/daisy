@@ -39,7 +39,7 @@ class EldercaresAPI < ApplicationAPI
         title: "养老服务 养老保险（商业）",
         filters: { 
           type: type_filters(Types, :"eldercares/insurances"),
-          insurance_type: { class: Insurances::InsuranceType, scope_only: true },
+          insurance_type: { default: 8435, class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Insurances::Insurance)
         }

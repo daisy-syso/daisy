@@ -56,5 +56,5 @@ angular.module('DaisyApp').directive 'filter', [
             menus
 
         scope.templateUrl = (data) ->
-          "templates/filters/#{data.template}.html"
+          "templates/filters/#{data.template||'list'}.html"
 ]

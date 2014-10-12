@@ -14,9 +14,12 @@ module FilterHelper
 
   def generate_filter key, options
     filter = options[:meta] ? options[:meta].dup : {}
+    filter[:template] ||= parse_option_value options[:template] do
+      :list
+    end
     filter[:children] ||= parse_option_value options[:children] do
       options[:class].filters
-    end
+    end unless options[:nochildren]
     filter[:current] ||= parse_option_value params[key], options[:current] do |id|
       id ? options[:class].find(id).name : options[:title]
     end
@@ -84,14 +87,58 @@ module FilterHelper
       }
     end
 
-    def form_filters template, current
+    def form_filters
       {
         meta: { 
-          template: template,
-          current: current,
-          children: [],
+          template: :form,
+          current: "筛选",
         },
+        nochildren: true,
         filter_only: true
+      }
+    end
+
+    def form_radio_filters klass, title, key
+      { 
+        title: title, 
+        template: :radio,
+        current: proc { params[key] },
+        children: proc { klass.form_filters },
+        append: :form 
+      }
+    end
+
+    def form_query_filters
+      {
+        title: "搜索", 
+        template: :string,
+        type: String,
+        current: proc { params[:query] },
+        nochildren: true,
+        append: :form,
+      }
+    end
+
+    def form_alphabet_filters
+      {
+        title: "字母搜索", 
+        template: :alphabet,
+        type: String,
+        current: proc { params[:alphabet] },
+        nochildren: true,
+        append: :form,
+        filter_only: true
+      }
+    end
+
+    def form_switch_filters title, key
+      {
+        title: title,
+        type: Object,
+        template: :switch,
+        current: proc { params[key] == "true" },
+        nochildren: true,
+        append: :form
       }
     end
 

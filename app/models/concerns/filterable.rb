@@ -46,5 +46,14 @@ module Filterable
 
       define_cached_methods method
     end
+
+    def generate_form_filters
+      define_method :generate_filter do |record, key = nil|
+        Hash.new.tap do |ret|
+          ret[:title] = record.name
+          ret[:id] = record.id
+        end
+      end
+    end
   end
 end

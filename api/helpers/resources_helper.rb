@@ -9,7 +9,7 @@ module ResourcesHelper
     }
 
     def index! klass, options = {}
-      filters = options[:filters] || []
+      filters = options[:filters] || {}
 
       params do
         filters.each do |name, options|
@@ -23,7 +23,7 @@ module ResourcesHelper
       get do
         meta = options[:meta] ? options[:meta].dup : {}
         meta[:title] ||= parse_option_value options[:title]
-        meta[:filters] = [] if filters.any?
+        hfilters = {}
 
         parse_option_value options[:before]
 
@@ -31,12 +31,19 @@ module ResourcesHelper
           next if options[:scope_only]
 
           filter = generate_filter key, options
+
           if options[:titleize]
             meta[:subtitle] = filter
+          elsif options[:append]
+            filter[:key] = key
+            filter[:title] = parse_option_value options[:title]
+            hfilters[options[:append]][:children] ||= []
+            hfilters[options[:append]][:children].push filter
           else
-            meta[:filters].push filter
+            hfilters[key] = filter
           end
         end
+        meta[:filters] = hfilters.values if hfilters.any?
 
         filters.each do |filter, options|
           next if options[:filter_only]

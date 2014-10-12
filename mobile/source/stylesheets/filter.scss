@@ -19,15 +19,47 @@
     font-size: 14px;
   }
 
-  .input-wrapper {
+  .input-group {
+    padding: 15px;
     border-bottom: 1px solid #ddd;
 
-    input {
-      border-bottom: 0;
+    input.pull-right {
+      width: 65%;
     }
   }
 
-  .input-group {
-    padding: 15px;
+  form {
+    .checkboxes {
+      line-height: 36px;
+    }
+    .alphabet {
+      height: 174px;
+      .btn {
+        width: 32px;
+      }
+      .btn-multi-group .btn-group:nth-child(2) .btn:last-child {
+        border-bottom-right-radius: 3px;
+      }
+    }
+    .string {
+      line-height: 32px;
+      input {
+        padding-left: 15px;
+        height: 32px;
+      }
+    }
+    .switch {
+      line-height: 30px;
+      .toggle:before {
+        top: -1px;
+      }
+    }
+    .btn-group .btn {
+      padding: 10px;
+    }
+    .btn {
+      position: static;
+      padding: 10px 25px;
+    }
   }
 }

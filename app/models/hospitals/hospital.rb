@@ -21,14 +21,30 @@ class Hospitals::Hospital < ActiveRecord::Base
     end
   }
 
+  scope :hospital_level, -> (level = nil) {
+    if level
+      where(hospital_level: level)
+    else
+      joins(:hospital_level).order{hospital_levels.position.asc}
+    end
+  }
+
   scope :top_specialists, -> { 
     joins(:hospital_types)
       .where.not(hospitals_types: { type_id: 7 })
       .distinct
   }
 
-  scope :hospital_level, -> {
-    joins(:hospital_level).order{hospital_levels.position.asc}
+  scope :has_url, -> (boolean = true) {
+    boolean ? where.not(url: nil) : where(url: nil)
+  }
+
+  scope :is_local_hot, -> (boolean = true) {
+    boolean ? where(is_local_hot: true) : where.not(is_local_hot: true)
+  }
+  
+  scope :query, -> (query) {
+    query.present? ? where{name.like("%#{query}%")} : all
   }
 
   include Localizable

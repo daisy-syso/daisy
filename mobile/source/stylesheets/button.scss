@@ -34,9 +34,10 @@
   padding: 3px 5px;
 }
 
-input, button {
+input, button, .right-angle {
   border-radius: 0!important;
 }
+
 
 input[type="text"], input[type="password"] {
   height: 40px;
@@ -61,4 +62,47 @@ input[type="text"], input[type="password"] {
 
 .content > .btns-block .btn, .content > .btn {
   box-shadow: 0 1px 3px darken(#ddd8ce, 20%);
+}
+
+.btn-group {
+  display: inline-block;
+  font-size: 0;
+
+  .btn:not(:last-child) {
+    margin-right: -1px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .btn:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.btn-multi-group {
+  display: inline-block;
+  font-size: 0;
+
+  .btn-group {
+    display: block;
+  }
+  .btn-group:not(:first-child) {
+    margin-top: -1px;
+  }
+  .btn-group:not(:first-child) .btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .btn-group:not(:last-child) .btn {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.toggle.active {
+  background-color: #06c1ae;
+  border: 2px solid #06c1ae;
+  .toggle-handle {
+    border-color: #06c1ae;
+  }
 }
