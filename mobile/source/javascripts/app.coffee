@@ -143,6 +143,7 @@ angular.module 'DaisyApp', [
 .run [
   '$rootScope', '$localStorage'
   ($rootScope, $localStorage) ->
+    $rootScope.filters = {}
     $localStorage.bind($rootScope, "account", null)
 ]
 

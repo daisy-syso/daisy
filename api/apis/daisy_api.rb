@@ -22,6 +22,10 @@ class DaisyAPI < Grape::API
   mount SocialSecuritiesAPI
   mount EldercaresAPI
 
+  namespace :categories do
+    mount Categories::CitiesAPI
+  end
+
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
     mount Hospitals::DoctorsAPI

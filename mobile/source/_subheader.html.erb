@@ -4,11 +4,11 @@
     <span class="ionicon ion-chevron-left">
   </a>
   <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
-    {{data['subtitle'].current}}
+    {{ city.title || data['subtitle'].title }}
     <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
 </header>
 
-<nav popover popover-data="data['subtitle'].children" popover-keep="{{data['subtitle'].keep}}"></nav>
+<nav popover="data['subtitle'].children" popover-link="{{data['subtitle'].link}}" popover-keep="{{data['subtitle'].keep}}"></nav>
 
 <nav ng-class="{'bar bar-header-secondary filters': data['filters']}" filter filter-data="data['filters']" ng-show="data['filters']"></nav>

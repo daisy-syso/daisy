@@ -83,5 +83,12 @@ module ResourcesHelper
         present! klass.find(params[:id]), detail: true
       end
     end
+
+    def filter! klass, options = {}
+      get :filters do
+        present(klass.filters)
+      end
+    end
+
   end
 end

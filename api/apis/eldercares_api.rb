@@ -30,7 +30,7 @@ class EldercaresAPI < ApplicationAPI
         includes: [:city, :province],
         with: SocialSecurities::SocialSecurityEndowmentEntity,
         filters: { 
-          type: type_filters(Types, :"eldercares/social_security_endowments"),
+          type: type_filters(Types),
           province: { class: Categories::Province, title: "位置", titleize: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment)
@@ -41,7 +41,7 @@ class EldercaresAPI < ApplicationAPI
       index! Insurances::Insurance,
         title: "养老服务 养老保险（商业）",
         filters: { 
-          type: type_filters(Types, :"eldercares/insurances"),
+          type: type_filters(Types),
           insurance_type: { default: 8435, class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Insurances::Insurance),

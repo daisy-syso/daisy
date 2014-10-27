@@ -34,7 +34,7 @@ class CouponsAPI < ApplicationAPI
       index! Coupons::Coupon,
         title: "返利优惠 主编推荐",
         filters: { 
-          type: type_filters(Types, :"coupons/coupons"),
+          type: type_filters(Types),
           zone: fake_zone_filters,
           order_by: order_by_filters(Coupons::Coupon)
         }
@@ -44,7 +44,7 @@ class CouponsAPI < ApplicationAPI
       index! Drugs::Drug,
         title: "返利优惠 药品",
         filters: { 
-          type: type_filters(Types, :"coupons/drugs"),
+          type: type_filters(Types),
           disease: { class: Diseases::Disease, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Drugs::Drug),
@@ -61,7 +61,7 @@ class CouponsAPI < ApplicationAPI
       index! Shapings::ShapingItem,
         title: "返利优惠 整形",
         filters: {
-          type: type_filters(Types, :"coupons/shaping_items"),
+          type: type_filters(Types),
           shaping_type: { class: Shapings::ShapingType, scope_only: true },
           price: price_filters,
           zone: fake_zone_filters,
@@ -78,7 +78,7 @@ class CouponsAPI < ApplicationAPI
         title: proc { "返利优惠 #{Hospitals::HospitalType.find(params[:hospital_type]).name}" },
         filters: {
           city: city_filters,
-          type: type_filters(Types, :"coupons/hospitals"),
+          type: type_filters(Types),
           hospital_type: { class: Hospitals::HospitalType, scope_only: true },
           zone: fake_zone_filters,
           order_by: hospital_order_by_filters,
@@ -97,7 +97,7 @@ class CouponsAPI < ApplicationAPI
         title: "返利优惠 月子中心",
         filters: { 
           city: city_filters,
-          type: type_filters(Types, :"coupons/confinement_centers"),
+          type: type_filters(Types),
           zone: fake_zone_filters,
           order_by: order_by_filters(Maternals::ConfinementCenter),
           form: form_filters,
@@ -112,7 +112,7 @@ class CouponsAPI < ApplicationAPI
         title: "返利优惠 母婴会馆",
         filters: { 
           city: city_filters,
-          type: type_filters(Types, :"coupons/maternal_halls"),
+          type: type_filters(Types),
           zone: fake_zone_filters,
           order_by: order_by_filters(Maternals::MaternalHall),
           form: form_filters,
@@ -125,7 +125,7 @@ class CouponsAPI < ApplicationAPI
       index! Insurances::Insurance,
         title: proc { "返利优惠 #{Insurances::InsuranceType.find(params[:insurance_type]).name}" },
         filters: { 
-          type: type_filters(Types, :"coupons/insurances"),
+          type: type_filters(Types),
           insurance_type: { class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Insurances::Insurance),

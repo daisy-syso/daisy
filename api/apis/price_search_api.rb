@@ -33,7 +33,7 @@ class PriceSearchAPI < ApplicationAPI
       index! Drugs::Drug,
         title: "价格搜索 药品",
         filters: { 
-          type: type_filters(Types, :"price_search/drugs"),
+          type: type_filters(Types),
           disease: { class: Diseases::Disease, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Drugs::Drug),
@@ -50,9 +50,8 @@ class PriceSearchAPI < ApplicationAPI
       index! Shapings::ShapingItem,
         title: "价格搜索 整形",
         filters: {
-          type: type_filters(Types, :"price_search/shaping_items"),
+          type: type_filters(Types),
           shaping_type: { class: Shapings::ShapingType, scope_only: true },
-          price: price_filters,
           zone: fake_zone_filters,
           order_by: order_by_filters(Shapings::ShapingItem),
           form: form_filters,
@@ -67,7 +66,7 @@ class PriceSearchAPI < ApplicationAPI
         title: proc { "价格搜索 #{Hospitals::HospitalType.find(params[:hospital_type]).name}" },
         filters: {
           city: city_filters,
-          type: type_filters(Types, :"price_search/hospitals"),
+          type: type_filters(Types),
           hospital_type: { class: Hospitals::HospitalType, scope_only: true },
           zone: fake_zone_filters,
           order_by: hospital_order_by_filters,
@@ -86,7 +85,7 @@ class PriceSearchAPI < ApplicationAPI
         title: "价格搜索 月子中心",
         filters: { 
           city: city_filters,
-          type: type_filters(Types, :"price_search/confinement_centers"),
+          type: type_filters(Types),
           zone: fake_zone_filters,
           order_by: order_by_filters(Maternals::ConfinementCenter),
           form: form_filters,
@@ -101,7 +100,7 @@ class PriceSearchAPI < ApplicationAPI
         title: "价格搜索 母婴会馆",
         filters: { 
           city: city_filters,
-          type: type_filters(Types, :"price_search/maternal_halls"),
+          type: type_filters(Types),
           zone: fake_zone_filters,
           order_by: order_by_filters(Maternals::MaternalHall),
           form: form_filters,
@@ -114,7 +113,7 @@ class PriceSearchAPI < ApplicationAPI
       index! Insurances::Insurance,
         title: proc { "价格搜索 #{Insurances::InsuranceType.find(params[:insurance_type]).name}" },
         filters: { 
-          type: type_filters(Types, :"price_search/insurances"),
+          type: type_filters(Types),
           insurance_type: { class: Insurances::InsuranceType, scope_only: true },
           zone: fake_zone_filters,
           order_by: order_by_filters(Insurances::Insurance),

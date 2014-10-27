@@ -15,7 +15,7 @@ module Filterable
       records.map do |record|
         generate_filter record, key
       end.tap do |ret|
-        prepend_filter_all ret, all, key if key && all
+        prepend_filter_all ret, key, all if key && all
       end
     end
 
@@ -27,19 +27,22 @@ module Filterable
           ret[:children] = children if children
         end
       end.tap do |ret|
-        prepend_filter_all ret, all, key if all
+        prepend_filter_all ret, key, all if all
       end
     end
 
-    def prepend_filter_all filters, all, key = nil
-      filters.unshift((key ? { params: { key => 0 }} : {}).merge(all))
+    def prepend_filter_all filters, key = nil, all = {}
+      filter = { title: "全部", parent: true }
+      filter.merge!(params: {key => nil}) if key
+      filter.merge!(all)
+      filters.unshift(filter)
     end
 
   end
 
 
   module ClassMethods
-    def define_filter_method method, key, all = { title: "全部" }, &block
+    def define_filter_method method, key, all = {}, &block
       define_method method do |*args|
         generate_filters(class_exec(*args, &block), key, all)
       end
@@ -47,7 +50,7 @@ module Filterable
       define_cached_methods method
     end
 
-    def define_nested_filter_method method, key, all = { title: "全部" }, &block
+    def define_nested_filter_method method, key, all = {}, &block
       define_method method do |*args|
         records = class_exec(*args, &block).group_by(&:parent_id)
         collect_nested_filter(records, key, all)

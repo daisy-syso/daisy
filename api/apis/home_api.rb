@@ -62,8 +62,7 @@ class HomeAPI < Grape::API
         title: "返利优惠",
         link: "#/list/coupons/drugs",
         icon: "images/icons/1-11.gif"
-      }],
-      subtitle: Categories::City.filters
+      }]
     }
   end
 

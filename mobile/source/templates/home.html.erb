@@ -1,6 +1,6 @@
 <header class="bar bar-nav">
-  <a class="react pull-left" ng-click="$root.popover.toggle()" ng-if="homeData['subtitle']">
-    {{ city.title || "北京市" }}
+  <a class="react pull-left" ng-click="$root.popover.toggle()">
+    {{ city.title || data['subtitle'].title }}
     <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
   <div class="input-wrapper fake-input" ng-style="{left: searchLeft}">
@@ -9,7 +9,7 @@
   </div>
 </header>
 
-<nav popover popover-data="homeData['subtitle']" popover-keep="city" class="popover-left"></nav>
+<nav popover popover-link="categories/cities" popover-keep="city" class="popover-left"></nav>
 
 <div class="content">
 

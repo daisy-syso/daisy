@@ -45,7 +45,7 @@ class Diseases::Disease < ActiveRecord::Base
 
     def filters
       records = Diseases::DiseaseType.includes(:diseases).all.group_by(&:parent_id)
-      prepend_filter_all collect_nested_filter(records), { title: "全部", params: { disease: 0 }}
+      prepend_filter_all collect_nested_filter(records), :disease
     end
 
     define_cached_methods :filters

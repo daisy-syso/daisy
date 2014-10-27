@@ -5,10 +5,25 @@ angular.module('DaisyApp').directive 'popover', [
       restrict: 'A'
       templateUrl: "templates/directives/popover.html"
       scope:
-        popoverData: "="
+        popover: "=?"
+        popoverData: "=?"
+        popoverLink: "@"
         popoverKeep: "@"
       link: (scope, element, attrs) ->
+
+        scope.$watch 'popoverLink', (popoverLink) ->
+          if popoverLink
+            if $rootScope.filters[popoverLink]
+              scope.popoverData = $rootScope.filters[popoverLink]
+            else
+              $loader.get("/api/#{popoverLink}/filters.json")
+                .success (data) ->
+                  $rootScope.filters[popoverLink] = data
+                  scope.popoverData = data
         
+        scope.$watch 'popover', (data) ->
+          scope.popoverData = data if data
+
         $rootScope.popover =
           toggle: () ->
             if $rootScope.popover.show

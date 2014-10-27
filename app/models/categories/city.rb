@@ -24,8 +24,8 @@ class Categories::City < ActiveRecord::Base
           Hash.new.tap do |ret|
             ret[:title] = province.name
             ret[:children] = generate_filters(cities).tap do |ret|
-              # prepend_filter_all ret, 
-              #   { title: "全部", params: { city: 0, province: province.id }}
+              # prepend_filter_all ret, nil,
+              #   { params: { city: 0, province: province.id }}
             end
           end
         end

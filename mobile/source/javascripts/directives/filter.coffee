@@ -8,39 +8,49 @@ angular.module('DaisyApp').directive 'filter', [
         filterData: "="
       link: (scope, element, attrs) ->
 
-        scope.toggleMenu = (index, children) ->
+        scope.currTitles = {}
+
+        scope.toggleMenu = (index, menu) ->
           if scope.currIndex == index
             scope.closeMenu()
           else
+            scope.lastTitle = null
             scope.currIndex = index
-            scope.currIndexes = []
-            scope.currMenus = [ children ]
-            scope.currData = scope.filterData[index]
+            scope.currMenu = menu
+            scope.currSubIndexes = []
+            scope.currSubMenus = [ menu.children ]
 
-        scope.toggleColumn = (i, j, children) ->
-          scope.currIndexes.splice i
-          scope.currIndexes.push j
-          scope.currMenus.splice i + 1
-          scope.currMenus.push children
+        scope.toggleColumn = (i, j, column) ->
+          scope.lastTitle = column.title
+          scope.currSubIndexes.splice i
+          scope.currSubIndexes.push j
+          scope.currSubMenus.splice i + 1
+          scope.currSubMenus.push column.children
 
-        scope.toggleColumnLink = (i, j, column) ->
+        scope.loadColumnData = (i, j, column) ->
           $loader.get("/api/#{column.link}")
             .success (data) ->
               column.children = data['data']
               scope.toggleColumn i, j, column.children
 
-        scope.redirectTo = (data) ->
-          if data.url
-            scope.$parent.redirectToUrl = data.url
-            scope.$parent.redirectToParams = data.params || {}
+        scope.redirectTo = (column) ->
+          if column.url
+            scope.$parent.redirectToUrl = column.url
+            scope.$parent.redirectToParams = column.params || {}
           else
             scope.$parent.redirectToParams = angular.extend {}, 
-              scope.$parent.redirectToParams, data.params
+              scope.$parent.redirectToParams, column.params
+          if column.title
+            if column.parent && scope.lastTitle
+              scope.currTitles[scope.currIndex] = scope.lastTitle
+            else
+              scope.currTitles[scope.currIndex] = column.title 
+
           scope.closeMenu()
 
         scope.closeMenu = () ->
           scope.currIndex = -1
-          scope.currMenus = null
+          scope.currSubMenus = null
 
         scope.filtered = (menus) ->
           filtered = (menus) ->

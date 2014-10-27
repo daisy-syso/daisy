@@ -19,11 +19,9 @@ module FilterHelper
     end
     filter[:children] ||= parse_option_value options[:children] do
       options[:class].filters
-    end unless options[:nochildren]
-    filter[:current] ||= parse_option_value params[key], options[:current] do |id|
-      params[key] = nil if id && id.zero?
-      id ? id.nonzero? ? options[:class].find(id).name : "全部" : options[:title]
-    end
+    end if options[:class] || options[:children]
+    filter[:current] ||= parse_option_value options[:current] if options[:class]
+    filter[:title] ||= parse_option_value options[:title]
     filter
   end
 
@@ -39,32 +37,21 @@ module FilterHelper
     def city_filters
       { 
         meta: { 
-          keep: :city 
+          keep: :city,
+          link: :"categories/cities"
         },
-        default: 1, 
-        class: Categories::City,
-        current: proc do |id|
-          if id
-            if id.zero?
-              params[:city] = nil
-              has_scope :province
-              Categories::Province.find(params[:province]).name
-            else
-              Categories::City.find(id).name
-            end
-          else
-            "位置"
-          end
-        end, 
+        default: 1,
         title: "位置",
-        titleize: true
+        titleize: true,
+        nochildren: true
       }
     end
 
     def fake_city_filters
       { 
         meta: { 
-          keep: :city 
+          keep: :city,
+          link: :"categories/cities"
         },
         default: 1, 
         class: Categories::City, 
@@ -99,18 +86,14 @@ module FilterHelper
 
     def zone_filters
       { 
-        meta: { 
-          current: "商圈",
-        },
+        title: "商圈",
         children: proc { Categories::County.filters(params[:city]) },
       }
     end
 
     def fake_zone_filters
       { 
-        meta: { 
-          current: "商圈",
-        },
+        title: "商圈",
         children: proc { Categories::County.filters(params[:city]) },
         filter_only: true
       }
@@ -120,8 +103,8 @@ module FilterHelper
       {
         meta: { 
           template: :form,
-          current: "筛选",
         },
+        title: "筛选",
         nochildren: true,
         filter_only: true
       }
@@ -197,7 +180,7 @@ module FilterHelper
       }
     end
 
-    def type_filters hash, current = nil
+    def type_filters hash
       
       hash = Hash[hash.map do |key, value| 
         [key, value.is_a?(Hash) ? value : { title: value, url: key }] 
@@ -205,24 +188,7 @@ module FilterHelper
 
       { 
         type: String,
-        current: proc do |id|
-          value = hash.values.find do |value|
-            params[value[:id]]
-          end
-          if value 
-            id = params[value[:id]]
-            if id.zero?
-              params[value[:id]] = nil
-              hash[current][:title]
-            else
-              value[:class].find(params[value[:id]]).name
-            end
-          elsif hash[current]
-            hash[current][:title]
-          else
-            "类别"
-          end
-        end,
+        title: "类别",
         children: proc do
           filters = []
           hash.each do |key, options|
@@ -255,11 +221,7 @@ module FilterHelper
       {
         default: options[:default] || :auto,
         type: String,
-        current: proc do |id|
-          parse_option_value(id, options[:current]) do
-            OrderByMap[id.to_sym]
-          end
-        end,
+        title: "智能排序",
         children: proc do
           filters = []
           filters << { title: "智能排序" , params: { order_by: :auto }}
@@ -310,9 +272,6 @@ module FilterHelper
 
     def hospital_order_by_filters
       order_by_filters Hospitals::Hospital, {
-        current: proc do |id|
-          id == "hospital_level" ? "医院等级" : OrderByMap[id.to_sym]
-        end,
         children: proc do |filters|
           filters.insert(1, { title: "医院等级" , params: { order_by: :hospital_level }})
         end,
@@ -333,15 +292,6 @@ module FilterHelper
       end
 
       order_by_filters klass, {
-        current: proc do |id|
-          if id == "price"
-            price = params[:price]
-            price ? price_title.call(price[:from], price[:to]) : "价格区间"
-          else
-            params[:price] = nil
-            OrderByMap[id.to_sym]
-          end
-        end,
         children: proc do |filters|
           prices = Setting["price_search.#{klass.table_name}.filters.price"]
           children = prices.each_cons(2).map do |from, to|

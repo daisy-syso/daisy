@@ -1,10 +1,10 @@
-<input type="text" placeholder="搜索" class="ng-hide" ng-model="filter" ng-show="currData.filterable">
-<div class="segmented-control" ng-style="{height: (currMenus[0].length > 7 ? 7 : currMenus[0].length) * 45 + 'px'}">
-  <div class="control-item" ng-repeat="(i, menu) in currMenus">
+<input type="text" placeholder="搜索" class="ng-hide" ng-model="filter" ng-show="currMenu.filterable">
+<div class="segmented-control" ng-style="{height: (currSubMenus[0].length > 7 ? 7 : currSubMenus[0].length) * 45 + 'px'}">
+  <div class="control-item" ng-repeat="(i, menu) in currSubMenus">
     <div class="dropdown-scroll">
       <ul class="table-view media huge" ng-class="{last: $last}">
-        <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currIndexes[i] == j}" ng-repeat="(j, column) in filtered(menu)">
-          <a ng-click="column.children ? toggleColumn(i, j, column.children) : redirectTo(column)">
+        <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currSubIndexes[i] == j}" ng-repeat="(j, column) in filtered(menu)">
+          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)">
             <img ng-src="{{column.image_url}}" class="pull-left" width="16" ng-if="column.image_url">
             {{column.title}}
           </a>
