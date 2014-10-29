@@ -63,7 +63,7 @@ class HomeAPI < Grape::API
         link: "#/list/coupons/drugs",
         icon: "images/icons/1-11.gif"
       }],
-      subtitle: '北京市'
+      subtitle: "位置"
     }
   end
 
