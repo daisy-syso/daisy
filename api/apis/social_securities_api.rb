@@ -17,7 +17,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           province: { class: Categories::Province, title: "位置", titleize: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(klass),
           form: form_filters
         },
@@ -61,7 +61,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           province: { class: Categories::Province, title: "位置", titleize: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment),
           form: form_filters
         },

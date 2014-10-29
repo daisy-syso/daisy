@@ -5,7 +5,7 @@ class Drugs::DrugstoresAPI < ApplicationAPI
       title: "身边药房",
       filters: { 
         city: city_filters,
-        zone: fake_zone_filters,
+        county: county_filters,
         order_by: order_by_filters(Drugs::Drugstore),
         form: form_filters,
         query: form_query_filters, 

@@ -1,6 +1,6 @@
 <form ng-init="form = {}">
 
-  <div ng-repeat="data in currMenus[0]" ng-switch="data.template">
+  <div ng-repeat="data in currSubMenus[0]" ng-switch="data.template">
 
     <div class="input-group checkboxes" ng-switch-when="radio">
       <label>{{data.title}}</label>

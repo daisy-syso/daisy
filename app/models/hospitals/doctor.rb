@@ -7,6 +7,11 @@ class Hospitals::Doctor < ActiveRecord::Base
       .where(hospitals: { city_id: city })
       .distinct 
   }
+  scope :county, -> (county) { 
+    joins(:hospital)
+      .where(hospitals: { county_id: county })
+      .distinct 
+  }
   
   scope :hospital, -> (hospital) { where(hospital: hospital) }
   scope :hospital_room, -> (hospital_room) { where(hospital_room: hospital_room) }

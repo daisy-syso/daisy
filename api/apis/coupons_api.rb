@@ -35,7 +35,7 @@ class CouponsAPI < ApplicationAPI
         title: "返利优惠 主编推荐",
         filters: { 
           type: type_filters(Types),
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Coupons::Coupon)
         }
     end
@@ -46,7 +46,7 @@ class CouponsAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           disease: { class: Diseases::Disease, scope_only: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Drugs::Drug),
           form: form_filters,
           query: form_query_filters, 
@@ -64,7 +64,7 @@ class CouponsAPI < ApplicationAPI
           type: type_filters(Types),
           shaping_type: { class: Shapings::ShapingType, scope_only: true },
           price: price_filters,
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Shapings::ShapingItem),
           form: form_filters,
           query: form_query_filters, 
@@ -80,7 +80,7 @@ class CouponsAPI < ApplicationAPI
           city: city_filters,
           type: type_filters(Types),
           hospital_type: { class: Hospitals::HospitalType, scope_only: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: hospital_order_by_filters,
           form: form_filters,
           query: form_query_filters, 
@@ -98,7 +98,7 @@ class CouponsAPI < ApplicationAPI
         filters: { 
           city: city_filters,
           type: type_filters(Types),
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Maternals::ConfinementCenter),
           form: form_filters,
           query: form_query_filters, 
@@ -113,7 +113,7 @@ class CouponsAPI < ApplicationAPI
         filters: { 
           city: city_filters,
           type: type_filters(Types),
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Maternals::MaternalHall),
           form: form_filters,
           query: form_query_filters, 
@@ -127,7 +127,7 @@ class CouponsAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           insurance_type: { class: Insurances::InsuranceType, scope_only: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Insurances::Insurance),
           form: form_filters,
           query: form_query_filters, 

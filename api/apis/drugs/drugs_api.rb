@@ -7,7 +7,7 @@ class Drugs::DrugsAPI < ApplicationAPI
         city: fake_city_filters,
         drug_type: { class: Drugs::DrugType, title: "类别" },
         # disease: { class: Diseases::Disease, title: "类别" },
-        zone: fake_zone_filters,
+        county: fake_county_filters,
         order_by: order_by_filters(Drugs::Drug),
         form: form_filters,
         query: form_query_filters, 

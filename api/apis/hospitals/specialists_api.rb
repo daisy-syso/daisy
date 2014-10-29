@@ -11,7 +11,7 @@ class Hospitals::SpecialistsAPI < ApplicationAPI
           title: "类别", 
           children: proc { Hospitals::HospitalType.specialist_filters }
         },
-        zone: fake_zone_filters,
+        county: county_filters,
         order_by: order_by_filters(Hospitals::Hospital),
         form: form_filters,
         query: form_query_filters, 

@@ -1,7 +1,9 @@
 class Drugs::Drugstore < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
+  belongs_to :county, class_name: "Categories::County"
   
   scope :city, -> (city) { where(city: city) }
+  scope :county, -> (county) { where(county: county) }
   
   scope :is_local_hot, -> (boolean = true) {
     boolean ? where(is_local_hot: true) : where.not(is_local_hot: true)

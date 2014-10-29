@@ -14,7 +14,7 @@ class EldercaresAPI < ApplicationAPI
         filters: { 
           city: city_filters,
           type: type_filters(Types),
-          zone: fake_zone_filters,
+          county: county_filters,
           order_by: order_by_filters(Eldercares::NursingRoom),
           form: form_filters,
           query: form_query_filters, 
@@ -32,7 +32,7 @@ class EldercaresAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           province: { class: Categories::Province, title: "位置", titleize: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment)
         }
     end
@@ -43,7 +43,7 @@ class EldercaresAPI < ApplicationAPI
         filters: { 
           type: type_filters(Types),
           insurance_type: { default: 8435, class: Insurances::InsuranceType, scope_only: true },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Insurances::Insurance),
           form: form_filters,
           query: form_query_filters, 

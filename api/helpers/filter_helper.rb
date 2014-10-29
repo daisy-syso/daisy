@@ -20,7 +20,7 @@ module FilterHelper
     filter[:children] ||= parse_option_value options[:children] do
       options[:class].filters
     end if options[:class] || options[:children]
-    filter[:current] ||= parse_option_value options[:current] if options[:class]
+    filter[:current] = parse_option_value options[:current] if options[:current] 
     filter[:title] ||= parse_option_value options[:title]
     filter
   end
@@ -84,14 +84,14 @@ module FilterHelper
       }
     end
 
-    def zone_filters
+    def county_filters
       { 
         title: "商圈",
         children: proc { Categories::County.filters(params[:city]) },
       }
     end
 
-    def fake_zone_filters
+    def fake_county_filters
       { 
         title: "商圈",
         children: proc { Categories::County.filters(params[:city]) },

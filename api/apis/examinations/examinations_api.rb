@@ -6,7 +6,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         examination_type: { class: Examinations::ExaminationType, title: "类别" },
-        zone: fake_zone_filters,
+        county: fake_county_filters,
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,
         query: form_query_filters,

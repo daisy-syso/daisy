@@ -25,7 +25,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         filters: { 
           city: city_filters,
           hospital_type: { class: Hospitals::HospitalType, title: "类别" },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
           query: form_query_filters, 
@@ -50,7 +50,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
           #   children: proc { Hospitals::Hospital.limit(100).filters(params[:city]) }
           # },
           hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
           query: form_query_filters, 
@@ -66,7 +66,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
           drug_type: { class: Drugs::DrugType, title: "类别" },
-          zone: fake_zone_filters,
+          county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
           query: form_query_filters, 

@@ -7,7 +7,7 @@ class Hospitals::RegistrationsAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         hospital_type: { class: Hospitals::HospitalType, title: "类别" },
-        zone: fake_zone_filters,
+        county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
         query: form_query_filters, 
