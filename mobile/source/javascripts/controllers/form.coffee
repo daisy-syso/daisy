@@ -17,8 +17,8 @@ angular.module('DaisyApp').controller 'FormCtrl', [
     $scope.loginByOAuth = (provider, data) ->
       $loader.post "/api/sign_in/#{provider}", 
         account: data
-      , (data) ->
-        afterLogin(data)
+      .success (data) ->
+        $scope.afterLogin(data)
 
     $scope.loginByWB = () ->
       if WB2.checkLogin()
@@ -26,6 +26,25 @@ angular.module('DaisyApp').controller 'FormCtrl', [
       else
         WB2.login (result) ->
           $scope.loginByOAuth("weibo", result)
+
+    $scope.loginByQC = () ->
+      login = () ->
+        QC.Login.getMe (openId, accessToken) ->
+          $scope.loginByOAuth "qqconnect",
+            uid: openId
+            access_token: accessToken
+
+      if QC.Login.check()
+        login()
+      else
+        unless $scope.loginByQCFirsttime
+          QC.Login {}, (reqData, opts) ->
+            login()
+            console.log reqData
+          $scope.loginByQCFirsttime = true
+
+        QC.Login.showPopup
+          appId: "101165275"
 
 ]
 

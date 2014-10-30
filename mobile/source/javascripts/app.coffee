@@ -29,7 +29,8 @@ angular.module 'DaisyApp', [
                 $rootScope.city ||= data.subtitle[0]
 
           $rootScope.$watch "city", (value) ->
-            $rootScope.searchLeft = "#{20*value.title.length+40}px"
+            length = value?.title?.length || 2
+            $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
     $routeProvider.when '/login/:redirectToPath*',

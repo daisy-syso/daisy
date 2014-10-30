@@ -13,23 +13,24 @@
           <span class="ionicon ion-ios7-keypad-outline"></span>
           <input type="password" placeholder="请输入密码" ng-model="account.password">
         </div>
-        <button class="btn btn-large btn-primary btn-block">登　录</button>
-      </form>
       
-      <div class="login-actions">
-        <a ng-href="#/register/{{redirectToPath}}">免费注册</a>
-        <a class="pull-right" href="#/retrieve">找回密码</a>
-      </div>
-<!-- 
-      <div class="login-oauth">
-        <a href="#">
-          <img src="images/sina.gif" width="140">
-        </a>
-        <a class="pull-right" href="#">
-          <img src="images/qq.gif" width="140">
-        </a>
-      </div>
- -->
+        <button class="btn btn-large btn-primary btn-block">登　录</button>
+      
+        <div class="login-actions">
+          <a ng-href="#/register/{{redirectToPath}}">免费注册</a>
+          <a class="pull-right" href="#/retrieve">找回密码</a>
+        </div>
+
+        <div class="login-oauth">
+          <a ng-click="loginByWB()">
+            <img src="images/sina.gif" width="140">
+          </a>
+          <a class="pull-right" ng-click="loginByQC()">
+            <img src="images/qq.gif" width="140">
+          </a>
+        </div>
+      </form>
+
     </div>
   </div>
 
