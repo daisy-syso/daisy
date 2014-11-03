@@ -1,7 +1,7 @@
 <%= partial 'header', locals: { title: "创建订单" } %>
 
 <div class="content">
-  <form class="register" ng-controller="FormCtrl" ng-submit="submit('/api/orders/'+data.type+'/'+data.id, {order: order}, afterLogin)" name="form">
+  <form class="register" ng-controller="FormCtrl" ng-submit="submit('/api/orders/'+data.type+'/'+data.id, {order: order}, afterOrder)" name="form">
   
     <div class="input-row">
       <h3>{{data.name}}</h3>

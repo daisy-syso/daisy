@@ -9,7 +9,7 @@ class UserInfos::Order < ActiveRecord::Base
 
   before_validation do
     self.name ||= "#{item.name} x #{quantity}"
-    self.price ||= item.sale_price
+    self.price ||= item.ori_price
     self.discount ||= 0
   end
 
@@ -39,19 +39,24 @@ class UserInfos::Order < ActiveRecord::Base
   # end
 
   def wap_pay_url
+    Alipay.pid = '2014103000015061'
+    Alipay.key = 'YOUR_KEY'
+    Alipay.seller_email = 'YOUR_SELLER_EMAIL'
+
     options = {
       :req_data => {
         :out_trade_no  => id.to_s,
         :price         => price,
         :quantity      => quantity,
         :discount      => discount,
+        :total_fee     => price * quantity - discount,
         :subject       => name,
-        :total_fee     => 'TOTAL_FEE',
         :notify_url    => 'http://www.syso.com.cn/api/order/done',
         :call_back_url => 'http://www.syso.com.cn/mobile/order/done.html'
       }
     }
     token = Alipay::Service::Wap.trade_create_direct_token(options)
+    p token
     Alipay::Service::Wap.auth_and_execute(request_token: token)
   end
 

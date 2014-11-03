@@ -22,7 +22,8 @@ class UserInfos::OrdersAPI < Grape::API
       record = current_user!.orders.new(declared(params)[:order])
       record.item = klass.find(match[:id])
       if record.save
-        present :info, "成功创建订单，3秒后跳转支付页面"
+        present :info, "成功创建订单，跳转支付页面"
+        present :url, record.wap_pay_url
       else
         failure! record
       end

@@ -1,6 +1,6 @@
 angular.module('DaisyApp').controller 'FormCtrl', [
-  '$scope', '$rootScope', '$loader', '$routeParams', '$location'
-  ($scope, $rootScope, $loader, $routeParams, $location) ->
+  '$scope', '$rootScope', '$loader', '$routeParams', '$location', '$timeout'
+  ($scope, $rootScope, $loader, $routeParams, $location, $timeout) ->
     $scope.submit = (url, data, callback) ->
       $loader.post(url, data)
         .success (data) ->
@@ -14,6 +14,12 @@ angular.module('DaisyApp').controller 'FormCtrl', [
       $rootScope.account = data['data']
       $scope.redirectTo()
 
+    $scope.afterOrder = (data) ->
+      $rootScope.alert.succ data.info
+      $timeout () ->
+        window.open(data.url)
+      , 3000
+
     $scope.loginByOAuth = (provider, data) ->
       $loader.post "/api/sign_in/#{provider}", 
         account: data
@@ -21,11 +27,14 @@ angular.module('DaisyApp').controller 'FormCtrl', [
         $scope.afterLogin(data)
 
     $scope.loginByWB = () ->
-      if WB2.checkLogin()
+      login = () ->
         $scope.loginByOAuth("weibo", WB2.oauthData)
+        
+      if WB2.checkLogin()
+        login()
       else
         WB2.login (result) ->
-          $scope.loginByOAuth("weibo", result)
+          login()
 
     $scope.loginByQC = () ->
       login = () ->
@@ -40,11 +49,10 @@ angular.module('DaisyApp').controller 'FormCtrl', [
         unless $scope.loginByQCFirsttime
           QC.Login {}, (reqData, opts) ->
             login()
-            console.log reqData
           $scope.loginByQCFirsttime = true
 
         QC.Login.showPopup
-          appId: "101165275"
+          appId: "101150059"
 
 ]
 

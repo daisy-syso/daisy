@@ -1,6 +1,6 @@
 angular.module("DaisyApp").factory '$alert', [
-  '$rootScope', '$interval'
-  ($rootScope, $interval) ->
+  '$rootScope', '$timeout'
+  ($rootScope, $timeout) ->
     lastInterval = null
 
     open = (type, message) ->
@@ -13,11 +13,11 @@ angular.module("DaisyApp").factory '$alert', [
         $rootScope.alert.messages = message
       $rootScope.alert.show = true
 
-      $interval.cancel(lastInterval) if lastInterval
-      lastInterval = $interval () ->
+      $timeout.cancel(lastInterval) if lastInterval
+      lastInterval = $timeout () ->
         $rootScope.alert.show = false
         lastInterval = null
-      , 5000, 1
+      , 5000
 
     $rootScope.alert =
       info: (message) -> open("info", message)

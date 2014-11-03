@@ -48,7 +48,6 @@ class AccountsAPI < Grape::API
       json = RestClient.post "https://api.weibo.com/oauth2/get_token_info",
         access_token: account_params[:access_token]
       json = JSON.parse json
-      puts json, account_params
       unauthorized! unless json["uid"].to_s == account_params[:uid]
       account = Account.find_for_database_authentication(provider: "weibo", 
         uid: account_params[:uid])
@@ -56,6 +55,9 @@ class AccountsAPI < Grape::API
         sign_in account
         present! account
       else
+        puts "https://api.weibo.com/2/users/show.json"\
+          "?access_token=#{account_params[:access_token]}"\
+          "&uid=#{account_params[:uid]}"
         json = RestClient.get "https://api.weibo.com/2/users/show.json"\
           "?access_token=#{account_params[:access_token]}"\
           "&uid=#{account_params[:uid]}"
@@ -88,7 +90,7 @@ class AccountsAPI < Grape::API
       else
         json = RestClient.get "https://graph.qq.com/user/get_user_info"\
           "?access_token=#{account_params[:access_token]}"\
-          "&oauth_consumer_key=101165275"\
+          "&oauth_consumer_key=101150059"\
           "&openid=#{account_params[:uid]}"
         json = JSON.parse json
         account = Account.new(provider: "qqconnect", uid: account_params[:uid])
