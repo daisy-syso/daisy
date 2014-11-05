@@ -10,6 +10,11 @@ angular.module('DaisyApp').directive 'filter', [
 
         scope.currTitles = {}
 
+        scope.$watch 'filterData', (filterData) ->
+          if filterData
+            for filter in filterData
+              $rootScope.getFilters(filter, 'children', filter.link)
+        
         scope.toggleMenu = (index, menu) ->
           if scope.currIndex == index
             scope.closeMenu()
@@ -37,9 +42,10 @@ angular.module('DaisyApp').directive 'filter', [
           if column.url
             scope.$parent.redirectToUrl = column.url
             scope.$parent.redirectToParams = column.params || {}
-          else
+          else if column.params
             scope.$parent.redirectToParams = angular.extend {}, 
               scope.$parent.redirectToParams, column.params
+
           if column.title
             if column.parent && scope.lastTitle
               scope.currTitles[scope.currIndex] = scope.lastTitle

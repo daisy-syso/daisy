@@ -12,14 +12,7 @@ angular.module('DaisyApp').directive 'popover', [
       link: (scope, element, attrs) ->
 
         scope.$watch 'popoverLink', (popoverLink) ->
-          if popoverLink
-            if $rootScope.filters[popoverLink]
-              scope.popoverData = $rootScope.filters[popoverLink]
-            else
-              $loader.get("/api/#{popoverLink}/filters.json")
-                .success (data) ->
-                  $rootScope.filters[popoverLink] = data
-                  scope.popoverData = data
+          $rootScope.getFilters(scope, 'popoverData', popoverLink)
         
         scope.$watch 'popover', (data) ->
           scope.popoverData = data if data

@@ -43,7 +43,6 @@ module FilterHelper
         default: 1,
         title: "位置",
         titleize: true,
-        nochildren: true
       }
     end
 
@@ -57,6 +56,21 @@ module FilterHelper
         class: Categories::City, 
         title: "位置", 
         titleize: true, 
+        filter_only: true
+      }
+    end
+
+    def county_filters
+      { 
+        title: "商圈",
+        children: proc { Categories::County.filters(params[:city]) },
+      }
+    end
+
+    def fake_county_filters
+      { 
+        title: "商圈",
+        children: proc { Categories::County.filters(params[:city]) },
         filter_only: true
       }
     end
@@ -79,23 +93,7 @@ module FilterHelper
         type: Hash,
         using: [:to, :from],
         current: proc { params[:price] },
-        nochildren: true,
         append: :form 
-      }
-    end
-
-    def county_filters
-      { 
-        title: "商圈",
-        children: proc { Categories::County.filters(params[:city]) },
-      }
-    end
-
-    def fake_county_filters
-      { 
-        title: "商圈",
-        children: proc { Categories::County.filters(params[:city]) },
-        filter_only: true
       }
     end
 
@@ -105,7 +103,6 @@ module FilterHelper
           template: :form,
         },
         title: "筛选",
-        nochildren: true,
         filter_only: true
       }
     end
@@ -146,7 +143,6 @@ module FilterHelper
         },
         type: String,
         current: proc { params[key] },
-        nochildren: true,
         append: :form,
       }
     end
@@ -160,7 +156,6 @@ module FilterHelper
         },
         type: String,
         current: proc { params[:alphabet] },
-        nochildren: true,
         append: :form,
         filter_only: true
       }
@@ -175,47 +170,18 @@ module FilterHelper
         },
         type: Object,
         current: proc { params[key] == "true" },
-        nochildren: true,
         append: :form
       }
     end
 
-    def type_filters hash
-      
-      hash = Hash[hash.map do |key, value| 
-        [key, value.is_a?(Hash) ? value : { title: value, url: key }] 
-      end]
-
-      { 
-        type: String,
-        title: "类别",
-        children: proc do
-          filters = []
-          hash.each do |key, options|
-            parse_option_value filters, options[:children] do
-              if options[:class]
-                filters.push(title: options[:title], 
-                  children: append_url_to_filters(options[:class].filters, key))
-              else
-                filters.push(options)
-              end
-            end
-          end
-          filters
-        end,
-        filter_only: true
+    def type_filters hash = nil
+      {
+        meta: {
+          link: :"types"
+        },
+        title: "类别"
       }
     end
-
-    OrderByMap = {
-      auto: "智能排序",
-      nearest: "离我最近",
-      favoriest: "评价最高",
-      hotest: "人气最高",
-      newest: "最新发布",
-      cheapest: "价格最低",
-      most_expensive: "价格最高"
-    }
 
     def order_by_filters klass, options = {}
       {
@@ -229,7 +195,7 @@ module FilterHelper
             filters << { title: "离我最近" , params: { order_by: :nearest }}
           end
           if klass < Reviewable
-            filters << { title: "评价最高" , params: { order_by: :favoriest }}
+            filters << { title: "评价最好" , params: { order_by: :favoriest }}
             filters << { title: "人气最高" , params: { order_by: :hotest }}
           end
           filters << { title: "最新发布" , params: { order_by: :newest }}
@@ -285,30 +251,5 @@ module FilterHelper
       }
     end
 
-    def price_search_order_by_filters klass
-
-      price_title = proc do |from, to = nil|
-        to ? "#{from} ~ #{to} 元" : "#{from} 元 以上"
-      end
-
-      order_by_filters klass, {
-        children: proc do |filters|
-          prices = Setting["price_search.#{klass.table_name}.filters.price"]
-          children = prices.each_cons(2).map do |from, to|
-            Hash.new.tap do |ret|
-              ret[:title] = price_title.call from, to
-              ret[:params] = { order_by: :price, "price[from]" => from, "price[to]" => to }
-            end
-          end
-          last = Hash.new.tap do |ret|
-            ret[:title] = price_title.call prices.last
-            ret[:params] = { order_by: :price, "price[from]" => prices.last, "price[to]" => nil }
-          end
-          children.push last
-          filters.push({ title: "价格区间" , children: children})
-        end
-      }
-    end
   end
-
 end

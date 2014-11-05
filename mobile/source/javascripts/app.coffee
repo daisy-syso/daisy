@@ -144,7 +144,6 @@ angular.module 'DaisyApp', [
 .run [
   '$rootScope', '$localStorage'
   ($rootScope, $localStorage) ->
-    $rootScope.filters = {}
     $localStorage.bind($rootScope, "account", null)
 ]
 
@@ -250,6 +249,22 @@ angular.module 'DaisyApp', [
   '$rootScope', '$localStorage'
   ($rootScope, $localStorage) ->
     $localStorage.bind($rootScope, "city", null)
+]
+
+# Local Storage city binding
+.run [
+  '$rootScope', '$loader'
+  ($rootScope, $loader) ->          
+    $rootScope.filters = {}
+
+    $rootScope.getFilters = (obj, key, link) ->
+      if $rootScope.filters[link]
+        obj[key] = $rootScope.filters[link]
+      else if link
+        $loader.get("/api/#{link}/filters.json")
+          .success (data) ->
+            $rootScope.filters[link] = data
+            obj[key] = data
 ]
 
 # Helper $coords

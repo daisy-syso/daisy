@@ -5,7 +5,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "医院大全",
       filters: { 
         city: city_filters,
-        hospital_type: { class: Hospitals::HospitalType, title: "类别" },
+        type: type_filters,
+        hospital_type: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,

@@ -1,7 +1,7 @@
 @import 'bourbon/bourbon';
 
 // Dropdown
-@mixin control-item ($color, $nextColor) {
+@mixin control-item ($color) {
   background-color: $color;
   border: 0;
 
@@ -14,10 +14,17 @@
   }
 
   .table-view-cell {
+    border-right: solid 1px darken($color, 20%);
     &.active {
-      background-color: $nextColor;
+      background-color: darken($color, 10%);
       border-left: solid 6px #2bb2a3;
+      border-right: solid 1px darken($color, 10%);
+      border-top: solid 1px darken($color, 20%);
+      border-bottom: solid 1px darken($color, 20%);
       padding-left: 14px;
+    }
+    &:active {
+      background-color: darken($color, 10%);
     }
   }
 }
@@ -89,15 +96,15 @@
     }
 
     .control-item:nth-child(2) {
-      @include control-item(#fafafa, darken(#fafafa, 10%));
+      @include control-item(#fafafa);
     }
     
     .control-item:nth-child(3) {
-      @include control-item(darken(#fafafa, 10%), darken(#fafafa, 20%));
+      @include control-item(darken(#fafafa, 10%));
     }
 
     .control-item:nth-child(4) {
-      @include control-item(darken(#fafafa, 20%), darken(#fafafa, 30%));
+      @include control-item(darken(#fafafa, 20%));
     }
 
     .dropdown-scroll {
@@ -107,9 +114,6 @@
     }
 
     .table-view {
-      // min-height: 315px;
-      // @include transform(translateZ(0));
-
       &.last {
         .table-view-cell {
           border-right: 0;
@@ -124,6 +128,10 @@
       padding-top: 12px;
       padding-left: 20px;
       border-right: solid 1px #ddd;
+
+      a:not(.btn):active {
+        background-color: transparent;
+      }
 
       a:not(.btn) {
         margin-top: -12px;
@@ -144,6 +152,9 @@
         border-left: solid 6px #2bb2a3;
         border-right: solid 1px #fafafa;
         padding-left: 14px;
+      }
+      &:active {
+        background-color: #fafafa;
       }
     }
   }
