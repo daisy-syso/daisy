@@ -6,8 +6,8 @@ module Filterable
 
     def generate_filter record, key = nil
       Hash.new.tap do |ret|
+        ret[:id] = record.id if key
         ret[:title] = record.name
-        ret[:params] = { key => record.id } if key
       end
     end
 
@@ -33,7 +33,7 @@ module Filterable
 
     def prepend_filter_all filters, key = nil, all = {}
       filter = { title: "全部", parent: true }
-      filter.merge!(params: {key => nil}) if key
+      filter.merge!(id: nil) if key
       filter.merge!(all)
       filters.unshift(filter)
     end
@@ -47,7 +47,7 @@ module Filterable
         generate_filters(class_exec(*args, &block), key, all)
       end
 
-      define_cached_methods method
+      # define_cached_methods method
     end
 
     def define_nested_filter_method method, key, all = {}, &block
@@ -56,14 +56,14 @@ module Filterable
         collect_nested_filter(records, key, all)
       end
 
-      define_cached_methods method
+      # define_cached_methods method
     end
 
     def generate_form_filters
       define_method :generate_filter do |record, key = nil|
         Hash.new.tap do |ret|
-          ret[:title] = record.name
           ret[:id] = record.id
+          ret[:title] = record.name
         end
       end
     end

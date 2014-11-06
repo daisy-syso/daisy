@@ -14,14 +14,17 @@ module FilterHelper
 
   def generate_filter key, options
     filter = options[:meta] ? options[:meta].dup : {}
+    filter[:key] = key
+    filter[:title] ||= parse_option_value options[:title]
     filter[:template] ||= parse_option_value options[:template] do
       :list
     end
     filter[:children] ||= parse_option_value options[:children] do
       options[:class].filters
     end if options[:class] || options[:children]
-    filter[:current] = parse_option_value options[:current] if options[:current] 
-    filter[:title] ||= parse_option_value options[:title]
+    filter[:current] = parse_option_value options[:current] do
+      params[key] || options[:default]
+    end
     filter
   end
 
@@ -92,7 +95,6 @@ module FilterHelper
         },
         type: Hash,
         using: [:to, :from],
-        current: proc { params[:price] },
         append: :form 
       }
     end
@@ -114,7 +116,6 @@ module FilterHelper
           title: title, 
           template: :radio,
         },
-        current: proc { params[key] },
         children: proc { klass.form_filters },
         append: :form 
       }
@@ -128,7 +129,6 @@ module FilterHelper
           template: :radio,
         },
         type: String,
-        current: proc { params[key] },
         children: proc { array.map { |title| { title: title, id: title }}},
         append: :form 
       }
@@ -142,7 +142,6 @@ module FilterHelper
           template: :string,
         },
         type: String,
-        current: proc { params[key] },
         append: :form,
       }
     end
@@ -155,7 +154,6 @@ module FilterHelper
           template: :alphabet,
         },
         type: String,
-        current: proc { params[:alphabet] },
         append: :form,
         filter_only: true
       }
@@ -174,12 +172,14 @@ module FilterHelper
       }
     end
 
-    def type_filters hash = nil
+    def type_filters current = nil
       {
         meta: {
           link: :"types"
         },
-        title: "类别"
+        title: "类别",
+        filter_only: true,
+        current: proc { params[:type] || current }
       }
     end
 
@@ -190,18 +190,18 @@ module FilterHelper
         title: "智能排序",
         children: proc do
           filters = []
-          filters << { title: "智能排序" , params: { order_by: :auto }}
+          filters << { title: "智能排序" , id: :auto }
           if klass < Localizable && params[:location]
-            filters << { title: "离我最近" , params: { order_by: :nearest }}
+            filters << { title: "离我最近" , id: :nearest }
           end
           if klass < Reviewable
-            filters << { title: "评价最好" , params: { order_by: :favoriest }}
-            filters << { title: "人气最高" , params: { order_by: :hotest }}
+            filters << { title: "评价最好" , id: :favoriest }
+            filters << { title: "人气最高" , id: :hotest }
           end
-          filters << { title: "最新发布" , params: { order_by: :newest }}
+          filters << { title: "最新发布" , id: :newest }
           if klass.attribute_names.include? "sale_price"
-            filters << { title: "价格最低" , params: { order_by: :cheapest }}
-            filters << { title: "价格最高" , params: { order_by: :most_expensive }}
+            filters << { title: "价格最低" , id: :cheapest }
+            filters << { title: "价格最高" , id: :most_expensive }
           end
           parse_option_value filters, options[:children]
           filters
@@ -239,7 +239,7 @@ module FilterHelper
     def hospital_order_by_filters
       order_by_filters Hospitals::Hospital, {
         children: proc do |filters|
-          filters.insert(1, { title: "医院等级" , params: { order_by: :hospital_level }})
+          filters.insert(1, { title: "医院等级" , id: :hospital_level })
         end,
         has_scope: proc do |endpoint, collection, key|
           if key.to_sym == :hospital_level

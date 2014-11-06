@@ -5,7 +5,8 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       title: "全国体检",
       filters: { 
         city: city_filters,
-        examination_type: { class: Examinations::ExaminationType, title: "类别" },
+        type: type_filters(8000),
+        examination_type: { scope_only: true },
         county: fake_county_filters,
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,

@@ -3,8 +3,8 @@
   <div class="control-item" ng-repeat="(i, menu) in currSubMenus">
     <div class="dropdown-scroll">
       <ul class="table-view media huge" ng-class="{last: $last}">
-        <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currSubIndexes[i] == j}" ng-repeat="(j, column) in filtered(menu)">
-          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)">
+        <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: currSubIndexes[i] == j, focus: column.focus}" ng-repeat="(j, column) in filtered(menu)">
+          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(i, j, column)">
             <img ng-src="{{column.image_url}}" class="pull-left" width="16" ng-if="column.image_url">
             {{column.title}}
           </a>

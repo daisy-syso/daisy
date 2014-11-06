@@ -6,11 +6,8 @@ class Hospitals::SpecialistsAPI < ApplicationAPI
       parent: proc { Hospitals::Hospital.specialist },
       filters: { 
         city: city_filters,
-        hospital_type: {
-          class: Hospitals::HospitalType,
-          title: "类别", 
-          children: proc { Hospitals::HospitalType.specialist_filters }
-        },
+        type: type_filters,
+        hospital_type: { scope_only: true },
         county: county_filters,
         order_by: order_by_filters(Hospitals::Hospital),
         form: form_filters,

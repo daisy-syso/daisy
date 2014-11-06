@@ -8,6 +8,7 @@ class Categories::City < ActiveRecord::Base
 
     def generate_filter record, key = nil
       Hash.new.tap do |ret|
+        ret[:id] = record.id
         ret[:title] = record.name
         ret[:params] = { city: record.id, province: record.province_id }
       end
@@ -25,14 +26,14 @@ class Categories::City < ActiveRecord::Base
             ret[:title] = province.name
             ret[:children] = generate_filters(cities).tap do |ret|
               # prepend_filter_all ret, nil,
-              #   { params: { city: 0, province: province.id }}
+              #   { params: { city: nil, province: province.id }}
             end
           end
         end
       end
     end
 
-    define_cached_methods :filters
+    # define_cached_methods :filters
   end
 
 end

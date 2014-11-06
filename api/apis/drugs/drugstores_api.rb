@@ -5,6 +5,7 @@ class Drugs::DrugstoresAPI < ApplicationAPI
       title: "身边药房",
       filters: { 
         city: city_filters,
+        type: type_filters(5000),
         county: county_filters,
         order_by: order_by_filters(Drugs::Drugstore),
         form: form_filters,

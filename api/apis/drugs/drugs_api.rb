@@ -5,8 +5,8 @@ class Drugs::DrugsAPI < ApplicationAPI
       title: "药品大全",
       filters: { 
         city: fake_city_filters,
-        drug_type: { class: Drugs::DrugType, title: "类别" },
-        # disease: { class: Diseases::Disease, title: "类别" },
+        type: type_filters(4000),
+        disease: { scope_only: true },
         county: fake_county_filters,
         order_by: order_by_filters(Drugs::Drug),
         form: form_filters,

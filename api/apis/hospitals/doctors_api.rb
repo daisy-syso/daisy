@@ -3,15 +3,10 @@ class Hospitals::DoctorsAPI < ApplicationAPI
   namespace :doctors do
     index! Hospitals::Doctor,
       title: "找医生",
-      before: proc {
-        if params[:hospital] && !Hospitals::Hospital.exists?(
-          id: params[:hospital], city: params[:city])
-          params.delete :hospital
-        end
-      },
       filters: {
         city: city_filters,
-        hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
+        type: type_filters(3000),
+        hospital_room: { scope_only: true },
         county: county_filters,
         order_by: order_by_filters(Hospitals::Doctor),
         form: form_filters,

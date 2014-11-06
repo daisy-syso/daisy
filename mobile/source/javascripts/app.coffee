@@ -251,7 +251,7 @@ angular.module 'DaisyApp', [
     $localStorage.bind($rootScope, "city", null)
 ]
 
-# Local Storage city binding
+# Get filters
 .run [
   '$rootScope', '$loader'
   ($rootScope, $loader) ->          
@@ -265,6 +265,34 @@ angular.module 'DaisyApp', [
           .success (data) ->
             $rootScope.filters[link] = data
             obj[key] = data
+
+    $rootScope.formatFilter = (filter) ->
+      indexes = []
+      menus = []
+      ret = [[], [ filter.children ]]
+
+      formatNode = (parent) ->
+        if parent.children
+          menus.push parent.children
+          for node, i in parent.children
+
+            node.focus = false if node.focus
+            if node.id == filter.current
+              node.focus = true
+              ret = [ indexes.slice(), menus.slice() ]
+
+            if !node.params && angular.isDefined(node.id)
+              node.params = {}
+              node.params[filter.key] = node.id
+              node.parentTitle = parent.title if node.parent
+            indexes.push i
+            formatNode(node)
+            indexes.pop()
+          menus.pop()
+
+      formatNode(filter)
+      ret
+
 ]
 
 # Helper $coords

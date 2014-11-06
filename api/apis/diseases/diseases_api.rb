@@ -4,7 +4,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
     index! Diseases::Disease,
       title: "疾病查询",
       filters: { 
-        disease_type: { class: Diseases::DiseaseType, title: "类别" },
+        type: type_filters(2000),
+        disease_type: { scope_only: true },
         order_by: order_by_filters(Diseases::Disease),
         form: form_filters,
         query: form_query_filters, 

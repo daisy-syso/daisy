@@ -14,6 +14,7 @@
   }
 
   .table-view-cell {
+    border: 0;
     border-right: solid 1px darken($color, 20%);
     &.active {
       background-color: darken($color, 10%);
@@ -87,14 +88,6 @@
       }
     }
 
-    .control-item:not(:first-child) {
-      border: 0;
-
-      .table-view-cell {
-        border: 0;
-      }
-    }
-
     .control-item:nth-child(2) {
       @include control-item(#fafafa);
     }
@@ -155,6 +148,10 @@
       }
       &:active {
         background-color: #fafafa;
+      }
+
+      &.focus {
+        color: #2bb2a3;
       }
     }
   }

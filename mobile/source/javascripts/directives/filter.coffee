@@ -19,26 +19,23 @@ angular.module('DaisyApp').directive 'filter', [
           if scope.currIndex == index
             scope.closeMenu()
           else
-            scope.lastTitle = null
             scope.currIndex = index
             scope.currMenu = menu
-            scope.currSubIndexes = []
-            scope.currSubMenus = [ menu.children ]
+
+            ret = $rootScope.formatFilter(menu)
+            scope.currSubIndexes = ret[0]
+            scope.currSubMenus = ret[1]
 
         scope.toggleColumn = (i, j, column) ->
-          scope.lastTitle = column.title
           scope.currSubIndexes.splice i
           scope.currSubIndexes.push j
           scope.currSubMenus.splice i + 1
           scope.currSubMenus.push column.children
 
-        scope.loadColumnData = (i, j, column) ->
-          $loader.get("/api/#{column.link}")
-            .success (data) ->
-              column.children = data['data']
-              scope.toggleColumn i, j, column.children
+        scope.redirectTo = (i, j, column) ->
+          scope.currSubIndexes.splice i
+          scope.currSubIndexes.push j
 
-        scope.redirectTo = (column) ->
           if column.url
             scope.$parent.redirectToUrl = column.url
             scope.$parent.redirectToParams = column.params || {}
@@ -47,16 +44,13 @@ angular.module('DaisyApp').directive 'filter', [
               scope.$parent.redirectToParams, column.params
 
           if column.title
-            if column.parent && scope.lastTitle
-              scope.currTitles[scope.currIndex] = scope.lastTitle
-            else
-              scope.currTitles[scope.currIndex] = column.title 
+            scope.currTitles[scope.currIndex] = column.parentTitle || column.title 
 
           scope.closeMenu()
 
         scope.closeMenu = () ->
           scope.currIndex = -1
-          scope.currSubMenus = null
+          scope.currMenu = null
 
         scope.filtered = (menus) ->
           filtered = (menus) ->
