@@ -89,18 +89,17 @@ angular.module 'DaisyApp', [
         $scope.type = $routeParams.type
         url = "/api/#{$routeParams.type}.json"
 
-        $scope.$watch 'redirectToParams', (redirectToParams) ->
-          url = "/api/#{$scope.redirectToUrl}.json" if $scope.redirectToUrl
+        $scope.$watch 'redirectTo', (redirectTo) ->
+          url = "/api/#{$scope.redirectTo.url}.json" if $scope.redirectTo.url
           page = $scope.page = 1
-          params = angular.extend { page: page }, redirectToParams
+          params = angular.extend { page: page }, redirectTo.params
           $loader.get(url, params: params)
             .success (data) ->
               $scope.data = data
 
         $scope.loadMore = () ->
           page = $scope.page += 1
-          redirectToParams = $scope.redirectToParams
-          params = angular.extend { page: page }, redirectToParams
+          params = angular.extend { page: page }, $scope.redirectTo.params
           $loader.get(url, params: params)
             .success (data) ->
               $scope.data['fin'] = data['fin']
@@ -257,41 +256,49 @@ angular.module 'DaisyApp', [
   ($rootScope, $loader) ->          
     $rootScope.filters = {}
 
-    $rootScope.getFilters = (obj, key, link) ->
-      if $rootScope.filters[link]
-        obj[key] = $rootScope.filters[link]
-      else if link
-        $loader.get("/api/#{link}/filters.json")
-          .success (data) ->
-            $rootScope.filters[link] = data
-            obj[key] = data
-
     $rootScope.formatFilter = (filter) ->
-      indexes = []
-      menus = []
-      ret = [[], [ filter.children ]]
 
-      formatNode = (parent) ->
-        if parent.children
-          menus.push parent.children
-          for node, i in parent.children
+      appendData = (filter) ->
+        indexes = []
+        menus = []
 
-            node.focus = false if node.focus
-            if node.id == filter.current
-              node.focus = true
-              ret = [ indexes.slice(), menus.slice() ]
+        formatNode = (parent) ->
+          if parent.children
+            menus.push parent.children
+            for node, i in parent.children
 
-            if !node.params && angular.isDefined(node.id)
-              node.params = {}
-              node.params[filter.key] = node.id
-              node.parentTitle = parent.title if node.parent
-            indexes.push i
-            formatNode(node)
-            indexes.pop()
-          menus.pop()
+              if angular.isDefined(node.id)
+                node.params ||= {}
+                node.params[filter.key] ||= node.id
 
-      formatNode(filter)
-      ret
+              if node.parent
+                node.parentTitle = parent.title      
+
+              delete node.focus
+              if node.id == filter.current
+                node.focus = true
+                filter.indexes = indexes.slice()
+                filter.menus = menus.slice()
+
+              indexes.push i
+              formatNode(node)
+              indexes.pop()
+            menus.pop()
+
+        formatNode(filter)
+
+      if filter.link
+        if $rootScope.filters[filter.link]
+          filter.children = $rootScope.filters[filter.link]
+          appendData(filter)
+        else
+          $loader.get("/api/#{filter.link}/filters.json")
+            .success (data) ->
+              filter.children = data
+              appendData(filter)
+              $rootScope.filters[filter.link] = filter.children
+      else
+        appendData(filter)
 
 ]
 

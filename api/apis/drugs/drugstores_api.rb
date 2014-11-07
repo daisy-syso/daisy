@@ -11,7 +11,7 @@ class Drugs::DrugstoresAPI < ApplicationAPI
         form: form_filters,
         query: form_query_filters, 
         alphabet: form_alphabet_filters,
-        is_local_hot: form_switch_filters("热门药店", :is_local_hot)
+        is_local_hot: form_switch_filters("热门药店")
       }
 
     show! Drugs::Drugstore

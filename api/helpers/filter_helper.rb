@@ -14,15 +14,15 @@ module FilterHelper
 
   def generate_filter key, options
     filter = options[:meta] ? options[:meta].dup : {}
-    filter[:key] = key
+    filter[:key] ||= key
     filter[:title] ||= parse_option_value options[:title]
     filter[:template] ||= parse_option_value options[:template] do
       :list
     end
-    filter[:children] ||= parse_option_value options[:children] do
+    filter[:children] ||= parse_option_value key, options[:children] do
       options[:class].filters
     end if options[:class] || options[:children]
-    filter[:current] = parse_option_value options[:current] do
+    filter[:current] = parse_option_value key, options[:current] do
       params[key] || options[:default]
     end
     filter
@@ -99,6 +99,28 @@ module FilterHelper
       }
     end
 
+    def form_price_scope_filters array
+      { 
+        meta: { 
+          key: :price_scope,
+          title: "价格区间", 
+          template: :radio,
+        },
+        type: String,
+        children: proc do
+          children = []
+          children.push title: "不限", id: "-"
+          children.push title: "#{array.first-1}元 以下", id: "0-#{array.first}"
+          array.each_cons(2) do |from, to|
+            children.push title: "#{from}元 至 #{to}元", id: "#{from}-#{to}"
+          end
+          children.push title: "#{array.last}元 以上", id: "#{array.last}-"
+          children
+        end,
+        append: :form 
+      }
+    end
+
     def form_filters
       {
         meta: { 
@@ -109,10 +131,9 @@ module FilterHelper
       }
     end
 
-    def form_radio_filters klass, title, key
+    def form_radio_filters klass, title
       { 
         meta: { 
-          key: key,
           title: title, 
           template: :radio,
         },
@@ -121,23 +142,25 @@ module FilterHelper
       }
     end
 
-    def form_radio_array_filters array, title, key
+    def form_radio_array_filters array, title
       { 
         meta: { 
-          key: key,
           title: title, 
           template: :radio,
         },
         type: String,
-        children: proc { array.map { |title| { title: title, id: title }}},
+        children: proc do 
+          array.each_with_index.map do |title, index| 
+            { title: title, id: index }
+          end
+        end,
         append: :form 
       }
     end
 
-    def form_query_filters title = "搜索", key = :query
+    def form_query_filters title = "搜索"
       {
         meta: { 
-          key: key,
           title: title, 
           template: :string,
         },
@@ -159,15 +182,14 @@ module FilterHelper
       }
     end
 
-    def form_switch_filters title, key
+    def form_switch_filters title
       {
         meta: { 
-          key: key,
           title: title,
           template: :switch,
         },
         type: Object,
-        current: proc { params[key] == "true" },
+        current: proc { |key| params[key] == "true" },
         append: :form
       }
     end
@@ -177,7 +199,7 @@ module FilterHelper
         meta: {
           link: :"types"
         },
-        title: "类别",
+        title: "全部类别",
         filter_only: true,
         current: proc { params[:type] || current }
       }

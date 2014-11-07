@@ -13,7 +13,7 @@ class Drugs::DrugsAPI < ApplicationAPI
         query: form_query_filters, 
         price: form_price_filters,
         manufactory_query: form_radio_array_filters(
-          %w(三精制药 同仁堂 修正药业 太极集团), "品牌", :manufactory_query),
+          %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
         alphabet: form_alphabet_filters
       }
 

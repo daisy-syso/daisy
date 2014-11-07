@@ -10,7 +10,7 @@ class Maternals::ConfinementCentersAPI < ApplicationAPI
         form: form_filters,
         query: form_query_filters, 
         alphabet: form_alphabet_filters,
-        has_url: form_switch_filters("网址", :has_url)
+        has_url: form_switch_filters("网址")
       }
 
     show! Maternals::ConfinementCenter

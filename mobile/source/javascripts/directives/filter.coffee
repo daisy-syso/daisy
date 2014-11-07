@@ -8,49 +8,47 @@ angular.module('DaisyApp').directive 'filter', [
         filterData: "="
       link: (scope, element, attrs) ->
 
-        scope.currTitles = {}
+        scope.current = {}
+        scope.displayTitles = {}
 
         scope.$watch 'filterData', (filterData) ->
           if filterData
-            for filter in filterData
-              $rootScope.getFilters(filter, 'children', filter.link)
-        
+            for filter, index in filterData
+              $rootScope.formatFilter(filter)
+                
         scope.toggleMenu = (index, menu) ->
-          if scope.currIndex == index
+          if scope.current.index == index
             scope.closeMenu()
           else
-            scope.currIndex = index
-            scope.currMenu = menu
-
-            ret = $rootScope.formatFilter(menu)
-            scope.currSubIndexes = ret[0]
-            scope.currSubMenus = ret[1]
+            scope.current.index = index
+            scope.current.menu = menu
 
         scope.toggleColumn = (i, j, column) ->
-          scope.currSubIndexes.splice i
-          scope.currSubIndexes.push j
-          scope.currSubMenus.splice i + 1
-          scope.currSubMenus.push column.children
+          scope.current.menu.indexes.splice i
+          scope.current.menu.indexes.push j
+          scope.current.menu.menus.splice i + 1
+          scope.current.menu.menus.push column.children
 
-        scope.redirectTo = (i, j, column) ->
-          scope.currSubIndexes.splice i
-          scope.currSubIndexes.push j
-
+        scope.redirectTo = (column) ->
           if column.url
-            scope.$parent.redirectToUrl = column.url
-            scope.$parent.redirectToParams = column.params || {}
+            scope.$parent.redirectTo = 
+              url: column.url
+              params: column.params || {}
+            scope.displayTitles = {}
           else if column.params
-            scope.$parent.redirectToParams = angular.extend {}, 
-              scope.$parent.redirectToParams, column.params
+            scope.$parent.redirectTo = 
+              params: angular.extend {}, 
+                scope.$parent.redirectToParams, column.params
 
           if column.title
-            scope.currTitles[scope.currIndex] = column.parentTitle || column.title 
+            scope.displayTitles[scope.current.index] = 
+              column.parentTitle || column.title 
 
           scope.closeMenu()
 
         scope.closeMenu = () ->
-          scope.currIndex = -1
-          scope.currMenu = null
+          scope.current.index = -1
+          scope.current.menu = null
 
         scope.filtered = (menus) ->
           filtered = (menus) ->

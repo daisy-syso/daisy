@@ -79,31 +79,42 @@ class HomeAPI < Grape::API
         parent: true
       }, {
         title: "综合医院",
+        url: "hospitals/polyclinics",
         children: [{
           title: "全部",
           parent: true
         }, {
-          title: "三级甲等"
+          title: "三级甲等",
+          params: { hospital_level: 8 }
         }, {
-          title: "三级乙等"
+          title: "三级乙等",
+          params: { hospital_level: 9 }
         }, {
-          title: "三级合格"
+          title: "三级合格",
+          params: { hospital_level: 10 }
         }, {
-          title: "二级甲等"
+          title: "二级甲等",
+          params: { hospital_level: 4 }
         }, {
-          title: "二级乙等"
+          title: "二级乙等",
+          params: { hospital_level: 5 }
         }, {
-          title: "二级合格"
+          title: "二级合格",
+          params: { hospital_level: 6 }
         }, {
-          title: "一级甲等"
+          title: "一级甲等",
+          params: { hospital_level: 1 }
         }, {
-          title: "一级乙等"
+          title: "一级乙等",
+          params: { hospital_level: 2 }
         }, {
-          title: "一级合格"
+          title: "一级合格",
+          params: { hospital_level: 3 }
         }, {
           title: "社区医院"
         }, {
-          title: "民营医院"
+          title: "民营医院",
+          params: { hospital_level: 11 }
         }, {
           title: "外资医院"
         }, {
@@ -114,7 +125,8 @@ class HomeAPI < Grape::API
           title: "综合医院价格攻略"
         }]
       }, { 
-        title: "全国体检",
+        title: "体检医院",
+        url: "hospitals/tests",
         children: [{
           title: "全部",
           parent: true
@@ -135,6 +147,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "整形医院",
+        url: "hospitals/plastics",
         children: [{
           title: "全部",
           parent: true
@@ -173,6 +186,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "牙科医院",
+        url: "hospitals/dentals",
         children: [{
           title: "全部",
           parent: true
@@ -201,6 +215,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "妇幼医院",
+        url: "hospitals/gynaecologies",
         children: [{
           title: "全部",
           parent: true
@@ -227,6 +242,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "男科医院",
+        url: "hospitals/andrologies",
         children: [{
           title: "全部",
           parent: true
@@ -253,6 +269,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "中医院",
+        url: "hospitals/tcm",
         children: [{
           title: "全部",
           parent: true

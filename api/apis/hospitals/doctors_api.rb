@@ -11,8 +11,8 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         order_by: order_by_filters(Hospitals::Doctor),
         form: form_filters,
         query: form_query_filters, 
-        position_query: form_query_filters("职称", :position_query), 
-        hospital_query: form_query_filters("所属医院", :hospital_query), 
+        position_query: form_query_filters("职称"), 
+        hospital_query: form_query_filters("所属医院"), 
         alphabet: form_alphabet_filters
       }
 

@@ -9,7 +9,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
           type: type_filters(6000),
-          province: { class: Categories::Province, title: "位置", titleize: true },
+          city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurity),
           form: form_filters
@@ -23,7 +23,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
           type: type_filters,
-          province: { class: Categories::Province, title: "位置", titleize: true },
+          city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityHospital),
           form: form_filters
@@ -37,7 +37,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
           type: type_filters,
-          province: { class: Categories::Province, title: "位置", titleize: true },
+          city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityDrugstore),
           form: form_filters
@@ -51,7 +51,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
           type: type_filters,
-          province: { class: Categories::Province, title: "位置", titleize: true },
+          city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityDrug),
           form: form_filters
@@ -65,7 +65,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         with: SocialSecurities::SocialSecurityEndowmentEntity,
         filters: { 
           type: type_filters,
-          province: { class: Categories::Province, title: "位置", titleize: true },
+          city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurityEndowment),
           form: form_filters

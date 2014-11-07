@@ -23,6 +23,9 @@
     padding: 15px;
     border-bottom: 1px solid #ddd;
   }
+  .input-block {
+    padding-bottom: 10px;
+  }
 
   form {
     .checkboxes, .string {
@@ -35,7 +38,7 @@
       line-height: 36px;
     }
     .alphabet {
-      height: 174px;
+      height: 141px;
       .btn {
         width: 32px;
       }
@@ -68,6 +71,10 @@
     }
     .btn-group .btn {
       padding: 10px;
+    }
+    .btn-group-margin .btn {
+      padding: 10px;
+      margin: 0 5px 5px 0;
     }
     .btn {
       position: static;

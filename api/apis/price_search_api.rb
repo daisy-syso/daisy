@@ -14,7 +14,7 @@ class PriceSearchAPI < ApplicationAPI
           query: form_query_filters, 
           price: form_price_filters,
           manufactory_query: form_radio_array_filters(
-            %w(三精制药 同仁堂 修正药业 太极集团), "品牌", :manufactory_query),
+            %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
           alphabet: form_alphabet_filters
         }
     end
@@ -46,10 +46,9 @@ class PriceSearchAPI < ApplicationAPI
           form: form_filters,
           query: form_query_filters, 
           alphabet: form_alphabet_filters,
-          hospital_level: form_radio_filters(Hospitals::HospitalLevel, 
-            "医院等级", :hospital_level),
-          has_url: form_switch_filters("网址", :has_url),
-          is_local_hot: form_switch_filters("热门医院", :is_local_hot)
+          hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
+          has_url: form_switch_filters("网址"),
+          is_local_hot: form_switch_filters("热门医院")
         }
     end
 
@@ -64,7 +63,7 @@ class PriceSearchAPI < ApplicationAPI
           form: form_filters,
           query: form_query_filters, 
           alphabet: form_alphabet_filters,
-          has_url: form_switch_filters("网址", :has_url)
+          has_url: form_switch_filters("网址")
         }
     end
 

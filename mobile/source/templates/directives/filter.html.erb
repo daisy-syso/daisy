@@ -1,14 +1,14 @@
-<div class="backdrop ng-hide" ng-cloak ng-show="currMenu" ng-click="closeMenu()" style="z-index: -1"></div>
+<div class="backdrop ng-hide" ng-cloak ng-show="current.menu" ng-click="closeMenu()" style="z-index: -1"></div>
 <div class="dropdown">
   <div class="segmented-control">
     <div class="control-item" ng-repeat="data in filterData">
-      <a ng-class="{active: currIndex == $index}" ng-click="toggleMenu($index, data)">
-        {{currTitles[$index] || data.title}}
-        <span ng-class="currIndex == $index ? 'ion-arrow-down-b' : 'ion-arrow-up-b'"></span>
+      <a ng-class="{active: current.index == $index}" ng-click="toggleMenu($index, data)">
+        {{displayTitles[$index] || data.title}}
+        <span ng-class="current.index == $index ? 'ion-arrow-down-b' : 'ion-arrow-up-b'"></span>
       </a>
     </div>
   </div>
-  <div class="dropdown-menu card ng-hide" ng-cloak ng-show="currMenu">
-    <div ng-include="templateUrl(currMenu)" ng-if="currMenu"></div>
+  <div class="dropdown-menu card ng-hide" ng-cloak ng-show="current.menu">
+    <div ng-include="templateUrl(current.menu)" ng-if="current.menu"></div>
   </div>
 </div>

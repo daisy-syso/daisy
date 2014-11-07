@@ -99,6 +99,10 @@ input[type="text"], input[type="password"] {
   }
 }
 
+.btn-group-margin {
+  display: inline-block;
+}
+
 .toggle.active {
   background-color: #06c1ae;
   border: 2px solid #06c1ae;

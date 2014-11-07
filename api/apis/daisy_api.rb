@@ -29,8 +29,6 @@ class DaisyAPI < Grape::API
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
     mount Hospitals::DoctorsAPI
-    mount Hospitals::SpecialistsAPI
-    mount Hospitals::RegistrationsAPI
   end
 
   namespace :examinations do

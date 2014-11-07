@@ -14,9 +14,9 @@ class Examinations::ExaminationsAPI < ApplicationAPI
         price: form_price_filters, 
         alphabet: form_alphabet_filters,
         hospital_query: form_radio_array_filters(
-          %w(爱康国宾 美年大 慈铭体检 阳光体检), "品牌", :hospital_query),
+          %w(爱康国宾 美年大 慈铭体检 阳光体检), "品牌"),
         applicable_query: form_radio_array_filters(
-          %w(男性 女性 白领 亚健康), "适应人群", :applicable_query)
+          %w(男性 女性 白领 亚健康), "适应人群")
       }
       
     show! Examinations::Examination

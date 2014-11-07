@@ -10,7 +10,7 @@ class Categories::City < ActiveRecord::Base
       Hash.new.tap do |ret|
         ret[:id] = record.id
         ret[:title] = record.name
-        ret[:params] = { city: record.id, province: record.province_id }
+        ret[:params] = { province: record.province_id }
       end
     end
 

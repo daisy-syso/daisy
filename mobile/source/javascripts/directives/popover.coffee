@@ -5,17 +5,13 @@ angular.module('DaisyApp').directive 'popover', [
       restrict: 'A'
       templateUrl: "templates/directives/popover.html"
       scope:
-        popover: "=?"
-        popoverData: "=?"
-        popoverLink: "@"
-        popoverKeep: "@"
+        popover: "="
       link: (scope, element, attrs) ->
 
-        scope.$watch 'popoverLink', (popoverLink) ->
-          $rootScope.getFilters(scope, 'popoverData', popoverLink)
-        
-        scope.$watch 'popover', (data) ->
-          scope.popoverData = data if data
+        scope.$watch 'popover', (popover) ->
+          if popover
+            $rootScope.formatFilter(popover)
+            scope.popover = popover
 
         $rootScope.popover =
           toggle: () ->
@@ -23,26 +19,27 @@ angular.module('DaisyApp').directive 'popover', [
               $rootScope.popover.close()
             else
               $rootScope.popover.show = true
-              scope.currIndexes = []
-              scope.currMenus = [ scope.popoverData ]
 
           close: () ->
             $rootScope.popover.show = false
 
         scope.toggleColumn = (i, j, children) ->
-          scope.currIndexes.splice i
-          scope.currIndexes.push j
-          scope.currMenus.splice i + 1
-          scope.currMenus.push children
+          scope.popover.indexes.splice i
+          scope.popover.indexes.push j
+          scope.popover.menus.splice i + 1
+          scope.popover.menus.push children
 
-        scope.redirectTo = (data) ->
-          if data.url
-            scope.$parent.redirectToUrl = data.url
-            scope.$parent.redirectToParams = data.params || {}
-          else
-            scope.$parent.redirectToParams = angular.extend {}, 
-              scope.$parent.redirectToParams, data.params
-          $rootScope[scope.popoverKeep] = data if scope.popoverKeep
+        scope.redirectTo = (column) ->
+          if column.url
+            scope.$parent.redirectTo = 
+              url: column.url
+              params: column.params || {}
+          else if column.params
+            scope.$parent.redirectTo = 
+              params: angular.extend {}, 
+                scope.$parent.redirectToParams, column.params
+                
+          $rootScope[scope.popover.keep] = column if scope.popover.keep
           $rootScope.popover.close()
 
 ]
