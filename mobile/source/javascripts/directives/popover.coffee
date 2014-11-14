@@ -37,7 +37,7 @@ angular.module('DaisyApp').directive 'popover', [
           else if column.params
             scope.$parent.redirectTo = 
               params: angular.extend {}, 
-                scope.$parent.redirectToParams, column.params
+                scope.$parent.redirectTo.params, column.params
                 
           $rootScope[scope.popover.keep] = column if scope.popover.keep
           $rootScope.popover.close()

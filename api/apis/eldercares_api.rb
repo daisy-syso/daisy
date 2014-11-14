@@ -7,7 +7,7 @@ class EldercaresAPI < ApplicationAPI
         title: "养老公寓",
         filters: { 
           city: city_filters,
-          type: type_filters(9000),
+          type: type_filters(:eldercare),
           county: county_filters,
           order_by: order_by_filters(Eldercares::NursingRoom),
           form: form_filters,

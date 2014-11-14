@@ -4,8 +4,14 @@ class Diseases::DiseasesAPI < ApplicationAPI
     index! Diseases::Disease,
       title: "疾病查询",
       filters: { 
-        type: type_filters(2000),
+        type: type_filters(:disease),
         disease_type: { scope_only: true },
+        search_by: search_by_filters({
+          symptom: { title: "症状" },
+          hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+          alphabet: { title: "字母" },
+          drug: { title: "药品", class: Drugs::Drug }
+        }),
         order_by: order_by_filters(Diseases::Disease),
         form: form_filters,
         query: form_query_filters, 

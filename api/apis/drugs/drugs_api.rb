@@ -5,7 +5,7 @@ class Drugs::DrugsAPI < ApplicationAPI
       title: "药品大全",
       filters: { 
         city: fake_city_filters,
-        type: type_filters(4000),
+        type: type_filters(:drug),
         disease: { scope_only: true },
         county: fake_county_filters,
         order_by: order_by_filters(Drugs::Drug),

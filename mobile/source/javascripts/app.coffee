@@ -258,7 +258,7 @@ angular.module 'DaisyApp', [
 
     $rootScope.formatFilter = (filter) ->
 
-      appendData = (filter) ->
+      format = (filter) ->
         indexes = []
         menus = []
 
@@ -270,6 +270,9 @@ angular.module 'DaisyApp', [
               if angular.isDefined(node.id)
                 node.params ||= {}
                 node.params[filter.key] ||= node.id
+
+              if parent.url && !node.url
+                node.url = parent.url
 
               if node.parent
                 node.parentTitle = parent.title      
@@ -286,19 +289,21 @@ angular.module 'DaisyApp', [
             menus.pop()
 
         formatNode(filter)
+        filter.indexes ||= []
+        filter.menus ||= [ filter.children ]
 
       if filter.link
         if $rootScope.filters[filter.link]
           filter.children = $rootScope.filters[filter.link]
-          appendData(filter)
+          format(filter)
         else
           $loader.get("/api/#{filter.link}/filters.json")
             .success (data) ->
               filter.children = data
-              appendData(filter)
+              format(filter)
               $rootScope.filters[filter.link] = filter.children
       else
-        appendData(filter)
+        format(filter)
 
 ]
 

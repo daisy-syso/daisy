@@ -5,7 +5,7 @@ class Hospitals::DoctorsAPI < ApplicationAPI
       title: "找医生",
       filters: {
         city: city_filters,
-        type: type_filters(3000),
+        type: type_filters(:doctor),
         hospital_room: { scope_only: true },
         county: county_filters,
         order_by: order_by_filters(Hospitals::Doctor),

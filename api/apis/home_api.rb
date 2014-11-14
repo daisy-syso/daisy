@@ -74,7 +74,7 @@ class HomeAPI < Grape::API
       title: "医院大全",
       url: "hospitals/hospitals",
       children: [{
-        id: 1000,
+        id: :hospital,
         title: "全部",
         parent: true
       }, {
@@ -118,7 +118,8 @@ class HomeAPI < Grape::API
         }, {
           title: "外资医院"
         }, {
-          title: "社保定点医院"
+          title: "社保定点医院",
+          url: "social_securities/social_security_hospitals"
         }, {
           title: "综合医院诊疗攻略"
         }, {
@@ -289,23 +290,27 @@ class HomeAPI < Grape::API
       title: "查疾病",
       url: "diseases/diseases",
       children: [{
-        id: 2000,
+        id: :disease,
         title: "全部",
         parent: true
       }, {
         title: "症状查疾病",
+        params: { search_by: :symptom }
       }, {
         title: "科室查疾病",
+        params: { search_by: :hospital_room }
       }, {
         title: "字母查疾病",
+        params: { search_by: :alphabet }
       }, {
         title: "药品查疾病",
+        params: { search_by: :drug }
       }]
     }, {
       title: "找医生",
       url: "hospitals/doctors",
       children: [{
-        id: 3000,
+        id: :doctor,
         title: "全部",
         parent: true
       }, {
@@ -323,7 +328,7 @@ class HomeAPI < Grape::API
       title: "药品大全",
       url: "drugs/drugs",
       children: [{
-        id: 4000,
+        id: :drug,
         title: "全部",
         parent: true
       }, {
@@ -341,7 +346,7 @@ class HomeAPI < Grape::API
       title: "身边药房",
       url: "drugs/drugstores",
       children: [{
-        id: 5000,
+        id: :drugstore,
         title: "全部",
         parent: true
       }, {
@@ -354,7 +359,7 @@ class HomeAPI < Grape::API
     }, {
       title: "医保查询",
       children: [{
-        id: 6000,
+        id: :social_security,
         title: "医保查询",
         url: "social_securities/social_securities"
       }, {
@@ -372,7 +377,7 @@ class HomeAPI < Grape::API
     }, {
       title: "价格搜索",
       children: [{
-        id: 7000,
+        id: :price_search,
         title: "综合医院价格攻略"
       }, {
         title: "整形医院价格攻略"
@@ -405,7 +410,7 @@ class HomeAPI < Grape::API
       title: "全国体检",
       url: "examinations/examinations",
       children: [{
-        id: 8000,
+        id: :examination,
         title: "全部",
         parent: true
       }, {
@@ -426,7 +431,7 @@ class HomeAPI < Grape::API
     }, {
       title: "养老服务",
       children: [{
-        id: 9000,
+        id: :eldercare,
         title: "养老公寓",
         url: :"eldercares/nursing_rooms"
       }, {
@@ -447,7 +452,7 @@ class HomeAPI < Grape::API
     def format_menu nodes, parent = {}
       nodes.each do |node|
         node[:id] ||= next_id
-        node[:url] ||= parent[:url]
+        node[:id] = node[:id].to_s
         format_menu node[:children], node if node[:children]
       end
     end

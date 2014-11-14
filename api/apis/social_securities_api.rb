@@ -8,7 +8,7 @@ class SocialSecuritiesAPI < ApplicationAPI
         includes: :city,
         with: SocialSecurities::SocialSecurityEntity,
         filters: { 
-          type: type_filters(6000),
+          type: type_filters(:social_security),
           city: city_filters,
           county: fake_county_filters,
           order_by: order_by_filters(SocialSecurities::SocialSecurity),

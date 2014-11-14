@@ -21,6 +21,8 @@ class Drugs::Drug < ActiveRecord::Base
   scope :price, -> (to, from = 0) {
     to ? where(ori_price: from..to) : where{ori_price > from}
   }
+
+  scope :alphabet, -> (alphabet) { alphabet ? where{name_initials.like("#{alphabet}%")} : all }
   
   include Reviewable
 

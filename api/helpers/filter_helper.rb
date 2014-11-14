@@ -14,11 +14,9 @@ module FilterHelper
 
   def generate_filter key, options
     filter = options[:meta] ? options[:meta].dup : {}
-    filter[:key] ||= key
+    filter[:key] ||= parse_option_value options[:key] { key }
     filter[:title] ||= parse_option_value options[:title]
-    filter[:template] ||= parse_option_value options[:template] do
-      :list
-    end
+    filter[:template] ||= parse_option_value options[:template] { :list }
     filter[:children] ||= parse_option_value key, options[:children] do
       options[:class].filters
     end if options[:class] || options[:children]
@@ -199,9 +197,31 @@ module FilterHelper
         meta: {
           link: :"types"
         },
+        type: String,
         title: "全部类别",
         filter_only: true,
         current: proc { params[:type] || current }
+      }
+    end
+
+    def search_by_filters options
+      {
+        type: Symbol,
+        filter_only: true,
+        key: proc { params[:search_by] },
+        title: proc do
+          search_by_options = options[params[:search_by]]
+          search_by_options[:title]
+        end,
+        children: proc do
+          search_by_options = options[params[:search_by]]
+          parse_option_value search_by_options[:children] do
+            search_by_options[:class].filters
+          end
+        end,
+        current: proc do
+          params[params[:search_by]]
+        end
       }
     end
 

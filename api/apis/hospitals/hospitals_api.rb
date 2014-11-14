@@ -5,7 +5,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "医院大全",
       filters: { 
         city: city_filters,
-        type: type_filters(1000),
+        type: type_filters(:hospital),
         hospital_type: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,
@@ -29,7 +29,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "手机挂号",
       filters: { 
         city: city_filters,
-        type: type_filters(1000),
+        type: type_filters(:hospital),
         hospital_type: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,
@@ -187,6 +187,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_level: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,

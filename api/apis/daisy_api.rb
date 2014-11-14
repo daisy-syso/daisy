@@ -14,6 +14,8 @@ class DaisyAPI < Grape::API
   mount CouponsAPI
   mount SearchAPI
 
+  mount MobileAPI
+
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
   mount UserInfos::ReviewsAPI

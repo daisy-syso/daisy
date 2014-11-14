@@ -38,7 +38,7 @@ angular.module('DaisyApp').directive 'filter', [
           else if column.params
             scope.$parent.redirectTo = 
               params: angular.extend {}, 
-                scope.$parent.redirectToParams, column.params
+                scope.$parent.redirectTo.params, column.params
 
           if column.title
             scope.displayTitles[scope.current.index] = 
