@@ -5,9 +5,10 @@ class MobileAPI < ApplicationAPI
       optional :alphabet
     end
     get :drugs do
+      content_type "application/json; charset=UTF-8"
       drugs = Drugs::Drug.all
       drugs = drugs.alphabet(params[:alphabet]) if params[:alphabet]
-      present drugs.pluck(:name)
+      present data: drugs.limit(100).pluck(:name)
     end
   end
 
