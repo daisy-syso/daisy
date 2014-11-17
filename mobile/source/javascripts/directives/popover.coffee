@@ -11,7 +11,7 @@ angular.module('DaisyApp').directive 'popover', [
         scope.$watch 'popover', (popover) ->
           if popover
             $rootScope.formatFilter(popover)
-            scope.popover = popover
+            scope.current = popover
 
         $rootScope.popover =
           toggle: () ->
@@ -24,10 +24,10 @@ angular.module('DaisyApp').directive 'popover', [
             $rootScope.popover.show = false
 
         scope.toggleColumn = (i, j, children) ->
-          scope.popover.indexes.splice i
-          scope.popover.indexes.push j
-          scope.popover.menus.splice i + 1
-          scope.popover.menus.push children
+          scope.current.indexes.splice i
+          scope.current.indexes.push j
+          scope.current.menus.splice i + 1
+          scope.current.menus.push children
 
         scope.redirectTo = (column) ->
           if column.url
@@ -40,7 +40,7 @@ angular.module('DaisyApp').directive 'popover', [
               params: angular.extend {}, 
                 scope.$parent.redirectTo.params, column.params
                 
-          $rootScope[scope.popover.keep] = column if scope.popover.keep
+          $rootScope[scope.current.keep] = column if scope.current.keep
           $rootScope.popover.close()
 
 ]

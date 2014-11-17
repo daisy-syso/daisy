@@ -1,5 +1,5 @@
 <input type="text" placeholder="搜索" class="ng-hide" ng-model="filter" ng-show="current.menu.filterable">
-<div class="segmented-control" ng-style="{height: (current.menu.menus[0].length > 7 ? 7 : current.menu.menus[0].length) * 45 + 'px'}">
+<div class="segmented-control" ng-style="{height: (current.menu.children.length > 7 ? 7 : current.menu.children.length) * 45 + 'px'}">
   <div class="control-item" ng-repeat="(i, menu) in current.menu.menus">
     <div class="dropdown-scroll">
       <ul class="table-view media huge" ng-class="{last: $last}">
