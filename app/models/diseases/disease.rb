@@ -1,11 +1,24 @@
 class Diseases::Disease < ActiveRecord::Base
   belongs_to :disease_type
-
   has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
   has_and_belongs_to_many :doctors, class_name: "Hospitals::Doctor"
   has_and_belongs_to_many :hospitals, class_name: "Hospitals::Hospital"
+  has_and_belongs_to_many :symptoms, class_name: "Diseases::Symptom"
+  has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
 
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
+
+  scope :symptom, -> (symptom) {
+    symptom ? joins(:symptoms)
+      .where{diseases_symptoms.symptom_id == symptom}
+      .distinct : all
+  }
+
+  scope :hospital_room, -> (hospital_room) {
+    hospital_room ? joins(:hospital_rooms)
+      .where{diseases_hospital_rooms.hospital_room_id == hospital_room}
+      .distinct : all
+  }
 
   scope :query, -> (query) {
     query.present? ? where{name.like("%#{query}%")} : all
@@ -27,6 +40,10 @@ class Diseases::Disease < ActiveRecord::Base
     query.present? ? joins(:hospitals)
       .where{hospitals.name.like("%#{query}%")}
       .distinct : all
+  }
+
+  scope :alphabet, -> (alphabet) { 
+    alphabet ? where{name_initials.like("#{alphabet}%")} : all 
   }
 
   class << self

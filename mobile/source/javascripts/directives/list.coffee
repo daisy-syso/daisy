@@ -20,7 +20,7 @@ angular.module('DaisyApp').directive 'list', [
               scope.listData = json.data
 
         scope.link = (data) ->
-          data.link || "#/detail/#{data.type}/#{data.id}"
+          data.url || "#/detail/#{data.type}/#{data.id}"
           
         scope.templateUrl = (data) ->
           "templates/lists/#{data.type}.html"

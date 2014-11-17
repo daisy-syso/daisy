@@ -1,3 +1,6 @@
 class NetInfos::HospitalTypeNews < ActiveRecord::Base
-  belongs_to :hospital_type, class_name: "Hospitals::HospitalType"
+  belongs_to :hospital_type, class_name: 'Hospitals::HospitalType'
+  
+  scope :hospital_type, -> (hospital_type) { hospital_type ? where(hospital_type: hospital_type) : all }
+
 end

@@ -10,8 +10,6 @@ class DaisyAPI < Grape::API
   mount HomeAPI
   mount AccountsAPI
   mount RelatedResourcesAPI
-  mount PriceSearchAPI
-  mount CouponsAPI
   mount SearchAPI
 
   mount MobileAPI
@@ -21,8 +19,11 @@ class DaisyAPI < Grape::API
   mount UserInfos::ReviewsAPI
   mount UserInfos::OrdersAPI
 
+  mount PriceSearchAPI
+  mount CouponsAPI
   mount SocialSecuritiesAPI
   mount EldercaresAPI
+  mount NetInfosAPI
 
   namespace :categories do
     mount Categories::CitiesAPI
@@ -55,6 +56,10 @@ class DaisyAPI < Grape::API
     mount Maternals::ConfinementCentersAPI
   end
 
+  namespace :net_infos do
+    mount NetInfos::HospitalTypeNewsAPI
+  end
+  
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

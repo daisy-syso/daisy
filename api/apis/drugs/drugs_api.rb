@@ -6,8 +6,12 @@ class Drugs::DrugsAPI < ApplicationAPI
       filters: { 
         city: fake_city_filters,
         type: type_filters(:drug),
-        disease: { scope_only: true },
-        county: fake_county_filters,
+        search_by: search_by_filters({
+          default: :disease,
+          disease: { title: "疾病", class: Diseases::Disease },
+          hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+          alphabet: alphabet_filters
+        }),
         order_by: order_by_filters(Drugs::Drug),
         form: form_filters,
         query: form_query_filters, 

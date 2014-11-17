@@ -84,13 +84,23 @@ angular.module 'DaisyApp', [
       controller: detailCtrl
 
     listCtrl = [
-      '$scope', '$routeParams', '$loader'
-      ($scope, $routeParams, $loader) ->
-        $scope.type = $routeParams.type
-        url = "/api/#{$routeParams.type}.json"
+      '$scope', '$loader', '$route', '$location'
+      ($scope, $loader, $route, $location) ->
+        lastRoute = $route.current;
+        $scope.$on '$locationChangeSuccess', (event) ->
+          currRoute = $route.current
+          if currRoute.$$route.controller == listCtrl
+            $route.current = lastRoute
+
+        $scope.redirectTo = 
+          url: lastRoute.params.type
+          params: $location.search()
 
         $scope.$watch 'redirectTo', (redirectTo) ->
-          url = "/api/#{$scope.redirectTo.url}.json" if $scope.redirectTo.url
+          url = "/api/#{$scope.redirectTo.url}.json"
+          $location.path("list/#{$scope.redirectTo.url}")
+          $location.search($scope.redirectTo.params)
+
           page = $scope.page = 1
           params = angular.extend { page: page }, redirectTo.params
           $loader.get(url, params: params)
@@ -98,6 +108,7 @@ angular.module 'DaisyApp', [
               $scope.data = data
 
         $scope.loadMore = () ->
+          url = "/api/#{$scope.redirectTo.url}.json"
           page = $scope.page += 1
           params = angular.extend { page: page }, $scope.redirectTo.params
           $loader.get(url, params: params)
@@ -109,10 +120,12 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/list/:type*',
       templateUrl: "templates/list.html"
       controller: listCtrl
+      reloadOnSearch: false
 
     $routeProvider.when '/table/:type*',
       templateUrl: "templates/table.html"
       controller: listCtrl
+      reloadOnSearch: false
 
     $routeProvider.when '/search/:query',   
       templateUrl: "templates/list.html"
@@ -150,19 +163,21 @@ angular.module 'DaisyApp', [
 .run [
   '$rootScope', '$location'
   ($rootScope, $location) ->
+    $rootScope.animateNone = true
+    
     history = []
     # If back button clicked
     locationBack = false
     # If first page initialized
     pageReady = false
 
-    $rootScope.$on '$routeChangeStart', () ->
-      $rootScope.pageReady = pageReady
+    $rootScope.$on '$locationChangeStart', () ->
+      $rootScope.animateNone = !pageReady
+      $rootScope.animateBack = locationBack
       pageReady = true
-      $rootScope.locationBack = locationBack
       locationBack = false
 
-    $rootScope.$on '$routeChangeSuccess', () ->
+    $rootScope.$on '$locationChangeSuccess', () ->
       unless /^\/login/.test $location.$$path
         history.push($location.$$path) 
 

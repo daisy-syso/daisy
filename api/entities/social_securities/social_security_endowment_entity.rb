@@ -1,6 +1,6 @@
 class SocialSecurities::SocialSecurityEndowmentEntity < ApplicationEntity
 
-  expose :id
+  expose :id, :url
 
   expose :name do |object, options|
     if object.city
@@ -10,10 +10,8 @@ class SocialSecurities::SocialSecurityEndowmentEntity < ApplicationEntity
     end rescue "未知"
   end
 
-  expose :url, as: :link
-
   expose :type do |object, options|
-    "social_securities/social_securities"
+    "link"
   end
 
 end

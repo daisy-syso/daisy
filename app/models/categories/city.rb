@@ -33,7 +33,7 @@ class Categories::City < ActiveRecord::Base
       end
     end
 
-    # define_cached_methods :filters
+    define_cached_methods :filters
   end
 
 end

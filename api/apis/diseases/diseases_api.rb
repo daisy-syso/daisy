@@ -7,10 +7,10 @@ class Diseases::DiseasesAPI < ApplicationAPI
         type: type_filters(:disease),
         disease_type: { scope_only: true },
         search_by: search_by_filters({
-          symptom: { title: "症状" },
+          default: :symptom,
+          symptom: { title: "症状", class: Diseases::Symptom },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
-          alphabet: { title: "字母" },
-          drug: { title: "药品", class: Drugs::Drug }
+          alphabet: alphabet_filters
         }),
         order_by: order_by_filters(Diseases::Disease),
         form: form_filters,

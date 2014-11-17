@@ -121,9 +121,11 @@ class HomeAPI < Grape::API
           title: "社保定点医院",
           url: "social_securities/social_security_hospitals"
         }, {
-          title: "综合医院诊疗攻略"
+          title: "综合医院诊疗攻略",
+          url: "net_infos/polyclinic_treatments"
         }, {
-          title: "综合医院价格攻略"
+          title: "综合医院价格攻略",
+          url: "net_infos/polyclinic_charges"
         }]
       }, { 
         title: "体检医院",
@@ -142,9 +144,12 @@ class HomeAPI < Grape::API
         }, {
           title: "适用人群套餐"
         }, {
-          title: "体检套餐攻略"
+          title: "体检诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 3 }
         }, {
-          title: "体检价格攻略"
+          title: "体检价格攻略",
+          url: "examinations/examinations"
         }]
       }, {
         title: "整形医院",
@@ -181,7 +186,9 @@ class HomeAPI < Grape::API
         }, {
           title: "半永久性化妆"
         }, {
-          title: "整形美容诊疗攻略"
+          title: "整形美容诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 2 }
         }, {
           title: "整形美容价格攻略"
         }]
@@ -210,7 +217,9 @@ class HomeAPI < Grape::API
         }, {
           title: "全口义齿"
         }, {
-          title: "牙科诊疗攻略"
+          title: "牙科诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 6 }
         }, {
           title: "牙科价格攻略"
         }]
@@ -237,7 +246,9 @@ class HomeAPI < Grape::API
         }, { 
           title: "痛经中心"
         }, { 
-          title: "妇科诊疗攻略"
+          title: "妇科诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 5 }
         }, { 
           title: "妇科价格攻略"
         }]
@@ -264,7 +275,9 @@ class HomeAPI < Grape::API
         }, {
           title: "包皮手术"
         }, {
-          title: "男科诊疗攻略"
+          title: "男科诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 1 }
         }, {
           title: "男科价格攻略"
         }]
@@ -281,7 +294,9 @@ class HomeAPI < Grape::API
         }, {
           title: "其它"
         }, {
-          title: "中医诊疗攻略"
+          title: "中医诊疗攻略",
+          url: "net_infos/hospital_type_news",
+          params: { hospital_type: 4 }
         }, {
           title: "中医价格攻略"
         }]
@@ -291,9 +306,6 @@ class HomeAPI < Grape::API
       url: "diseases/diseases",
       children: [{
         id: :disease,
-        title: "全部",
-        parent: true
-      }, {
         title: "症状查疾病",
         params: { search_by: :symptom }
       }, {
@@ -302,25 +314,23 @@ class HomeAPI < Grape::API
       }, {
         title: "字母查疾病",
         params: { search_by: :alphabet }
-      }, {
-        title: "药品查疾病",
-        params: { search_by: :drug }
       }]
     }, {
       title: "找医生",
       url: "hospitals/doctors",
       children: [{
         id: :doctor,
-        title: "全部",
-        parent: true
-      }, {
         title: "医院找医生",
-      }, {
-        title: "科室找医生",
+        params: { search_by: :hospital }
       }, {
         title: "疾病找医生",
+        params: { search_by: :disease }
+      }, {
+        title: "科室找医生",
+        params: { search_by: :hospital_room }
       }, {
         title: "字母找医生",
+        params: { search_by: :alphabet }
       }, {
         title: "找专家医生攻略"
       }]
@@ -329,32 +339,31 @@ class HomeAPI < Grape::API
       url: "drugs/drugs",
       children: [{
         id: :drug,
-        title: "全部",
-        parent: true
-      }, {
         title: "疾病查药品",
+        params: { search_by: :disease }
       }, {
         title: "科室查药品",
-      }, {
-        title: "医生查药品",
+        params: { search_by: :hospital_room }
       }, {
         title: "字母查药品",
+        params: { search_by: :alphabet }
       }, {
-        title: "医保定点药品"
+        title: "医保定点药品",
+        url: "social_securities/social_security_drugs"
       }]
     }, {
       title: "身边药房",
       url: "drugs/drugstores",
       children: [{
         id: :drugstore,
-        title: "全部",
-        parent: true
-      }, {
         title: "字母找药店",
+        params: { search_by: :alphabet }
       }, {
         title: "地图找药店",
+        params: { search_by: :map }
       }, {
-        title: "医保定点药店"
+        title: "医保定点药店",
+        url: "social_securities/social_security_drugstores"
       }]
     }, {
       title: "医保查询",
@@ -366,11 +375,11 @@ class HomeAPI < Grape::API
         title: "定点医院查询",
         url: "social_securities/social_security_hospitals"
       }, {
-        title: "定点药店查询",
-        url: "social_securities/social_security_drugstores"
-      }, {
         title: "定点药品查询",
         url: "social_securities/social_security_drugs"
+      }, {
+        title: "定点药店查询",
+        url: "social_securities/social_security_drugstores"
       }, {
         title: "健康险攻略"
       }]

@@ -1,0 +1,11 @@
+<%= partial 'templates/details/header' %>
+
+<div class="content">
+
+  <%= partial 'templates/details/desc', locals: { subtitle: :desc } %>
+
+  <%= partial 'templates/details/detail', locals: { title: "治疗", detail: :treatment } %>
+
+  <%= partial 'related' %> 
+
+</div>

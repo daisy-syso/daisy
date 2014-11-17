@@ -1,4 +1,4 @@
-class SocialSecurities::SocialSecurityEntity < ApplicationEntity
+class SocialSecurities::SocialSecurityHospitalEntity < ApplicationEntity
 
   expose :id, :url
 

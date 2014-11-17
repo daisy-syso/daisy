@@ -47,7 +47,7 @@ module Filterable
         generate_filters(class_exec(*args, &block), key, all)
       end
 
-      # define_cached_methods method
+      define_cached_methods method
     end
 
     def define_nested_filter_method method, key, all = {}, &block
@@ -56,7 +56,7 @@ module Filterable
         collect_nested_filter(records, key, all)
       end
 
-      # define_cached_methods method
+      define_cached_methods method
     end
 
     def generate_form_filters

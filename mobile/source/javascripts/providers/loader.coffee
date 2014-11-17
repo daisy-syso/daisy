@@ -10,7 +10,7 @@ angular.module("DaisyApp").factory '$loader', [
           $rootScope.account = null
           $location.path "/login#{$location.$$path}"
       else
-        $alert "未知错误"
+        $alert.error("未知错误")
 
     loader =
       get: (url, config = {}) ->

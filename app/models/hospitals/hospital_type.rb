@@ -1,6 +1,4 @@
 class Hospitals::HospitalType < ActiveRecord::Base
-  scope :specialist, -> { where(specialist: true) }
-  scope :price_search, -> { where(price_search: true) }
 
   class << self
     include Filterable
@@ -15,14 +13,6 @@ class Hospitals::HospitalType < ActiveRecord::Base
 
     define_filter_method :filters, :hospital_type do
       self.all
-    end
-
-    define_filter_method :specialist_filters, :hospital_type do
-      self.specialist
-    end
-
-    define_filter_method :price_search_filters, :hospital_type, false do
-      self.price_search
     end
   end
 

@@ -9,7 +9,7 @@ body {
   display: none;
 }
 
-.main.ready.ng-animate {
+.main.ng-animate {
   @include animation-duration(500ms);
   @include animation-fill-mode(both);
   position: absolute;
@@ -29,6 +29,15 @@ body {
   }
   .main.ng-leave {
     @include animation-name(fadeOutRight);
+  }
+}
+
+.none {
+  .main.ng-enter {
+    @include animation-duration(0);
+  }
+  .main.ng-leave {
+    @include animation-duration(0);
   }
 }
 

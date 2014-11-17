@@ -1,6 +1,7 @@
 class Drugs::Drug < ActiveRecord::Base
   belongs_to :drug_type
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
+  has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
 
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
@@ -8,6 +9,12 @@ class Drugs::Drug < ActiveRecord::Base
     type ? joins(:diseases)
       .where(diseases_drugs: { disease_id: type })
       .distinct : all 
+  }
+
+  scope :hospital_room, -> (hospital_room) {
+    hospital_room ? joins(:hospital_rooms)
+      .where{drugs_hospital_rooms.hospital_room_id == hospital_room}
+      .distinct : all
   }
 
   scope :query, -> (query) {
@@ -22,7 +29,9 @@ class Drugs::Drug < ActiveRecord::Base
     to ? where(ori_price: from..to) : where{ori_price > from}
   }
 
-  scope :alphabet, -> (alphabet) { alphabet ? where{name_initials.like("#{alphabet}%")} : all }
+  scope :alphabet, -> (alphabet) { 
+    alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
   
   include Reviewable
 

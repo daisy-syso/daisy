@@ -13,6 +13,8 @@ module FilterHelper
   end
 
   def generate_filter key, options
+    parse_option_value options[:before]
+
     filter = options[:meta] ? options[:meta].dup : {}
     filter[:key] ||= parse_option_value options[:key] { key }
     filter[:title] ||= parse_option_value options[:title]
@@ -167,6 +169,15 @@ module FilterHelper
       }
     end
 
+    def alphabet_filters
+      {
+        title: "字母",
+        children: ('A'..'Z').map do |s| 
+          { title: s, id: s }
+        end
+      }
+    end
+
     def form_alphabet_filters
       {
         meta: { 
@@ -208,7 +219,13 @@ module FilterHelper
       {
         type: Symbol,
         filter_only: true,
+        default: options[:default],
         key: proc { params[:search_by] },
+        before: proc do
+          search_by_key = params[:search_by]
+          search_by_options = options[search_by_key]
+          has_scope search_by_key unless search_by_options[:filter_only]
+        end,
         title: proc do
           search_by_options = options[params[:search_by]]
           search_by_options[:title]
