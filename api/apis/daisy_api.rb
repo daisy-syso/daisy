@@ -19,12 +19,6 @@ class DaisyAPI < Grape::API
   mount UserInfos::ReviewsAPI
   mount UserInfos::OrdersAPI
 
-  mount PriceSearchAPI
-  mount CouponsAPI
-  mount SocialSecuritiesAPI
-  mount EldercaresAPI
-  mount NetInfosAPI
-
   namespace :categories do
     mount Categories::CitiesAPI
   end
@@ -56,11 +50,28 @@ class DaisyAPI < Grape::API
     mount Maternals::ConfinementCentersAPI
   end
 
+  namespace :coupons do
+    mount Coupons::CouponsAPI
+  end
+
+  namespace :social_securities do
+    mount SocialSecurities::SocialSecuritiesAPI
+  end
+
+  namespace :eldercares do
+    mount Eldercares::EldercaresAPI
+  end
+
+  namespace :insurances do
+    mount Insurances::InsurancesAPI
+  end
+
+  mount NetInfos::HotSearchKeywordsAPI
   namespace :net_infos do
     mount NetInfos::HospitalTypeNewsAPI
+    mount NetInfos::NetInfosAPI
   end
   
-  mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do
     not_found!

@@ -119,7 +119,8 @@ class HomeAPI < Grape::API
           title: "外资医院"
         }, {
           title: "社保定点医院",
-          url: "social_securities/social_security_hospitals"
+          url: "social_securities/social_securities",
+          params: { social_security_type: 2 }
         }, {
           title: "综合医院诊疗攻略",
           url: "net_infos/polyclinic_treatments"
@@ -349,7 +350,8 @@ class HomeAPI < Grape::API
         params: { search_by: :alphabet }
       }, {
         title: "医保定点药品",
-        url: "social_securities/social_security_drugs"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 3 }
       }]
     }, {
       title: "身边药房",
@@ -363,23 +365,28 @@ class HomeAPI < Grape::API
         params: { search_by: :map }
       }, {
         title: "医保定点药店",
-        url: "social_securities/social_security_drugstores"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 4 }
       }]
     }, {
       title: "医保查询",
       children: [{
         id: :social_security,
         title: "医保查询",
-        url: "social_securities/social_securities"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 1 }
       }, {
         title: "定点医院查询",
-        url: "social_securities/social_security_hospitals"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 2 }
       }, {
         title: "定点药品查询",
-        url: "social_securities/social_security_drugs"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 3 }
       }, {
         title: "定点药店查询",
-        url: "social_securities/social_security_drugstores"
+        url: "social_securities/social_securities",
+        params: { social_security_type: 4 }
       }, {
         title: "健康险攻略"
       }]
@@ -445,10 +452,11 @@ class HomeAPI < Grape::API
         url: :"eldercares/nursing_rooms"
       }, {
         title: "养老保险（社保）查询",
-        url: :"eldercares/social_security_endowments"
+        url: :"social_securities/social_securities",
+        params: { social_security_type: 5 }
       }, {
         title: "养老保险（商业）攻略",
-        url: :"eldercares/insurances"
+        url: :"insurances/insurances"
       }]
     }]
 

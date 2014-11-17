@@ -1,10 +1,6 @@
 class SocialSecurities::SocialSecurityEntity < ApplicationEntity
 
-  expose :id, :url
-
-  expose :name do |object, options|
-    object.city.name rescue "未知"
-  end
+  expose :id, :name, :url
 
   expose :type do |object, options|
     "link"
