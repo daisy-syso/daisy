@@ -90,11 +90,11 @@ angular.module 'DaisyApp', [
 
         $scope.$on '$locationChangeSuccess', (event) ->
           if lastRoute
-            console.log event
+            console.log lastRoute, event
             $route.current = lastRoute
             lastRoute = null
 
-        $scope.redirectTo = (type, params) ->
+        $scope.redirectTo = (type, params, changePath = true) ->
           $scope.type = type
           $scope.params = params
 
@@ -105,12 +105,13 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
 
-          lastRoute = $route.current
-          $location.path("list/#{type}")
-          $location.search(params)
-          $location.replace()
+          if changePath
+            lastRoute = $route.current
+            $location.path("list/#{type}")
+            $location.search(params)
+            $location.replace()
 
-        $scope.redirectTo($route.current.params.type, $location.search()) 
+        $scope.redirectTo($route.current.params.type, $location.search(), false) 
 
         $scope.loadMore = () ->
           url = "/api/#{$scope.type}.json"
