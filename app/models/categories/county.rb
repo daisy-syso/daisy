@@ -6,7 +6,7 @@ class Categories::County < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_filter_method :filters, :county do |city|
+    define_filter_method :filters do |city|
       self.city(city)
     end
   end

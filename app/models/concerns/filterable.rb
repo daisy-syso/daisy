@@ -4,36 +4,36 @@ module Filterable
   included do
     include Cacheable
 
-    def generate_filter record, key = nil
+    def generate_filter record
       Hash.new.tap do |ret|
-        ret[:id] = record.id if key
+        ret[:id] = record.id
         ret[:title] = record.name
       end
     end
 
-    def generate_filters records, key = nil, all = nil
+    def generate_filters records, all = nil
       records.map do |record|
-        generate_filter record, key
+        generate_filter record
       end.tap do |ret|
-        prepend_filter_all ret, key, all if key && all
+        prepend_filter_all ret, all if all
       end
     end
 
-    def collect_nested_filter records, key, all, parent_id = nil
+    def collect_nested_filter records, all, parent_id = nil
       return unless records[parent_id]
       records[parent_id].map do |record|
-        generate_filter(record, key).tap do |ret|
-          children = collect_nested_filter(records, key, nil, record.id)
+        generate_filter(record).tap do |ret|
+          children = collect_nested_filter(records, nil, record.id)
           ret[:children] = children if children
         end
       end.tap do |ret|
-        prepend_filter_all ret, key, all if all
+        prepend_filter_all ret, all if all
       end
     end
 
-    def prepend_filter_all filters, key = nil, all = {}
+    def prepend_filter_all filters, all = {}
       filter = { title: "全部", parent: true }
-      filter.merge!(id: nil) if key
+      filter.merge!(id: nil)
       filter.merge!(all)
       filters.unshift(filter)
     end
@@ -42,25 +42,25 @@ module Filterable
 
 
   module ClassMethods
-    def define_filter_method method, key, all = {}, &block
+    def define_filter_method method, all = {}, &block
       define_method method do |*args|
-        generate_filters(class_exec(*args, &block), key, all)
+        generate_filters(class_exec(*args, &block), all)
       end
 
       define_cached_methods method
     end
 
-    def define_nested_filter_method method, key, all = {}, &block
+    def define_nested_filter_method method, all = {}, &block
       define_method method do |*args|
         records = class_exec(*args, &block).group_by(&:parent_id)
-        collect_nested_filter(records, key, all)
+        collect_nested_filter(records, all)
       end
 
       define_cached_methods method
     end
 
     def generate_form_filters
-      define_method :generate_filter do |record, key = nil|
+      define_method :generate_filter do |record|
         Hash.new.tap do |ret|
           ret[:id] = record.id
           ret[:title] = record.name

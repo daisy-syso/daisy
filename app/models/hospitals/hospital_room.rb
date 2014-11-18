@@ -4,7 +4,7 @@ class Hospitals::HospitalRoom < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_nested_filter_method :filters, :hospital_room do
+    define_nested_filter_method :filters do
       self.all
     end
   end

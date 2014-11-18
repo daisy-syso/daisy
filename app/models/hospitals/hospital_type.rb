@@ -11,7 +11,7 @@ class Hospitals::HospitalType < ActiveRecord::Base
       end
     end
 
-    define_filter_method :filters, :hospital_type do
+    define_filter_method :filters do
       self.all
     end
   end

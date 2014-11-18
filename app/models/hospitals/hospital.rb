@@ -47,7 +47,7 @@ class Hospitals::Hospital < ActiveRecord::Base
     include Filterable
 
     def filters city
-      generate_filters self.city(city).where.not(level: nil), :hospital
+      generate_filters self.city(city).where.not(level: nil)
     end
 
     define_cached_methods :filters

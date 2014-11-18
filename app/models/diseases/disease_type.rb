@@ -6,7 +6,7 @@ class Diseases::DiseaseType < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_nested_filter_method :filters, :disease_type do
+    define_nested_filter_method :filters do
       self.all
     end
   end

@@ -4,7 +4,7 @@ class SocialSecurities::SocialSecurityType < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_filter_method :filters, :social_security_type do
+    define_filter_method :filters do
       self.all
     end
   end

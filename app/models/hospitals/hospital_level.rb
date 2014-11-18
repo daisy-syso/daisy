@@ -6,11 +6,11 @@ class Hospitals::HospitalLevel < ActiveRecord::Base
     include Filterable
     generate_form_filters
     
-    define_filter_method :filters, :hospital_level, false do
+    define_filter_method :filters, false do
       self.all
     end
 
-    define_filter_method :form_filters, :hospital_level, false do
+    define_filter_method :form_filters, false do
       self.form
     end
   end

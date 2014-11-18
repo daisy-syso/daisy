@@ -6,7 +6,7 @@ class Drugs::DrugType < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_nested_filter_method :filters, :drug_type do
+    define_nested_filter_method :filters do
       self.all
     end
   end

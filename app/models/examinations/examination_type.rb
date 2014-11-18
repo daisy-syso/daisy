@@ -5,7 +5,7 @@ class Examinations::ExaminationType < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_nested_filter_method :filters, :examination_type do
+    define_nested_filter_method :filters do
       self.all
     end
   end

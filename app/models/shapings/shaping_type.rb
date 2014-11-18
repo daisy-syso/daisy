@@ -5,7 +5,7 @@ class Shapings::ShapingType < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_nested_filter_method :filters, :shaping_type do
+    define_nested_filter_method :filters do
       self.all
     end
   end

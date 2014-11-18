@@ -5,7 +5,7 @@ class Categories::Province < ActiveRecord::Base
   class << self
     include Filterable
 
-    define_filter_method :filters, :province do
+    define_filter_method :filters do
       self.all
     end
   end
