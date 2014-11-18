@@ -86,15 +86,8 @@ angular.module 'DaisyApp', [
     listCtrl = [
       '$scope', '$loader', '$route', '$location'
       ($scope, $loader, $route, $location) ->
-        lastRoute = null
 
-        $scope.$on '$locationChangeSuccess', (event) ->
-          if lastRoute
-            console.log lastRoute, event
-            $route.current = lastRoute
-            lastRoute = null
-
-        $scope.redirectTo = (type, params, changePath = true) ->
+        $scope.loadData = (type, params) ->
           $scope.type = type
           $scope.params = params
 
@@ -105,13 +98,15 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
 
-          if changePath
-            lastRoute = $route.current
-            $location.path("list/#{type}")
-            $location.search(params)
-            $location.replace()
+        $scope.redirectTo = (type, params) ->
+          $scope.loadData(type, params)
 
-        $scope.redirectTo($route.current.params.type, $location.search(), false) 
+          $location.path("list/#{type}")
+          $location.search(params)
+          $location.replace()
+          $location.keep = true
+
+        $scope.loadData($route.current.params.type, $location.search()) 
 
         $scope.loadMore = () ->
           url = "/api/#{$scope.type}.json"
@@ -167,27 +162,31 @@ angular.module 'DaisyApp', [
 
 # Helpers $location
 .run [
-  '$rootScope', '$location', '$window'
-  ($rootScope, $location, $window) ->
+  '$rootScope', '$location', '$route', '$window'
+  ($rootScope, $location, $route, $window) ->
     $rootScope.animateNone = true
-    
-    # If back button clicked
-    locationBack = false
-    # If first page initialized
-    pageReady = false
 
     $rootScope.$on '$locationChangeStart', () ->
-      $rootScope.animateNone = !pageReady
-      $rootScope.animateBack = locationBack
-      pageReady = true
-      locationBack = false
+      $rootScope.routeDirection = 
+        if $location.back
+          $location.back = false
+          'back'
+        else if $route.last && !$location.keep
+          'forward'
+        else
+          null
+
+    $rootScope.$on '$locationChangeSuccess', (event) ->
+      if $location.keep
+        $location.keep = false
+        $route.current = $route.last
+
+    $rootScope.$on '$routeChangeSuccess', () ->
+      $route.last = $route.current
 
     $rootScope.back = () ->
-      locationBack = true
+      $location.back = true
       $window.history.back()
-
-    $rootScope.redirectTo = (path) ->
-      $location.path(path)
 
     $rootScope.search = (query) ->
       $location.path("/search/#{query}")

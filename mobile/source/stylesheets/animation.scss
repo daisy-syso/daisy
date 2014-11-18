@@ -16,11 +16,14 @@ body {
   height: 100%;
   width: 100%;
 }
-.main.ng-enter {
-  @include animation-name(fadeInRight);
-}
-.main.ng-leave {
-  @include animation-name(fadeOutLeft);
+
+.forward {
+  .main.ng-enter {
+    @include animation-name(fadeInRight);
+  }
+  .main.ng-leave {
+    @include animation-name(fadeOutLeft);
+  }
 }
 
 .back {
@@ -29,15 +32,6 @@ body {
   }
   .main.ng-leave {
     @include animation-name(fadeOutRight);
-  }
-}
-
-.none {
-  .main.ng-enter {
-    @include animation-duration(0);
-  }
-  .main.ng-leave {
-    @include animation-duration(0);
   }
 }
 
