@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'popover', [
-  '$loader', '$rootScope'
-  ($loader, $rootScope) ->
+  '$loader', '$rootScope', '$route'
+  ($loader, $rootScope, $route) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/popover.html"
@@ -30,16 +30,17 @@ angular.module('DaisyApp').directive 'popover', [
           scope.current.menus.push children
 
         scope.redirectTo = (column) ->
-          if column.url
-            scope.$parent.redirectTo = 
-              url: column.url
-              params: column.params || {}
-          else if column.params
-            scope.$parent.redirectTo = 
-              url: scope.$parent.redirectTo.url
-              params: angular.extend {}, 
-                scope.$parent.redirectTo.params, column.params
-                
+          listScope = $route.current.scope
+
+          if column.type
+            type = column.type
+            params = column.params || {}
+          else
+            type = listScope.type
+            params = angular.extend {}, 
+              listScope.params, column.params
+          listScope.redirectTo type, params
+          
           $rootScope[scope.current.keep] = column if scope.current.keep
           $rootScope.popover.close()
 

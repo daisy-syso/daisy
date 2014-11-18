@@ -1,4 +1,4 @@
-class NetInfos::PolyclinicCharge < ActiveRecord::Base
+class Hospitals::PolyclinicCharge < ActiveRecord::Base
   belongs_to :province, class_name: "Categories::Province"
 
   scope :city, -> (city) { all }

@@ -26,6 +26,9 @@ class DaisyAPI < Grape::API
   namespace :hospitals do
     mount Hospitals::HospitalsAPI
     mount Hospitals::DoctorsAPI
+    mount Hospitals::HospitalNewsAPI
+    mount Hospitals::HospitalChargesAPI
+  
   end
 
   namespace :examinations do
@@ -67,11 +70,6 @@ class DaisyAPI < Grape::API
   end
 
   mount NetInfos::HotSearchKeywordsAPI
-  namespace :net_infos do
-    mount NetInfos::HospitalTypeNewsAPI
-    mount NetInfos::NetInfosAPI
-  end
-  
 
   route :any, '*path' do
     not_found!

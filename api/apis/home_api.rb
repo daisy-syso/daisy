@@ -73,18 +73,18 @@ class HomeAPI < Grape::API
   end
 
   TypeMenu = [{
-      title: "热门精选",
-      url: "coupons/coupons"
+      type: "coupons/coupons",
+      title: "热门精选"
     }, {
+      type: "hospitals/hospitals",
       title: "医院大全",
-      url: "hospitals/hospitals",
       children: [{
         id: :hospital,
         title: "全部",
         parent: true
       }, {
+        type: "hospitals/polyclinics",
         title: "综合医院",
-        url: "hospitals/polyclinics",
         children: [{
           title: "全部",
           parent: true
@@ -116,26 +116,28 @@ class HomeAPI < Grape::API
           title: "一级合格",
           params: { hospital_level: 3 }
         }, {
-          title: "社区医院"
+          title: "社区医院",
+          params: { hospital_level: 13 }
         }, {
           title: "民营医院",
           params: { hospital_level: 11 }
         }, {
-          title: "外资医院"
+          title: "外资医院",
+          params: { hospital_level: 12 }
         }, {
+          type: "social_securities/social_securities",
           title: "社保定点医院",
-          url: "social_securities/social_securities",
           params: { social_security_type: 2 }
         }, {
-          title: "综合医院诊疗攻略",
-          url: "net_infos/polyclinic_treatments"
+          type: "hospitals/polyclinic_treatments",
+          title: "综合医院诊疗攻略"
         }, {
-          title: "综合医院价格攻略",
-          url: "net_infos/polyclinic_charges"
+          type: "hospitals/polyclinic_charges",
+          title: "综合医院价格攻略"
         }]
       }, { 
+        type: "hospitals/tests",
         title: "体检医院",
-        url: "hospitals/tests",
         children: [{
           title: "全部",
           parent: true
@@ -150,16 +152,16 @@ class HomeAPI < Grape::API
         }, {
           title: "适用人群套餐"
         }, {
+          type: "hospitals/hospital_news",
           title: "体检诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 3 }
         }, {
-          title: "体检价格攻略",
-          url: "examinations/examinations"
+          type: "examinations/examinations",
+          title: "体检价格攻略"
         }]
       }, {
+        type: "hospitals/plastics",
         title: "整形医院",
-        url: "hospitals/plastics",
         children: [{
           title: "全部",
           parent: true
@@ -192,15 +194,16 @@ class HomeAPI < Grape::API
         }, {
           title: "半永久性化妆"
         }, {
+          type: "hospitals/hospital_news",
           title: "整形美容诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 2 }
         }, {
+          type: "shapings/shaping_items",
           title: "整形美容价格攻略"
         }]
       }, {
+        type: "hospitals/dentals",
         title: "牙科医院",
-        url: "hospitals/dentals",
         children: [{
           title: "全部",
           parent: true
@@ -223,15 +226,17 @@ class HomeAPI < Grape::API
         }, {
           title: "全口义齿"
         }, {
+          type: "hospitals/hospital_news",
           title: "牙科诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 6 }
         }, {
-          title: "牙科价格攻略"
+          type: "hospitals/hospital_charges",
+          title: "牙科价格攻略",
+          params: { hospital_type: 6 }
         }]
       }, {
+        type: "hospitals/gynaecologies",
         title: "妇幼医院",
-        url: "hospitals/gynaecologies",
         children: [{
           title: "全部",
           parent: true
@@ -252,15 +257,15 @@ class HomeAPI < Grape::API
         }, { 
           title: "痛经中心"
         }, { 
+          type: "hospitals/hospital_news",
           title: "妇科诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 5 }
         }, { 
           title: "妇科价格攻略"
         }]
       }, {
+        type: "hospitals/andrologies",
         title: "男科医院",
-        url: "hospitals/andrologies",
         children: [{
           title: "全部",
           parent: true
@@ -281,15 +286,15 @@ class HomeAPI < Grape::API
         }, {
           title: "包皮手术"
         }, {
+          type: "hospitals/hospital_news",
           title: "男科诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 1 }
         }, {
           title: "男科价格攻略"
         }]
       }, {
+        type: "hospitals/tcm",
         title: "中医院",
-        url: "hospitals/tcm",
         children: [{
           title: "全部",
           parent: true
@@ -300,16 +305,16 @@ class HomeAPI < Grape::API
         }, {
           title: "其它"
         }, {
+          type: "hospitals/hospital_news",
           title: "中医诊疗攻略",
-          url: "net_infos/hospital_type_news",
           params: { hospital_type: 4 }
         }, {
           title: "中医价格攻略"
         }]
       }]
     }, {
+      type: "diseases/diseases",
       title: "查疾病",
-      url: "diseases/diseases",
       children: [{
         id: :disease,
         title: "症状查疾病",
@@ -322,8 +327,8 @@ class HomeAPI < Grape::API
         params: { search_by: :alphabet }
       }]
     }, {
+      type: "hospitals/doctors",
       title: "找医生",
-      url: "hospitals/doctors",
       children: [{
         id: :doctor,
         title: "医院找医生",
@@ -341,8 +346,8 @@ class HomeAPI < Grape::API
         title: "找专家医生攻略"
       }]
     }, {
+      type: "drugs/drugs",
       title: "药品大全",
-      url: "drugs/drugs",
       children: [{
         id: :drug,
         title: "疾病查药品",
@@ -354,13 +359,13 @@ class HomeAPI < Grape::API
         title: "字母查药品",
         params: { search_by: :alphabet }
       }, {
+        type: "social_securities/social_securities",
         title: "医保定点药品",
-        url: "social_securities/social_securities",
         params: { social_security_type: 3 }
       }]
     }, {
+      type: "drugs/drugstores",
       title: "身边药房",
-      url: "drugs/drugstores",
       children: [{
         id: :drugstore,
         title: "字母找药店",
@@ -369,28 +374,28 @@ class HomeAPI < Grape::API
         title: "地图找药店",
         params: { search_by: :map }
       }, {
+        type: "social_securities/social_securities",
         title: "医保定点药店",
-        url: "social_securities/social_securities",
         params: { social_security_type: 4 }
       }]
     }, {
       title: "医保查询",
       children: [{
         id: :social_security,
+        type: "social_securities/social_securities",
         title: "医保查询",
-        url: "social_securities/social_securities",
         params: { social_security_type: 1 }
       }, {
+        type: "social_securities/social_securities",
         title: "定点医院查询",
-        url: "social_securities/social_securities",
         params: { social_security_type: 2 }
       }, {
+        type: "social_securities/social_securities",
         title: "定点药品查询",
-        url: "social_securities/social_securities",
         params: { social_security_type: 3 }
       }, {
+        type: "social_securities/social_securities",
         title: "定点药店查询",
-        url: "social_securities/social_securities",
         params: { social_security_type: 4 }
       }, {
         title: "健康险攻略"
@@ -428,8 +433,8 @@ class HomeAPI < Grape::API
         title: "代金券"
       }]
     }, {
+      type: "examinations/examinations",
       title: "全国体检",
-      url: "examinations/examinations",
       children: [{
         id: :examination,
         title: "全部",
@@ -453,15 +458,15 @@ class HomeAPI < Grape::API
       title: "养老服务",
       children: [{
         id: :eldercare,
-        title: "养老公寓",
-        url: :"eldercares/nursing_rooms"
+        type: :"eldercares/nursing_rooms",
+        title: "养老公寓"
       }, {
+        type: :"social_securities/social_securities",
         title: "养老保险（社保）查询",
-        url: :"social_securities/social_securities",
         params: { social_security_type: 5 }
       }, {
-        title: "养老保险（商业）攻略",
-        url: :"insurances/insurances"
+        type: :"insurances/insurances",
+        title: "养老保险（商业）攻略"
       }]
     }]
 

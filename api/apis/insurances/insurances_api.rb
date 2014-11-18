@@ -5,7 +5,7 @@ class Insurances::InsurancesAPI < ApplicationAPI
       title: "养老保险（商业）",
       filters: { 
         type: type_filters,
-        insurance_type: { default: 8435, class: Insurances::InsuranceType, scope_only: true },
+        insurance_type: { default: 8435, scope_only: true },
         county: fake_county_filters,
         order_by: order_by_filters(Insurances::Insurance),
         form: form_filters,

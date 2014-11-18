@@ -3,11 +3,11 @@ class Hospitals::HospitalType < ActiveRecord::Base
   class << self
     include Filterable
 
-    def generate_filter record, key = nil
+    def generate_filter record
       Hash.new.tap do |ret|
         ret[:title] = record.name
         ret[:image_url] = record.image_url
-        ret[:params] = { key => record.id } if key
+        ret[:id] = record.id
       end
     end
 

@@ -1,7 +1,5 @@
 class Hospitals::HospitalLevel < ActiveRecord::Base
 
-  scope :form, -> { where(form: true).order(:position) }
-
   class << self
     include Filterable
     generate_form_filters
@@ -11,7 +9,7 @@ class Hospitals::HospitalLevel < ActiveRecord::Base
     end
 
     define_filter_method :form_filters, false do
-      self.form
+      self.all
     end
   end
 

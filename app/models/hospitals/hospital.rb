@@ -2,8 +2,8 @@ class Hospitals::Hospital < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
   
-  belongs_to :hospital_level
-  has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types', foreign_key: 'hospital_id', association_foreign_key: 'type_id'
+  has_and_belongs_to_many :hospital_levels, join_table: 'hospitals_levels', association_foreign_key: 'level_id'
+  has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types', association_foreign_key: 'type_id'
 
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
@@ -15,17 +15,9 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :hospital_level, -> (level = nil) {
-    if level
-      where(hospital_level: level)
-    else
-      joins(:hospital_level).order{hospital_levels.position.asc}
-    end
-  }
-
-  scope :specialist, -> { 
-    joins(:hospital_types)
-      .where{hospital_types.specialist == true}
-      .distinct
+    level ? joins(:hospital_levels)
+      .where{hospitals_levels.level_id == level}
+      .distinct : all
   }
 
   scope :has_url, -> (boolean = true) {

@@ -271,8 +271,8 @@ module FilterHelper
             collection
           when :nearest
             params = endpoint.params
-            lat = params["location:lat"]
-            lng = params["location:lng"]
+            lat = params[:location][:lat]
+            lng = params[:location][:lng]
             collection.nearest(lat, lng)
           when :favoriest
             collection.order(star: :desc)

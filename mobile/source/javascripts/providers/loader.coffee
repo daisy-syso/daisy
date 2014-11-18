@@ -8,7 +8,8 @@ angular.module("DaisyApp").factory '$loader', [
         # if access denied
         if status == 401 && not /^\/login/.test $location.$$path
           $rootScope.account = null
-          $location.path "/login#{$location.$$path}"
+          $location.path("/login#{$location.path()}")
+          $location.replace()
       else
         $alert.error("未知错误")
 
@@ -18,9 +19,8 @@ angular.module("DaisyApp").factory '$loader', [
 
         if $rootScope.coords
           angular.extend defaultParams, 
-            "location": true
-            "location:lat": $rootScope.coords.latitude
-            "location:lng": $rootScope.coords.longitude
+            "location[lat]": $rootScope.coords.latitude
+            "location[lng]": $rootScope.coords.longitude
 
         if $rootScope.city
           angular.extend defaultParams, $rootScope.city.params

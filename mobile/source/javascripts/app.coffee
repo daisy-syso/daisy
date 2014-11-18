@@ -86,31 +86,36 @@ angular.module 'DaisyApp', [
     listCtrl = [
       '$scope', '$loader', '$route', '$location'
       ($scope, $loader, $route, $location) ->
-        lastRoute = $route.current;
+        lastRoute = null
+
         $scope.$on '$locationChangeSuccess', (event) ->
-          currRoute = $route.current
-          if currRoute.$$route.controller == listCtrl
+          if lastRoute
+            console.log event
             $route.current = lastRoute
+            lastRoute = null
 
-        $scope.redirectTo = 
-          url: lastRoute.params.type
-          params: $location.search()
+        $scope.redirectTo = (type, params) ->
+          $scope.type = type
+          $scope.params = params
 
-        $scope.$watch 'redirectTo', (redirectTo) ->
-          url = "/api/#{$scope.redirectTo.url}.json"
-          $location.path("list/#{$scope.redirectTo.url}")
-          $location.search($scope.redirectTo.params)
-
+          url = "/api/#{type}.json"
           page = $scope.page = 1
-          params = angular.extend { page: page }, redirectTo.params
+          params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) ->
               $scope.data = data
 
+          lastRoute = $route.current
+          $location.path("list/#{type}")
+          $location.search(params)
+          $location.replace()
+
+        $scope.redirectTo($route.current.params.type, $location.search()) 
+
         $scope.loadMore = () ->
-          url = "/api/#{$scope.redirectTo.url}.json"
+          url = "/api/#{$scope.type}.json"
           page = $scope.page += 1
-          params = angular.extend { page: page }, $scope.redirectTo.params
+          params = angular.extend { page: page }, $scope.params
           $loader.get(url, params: params)
             .success (data) ->
               $scope.data['fin'] = data['fin']
@@ -161,11 +166,10 @@ angular.module 'DaisyApp', [
 
 # Helpers $location
 .run [
-  '$rootScope', '$location'
-  ($rootScope, $location) ->
+  '$rootScope', '$location', '$window'
+  ($rootScope, $location, $window) ->
     $rootScope.animateNone = true
     
-    history = []
     # If back button clicked
     locationBack = false
     # If first page initialized
@@ -177,14 +181,9 @@ angular.module 'DaisyApp', [
       pageReady = true
       locationBack = false
 
-    $rootScope.$on '$locationChangeSuccess', () ->
-      unless /^\/login/.test $location.$$path
-        history.push($location.$$path) 
-
     $rootScope.back = () ->
       locationBack = true
-      prevUrl = if history.length > 1 then history.splice(-2)[0] else "/home"
-      $location.path(prevUrl)
+      $window.history.back()
 
     $rootScope.redirectTo = (path) ->
       $location.path(path)
@@ -286,8 +285,8 @@ angular.module 'DaisyApp', [
                 node.params ||= {}
                 node.params[filter.key] ||= node.id
 
-              if parent.url && !node.url
-                node.url = parent.url
+              if parent.type && !node.type
+                node.type = parent.type
 
               if node.parent
                 node.parentTitle = parent.title      
