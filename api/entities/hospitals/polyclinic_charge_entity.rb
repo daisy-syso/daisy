@@ -2,7 +2,7 @@ class Hospitals::PolyclinicChargeEntity < ApplicationEntity
 
   expose :id, :name, :url
   
-  expose :type do |object, options|
+  expose :template do |object, options|
     "link"
   end
 

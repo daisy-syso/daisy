@@ -30,6 +30,7 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
 
   namespace :hospital_charges do
     index! Hospitals::HospitalCharge, 
+      meta: { nolink: true },
       title: "医院价格攻略",
       filters: { 
         type: type_filters,

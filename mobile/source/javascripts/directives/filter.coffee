@@ -30,6 +30,8 @@ angular.module('DaisyApp').directive 'filter', [
           scope.current.menu.menus.push column.children
 
         scope.redirectTo = (column) ->
+          return if column.url
+
           listScope = $route.current.scope
 
           if column.type
@@ -40,6 +42,9 @@ angular.module('DaisyApp').directive 'filter', [
             params = angular.extend {}, 
               listScope.params, column.params
           listScope.redirectTo type, params
+
+          keep = scope.current.menu.keep
+          listScope[keep] = column if keep
 
           if column.title
             scope.displayTitles[scope.current.index] = 

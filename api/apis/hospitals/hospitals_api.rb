@@ -186,7 +186,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       parent: proc { Hospitals::Hospital.hospital_type(7) },
       filters: { 
         city: city_filters,
-        type: type_filters,
+        type: type_filters(:polyclinic),
         hospital_level: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,

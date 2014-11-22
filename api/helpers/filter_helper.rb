@@ -206,7 +206,7 @@ module FilterHelper
     def type_filters current = nil
       {
         meta: {
-          link: :"types"
+          link: :types
         },
         type: String,
         title: "全部类别",

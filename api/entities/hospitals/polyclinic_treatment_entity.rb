@@ -2,7 +2,7 @@ class Hospitals::PolyclinicTreatmentEntity < ApplicationEntity
 
   expose :id, :name
 
-  expose :type do |object, options|
+  expose :template do |object, options|
     "hospitals/polyclinic_treatments"
   end
   

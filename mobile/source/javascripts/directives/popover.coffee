@@ -41,7 +41,9 @@ angular.module('DaisyApp').directive 'popover', [
               listScope.params, column.params
           listScope.redirectTo type, params
           
-          $rootScope[scope.current.keep] = column if scope.current.keep
+          keep = scope.current.keep
+          $rootScope[keep] = column if keep
+          
           $rootScope.popover.close()
 
 ]

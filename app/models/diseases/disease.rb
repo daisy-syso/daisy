@@ -55,7 +55,7 @@ class Diseases::Disease < ActiveRecord::Base
         generate_filter(record).tap do |ret|
           children = self.collect_nested_filter(records, record.id)
           ret[:children] = children || 
-            generate_filters(record.diseases, :disease)
+            generate_filters(record.diseases)
         end
       end
     end

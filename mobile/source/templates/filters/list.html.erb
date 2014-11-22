@@ -4,7 +4,7 @@
     <div class="dropdown-scroll">
       <ul class="table-view media huge" ng-class="{last: $last}">
         <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: current.menu.indexes[i] == j, focus: column.focus}" ng-repeat="(j, column) in filtered(menu)">
-          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)">
+          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)" ng-href="{{column.url}}">
             <img ng-src="{{column.image_url}}" class="pull-left" width="16" ng-if="column.image_url">
             {{column.title}}
           </a>

@@ -123,11 +123,6 @@ angular.module 'DaisyApp', [
       controller: listCtrl
       reloadOnSearch: false
 
-    $routeProvider.when '/table/:type*',
-      templateUrl: "templates/table.html"
-      controller: listCtrl
-      reloadOnSearch: false
-
     $routeProvider.when '/search/:query',   
       templateUrl: "templates/list.html"
       controller: [

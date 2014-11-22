@@ -76,16 +76,12 @@ class HomeAPI < Grape::API
       type: "coupons/coupons",
       title: "热门精选"
     }, {
-      type: "hospitals/hospitals",
       title: "医院大全",
       children: [{
-        id: :hospital,
-        title: "全部",
-        parent: true
-      }, {
         type: "hospitals/polyclinics",
         title: "综合医院",
         children: [{
+          id: :polyclinic,
           title: "全部",
           parent: true
         }, {
@@ -261,7 +257,9 @@ class HomeAPI < Grape::API
           title: "妇科诊疗攻略",
           params: { hospital_type: 5 }
         }, { 
-          title: "妇科价格攻略"
+          type: "hospitals/hospital_charges",
+          title: "妇科价格攻略",
+          params: { hospital_type: 5 }
         }]
       }, {
         type: "hospitals/andrologies",
@@ -290,7 +288,9 @@ class HomeAPI < Grape::API
           title: "男科诊疗攻略",
           params: { hospital_type: 1 }
         }, {
-          title: "男科价格攻略"
+          type: "hospitals/hospital_charges",
+          title: "男科价格攻略",
+          params: { hospital_type: 1 }
         }]
       }, {
         type: "hospitals/tcm",
@@ -309,7 +309,9 @@ class HomeAPI < Grape::API
           title: "中医诊疗攻略",
           params: { hospital_type: 4 }
         }, {
-          title: "中医价格攻略"
+          type: "hospitals/hospital_charges",
+          title: "中医价格攻略",
+          params: { hospital_type: 4 }
         }]
       }]
     }, {
