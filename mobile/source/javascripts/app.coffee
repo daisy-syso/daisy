@@ -317,6 +317,7 @@ angular.module 'DaisyApp', [
   '$rootScope',
   ($rootScope) ->
     navigator.geolocation.getCurrentPosition (geoposition) ->
+      console.info coords: geoposition.coords
       $rootScope.coords = geoposition.coords
 
     $rootScope.getDistance = (data) ->

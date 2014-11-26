@@ -113,13 +113,13 @@ class HomeAPI < Grape::API
           params: { hospital_level: 10 }
         }, {
           title: "社区医院",
-          params: { hospital_level: 11 }
+          params: { is_community: true }
         }, {
           title: "民营医院",
-          params: { hospital_level: 12 }
+          params: { is_other: true }
         }, {
           title: "外资医院",
-          params: { hospital_level: 13 }
+          params: { is_foreign: true }
         }, {
           type: "social_securities/social_securities",
           title: "社保定点医院",
@@ -227,22 +227,22 @@ class HomeAPI < Grape::API
           title: "号源",
           params: { hospital_type: 26 }
         }, {
-          title: "洗牙",
+          title: "洗牙（洁牙）",
           params: { hospital_type: 27 }
         }, {
-          title: "烤瓷牙",
+          title: "烤瓷",
           params: { hospital_type: 28 }
         }, {
-          title: "牙齿矫正",
+          title: "牙齿矫正（正畸）",
           params: { hospital_type: 29 }
         }, {
           title: "隐形矫正",
           params: { hospital_type: 30 }
         }, {
-          title: "拔牙",
+          title: "牙齿美白",
           params: { hospital_type: 31 }
         }, {
-          title: "根管治疗",
+          title: "拔牙",
           params: { hospital_type: 32 }
         }, {
           title: "活动义齿",
@@ -250,6 +250,66 @@ class HomeAPI < Grape::API
         }, {
           title: "全口义齿",
           params: { hospital_type: 34 }
+        }, {
+          title: "根管治疗",
+          params: { hospital_type: 35 }
+        }, {
+          title: "补牙",
+          params: { hospital_type: 36 }
+        }, {
+          title: "牙基",
+          params: { hospital_type: 37 }
+        }, {
+          title: "精密附件",
+          params: { hospital_type: 38 }
+        }, {
+          title: "牙齿漂白",
+          params: { hospital_type: 39 }
+        }, {
+          title: "种植",
+          params: { hospital_type: 40 }
+        }, {
+          title: "牙修复材",
+          params: { hospital_type: 41 }
+        }, {
+          title: "嵌体",
+          params: { hospital_type: 42 }
+        }, {
+          title: "矫正",
+          params: { hospital_type: 43 }
+        }, {
+          title: "排牙",
+          params: { hospital_type: 44 }
+        }, {
+          title: "牙冠",
+          params: { hospital_type: 45 }
+        }, {
+          title: "其他牙科手术",
+          params: { hospital_type: 46 }
+        }, {
+          title: "上药",
+          params: { hospital_type: 47 }
+        }, {
+          title: "麻醉",
+          params: { hospital_type: 48 }
+        }, {
+          title: "拔除",
+          params: { hospital_type: 49 }
+        }, {
+          title: "X光",
+          params: { hospital_type: 50 }
+        }, {
+          title: "口腔检查",
+          params: { hospital_type: 51 }
+        }, {
+          title: "口腔设计",
+          params: { hospital_type: 52 }
+        }, {
+          title: "瓷贴",
+          params: { hospital_type: 53 }
+        }, {
+          title: "儿童口腔",
+          params: { hospital_type: 54 }
         }, {
           type: "hospitals/hospital_news",
           title: "牙科诊疗攻略",
@@ -325,6 +385,12 @@ class HomeAPI < Grape::API
         }, {
           title: "包皮手术",
           params: { hospital_type: 23 }
+        }, {
+          title: "男科检查",
+          params: { hospital_type: 24 }
+        }, {
+          title: "性功能治疗",
+          params: { hospital_type: 25 }
         }, {
           type: "hospitals/hospital_news",
           title: "男科诊疗攻略",

@@ -40,6 +40,18 @@ class Hospitals::Hospital < ActiveRecord::Base
     boolean ? where(is_local_hot: true) : where.not(is_local_hot: true)
   }
 
+  scope :is_foreign, -> (boolean = true) {
+    boolean ? where(is_foreign: true) : where.not(is_foreign: true)
+  }
+
+  scope :is_other, -> (boolean = true) {
+    boolean ? where(is_other: true) : where.not(is_other: true)
+  }
+
+  scope :is_community, -> (boolean = true) {
+    boolean ? where(is_community: true) : where.not(is_community: true)
+  }
+
   scope :has_mobile_url, -> (boolean = true) {
     boolean ? where.not(mobile_url: nil) : where(mobile_url: nil)
   }
