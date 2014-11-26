@@ -2,22 +2,34 @@ class Hospitals::Hospital < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
   
-  has_and_belongs_to_many :hospital_levels, join_table: 'hospitals_levels', association_foreign_key: 'level_id'
-  has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types', association_foreign_key: 'type_id'
+  belongs_to :hospital_level
+  has_many :hospital_onsales
+
+  has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types'
+
+  has_and_belongs_to_many :examinations, join_table: 'examinations_hospitals', 
+    class_name: 'Examinations::Examination'
+  has_and_belongs_to_many :examination_types, join_table: 'examinations_hospitals', 
+    class_name: 'Examinations::ExaminationType'
+
 
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
 
   scope :hospital_type, -> (type) { 
     type ? joins(:hospital_types)
-      .where{hospitals_types.type_id == type}
+      .where{hospitals_types.hospital_type_id == type}
+      .distinct : all
+  }
+
+  scope :examination_type, -> (type) { 
+    type ? joins(:examination_types)
+      .where{examinations_hospitals.examination_type_parent_id == type}
       .distinct : all
   }
 
   scope :hospital_level, -> (level = nil) {
-    level ? joins(:hospital_levels)
-      .where{hospitals_levels.level_id == level}
-      .distinct : all
+    level ? where(hospital_level: level) : order{hospital_level_id.desc}
   }
 
   scope :has_url, -> (boolean = true) {
@@ -27,7 +39,24 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :is_local_hot, -> (boolean = true) {
     boolean ? where(is_local_hot: true) : where.not(is_local_hot: true)
   }
+
+  scope :has_mobile_url, -> (boolean = true) {
+    boolean ? where.not(mobile_url: nil) : where(mobile_url: nil)
+  }
   
+  scope :template, -> (type) {
+    case type.to_i
+    when 1
+      is_local_hot
+    when 2
+      has_url
+    end
+  }
+
+  scope :alphabet, -> (alphabet) {
+    alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
+
   scope :query, -> (query) {
     query.present? ? where{name.like("%#{query}%")} : all
   }

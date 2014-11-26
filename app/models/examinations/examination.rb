@@ -3,7 +3,12 @@ class Examinations::Examination < ActiveRecord::Base
   belongs_to :examination_type
 
   scope :city, -> (city) { where(city: city) }
-  scope :examination_type, -> (type) { type ? where(examination_type: type) : all }
+  scope :examination_type, -> (type) { 
+    type ? where(examination_type_id: type) : all 
+  }
+  scope :examination_parent_type, -> (type) { 
+    type ? where(examination_type_parent_id: type) : all 
+  }
 
   scope :price, -> (to, from = 0) {
     to ? where(price: from..to) : where{price > from}

@@ -3,7 +3,7 @@
   <div class="segmented-control">
     <div class="control-item" ng-repeat="data in filterData">
       <a ng-class="{active: current.index == $index}" ng-click="toggleMenu($index, data)">
-        {{displayTitles[$index] || data.title}}
+        {{current.titles[$index] || data.title}}
         <span ng-class="current.index == $index ? 'ion-arrow-down-b' : 'ion-arrow-up-b'"></span>
       </a>
     </div>

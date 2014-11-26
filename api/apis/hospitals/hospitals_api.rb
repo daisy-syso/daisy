@@ -1,21 +1,21 @@
 class Hospitals::HospitalsAPI < ApplicationAPI
 
   namespace :hospitals do
-    index! Hospitals::Hospital,
-      title: "医院大全",
-      filters: { 
-        city: city_filters,
-        type: type_filters(:hospital),
-        hospital_type: { scope_only: true },
-        county: county_filters,
-        order_by: hospital_order_by_filters,
-        form: form_filters,
-        query: form_query_filters, 
-        alphabet: form_alphabet_filters,
-        hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
-        has_url: form_switch_filters("网址"),
-        is_local_hot: form_switch_filters("热门医院")
-      }
+    # index! Hospitals::Hospital,
+    #   title: "医院大全",
+    #   filters: { 
+    #     city: city_filters,
+    #     type: type_filters(:hospital),
+    #     hospital_type: { scope_only: true },
+    #     county: county_filters,
+    #     order_by: hospital_order_by_filters,
+    #     form: form_filters,
+    #     query: form_query_filters, 
+    #     alphabet: form_alphabet_filters,
+    #     hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
+    #     has_url: form_switch_filters("网址"),
+    #     is_local_hot: form_switch_filters("热门医院")
+    #   }
 
     get ":id" do
       hospital = Hospitals::Hospital.find params[:id]
@@ -24,31 +24,31 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     end
   end
 
-  namespace :registrations do
-    index! Hospitals::Hospital,
-      title: "手机挂号",
-      filters: { 
-        city: city_filters,
-        type: type_filters(:hospital),
-        hospital_type: { scope_only: true },
-        county: county_filters,
-        order_by: hospital_order_by_filters,
-        form: form_filters,
-        query: form_query_filters, 
-        alphabet: form_alphabet_filters,
-        hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
-        has_url: form_switch_filters("网址"),
-        is_local_hot: form_switch_filters("热门医院")
-      }
-  end
+  # namespace :registrations do
+  #   index! Hospitals::Hospital,
+  #     title: "手机挂号",
+  #     filters: { 
+  #       city: city_filters,
+  #       type: type_filters(:hospital),
+  #       hospital_type: { scope_only: true },
+  #       county: county_filters,
+  #       order_by: hospital_order_by_filters,
+  #       form: form_filters,
+  #       query: form_query_filters, 
+  #       alphabet: form_alphabet_filters,
+  #       hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
+  #       has_url: form_switch_filters("网址"),
+  #       is_local_hot: form_switch_filters("热门医院")
+  #     }
+  # end
 
   namespace :andrologies do
     index! Hospitals::Hospital,
       title: "男科医院",
-      parent: proc { Hospitals::Hospital.hospital_type(1) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_type: { scope_only: true, default: 1 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -68,10 +68,10 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :plastics do
     index! Hospitals::Hospital,
       title: "整形医院",
-      parent: proc { Hospitals::Hospital.hospital_type(2) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_type: { scope_only: true, default: 2 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -91,10 +91,11 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :tests do
     index! Hospitals::Hospital,
       title: "体检医院",
-      parent: proc { Hospitals::Hospital.hospital_type(3) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        examination_type: { scope_only: true },
+        hospital_type: { scope_only: true, default: 3 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -114,10 +115,10 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :tcm do
     index! Hospitals::Hospital,
       title: "中医院",
-      parent: proc { Hospitals::Hospital.hospital_type(4) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_type: { scope_only: true, default: 4 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -137,10 +138,10 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :gynaecologies do
     index! Hospitals::Hospital,
       title: "妇幼医院",
-      parent: proc { Hospitals::Hospital.hospital_type(5) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_type: { scope_only: true, default: 5 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -160,10 +161,10 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :dentals do
     index! Hospitals::Hospital,
       title: "牙科医院",
-      parent: proc { Hospitals::Hospital.hospital_type(6) },
       filters: { 
         city: city_filters,
         type: type_filters,
+        hospital_type: { scope_only: true, default: 6 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -183,23 +184,23 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :polyclinics do
     index! Hospitals::Hospital,
       title: "综合医院",
-      parent: proc { Hospitals::Hospital.hospital_type(7) },
       filters: { 
         city: city_filters,
         type: type_filters(:polyclinic),
+        hospital_type: { scope_only: true, default: 7 },
         hospital_level: { scope_only: true },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
         # query: form_query_filters, 
-        # alphabet: form_alphabet_filters,
         # hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
         # has_url: form_switch_filters("网址"),
-        # is_local_hot: form_switch_filters("热门医院")
-        need_order: form_switch_filters("手机挂号"),
+        # is_local_hot: form_switch_filters("热门医院"),
+        has_mobile_url: form_switch_filters("手机挂号"),
         has_return: form_switch_filters("优惠返利"),
-        template: form_radio_array_filters(%w(不限 热门医院 有网址 按字母),
-          "当前主题精选")
+        template: form_radio_array_filters(%w(不限 热门医院 有网址),
+          "当前主题精选"),
+        alphabet: form_alphabet_filters
       }
   end
 end

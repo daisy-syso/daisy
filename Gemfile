@@ -65,7 +65,7 @@ gem 'rails_admin'#, github: 'sferik/rails_admin'
 gem "kaminari"
 
 gem "squeel"
-gem "thinking-sphinx"
+# gem "thinking-sphinx"
 
 group :development do
   # Use Capistrano for deployment

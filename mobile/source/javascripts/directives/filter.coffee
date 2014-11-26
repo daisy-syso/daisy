@@ -8,8 +8,8 @@ angular.module('DaisyApp').directive 'filter', [
         filterData: "="
       link: (scope, element, attrs) ->
 
-        scope.current = {}
-        scope.displayTitles = {}
+        scope.current = 
+          titles: {}
 
         scope.$watch 'filterData', (filterData) ->
           if filterData
@@ -46,9 +46,10 @@ angular.module('DaisyApp').directive 'filter', [
           keep = scope.current.menu.keep
           listScope[keep] = column if keep
 
-          if column.title
-            scope.displayTitles[scope.current.index] = 
-              column.parentTitle || column.title 
+          scope.current.titles[scope.current.index] = 
+            column.filterTitle || column.title
+
+          listScope.title = column.pageTitle
 
           scope.closeMenu()
 

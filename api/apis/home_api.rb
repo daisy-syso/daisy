@@ -4,7 +4,7 @@ class HomeAPI < Grape::API
     {
       buttons: [{
         title: "医院大全",
-        link: "#/list/hospitals/hospitals",
+        link: "#/list/hospitals/polyclinics",
         icon: "images/icons/1-1.gif"
       }, {
         title: "疾病查询",
@@ -16,7 +16,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-3.gif"
       }, {
         title: "手机挂号",
-        link: "#/list/hospitals/registrations",
+        link: "#/list/hospitals/polyclinics",
         icon: "images/icons/1-4.gif"
       }, {
         title: "药品大全",
@@ -83,43 +83,43 @@ class HomeAPI < Grape::API
         children: [{
           id: :polyclinic,
           title: "全部",
-          parent: true
+          filterTitle: "综合医院"
         }, {
           title: "三级甲等",
-          params: { hospital_level: 8 }
-        }, {
-          title: "三级乙等",
-          params: { hospital_level: 9 }
-        }, {
-          title: "三级合格",
-          params: { hospital_level: 10 }
-        }, {
-          title: "二级甲等",
-          params: { hospital_level: 4 }
-        }, {
-          title: "二级乙等",
-          params: { hospital_level: 5 }
-        }, {
-          title: "二级合格",
-          params: { hospital_level: 6 }
-        }, {
-          title: "一级甲等",
-          params: { hospital_level: 1 }
-        }, {
-          title: "一级乙等",
           params: { hospital_level: 2 }
         }, {
-          title: "一级合格",
+          title: "三级乙等",
           params: { hospital_level: 3 }
         }, {
-          title: "社区医院",
-          params: { hospital_level: 13 }
+          title: "三级合格",
+          params: { hospital_level: 4 }
         }, {
-          title: "民营医院",
+          title: "二级甲等",
+          params: { hospital_level: 5 }
+        }, {
+          title: "二级乙等",
+          params: { hospital_level: 6 }
+        }, {
+          title: "二级合格",
+          params: { hospital_level: 7 }
+        }, {
+          title: "一级甲等",
+          params: { hospital_level: 8 }
+        }, {
+          title: "一级乙等",
+          params: { hospital_level: 9 }
+        }, {
+          title: "一级合格",
+          params: { hospital_level: 10 }
+        }, {
+          title: "社区医院",
           params: { hospital_level: 11 }
         }, {
-          title: "外资医院",
+          title: "民营医院",
           params: { hospital_level: 12 }
+        }, {
+          title: "外资医院",
+          params: { hospital_level: 13 }
         }, {
           type: "social_securities/social_securities",
           title: "社保定点医院",
@@ -136,17 +136,22 @@ class HomeAPI < Grape::API
         title: "体检医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "体检医院"
         }, {
-          title: "热门体检"
+          title: "热门体检",
+          params: { examination_type: 1 }
         }, {
-          title: "商务体检套餐"
+          title: "商务体检套餐",
+          params: { examination_type: 74 }
         }, {
-          title: "肿瘤检测"
+          title: "肿瘤检测",
+          params: { examination_type: 65 }
         }, {
-          title: "高发疾病检测"
+          title: "高发疾病检测",
+          params: { examination_type: 93 }
         }, {
-          title: "适用人群套餐"
+          title: "适用人群套餐",
+          params: { examination_type: 22 }
         }, {
           type: "hospitals/hospital_news",
           title: "体检诊疗攻略",
@@ -160,67 +165,91 @@ class HomeAPI < Grape::API
         title: "整形医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "整形医院"
         }, {
-          title: "眼部整形"
+          title: "眼部整形",
+          params: { hospital_type: 58 }
         }, {
-          title: "鼻部整形"
+          title: "鼻部整形",
+          params: { hospital_type: 59 }
         }, {
-          title: "口腔整形"
+          title: "口腔整形",
+          params: { hospital_type: 60 }
         }, {
-          title: "胸部整形"
+          title: "胸部整形",
+          params: { hospital_type: 61 }
         }, {
-          title: "抽脂"
+          title: "抽脂",
+          params: { hospital_type: 62 }
         }, {
-          title: "毛发"
+          title: "毛发",
+          params: { hospital_type: 63 }
         }, {
-          title: "拉皮"
+          title: "拉皮",
+          params: { hospital_type: 64 }
         }, {
-          title: "脂肪移植"
+          title: "脂肪移植",
+          params: { hospital_type: 65 }
         }, {
-          title: "面部轮廓"
+          title: "面部轮廓",
+          params: { hospital_type: 66 }
         }, {
-          title: "肉毒素"
+          title: "肉毒素",
+          params: { hospital_type: 67 }
         }, {
-          title: "填充"
+          title: "填充",
+          params: { hospital_type: 68 }
         }, {
-          title: "其它"
+          title: "其它",
+          params: { hospital_type: 69 }
         }, {
-          title: "皮肤"
+          title: "皮肤",
+          params: { hospital_type: 70 }
         }, {
-          title: "半永久性化妆"
+          title: "半永久性化妆",
+          params: { hospital_type: 71 }
         }, {
           type: "hospitals/hospital_news",
           title: "整形美容诊疗攻略",
           params: { hospital_type: 2 }
         }, {
-          type: "shapings/shaping_items",
-          title: "整形美容价格攻略"
+          type: "hospitals/hospital_charges",
+          title: "整形美容价格攻略",
+          params: { hospital_parent_type: 2 }
         }]
       }, {
         type: "hospitals/dentals",
         title: "牙科医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "牙科医院"
         }, {
-          title: "号源"
+          title: "号源",
+          params: { hospital_type: 26 }
         }, {
-          title: "洗牙"
+          title: "洗牙",
+          params: { hospital_type: 27 }
         }, {
-          title: "烤瓷牙"
+          title: "烤瓷牙",
+          params: { hospital_type: 28 }
         }, {
-          title: "牙齿矫正"
+          title: "牙齿矫正",
+          params: { hospital_type: 29 }
         }, {
-          title: "隐形矫正"
+          title: "隐形矫正",
+          params: { hospital_type: 30 }
         }, {
-          title: "拔牙"
+          title: "拔牙",
+          params: { hospital_type: 31 }
         }, {
-          title: "根管治疗"
+          title: "根管治疗",
+          params: { hospital_type: 32 }
         }, {
-          title: "活动义齿"
+          title: "活动义齿",
+          params: { hospital_type: 33 }
         }, {
-          title: "全口义齿"
+          title: "全口义齿",
+          params: { hospital_type: 34 }
         }, {
           type: "hospitals/hospital_news",
           title: "牙科诊疗攻略",
@@ -228,30 +257,35 @@ class HomeAPI < Grape::API
         }, {
           type: "hospitals/hospital_charges",
           title: "牙科价格攻略",
-          params: { hospital_type: 6 }
+          params: { hospital_parent_type: 6 }
         }]
       }, {
         type: "hospitals/gynaecologies",
         title: "妇幼医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "妇幼医院"
         }, {
-          title: "孕期检查"
+          title: "宫颈疾病手术",
+          params: { hospital_type: 9 }
         }, { 
-          title: "无痛人流"
+          title: "妇科整形",
+          params: { hospital_type: 10 }
         }, { 
-          title: "四维/三维"
+          title: "无痛人流",
+          params: { hospital_type: 11 }
         }, { 
-          title: "妇科整形"
+          title: "女性不孕检查",
+          params: { hospital_type: 12 }
         }, { 
-          title: "不孕不育"
+          title: "妇科常规检查",
+          params: { hospital_type: 13 }
         }, { 
-          title: "妇科微创"
+          title: "妇科常规治疗",
+          params: { hospital_type: 14 }
         }, { 
-          title: "宫颈疾病手术"
-        }, { 
-          title: "痛经中心"
+          title: "产科",
+          params: { hospital_type: 15 }
         }, { 
           type: "hospitals/hospital_news",
           title: "妇科诊疗攻略",
@@ -259,30 +293,38 @@ class HomeAPI < Grape::API
         }, { 
           type: "hospitals/hospital_charges",
           title: "妇科价格攻略",
-          params: { hospital_type: 5 }
+          params: { hospital_parent_type: 5 }
         }]
       }, {
         type: "hospitals/andrologies",
         title: "男科医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "男科医院"
         }, {
-          title: "前列腺活检及治疗"
+          title: "前列腺活检及治疗",
+          params: { hospital_type: 16 }
         }, {
-          title: "前列腺癌根治术"
+          title: "前列腺癌根治术",
+          params: { hospital_type: 17 }
         }, {
-          title: "男性生殖器常见手术"
+          title: "男性生殖器常见手术",
+          params: { hospital_type: 18 }
         }, {
-          title: "检查、治疗睾丸疾病"
+          title: "检查、治疗睾丸疾病",
+          params: { hospital_type: 19 }
         }, {
-          title: "精索静脉曲张手术"
+          title: "精索静脉曲张手术",
+          params: { hospital_type: 20 }
         }, {
-          title: "隐睾治疗"
+          title: "隐睾治疗",
+          params: { hospital_type: 21 }
         }, {
-          title: "男科整形"
+          title: "男科整形",
+          params: { hospital_type: 22 }
         }, {
-          title: "包皮手术"
+          title: "包皮手术",
+          params: { hospital_type: 23 }
         }, {
           type: "hospitals/hospital_news",
           title: "男科诊疗攻略",
@@ -290,20 +332,23 @@ class HomeAPI < Grape::API
         }, {
           type: "hospitals/hospital_charges",
           title: "男科价格攻略",
-          params: { hospital_type: 1 }
+          params: { hospital_parent_type: 1 }
         }]
       }, {
         type: "hospitals/tcm",
         title: "中医院",
         children: [{
           title: "全部",
-          parent: true
+          filterTitle: "中医院"
         }, {
-          title: "中医推拿治疗"
+          title: "中医推拿治疗",
+          params: { hospital_type: 55 }
         }, {
-          title: "中医针灸治疗"
+          title: "中医针灸治疗",
+          params: { hospital_type: 56 }
         }, {
-          title: "其它"
+          title: "其它",
+          params: { hospital_type: 57 }
         }, {
           type: "hospitals/hospital_news",
           title: "中医诊疗攻略",
@@ -311,7 +356,7 @@ class HomeAPI < Grape::API
         }, {
           type: "hospitals/hospital_charges",
           title: "中医价格攻略",
-          params: { hospital_type: 4 }
+          params: { hospital_parent_type: 4 }
         }]
       }]
     }, {
@@ -406,29 +451,43 @@ class HomeAPI < Grape::API
       title: "价格搜索",
       children: [{
         id: :price_search,
+        type: "hospitals/polyclinic_charges",
         title: "综合医院价格攻略"
       }, {
-        title: "整形医院价格攻略"
-      }, {
-        title: "牙科医院价格攻略"
-      }, {
-        title: "妇幼医院价格攻略"
-      }, {
+        type: "examinations/examinations",
         title: "全国体检价格攻略"
       }, {
-        title: "男科医院价格攻略"
+        type: "hospitals/hospital_charges",
+        title: "整形医院价格攻略",
+        params: { hospital_parent_type: 2 }
       }, {
-        title: "中医院价格攻略"
+        type: "hospitals/hospital_charges",
+        title: "牙科医院价格攻略",
+        params: { hospital_parent_type: 6 }
       }, {
+        type: "hospitals/hospital_charges",
+        title: "妇幼医院价格攻略",
+        params: { hospital_parent_type: 5 }
+      }, {
+        type: "hospitals/hospital_charges",
+        title: "男科医院价格攻略",
+        params: { hospital_parent_type: 4 }
+      }, {
+        type: "hospitals/hospital_charges",
+        title: "中医院价格攻略",
+        params: { hospital_parent_type: 1 }
+      }, {
+        type: "drugs/drugs",
         title: "药品价格查询"
       }, {
+        type: :"insurances/insurances",
         title: "健康保险价格查询"
       }, {
+        type: :"insurances/insurances",
         title: "养老保险价格查询"
       }, {
+        type: :"maternals/confinement_centers",
         title: "月子中心价格查询"
-      }, {
-        title: "母婴会馆价格查询"
       }, {
         title: "返利优惠"
       }, {
@@ -440,20 +499,28 @@ class HomeAPI < Grape::API
       children: [{
         id: :examination,
         title: "全部",
-        parent: true
+        filterTitle: "全国体检"
       }, {
-        title: "热门体检"
+        title: "热门体检",
+        params: { examination_parent_type: 1 }
       }, {
-        title: "商务体检套餐"
+        title: "商务体检套餐",
+        params: { examination_parent_type: 74 }
       }, {
-        title: "肿瘤检测"
+        title: "肿瘤检测",
+        params: { examination_parent_type: 65 }
       }, {
-        title: "高发疾病检测"
+        title: "高发疾病检测",
+        params: { examination_parent_type: 93 }
       }, {
-        title: "适用人群套餐"
+        title: "适用人群套餐",
+        params: { examination_parent_type: 22 }
       }, {
-        title: "体检套餐攻略"
+        type: "hospitals/hospital_news",
+        title: "体检诊疗攻略",
+        params: { hospital_type: 3 }
       }, {
+        type: "examinations/examinations",
         title: "体检价格攻略"
       }]
     }, {

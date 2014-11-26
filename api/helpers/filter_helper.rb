@@ -186,8 +186,7 @@ module FilterHelper
           template: :alphabet,
         },
         type: String,
-        append: :form,
-        filter_only: true
+        append: :form
       }
     end
 
@@ -297,6 +296,7 @@ module FilterHelper
 
     def hospital_order_by_filters
       order_by_filters Hospitals::Hospital, {
+        default: :hospital_level,
         children: proc do |filters|
           filters.insert(1, { title: "医院等级" , id: :hospital_level })
         end,

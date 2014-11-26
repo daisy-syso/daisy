@@ -7,6 +7,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
         city: city_filters,
         type: type_filters(:examination),
         examination_type: { scope_only: true },
+        examination_parent_type: { scope_only: true },
         county: fake_county_filters,
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,

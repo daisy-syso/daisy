@@ -13,6 +13,9 @@ angular.module('DaisyApp').directive 'popover', [
             $rootScope.formatFilter(popover)
             scope.current = popover
 
+            if popover.keep && $rootScope[popover.keep]
+              $rootScope.popover.title = $rootScope[popover.keep].title 
+
         $rootScope.popover =
           toggle: () ->
             if $rootScope.popover.show
@@ -39,8 +42,8 @@ angular.module('DaisyApp').directive 'popover', [
             type = listScope.type
             params = angular.extend {}, 
               listScope.params, column.params
-          listScope.redirectTo type, params
-          
+          listScope.redirectTo? type, params
+
           keep = scope.current.keep
           $rootScope[keep] = column if keep
           

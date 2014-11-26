@@ -1,10 +1,10 @@
 <header class="bar bar-nav">
-  <h1 class="title">{{ data['title'] }}</h1>
+  <h1 class="title">{{ title || data['title'] }}</h1>
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
   </a>
   <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
-    {{ $root.city.title || data['subtitle'].title }}
+    {{ $root.popover.title || data['subtitle'].title }}
     <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
 </header>

@@ -26,7 +26,6 @@ angular.module 'DaisyApp', [
             $loader.get("/api/home.json")
               .success (data) ->
                 $rootScope.homeData = data
-                $rootScope.city ||= data.subtitle[0]
 
           $rootScope.$watch "city", (value) ->
             length = value?.title?.length || 2
@@ -281,10 +280,7 @@ angular.module 'DaisyApp', [
                 node.params[filter.key] ||= node.id
 
               if parent.type && !node.type
-                node.type = parent.type
-
-              if node.parent
-                node.parentTitle = parent.title      
+                node.type = parent.type    
 
               delete node.focus
               if node.id == filter.current
