@@ -537,11 +537,11 @@ class HomeAPI < Grape::API
       }, {
         type: "hospitals/hospital_charges",
         title: "男科医院价格攻略",
-        params: { hospital_parent_type: 4 }
+        params: { hospital_parent_type: 1 }
       }, {
         type: "hospitals/hospital_charges",
         title: "中医院价格攻略",
-        params: { hospital_parent_type: 1 }
+        params: { hospital_parent_type: 4 }
       }, {
         type: "drugs/drugs",
         title: "药品价格查询"
