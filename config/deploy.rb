@@ -68,6 +68,6 @@ namespace :deploy do
     end
   end
 
-  # after :publishing, :update_mobile
+  after :publishing, :update_mobile
 
 end
