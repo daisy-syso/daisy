@@ -77,6 +77,6 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
 
-  gem "middleman", "~>3.2.2"
+  # gem "middleman", "~>3.2.2"
 
 end
