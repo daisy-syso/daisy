@@ -10,7 +10,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
           default: :symptom,
           symptom: { title: "症状", class: Diseases::Symptom },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
-          alphabet: alphabet_filters
+          alphabet: alphabet_filters,
+          common_diseases: { title: "常见病分类", class: Diseases::DiseaseType}
         }),
         order_by: order_by_filters(Diseases::Disease),
         form: form_filters,

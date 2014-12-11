@@ -430,14 +430,17 @@ class HomeAPI < Grape::API
       title: "查疾病",
       children: [{
         id: :disease,
-        title: "症状查疾病",
+        title: "症状查",
         params: { search_by: :symptom }
       }, {
-        title: "科室查疾病",
+        title: "科室查",
         params: { search_by: :hospital_room }
       }, {
-        title: "字母查疾病",
+        title: "字母查",
         params: { search_by: :alphabet }
+      }, {
+        title: "常见病查",
+        params: { search_by: :common_diseases }
       }]
     }, {
       type: "hospitals/doctors",
