@@ -121,6 +121,7 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 3.2.2)
   middleman-bower!
+  middleman-core
   middleman-deploy
   middleman-livereload (~> 3.1.0)
   rack-reverse-proxy
