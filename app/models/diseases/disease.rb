@@ -5,6 +5,7 @@ class Diseases::Disease < ActiveRecord::Base
   has_and_belongs_to_many :hospitals, class_name: "Hospitals::Hospital"
   has_and_belongs_to_many :symptoms, class_name: "Diseases::Symptom"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
+  has_many :common_diseases, class_name: "Diseases::CommonDisease", :through => :disease_commons
 
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
