@@ -5,7 +5,7 @@ class Diseases::Disease < ActiveRecord::Base
   has_and_belongs_to_many :hospitals, class_name: "Hospitals::Hospital"
   has_and_belongs_to_many :symptoms, class_name: "Diseases::Symptom"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
-  has_many :common_diseases, class_name: "Diseases::CommonDisease", :through => :disease_commons
+  has_and_belongs_to_many :common_diseases, class_name: "Diseases::CommonDisease", :join_table => :disease_commons, :association_foreign_key => :disease_id
 
   scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
@@ -18,6 +18,12 @@ class Diseases::Disease < ActiveRecord::Base
   scope :hospital_room, -> (hospital_room) {
     hospital_room ? joins(:hospital_rooms)
       .where{diseases_hospital_rooms.hospital_room_id == hospital_room}
+      .distinct : all
+  }
+
+  scope :common_disease, -> (common_disease) {
+    common_disease ? joins(:common_diseases)
+      .where{disease_commons.common_id == common_disease}
       .distinct : all
   }
 
