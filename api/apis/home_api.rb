@@ -115,7 +115,7 @@ class HomeAPI < Grape::API
           title: "社区医院",
           params: { is_community: true }
         }, {
-          title: "民营医院",
+          title: "其他医院",
           params: { is_other: true }
         }, {
           title: "外资医院",
@@ -440,7 +440,7 @@ class HomeAPI < Grape::API
         params: { search_by: :alphabet }
       }, {
         title: "常见病查",
-        params: { search_by: :common_diseases }
+        params: { search_by: :common_disease }
       }]
     }, {
       type: "hospitals/doctors",
