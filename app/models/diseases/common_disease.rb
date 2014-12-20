@@ -10,12 +10,6 @@ class Diseases::CommonDisease < ActiveRecord::Base
     			ret[:id] = common.id
     		end
     	end
-      # self.all.map do |alphabet, records|
-      #   Hash.new.tap do |ret|
-      #     ret[:title] = generate_filters records
-      #     # ret[:children] = generate_filters records
-      #   end
-      # end
     end
 
     # define_cached_methods :filters
