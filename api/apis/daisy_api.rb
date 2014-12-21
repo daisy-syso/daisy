@@ -69,6 +69,10 @@ class DaisyAPI < Grape::API
     mount Insurances::InsurancesAPI
   end
 
+  namespace :price_search do
+    mount PriceSearch::PriceSearchAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

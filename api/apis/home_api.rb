@@ -32,7 +32,8 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-7.gif"
       }, {
         title: "价格搜索",
-        link: "#/list/price_search/drugs",
+        # link: "#/list/price_search/drugs",
+        link: "#/list/price_search/strategy_list",
         icon: "images/icons/1-8.gif"
       # }, {
       #   title: "热门专科",
