@@ -1,7 +1,10 @@
 class Hospitals::HospitalEntity < Bases::PlaceEntity
  
 	expose :hospital_onsales  do |instance, options|
-		instance.hospital_onsales.select {|ho| ho.hospital_charge.hospital_type_id == options[:env]["grape.request.params"].hospital_type}  
+		instance.hospital_onsales.select do |ho|
+      hospital_type = options[:env].blank? ? nil : options[:env]["grape.request.params"].hospital_type
+      ho.hospital_charge.hospital_type_id == hospital_type
+    end 
 	end
 
   expose :template do |instance, options|

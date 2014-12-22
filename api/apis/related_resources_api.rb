@@ -15,4 +15,12 @@ class RelatedResourcesAPI < Grape::API
     present! relateds, with: PolymorphicEntity
   end
 
+  get :related_hospital do
+    relateds = []
+    3.times do |i|
+      relateds << Hospitals::Hospital.offset(Random.rand(related_resources_count(Hospitals::Hospital))).first
+    end
+    present! relateds, with: PolymorphicEntity
+  end
+
 end

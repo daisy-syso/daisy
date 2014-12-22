@@ -45,6 +45,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :andrologies do
     index! Hospitals::Hospital,
       title: "男科医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,
@@ -68,6 +69,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :plastics do
     index! Hospitals::Hospital,
       title: "整形医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,
@@ -91,6 +93,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :tests do
     index! Hospitals::Hospital,
       title: "体检医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,
@@ -115,6 +118,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :tcm do
     index! Hospitals::Hospital,
       title: "中医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,
@@ -138,6 +142,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :gynaecologies do
     index! Hospitals::Hospital,
       title: "妇幼医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,
@@ -161,6 +166,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :dentals do
     index! Hospitals::Hospital,
       title: "牙科医院",
+      related: true,
       filters: { 
         city: city_filters,
         type: type_filters,

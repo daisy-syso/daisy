@@ -1,5 +1,9 @@
 <%= partial 'subheader' %>
 
 <div class="content" ng-class="type">
-  <div list list-data="data['data']" list-load-more="查看更多" list-fin="data['fin']" ng-if="data['data']"></div>
+  <div list list-data="data['data']" list-load-more="查看更多" list-fin="data['fin']" ng-if="data['data']">
+  </div>
+  <div list list-url="/api/related_hospital.json" list-title="其他相关" list-more="查看所有相关" list-more-link="#/list" ng-if="data['related']">
+  </div>
+  
 </div>
