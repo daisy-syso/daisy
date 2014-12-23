@@ -16,11 +16,12 @@ class RelatedResourcesAPI < Grape::API
   end
 
   get :related_hospital do
-    relateds = []
+    relateds_onsale = []
     3.times do |i|
-      relateds << Hospitals::Hospital.offset(Random.rand(related_resources_count(Hospitals::Hospital))).first
+      relateds_onsale << Hospitals::HospitalOnsale.offset(Random.rand(related_resources_count(Hospitals::HospitalOnsale))).first
     end
-    present! relateds, with: PolymorphicEntity
+    relateds = relateds_onsale.map{|related_onsale| related_onsale.hospital }
+    present! relateds, with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
   end
 
 end

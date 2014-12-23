@@ -1,4 +1,14 @@
 <%= partial 'templates/lists/image' %>
-<%= partial 'templates/lists/body' %>
-<%= partial 'templates/lists/rating' %>
+<div class="media-body">
+  <h1 >
+  	{{data.<%= defined?(title) ? title : :name %>}}
+  	<span class="pull-right" ng-if="$root.coords">{{$root.getDistance(data) | number:2}}千米</span>
+  </h1>
+  <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
+</div>
+<div class="media-detail">
+  <p>{{data.hospital_onsales[0].name}}</p>
+  <!-- <strong>{{data.star | number:1}}</strong> -->
+  
+</div>
 <%= partial 'templates/lists/price_onsale' %>
