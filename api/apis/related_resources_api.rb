@@ -21,7 +21,7 @@ class RelatedResourcesAPI < Grape::API
       relateds_onsale << Hospitals::HospitalOnsale.offset(Random.rand(related_resources_count(Hospitals::HospitalOnsale))).first
     end
     relateds = relateds_onsale.map{|related_onsale| related_onsale.hospital }
-    present! relateds, with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
+    present! relateds , with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
   end
 
 end
