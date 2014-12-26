@@ -27,14 +27,6 @@ angular.module('DaisyApp').directive 'list', [
         scope.templateUrl = (data) ->
           "templates/lists/#{data.template}.html"
 
-        scope.addthumb1 = (id) -> 
-          url = "/api/hospitals/thumb.json"
-          $scope.number += 1
-          $alert.info(id)
-          $loader.get(url, id)
-            .success (json) ->
-              $alert.info(url)
-
       controller: ($loader, $alert, $scope) ->
         $scope.addthumb = (id) ->
           url = "/api/hospitals/thumb.json"
