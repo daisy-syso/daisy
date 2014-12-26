@@ -83,8 +83,8 @@ angular.module 'DaisyApp', [
       controller: detailCtrl
 
     listCtrl = [
-      '$scope', '$loader', '$route', '$location'
-      ($scope, $loader, $route, $location) ->
+      '$scope', '$loader', '$route', '$location', '$alert'
+      ($scope, $loader, $route, $location, $alert) ->
 
         $scope.loadData = (type, params) ->
           $scope.type = type
@@ -115,6 +115,7 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data['fin'] = data['fin']
               $scope.data['data'] = $scope.data['data'].concat data['data']
+
     ]
     
     $routeProvider.when '/list/:type*',

@@ -3,5 +3,8 @@
   <!-- <del>{{data.ori_price||"&nbsp;"}}元</del> -->
   <del>{{data.hospital_onsales[0].sales}}</del>
   <!-- <p class="pull-right">已售{{data.sold_count || 0}}件</p> -->
-  <p class="pull-right"><img src="images/zan.jpg" width="20">赞</p>
+  <p class="pull-right" >
+  	<a ng-click="addthumb(data.hospital_onsales[0].id)"><img src="images/zan.jpg" width="20" >赞({{number}})
+  	</a>
+  </p>
 </div>

@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'list', [
-  '$loader'
-  ($loader) ->
+  '$loader', '$alert'
+  ($loader, $alert) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/list.html"
@@ -12,6 +12,7 @@ angular.module('DaisyApp').directive 'list', [
         listMore: "@"
         listMoreLink: "@"
         listLoadMore: "@"
+        number: "@"
       link: (scope, element, attrs) ->
         if scope.listUrl
           $loader.get(scope.listUrl)
@@ -25,4 +26,12 @@ angular.module('DaisyApp').directive 'list', [
         scope.templateUrl = (data) ->
           "templates/lists/#{data.template}.html"
 
+      controller: ($loader, $alert, $scope) ->
+        $scope.addthumb = (hospital_onsale_id) ->
+          url = "/api/hospitals/thumb.json"
+          $scope.number += 1
+          $loader.get(url, hospital_onsale_id)
+            .success (json) ->
+              
+              $alert.info(url)
 ]
