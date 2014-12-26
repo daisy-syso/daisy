@@ -28,6 +28,7 @@ class DaisyAPI < Grape::API
     mount Hospitals::DoctorsAPI
     mount Hospitals::HospitalNewsAPI
     mount Hospitals::HospitalChargesAPI
+    mount Hospitals::HospitalOnsalesAPI
   
   end
 

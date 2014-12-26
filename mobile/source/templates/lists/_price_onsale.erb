@@ -4,7 +4,7 @@
   <del>{{data.hospital_onsales[0].sales}}</del>
   <!-- <p class="pull-right">已售{{data.sold_count || 0}}件</p> -->
   <p class="pull-right" >
-  	<a ng-click="addthumb(data.hospital_onsales[0].id)"><img src="images/zan.jpg" width="20" >赞({{number}})
+  	<a ng-click="addthumb('{{data.hospital_onsales[0].id}}')"><img src="images/zan.jpg" width="20" >赞({{number || data.hospital_onsales[0].thumb || 0}})
   	</a>
   </p>
 </div>
