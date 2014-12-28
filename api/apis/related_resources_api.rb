@@ -25,24 +25,40 @@ class RelatedResourcesAPI < Grape::API
     present! relateds, with: PolymorphicEntity
   end
 
+  # get :related_hospital do
+  #   id = hospital_type_id params[:hospital_type]
+  #   a = Hospitals::HospitalOnsale.all.map {|a| a.hospital_id}.compact
+  #   b = Hospitals::HospitalType.find(id).hospitals.map {|h| h.id}.compact
+  #   p "==========#{a & b}"
+  #   c = a & b
+
+  #   # 3.times do |i|
+  #   #   relateds_onsale << Hospitals::HospitalOnsale.offset(Random.rand(related_resources_count(Hospitals::HospitalOnsale))).first
+  #   # end
+  #   # relateds = relateds_onsale.map{|related_onsale| related_onsale.hospital }
+  #   relateds = []
+  #   3.times do |i|
+  #     random_number = Random.rand(c.count)
+  #     relateds << Hospitals::Hospital.where(id: c[random_number]).first
+  #   end
+  #   p relateds
+  #   present! relateds , with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
+  # end
+
   get :related_hospital do
     id = hospital_type_id params[:hospital_type]
-    a = Hospitals::HospitalOnsale.all.map {|a| a.hospital_id}.compact
-    b = Hospitals::HospitalType.find(id).hospitals.map {|h| h.id}.compact
-    p "==========#{a & b}"
-    c = a & b
-
-    # 3.times do |i|
-    #   relateds_onsale << Hospitals::HospitalOnsale.offset(Random.rand(related_resources_count(Hospitals::HospitalOnsale))).first
-    # end
-    # relateds = relateds_onsale.map{|related_onsale| related_onsale.hospital }
-    relateds = []
-    3.times do |i|
-      random_number = Random.rand(c.count)
-      relateds << Hospitals::Hospital.where(id: c[random_number]).first
+    hospital_charges = Hospitals::HospitalCharge.where(hospital_type_parent_id: id)
+    if !hospital_charges.blank?
+      relateds = []
+      3.times do |i|
+        releted_charge = hospital_charges.to_a.delete_at(Random.rand(hospital_charges.count))
+        related_onsales = releted_charge.try(:hospital_onsales)
+        relateds << related_onsales.offset(Random.rand(related_onsales.count)).first.hospital if !related_onsales.blank?
+      end
     end
-    p relateds
+    p "all========#{relateds}"
     present! relateds , with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
   end
+
 
 end

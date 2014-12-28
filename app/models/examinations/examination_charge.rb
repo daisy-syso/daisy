@@ -1,7 +1,7 @@
-class Examinations::ExaminationType < ActiveRecord::Base
+class Examinations::ExaminationCharge < ActiveRecord::Base
   # belongs_to :parent, class_name: 'ExaminationType'
   # has_many :children, class_name: 'ExaminationType', foreign_key: 'parent_id'
-  has_one :examination_charge
+  belongs_to :examination_type
   class << self
     include Filterable
 
