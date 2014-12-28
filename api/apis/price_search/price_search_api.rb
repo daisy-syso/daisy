@@ -50,8 +50,9 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         title: "综合医院价格攻略"
       }, {
         template: "price_search/strategy_list",
+        # template: "examinations/examination_type.html.erb",
         # url: "#/list/examinations/examinations?type=133",
-        url: "#/list/examinations/examinations?type=133",
+        url: "#/list/examinations/examination_type?type=1",
         type: "examinations/examinations",
         title: "全国体检价格攻略"
       }, {

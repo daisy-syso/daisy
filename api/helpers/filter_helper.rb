@@ -78,6 +78,22 @@ module FilterHelper
       }
     end
 
+    def examination_parent_type
+      { 
+        title: "商圈",
+        key: "type",
+        children: proc { 
+          Examinations::ExaminationType.where(parent_id: nil).map do |type|
+            {id: type.id,
+             title: type.name
+           }
+
+          end
+         },
+        # filter_only: true
+      }
+    end
+
     def price_filters
       { 
         type: Hash,
