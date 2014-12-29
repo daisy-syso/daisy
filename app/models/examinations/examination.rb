@@ -22,11 +22,24 @@ class Examinations::Examination < ActiveRecord::Base
     query.present? ? where{applicable.like("%#{query}%")} : all
   }
 
+  # "template": "examinations/examinations",
+  #           "id": 1,
+  #           "name": "美年大健康北京酒仙桥分院标间C套餐（男）",
+  def self.demand_attrs
+    {
+      only: [:id, :name, :feature],
+      methods: [:ori_price, :sale_price, :template]
+    }
+  end
+
+  def template
+    "examinations/examinations"
+  end
   include Reviewable
   
   alias_attribute :sale_price, :price
   def ori_price
-    sale_price + save_price
+    (sale_price || 0) + (save_price || 0)
   end
   
 end

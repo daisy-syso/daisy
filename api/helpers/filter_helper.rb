@@ -85,7 +85,8 @@ module FilterHelper
         children: proc { 
           Examinations::ExaminationType.where(parent_id: nil).map do |type|
             {id: type.id,
-             title: type.name
+             title: type.name,
+             url: "#/list/examinations/examination_type?type=#{type.id}"
            }
 
           end
