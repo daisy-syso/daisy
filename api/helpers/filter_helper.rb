@@ -80,7 +80,7 @@ module FilterHelper
 
     def examination_parent_type
       { 
-        title: "商圈",
+        title: "类别",
         key: "type",
         children: proc { 
           Examinations::ExaminationType.where(parent_id: nil).map do |type|

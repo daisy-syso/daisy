@@ -37,7 +37,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
             template: "list",
             current: "price_search"
         },{ 
-        title: "商圈",
+        title: "类别",
         children: Examinations::ExaminationType.where(parent_id: nil),
         template: "list",
         filter_only: true,
