@@ -26,9 +26,13 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
         order_by: order_by_filters(Hospitals::PolyclinicCharge),
         form: form_filters
       }
-  end
+  end 
 
   namespace :hospital_charges do
+    params do
+      requires :hospital_parent_type, type: Integer
+    end
+    # p params[:hospital_parent_type]
     index! Hospitals::HospitalCharge, 
       meta: { nolink: true },
       title: "价格攻略",
@@ -36,7 +40,7 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
         type: type_filters,
         hospital_parent_type: { scope_only: true },
         hospital_type: { scope_only: true },
-        county: fake_county_filters,
+        county: hospital_charge_type,
         order_by: order_by_filters(Hospitals::HospitalCharge),
         form: form_filters
       }

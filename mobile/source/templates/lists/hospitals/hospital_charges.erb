@@ -1,2 +1,13 @@
 <%= partial 'templates/lists/body', locals: { subtitle: :name } %>
 <%= partial 'templates/lists/price_scope' %>
+<div style="margin-top:22px;">
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/doctors">
+  	<img ng-src="images/icons/icon_doctor.jpg" width="16" style="margin-right:5px">医生
+  </a>
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/hospitals">
+  	<img ng-src="images/icons/icon_hospital.jpg" width="16" style="margin-right:5px">医院
+  </a>
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/drugs">
+  	<!-- <img ng-src="{{data.image_url}}" class="pull-left" width="16" ng-if="data.image_url"> -->
+  	<img ng-src="images/icons/icon_drug.jpg" width="16" style="margin-right:5px">药品
+  </a>

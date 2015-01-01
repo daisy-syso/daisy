@@ -95,6 +95,22 @@ module FilterHelper
       }
     end
 
+    def hospital_charge_type
+      {
+        title: "类别",
+        key: "type",
+        children: proc {
+          Hospitals::HospitalType.where(parent_id: params[:hospital_parent_type]).map do |type|
+            {
+              id: type.id,
+              title: type.name,
+              url: "#/list/hospitals/hospital_charges?hospital_parent_type=#{type.parent_id}&type=#{type.id}"
+            }
+          end
+        }
+      }
+    end
+
     def price_filters
       { 
         type: Hash,
