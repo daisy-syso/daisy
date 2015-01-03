@@ -80,7 +80,7 @@ module FilterHelper
 
     def examination_parent_type
       { 
-        title: "类别",
+        title: proc { Examinations::ExaminationType.where(id: params[:type]).first.try(:name) || "类别" } ,
         key: "type",
         children: proc { 
           Examinations::ExaminationType.where(parent_id: nil).map do |type|
@@ -91,23 +91,25 @@ module FilterHelper
 
           end
          },
+         current: proc { params[:examination_type]}
         # filter_only: true
       }
     end
-
+ 
     def hospital_charge_type
       {
-        title: "类别",
+        title: proc {Hospitals::HospitalType.where(id: params[:hospital_type]).first.try(:name) || "类别" } ,
         key: "type",
         children: proc {
           Hospitals::HospitalType.where(parent_id: params[:hospital_parent_type]).map do |type|
             {
               id: type.id,
               title: type.name,
-              url: "#/list/hospitals/hospital_charges?hospital_parent_type=#{type.parent_id}&type=#{type.id}"
+              url: "#/list/hospitals/hospital_charges?hospital_parent_type=#{type.parent_id}&hospital_type=#{type.id}"
             }
           end
-        }
+        },
+        current: proc{ params[:hospital_type]}
       }
     end
 

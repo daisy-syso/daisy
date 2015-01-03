@@ -125,7 +125,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/list/:type*',
       templateUrl: "templates/list.html"
       controller: listCtrl
-      reloadOnSearch: false
+      reloadOnSearch: true
 
     $routeProvider.when '/search/:query',   
       templateUrl: "templates/list.html"

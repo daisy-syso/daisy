@@ -3,6 +3,15 @@ class Examinations::ExaminationTypesAPI < ApplicationAPI
   namespace :examination_type do
     index! Examinations::ExaminationType,
       title: "全国体检",
+      parent: proc { 
+        if params[:type].blank?
+          p params[:type]
+        Examinations::ExaminationType.where.not(parent_id: nil)
+      else
+        p params[:type]
+        Examinations::ExaminationType.where(parent_id: params[:type]) 
+      end
+        },
       filters: { 
         # city: city_filters,
         type: type_filters(:examination),

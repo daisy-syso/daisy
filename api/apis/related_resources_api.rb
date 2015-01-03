@@ -48,16 +48,18 @@ class RelatedResourcesAPI < Grape::API
   get :related_hospital do
     id = hospital_type_id params[:hospital_type]
     hospital_charges = Hospitals::HospitalCharge.where(hospital_type_parent_id: id)
+    p "hospital_charges======#{hospital_charges.blank?}"
     if !hospital_charges.blank?
       relateds = []
       3.times do |i|
         releted_charge = hospital_charges.to_a.delete_at(Random.rand(hospital_charges.count))
+        p "releted_charge========#{releted_charge}"
         related_onsales = releted_charge.try(:hospital_onsales)
         relateds << related_onsales.offset(Random.rand(related_onsales.count)).first.hospital if !related_onsales.blank?
       end
     end
     p "all========#{relateds}"
-    present! relateds , with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
+    present! relateds || [] , with: Hospitals::HospitalEntity, hospital_onsales_no_type_id: true
   end
 
 
