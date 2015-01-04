@@ -1,20 +1,23 @@
 <%= partial 'templates/details/header' %>
 
 <div class="content">
-  <%= partial 'templates/details/album' %>
+  <div class="album">
+  <img ng-src="{{data.hospital.image_url}}" />
+  <!-- <div class="desc">点击图片查看相册</div> -->
+</div>
   <div class="card">
   <ul class="table-view media">
       <li class="table-view-cell">
         <div class="media-detail huge">
-          <span><strong>{{data.sale_price||"&nbsp;"}}</strong>元</span>
-          <del>{{data.ori_price}}元</del>
+          <span><strong>{{data.price||"&nbsp;"}}</strong>元</span>
+          <span>{{data.sales}}</span>
           <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}">立即购买</a>
         </div>
       </li>
     <li class="table-view-cell">
       <div class="media-detail">
         <h1>{{data.<%= defined?(title) ? title : :name %>}}</h1>
-        <p class="pre">{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p>
+        <p class="pre">{{data.hospital.name}}</p>
       </div>
     </li>
     <li class="table-view-cell">
@@ -23,6 +26,18 @@
   </ul>
 </div>
   <%= partial 'templates/details/review' %>
+
+  <div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell media-title">
+      <%= defined?(title) ? title : "商品信息" %>
+    </li>
+    <li class="table-view-cell">
+      <p class="pre">{{data.<%= defined?(detail) ? detail : :desc %>}}</p>
+    </li>
+  </ul>
+</div>
+ 
 
   <%= partial 'related' %> 
 

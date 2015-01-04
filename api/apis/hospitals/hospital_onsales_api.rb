@@ -11,4 +11,8 @@ class Hospitals::HospitalOnsalesAPI < ApplicationAPI
 		p hospital_onsale
 		return {data: hospital_onsale}
 	end
+
+	namespace :hospital_onsales do
+		show! Hospitals::HospitalOnsale
+	end
 end 

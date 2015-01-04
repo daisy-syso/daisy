@@ -3,6 +3,8 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
 	expose :hospital_onsales do |instance, options|
     if options[:hospital_onsales_no_type_id]
       instance.hospital_onsales.sample(1)
+    elsif !options[:onsale_id].blank?
+      Hospitals::HospitalOnsale.where(id: options[:onsale_id].blank?)
     else
       hospital_type = options[:env].blank? ? nil : options[:env]["grape.request.params"].hospital_type
   		instance.hospital_onsales.select do |ho|
@@ -17,7 +19,12 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   #   end
   # end
 
-
+  expose :url do |instance, options|
+    hospital_type = options[:env].blank? ? nil : options[:env]["grape.request.params"].hospital_type
+    if hospital_type
+    "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
+    end
+  end
 
   expose :template do |instance, options|
     if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"])
@@ -33,7 +40,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
 
 
   with_options if: { detail: true } do
-    expose :url
+    # expose :url
 
     expose :equipment_star, :skill_star, :service_star, :environment_star
     expose :equipment_desc, :skill_desc, :service_desc, :environment_desc

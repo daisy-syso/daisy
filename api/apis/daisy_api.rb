@@ -69,6 +69,7 @@ class DaisyAPI < Grape::API
 
   namespace :insurances do
     mount Insurances::InsurancesAPI
+    mount Insurances::CommercialInsurancesAPI
   end
 
   namespace :price_search do

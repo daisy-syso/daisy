@@ -2,6 +2,7 @@ class Insurances::InsurancesAPI < ApplicationAPI
 
   namespace :insurances do
     index! Insurances::Insurance,
+      # title: "养老保险（商业）",
       title: "养老保险（商业）",
       filters: { 
         type: type_filters,

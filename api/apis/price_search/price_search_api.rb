@@ -97,12 +97,13 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         title: "药品价格查询"
       }, {
         template: "price_search/strategy_list",
-        url: "#/list/insurances/insurances?type=140",
-        type: :"insurances/insurances",
+        # url: "#/list/insurances/insurances?type=8436",
+        url: "#/list/insurances/commercial_insurances",
+        type: :"insurances/commercial_insurances",
         title: "健康保险价格查询"
       }, {
         template: "price_search/strategy_list",
-        url: "#/list/insurances/insurances?type=141",
+        url: "#/list/insurances/insurances?type=8435",
         type: :"insurances/insurances",
         title: "养老保险价格查询"
       }, {

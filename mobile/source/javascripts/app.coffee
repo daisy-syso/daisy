@@ -72,9 +72,12 @@ angular.module 'DaisyApp', [
         # url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
         # $alert.info(url)
-        $loader.get(url)
+        params = angular.extend { onsale_id: $routeParams.onsale_id }, params
+        # $alert.info($routeParams.onsale_id)
+        $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+
     ]
 
     $routeProvider.when '/order/:type*/:id', 
@@ -93,13 +96,23 @@ angular.module 'DaisyApp', [
         $scope.loadData = (type, params) ->
           $scope.type = type
           $scope.params = params
-
+          # $alert.info($scope.listUrl)
           url = "/api/#{type}.json"
           page = $scope.page = 1
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) ->
               $scope.data = data
+
+        # $scope.$watch "data['title']", (value) ->
+        #   $alert.info("/api/related_hospital.json?hospital_type=#{value}")
+        #   $loader.get("/api/related_hospital.json?hospital_type=#{value}")
+        #     .success (json) ->
+        #       $scope.listFin = json.fin
+        #       # $alert.info("json.fin=====#{json.fin}")
+        #       $alert.info("json======#{json.data}")
+        #       # $alert.info("data=====#{json.data.related}")
+        #       $scope.listData = json.data
 
         $scope.redirectTo = (type, params) ->
           $scope.loadData(type, params)

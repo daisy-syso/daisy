@@ -17,8 +17,17 @@ angular.module('DaisyApp').directive 'list', [
           $loader.get(scope.listUrl)
             .success (json) ->
               scope.listFin = json.fin
-              # $alert.info(json.data)
+              # $alert.info("1111related======#{json.data}")
               scope.listData = json.data
+
+        # scope.$watch "data['title']", (value) ->
+        #   $alert.info("/api/related_hospital.json?hospital_type=#{value}")
+        #   $loader.get("/api/related_hospital.json?hospital_type=#{value}")
+        #     .success (json) ->
+        #       scope.listFin = json.fin
+        #       $alert.info("json.fin=====#{json.fin}")
+        #       $alert.info("json.data=====#{json.data}")
+        #       scope.listData = json.data
 
         scope.link = (data) ->
           data.url || "#/detail/#{data.template}/#{data.id}" unless data.nolink
@@ -38,5 +47,6 @@ angular.module('DaisyApp').directive 'list', [
               .success (json) ->
                 hospital_onsale.thumb = json.data.thumb
                 # $alert.info(json.data)
+
       ]
 ]
