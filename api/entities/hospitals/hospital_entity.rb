@@ -20,9 +20,14 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   # end
 
   expose :url do |instance, options|
-    hospital_type = options[:env].blank? ? nil : options[:env]["grape.request.params"].hospital_type
-    if hospital_type
-    "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
+    # hospital_type = options[:env].blank? ? nil : options[:env]["grape.request.params"].hospital_type
+    # if hospital_type
+    # "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
+    # end
+    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"])
+      "#/detail/hospitals/hospitals/#{instance.id}" 
+    else
+      "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
     end
   end
 

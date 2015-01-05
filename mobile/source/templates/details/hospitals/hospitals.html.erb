@@ -1,28 +1,52 @@
 <%= partial 'templates/details/header' %>
 
 <div class="content">
+
   <%= partial 'templates/details/album' %>
+  
   <div class="card">
-  <ul class="table-view media">
+    <ul class="table-view media">
       <li class="table-view-cell">
-        <div class="media-detail huge">
-          <span><strong>{{data.sale_price||"&nbsp;"}}</strong>元</span>
-          <del>{{data.ori_price}}元</del>
-          <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}">立即购买</a>
+        <div class="media-detail">
+          <h1>{{data.name}}</h1>
         </div>
       </li>
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <h1>{{data.<%= defined?(title) ? title : :name %>}}</h1>
-        <p class="pre">{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p>
-      </div>
-    </li>
-    <li class="table-view-cell">
-      <%= partial 'templates/details/actions' %>
-    </li>
-  </ul>
-</div>
+
+      <li class="table-view-cell">
+        <%= partial 'templates/details/actions' %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btns-block">
+    <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}">挂号</a>
+    <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}">就诊查询</a>
+  </div>
+
   <%= partial 'templates/details/review' %>
+  
+  <div class="card">
+    <ul class="table-view media">
+
+      <% titles = { equipment: "检查设备", skill: "医疗技术水平", service: "服务水平", environment: "医院环境" } %>
+      <% %i(equipment skill service environment).each do |key| %>
+        <li class="table-view-cell">
+          <div class="media-detail">
+            <div class="block">
+              <h4>
+                <%= titles[key] %>：
+                <span stars="data.<%= key %>_star" class="stars"></span>
+              </h4>
+              <p class="pre">{{data.<%= key %>_desc}}</p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+
+    </ul>
+  </div>
+
+  <%= partial 'templates/details/map' %>
 
   <%= partial 'related' %> 
 
