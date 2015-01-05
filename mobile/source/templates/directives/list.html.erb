@@ -2,11 +2,24 @@
   <ul class="table-view media">
 
     <li class="table-view-cell media-title" ng-show="listTitle">
-      {{listTitle}}
+      <!-- {{listTitle}} -->
     </li>
 
     <li class="table-view-cell media-content" ng-repeat="data in listData" ng-class="{last: listFin && $last}">
       <a ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)" ng-cloak>
+      </a>
+    </li>
+
+     <li class=" media-content"  ng-if="listTitle == '价格攻略'" style="text-align:center;margin-top:10px;">
+          <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/doctors">
+        <img ng-src="images/icons/icon_doctor.jpg" width="16" style="margin-right:5px">医生
+      </a>
+      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/hospitals" style="margin:0 20px;">
+        <img ng-src="images/icons/icon_hospital.jpg" width="16" style="margin-right:5px">医院
+      </a>
+      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/drugs">
+        <!-- <img ng-src="{{data.image_url}}" class="pull-left" width="16" ng-if="data.image_url"> -->
+        <img ng-src="images/icons/icon_drug.jpg" width="16" style="margin-right:5px">药品
       </a>
     </li>
 
