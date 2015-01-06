@@ -12,6 +12,7 @@ angular.module('DaisyApp').directive 'list', [
         listMore: "@"
         listMoreLink: "@"
         listLoadMore: "@"
+        listFilters: "=?"
       link: (scope, element, attrs) ->
         if scope.listUrl
           $loader.get(scope.listUrl)

@@ -10,14 +10,14 @@
       </a>
     </li>
 
-     <li class=" media-content"  ng-if="listTitle == '价格攻略'" style="text-align:center;margin-top:10px;">
-          <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/doctors">
+     <li class=" media-content"  ng-if="listTitle == '价格攻略'" style="text-align:center;margin-top:10px;">{{hospital_parent_type}}
+          <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{listFilters[1]['current']}}/doctors">
         <img ng-src="images/icons/icon_doctor.jpg" width="16" style="margin-right:5px">医生
       </a>
-      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/hospitals" style="margin:0 20px;">
+      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{listFilters[1]['current']}}/hospitals" style="margin:0 20px;">
         <img ng-src="images/icons/icon_hospital.jpg" width="16" style="margin-right:5px">医院
       </a>
-      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/2/drugs">
+      <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{listFilters[1]['current']}}/drugs">
         <!-- <img ng-src="{{data.image_url}}" class="pull-left" width="16" ng-if="data.image_url"> -->
         <img ng-src="images/icons/icon_drug.jpg" width="16" style="margin-right:5px">药品
       </a>
