@@ -86,6 +86,12 @@ class HomeAPI < Grape::API
           title: "全部",
           filterTitle: "综合医院"
         }, {
+          type: "hospitals/polyclinic_treatments",
+          title: "综合医院诊疗攻略"
+        }, {
+          type: "hospitals/polyclinic_charges",
+          title: "综合医院价格攻略"
+        }, {
           title: "三级甲等",
           params: { hospital_level: 2 }
         }, {
@@ -113,24 +119,19 @@ class HomeAPI < Grape::API
           title: "一级合格",
           params: { hospital_level: 10 }
         }, {
+          title: "外资医院",
+          params: { is_foreign: true }
+          
+        }, {
           title: "社区医院",
           params: { is_community: true }
         }, {
           title: "其他医院",
           params: { is_other: true }
         }, {
-          title: "外资医院",
-          params: { is_foreign: true }
-        }, {
           type: "social_securities/social_securities",
           title: "社保定点医院",
           params: { social_security_type: 2 }
-        }, {
-          type: "hospitals/polyclinic_treatments",
-          title: "综合医院诊疗攻略"
-        }, {
-          type: "hospitals/polyclinic_charges",
-          title: "综合医院价格攻略"
         }]
       }, { 
         type: "hospitals/tests",
