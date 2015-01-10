@@ -228,7 +228,8 @@ module FilterHelper
         type: String,
         children: proc do 
           id = params[:hospital_type]
-          h["16"].each_with_index.map do |title, index| 
+          array = h[id.to_s] || %w(不限 (含淋巴结清扫和取活检) 耻骨上前列腺切除术 耻骨后前列腺切除术 经会阴前列腺切除术 前列腺囊肿切除术 前列腺脓肿切开术 经尿道前列腺电切术(激光法) 经尿道前列腺电切术(电切法) 经尿道前列腺电切术(汽化法) 经尿道前列腺气囊扩张术 经尿道前列腺支架置入术 前列腺摘除术)
+          array.each_with_index.map do |title, index| 
             { title: title, id: index }
           end
         end,
