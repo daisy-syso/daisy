@@ -109,7 +109,9 @@ module FilterHelper
             }
           end
         },
-        current: proc{ params[:hospital_type]}
+        current: proc{ params[:hospital_parent_type] },
+        # hospital_parent_type: "proc { params[:hospital_parent_type] }
+        # "
       }
     end
 
@@ -191,6 +193,48 @@ module FilterHelper
         end,
         append: :form 
       }
+    end
+
+    def form_radio_array_filters_new title
+
+      # hospital_type = proc {params[:hospital_type]}
+      h = { "16" => %w(不限 B超引导下前列腺活检术 前列腺针吸细胞学活检术
+                  前列腺按摩 前列腺注射 前列腺特殊治疗(微波法) 前列腺特殊治疗(射频法)
+                  前列腺特殊治疗(激光法)),
+        "22" => %w(不限 阴茎延长 阴茎增粗),
+        "23" => %w(不限 包皮环切术 激光手术),
+        "20" => %w(不限 精索静脉转流术 精索静脉转流术 精索静脉曲张栓塞术 精索静脉曲张高位结扎术 精索静脉曲张分流术),
+        "19" => %w(不限 阴囊、双侧睾丸、附睾B超检查 阴囊、双侧睾丸、附睾彩色多普勒超声检查 睾丸阴茎海绵体活检术(包括穿刺、切开)
+                  睾丸鞘膜翻转术 睾丸附件扭转探查术(含睾丸扭转复位术) 睾丸破裂修补术 睾丸固定术(含疝囊高位结扎术) 睾丸切除术 
+                    睾丸肿瘤腹膜后淋巴结清扫术 自体睾丸移植术 附睾睾丸活检术 ),
+        "18" => %w(不限 阴茎海绵体造影 夜间阴茎胀大试验(含硬度计法) 阴茎超声血流图检查
+                    阴茎勃起神经检查(含肌电图检查) 睾丸阴茎海绵体活检术(包括穿刺、切开) 
+                    阴茎海绵体内药物注射 阴茎赘生物电灼术(包括冷冻术) 阴茎动脉测压术 
+                    阴茎海绵体灌流治疗术 尿道下裂阴茎下弯矫治术 阴茎包皮过短整形术  
+                    阴茎外伤清创术 阴茎再植术 阴茎囊肿切除术 阴茎硬节切除术 阴茎部分切除术(包括阴茎癌切除术) 
+                    阴茎全切术(阴茎癌切除术) 阴茎重建成形术(含假体置放术) 阴茎再造术(含龟头再造和假体置放) 
+                    阴茎畸型整形术(包括阴茎弯曲矫正) 阴茎延长术(包括阴茎加粗、隐匿型延长术) 
+                    阴茎阴囊移位整形术(增加会阴型尿道下裂修补时加收50%) 尿道阴茎海绵体分流术 阴茎血管重建术 
+                    阴茎海绵体分离术 阴茎静脉结扎术(包括海绵体静脉、背深静脉)),
+        "21"  =>  %w(不限 高位隐睾下降固定术（含疝修补术） 经腹腔镜隐睾探查术（含隐睾切除术）)
+        
+      }
+
+      { 
+        meta: { 
+          title: title, 
+          template: :radio,
+        },
+        type: String,
+        children: proc do 
+          id = params[:hospital_type]
+          h["16"].each_with_index.map do |title, index| 
+            { title: title, id: index }
+          end
+        end,
+        append: :form 
+      }
+
     end
 
     def form_query_filters title = "搜索"
