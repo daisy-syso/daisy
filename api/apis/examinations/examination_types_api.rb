@@ -2,7 +2,7 @@ class Examinations::ExaminationTypesAPI < ApplicationAPI
 
   namespace :examination_type do
     index! Examinations::ExaminationType,
-      title: "全国体检",
+      title: "价格攻略",
       parent: proc { 
         if params[:type].blank?
           p params[:type]

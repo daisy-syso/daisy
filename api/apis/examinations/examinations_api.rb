@@ -28,7 +28,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       p @examinations
       @examinations.as_json(Examinations::Examination.demand_attrs)
       {
-      title: "价格搜索",
+      title: "全国体检",
       filters: [
         {
             link: "types",

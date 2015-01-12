@@ -8,7 +8,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-1.gif"
       }, {
         title: "疾病查询",
-        link: "#/list/diseases/diseases",
+        link: "#/list/diseases/diseases?search_by=common_disease&type=130&common_disease=8",
         icon: "images/icons/1-2.gif"
       }, {
         title: "找医生",
@@ -235,6 +235,9 @@ class HomeAPI < Grape::API
           params: { hospital_type: 70 }
         }, {
           title: "半永久性化妆",
+          params: { hospital_type: 71 }
+        }, {
+          title: "疤痕修复",
           params: { hospital_type: 71 }
         }]
       }, {
