@@ -159,8 +159,9 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # is_local_hot: form_switch_filters("热门医院")
         need_order: form_switch_filters("无需预约"),
         has_return: form_switch_filters("返现"),
-        template: form_radio_array_filters(%w(不限 剖腹产 卵巢囊切除术 子宫全切 子宫次全切 取环 放环 清宫 无痛清宫 引产术 子宫肌瘤剜除), 
-          "当前主题精选"),
+        # template: form_radio_array_filters(%w(不限 剖腹产 卵巢囊切除术 子宫全切 子宫次全切 取环 放环 清宫 无痛清宫 引产术 子宫肌瘤剜除), 
+          # "当前主题精选"),
+        template: form_radio_array_filters_new("gynaecology", "当前主题精选"),
         price_scope: form_price_scope_filters([500, 1000, 5000, 10000])
       }
   end
@@ -183,8 +184,9 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # is_local_hot: form_switch_filters("热门医院")
         need_order: form_switch_filters("无需预约"),
         has_return: form_switch_filters("返现"),
-        template: form_radio_array_filters(%w(不限 全瓷牙 镍铬烤瓷牙 钴铬合金烤瓷牙 钯银合金烤瓷牙 钯金合金烤瓷牙 钛合金烤瓷牙 E.MAX全瓷牙 美国"雷诺皓瓷牙"瑞典Procera皓瓷牙 德国泽康皓瓷牙),
-          "当前主题精选"),
+        # template: form_radio_array_filters(%w(不限 全瓷牙 镍铬烤瓷牙 钴铬合金烤瓷牙 钯银合金烤瓷牙 钯金合金烤瓷牙 钛合金烤瓷牙 E.MAX全瓷牙 美国"雷诺皓瓷牙"瑞典Procera皓瓷牙 德国泽康皓瓷牙),
+          # "当前主题精选"),
+        template: form_radio_array_filters_new("dental", "当前主题精选"),
         price_scope: form_price_scope_filters([500, 1000, 5000, 10000, 20000])
       }
   end
