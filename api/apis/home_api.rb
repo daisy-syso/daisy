@@ -83,7 +83,7 @@ class HomeAPI < Grape::API
         title: "综合医院",
         children: [{
           id: :polyclinic,
-          title: "全部",
+          title: "全部医院",
           filterTitle: "综合医院"
         }, {
           type: "hospitals/polyclinic_treatments",
@@ -137,7 +137,7 @@ class HomeAPI < Grape::API
         type: "hospitals/tests",
         title: "体检医院",
         children: [{
-          title: "全部",
+          title: "全部检医院",
           filterTitle: "体检医院"
         }, {
           type: "hospitals/hospital_news",

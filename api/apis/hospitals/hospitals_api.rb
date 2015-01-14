@@ -135,8 +135,9 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # is_local_hot: form_switch_filters("热门医院")
         need_order: form_switch_filters("无需预约"),
         has_return: form_switch_filters("返现"),
-        template: form_radio_array_filters(%w(不限 颈椎病推拿治疗 寰枢关节失稳推拿治疗 颈椎小关节紊乱推拿治疗 胸椎小关节紊乱推拿治疗 腰椎小关节紊乱推拿治疗 腰椎间盘突出推拿治疗 第三腰椎横突综合征推拿治疗 骶髂关节紊乱症推拿治疗 强直性脊柱炎推拿治疗 外伤性截瘫推拿治疗 退行性脊柱炎推拿治疗 ),
-          "当前主题精选"),
+        # template: form_radio_array_filters(%w(不限 颈椎病推拿治疗 寰枢关节失稳推拿治疗 颈椎小关节紊乱推拿治疗 胸椎小关节紊乱推拿治疗 腰椎小关节紊乱推拿治疗 腰椎间盘突出推拿治疗 第三腰椎横突综合征推拿治疗 骶髂关节紊乱症推拿治疗 强直性脊柱炎推拿治疗 外伤性截瘫推拿治疗 退行性脊柱炎推拿治疗 ),
+          # "当前主题精选"),
+        template: form_radio_array_filters_new("tcm", "当前主题精选"),
         price_scope: form_price_scope_filters([10, 50, 100])
       }
   end
