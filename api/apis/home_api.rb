@@ -166,7 +166,7 @@ class HomeAPI < Grape::API
         type: "hospitals/plastics",
         title: "整形医院",
         children: [{
-          title: "全部",
+          title: "全部整形医院",
           filterTitle: "整形医院"
         },{
           type: "hospitals/hospital_news",
@@ -244,7 +244,7 @@ class HomeAPI < Grape::API
         type: "hospitals/dentals",
         title: "牙科医院",
         children: [{
-          title: "全部",
+          title: "全部牙科医院",
           filterTitle: "牙科医院"
         }, {
           type: "hospitals/hospital_news",
@@ -367,7 +367,7 @@ class HomeAPI < Grape::API
         type: "hospitals/gynaecologies",
         title: "妇幼医院",
         children: [{
-          title: "全部",
+          title: "全部妇幼医院",
           filterTitle: "妇幼医院"
         }, { 
           type: "hospitals/hospital_news",
@@ -436,7 +436,7 @@ class HomeAPI < Grape::API
         type: "hospitals/andrologies",
         title: "男科医院",
         children: [{
-          title: "全部",
+          title: "全部男科医院",
           filterTitle: "男科医院"
         }, {
           type: "hospitals/hospital_news",
@@ -481,7 +481,7 @@ class HomeAPI < Grape::API
         type: "hospitals/tcm",
         title: "中医院",
         children: [{
-          title: "全部",
+          title: "全部中医院",
           filterTitle: "中医院"
         }, {
           type: "hospitals/hospital_news",
