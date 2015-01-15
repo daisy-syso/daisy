@@ -419,18 +419,18 @@ class HomeAPI < Grape::API
         }, {
           title: "阴道镜检查",
           params: { hospital_type: 0 }
-        # }, { 
+        }, { 
         #   title: "女性不孕检查",
         #   params: { hospital_type: 12 }
         # }, { 
-        #   title: "妇科常规检查",
-        #   params: { hospital_type: 13 }
-        # }, { 
-        #   title: "妇科常规治疗",
-        #   params: { hospital_type: 14 }
-        # }, { 
-        #   title: "产科",
-        #   params: { hospital_type: 15 }
+          title: "妇科常规检查",
+          params: { hospital_type: 13 }
+        }, { 
+          title: "妇科常规治疗",
+          params: { hospital_type: 14 }
+        }, { 
+          title: "产科",
+          params: { hospital_type: 15 }
         }]
       }, {
         type: "hospitals/andrologies",
