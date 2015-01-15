@@ -403,22 +403,22 @@ class HomeAPI < Grape::API
           params: { hospital_type: 0 }
         }, {
           title: "B超",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 82 }
         }, {
           title: "分泌物检验",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 83 }
         }, {
           title: "尿液检验",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 84 }
         }, {
           title: "通用检查",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 85 }
         }, {
           title: "血液检查",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 86 }
         }, {
           title: "阴道镜检查",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 87 }
         }, { 
         #   title: "女性不孕检查",
         #   params: { hospital_type: 12 }
@@ -505,19 +505,19 @@ class HomeAPI < Grape::API
           params: { hospital_type: 0 }
         }, {
           title: "针刺",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 73 }
         }, {
           title: "中医肛肠",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 74 }
         }, {
           title: "中医骨伤",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 74 }
         }, {
           title: "中医特殊疗法",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 76 }
         }, {
           title: "中医外治",
-          params: { hospital_type: 0 }
+          params: { hospital_type: 77 }
         }]
       }]
     }, {
