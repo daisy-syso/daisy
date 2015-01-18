@@ -701,6 +701,17 @@ class HomeAPI < Grape::API
         type: :"insurances/insurances",
         title: "养老保险（商业）攻略"
       }]
+    }, {
+      title: "母婴亲子",
+      children: [{
+        id: :eldercare,
+        type: :"maternals/confinement_centers",
+        title: "月子中心"
+      }, {
+        type: :"maternals/maternal_halls",
+        title: "母婴会馆",
+        params: { social_security_type: 5 }
+      }]
     }]
 
   class << self

@@ -56,7 +56,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 
 # Use RailsAdmin for the backend administration
-gem 'rails_admin'#, github: 'sferik/rails_admin'
+gem 'rails_admin' #, github: 'sferik/rails_admin'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -67,6 +67,8 @@ gem "kaminari"
 gem "squeel"
 gem "thinking-sphinx"
 
+gem 'settingslogic'
+
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'
@@ -76,7 +78,7 @@ group :development do
   gem 'quiet_assets'
   gem 'pry-byebug'
   gem 'pry-rails'
-
+  gem 'grape-rails-routes'
   # gem "middleman", "~>3.2.2"
 
 end
