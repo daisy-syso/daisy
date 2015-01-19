@@ -378,6 +378,24 @@ class HomeAPI < Grape::API
           title: "妇科价格攻略",
           params: { hospital_parent_type: 5 }
         }, {
+          title: "B超",
+          params: { hospital_type: 82 }
+        }, {
+          title: "分泌物检验",
+          params: { hospital_type: 83 }
+        }, {
+          title: "尿液检验",
+          params: { hospital_type: 84 }
+        }, {
+          title: "通用检查",
+          params: { hospital_type: 85 }
+        }, {
+          title: "血液检查",
+          params: { hospital_type: 86 }
+        }, {
+          title: "阴道镜检查",
+          params: { hospital_type: 87 }
+        }, {
           title: "孕期检查",
           params: { hospital_type: 0 }
         }, { 
@@ -401,24 +419,6 @@ class HomeAPI < Grape::API
         }, {
           title: "痛经中心",
           params: { hospital_type: 0 }
-        }, {
-          title: "B超",
-          params: { hospital_type: 82 }
-        }, {
-          title: "分泌物检验",
-          params: { hospital_type: 83 }
-        }, {
-          title: "尿液检验",
-          params: { hospital_type: 84 }
-        }, {
-          title: "通用检查",
-          params: { hospital_type: 85 }
-        }, {
-          title: "血液检查",
-          params: { hospital_type: 86 }
-        }, {
-          title: "阴道镜检查",
-          params: { hospital_type: 87 }
         }, { 
         #   title: "女性不孕检查",
         #   params: { hospital_type: 12 }
