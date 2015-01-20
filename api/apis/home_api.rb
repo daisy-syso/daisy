@@ -80,6 +80,7 @@ class HomeAPI < Grape::API
       title: "医院大全",
       children: [{
         type: "hospitals/polyclinics",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Complex.png",
         title: "综合医院",
         children: [{
           id: :polyclinic,
@@ -135,6 +136,7 @@ class HomeAPI < Grape::API
         }]
       }, { 
         type: "hospitals/tests",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
         title: "体检医院",
         children: [{
           title: "全部检医院",
@@ -164,6 +166,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         type: "hospitals/plastics",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Shaping.png",
         title: "整形医院",
         children: [{
           title: "全部整形医院",
@@ -242,6 +245,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         type: "hospitals/dentals",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_teeth.png",
         title: "牙科医院",
         children: [{
           title: "全部牙科医院",
@@ -365,6 +369,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         type: "hospitals/gynaecologies",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_woman.png",
         title: "妇幼医院",
         children: [{
           title: "全部妇幼医院",
@@ -434,6 +439,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         type: "hospitals/andrologies",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_man.png",
         title: "男科医院",
         children: [{
           title: "全部男科医院",
@@ -479,6 +485,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         type: "hospitals/tcm",
+        image_url: "http://syso.qiniudn.com/icon%2Fnavicon_TCM.png",
         title: "中医院",
         children: [{
           title: "全部中医院",
@@ -615,29 +622,35 @@ class HomeAPI < Grape::API
       title: "价格搜索",
       children: [{
         id: :price_search,
+        url:  "#/list/hospitals/polyclinic_charges?type=price_search",
         type: "hospitals/polyclinic_charges",
         title: "综合医院价格攻略"
       }, {
         type: "examinations/examinations",
         title: "全国体检价格攻略"
       }, {
-        type: "hospitals/hospital_charges",
+        # type: "hospitals/hospital_charges",
+        type: "hospitals/hospital_types",
         title: "整形医院价格攻略",
         params: { hospital_parent_type: 2 }
       }, {
-        type: "hospitals/hospital_charges",
+        # type: "hospitals/hospital_charges",
+        type: "hospitals/hospital_types",
         title: "牙科医院价格攻略",
         params: { hospital_parent_type: 6 }
       }, {
-        type: "hospitals/hospital_charges",
+        # type: "hospitals/hospital_charges",
+        type: "hospitals/hospital_types",
         title: "妇幼医院价格攻略",
         params: { hospital_parent_type: 5 }
       }, {
-        type: "hospitals/hospital_charges",
+        # type: "hospitals/hospital_charges",
+        type: "hospitals/hospital_types",
         title: "男科医院价格攻略",
         params: { hospital_parent_type: 1 }
       }, {
-        type: "hospitals/hospital_charges",
+        # type: "hospitals/hospital_charges",
+        type: "hospitals/hospital_types",
         title: "中医院价格攻略",
         params: { hospital_parent_type: 4 }
       }, {

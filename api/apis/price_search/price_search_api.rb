@@ -11,7 +11,7 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
             template: "list",
             current: "price_search"
         },{ 
-        title: "商圈",
+        title: "类别",
         children: Categories::County.filters(params[:city]),
         filter_only: true
         },{
