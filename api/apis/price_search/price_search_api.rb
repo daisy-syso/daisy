@@ -7,7 +7,7 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         {
             link: "types",
             key: "type",
-            title: "全部类别",
+            title: "价格搜索",
             template: "list",
             current: "price_search"
         },{ 

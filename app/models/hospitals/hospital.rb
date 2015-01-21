@@ -17,6 +17,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :county, -> (county) { where(county: county) }
 
   scope :hospital_type, -> (type) { 
+    p "=========tttt"
     type ? joins(:hospital_types)
       .where{hospitals_types.hospital_type_id == type}
       .distinct : all
@@ -29,7 +30,19 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :hospital_level, -> (level = nil) {
-    level ? where(hospital_level: level) : order{hospital_level_id.desc}
+    p "=1111asc====="
+    level ? where(hospital_level: level) : order(hospital_level_id: :asc)
+  }
+
+  scope :order_by_url, -> (t = true) {
+    p "success========"
+    order("url is null").order("hospital_level_id is null").order(hospital_level_id: :asc)
+    # order(hospital_level_id: :desc).order(url: :desc)
+  }
+
+  scope :order_by_level, -> (t = true) {
+    # p "ssss======"
+    # order(hospital_level_id: :asc)
   }
 
   scope :has_url, -> (boolean = true) {
