@@ -5,7 +5,7 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
       title: "诊疗攻略",
       with: Hospitals::PolyclinicTreatmentEntity,
       filters: { 
-        type: type_filters,
+        type: type_filters("诊疗攻略"),
         city: fake_city_filters,
         county: fake_county_filters,
         order_by: order_by_filters(Diseases::Disease),
@@ -19,7 +19,7 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
     index! Hospitals::PolyclinicCharge, 
       title: "价格攻略",
       filters: { 
-        type: type_filters,
+        type: type_filters("价格攻略"),
         city: city_filters,
         province: { scope_only: true },
         county: fake_county_filters,
@@ -38,7 +38,7 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
       # parent: proc { Hospitals::HospitalCharge.where(hospital_type_id: params[:type])},
       title: "价格攻略",
       filters: { 
-        type: type_filters,
+        type: type_filters("价格攻略"),
         hospital_parent_type: { scope_only: true },
         hospital_type: { scope_only: true },
         county: hospital_charge_type,

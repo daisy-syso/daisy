@@ -72,7 +72,7 @@ module FilterHelper
 
     def fake_county_filters
       { 
-        title: proc {Categories::County.find_by_id(params[:county]) || "全城" },
+        title: proc {Categories::County.find_by_id(params[:county]).try(:name)  || "全城" },
         children: proc { Categories::County.filters(params[:city]) },
         filter_only: true
       }

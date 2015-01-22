@@ -14,7 +14,7 @@ class Examinations::ExaminationTypesAPI < ApplicationAPI
         },
       filters: { 
         # city: city_filters,
-        type: type_filters(:examination),
+        type: type_filters("价格攻略", :examination),
         examination_type: { scope_only: true },
         examination_parent_type: { scope_only: true },
         county: examination_parent_type,

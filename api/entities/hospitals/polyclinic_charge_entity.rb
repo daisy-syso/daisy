@@ -6,4 +6,8 @@ class Hospitals::PolyclinicChargeEntity < ApplicationEntity
     "link"
   end
 
+  expose :name_show do |object, options|
+     object.name+"医疗价格表"
+  end
+
 end
