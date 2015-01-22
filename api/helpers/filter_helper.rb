@@ -63,7 +63,7 @@ module FilterHelper
       }
     end
 
-    def county_filters
+    def county_filters title="商圈"
       { 
         title: "商圈",
         children: proc { Categories::County.filters(params[:city]) },
@@ -410,13 +410,13 @@ module FilterHelper
       }
     end
 
-    def type_filters current = nil
+    def type_filters title="全部类别", current = nil 
       {
         meta: {
           link: :types
         },
         type: String,
-        title: "全部类别",
+        title: title,
         filter_only: true,
         current: proc { params[:type] || current }
       }

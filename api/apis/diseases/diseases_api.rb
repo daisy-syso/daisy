@@ -4,7 +4,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
     index! Diseases::Disease,
       title: "疾病查询",
       filters: { 
-        type: type_filters(:disease),
+        type: type_filters("疾病查询", :disease),
         disease_type: { scope_only: true },
         search_by: search_by_filters({
           default: :symptom,

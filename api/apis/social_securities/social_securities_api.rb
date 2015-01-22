@@ -4,7 +4,7 @@ class SocialSecurities::SocialSecuritiesAPI < ApplicationAPI
     index! SocialSecurities::SocialSecurity, 
       title: "医保查询",
       filters: { 
-        type: type_filters(:social_security),
+        type: type_filters("医保查询", :social_security),
         city: city_filters,
         social_security_type: { default: 1, scope_only: true },
         county: fake_county_filters,

@@ -5,7 +5,7 @@ class Hospitals::DoctorsAPI < ApplicationAPI
       title: "找医生",
       filters: {
         city: city_filters,
-        type: type_filters(:doctor),
+        type: type_filters("找医生", :doctor),
         search_by: search_by_filters({
           default: :disease,
           hospital: { title: "医院", class: Hospitals::Hospital },

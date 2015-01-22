@@ -33,7 +33,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
         {
             link: "types",
             key: "type",
-            title: "全部类别",
+            title: "全国体检",
             template: "list",
             current: "price_search"
         },{ 
