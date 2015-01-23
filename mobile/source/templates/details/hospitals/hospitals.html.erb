@@ -18,12 +18,13 @@
   <ul class="table-view media"> 
     <li class="table-view-cell">
       <div class="media-detail">
-        <h1>医保：{{data.medical_insurance}}</h1>
+        <h4 ><span style="color:#838383">医保：</span>{{data.medical_insurance}}</h4>
       </div>
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
-        <h1>特色科室：{{data.characteristic_departments}}</h1>
+        <h4><span style="color:#838383">特色科室：</span>
+          {{data.characteristic_departments}}</h4>
       </div>
     </li>
   </ul>
@@ -41,7 +42,7 @@
           <div class="media-detail">
             <div class="block">
               <h4>
-                <%= titles[key] %>：
+                <span style="color:#838383"><%= titles[key] %>：</span>
                 <span stars="data.<%= key %>_star" class="stars"></span>
               </h4>
               <p class="pre">{{data.<%= key %>_desc}}</p>
