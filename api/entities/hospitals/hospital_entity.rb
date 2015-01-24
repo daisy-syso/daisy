@@ -34,7 +34,9 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   end
 
   expose :template do |instance, options|
-    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"])
+    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"]) || options[:hospital_onsales_no_type_id]
+      p "=====#{options[:hospital_onsales_no_type_id]}"
+      p "=====#{options[:env]}"
       "hospitals/hospitals_polyclinic"     
     else
       instance.class.name.tableize
