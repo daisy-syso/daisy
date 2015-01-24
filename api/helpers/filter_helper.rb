@@ -410,7 +410,7 @@ module FilterHelper
       }
     end
 
-    def type_filters title="全部类别", current = nil 
+    def type_filters title="全部类别", current=nil 
       {
         meta: {
           link: :types
@@ -418,7 +418,7 @@ module FilterHelper
         type: String,
         title: title,
         filter_only: true,
-        current: proc { params[:type] || current }
+        current: proc { current || params[:type]}
       }
     end
 

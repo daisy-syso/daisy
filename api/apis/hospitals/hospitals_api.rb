@@ -48,7 +48,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       related: true,
       filters: { 
         city: city_filters,
-        type: type_filters("男科医院"),
+        type: type_filters("男科医院", :andrology),
         hospital_type: { scope_only: true, default: 1 },
         order_by_url: { scope_only: true, default: 1 },
         county: county_filters,
@@ -203,7 +203,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "综合医院",
       filters: { 
         city: city_filters,
-        type: type_filters(("综合医院")),
+        type: type_filters("综合医院", :polyclinic),
         hospital_type: { scope_only: true, default: 7 },
         hospital_level: { scope_only: true, default: false },
         order_by_url: { scope_only: true, default: 7 },
