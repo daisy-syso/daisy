@@ -73,7 +73,14 @@ class Diseases::DiseasesAPI < ApplicationAPI
         title: "相关药品",
         parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
-          drug_type: { class: Drugs::DrugType, title: "类别" },
+          city: fake_city_filters,
+          # drug_type: { class: Drugs::DrugType, title: "类别" },
+          search_by: search_by_filters({
+            default: :disease,
+            disease: { title: "疾病", class: Diseases::Disease },
+            hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+            alphabet: alphabet_filters
+          }),
           county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,

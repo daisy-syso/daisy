@@ -24,7 +24,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     # if hospital_type
     # "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
     # end
-    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"])
+    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"]) || options[:hospital_onsales_no_type_id]
       "#/detail/hospitals/hospitals/#{instance.id}" 
     elsif options[:detail]
       instance.url
