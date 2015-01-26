@@ -10,7 +10,8 @@ class Drugs::DrugsAPI < ApplicationAPI
           default: :disease,
           disease: { title: "疾病", class: Diseases::Disease },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
-          alphabet: alphabet_filters
+          alphabet: alphabet_filters,
+          manufactory: {title: "品牌", class: Drugs::Manufactory }
         }),
         order_by: order_by_filters(Drugs::Drug),
         form: form_filters,

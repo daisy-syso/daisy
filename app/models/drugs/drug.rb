@@ -2,6 +2,7 @@ class Drugs::Drug < ActiveRecord::Base
   belongs_to :drug_type
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
+  has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory"
 
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
@@ -31,6 +32,12 @@ class Drugs::Drug < ActiveRecord::Base
 
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
+
+  scope :manufactory, -> (type) { 
+    type ? joins(:manufactories)
+      .where(manufactory_drugs: { manufactory_id: type })
+      .distinct : all 
   }
   
   include Reviewable
