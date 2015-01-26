@@ -41,6 +41,7 @@ class DaisyAPI < Grape::API
   namespace :drugs do
     mount Drugs::DrugsAPI
     mount Drugs::DrugstoresAPI
+    mount Drugs::ManufactoriesAPI
   end
 
   namespace :diseases do

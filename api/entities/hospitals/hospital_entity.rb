@@ -24,7 +24,8 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     # if hospital_type
     # "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
     # end
-    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"]) || options[:hospital_onsales_no_type_id]
+    compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
+    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa
       "#/detail/hospitals/hospitals/#{instance.id}" 
     elsif options[:detail]
       instance.url
@@ -34,9 +35,8 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   end
 
   expose :template do |instance, options|
-    if /\/hospitals\/polyclinics/  =~ (options[:env].blank? ? "" : options[:env]["PATH_INFO"]) || options[:hospital_onsales_no_type_id]
-      p "=====#{options[:hospital_onsales_no_type_id]}"
-      p "=====#{options[:env]}"
+    compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
+    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa
       "hospitals/hospitals_polyclinic"     
     else
       instance.class.name.tableize

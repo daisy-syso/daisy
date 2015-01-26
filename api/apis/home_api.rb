@@ -577,6 +577,7 @@ class HomeAPI < Grape::API
         title: "字母查药品",
         params: { search_by: :alphabet }
       }, {
+        type: "drugs/manufactories",
         title: "品牌药企",
         params: { search_by: :manufactory }
       }, {
