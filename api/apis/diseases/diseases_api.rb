@@ -32,7 +32,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
           city: city_filters,
-          hospital_type: { class: Hospitals::HospitalType, title: "类别" },
+          hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).name } },
           county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
