@@ -35,7 +35,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
             key: "type",
             title: "全国体检",
             template: "list",
-            current: "price_search"
+            current: "examination"
         },{ 
         title: "类别",
         children: Examinations::ExaminationType.where(parent_id: nil),
@@ -76,4 +76,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
     end
     show! Examinations::Examination
   end
+
+  
+
 end

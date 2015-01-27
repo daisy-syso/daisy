@@ -142,6 +142,10 @@ class HomeAPI < Grape::API
           title: "全部检医院",
           filterTitle: "体检医院"
         }, {
+          type: "examinations/medical_institutions",
+          title: "体检机构",
+          params: { hospital_type: 3 }
+        },{
           type: "hospitals/hospital_news",
           title: "体检诊疗攻略",
           params: { hospital_type: 3 }
@@ -571,15 +575,16 @@ class HomeAPI < Grape::API
         title: "疾病查药品",
         params: { search_by: :disease }
       }, {
-        title: "科室查药品",
-        params: { search_by: :hospital_room }
-      }, {
+      #   title: "科室查药品",
+      #   params: { search_by: :hospital_room }
+      # }, {
         title: "字母查药品",
         params: { search_by: :alphabet }
       }, {
         type: "drugs/manufactories",
-        title: "品牌药企",
-        params: { search_by: :manufactory }
+        title: "药企查药品",
+        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph}}
+        # params: { search_by: :manufactory }
       }, {
         type: "social_securities/social_securities",
         title: "医保定点药品",
@@ -599,7 +604,7 @@ class HomeAPI < Grape::API
         type: "social_securities/social_securities",
         title: "医保定点药店",
         params: { social_security_type: 4 }
-      }]
+      }] 
     }, {
       title: "医保查询",
       children: [{
