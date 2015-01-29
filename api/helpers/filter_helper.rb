@@ -4,20 +4,22 @@ module FilterHelper
   def parse_option_value *args
     value = args.pop
     if value.kind_of? Proc
+      p "11"
       instance_exec *args, &value
     elsif value
+      p "22"
       value
     elsif block_given?
+      p "33"
       yield *args
     end
   end
 
   def generate_filter key, options
     parse_option_value options[:before]
-
     filter = options[:meta] ? options[:meta].dup : {}
     filter[:key] ||= parse_option_value options[:key] { key }
-    filter[:title] ||= parse_option_value options[:title]
+    filter[:title] ||= parse_option_value key, options[:title] 
     filter[:template] ||= parse_option_value options[:template] { :list }
     filter[:children] ||= parse_option_value key, options[:children] do
       options[:class].filters
@@ -435,7 +437,8 @@ module FilterHelper
         end,
         title: proc do
           search_by_options = options[params[:search_by]]
-          search_by_options[:title]
+          parse_option_value search_by_options[:title] 
+          # search_by_options[:title]
         end,
         children: proc do
           search_by_options = options[params[:search_by]]
@@ -515,6 +518,23 @@ module FilterHelper
             collection
           end
         end
+      }
+    end
+
+    def common_deseas_filters
+      {
+        title: proc do
+          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || "鼻部病" 
+        end,
+        key: "common_disease",
+        template: "list",
+        children: proc do
+          Diseases::CommonDisease.all.map do |common_disease|
+            {title: common_disease.name, id: common_disease.id}
+          end
+        end,
+        current: proc {params[:common_disease]},
+        class: :common_disease
       }
     end
 

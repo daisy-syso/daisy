@@ -11,7 +11,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
           symptom: { title: "症状", class: Diseases::Symptom },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
           alphabet: alphabet_filters,
-          common_disease: { title: "常见病分类", class: Diseases::CommonDisease }
+          common_disease: common_deseas_filters,
+          disease_type: { title: "疾病类别", class: Diseases::DiseaseType}
         }),
         order_by: order_by_filters(Diseases::Disease),
         form: form_filters,
@@ -73,14 +74,15 @@ class Diseases::DiseasesAPI < ApplicationAPI
         title: "相关药品",
         parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
-          city: fake_city_filters,
+          # city: fake_city_filters,
           # drug_type: { class: Drugs::DrugType, title: "类别" },
-          search_by: search_by_filters({
-            default: :disease,
-            disease: { title: "疾病", class: Diseases::Disease },
-            hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
-            alphabet: alphabet_filters
-          }),
+          disease: { title: "疾病", class: Diseases::Disease },
+          # search_by: search_by_filters({
+          #   default: :disease,
+          #   disease: { title: "疾病", class: Diseases::Disease },
+          #   hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+          #   alphabet: alphabet_filters
+          # }),
           county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
@@ -91,5 +93,12 @@ class Diseases::DiseasesAPI < ApplicationAPI
           alphabet: form_alphabet_filters
         }
     end
+
+  #   namespace :drugs do
+  #     {
+  #       title: "相关药品",
+  #       filters
+  #     }
+
   end
 end

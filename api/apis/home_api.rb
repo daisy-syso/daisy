@@ -139,7 +139,7 @@ class HomeAPI < Grape::API
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
         title: "体检医院",
         children: [{
-          title: "全部检医院",
+          title: "全部体检医院",
           filterTitle: "体检医院"
         }, {
           type: "examinations/medical_institutions",
@@ -536,17 +536,20 @@ class HomeAPI < Grape::API
       title: "查疾病",
       children: [{
         id: :disease,
-        title: "症状查",
+        title: "症状查疾病",
         params: { search_by: :symptom }
       }, {
-        title: "科室查",
+        title: "科室查疾病",
         params: { search_by: :hospital_room }
       }, {
-        title: "字母查",
+        title: "字母查疾病",
         params: { search_by: :alphabet }
       }, {
-        title: "常见病查",
+        title: "常见病查疾病",
         params: { search_by: :common_disease }
+      }, {
+        title: "病理查疾病",
+        params: { search_by: :disease_type }
       }]
     }, {
       type: "hospitals/doctors",
