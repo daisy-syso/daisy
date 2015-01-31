@@ -10,6 +10,7 @@ class Drugs::Drug < ActiveRecord::Base
     type ? joins(:diseases)
       .where(diseases_drugs: { disease_id: type })
       .distinct : all 
+    p "================000"
   }
 
   scope :hospital_room, -> (hospital_room) {

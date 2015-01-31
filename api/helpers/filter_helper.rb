@@ -420,7 +420,7 @@ module FilterHelper
         type: String,
         title: title,
         filter_only: true,
-        current: proc { current || params[:type]}
+        current: proc { params[:type] || current}
       }
     end
 
@@ -521,7 +521,7 @@ module FilterHelper
       }
     end
 
-    def common_deseas_filters
+    def common_diseas_filters
       {
         title: proc do
           Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || "鼻部病" 
@@ -535,6 +535,23 @@ module FilterHelper
         end,
         current: proc {params[:common_disease]},
         class: :common_disease
+      }
+    end
+
+    def hospital_type_filters
+      {
+        title: proc do
+           Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部"
+        end,
+        key: "hospital_type",
+        template: "list",
+        children: proc do
+          Hospitals::HospitalType.where.not(parent_id: nil).map do |hospital_type|
+            {title: hospital_type.name, id: hospital_type.id}
+          end
+        end,
+        current: proc {params[:hospital_type]},
+        class: :hospital_type
       }
     end
 

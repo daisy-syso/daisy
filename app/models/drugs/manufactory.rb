@@ -1,6 +1,9 @@
 class Drugs::Manufactory < ActiveRecord::Base
   has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
 
+  scope :alphabet, -> (alphabet) { 
+    alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
   class << self
     include Filterable
 

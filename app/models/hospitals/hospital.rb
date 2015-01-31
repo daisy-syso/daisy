@@ -17,9 +17,10 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :county, -> (county) { where(county: county) }
 
   scope :hospital_type, -> (type) { 
+    p "=======#{type}"
     type ? joins(:hospital_types)
       .where{hospitals_types.hospital_type_id == type}
-      .distinct : all
+      .distinct : where.not(parent_id: nil)
   }
 
   scope :examination_type, -> (type) { 

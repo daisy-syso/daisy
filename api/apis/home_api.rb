@@ -8,7 +8,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-1.gif"
       }, {
         title: "疾病查询",
-        link: "#/list/diseases/diseases?search_by=common_disease&type=130&common_disease=8",
+        link: "#/list/diseases/diseases?search_by=common_disease&type=134&common_disease=8",
         icon: "images/icons/1-2.gif"
       }, {
         title: "找医生",
@@ -586,7 +586,7 @@ class HomeAPI < Grape::API
       }, {
         type: "drugs/manufactories",
         title: "药企查药品",
-        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph}}
+        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:alphabet => alph }}}
         # params: { search_by: :manufactory }
       }, {
         type: "social_securities/social_securities",

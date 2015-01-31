@@ -70,6 +70,7 @@ class Diseases::Disease < ActiveRecord::Base
     def filters
       records = Diseases::DiseaseType.includes(:diseases).all.group_by(&:parent_id)
       prepend_filter_all collect_nested_filter(records)
+      p "======4"
     end
 
     define_cached_methods :filters

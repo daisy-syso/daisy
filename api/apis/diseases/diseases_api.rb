@@ -11,7 +11,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
           symptom: { title: "症状", class: Diseases::Symptom },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
           alphabet: alphabet_filters,
-          common_disease: common_deseas_filters,
+          common_disease: common_diseas_filters,
           disease_type: { title: "疾病类别", class: Diseases::DiseaseType}
         }),
         order_by: order_by_filters(Diseases::Disease),
@@ -33,7 +33,8 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
           city: city_filters,
-          hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部" } },
+          # hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部" } },
+          hospital_type: hospital_type_filters,
           county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,

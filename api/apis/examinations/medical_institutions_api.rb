@@ -1,12 +1,11 @@
 class Examinations::MedicalInstitutionsAPI < ApplicationAPI
 
 	namespace :medical_institutions do
-     index! Examinations::MedicalInstitution,
-      title: "全国体检",
+     index! Hospitals::Hospital,
+      title: "体检医院",
       filters: { 
-        type: type_filters(:medical_institution),
-        # county: fake_county_filters,
-        county: examination_parent_type,
+        type: type_filters("体检机构", :medical_institution),
+        county: fake_county_filters,
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,
         query: form_query_filters,
