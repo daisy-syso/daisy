@@ -1,4 +1,4 @@
-lass Examinations::ExaminationEntity < Bases::ItemEntity
+class Examinations::ExaminationEntity < Bases::ItemEntity
 
   expose :name
   expose :examination_type 
