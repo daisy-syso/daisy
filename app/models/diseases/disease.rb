@@ -27,6 +27,12 @@ class Diseases::Disease < ActiveRecord::Base
       .distinct : all
   }
 
+  scope :disease_type, -> (disease_type) {
+    common_disease ? joins(:common_diseases)
+      .where{disease_commons.common_id == common_disease}
+      .distinct : all
+  }
+
   scope :query, -> (query) {
     query.present? ? where{name.like("%#{query}%")} : all
   }
@@ -70,7 +76,6 @@ class Diseases::Disease < ActiveRecord::Base
     def filters
       records = Diseases::DiseaseType.includes(:diseases).all.group_by(&:parent_id)
       prepend_filter_all collect_nested_filter(records)
-      p "======4"
     end
 
     define_cached_methods :filters

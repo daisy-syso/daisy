@@ -560,5 +560,61 @@ module FilterHelper
       }
     end
 
+    def drug_type_filters
+      {
+        key: "drug_type",
+        title: "类别",
+        template: "list",
+        children:  proc do
+          Drugs::DrugType.where(parent_id: nil).map do |drug_type|
+            if drug_type.name == "常见疾病"
+              {
+                id: drug_type.id,
+                title: drug_type.name,
+                children: Diseases::CommonDisease.all.map do |common_disease|
+                  {
+                    id: common_disease.id,
+                    title: common_disease.name,
+                    children: common_disease.diseases.map do |disease|
+                      {
+                        id: disease.id,
+                        title: disease.name
+                      }
+                    end
+
+                    }
+                end
+              }
+            else
+            {
+              id:  drug_type.id,
+              title: drug_type.name,
+              children: drug_type.children.map do |drug_type_child|
+                {
+                  id: drug_type_child.id,
+                  title: drug_type_child.name,
+                  children: drug_type_child.children.map do |drug_type_child_child|
+                    {
+                      id: drug_type_child_child.id,
+                      title: drug_type_child_child.name
+                    } 
+                  end 
+                } 
+              end
+            }
+            end
+          end.unshift(
+          {
+            title: "全部",
+            parent: true,
+            id: nil
+            }
+          )
+        end
+
+      }
+      
+    end
+
   end
 end

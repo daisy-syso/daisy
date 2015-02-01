@@ -546,10 +546,29 @@ class HomeAPI < Grape::API
         params: { search_by: :alphabet }
       }, {
         title: "常见病查疾病",
-        params: { search_by: :common_disease }
+        # params: { search_by: :common_disease }
+        children: Diseases::CommonDisease.all.map do |common_disease|
+            {
+            title: common_disease.name, 
+            id: common_disease.id,
+            params: {
+              search_by: :common_disease,
+              common_disease: common_disease.id,
+              type: 134
+            }
+          }
+          end
       }, {
         title: "病理查疾病",
-        params: { search_by: :disease_type }
+        # params: { search_by: :disease_type }
+        children: Diseases::DiseaseType.all.map do |disease_type|
+          {
+            title: disease_type.name,
+            id: disease_type.id,
+            search_by: :disease_type,
+            type: 135
+          }
+        end
       }]
     }, {
       type: "hospitals/doctors",

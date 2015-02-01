@@ -77,6 +77,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         filters: { 
           # city: fake_city_filters,
           # drug_type: { class: Drugs::DrugType, title: "类别" },
+          drug_type: drug_type_filters,
           disease: { title: "疾病", class: Diseases::Disease },
           # search_by: search_by_filters({
           #   default: :disease,

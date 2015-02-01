@@ -1,5 +1,5 @@
 class Diseases::CommonDisease < ActiveRecord::Base
-	has_and_belongs_to_many :diseases, class_name: "Diseases::Disease", :through => :disease_commons, :association_foreign_key => :common_id
+	has_and_belongs_to_many :diseases, class_name: "Diseases::Disease", join_table: 'disease_commons', :foreign_key => :common_id #:through => :disease_commons, :association_foreign_key => :common_id
 	class << self
     include Filterable
 
