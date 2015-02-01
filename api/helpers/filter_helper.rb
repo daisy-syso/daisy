@@ -4,13 +4,10 @@ module FilterHelper
   def parse_option_value *args
     value = args.pop
     if value.kind_of? Proc
-      p "11"
       instance_exec *args, &value
     elsif value
-      p "22"
       value
     elsif block_given?
-      p "33"
       yield *args
     end
   end

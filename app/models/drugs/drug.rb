@@ -2,7 +2,7 @@ class Drugs::Drug < ActiveRecord::Base
   belongs_to :drug_type
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
-  has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory"
+  has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory", join_table: 'manufactory_drugs'
 
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
@@ -10,7 +10,6 @@ class Drugs::Drug < ActiveRecord::Base
     type ? joins(:diseases)
       .where(diseases_drugs: { disease_id: type })
       .distinct : all 
-    p "================000"
   }
 
   scope :hospital_room, -> (hospital_room) {
