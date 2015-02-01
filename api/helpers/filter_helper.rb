@@ -543,8 +543,16 @@ module FilterHelper
         key: "hospital_type",
         template: "list",
         children: proc do
-          Hospitals::HospitalType.where.not(parent_id: nil).map do |hospital_type|
-            {title: hospital_type.name, id: hospital_type.id}
+          Hospitals::HospitalType.where(parent_id: nil).map do |hospital_type|
+            {
+              image_url:hospital_type.image_url, 
+              title: hospital_type.name, 
+              children: hospital_type.hospital_types.map do |ht|
+                {
+                  title: ht.name
+                }
+              end, 
+            }
           end
         end,
         current: proc {params[:hospital_type]},
