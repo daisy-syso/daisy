@@ -521,7 +521,7 @@ module FilterHelper
     def common_diseas_filters
       {
         title: proc do
-          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || "鼻部病" 
+          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || Diseases::Disease.find(params[:id]).try(:name) || "鼻部病" 
         end,
         key: "common_disease",
         template: "list",

@@ -29,10 +29,12 @@ class Diseases::DiseasesAPI < ApplicationAPI
   namespace :"diseases/:id" do
     namespace :hospitals do
       index! Hospitals::Hospital,
-        title: "相关医院",
+        title: proc {"#{Diseases::Disease.find(params[:id]).name}相关医院"},
         parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
-          city: city_filters,
+          type: type_filters("疾病查询", :disease),
+          common_disease: common_diseas_filters,
+          # city: city_filters,
           # hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部" } },
           hospital_type: hospital_type_filters,
           county: fake_county_filters,
@@ -49,18 +51,20 @@ class Diseases::DiseasesAPI < ApplicationAPI
 
     namespace :doctors do
       index! Hospitals::Doctor,
-        title: "相关医生",
+        title: proc {"#{Diseases::Disease.find(params[:id]).name}相关医生"},
         parent: proc { Diseases::Disease.find(params[:id]).doctors },
         filters: { 
-          city: city_filters,
+          type: type_filters("疾病查询", :disease),
+          common_disease: common_diseas_filters,
+          # city: city_filters,
           # hospital: { 
           #   class: Hospitals::Hospital, 
           #   title: "医院",
           #   meta: { filterable: true },
           #   children: proc { Hospitals::Hospital.limit(100).filters(params[:city]) }
           # },
-          hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
-          county: fake_county_filters,
+          # hospital_room: { class: Hospitals::HospitalRoom, title: "类别" },
+          # county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
           query: form_query_filters, 
@@ -72,20 +76,22 @@ class Diseases::DiseasesAPI < ApplicationAPI
 
     namespace :drugs do
       index! Drugs::Drug,
-        title: "相关药品",
+        title: proc {"#{Diseases::Disease.find(params[:id]).name}相关药品"},
         parent: proc { Diseases::Disease.find(params[:id]).drugs },
         filters: { 
+          type: type_filters("疾病查询", :disease),
           # city: fake_city_filters,
           # drug_type: { class: Drugs::DrugType, title: "类别" },
-          drug_type: drug_type_filters,
-          disease: { title: "疾病", class: Diseases::Disease },
+          # drug_type: drug_type_filters,
+          common_disease: common_diseas_filters,
+          # disease: { title: "疾病", class: Diseases::Disease },
           # search_by: search_by_filters({
           #   default: :disease,
           #   disease: { title: "疾病", class: Diseases::Disease },
           #   hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
           #   alphabet: alphabet_filters
           # }),
-          county: fake_county_filters,
+          # county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,
           query: form_query_filters, 
