@@ -1,13 +1,14 @@
 class Diseases::Disease < ActiveRecord::Base
-  belongs_to :disease_type
+  # belongs_to :disease_type
   has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
   has_and_belongs_to_many :doctors, class_name: "Hospitals::Doctor"
   has_and_belongs_to_many :hospitals, class_name: "Hospitals::Hospital"
   has_and_belongs_to_many :symptoms, class_name: "Diseases::Symptom"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
   has_and_belongs_to_many :common_diseases, class_name: "Diseases::CommonDisease", :join_table => :disease_commons, :association_foreign_key => :common_id
+  has_and_belongs_to_many :disease_types, class_name: "Diseases::DiseaseType" , :join_table => :diseases_types , :association_foreign_key => :disease_types_id
 
-  scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
+  # scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
   scope :symptom, -> (symptom) {
     symptom ? joins(:symptoms)
@@ -28,8 +29,8 @@ class Diseases::Disease < ActiveRecord::Base
   }
 
   scope :disease_type, -> (disease_type) {
-    common_disease ? joins(:common_diseases)
-      .where{disease_commons.common_id == common_disease}
+    disease_type ? joins(:disease_types)
+      .where{diseases_types.disease_types_id == disease_type}
       .distinct : all
   }
 

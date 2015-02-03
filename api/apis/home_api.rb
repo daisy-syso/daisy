@@ -5,64 +5,70 @@ class HomeAPI < Grape::API
       buttons: [{
         title: "医院大全",
         link: "#/list/hospitals/polyclinics",
-        icon: "images/icons/1-1.gif"
+        icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
         link: "#/list/diseases/diseases?search_by=common_disease&type=134&common_disease=8",
-        icon: "images/icons/1-2.gif"
+        icon: "images/icons/1-2.png"
       }, {
         title: "找医生",
         link: "#/list/hospitals/doctors",
-        icon: "images/icons/1-3.gif"
+        icon: "images/icons/1-3.png"
       }, {
-        title: "手机挂号",
-        link: "#/list/hospitals/polyclinics",
-        icon: "images/icons/1-4.gif"
+        title: "价格搜索",
+        link: "#/list/price_search/strategy_list",
+        # title: "手机挂号",
+        # link: "#/list/hospitals/polyclinics",
+        icon: "images/icons/1-4.png"
       }, {
         title: "药品大全",
         link: "#/list/drugs/drugs",
-        icon: "images/icons/1-5.gif"
+        icon: "images/icons/1-5.png"
       }, {
         title: "身边药房",
         link: "#/list/drugs/drugstores",
-        icon: "images/icons/1-6.gif"
-      }, {
-        title: "医保查询",
-        link: "#/list/social_securities/social_securities",
-        icon: "images/icons/1-7.gif"
-      }, {
-        title: "价格搜索",
-        # link: "#/list/price_search/drugs",
-        link: "#/list/price_search/strategy_list",
-        icon: "images/icons/1-8.gif"
-      # }, {
-      #   title: "热门专科",
-      #   link: "#/list/hospitals/specialists",
-      #   icon: "images/icons/1-9.gif"
-      # }, {
-      #   title: "热门诊所",
-      #   link: "#/home",
-      #   icon: "images/icons/1-10.gif"
-      }, {
-        title: "全国体检",
-        link: "#/list/examinations/examinations",
-        icon: "images/icons/2-3.gif"
+        icon: "images/icons/1-6.png"
       }, {
         title: "养老服务",
         link: "#/list/eldercares/nursing_rooms",
-        icon: "images/icons/2-5.gif"
+        # title: "医保查询",
+        # link: "#/list/social_securities/social_securities",
+        icon: "images/icons/1-7.png"
+      }, {
+        title: "其它类目",
+        link: "#/list/price_search/drugs",
+        # title: "价格搜索",
+        # link: "#/list/price_search/drugs",
+        # link: "#/list/price_search/strategy_list",
+        icon: "images/icons/1-8.png"
+      # }, {
+      #   title: "热门专科",
+      #   link: "#/list/hospitals/specialists",
+      #   icon: "images/icons/1-9.png"
+      # }, {
+      #   title: "热门诊所",
+      #   link: "#/home",
+      #   icon: "images/icons/1-10.png"
+      # }, {
+      #   title: "全国体检",
+      #   link: "#/list/examinations/examinations",
+      #   icon: "images/icons/2-3.png"
+      # }, {
+      #   title: "养老服务",
+      #   link: "#/list/eldercares/nursing_rooms",
+      #   icon: "images/icons/2-5.png"
       # }, {
       #   title: "月子中心",
       #   link: "#/list/maternals/confinement_centers",
-      #   icon: "images/icons/2-10.gif"
+      #   icon: "images/icons/2-10.png"
       # }, {
       #   title: "母婴会馆",
       #   link: "#/list/maternals/maternal_halls",
-      #   icon: "images/icons/2-11.gif"
+      #   icon: "images/icons/2-11.png"
       # }, {
       #   title: "返利优惠",
       #   link: "#/list/coupons/drugs",
-      #   icon: "images/icons/1-11.gif"
+      #   icon: "images/icons/1-11.png"
       }],
       subtitle: {
         key: :city,
@@ -565,8 +571,11 @@ class HomeAPI < Grape::API
           {
             title: disease_type.name,
             id: disease_type.id,
-            search_by: :disease_type,
-            type: 135
+            params: {
+              search_by: :disease_type,
+              disease_type: disease_type.id,
+              type: 135
+            }
           }
         end
       }]
