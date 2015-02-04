@@ -2,7 +2,8 @@
 .bar-nav {
   height: 52px;
   color: #fff;
-  background: #2dbeae;
+  // background: #2dbeae;
+  background: #E62418;
   border-bottom: 1px solid #00a795;
   overflow: hidden;
 
@@ -51,7 +52,8 @@
       input.search {
         background-color: lighten(#2dbeae, 20%);
         border: 1px solid darken(#2dbeae, 10%);
-        color: darken(#2dbeae, 10%);
+        // color: darken(#2dbeae, 10%);
+        color: #EEE;
 
       }
       .ionicon {

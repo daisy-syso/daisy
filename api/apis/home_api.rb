@@ -35,7 +35,7 @@ class HomeAPI < Grape::API
         # link: "#/list/social_securities/social_securities",
         icon: "images/icons/1-7.png"
       }, {
-        title: "其它类目",
+        title: "全部类别",
         link: "#/list/price_search/drugs",
         # title: "价格搜索",
         # link: "#/list/price_search/drugs",
