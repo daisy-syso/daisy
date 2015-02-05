@@ -1,0 +1,785 @@
+
+@charset "UTF-8";
+body {
+    margin: 0;
+}
+a:active, a:hover {
+    outline: 0 none;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td, th {
+    padding: 0;
+}
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+html {
+    font-size: 312.5%;
+    height: 100%;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+a {
+    color: #2bb2a3;
+    outline: 0 none;
+    text-decoration: none;
+}
+a:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
+}
+a.react, label.react {
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+a.react:active, a.react.react-active, label.react:active {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #ddd8ce -moz-use-text-color -moz-use-text-color;
+    border-image: none;
+    border-right: 0 none;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    margin-bottom: 0.28rem;
+    margin-top: 0.28rem;
+}
+p, h6 {
+    line-height: 1.41;
+    margin: -0.2em 0;
+    text-align: justify;
+    word-break: break-all;
+}
+weak, small {
+    color: #666;
+}
+.color-weak {
+    color: #666 !important;
+}
+.color-weaker {
+    color: #999 !important;
+}
+.color-strong {
+    color: #2bb2a3 !important;
+}
+.color-stronger {
+    color: #fca006 !important;
+}
+.color-ok {
+    color: #6bbd00 !important;
+}
+.color-warning {
+    color: #fa7251 !important;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.hide {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden;
+}
+.text-hide {
+    background-color: transparent;
+    border: 0 none;
+    color: transparent;
+    font: 0px/0 a;
+    text-shadow: none;
+}
+.single-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.text-block {
+    line-height: 1.01;
+    text-align: justify;
+}
+.strong-color {
+    color: #2bb2a3;
+}
+input.mt[type="radio"], input.mt[type="checkbox"] {
+    border: 0.02rem solid #ddd8ce;
+    border-radius: 50%;
+    height: 0.45rem;
+    line-height: 0.45rem;
+    margin: -0.07rem 0;
+    outline: 0 none;
+    text-align: center;
+    vertical-align: middle;
+    width: 0.45rem;
+}
+input.mt[type="checkbox"] {
+    border-radius: 0.06rem;
+}
+input.mt[type="radio"]:checked, input.mt[type="checkbox"]:checked {
+    background-color: #2bb2a3;
+    border: 0 none;
+    color: #fff;
+}
+input.mt[type="radio"]:checked:after, input.mt[type="checkbox"]:checked:after {
+    content: "✓";
+    font-family: base_icon;
+    font-size: 0.4rem;
+}
+input.input-weak, textarea.input-weak {
+    border: 0 none;
+    border-radius: 0.06rem;
+    font-size: 0.3rem;
+    height: 0.6rem;
+    line-height: 1;
+    margin: -0.15rem 0;
+    padding: 0;
+    text-indent: 0.1rem;
+}
+input.input-strong {
+    border: 0.02rem solid #ddd8ce;
+    box-sizing: border-box;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    padding: 0 0.2rem;
+    width: 100%;
+}
+input.input-weak:focus {
+    background: none repeat scroll 0 0 #ececec;
+    outline: 0 none;
+}
+textarea.input-weak {
+    height: 2.8em;
+    line-height: 1.41;
+    margin: -0.2em 0;
+    padding: 0;
+}
+input.mt.number {
+    border: 0.02rem solid #ddd8ce;
+    border-radius: 0.06rem;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 1.2rem;
+}
+
+.page {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.page.next {
+}
+.page.prev {
+}
+.page.next2 {
+}
+.page.prev2 {
+}
+.page.current {
+    z-index: 2;
+}
+button:focus {
+    outline: 0 none;
+}
+.btn {
+    background-color: #2bb2a3;
+    border: 0 none;
+    border-radius: 0.06rem;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.28rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    margin: 0;
+    padding: 0 0.32rem;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.btn-large {
+    font-size: 0.4rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+}
+.btn-large.btn-link {
+    font-size: 0.3rem;
+}
+.btn-larger {
+    font-size: 0.4rem;
+    height: 0.94rem;
+    line-height: 0.94rem;
+}
+.btn:active {
+    background-color: #21897d;
+}
+.btn-weak {
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    border: 0.02rem solid #2bb2a3;
+    color: #2bb2a3;
+    padding: 0 0.3rem;
+}
+.btn-weak:active {
+    background: none repeat scroll 0 0 #2bb2a3;
+    color: #fff;
+}
+.btn-link {
+    background: none repeat scroll 0 center rgba(0, 0, 0, 0);
+    color: #2bb2a3;
+    padding: 0 0.3rem;
+}
+.btn-link:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.btn-weak.color-strong {
+    border-color: #fdb338;
+    color: #fdb338 !important;
+}
+.btn-weak.color-strong:active {
+    background-color: #fdb338;
+    color: #fff;
+}
+.btn:disabled, .btn.btn-disabled {
+    background-color: #dcdcdc;
+    border: 0 none;
+    color: #999;
+}
+
+
+
+.box {
+    background-color: #fdfdfc;
+    border: 1px solid #ddd8ce;
+    border-radius: 0.06rem;
+    overflow: hidden;
+    padding: 0.28rem 0.2rem;
+}
+dl.list {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd8ce;
+    border-top: 1px solid #ddd8ce;
+    margin-bottom: 0;
+    margin-top: 0.2rem;
+}
+dl.list dt, dl.list dd {
+    border-bottom: 1px solid #ddd8ce;
+    font-size: inherit;
+    font-weight: 400;
+    margin: 0;
+    position: relative;
+}
+dl.list dt:last-child, dl.list dd:last-of-type {
+    border-bottom: 0 none;
+}
+dl.list .dd-padding, dl.list dt, dl.list dd > .react {
+    padding-bottom: 20px;padding-top: 20px;
+}
+dl.list dt {
+    color: #333;
+    font-size: 0.34rem;
+    padding-bottom: 0.2rem;
+}
+dl.list .db {
+    font-size: 0.3rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
+}
+dl.list dd dl {
+    border: 0 none;
+    margin: 0 0 -1px;
+    padding-left: 0.2rem;
+}
+dl.list dd dl > .dd-padding, dl.list dd dl dd > .react, dl.list dd dl > dt {
+    padding-left: 0;
+}
+dl.list .db > .react {
+    color: #2bb2a3;
+    padding: 0 0.2rem;
+}
+dl.list-in {
+    border-top: 0 none;
+    margin: 0;
+}
+dl.list:first-child {
+    border-top: 0 none;
+    margin: 0;
+}
+dl.list dd > .input-weak {
+    display: block;
+    width: 100%;
+}
+dl.list dd > .btn {
+    margin-bottom: -0.15rem;
+    margin-top: -0.15rem;
+}
+.kv-line {
+    margin: 0.2rem 0;
+}
+.kv-line > h6, .kv-line > .kv-k {
+    display: block;
+    font-size: inherit;
+    font-weight: 400;
+    width: 5em;
+}
+.kv-line > .kv-v, .kv-line > p {
+    -moz-box-flex: 1;
+    display: block;
+}
+.kv-line-r > h6, .kv-line-r > .kv-k {
+    -moz-box-flex: 1;
+    display: block;
+    font-size: inherit;
+    font-weight: 400;
+    margin-right: 0.2rem;
+}
+.kv-line-r > .kv-v, .kv-line-r > p {
+    display: block;
+}
+ul.tab {
+    border: 1px solid #666;
+    border-radius: 0.04rem;
+    display: inline-block;
+    height: 0.6rem;
+    line-height: 0.6rem;
+}
+.tab li {
+    border-right: 1px solid #666;
+    display: inline-block;
+    text-align: center;
+    width: 2.4rem;
+}
+.tab li:last-child {
+    border: 0 none;
+}
+.tab li.active {
+    background: none repeat scroll 0 0 #666;
+    color: #fff;
+}
+.footer {
+    background-color: #f0efed;
+    padding: 0.3rem 0.2rem 0.4rem;
+}
+.dealcard, .cinemacard {
+    box-sizing: border-box;
+    position: relative;
+}
+.dealcard .dealcard-new {
+    background: none repeat scroll 0 0 #2bb2a3;
+    color: #fff;
+    font-size: 0.24rem;
+    height: 0.28rem;
+    line-height: 0.28rem;
+    padding-right: 0.08rem;
+    position: absolute;
+    right: -0.2rem;
+    text-align: right;
+    top: -0.28rem;
+    width: 0.6rem;
+}
+.dealcard .dealcard-nobooking {
+    height: 1rem;
+    overflow: hidden;
+    position: absolute;
+    width: 1rem;
+    z-index: 1;
+}
+.dealcard .dealcard-nobooking:after {
+    background: none repeat scroll 0 0 #2bb2a3;
+    color: #fff;
+    content: "免预约";
+    font-size: 0.24rem;
+    left: -0.35rem;
+    padding: 0.05rem;
+    position: absolute;
+    text-align: center;
+    top: 0.2rem;
+    width: 1.3rem;
+}
+.dealcard .dealcard-new:before {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #2bb2a3 #2bb2a3 #2bb2a3 transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 0.14rem;
+    content: "";
+    display: block;
+    left: -0.2rem;
+    position: absolute;
+    top: 0;
+}
+.dealcard-img {
+    height: 1.68rem;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 1.88rem;
+}
+.dealcard-img > img {
+    background-color: #f0efed;
+    background-size: 100% auto;
+    border: 0 none;
+}
+.dealcard .dealcard-block-right {
+    margin-left: 2rem;
+}
+.dealcard .dealcard-brand, .cinemacard .cinemacard-brand {
+    color: #333;
+    font-size: 0.316rem;
+    font-weight: 400;
+    margin-bottom: 0.06rem;
+    margin-top: 0;
+}
+.dealcard .title, .cinemacard .title {
+    color: #666;
+    font-size: 0.26rem;
+    height: 0.48rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dealcard .price, .cinemacard .price {
+    color: #666;
+    position: relative;
+}
+.dealcard .price > strong, .cinemacard .price > strong {
+    color: #2bb2a3;
+    font-size: 0.54rem;
+}
+.dealcard .price > .strong-color, .cinemacard .price > .strong-color {
+    color: #2bb2a3;
+    font-size: 0.3rem;
+}
+.dealcard .price .line-right, .cinemacard .price .line-right {
+    bottom: 0.04rem;
+    position: absolute;
+    right: 0;
+}
+.dealcard .tag, .poi-dealcard .tag {
+    background: none repeat scroll 0 0 #F277B8;
+    border-radius: 0.06rem;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+	margin-right:10px;
+	width:60px;
+	text-align:center;
+	line-height:28px;
+}
+
+
+.dealcard .dealtype-icon {
+    position: absolute;
+    top: 0.03rem;
+}
+
+#deal-list-abtest .poi-list-item .dealcard-img {
+    height: 1.45rem;
+    margin: -0.08rem 0;
+    width: 1.63rem;
+}
+#deal-list-abtest .poi-list-item .info-right {
+    height: 1.3rem;
+    margin-left: 1.84rem;
+}
+#deal-list-abtest .poi-list-item .name-line {
+    height: 0.55rem;
+}
+#deal-list-abtest .poi-list-item .score-line {
+    margin-bottom: 0.24rem;
+}
+#deal-list-abtest .poi-list-item .addr-line {
+    color: #666;
+    font-size: 0.24rem;
+}
+#deal-list-abtest .poi-dealcard .left {
+    height: 0.88rem;
+    width: 1.52rem;
+}
+#deal-list-abtest .poi-dealcard .right {
+    bottom: 0.18rem;
+    display: block;
+    left: 1.74rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.18rem;
+}
+#deal-list-abtest .poi-dealcard strong {
+    font-size: 0.4rem;
+}
+#deal-list-abtest .poi-dealcard .color-strong {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+#deal-list-abtest .poi-dealcard del {
+    color: #666;
+    font-size: 0.24rem;
+}
+#deal-list-abtest .poi-dealcard h6 {
+    display: block;
+    font-size: 0.26rem;
+    height: 0.74rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#deal-list-abtest .poi-dealcard .right small {
+    float: right;
+}
+#deal-list-abtest .list-poi dl {
+    padding-left: 0.3rem;
+}
+#deal-list-abtest .list-poi dl a.react {
+    padding-bottom: 0.18rem;
+    padding-top: 0.18rem;
+}
+#deal-list .poi-list-item .kv-line-r {
+    margin-bottom: 0;
+    margin-top: 0.1rem;
+}
+#deal-list .poi-list-item h6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#deal-list .poi-list-item .poiname {
+    font-size: 0.3rem;
+}
+#deal-list .poi-list-item p {
+    color: #666;
+    font-size: 0.24rem;
+}
+#deal-list .dealcard-poi .title {
+    color: #333;
+    font-size: 0.3rem;
+    height: 0.8rem;
+    line-height: 1.41;
+    margin-bottom: 0.32rem;
+}
+.deal-container {
+    position: relative;
+}
+.pager {
+    padding: 0.16rem 0.2rem;
+}
+.pager-current {
+    color: #666;
+    display: inline-block;
+    text-align: center;
+    width: 0.45rem;
+}
+.shade, .loading {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+}
+.loading .loading-spin {
+    font-size: 0.6rem;
+    left: 50%;
+    margin-left: -0.15rem;
+    position: absolute;
+}
+.nav-bar {
+    position: relative;
+    z-index: 30;
+}
+.nav-bar .nav {
+    background: none repeat scroll 0 0 #fff;
+    border-top: 1px solid #c6c0b3;
+    border-bottom: 1px solid #c6c0b3;
+    display: -moz-box;
+    height: 0.84rem;
+    line-height: 0.84rem;
+    text-align: center;
+	width:100%;
+}
+.dropdown-toggle {
+    -moz-box-flex: 1;
+    border-left: 1px solid #c6c0b3;
+    color: #666;
+    text-align: center;
+    width: 24%;
+	float:left;
+}
+.dropdown-toggle:first-child {
+    border: 0 none;
+}
+.dropdown-toggle.active {
+    color: #2bb2a3;
+}
+.dropdown-toggle.caret:after {
+    border-color: #b7b7b7 transparent -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 0.15rem 0.09rem 0;
+    content: "";
+    display: inline-block;
+    height: 0;
+    margin-left: 0.12rem;
+    width: 0;
+}
+.dropdown-toggle.caret.active:after {
+    border-color: -moz-use-text-color transparent #2bb2a3;
+    border-style: none solid solid;
+    border-width: 0 0.09rem 0.15rem;
+    margin-bottom: 0.04rem;
+}
+.biz .sub-nav, .subway .sub-nav {
+    display: block;
+}
+.nav-head-name {
+    display: inline-block;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.sub-nav {
+    background: none repeat scroll 0 0 #fefefe;
+    border-bottom: 1px solid #c6c0b3;
+    display: none;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+}
+.dropdown-wrapper {
+    position: relative;
+}
+.dropdown-module {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.scroller-wrapper {
+    position: relative;
+}
+.scroller-wrapper .dropdown-scroller {
+    background: none repeat scroll 0 0 #f6f4f0;
+    width: 100%;
+}
+.scroller-wrapper .dropdown-scroller ul {
+    background: none repeat scroll 0 0 #fff;
+    width: 100%;
+}
+.scroller-wrapper .dropdown-sub-scroller {
+    background: none repeat scroll 0 0 #f6f4f0;
+    border-left: 1px solid #ddd8cd;
+    bottom: 0;
+    left: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.category-wrapper, .biz-wrapper, .brand-wrapper, .sort-wrapper, .csp-wrapper, .subway-wrapper {
+    display: none;
+}
+.category-wrapper.active, .biz-wrapper.active, .brand-wrapper.active, .sort-wrapper.active, .csp-wrapper.active, .subway-wrapper.active {
+    display: block;
+}
+.dropdown-list {
+    width: 100%;
+}
+.dropdown-list > li {
+    border-bottom: 1px solid #ddd8cd;
+    height: 0.87rem;
+    line-height: 0.87rem;
+    position: relative;
+}
+.dropdown-list > li.active {
+    background: none repeat scroll 0 0 #f6f4f0;
+}
+.dropdown-list > li:last-child {
+    border-bottom: 0 none;
+}
+.sort-wrapper li.active {
+    color: #2bb2a3;
+}
+.dropdown-sub-scroller li.active {
+    border-left: 0 none;
+}
+.dropdown-list span {
+    margin: 0 0 0 0.4rem;
+    text-align: left;
+}
+.dropdown-list .quantity {
+    display: inline-block;
+    font-size: 0.22rem;
+    margin-right: 0.16rem;
+    position: absolute;
+    right: 0;
+
+    text-align: right;
+    top: 0.3rem;
+}
+.dropdown-sub-scroller .sub-quantity {
+    color: #b4b4b4;
+    margin-right: 0.16rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.dropdown-sub-scroller .sub-name {
+    display: block;
+    margin-right: 0.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dropdown-sub-scroller .dropdown-list > li:active .sub-quantity {
+    color: #fff;
+}
+.dropdown-list .quantity > b {
+    background: none repeat scroll 0 0 #ccc;
+    border-radius: 0.8rem;
+    color: #fff;
+    float: right;
+    font-size: 0.24rem;
+    font-weight: 400;
+    height: 0.28rem;
+    line-height: 0.28rem;
+    padding: 0 0.14rem;
+}

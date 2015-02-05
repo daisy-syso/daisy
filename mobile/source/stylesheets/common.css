@@ -1,0 +1,247 @@
+@charset "utf-8";
+/* CSS Document */
+ul,li,dl,dt,dd,ol{ list-style-type:none; margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6,form,input,textarea,label,table,tr,td,p,header,article,footer,nav,section,aside,menu{margin:0; padding:0;}
+header,article,footer,nav,section,aside,menu{ display:block;}
+table{ border-collapse:collapse; border-spacing:0;}
+img{ border:none;}
+a:link,a:visited{color:#000;text-decoration:none;outline:none;}
+a:active,a:hover{color:#000; text-decoration:none;}
+body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-height:1.571em;*/ min-width:320px;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both; font-size:0; line-height:0; height:0; width:100%; overflow:hidden;}
+.fix:after {visibility: hidden;display: block;font-size: 0;content:""; clear: both; height: 0;}
+.fix{*zoom:1;}
+.bg{ background:#F5F5F5;}
+/**============ Reset End ===============**/
+.navbar22{background:#E62418;}
+.navbar22 .ico-fanhui{float:left;width:20%;height:100px;overflow:hidden;text-indent:-9999em;background:url(../images/ico-fanhui.png) center center no-repeat;}
+.navbar22 #title{float:left;width:58%;height:100px;margin:0 1%;font-size:3.142em;font-weight:normal;color:#fff;line-height:100px;text-align:center;overflow:hidden;-webkit-transition:font-size 0.2s ease-out; -o-transition:font-size 0.2s ease-out; -moz-transition:font-size 0.2s ease-out;transition:font-size 0.2s ease-out;}
+.menubar{background:#E62418;}
+.menubar .ico-home{float:left;width:15%;}
+.menubar .ico-home .tupian{background:url(../images/ico-home.png) center center no-repeat; height:52px}
+.menubar .ico-home .wenzi{font-size:14px;font-weight:normal;color:#fff;text-align:center;overflow:hidden;}
+.menubar .ico-nav{float:right;width:15%; }
+.menubar .ico-nav .tupian{background:url(../images/ico-nav.png) center center no-repeat; height:52px; }
+.menubar .ico-nav .wenzi{font-size:14px;font-weight:normal;color:#fff;text-align:center;overflow:hidden;}
+.menubar .ico-xiaoxi{float:right;width:15%;position:relative;}
+.menubar .ico-xiaoxi .tupian{background:url(../images/ico-xiaoxi.png) left center no-repeat; height:52px;position:relative;}
+.menubar .ico-xiaoxi .xxtx{padding:0px 6px;overflow:hidden;color:#FF5001;font-weight:bold;background:#fff;border-radius:1em; float:right; font-size:16px; position:absolute; top:0px; right:0px;}
+.menubar .ico-xiaoxi .wenzi{font-size:14px;font-weight:normal;color:#fff;text-align:left;overflow:hidden; }
+.menubar .ico-sousuo{float:left;width:55%;} 
+.menubar .ico-sousuo .title .sousuo{ background:url(../images/ico-search.png) right center no-repeat; height:28px; float:left; width:10%;}
+.menubar .ico-sousuo .title{line-height:50px}
+.menubar .ico-sousuo .title .wenzi{font-size:3.142em;font-weight:normal;color:#fff;text-align:center;overflow:hidden; width:90%}
+.menubar .ico-sousuo .tupian{ background:url(../images/ssx.png) center center no-repeat; height:11px;}
+.description { width:100%; overflow:hidden; }
+.description  li.left33{ float:left;}
+.description  li.right33{ float:right;}
+.description  li.left33 .zuo{ float:left; }
+.description  li.left33 .you{ float:left;}
+.description .left33 .zuo .qiwen{font-size:36px;font-weight:normal;text-align:left; float:left; padding-top:10px;}
+.description .left33 .you .qhcs{overflow:hidden; font-size:12px;}
+.description .left33 .you .kongqi{overflow:hidden;float:left;font-size:20px; padding-left:5px; border-left:1px #ccc solid;}
+.description .left33 .you .kongqi1{font-size:20px;font-weight:normal;text-align:left; float:left; padding-left:5px; border-left:1px #ccc solid;}
+.description .left33 .zuo .tqtp{ background:url(../images/ico-tt.png) center center no-repeat; height:38px; width:50px; float:left;}
+.description .left33 .you .xlcd{ background:url(../images/ico-xl.png) center center no-repeat; height:19px; width:25px; float:left;}
+.description  li.right33 .hyll{ float:left; font-size:20px; font-weight:bold; font-style:italic; line-height:40px; color:#FF5001;}
+.description  li.right33 .souyisou{ float:left; font-size:20px; font-weight:bold; line-height:40px; color:#00C76B;}
+.description  li.right33 .souyisou span{font-size:20px; font-weight:bold;background:#339ee2;border-radius:1em; padding:2px 5px; color:#ffff00; margin-left:1px; margin-right:1px;}
+.description  li.right33 .wangyeban{ float:right; font-size:20px;}
+/**============= 通用标题 =========**/
+.index-hd strong{color:#cbcbcb;font-size:24px;font-weight:normal;text-transform:uppercase;}
+.links{margin-top:30px;}
+.links h3{height:90px;padding:0 0 0 20px;line-height:90px;background:#339EE2;font-size:28px;font-weight:normal;color:#fff;}
+.links .bd{padding:20px;}
+.links .bd a{margin:0 10px;font-size:24px;color:#666;}
+/**============底部=================**/
+.copyright{text-align:center;margin:1em 0;font-size:1em; line-height:1.6em;color:#999;}
+.copyright a{color:#999;}
+.footer{height:119px}
+.footer-con{width:100%;height:118px;position:fixed; z-index:100; right:0; bottom:0;background:#fff;border-top:1px solid #9B9B9B;-webkit-transition:right .5s ease;transition:right .5s ease;}
+.footer li{ float:left; width:20%;}
+.footer li a,.footer li span{display:block;height:44px;padding:74px 0 0 0;text-align:center;font-size:14px;color:#9B9B9B;cursor:pointer;}
+.footer li.zx a{background:url(../images/ico-home2.png) center 15px no-repeat;}
+.footer li.zx a:hover{background:url(../images/ico-home1.png) center 15px no-repeat;}
+.footer li.tel a{background:url(../images/ico-yy.png) center 15px no-repeat;}
+.footer li.tel a:hover{background:url(../images/ico-yy3.png) center 15px no-repeat;}
+.footer li.yy a{background:url(../images/ico-mess.png) center 15px no-repeat;}
+.footer li.yy a:hover{background:url(../images/ico-mess2.png) center 15px no-repeat;}
+.footer li.dh a{background:url(../images/ico-tel2.png) center 15px no-repeat;}
+.footer li.dh a:hover{background:url(../images/ico-tel3.png) center 15px no-repeat;}
+.footer li.dq a{background:url(../images/ico-nav2.png) center 15px no-repeat;}
+.footer li.dq a:hover{background:url(../images/ico-nav4.png) center 15px no-repeat;}
+
+/**============= 科室菜单 ========================**/
+.nav ul li a{display:block;height:90px;overflow:hidden;padding:0 0 0 24px;line-height:90px;color:#dcdcdc;font-size:2em;border-bottom:1px solid #272727;}
+.home ul li span{ display:block;float:left;width:72px;height:90px;margin:0 1.2em 0 0;background:url(../images/nav.png);}
+.home ul li:nth-of-type(1) span{background-position:0 0;}
+.home ul li:nth-of-type(2) span{background-position:-72px 0;}
+.home ul li:nth-of-type(3) span{background-position:-144px 0;}
+.home ul li:nth-of-type(4) span{background-position:-216px 0;}
+.home ul li:nth-of-type(5) span{background-position:-288px 0;}
+.home ul li:nth-of-type(6) span{background-position:-360px 0;}
+.home ul li:nth-of-type(7) span{background-position:-432px 0;}
+.home ul li:nth-of-type(8) span{background-position:-504px 0;}
+.home ul li:nth-of-type(9) span{background-position:-576px 0;}
+.home ul li:nth-of-type(10) span{background-position:-648px 0;}
+.home ul li:nth-of-type(11) span{background-position:-720px 0;}
+.home ul li:nth-of-type(12) span{background-position:-792px 0;}
+.home ul li:nth-of-type(13) span{background-position:-864px 0;}
+/**================ 科室简介 =====================**/
+.i-news-about{padding:15px;max-height:495px; overflow:hidden;font-size:2em; line-height:1.8em;}
+.i-news-about .i-news-about-pic{ float:left; width:240px; border:2px solid  #efe5cf; margin:0 10px 0 0;}
+.i-news-about p { font-size:2em; line-height:1.8em;}
+.moreinfo { font-size:1.8em; text-align:right;}
+
+/**======================== 病种菜单 ==================**/
+.ks-nav dl{overflow:hidden;clear:both;padding:30px 50px;border-top:1px solid #454545;}
+.ks-nav dl dt{padding:0 0 30px 20px;font-size:2.5em;color:#fffc00; text-shadow:0 0 1px #000;}
+.ks-nav dl dt a{color:#fffc00;}
+.ks-nav dl dd{float:left;width:50%;}
+.ks-nav dl dd a{display:block;width:140px;margin:8px auto;padding:4px 8px;color:#000;font-size:1.5em;line-height:1.5em;text-align:center;background:#ffffff;border-radius:30px;box-shadow:0 0 10px #4b4b4b;}
+#gotop{display:none;position:fixed;z-index:777;width:82px;height:110px;right:10px;bottom:130px;background:url(../images/top.png) no-repeat;cursor:pointer;}
+
+/**===================科室专家====================**/
+.des p { height:88px; overflow:hidden;}
+@media screen and (max-width: 639px){
+	.navbar22 .ico-fanhui{height:50px;background-size:24.5px 21.5px;}
+	.navbar22 #title{height:50px;font-size:1.571em;line-height:50px;}	
+	.menubar .ico-home .tupian{background-size:24.5px 21.5px; height:25px;}
+	.menubar .ico-nav .tupian{background-size:24.5px 21.5px; height:25px;}
+	.menubar .ico-xiaoxi .tupian{background-size:24.5px 21.5px; height:25px;}
+	.menubar .ico-sousuo .title .sousuo{background-size:13px 13px; float:left; padding-top:10px;}	
+	.menubar .ico-sousuo .tupian{background-size:174.5px 21.5px;}
+	.menubar .ico-sousuo .title{ line-height:20px; }
+	.menubar .ico-sousuo .title .wenzi{ font-size:1.4em;padding-top:10px;}
+    .description  li.left33{ float:left; width:50%}
+    .description  li.right33{ float:right; width:50%}
+    .description  li.left33 .zuo{ float:left; width:35%}
+    .description  li.left33 .you{ float:left; width:65%}
+    .description .left33 .zuo .qiwen{font-size:18px;font-weight:normal;text-align:left; float:left;}
+    .description .left33 .you .qhcs{overflow:hidden; font-size:12px; float:left;}
+    .description .left33 .you .kongqi{overflow:hidden;float:left;font-size:16px;}
+    .description .left33 .you .kongqi1{font-size:16px;font-weight:normal;text-align:left; float:left;}
+    .description .left33 .zuo .tqtp{ background-size:25px 19px; width:25px;}
+    .description .left33 .you .xlcd{ background-size:15px 11px; float:left;}
+    .description  li.right33 .hyll{ float:left; font-size:14px; font-weight:bold; font-style:italic; line-height:40px; color:#FF5001;}
+	.description  li.right33 .souyisou{ float:left; font-size:14px; font-weight:bold; line-height:40px; color:#00C76B;}
+	.description  li.right33 .souyisou span{font-size:14px; font-weight:bold;background:#339ee2;border-radius:1em; margin-left:1px; margin-right:1px;}
+    .description  li.right33 .wangyeban{ float:right; font-size:12px;}
+	
+	.description{font-size:0.9em;}	
+	.description span{padding:2px 5px;color:#ffea00;border-radius:1em;}	
+	.index-hd strong{color:#cbcbcb;font-size:12px;font-weight:normal;text-transform:uppercase;}
+	
+	.links{margin-top:15px;}
+	.links h3{height:45px;padding:0 0 0 10px;line-height:45px;font-size:14px;}
+	.links .bd{padding:10px;}
+	.links .bd a{margin:0 5px;font-size:12px;}
+
+	.copyright{font-size:0.8em;}
+	.footer{height:60px}
+	.footer .footer-con{height:59px;}
+	.footer li{ float:left; width:20%;}
+	.footer li a,.footer li span{height:22px;padding:37px 0 0 0;font-size:12px;line-height:18px;}
+	.footer li.zx a{background:url(../images/ico-home2.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.zx a:hover{background:url(../images/ico-home1.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.tel a{background:url(../images/ico-yy.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.tel a:hover{background:url(../images/ico-yy3.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.yy a{background:url(../images/ico-mess.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.yy a:hover{background:url(../images/ico-mess2.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.dh a{background:url(../images/ico-tel2.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.dh a:hover{background:url(../images/ico-tel3.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.dq a{background:url(../images/ico-nav2.png) center 7px no-repeat;background-size:29px 24px;}
+	.footer li.dq a:hover{background:url(../images/ico-nav4.png) center 7px no-repeat;background-size:29px 24px;}	
+	/**==================== 科室菜单 ===============**/	
+	.nav{width:240px;}
+	.nav h3{padding:32px 0 15px 12px;font-size:1.571em;font-weight:normal;color:#fff;line-height:25px;}	
+	.nav ul li{clear:both;}
+	.nav ul li a{display:block;height:45px;padding:0 0 0 12px;line-height:45px;font-size:1em;}
+	.home ul li span{width:36px;height:45px;background:url(../images/nav-320.png);}
+	.home ul li:nth-of-type(1) span{background-position:0 0;}
+	.home ul li:nth-of-type(2) span{background-position:-36px 0;}
+	.home ul li:nth-of-type(3) span{background-position:-72px 0;}
+	.home ul li:nth-of-type(4) span{background-position:-108px 0;}
+	.home ul li:nth-of-type(5) span{background-position:-144px 0;}
+	.home ul li:nth-of-type(6) span{background-position:-180px 0;}
+	.home ul li:nth-of-type(7) span{background-position:-216px 0;}
+	.home ul li:nth-of-type(8) span{background-position:-252px 0;}
+	.home ul li:nth-of-type(9) span{background-position:-288px 0;}
+	.home ul li:nth-of-type(10) span{background-position:-324px 0;}
+	.home ul li:nth-of-type(11) span{background-position:-360px 0;}
+	.home ul li:nth-of-type(12) span{background-position:-396px 0;}
+	.home ul li:nth-of-type(13) span{background-position:-432px 0;}	
+	/**================ 科室简介 =====================**/
+	.i-news-about { max-height:230px; line-height:22px; font-size:14px;}
+	.i-news-about .i-news-about-pic { width:160px;}
+	.i-news-about p { font-size:1em;}
+	.moreinfo { font-size:14px;}
+
+	/**==================== 病种菜单 ===============**/
+	.ks-nav dl{overflow:hidden;clear:both;padding:15px 25px;border-top:1px solid #454545;}
+	.ks-nav dl dt{padding:0 0 15px 10px;font-size:1.2em;color:#fffc00; text-shadow:0 0 1px #000;}
+	.ks-nav dl dd{float:left;width:50%;}
+	.ks-nav dl dd a{display:block;width:70px;margin:4px auto;padding:2px 4px;color:#000;font-size:1em;line-height:1.5em;text-align:center;background:#ffffff;border-radius:15px;}
+	#gotop{width:41px;height:55px;right:0;bottom:65px;background-size:41px 55px;}	
+	
+	.nav{right:-240px}
+	.openMenu{right:240px;}
+	.openNav{right:0;}
+
+	
+}
+.fix11:after {visibility: hidden;display: block;font-size: 0;content:""; clear: both; height: 0; float:left}
+
+.lanrenzhijia {
+	width:154px;
+	position:relative;
+	float:left;
+	padding:10px;
+	border:1px #ccc solid;
+}
+.ctrl-panel {
+	position:absolute;
+	right:10px;
+	z-index:1000;
+	bottom:10px
+}
+.m-page {
+	display:block;
+	width:20px;
+	height:20px;
+	text-align:center;
+	background:#963;
+	float:left;
+	display:inline;
+	margin-left:5px;
+	line-height:20px;
+	color:#fff;
+	font-size:12px;
+}
+.m-page a:link, a:visited, a:active, a:hover {
+	text-decoration:none;
+	color:#000;
+}
+.focus {
+	background:#fff;
+}
+.con {
+	width:100%;
+}
+.scroll-wrap {
+	OVERFLOW: hidden;
+	WIDTH: 154px;
+	POSITION: relative;
+	HEIGHT: 124px
+}
+.scroll_box_content {
+	POSITION: absolute
+}
+.content_list {
+	FLOAT: left;
+	WIDTH: 154px;
+	HEIGHT: 124px;
+	cursor:pointer;
+}

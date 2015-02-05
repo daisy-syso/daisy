@@ -11,6 +11,7 @@ class DaisyAPI < Grape::API
   mount AccountsAPI
   mount RelatedResourcesAPI
   mount SearchAPI
+  mount AllAPI
 
   mount MobileAPI
 

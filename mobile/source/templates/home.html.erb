@@ -1,41 +1,197 @@
-<header class="bar bar-nav">
-  <a class="react pull-left" ng-click="$root.popover.toggle()">
-    {{ $root.city.title || homeData['subtitle'].title }}
-    <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
-  </a>
-  <div class="input-wrapper fake-input" ng-style="{left: searchLeft}">
-    <span class="ionicon ion-ios7-search-strong"></span>
-    <input class="search" type="text" value="请输入您要搜索的内容" ng-click="redirectTo('/search')" readonly>
-  </div>
-</header>
+<style type="text/css">
+.title {
+	position: relative;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 300;
+}
 
-<nav popover="homeData['subtitle']" class="popover-left"></nav>
-
-<div class="content">
-
-  <div class="slides">
-    <ul rn-carousel rn-carousel-auto-slide="5">
-      <li><img src="images/samples/720x334.png" /></li>
-      <li><img src="images/samples/720x334.png" /></li>
-      <li><img src="images/samples/720x334.png" /></li>
-      <li><img src="images/samples/720x334.png" /></li>
-      <li><img src="images/samples/720x334.png" /></li>
-    </ul>
-  </div>
-
-  <div class="card" ng-if="homeData">
-    <ul class="button-view">
-
-      <li class="button-view-cell" ng-repeat="button in homeData.buttons">
-        <a class="react" ng-href="{{button.link}}">
-          <img ng-src="{{button.icon}}" />
-          <span>{{button.title}}</span>
-        </a>
-      </li>
-
-    </ul>
-  </div>
-
-  <%= partial 'related' %> 
-
+</style>
+<div id="nav-over"></div>
+<div id="warmp" class="warmp">
+<section class="fix menubar">
+        <li class="ico-home"><div class="tupian"></div><div class="wenzi">扫一扫</div></li>
+        <li class="ico-sousuo">
+        <div class="title"><div class="sousuo"></div><div class="wenzi">搜医/找药/问健康</div></div><div class="tupian"></div>
+        </li>
+        <li class="ico-xiaoxi"><div class="tupian"></div><div class="xxtx">2</div><div class="wenzi">消息</div></li>
+		<li class="ico-nav"><div class="tupian"></div><div class="wenzi">科航</div></li>    </section>
+<div class="fix description">
+<li class="left33">
+<div class="zuo">
+<div class="qiwen">10°</div>
+<div class="tqtp"></div>
 </div>
+<div class="you">
+<div class="kongqi">北京</div>
+<div class="qhcs">(切换城市)</div>
+<div class="kongqi1">空气180</div>
+<div class="xlcd"></div>
+</div>
+</li>
+<li class="right33">
+	<div class="hyll">欢迎浏览&nbsp;</div>
+	<div class="souyisou"> 搜<span>医</span>搜</div>
+	<div class="wangyeban">(手机版)<BR>(网页版)</div></li>
+</div>		
+<div id="slides" class="slider-focus">
+	<div class="bd">
+    	<ul>
+        <li>
+        	<a class='pic' href='#'>
+        	 <img src='images/adv/1632.jpg' />
+          </a>
+      	</li>
+      	<!-- <li>
+      		<a class='pic' href='#'>
+      			<img src='images/adv/1581.jpg' />
+      		</a>
+      	</li>
+        <li>
+        	<a class='pic' href='#'>
+        		<img src='images/adv/1596.jpg' />
+        	</a>
+        </li>
+        <li>
+        	<a class='pic' href='#'>
+        		<img src='images/adv/1610.jpg' />
+        	</a>
+        </li>   -->      
+      </ul>
+	</div>
+    <div class="hd">
+        <ul></ul>
+    </div>
+</div>
+<div class="tab-iteam" id="tab-iteam1">
+  <div class="tab-iteam-con" id="tabBox1-bd">
+<div class="con active">
+    		<ul>
+            	<!-- <li><a href="#"><img src="images/icons/1-1.png"><BR>医院大全</a></li> 
+                <li><a href="#"><img src="images/icons/1-2.png"><BR>疾病查询</a></li>
+            	<li><a href="#"><img src="images/icons/1-3.png"><BR>找医生</a></li>
+                <li><a href="#"><img src="images/icons/1-4.png"><BR>价格搜索</a></li>
+                <li><a href="#"><img src="images/icons/1-5.png" ><BR>药品大全</a></li>
+                <li><a href="#"><img src="images/icons/1-6.png"><BR>身边药房</a></li>
+                <li><a href="#"><img src="images/icons/1-7.png"><BR>养老服务</a></li>
+                <li><a href="#"><img src="images/icons/1-8.png"><BR>其他类目</a></li> -->
+          <li ng-repeat="button in homeData.buttons">
+        		<a ng-href="{{button.link}}">
+          		<img ng-src="{{button.icon}}" /> <br>
+          		{{button.title}}
+        		</a>
+      		</li>
+        </ul>
+      </div>
+	</div>
+</div>
+<div class="bg team-ks">
+		<div class="index-hd">
+		<a class="more"href="#">更多>></a>
+			<H3>网址导航</H3>        </div>
+				<div class="bd">
+		<div class="fix">
+			<div class="lanrenzhijia">
+	<div class="ctrl-panel">
+		<a class=m-page href="javascript:;" rel=js_btn_list>1</a>
+		<a class=m-page href="javascript:;" rel=js_btn_list>2</a>
+		<a class=m-page href="javascript:;" rel=js_btn_list>3</a>
+		<a class=m-page href="javascript:;" rel=js_btn_list>4</a>
+		<a class=m-page href="javascript:;" rel=js_btn_list>5</a>     </div>
+	<div class="scroll-wrap">
+		<div class="scroll_box_content" REL="scroll_box_content">
+			<div class=content_list><img src="images/adv/img01.jpg" /></div>
+			<div class=content_list><img src="images/adv/img02.jpg" /></div>
+			<div class=content_list><img src="images/adv/img03.jpg" /></div>
+			<div class=content_list><img src="images/adv/img04.jpg" /></div>
+			<div class=content_list><img src="images/adv/img05.jpg" /></div>
+		</div>
+	</div>
+</div>
+			<div class="des">
+				<li>专家名称：郑瑜璠</li>
+				<li>激光美容科主任容科</li>
+				<li>激光美容科主任容科</li>
+				<li>激光美容科主任容科</li>
+				<li>激光美容科主任容科</li></div>
+		</div>
+				</div>
+  </div>
+<div class="tab-news" id="tab-news">
+	<div class="tab-news-hd tab-hd-index">
+        <ul class="fix">
+            <li class="note"><div class="images"></div>实时热点</li>
+            <li class="update"><div class="images"></div><div class="span">换一批</div><div class="bi"></div></li>
+        </ul>
+    </div>
+    <div class="tab-news-con">
+        <div class="con list-index active">
+            <ul>
+                <li class="left22"><a href="dongtai/211484.html">粉红时光拯救乳</a><a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a></li><li class="right22"><a href="#">高新技术重塑男</a><a class="tel" rel="nofollow" href="tel_3a//075525890396" onClick="msgOnline('tel','news');" ></a></li></ul>
+        </div>
+        <div class="con list-index">
+            <ul>
+                <li class="left22"><a href="#">特惠不容错过</a><a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a></li><li class="right22"><a href="#">医院优惠活动</a><a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a></li></ul>
+        </div>
+    </div>
+</div>
+
+<div class="guanggao">
+<div class="bd1">
+					<ul>
+						
+		<li class="left11">
+			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu3.jpg"></a>
+			<div class="des1">
+				<div class="mingcheng11">新用户专享</div>
+				<div class="pingfen11">每周整形</div></div>
+		</li>
+	
+		<li class="right11">
+			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu2.jpg"></a>
+			<div class="des1">
+				<div class="mingcheng11">热门团购</div>
+				<SPaN>看大家整什么</SPaN></div>
+		</li>
+		</ul>
+	</div></div>
+
+<div class="bg team">
+	<div class="fix index-hd">
+    	<a class="more"href="#">更多>></a>
+    	<H3>相关医院链接</H3>
+    </div>
+    <div class="bd">
+					<ul>
+						
+		<li class="fix">
+			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu4.jpg"></a>
+			<div class="des11">
+				<div class="mingcheng">专家名称：曹慕莹</div>
+				<div class="more">更多>></div>
+				<div class="pingfen">综合评分<SPaN>0.0</SPaN></div></div>
+		</li>
+<li class="fix">
+			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu4.jpg"></a>
+			<div class="des11">
+				<div class="mingcheng">专家名称：曹慕莹</div>
+				<div class="more">更多>></div>
+				<div class="pingfen">综合评分<SPaN>0.0</SPaN></div></div>
+		</li>		
+		</ul>
+	</div>
+</div>
+      </P>
+</div>
+</div>
+<footer class="footer">
+	<menu class="footer-con">
+    	<ul class="fix">
+        	<li class="zx"><a href="#">首页</a></li>
+            <li class="tel"><a href="#">微整容</a></li>
+            <li class="yy"><a href="#">发现</a></li>
+            <li class="dh"><a href="#">保健篮</a></li>
+			<li class="dq"><a href="#">我的健康本</a></li>
+        </ul>
+	</menu>
+</footer>

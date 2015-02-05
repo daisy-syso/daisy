@@ -104,23 +104,13 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
 
-        # $scope.$watch "data['title']", (value) ->
-        #   $alert.info("/api/related_hospital.json?hospital_type=#{value}")
-        #   $loader.get("/api/related_hospital.json?hospital_type=#{value}")
-        #     .success (json) ->
-        #       $scope.listFin = json.fin
-        #       # $alert.info("json.fin=====#{json.fin}")
-        #       $alert.info("json======#{json.data}")
-        #       # $alert.info("data=====#{json.data.related}")
-        #       $scope.listData = json.data
-
         $scope.redirectTo = (type, params) ->
           $scope.loadData(type, params)
 
           $location.path("list/#{type}")
           $location.search(params)
           $location.replace()
-          $location.keep = true
+          $location.keep = false
 
         $scope.loadData($route.current.params.type, $location.search()) 
 

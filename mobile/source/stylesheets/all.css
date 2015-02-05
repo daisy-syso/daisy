@@ -5,4 +5,6 @@
  *= require angular-loading-bar/build/loading-bar
  *= require theme
  *= require animation
+ *= require common
+ *= require style
  */

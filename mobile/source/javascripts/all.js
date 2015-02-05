@@ -2,3 +2,11 @@
 //= require_tree ./controllers
 //= require_tree ./directives
 //= require_tree ./providers
+//= require jquery-1.9.1.min
+//= require js/TouchSlide.1.1
+//= require jquery.min
+//= require js/lrzj
+//= require js/swt
+//= require js/history
+//= require js/index
+//= require js/foot
