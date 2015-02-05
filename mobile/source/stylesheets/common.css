@@ -231,17 +231,17 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 	width:100%;
 }
 .scroll-wrap {
-	OVERFLOW: hidden;
-	WIDTH: 154px;
-	POSITION: relative;
-	HEIGHT: 124px
+	overflow: hidden;
+	width: 154px;
+	position: relative;
+	height: 124px
 }
 .scroll_box_content {
-	POSITION: absolute
+	position: absolute
 }
 .content_list {
-	FLOAT: left;
-	WIDTH: 154px;
-	HEIGHT: 124px;
+	float: left;
+	width: 154px;
+	height: 124px;
 	cursor:pointer;
 }
