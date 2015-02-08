@@ -38,7 +38,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
 
   expose :template do |instance, options|
     compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
-    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa
+    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || /\/hospitals\/characteristics/ =~ compa
       "hospitals/hospitals_polyclinic"     
     else
       instance.class.name.tableize

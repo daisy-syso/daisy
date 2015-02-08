@@ -12,12 +12,12 @@ class Hospitals::Hospital < ActiveRecord::Base
   has_and_belongs_to_many :examination_types, join_table: 'examinations_hospitals', 
     class_name: 'Examinations::ExaminationType'
 
+  has_and_belongs_to_many :characteristics, join_table: 'characteristic_hospitals', class_name: 'Hospitals::Characteristic'
 
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
 
   scope :hospital_type, -> (type) { 
-    p "=======#{type}"
     type ? joins(:hospital_types)
       .where{hospitals_types.hospital_type_id == type}
       .distinct : where.not(parent_id: nil)
@@ -36,6 +36,12 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :order_by_url, -> (t = true) {
     order("url is null").order("hospital_level_id is null").order(hospital_level_id: :asc)
     # order(hospital_level_id: :desc).order(url: :desc)
+  }
+
+  scope :characteristic_hospitals, ->(type = true) {
+    type ? joins(:characteristics)
+      .all
+      .distinct : all
   }
 
   scope :order_by_level, -> (t = true) {

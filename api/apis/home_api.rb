@@ -580,6 +580,9 @@ class HomeAPI < Grape::API
         end
       }]
     }, {
+      type: "hospitals/characteristics",
+      title: "特色科室"
+      },{
       type: "hospitals/doctors",
       title: "找医生",
       children: [{

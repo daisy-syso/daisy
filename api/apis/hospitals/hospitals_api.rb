@@ -225,4 +225,35 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         alphabet: form_alphabet_filters
       }
   end
+
+  namespace :characteristics do
+    index! Hospitals::Hospital,
+      title: "特色科室",
+      filters: { 
+        city: city_filters,
+        type: type_filters("特色科室", :characteristic),
+        # hospital_type: { scope_only: true, default: 7 },
+        # hospital_level: { scope_only: true, default: false },
+        # order_by_url: { scope_only: true, default: 7 },
+        characteristic_hospitals: { scope_only: true, default: 7},
+        # order_by_level: { scope_only: true, default: 7 },
+        county: county_filters,
+        order_by: hospital_order_by_filters,
+        form: form_filters,
+        # query: form_query_filters, 
+        # hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
+        # has_url: form_switch_filters("网址"),
+        # is_local_hot: form_switch_filters("热门医院"),
+        is_foreign: { scope_only: true, type: Object },
+        is_other: { scope_only: true, type: Object },
+        is_community: { scope_only: true, type: Object },
+        has_mobile_url: form_switch_filters("手机挂号"),
+        has_return: form_switch_filters("优惠返利"),
+        template: form_radio_array_filters(%w(不限 热门医院 有网址),
+          "当前主题精选"),
+        alphabet: form_alphabet_filters
+      }
+  end
+
+
 end
