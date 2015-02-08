@@ -1,5 +1,7 @@
 class Hospitals::HospitalEntity < Bases::PlaceEntity
- 
+  
+  expose :characteristic_departments
+
 	expose :hospital_onsales do |instance, options|
     if options[:hospital_onsales_no_type_id]
       instance.hospital_onsales.sample(1)
@@ -51,7 +53,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   with_options if: { detail: true } do
     # expose :url
     expose :telephone
-    expose :medical_insurance, :characteristic_departments
+    expose :medical_insurance
     expose :equipment_star, :skill_star, :service_star, :environment_star
     expose :equipment_desc, :skill_desc, :service_desc, :environment_desc
   end

@@ -1,6 +1,7 @@
 <div class="media-body">
   <h1 >
-  	{{data.<%= defined?(title) ? title : :name %>}}  <span class="pull-right">更多>></span>
+  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+  	<span class="pull-right">更多>></span>
   </h1>
   <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
 </div>

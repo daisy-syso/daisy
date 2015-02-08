@@ -45,14 +45,6 @@
 	  <div class="tab-iteam-con" id="tabBox1-bd">
 			<div class="con active">
 	  		<ul>
-	          	<!-- <li><a href="#"><img src="images/icons/1-1.png"><BR>医院大全</a></li> 
-	              <li><a href="#"><img src="images/icons/1-2.png"><BR>疾病查询</a></li>
-	          	<li><a href="#"><img src="images/icons/1-3.png"><BR>找医生</a></li>
-	              <li><a href="#"><img src="images/icons/1-4.png"><BR>价格搜索</a></li>
-	              <li><a href="#"><img src="images/icons/1-5.png" ><BR>药品大全</a></li>
-	              <li><a href="#"><img src="images/icons/1-6.png"><BR>身边药房</a></li>
-	              <li><a href="#"><img src="images/icons/1-7.png"><BR>养老服务</a></li>
-	              <li><a href="#"><img src="images/icons/1-8.png"><BR>其他类目</a></li> -->
 	        <li ng-repeat="button in homeData.buttons">
 	      		<a ng-href="{{button.link}}">
 	        		<img ng-src="{{button.icon}}" /> <br>
@@ -63,128 +55,148 @@
 	    </div>
 		</div>
 	</div>
-	<div class="bg team-ks">
-		<div class="index-hd" style="box-sizing:content-box">
-			<a class="more"href="#" >更多>></a>
-			<h3>头条医讯</h3>        
-		</div>
-		<div class="bd">
-			<div class="fix">
-				<div class="lanrenzhijia" style="box-sizing:content-box">
-					<div class="ctrl-panel">
-						<a class=m-page href="javascript:;" rel=js_btn_list>1</a>
-						<a class=m-page href="javascript:;" rel=js_btn_list>2</a>
-						<a class=m-page href="javascript:;" rel=js_btn_list>3</a>
-						<a class=m-page href="javascript:;" rel=js_btn_list>4</a>
-						<a class=m-page href="javascript:;" rel=js_btn_list>5</a>     
-					</div>
-					<div class="scroll-wrap">
-						<div class="scroll_box_content" REL="scroll_box_content">
-							<div class=content_list><img src="images/adv/img01.jpg" /></div>
-							<div class=content_list><img src="images/adv/img02.jpg" /></div>
-							<div class=content_list><img src="images/adv/img03.jpg" /></div>
-							<div class=content_list><img src="images/adv/img04.jpg" /></div>
-							<div class=content_list><img src="images/adv/img05.jpg" /></div>
-						</div>
-					</div>
-				</div>
-				<div class="des">
-					<li>专家名称：郑瑜璠</li>
-					<li>激光美容科主任容科</li>
-					<li>激光美容科主任容科</li>
-					<li>激光美容科主任容科</li>
-					<li>激光美容科主任容科</li>
-				</div>
-			</div>
-		</div>
-	</div>
-<div class="tab-news" id="tab-news">
-	<div class="tab-news-hd tab-hd-index" style="background:none;">
-    <ul class="fix">
-      <li class="note">
-      	<div class="images"></div>实时热点
-      </li>
-      <li class="update">
-      	<div class="images"></div>
-      	<div class="span">换一批</div>
-      	<div class="bi"></div>
-      </li>
-    </ul>
+	<div class="back-color">
+    <div class="bg team-ks">
+      <div class="index-hd">
+        <h3>健康资讯导航</h3>
+        <a class="more" href="#">更多>></a>
+      </div>
+      <div class="bd">
+        <div class="fix">
+          <div class="lanrenzhijia">
+            <div class="ctrl-panel">
+                <a class="m-page" href="javascript:;" rel="js_btn_list">1</a>
+                <a class="m-page" href="javascript:;" rel="js_btn_list">2</a>
+                <a class="m-page" href="javascript:;" rel="js_btn_list">3</a>
+                <a class="m-page" href="javascript:;" rel="js_btn_list">4</a>
+                <a class="m-page" href="javascript:;" rel="js_btn_list">5</a>
+            </div>
+            <div class="scroll-wrap">
+              <div class="scroll_box_content" rel="scroll_box_content">
+                <div class="content_list">
+                  <img src="images/adv/img01.jpg" />
+                </div>
+                <div class="content_list">
+                  <img src="images/adv/img02.jpg" />
+                </div>
+                <div class="content_list">
+                  <img src="images/adv/img03.jpg" />
+                </div>
+                <div class="content_list">
+                  <img src="images/adv/img04.jpg" />
+                </div>
+                <div class="content_list">
+                  <img src="images/adv/img05.jpg" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="des">
+            <li>激光美容科主任容科</li>
+            <li>激光美容科主任容科</li>
+            <li>激光美容科主任容科</li>
+            <li>激光美容科主任容科</li>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="tab-news-con" >
-    <div class="con list-index active" >
-      <ul class="fix">
-        <li class="left22">
-        	<a href="dongtai/211484.html">粉红时光拯救乳</a>
-        	<a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a>
+  <div class="xian"></div>
+  <div class="back-color">
+    <div class="tab-news" id="tab-news">
+      <div class="tab-news-hd tab-hd-index">
+        <ul class="fix">
+          <li class="note">
+            <div class="images"></div>
+            实时热点
+          </li>
+          <li class="update">
+            <div class="images"></div>
+            <div class="span">换一批</div>
+            <div class="bi"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-news-con">
+        <div class="con list-index active">
+          <ul>
+            <li class="left22">
+              <a href="dongtai/211484.html">粉红时光拯救乳</a>
+              <a class="tel" rel="nofollow" href="#" onclick="msgOnline('tel','news');"></a>
+            </li>
+            <li class="right22"><a href="#">高新技术重塑男</a>
+              <a class="tel" rel="nofollow" href="tel_3A//075525890396" onclick="msgOnline('tel','news');"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="con list-index">
+          <ul>
+            <li class="left22">
+              <a href="#">特惠不容错过</a>
+              <a class="tel" rel="nofollow" href="#" onclick="msgOnline('tel','news');"></a>
+            </li>
+            <li class="right22">
+              <a href="#">医院优惠活动</a>
+              <a class="tel" rel="nofollow" href="#" onclick="msgOnline('tel','news');"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="xian"></div>
+  <div class="guanggao">
+    <div class="bd1">
+        <ul>
+            <li class="left11">
+                <a class="pic" href="#" title="曹慕莹">
+                    <img src="images/ks_trzx_tu3.jpg" /></a>
+                <div class="des1">
+                    <div class="mingcheng11">新用户专享</div>
+                    <div class="pingfen11">每周整形</div>
+                </div>
+            </li>
+            <li class="right11">
+                <a class="pic" href="#" title="曹慕莹">
+                    <img src="images/ks_trzx_tu2.jpg" /></a>
+                <div class="des1">
+                    <div class="mingcheng11">热门团购</div>
+                    <div class="span">看大家整什么</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+  </div>
+  <div class="xian"></div>
+  <div class="bg team">
+    <div class="fix index-hd">
+      <a class="more" href="#">更多>></a>
+      <h3>猜你喜欢</h3>
+    </div>
+    <div class="bd">
+      <ul>
+        <li class="fix">
+          <a class="pic" href="#" title="曹慕莹">
+            <img src="images/ks_trzx_tu4.jpg" />
+          </a>
+          <div class="des11">
+            <div class="mingcheng">专家名称：曹慕莹</div>
+            <div class="more">更多>></div>
+            <div class="pingfen">综合评分<span>0.0</span></div>
+          </div>
         </li>
-        <li class="right22">
-        	<a href="#">高新技术重塑男</a>
-        	<a class="tel" rel="nofollow" href="tel_3a//075525890396" onClick="msgOnline('tel','news');" ></a>
+        <li class="fix">
+          <a class="pic" href="#" title="曹慕莹">
+            <img src="images/ks_trzx_tu4.jpg" />
+          </a>
+          <div class="des11">
+            <div class="mingcheng">专家名称：曹慕莹</div>
+            <div class="more">更多>></div>
+            <div class="pingfen">综合评分<span>0.0</span></div>
+          </div>
         </li>
       </ul>
     </div>
-    <div class="con list-index" >
-    	<ul class="fix">
-        <li class="left22">
-        	<a href="#">特惠不容错过</a>
-        	<a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a>
-        </li>
-        <li class="right22">
-        	<a href="#">医院优惠活动</a>
-        	<a class="tel" rel="nofollow" href="#" onClick="msgOnline('tel','news');" ></a>
-        </li>
-      </ul>
-    </div>
   </div>
-</div>
 
-<div class="guanggao">
-<div class="bd1">
-		<ul>
-						
-		<li class="left11">
-			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu3.jpg"></a>
-			<div class="des1">
-				<div class="mingcheng11">新用户专享</div>
-				<div class="pingfen11">每周整形</div></div>
-		</li>
-	
-		<li class="right11">
-			<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu2.jpg"></a>
-			<div class="des1">
-				<div class="mingcheng11">热门团购</div>
-				<span>看大家整什么</span></div>
-		</li>
-		</ul>
-	</div></div>
-
-<div class="bg team" >
-	<div class="fix index-hd" style="box-sizing:content-box">
-  	<a class="more"href="#">更多>></a>
-  	<h3>相关医院链接</h3>
-  </div>
-  <div class="bd">
-		<ul>
-			<li class="fix">
-				<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu4.jpg"></a>
-				<div class="des11">
-					<div class="mingcheng">专家名称：曹慕莹</div>
-					<div class="more">更多>></div>
-					<div class="pingfen">综合评分<SPaN>0.0</SPaN></div>
-				</div>
-			</li>
-			<li class="fix">
-				<a class="pic" href="#" title="曹慕莹"><img src="images/ks_trzx_tu4.jpg"></a>
-				<div class="des11">
-					<div class="mingcheng">专家名称：曹慕莹</div>
-					<div class="more">更多>></div>
-					<div class="pingfen">综合评分<span>0.0</span></div>
-				</div>
-			</li>		
-		</ul>
-	</div>
-</div>
-
-</div>
 </div>

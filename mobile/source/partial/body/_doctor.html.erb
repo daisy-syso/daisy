@@ -1,0 +1,32 @@
+<div class="media-body">
+  <h1 >
+  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a> 
+    <span>{{data.position}}</span> 
+  	<!-- <span class="pull-right">更多>></span> -->
+  </h1>
+  <h1>★★★★★   5分 <span class="pull-right">挂号</span></h1>
+  <h1>
+    <span>科室：</span>{{data.hospital_room_name}}
+  </h1>
+  <h1>
+    <span>擅长：</span>中医治疗肿瘤，更年期综合征，糖尿病，胃病等
+  </h1>
+  <h1>
+    <span>医院：</span>{{data.hospital_name}}
+  </h1>
+  <h1>
+  	<span>出诊：</span>星期二上午，星期五下午
+  </h1>
+  <p style="height:1px;margin: 4px 0;border-top:1px dashed #000"></p>
+  <h1>
+  	<input type="radio" checked>
+  		在线咨询  
+  	<input type="radio">
+  	邮件咨询 
+  	<input type="radio">
+  	手机挂号/查询
+  </h1>
+</div>                                                         
+
+
+

@@ -1,9 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 * {
-   -webkit-box-sizing: content-box; 
-     -moz-box-sizing: content-box;
-   box-sizing: content-box; 
+	box-sizing:content-box;
 }
 ul,li,dl,dt,dd,ol{ list-style-type:none; margin:0; padding:0;}
 h1,h2,h3,h4,h5,h6,form,input,textarea,label,table,tr,td,p,header,article,footer,nav,section,aside,menu{margin:0; padding:0;}
@@ -203,8 +201,8 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 	width:154px;
 	position:relative;
 	float:left;
-	padding:10px;
-	border:1px #ccc solid;
+	padding-left:20px;
+	border:0px #ccc solid;
 }
 .ctrl-panel {
 	position:absolute;
@@ -239,7 +237,7 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 	OVERFLOW: hidden;
 	WIDTH: 154px;
 	POSITION: relative;
-	HEIGHT: 85px
+	HEIGHT: 90px
 }
 .scroll_box_content {
 	POSITION: absolute

@@ -6,8 +6,8 @@
     </li>
 
     <li class="table-view-cell media-content" ng-repeat="data in listData" ng-class="{last: listFin && $last}">
-      <a ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)" ng-cloak>
-      </a>
+      <div ng-href="{{link(data)}}" class="react" ng-include="templateUrl(data)" ng-cloak>
+      </div>
     </li>
 
      <li class=" media-content"  ng-if="listTitle == '价格攻略'" style="text-align:center;margin-top:10px;">{{hospital_parent_type}}

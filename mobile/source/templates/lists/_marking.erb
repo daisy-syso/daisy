@@ -1,5 +1,5 @@
 <div class="media-detail">
   综合评分
   <strong>{{data.star | number:1}}</strong>
-  <p class="pull-right" ng-if="$root.coords">{{$root.getDistance(data) | number:2}}千米</p>
+  <p ng-if="$root.coords">距离:{{$root.getDistance(data) | number:2}}千米</p>
 </div>
