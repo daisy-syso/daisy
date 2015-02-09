@@ -235,7 +235,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # hospital_type: { scope_only: true, default: 7 },
         # hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
-        characteristic_hospitals: { scope_only: true, default: 7},
+        characteristic_hospitals: { scope_only: true, default: 1},
         # order_by_level: { scope_only: true, default: 7 },
         county: county_filters,
         order_by: hospital_order_by_filters,

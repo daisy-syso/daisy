@@ -581,7 +581,17 @@ class HomeAPI < Grape::API
       }]
     }, {
       type: "hospitals/characteristics",
-      title: "特色科室"
+      title: "特色科室",
+      children: Hospitals::Characteristic.all.map do |characteristic|
+          {
+            title: characteristic.name,
+            id: characteristic.id,
+            params: {
+              search_by: :characteristic,
+              characteristic_hospitals: characteristic.id,
+            }
+          }
+        end
       },{
       type: "hospitals/doctors",
       title: "找医生",

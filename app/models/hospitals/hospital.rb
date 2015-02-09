@@ -40,7 +40,7 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :characteristic_hospitals, ->(type = true) {
     type ? joins(:characteristics)
-      .all
+      .where{characteristic_hospitals.characteristic_id == type}
       .distinct : all
   }
 
