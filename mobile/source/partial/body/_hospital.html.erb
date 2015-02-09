@@ -3,18 +3,15 @@
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
   	<!-- <span class="pull-right">更多>></span> -->
   </h1>
-  <h1>★★★★★   5分 <span class="pull-right">1098人浏览</span></h1>
+  <h1 style="color: #e5af05">★★★★★   5分 <span class="pull-right">1098人浏览</span></h1>
   <h1>
-  	<span>特色科室：</span> {{data.characteristic_departments}}
+  	<span>特色科室：{{data.characteristic_departments}}</span> 
   </h1>
-  <p style="height:1px;margin: 4px 0;border-top:1px dashed #000"></p>
-  <h1>
-  	<input type="radio" checked>
-  		医保  
-  	<input type="radio">
-  	医院网址
-  	<input type="radio">
-  	手机挂号/查询
-  </h1>
+  
   <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
 </div>
+<p class="gray-line-1" style="margin-bottom: 4px;"></p>
+<p class="font-14">
+    <span class="gr-dian">●  </span>医保 
+  ○ 医院网址  ○ 手机挂号/查询
+</p>

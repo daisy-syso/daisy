@@ -218,7 +218,7 @@ button:focus {
     outline: 0 none;
 }
 .btn {
-    background-color: #2bb2a3;
+    background-color: #F277B8;
     border: 0 none;
     border-radius: 0.06rem;
     box-sizing: border-box;
@@ -229,7 +229,7 @@ button:focus {
     height: 0.6rem;
     line-height: 0.6rem;
     margin: 0;
-    padding: 0 0.32rem;
+    padding: 0 0.2rem;
     text-align: center;
     vertical-align: middle;
 }
