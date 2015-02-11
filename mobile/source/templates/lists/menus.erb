@@ -1,25 +1,20 @@
-<style type="text/css">
-        .slider-all {
-            background-color:white;
-        }
-        .slider-all ul{
-            float:left; padding:3px 1px 1px 1px;
-        }
-        .slider-all ul li {
-            width:100px;
-            height:auto;
-            border:1px ridge gray; 
-            padding-top:1px; 
-            float:left;
-            text-align:center;
-        }
-        .slider-type {
-            background-color:gray;}
-    </style>
+<!-- <div id="slides" class="slider-type">
+  <div class="slider-all">
+    <h1>{{data.name_show || data.name}}</h1>
+    <div ng-repeat="menus in data.menus">
+      <ul><a>{{menus.name}}</a></ul>
+      <ul>
+        <li ng-repeat="menu in menus.content">
+          <a href="">{{menu.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->
 <div id="slides" class="slider-type">
         <div class="slider-all">
             <ul>热门</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>手机挂号</a></li>
                 <li><a>热门月子中心</a></li>
                <li><a>热门母婴会馆</a></li>
@@ -39,7 +34,7 @@
                 <li><a>特色科室</a></li>
             </ul>
             <ul>医院大全</ul>
-            <ul>
+            <ul class="sub-menus-ul">
 
                 <li><a>综合医院</a></li>
                 <li><a>全国体检</a></li>
@@ -52,7 +47,7 @@
                 <li><a>最新医疗机构</a></li>
             </ul>
             <ul>查疾病</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>科室查疾病</a></li>
                 <li><a>症状查疾病</a></li>
                 <li><a>字母查疾病</a></li>
@@ -60,7 +55,7 @@
                 <li><a>病理查疾病</a></li>
             </ul>
             <ul>找医生</ul>
-            <ul>
+            <ul class="sub-menus-ul">
 
                 <li><a>医院找医生</a></li>
                 <li><a>科室找医生</a></li>
@@ -69,7 +64,7 @@
                 <li><a>找专家医生攻略</a></li>
             </ul>
            <ul>药品大全</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>疾病查药品</a></li>
                 <li><a>字母查药品</a></li>
                 <li><a>药企查药品</a></li>
@@ -78,7 +73,7 @@
                 <li><a>最新药品</a></li>
             </ul>
             <ul>身边药店</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>字母找药店</a></li>
                 <li><a>地图找药店</a></li>
                 <li><a>医保定点药店</a></li>
@@ -86,7 +81,7 @@
                 <li><a>最新药店</a></li>
             </ul>
             <ul>医保查询</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>医保查询</a></li>
                 <li><a>定点医院查询</a></li>
                 <li><a>定点药店查询</a></li>
@@ -96,7 +91,7 @@
                 <li><a>最新健康险</a></li>
             </ul>
             <ul>价格搜索</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>综合医院价格攻略</a></li>
                 <li><a>全国体检价格攻略</a></li>
                 <li><a>整形价格攻略</a></li>
@@ -113,7 +108,7 @@
                 <li><a>代金券</a></li>
             </ul>
             <ul>就诊攻略</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>三甲医院就诊攻略</a></li>
                 <li><a>整形外科就诊攻略</a></li>
                 <li><a>牙科就诊攻略</a></li>
@@ -123,7 +118,7 @@
                 <li><a>找专家医生攻略</a></li>
             </ul>
             <ul>养老服务</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>养老公寓</a></li>
                 <li><a>养老保险（社保）查询</a></li>
                 <li><a>养老保险（商业）购买攻略</a></li>
@@ -131,7 +126,7 @@
                 <li><a>最新养老保险</a></li>
             </ul>
             <ul>会员服务</ul>
-            <ul>
+            <ul class="sub-menus-ul">
                 <li><a>会员福利</a></li>
                 <li><a>国家专家查询</a></li>
                 <li><a>降价通知</a></li>
@@ -141,4 +136,4 @@
     <div class="hd">
             <ul></ul>
         </div>
-    </div>
+</div>

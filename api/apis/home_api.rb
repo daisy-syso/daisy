@@ -36,7 +36,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-7.png"
       }, {
         title: "全部类别",
-        link: "#/list/all",
+        link: "#/list/menus",
         # title: "价格搜索",
         # link: "#/list/price_search/drugs",
         # link: "#/list/price_search/strategy_list",
@@ -78,6 +78,14 @@ class HomeAPI < Grape::API
       }
     }
   end
+
+  namespace :home do 
+    get :menus do
+      
+      
+    end
+
+  end 
 
   TypeMenu = [{
       type: "coupons/coupons",

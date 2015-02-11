@@ -1,3 +1,31 @@
+// 全部类别
+// .table-view .table-view-cell {
+// 	background: #efecec;
+// }
+.slider-all {
+    background-color:white;
+}
+.slider-all ul{
+    float:left; padding:3px 1px 1px 1px;
+}
+.slider-all ul li {
+    width:100px;
+    height:auto;
+    border:3px outset #efecec; 
+    padding-top:1px; 
+    float:left;
+    text-align:center;
+}
+.slider-type {
+    background-color:gray;}
+
+.sub-menus-ul {
+	background: #fff;
+	li a {
+		color: #000;
+	}
+}
+
 // 列表显示页面
 
 .gray-line-1 {
@@ -11,5 +39,10 @@ p.font-14 {
 }
 
 .gr-dian {
+	font-size: 20px;
 	color: green;
+}
+
+.circle {
+	font-size: 20px;
 }
