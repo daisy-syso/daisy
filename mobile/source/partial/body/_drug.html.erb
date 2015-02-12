@@ -1,10 +1,12 @@
 <div class="media-body">
   <h1 >
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-    <span class="pull-right">{{data.sale_price}}元</span>
+    <span class="pull-right" style="color:#DC143C">{{data.sale_price}}元</span>
   </h1>
   	
-  <h1>★★★★★   5分</h1>
+  <h1>
+    <span style="color: #ffd700">★★★★★</span>   5分
+  </h1>
   <h1>
     <span>功能主治：{{data.introduction}}</span>
     <span class="pull-right">已售{{data.sold_count || 0}}件</span>
