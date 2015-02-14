@@ -1,7 +1,7 @@
 <div class="media-body">
   <h1 >
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-    <span class="pull-right" style="color:#DC143C">{{data.sale_price}}元</span>
+    <span class="pull-right price-color">{{data.sale_price}}元</span>
   </h1>
   	
   <h1>
@@ -12,14 +12,14 @@
     <span class="pull-right">已售{{data.sold_count || 0}}件</span>
   </h1>
   <h1>
-    <span>牌价：￥18元 </span>
+    <span>牌价：</span><span style="color: #DC143C;">￥18元 </span>
   </h1>
   <h1>
     <span>规格：{{data.spec}}</span>
   </h1>
   <h1>
   	<span>厂商：{{data.brand}}hot</span>
-    <span class="pull-right">采购</span>
+    <span class="pull-right price-color" style="color: #DC143C;">采购</span>
   </h1>
 </div>
 <p class="gray-line-1" style="margin-bottom: 4px;"></p>
