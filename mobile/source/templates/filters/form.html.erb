@@ -1,6 +1,7 @@
-<form ng-init="form = {}">
+<div class="segmented-control">
+<form ng-init="form = {}" class="content1 dropdown-scroll">
   
-  <div class="input-group">
+  <div class="input-group  content2 ">
     <div class="input-block" ng-repeat="data in current.menu.children" ng-switch="data.template">
 
       <div class="checkboxes" ng-switch-when="radio">
@@ -55,3 +56,4 @@
   </div>
 
 </form>
+</div>

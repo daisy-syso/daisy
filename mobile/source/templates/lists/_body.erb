@@ -1,7 +1,9 @@
 <div class="media-body">
   <h1 >
+  	<img src="images/icons/1-8.gif" style="width:36px;">
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
   	<span class="pull-right">更多>></span>
+  	<span class="pull-right">{{data.price_scope||"&nbsp;"}}</span>
   </h1>
   <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
 </div>
