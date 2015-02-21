@@ -1,12 +1,15 @@
 <div class="card">
   <ul class="table-view media">
     <li class="table-view-cell media-title">
-      <%= defined?(title) ? title : "商品信息" %>
+     <%#= defined?(title) ? title : "商品信息" %>
+     商品信息
     </li>
     <li class="table-view-cell">
      <% if title == "症状"%>
         <!-- <p class="pre">{{data['symptoms']}}</p> -->
-     	<p class="pre"><span ng-repeat="(i, symptom) in data['symptoms']">{{symptom.name}}{{data['symptoms'].length-1 ==i? "" : "," }}</span></p>
+     	<p class="pre">
+        <span ng-repeat="(i, symptom) in data['symptoms']">{{symptom.name}}{{data['symptoms'].length-1 ==i? "" : "," }}</span>
+      </p>
      <%else%>
       <p class="pre">{{data.<%= defined?(detail) ? detail : :desc %>}}</p>
       <%end%>
