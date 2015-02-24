@@ -742,6 +742,9 @@ class HomeAPI < Grape::API
         title: "热门体检",
         params: { examination_parent_type: 1 }
       }, {
+        title: "体检机构",
+        params: { examination_parent_type: 1 }
+      }, {
         title: "商务体检套餐",
         params: { examination_parent_type: 74 }
       }, {
