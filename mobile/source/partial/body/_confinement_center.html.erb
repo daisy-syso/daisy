@@ -1,0 +1,26 @@
+<div class="media-body">
+  <h1 >
+  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+    <span class="pull-right price-color" style="border:none;background-color: #FFF;">已售{{data.sold_count || 0}}件 ≥ </span>
+  </h1>
+  	
+  <h1>
+    <span style="color: #ffd700">★★★★★</span>   5分
+  </h1>
+  <h1>
+    <span>距离：{{$root.getDistance(data) | number:2}}千米</span>
+  </h1>
+  <h1>
+    <span>特色：10年孕产行业专注经验</span>
+  </h1>
+  <h1>
+  	<span>产品：喜月标房套餐 hot</span>
+  	<span>￥48000</span>
+    <span class="pull-right">￥68000 </span>
+  </h1>
+</div>
+<p class="gray-line-1" style="margin-bottom: 4px;"></p>
+<p class="font-14">
+  <span class="gr-dian">●  </span>资质
+  <span class="circle">○</span>在线咨询  <span class="circle">○</span> 连锁机构
+</p>

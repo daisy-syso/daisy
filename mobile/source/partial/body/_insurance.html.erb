@@ -1,0 +1,29 @@
+<div class="media-body">
+  <h1 >
+  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+  </h1>
+  <h1>
+    <span style="color: #ffd700">★★★★★</span>   5分 
+    <span>￥2406元起</span>
+    <span class="pull-right price-color" style="border:none;background-color: #FFF;">已售{{data.sold_count || 0}}件 ≥ </span>
+    
+  </h1>
+  <h1>
+    <span>产品特色：重疾保障金：返保费105%•特定部位原位癌：40000元，重大疾病保障涵盖30种疾病短投长保</span> 
+    
+  </h1>
+  <h1>
+  	<span>承保年龄:  18-50岁人群</span> 
+  	<span class="pull-right price-color" style="color:#fff">查看详情</span>
+  </h1>
+  <h1>
+    <span>保险期限： 20年</span>
+  </h1>
+  
+  <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
+</div>
+<p class="gray-line-1" style="margin-bottom: 4px;"></p>
+<p class="font-14">
+    <span class="gr-dian">●  </span>意外医疗
+  <span class="circle">○</span> 意外住院 <span class="circle">○</span> 重大疾病险 <span class="circle">○</span> 身故保险金 <span class="circle">○</span> 其他保障费用
+</p>

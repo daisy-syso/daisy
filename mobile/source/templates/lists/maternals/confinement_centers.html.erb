@@ -1,2 +1,4 @@
-<%= partial 'templates/lists/body' %>
-<%= partial 'templates/lists/marking' %>
+<%#= partial 'templates/lists/body' %>
+<%#= partial 'templates/lists/marking' %>
+<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
+<%= partial 'partial/body/confinement_center', locals: { subtitle: :position } %>

@@ -1,3 +1,6 @@
-<div class="media-body-only">
+<!-- <div class="media-body-only">
   <h1>{{data.name}}</h1>
-</div>
+</div> -->
+
+<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
+<%= partial 'partial/body/insurance', locals: { subtitle: :position } %>
