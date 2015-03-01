@@ -8,7 +8,7 @@ class Drugs::DrugsAPI < ApplicationAPI
         type: type_filters("药品大全", :drug),
         search_by: search_by_filters({
           default: :disease,
-          disease: { title: "疾病", class: Drugs::DrugType },
+          disease: { title: proc { Drugs::DrugType.find_by_id(params[:disease]).try(:name) || "疾病"}, class: Drugs::DrugType },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
           alphabet: alphabet_filters,
           manufactory: {title: "品牌", class: Drugs::Manufactory }

@@ -606,6 +606,7 @@ class HomeAPI < Grape::API
       type: "hospitals/doctors",
       title: "找医生",
       children: [{
+        type: "hospitals/all",
         id: :doctor,
         title: "医院找医生",
         params: { search_by: :hospital }
@@ -619,6 +620,7 @@ class HomeAPI < Grape::API
         title: "字母找医生",
         params: { search_by: :alphabet }
       }, {
+        type: "favorites",
         title: "找专家医生攻略"
       }]
     }, {
