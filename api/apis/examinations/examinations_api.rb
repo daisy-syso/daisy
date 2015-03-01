@@ -23,56 +23,58 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       
     # show! Examinations::Examination
     get do
-      type_id = params[:type] || 2
-      @examinations = Examinations::Examination.where(examination_type_id: type_id).page(params[:page])
+      examination_type_id = params[:examination_type_id]
+      p examination_type_id
+      # type_id = params[:type] || 2
+      @examinations = Examinations::Examination.where(examination_type_id: examination_type_id).page(params[:page])
       p @examinations
       @examinations.as_json(Examinations::Examination.demand_attrs)
       {
       title: "全国体检",
       filters: [
-        {
-            link: "types",
-            key: "type",
-            title: "全国体检",
-            template: "list",
-            current: "examination"
-        },{ 
-        title: "类别",
-        children: Examinations::ExaminationType.where(parent_id: nil),
-        template: "list",
-        filter_only: true,
-        current: 1,
-        key: "type"
-        },{
-            "key" => "order_by",
-            "title" => "智能排序",
-            "template" => "list",
-            "children" => [
-                {
-                    "title" => "智能排序",
-                    "id" => "auto"
-                },
-                {
-                    "title" => "最新发布",
-                    "id" => "newest"
-                }
-            ],
-            "current" => "auto"
-        },
-        {
-            "template" => "form",
-            "key" => "form",
-            "title" => "筛选",
-            "current" => nil,
-            "children" => [
-              
-            ]
-        }
+      {
+          link: "types",
+          key: "type",
+          title: "全国体检",
+          template: "list",
+          current: "examination"
+      },{ 
+      title: "类别",
+      children: Examinations::ExaminationType.where(parent_id: nil),
+      template: "list",
+      filter_only: true,
+      current: 1,
+      key: "type"
+      },{
+          "key" => "order_by",
+          "title" => "智能排序",
+          "template" => "list",
+          "children" => [
+              {
+                  "title" => "智能排序",
+                  "id" => "auto"
+              },
+              {
+                  "title" => "最新发布",
+                  "id" => "newest"
+              }
+          ],
+          "current" => "auto"
+      },
+      {
+          "template" => "form",
+          "key" => "form",
+          "title" => "筛选",
+          "current" => nil,
+          "children" => [
+            
+          ]
+      }
 
-    ],
-    fin: true,
-    data: @examinations.as_json(Examinations::Examination.demand_attrs)
-    }  
+      ],
+      fin: true,
+      data: @examinations.as_json(Examinations::Examination.demand_attrs)
+      }  
     end
     show! Examinations::Examination
   end

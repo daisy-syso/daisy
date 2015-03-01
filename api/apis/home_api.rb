@@ -4,7 +4,7 @@ class HomeAPI < Grape::API
     {
       buttons: [{
         title: "医院大全",
-        link: "#/list/hospitals/polyclinics",
+        link: "#/list/hospitals/all",
         icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
@@ -93,6 +93,8 @@ class HomeAPI < Grape::API
     }, {
       title: "医院大全",
       children: [{
+        title: "全部分类"
+        }, {
         type: "hospitals/polyclinics",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Complex.png",
         title: "综合医院",
@@ -547,7 +549,7 @@ class HomeAPI < Grape::API
       }]
     }, {
       type: "diseases/diseases",
-      title: "查疾病",
+      title: "疾病查询",
       children: [{
         id: :disease,
         title: "症状查疾病",
@@ -740,22 +742,52 @@ class HomeAPI < Grape::API
         filterTitle: "全国体检"
       }, {
         title: "热门体检",
-        params: { examination_parent_type: 1 }
+        children: Examinations::ExaminationType.where(parent_id: 1).map do |type|
+          {
+            title: type.name,
+            params: { examination_type_id: type.id }
+          }
+        end
+        #params: { examination_parent_type: 1 }
       }, {
         title: "体检机构",
         params: { examination_parent_type: 1 }
       }, {
         title: "商务体检套餐",
-        params: { examination_parent_type: 74 }
+        children: Examinations::ExaminationType.where(parent_id: 74).map do |type|
+          {
+            title: type.name,
+            params: { examination_type_id: type.id }
+          }
+        end
+        # params: { examination_parent_type: 74 }
       }, {
         title: "肿瘤检测",
-        params: { examination_parent_type: 65 }
+        children: Examinations::ExaminationType.where(parent_id: 65).map do |type|
+          {
+            title: type.name,
+            params: { examination_type_id: type.id }
+          } 
+        end
+        # params: { examination_parent_type: 65 }
       }, {
         title: "高发疾病检测",
-        params: { examination_parent_type: 93 }
+        children: Examinations::ExaminationType.where(parent_id: 93).map do |type|
+          {
+            title: type.name,
+            params: { examination_type_id: type.id }
+          }
+        end
+        # params: { examination_parent_type: 93 }
       }, {
         title: "适用人群套餐",
-        params: { examination_parent_type: 22 }
+        children: Examinations::ExaminationType.where(parent_id: 22).map do |type|
+          {
+            title: type.name,
+            params: { examination_type_id: type.id }
+          }
+        end
+        # params: { examination_parent_type: 22 }
       }, {
         type: "hospitals/hospital_news",
         title: "体检诊疗攻略",
