@@ -93,6 +93,7 @@ class HomeAPI < Grape::API
     }, {
       title: "医院大全",
       children: [{
+        type: "hospitals/all",
         title: "全部分类"
         }, {
         type: "hospitals/polyclinics",

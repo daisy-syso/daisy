@@ -9,8 +9,8 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         search_by: search_by_filters({
           default: :disease,
           hospital: { title: "医院", class: Hospitals::Hospital },
-          disease: { title: "疾病", class: Diseases::Disease },
-          hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+          disease: { title: proc { Diseases::Disease.find_by_id(params[:disease]).try(:name) || "疾病"}, class: Diseases::Disease },
+          hospital_room: { title: proc { Hospitals::HospitalRoom.find_by_id(params[:hospital_room]).try(:name) || "科室"}, class: Hospitals::HospitalRoom },
           alphabet: alphabet_filters
         }),
         order_by: order_by_filters(Hospitals::Doctor),

@@ -228,7 +228,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
 
   namespace :characteristics do
     index! Hospitals::Hospital,
-      title: "特色科室",
+      title: proc { Hospitals::Characteristic.find_by_id(params[:characteristic_hospitals]).try(:name) || "特色科室"},
       filters: { 
         city: city_filters,
         type: type_filters("特色科室", :characteristic),
@@ -267,7 +267,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # hospital_type: { scope_only: true, default: 7 },
         # hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
-        characteristic_hospitals: { scope_only: true, default: 1},
+        # characteristic_hospitals: { scope_only: true, default: 1},
         # order_by_level: { scope_only: true, default: 7 },
         county: county_filters,
         order_by: hospital_order_by_filters,
