@@ -723,13 +723,13 @@ class HomeAPI < Grape::API
         type: "drugs/drugs",
         title: "药品价格查询"
       }, {
-        type: :"insurances/insurances",
+        type: "insurances/insurances",
         title: "健康保险价格查询"
       }, {
-        type: :"insurances/insurances",
+        type: "insurances/insurances",
         title: "养老保险价格查询"
       }, {
-        type: :"maternals/confinement_centers",
+        type: "maternals/confinement_centers",
         title: "月子中心价格查询"
       }, {
         title: "返利优惠"

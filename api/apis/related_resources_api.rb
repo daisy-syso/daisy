@@ -19,7 +19,7 @@ class RelatedResourcesAPI < Grape::API
     end
   end
   get :related do
-    relateds = (RelatedClasses * 3).sample(3).map do |klass|
+    relateds = (RelatedClasses * 20).sample(20).map do |klass|
       klass.offset(Random.rand(related_resources_count(klass))).first
     end
     present! relateds, with: PolymorphicEntity
@@ -51,7 +51,7 @@ class RelatedResourcesAPI < Grape::API
     p "hospital_charges======#{hospital_charges.blank?}"
     if !hospital_charges.blank?
       relateds = []
-      3.times do |i|
+      20.times do |i|
         releted_charge = hospital_charges.to_a.delete_at(Random.rand(hospital_charges.count))
         p "releted_charge========#{releted_charge}"
         related_onsales = releted_charge.try(:hospital_onsales)
