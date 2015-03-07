@@ -24,6 +24,7 @@ module ResourcesHelper
         meta = options[:meta] ? options[:meta].dup : {}
         meta[:title] ||= parse_option_value options[:title]
         meta[:related] ||= parse_option_value options[:related]
+        meta[:recommend] ||= parse_option_value options[:recommend]
         hfilters = {}
 
         parse_option_value options[:before]

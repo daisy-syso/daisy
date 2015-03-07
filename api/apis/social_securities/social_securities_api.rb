@@ -3,6 +3,7 @@ class SocialSecurities::SocialSecuritiesAPI < ApplicationAPI
   namespace :social_securities do
     index! SocialSecurities::SocialSecurity, 
       title: "医保查询",
+      recommend: true,
       filters: { 
         type: type_filters("医保查询", :social_security),
         city: city_filters,

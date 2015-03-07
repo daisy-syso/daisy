@@ -1,13 +1,13 @@
 <%= partial 'templates/lists/image' %>
 <%= partial 'templates/lists/body', locals: { subtitle: :desc } %>
 <div style="margin-top:22px;">
-  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/doctors?{{data.params}}">
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/doctors?{{data.params}}" style="color:#fff">
   	<img ng-src="images/icons/icon-doctor.png" width="27" style="margin-right:5px">医生
   </a>
-  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/hospitals?{{data.params}}">
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/hospitals?{{data.params}}" style="color:#fff">
   	<img ng-src="images/icons/icon-hospital.png" width="27" style="margin-right:5px">医院
   </a>
-  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/drugs?{{data.params}}">
+  <a class="btn btn-warning" ng-href="#/list/{{data.template}}/{{data.id}}/drugs?{{data.params}}" style="color:#fff">
   	<!-- <img ng-src="{{data.image_url}}" class="pull-left" width="16" ng-if="data.image_url"> -->
   	<img ng-src="images/icons/icon-drug.png" width="27" style="margin-right:5px">药品
   </a>
