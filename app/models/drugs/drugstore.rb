@@ -13,6 +13,9 @@ class Drugs::Drugstore < ActiveRecord::Base
     query.present? ? where{name.like("%#{query}%")} : all
   }
   
+  scope :alphabet, -> (alphabet) { 
+    alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
   include Reviewable
   
 end

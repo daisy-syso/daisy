@@ -653,7 +653,8 @@ class HomeAPI < Grape::API
       children: [{
         id: :drugstore,
         title: "字母找药店",
-        params: { search_by: :alphabet }
+        params: { search_by: :alphabet },
+        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:alphabet => alph }}}
       }, {
         title: "地图找药店",
         params: { search_by: :map }
@@ -682,6 +683,7 @@ class HomeAPI < Grape::API
         title: "定点药店查询",
         params: { social_security_type: 4 }
       }, {
+        type: "insurances/insurances",
         title: "健康险攻略"
       }]
     }, {
@@ -817,10 +819,10 @@ class HomeAPI < Grape::API
       title: "母婴亲子",
       children: [{
         id: :eldercare,
-        type: :"maternals/confinement_centers",
+        type: "maternals/confinement_centers",
         title: "月子中心"
       }, {
-        type: :"maternals/maternal_halls",
+        type: "maternals/maternal_halls",
         title: "母婴会馆",
         params: { social_security_type: 5 }
       }]
