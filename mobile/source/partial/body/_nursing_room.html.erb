@@ -1,26 +1,20 @@
 <div class="media-body">
-  <h1 >
-  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  	<span class="pull-right price-color" style="color:#fff">查看详情</span>
-  </h1>
-  <h1>
-    <span style="color: #ffd700">★★★★★</span>   5分 
-    <span class="pull-right">14652浏览 ≥ </span>
-  </h1>
-  <h1>
-    <span>距离：{{$root.getDistance(data) | number:2}}千米</span> 
-  </h1>
-  <h1>
-    <span>床 位：420张</span>
-  </h1>
-  <h1>
-    <span>收住对象：自理 半自理 全护理  特护</span>
-  </h1>
-  <p style="font-size:14px;">
-    <span style="margin-left:5px;">收费标准：</span> <span class="price-color" style="border:none;background-color: #fff">￥560-1500/月</span>  </p>
-  <h1>
-  	<span>特色服务：可接收异地老人</span>
-  </h1>
+
+  <ul style="line-height: 30px;" class="list-cont">
+    <li>距离：{{$root.getDistance(data) | number:2}}千米</li>
+    <li>
+      床 位：420张
+    </li>
+    <li>
+      收住对象：自理 半自理 全护理  特护
+    </li>
+    <li>
+     收费标准： <span class="price-color" style="border:none;background-color: #fff">￥560-1500/月</span>
+    </li>
+    <li>
+      特色服务：可接收异地老人
+    </li>
+  </ul>
   
 </div> 
 <p class="gray-line-1" style="margin-bottom: 4px;"></p>

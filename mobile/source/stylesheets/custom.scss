@@ -49,4 +49,50 @@ p.font-14 {
 
 .price-color {
 	background-color: #DC143C;
+	padding: 0 5px;
 }
+
+.text-overflow {
+	display:block;                     /*内联对象需加*/
+	width:15em;
+	word-break:keep-all;           /* 不换行 */
+	white-space:nowrap;          /* 不换行 */
+	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	width:30%;
+	font-size: 15px;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+table.gridtable td a{
+	color:#2bb2a3
+}
+
+.slider-all h1 {
+	width:90%;
+	overflow: hidden;
+	margin: 25px 0 10px;
+}
+

@@ -1,13 +1,26 @@
 <div class="media-body">
-  <h1 >
+ <!--  <h1 >
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  	<!-- <span class="pull-right">更多>></span> -->
+  	<span class="pull-right">更多>></span>
   </h1>
   <h1>
     <span style="color: #ffd700">★★★★★</span>   5分 
     <span class="pull-right price-color" style="color:#fff">查看详情</span>
-  </h1>
-  <h1>
+  </h1> -->
+
+  <ul>
+    <li>距离：{{$root.getDistance(data) | number:2}}千米 </li>
+    <li>
+      <span>套餐：中老年防癌套餐</span> 
+      <span>价值￥1178 </span>
+      <span>￥576元</span>
+    </li>
+    <li>
+      <span>特色：感恩升级版 （节假日通用）</span> 
+      <span>【两店通用】</span>
+    </li>
+  </ul>
+  <!-- <h1>
     <span>距离：{{$root.getDistance(data) | number:2}}千米</span>
   </h1>
   <h1>
@@ -23,7 +36,7 @@
   <h1>
     <span>其他优惠：</span>
     <span>已售34</span>
-  </h1>
+  </h1> -->
   
   <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
 </div>

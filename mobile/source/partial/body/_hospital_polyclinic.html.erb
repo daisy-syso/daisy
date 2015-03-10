@@ -1,13 +1,26 @@
 <div class="media-body">
-  <h1 >
+  <!-- <h1 >
   	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  	<!-- <span class="pull-right">更多>></span> -->
+  	<span class="pull-right">更多>></span>
   </h1>
   <h1>
     <span style="color: #ffd700">★★★★★</span>   5分 
     <span class="pull-right">1098人浏览</span>
-  </h1>
-  <h1>
+  </h1> -->
+
+  <ul style="line-height: 30px;">
+    <li>距离：{{$root.getDistance(data) | number:2}}千米 </li>
+    <li style="display:block;width:15em;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+      特色科室：{{data.characteristic_departments}}
+      
+    </li>
+    <li>
+      <span>电话：{{data.telephone}}</span> 
+      <span class="pull-right price-color" style="background-color: #E62418;color:#FFF">就诊查讯</span>
+    </li>
+  </ul>
+
+ <!--  <h1>
     <span>距离：{{$root.getDistance(data) | number:2}}千米</span> 
   </h1>
   
@@ -17,7 +30,7 @@
   </h1>
   <h1>
   	<span>电话：021-52889999</span> 
-  </h1>
+  </h1> -->
   
   <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
 </div>

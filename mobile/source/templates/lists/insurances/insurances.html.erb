@@ -1,6 +1,10 @@
 <!-- <div class="media-body-only">
   <h1>{{data.name}}</h1>
 </div> -->
-
+<p style="padding: 5px 0;font-size:15px;">
+  <a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+  <!-- <span class="pull-right">更多>></span> -->
+  <span style="color: #ffd700">★★★★★</span>   5分
+</p>
 <img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
 <%= partial 'partial/body/insurance', locals: { subtitle: :position } %>

@@ -1,26 +1,17 @@
 <div class="media-body">
-  <h1 >
-  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-    <span class="pull-right price-color" style="border:none;background-color: #FFF;">{{data.sale_price}}元</span>
-  </h1>
-  	
-  <h1>
-    <span style="color: #ffd700">★★★★★</span>   5分
-  </h1>
-  <h1>
-    <span>功能主治：{{data.introduction}}</span>
-    <span class="pull-right">已售{{data.sold_count || 0}}件</span>
-  </h1>
-  <h1>
-    <span>牌价：</span><span style="color: #DC143C;">￥18元 </span>
-  </h1>
-  <h1>
-    <span>规格：{{data.spec}}</span>
-  </h1>
-  <h1>
-  	<span>厂商：{{data.brand}}hot</span>
-    <span class="pull-right price-color" style="color: #FFF;">采购</span>
-  </h1>
+  <ul style="line-height: 30px;">
+    <li class="text-overflow">功能主治：{{data.introduction}}</li>
+    <li>
+      规格：{{data.spec}}
+    </li>
+    <li>
+      厂商：{{data.brand}}hot
+      <span class="pull-right">已售{{data.sold_count || 0}}件</span>
+       <span class="pull-right price-color" style="border:none;background-color: #FFF;">{{data.sale_price}}元</span>
+    </li>
+
+  </ul>
+
 </div>
 <p class="gray-line-1" style="margin-bottom: 4px;"></p>
 <p class="font-14">
