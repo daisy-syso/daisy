@@ -1,13 +1,12 @@
 <div class="media-body">
-  <ul style="line-height: 30px;">
+  <ul class="list-cont">
     <li class="text-overflow">功能主治：{{data.introduction}}</li>
     <li>
       规格：{{data.spec}}
     </li>
     <li>
-      厂商：{{data.brand}}hot
-      <span class="pull-right">已售{{data.sold_count || 0}}件</span>
-       <span class="pull-right price-color" style="border:none;background-color: #FFF;">{{data.sale_price}}元</span>
+      厂商：{{data.brand}}
+       <span class="pull-right price-color" style="border:none;background-color: #FFF;color: #DC143C">￥{{data.sale_price}}元</span>
     </li>
 
   </ul>
@@ -16,5 +15,5 @@
 <p class="gray-line-1" style="margin-bottom: 4px;"></p>
 <p class="font-14">
   <span class="gr-dian">●  </span>处方药 
-  <span class="circle">○</span>西药  <span class="circle">○</span> 医保定点  <span class="circle">○</span> 在线支付  ○ 当面支付
+  <span class="circle">○</span>西药  <span class="circle">○</span> 医保定点  <span class="circle">○</span> 在线支付  <span class="circle">○</span> 当面支付
 </p>

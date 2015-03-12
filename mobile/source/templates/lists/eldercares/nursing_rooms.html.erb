@@ -1,9 +1,10 @@
-<p style="padding: 5px 0;font-size:15px;">
+<div class="list-top">
 	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
 	<!-- <span class="pull-right">更多>></span> -->
-	<span style="color: #ffd700">★★★★★</span>   5分
-	<span class="pull-right">14652浏览 ≥ </span>
-</p>
+	<p class="pull-right">
+		<span style="color: #ffd700">★★★★★</span>   5分
+	</p>
+</div>
 <%= partial 'templates/lists/image' %>
 <%= partial 'partial/body/nursing_room' %>
 <%#= partial 'templates/lists/body' %>

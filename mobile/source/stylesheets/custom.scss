@@ -96,3 +96,37 @@ table.gridtable td a{
 	margin: 25px 0 10px;
 }
 
+.list-top {
+	margin: 0 0 8px;
+}
+
+.list-top p {
+	padding-top:4px;
+}
+
+.list-title {
+	display: inline-block;
+	word-break:keep-all;           /* 不换行 */
+	white-space:nowrap;
+	max-width: 250px;
+	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;
+	font-family: SimHei;
+	font-size: 18px;
+}
+
+.list-cont {
+	min-height: 90px;
+	line-height: 24px;
+	font-family: SimSun;
+}
+
+.list-bottom {
+
+
+}
+
+ul.list-bottom li{
+	display: inline-block;
+}
+

@@ -1,8 +1,8 @@
-<p style="padding: 5px 0;font-size:15px;">
-  <a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+<p style="padding: 5px 0;">
+  <a ng-href="{{link(data)}}" class="list-title">{{data.<%= defined?(title) ? title : :name %>}}</a>  
     <!-- <span class="pull-right">更多>></span> -->
   <span style="color: #ffd700">★★★★★</span>   5分
-  <span class="pull-right">1098人浏览</span>
+  <span class="pull-right" style="font-size: 12px">1098人浏览</span>
 </p>
 <img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
 <%= partial 'partial/body/doctor', locals: { subtitle: :position } %>

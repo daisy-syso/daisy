@@ -20,12 +20,13 @@
   
 </div> -->
 <%#= partial 'templates/lists/price_onsale' %> 
-<p style="padding: 5px 0;font-size:15px;">
-    <a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-    <!-- <span class="pull-right">更多>></span> -->
-    <span style="color: #ffd700">★★★★★</span>   5分
-    <span class="pull-right">1098人浏览</span>
-</p>
+<div class="list-top">
+  <a ng-href="{{link(data)}}" class="list-title">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+  <!-- <span class="pull-right">更多>></span> -->
+  <p class="pull-right">
+    <span  style="color: #ffd700">★★★★★</span>   5分
+  </p>
+</div>
  
 <%= partial 'templates/lists/image' %>
 <%= partial 'partial/body/hospital' %>
