@@ -2,12 +2,72 @@
 
 <div class="content">
 
-  <%= partial 'templates/details/desc' %>
+	 <div class="card">
+    <ul class="table-view media">
+     <li class="table-view-cell">
+      <div class="media-detail">
+        <h1>{{data.<%= defined?(title) ? title : :name %>}}</h1>
+        <!-- <p class="pre">{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p> -->
+      </div>
+    </li>
+      
+    </ul>
+  </div>
+  <%#= partial 'templates/details/desc' %>
 
-  <%= partial 'templates/details/review' %>
+  <%#= partial 'templates/details/review' %>
   
+  <div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <p>服务简介：套餐团购</p>
+        <p>电话：{{data.telephone}}</p>
+        <p>网站：{{data.url}}</p>
+        <p>工作时间：8：00-21：00(全年无休)</p>
+
+      </div>
+      
+    </li>
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <h4 class="fix">
+        	服务总评
+          <span style="color: #ffd700">★★★★★5分</span>   
+          <span class="pull-right">{{data.reviews_count}}人参与评分</span>
+        </h4>
+      </div>
+      
+    </li>
+
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <h1>服务项目</h1>
+      </div>
+    </li>
+
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <h1>购买须知：</h1>
+        <p>有效期</p>
+        <p>预约信息</p>
+        <p>适用人数</p>
+        <p>规则提醒</p>
+        <p>温馨提示</p>
+      </div>
+    </li>
+
+  </ul>
+</div>
+  
+
   <%= partial 'templates/details/map' %>
 
-  <%= partial 'related' %> 
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3>猜你喜欢</h3>
+    </div>
+    <%= partial 'related' %> 
+  </div>
 
 </div>
