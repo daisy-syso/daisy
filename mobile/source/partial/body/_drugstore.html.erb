@@ -1,17 +1,16 @@
 <div class="media-body">
-  <h1 >
-  	<a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  	<!-- <span class="pull-right">更多>></span> -->
-  </h1>
-  <h1>
-    <span style="color: #ffd700">★★★★★</span>   5分 
-    <span class="pull-right price-color" style="color: #FFF;">购买</span></h1>
-  <h1>
-    <span>药品：六味地黄丸</span>
-  </h1>
-  <h1>
-  	<span>牌价：</span><span style="color: #DC143C;">￥18元 </span>
-  </h1>
+
+  <ul class="list-cont">
+    <li class="text-overflow">
+      经营许可证：{{data.Business_License}}
+    </li>
+    <li>
+      <span>药品：六味地黄丸</span>
+    </li>
+    <li>
+      <span>参考价：</span><span style="color: #DC143C;">￥18元 </span>
+    </li>
+  </ul>
   
 </div>
 <p class="gray-line-1" style="margin-bottom: 4px;"></p>

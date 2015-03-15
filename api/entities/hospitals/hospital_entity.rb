@@ -41,12 +41,16 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
   end
 
   expose :template do |instance, options|
+    # hospital_type = instance.hospital_types
+    # p "options========#{options}"
+    # p "options[:meta]======#{options[:meta]}"
     compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
     if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || /\/hospitals\/characteristics/ =~ compa
-      "hospitals/hospitals_polyclinic"     
+      t = "hospitals/hospitals_polyclinic"     
     else
-      instance.class.name.tableize
+      t = instance.class.name.tableize
     end
+    options[:meta].try {|meta| meta[:template]} || t
   end
 
   expose :related do |instance, options|

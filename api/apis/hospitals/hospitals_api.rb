@@ -117,7 +117,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         template: form_radio_array_filters(%w(不限 基础体检 单位团体体检 常规体检 婚前体检 孕前体检 儿童体检 老年体检 妇科体检 青年体检 精英体检 高端体检),
           "当前主题精选"),
         price_scope: form_price_scope_filters([300, 600, 1000, 2000, 4000])
-      }
+      },
+      template: "hospitals/hospitals_t2"
   end
 
   namespace :tcm do
@@ -223,7 +224,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         template: form_radio_array_filters(%w(不限 热门医院 有网址),
           "当前主题精选"),
         alphabet: form_alphabet_filters
-      }
+      },
+      template: "hospitals/hospitals_t1"
   end
 
   namespace :characteristics do
