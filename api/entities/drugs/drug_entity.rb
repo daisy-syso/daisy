@@ -7,7 +7,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
   expose 
 
   with_options if: { detail: true } do
-    
+    expose :code, :expiry_date
   end
 
 end

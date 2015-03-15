@@ -2,6 +2,16 @@
 // .table-view .table-view-cell {
 // 	background: #efecec;
 // }
+i.price {
+	font-style:normal;
+	color: #DC143C;
+}
+
+.btn-red {
+	padding: 0 5px;
+	background-color: #E62418;
+	color:#fff;
+}
 .slider-all {
     background-color:white;
 }
@@ -132,10 +142,10 @@ ul.inline li{
 
 .list-bottom {
 
-
 }
 
 ul.list-bottom li{
+	display: inline-block;
 
 }
 
