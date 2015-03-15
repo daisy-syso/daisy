@@ -121,12 +121,29 @@ table.gridtable td a{
 	font-family: SimSun;
 }
 
+.list-cont li{
+	border: none;
+}
+
+ul.inline li{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
 .list-bottom {
 
 
 }
 
 ul.list-bottom li{
-	display: inline-block;
+
 }
+
+ul.border li {
+	padding:0 5px;
+	border:1px solid #000;
+}
+
+
+
 
