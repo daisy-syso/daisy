@@ -154,7 +154,7 @@ class HomeAPI < Grape::API
       }, { 
         type: "hospitals/tests",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
-        title: "全部体检",
+        title: "全国体检",
         children: [{
           title: "全部体检医院",
           filterTitle: "体检医院"
