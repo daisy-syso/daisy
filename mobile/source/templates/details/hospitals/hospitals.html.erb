@@ -18,13 +18,16 @@
   <ul class="table-view media"> 
     <li class="table-view-cell">
       <div class="media-detail">
-        <h4><span style="color:#838383">特色科室：</span>
-          {{data.characteristic_departments}}</h4>
-      </div>
-    </li>
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <h4 ><span style="color:#838383">医保：</span>{{data.medical_insurance}}</h4>
+        <p><span style="color:#838383">特色科室：</span>
+          {{data.characteristic_departments}}
+        </p>
+        <p style="text-align: justify;-webkit-text-align-last:justify;">
+          <span style="text-align:justify;color:#838383">医&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保：</span>{{data.medical_insurance}}
+        </p>
+        <p>
+          <span style="color:#838383">网址：</span>
+        <a href="{{data.url}}"> {{data.url}}</a>
+        </p>
       </div>
     </li>
     
@@ -38,14 +41,6 @@
   <%#= partial 'templates/details/review' %>
 <div class="card">
   <ul class="table-view media">
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <h4 >
-          <span style="color:#838383">网址：</span>
-          <a href="{{data.url}}"> {{data.url}}</a>
-        </h4>
-      </div>
-    </li>
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">

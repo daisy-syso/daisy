@@ -5,19 +5,35 @@
   <div class="card">
     <ul class="table-view media">
       <li class="table-view-cell">
-        <img class="media-object pull-left height-auto" ng-src="{{data.image_url}}"></img>
-        <div class="btns-block pull-right">
-          <a class="btn-large btn-red" ng-href="{{data.link}}" style="color:#fff;">挂号</a>
-        </div>
+        <img class="media-object pull-left height-auto" ng-src="{{data.image_url}}" style="margin-top:15px;"></img>
+       
+          <ul class="table-view media pull-left">
+          <li class="table-view-cell">
+            <div class="media-detail">
+                <!-- <h1> <span>{{data.position}}</span></h1> -->
+                <p>名称：{{data.name}}
+                    <a class="btn-large btn-red pull-right" ng-href="{{data.link}}" style="color:#fff;">挂号</a>
+                </p>
+                <p>科室：{{data.hospital_room_name}}</p>
+                <p>医院：{{data.hospital_name}}</p>
+                <p>执业经历 / 临床经验：{{data.desc}}</p>
+                <p>个人咨询网站：</p>
+
+              </div>
+            
+          </li>
+        </ul>
+
+
+        
       </li>
       
     </ul>
   </div>
   <div class="card">
   <ul class="table-view media">
-    <li class="table-view-cell">
+    <!-- <li class="table-view-cell">
       <div class="media-detail">
-          <!-- <h1> <span>{{data.position}}</span></h1> -->
           <p>名称：{{data.name}}</p>
           <p>科室：{{data.hospital_room_name}}</p>
           <p>医院：{{data.hospital_name}}</p>
@@ -26,7 +42,7 @@
 
         </div>
       
-    </li>
+    </li> -->
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">
