@@ -4,7 +4,7 @@ class HomeAPI < Grape::API
     {
       buttons: [{
         title: "医院大全",
-        link: "#/list/hospitals/all",
+        link: "#/list/hospitals/all?type=3",
         icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
@@ -95,7 +95,7 @@ class HomeAPI < Grape::API
       title: "医院大全",
       count: Hospitals::Hospital.count,
       children: [{
-        type: "hospitals/all",
+        type: "hospitals/all?type=3",
         title: "全部分类",
         count: 3456
         }, {
@@ -592,7 +592,7 @@ class HomeAPI < Grape::API
         children: Diseases::CommonDisease.all.map do |common_disease|
             {
             title: common_disease.name, 
-            id: common_disease.id,
+            # id: common_disease.id,
             params: {
               search_by: :common_disease,
               common_disease: common_disease.id,
@@ -606,7 +606,7 @@ class HomeAPI < Grape::API
         children: Diseases::DiseaseType.all.map do |disease_type|
           {
             title: disease_type.name,
-            id: disease_type.id,
+            # id: disease_type.id,
             params: {
               search_by: :disease_type,
               disease_type: disease_type.id,
