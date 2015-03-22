@@ -89,82 +89,106 @@ class HomeAPI < Grape::API
 
   TypeMenu = [{
       type: "coupons/coupons",
-      title: "热门精选"
+      title: "热门精选",
+      count: 0
     }, {
       title: "医院大全",
+      count: Hospitals::Hospital.count,
       children: [{
         type: "hospitals/all",
-        title: "全部分类"
+        title: "全部分类",
+        count: 3456
         }, {
         type: "hospitals/polyclinics",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Complex.png",
+        count: 3456,
         title: "综合医院",
         children: [{
           id: :polyclinic,
           title: "全部医院",
+          count: 3456,
           filterTitle: "综合医院"
         }, {
           type: "hospitals/polyclinic_treatments",
+          count: 3456,
           title: "综合医院诊疗攻略"
         }, {
           type: "hospitals/polyclinic_charges",
+          count: 3456,
           title: "综合医院价格攻略"
         }, {
           title: "三级甲等",
+          count: 3456,
           params: { hospital_level: 2 }
         }, {
           title: "三级乙等",
+          count: 3456,
           params: { hospital_level: 3 }
         }, {
           title: "三级合格",
+          count: 3456,
           params: { hospital_level: 4 }
         }, {
           title: "二级甲等",
+          count: 3456,
           params: { hospital_level: 5 }
         }, {
           title: "二级乙等",
+          count: 3456,
           params: { hospital_level: 6 }
         }, {
           title: "二级合格",
+          count: 3456,
           params: { hospital_level: 7 }
         }, {
           title: "一级甲等",
+          count: 3456,
           params: { hospital_level: 8 }
         }, {
           title: "一级乙等",
+          count: 3456,
           params: { hospital_level: 9 }
         }, {
           title: "一级合格",
+          count: 3456,
           params: { hospital_level: 10 }
         }, {
           title: "外资医院",
+          count: 3456,
           params: { is_foreign: true }
           
         }, {
           title: "社区医院",
+          count: 3456,
           params: { is_community: true }
         }, {
           title: "其他医院",
+          count: 3456,
           params: { is_other: true }
         }, {
           type: "social_securities/social_securities",
           title: "社保定点医院",
+          count: 3456,
           params: { social_security_type: 2 }
         }]
       }, { 
         type: "hospitals/tests",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
+        count: 3456,
         title: "全国体检",
         children: [{
           title: "全部体检医院",
+          count: 3456,
           filterTitle: "体检医院"
         }, {
           type: "examinations/medical_institutions",
           title: "体检机构",
+          count: 3456,
           params: { hospital_type: 3 }
         },{
           type: "hospitals/hospital_news",
           title: "体检诊疗攻略",
+          count: 3456,
           params: { hospital_type: 3 }
         }, {
           type: "examinations/examinations",
@@ -550,6 +574,7 @@ class HomeAPI < Grape::API
       }]
     }, {
       type: "diseases/diseases",
+      count: Diseases::Disease.count,
       title: "疾病查询",
       children: [{
         id: :disease,
@@ -571,7 +596,7 @@ class HomeAPI < Grape::API
             params: {
               search_by: :common_disease,
               common_disease: common_disease.id,
-              type: 134
+              # type: 134
             }
           }
           end
@@ -585,7 +610,7 @@ class HomeAPI < Grape::API
             params: {
               search_by: :disease_type,
               disease_type: disease_type.id,
-              type: 135
+              # type: 135
             }
           }
         end
@@ -593,10 +618,12 @@ class HomeAPI < Grape::API
     }, {
       type: "hospitals/characteristics",
       title: "特色科室",
+      count: Hospitals::CharacteristicHospital.count,
       children: Hospitals::Characteristic.all.map do |characteristic|
           {
             title: characteristic.name,
-            id: characteristic.id,
+            # id: characteristic.id,
+            count: characteristic.hospital_count,
             params: {
               search_by: :characteristic,
               characteristic_hospitals: characteristic.id,
@@ -606,6 +633,7 @@ class HomeAPI < Grape::API
       },{
       type: "hospitals/doctors",
       title: "找医生",
+      count: Hospitals::Doctor.count,
       children: [{
         type: "hospitals/all",
         id: :doctor,
@@ -627,6 +655,7 @@ class HomeAPI < Grape::API
     }, {
       type: "drugs/drugs",
       title: "药品大全",
+      count: Drugs::Drug.count,
       children: [{
         id: :drug,
         title: "疾病查药品",
@@ -649,6 +678,7 @@ class HomeAPI < Grape::API
       }]
     }, {
       type: "drugs/drugstores",
+      count: Drugs::Drugstore.count,
       title: "身边药房",
       children: [{
         id: :drugstore,
@@ -665,6 +695,7 @@ class HomeAPI < Grape::API
       }] 
     }, {
       title: "医保查询",
+      count: SocialSecurities::SocialSecurity.count,
       children: [{
         id: :social_security,
         type: "social_securities/social_securities",
@@ -741,6 +772,7 @@ class HomeAPI < Grape::API
     }, {
       type: "examinations/examinations",
       title: "全国体检",
+      count: Examinations::Examination.count,
       children: [{
         id: :examination,
         title: "全部",
@@ -803,26 +835,33 @@ class HomeAPI < Grape::API
       }]
     }, {
       title: "养老服务",
+      count: Eldercares::NursingRoom.count+SocialSecurities::SocialSecurity.where(social_security_type_id: 5).count+Insurances::Insurance.count,
       children: [{
         id: :eldercare,
         type: :"eldercares/nursing_rooms",
+        count: Eldercares::NursingRoom.count,
         title: "养老公寓"
       }, {
         type: :"social_securities/social_securities",
         title: "养老保险（社保）查询",
+        count: SocialSecurities::SocialSecurity.where(social_security_type_id: 5).count,
         params: { social_security_type: 5 }
       }, {
         type: :"insurances/insurances",
+        count: Insurances::Insurance.count,
         title: "养老保险（商业）攻略"
       }]
     }, {
       title: "母婴亲子",
+      count: Maternals::ConfinementCenter.count+Maternals::MaternalHall.count,
       children: [{
         id: :eldercare,
         type: "maternals/confinement_centers",
+        count: Maternals::ConfinementCenter.count,
         title: "月子中心"
       }, {
         type: "maternals/maternal_halls",
+        count: Maternals::MaternalHall.count,
         title: "母婴会馆",
         params: { social_security_type: 5 }
       }]

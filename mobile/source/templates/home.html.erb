@@ -8,6 +8,7 @@
 
 </style>
 <div id="nav-over"></div>
+<nav popover="homeData['subtitle']" class="popover-left"></nav>
 <div id="warmp" class="warmp">
 	<section class="fix menubar">
     <li class="ico-home">
@@ -39,10 +40,19 @@
 				<div class="tqtp"></div>
 			</div>
 			<div class="you">
-				<div class="kongqi">北京</div>
-				<div class="qhcs">(切换城市)</div>
+				<div class="kongqi">
+          <a class="react pull-left" ng-click="$root.popover.toggle()">
+            {{ $root.city.title || homeData['subtitle'].title }}
+            <!-- <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span> -->
+          </a>
+        </div>
+				<div class="qhcs" ng-click="$root.popover.toggle()">
+          (切换城市)
+          <!-- <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span> -->
+        </div>
 				<div class="kongqi1">空气180</div>
 				<div class="xlcd"></div>
+
 			</div>
 		</li>
 		<li class="right33">
@@ -50,7 +60,8 @@
 			<div class="souyisou"> 搜<span>医</span>搜</div>
 			<div class="wangyeban">(手机版)<br>(网页版)</div>
 		</li>
-	</div>	
+	</div>
+
 
 	<!--图片滚动  -->
 	<%=partial "ads"%>

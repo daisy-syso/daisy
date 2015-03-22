@@ -2,6 +2,14 @@
 // .table-view .table-view-cell {
 // 	background: #efecec;
 // }
+.popover {
+	top:102px;
+}
+
+.popover-left .popover:before {
+	left: 86px;
+}
+
 i.price {
 	font-style:normal;
 	color: #DC143C;

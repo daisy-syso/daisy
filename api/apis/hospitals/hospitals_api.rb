@@ -48,7 +48,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       related: true,
       filters: { 
         city: city_filters,
-        type: type_filters("男科医院", :andrology),
+        type: type_filters("男科医院"),
         hospital_type: { scope_only: true, default: 1 },
         order_by_url: { scope_only: true, default: 1 },
         county: county_filters,
@@ -204,7 +204,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "综合医院",
       filters: { 
         city: city_filters,
-        type: type_filters("综合医院", :polyclinic),
+        type: type_filters("综合医院"),
         hospital_type: { scope_only: true, default: 7 },
         hospital_level: { scope_only: true, default: false },
         order_by_url: { scope_only: true, default: 7 },
@@ -233,11 +233,11 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: proc { Hospitals::Characteristic.find_by_id(params[:characteristic_hospitals]).try(:name) || "特色科室"},
       filters: { 
         city: city_filters,
-        type: type_filters("特色科室", :characteristic),
+        type: type_filters("特色科室"),
         # hospital_type: { scope_only: true, default: 7 },
         # hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
-        characteristic_hospitals: { scope_only: true, default: 1},
+        characteristic_hospitals: { scope_only: true, default: 8},
         # order_by_level: { scope_only: true, default: 7 },
         county: county_filters,
         order_by: hospital_order_by_filters,
@@ -265,7 +265,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       title: "医院大全",
       filters: { 
         city: city_filters,
-        type: type_filters("医院大全", :characteristic),
+        type: type_filters("医院大全"),
         # hospital_type: { scope_only: true, default: 7 },
         # hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
