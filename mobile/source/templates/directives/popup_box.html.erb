@@ -1,0 +1,49 @@
+<div class="backdrop ng-hide" ng-cloak ng-show="$root.popupBox.show" ng-click="$root.popupBox.close()" style="z-index: 9"></div>
+  
+  <div class="ng-hide" style="position:absolute;background:#fff;z-index:99;top:15px;left:3%;right:3%;padding:10px;" ng-show="$root.popupBox.show" ng-cloak>
+    <p>快捷搜索功能表：</p>
+    <table class="table table-bordered" style="margin-bottom: 10px;">
+      <tr>
+        <td>b</td>
+        <td>j</td>
+        <td>t</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+    <p>汉字拼音第一个字母输入</p>
+    <table style="margin-bottom: 10px;">
+      <tr>
+        <%('A'..'G').each do |a|%>
+        <td><%=a%></td>
+        <%end%>
+      </tr>
+      <tr>
+        <%('H'..'N').each do |a|%>
+        <td><%=a%></td>
+        <%end%>
+      </tr>
+      <tr>
+        <%('O'..'T').each do |a|%>
+        <td><%=a%></td>
+        <%end%>
+      </tr>
+      <tr>
+        <%('U'..'Z').each do |a|%>
+        <td><%=a%></td>
+        <%end%>
+      </tr>
+    </table>
+    <div style="margin:10px 0;text-align: center">
+      <a class="btn btn-large btn-negative right-angle" ng-click="form = {}">重置</a>
+      <a class="btn btn-large btn-negative right-angle" ng-click="form = {}">删除</a>
+      <a class="btn btn-large btn-primary " ng-click="redirectTo({params: form})">完成</a>
+    </div>
+    <div>
+    	<p>结果：</p>
+      <textarea style="with:auto;"></textarea> 
+    </div>
+    </div>
