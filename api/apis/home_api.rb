@@ -857,10 +857,12 @@ class HomeAPI < Grape::API
       children: [{
         id: :eldercare,
         type: "maternals/confinement_centers",
+        image_url: "http://syso.qiniudn.com/iconyuezizhongxin_icon.png",
         count: Maternals::ConfinementCenter.count,
         title: "月子中心"
       }, {
         type: "maternals/maternal_halls",
+        image_url: "http://syso.qiniudn.com/iconyuyinghuiguan_icon.jpg",
         count: Maternals::MaternalHall.count,
         title: "母婴会馆",
         params: { social_security_type: 5 }
