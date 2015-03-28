@@ -140,8 +140,9 @@ angular.module 'DaisyApp', [
             .filter (word) -> word != query
           searchHistory.unshift query
           $localStorage.set("searchHistory", searchHistory)
-
-          $loader.post("/api/search.json", query: query)
+          params = angular.extend { query: query }, $scope.params
+          console.log(params)
+          $loader.get("/api/search.json", params: params)
             .success (data) ->
               $scope.data = data
       ]

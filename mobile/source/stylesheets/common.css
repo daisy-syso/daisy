@@ -118,20 +118,20 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 	.menubar .ico-sousuo .tupian{background-size:174.5px 21.5px;}
 	.menubar .ico-sousuo .title{ line-height:20px; }
 	.menubar .ico-sousuo .title .wenzi{ font-size:1.2em;padding-top:10px;}
-    .description  li.left33{ float:left; width:50%}
-    .description  li.right33{ float:right; width:50%}
-    .description  li.left33 .zuo{ float:left; width:35%}
-    .description  li.left33 .you{ float:left; width:65%}
-    .description .left33 .zuo .qiwen{font-size:18px;font-weight:normal;text-align:left; float:left;}
-    .description .left33 .you .qhcs{overflow:hidden; font-size:12px; float:left;}
-    .description .left33 .you .kongqi{overflow:hidden;float:left;font-size:16px;}
-    .description .left33 .you .kongqi1{font-size:13px;font-weight:normal;text-align:left; float:left;}
-    .description .left33 .zuo .tqtp{ background-size:25px 19px; width:25px;}
-    .description .left33 .you .xlcd{ background-size:15px 11px; float:left;}
-    .description  li.right33 .hyll{ float:left; font-size:14px; font-weight:bold; font-style:italic; line-height:40px; color:#FF5001;}
+  .description  li.left33{ float:left; width:50%}
+  .description  li.right33{ float:right; width:50%}
+  .description  li.left33 .zuo{ float:left; width:30%}
+  .description  li.left33 .you{ float:left; width:70%}
+  .description .left33 .zuo .qiwen{font-size:18px;font-weight:normal;text-align:left; float:left;}
+  .description .left33 .you .qhcs{overflow:hidden; font-size:12px; float:left;}
+  .description .left33 .you .kongqi{overflow:hidden;float:left;font-size:16px;}
+  .description .left33 .you .kongqi1{font-size:13px;font-weight:normal;text-align:left; float:left;}
+  .description .left33 .zuo .tqtp{ background-size:25px 19px; width:25px;}
+  .description .left33 .you .xlcd{ background-size:15px 11px; float:left;}
+  .description  li.right33 .hyll{ float:left; font-size:14px; font-weight:bold; font-style:italic; line-height:40px; color:#FF5001;}
 	.description  li.right33 .souyisou{ float:left; font-size:14px; font-weight:bold; line-height:40px; color:#00C76B;}
 	.description  li.right33 .souyisou span{font-size:14px; font-weight:bold;background:#339ee2;border-radius:1em; margin-left:1px; margin-right:1px;}
-    .description  li.right33 .wangyeban{ float:right; font-size:12px;}
+  .description  li.right33 .wangyeban{ float:right; font-size:12px;}
 	
 	.description{font-size:0.9em;}	
 	.description span{padding:2px 5px;color:#ffea00;border-radius:1em;}	
@@ -198,10 +198,10 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 .fix11:after {visibility: hidden;display: block;font-size: 0;content:""; clear: both; height: 0; float:left}
 
 .lanrenzhijia {
-	width:154px;
+	width:50%;
 	position:relative;
 	float:left;
-	padding-left:20px;
+	/*padding-left:20px;*/
 	border:0px #ccc solid;
 }
 .ctrl-panel {
@@ -234,17 +234,18 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 	width:100%;
 }
 .scroll-wrap {
-	OVERFLOW: hidden;
-	WIDTH: 154px;
-	POSITION: relative;
-	HEIGHT: 90px
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+	height: 90px
 }
 .scroll_box_content {
-	POSITION: absolute
+	position: absolute
 }
 .content_list {
-	FLOAT: left;
-	WIDTH: 154px;
-	HEIGHT: 124px;
+	margin-left: 15px;
+	float: left;
+	width: auto;
+	height: 124px;
 	cursor:pointer;
 }

@@ -9,4 +9,5 @@
  *= require style
  *= require eve
  *= require custom
+ *= require adapter
 */

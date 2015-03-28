@@ -9,14 +9,16 @@
   </h1> -->
 
   <ul class="list-cont">
-    <li>距离：{{$root.getDistance(data) | number:2}}千米 </li>
+    <li>距离：{{$root.getDistance(data) | number:2}}千米 
+      <span class="pull-right price-color" style="background-color: #E62418;color:#FFF">就诊查讯</span>
+    </li>
     <li style="display:block;width:15em;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
       特色科室：{{data.characteristic_departments}}
       
     </li>
     <li>
       <span>电话：{{data.telephone}}</span> 
-      <span class="pull-right price-color" style="background-color: #E62418;color:#FFF">就诊查讯</span>
+      
     </li>
   </ul>
 

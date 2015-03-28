@@ -126,16 +126,17 @@ table.gridtable td a{
 	display: inline-block;
 	word-break:keep-all;           /* 不换行 */
 	white-space:nowrap;
-	max-width: 250px;
+	max-width: 70%;
 	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;
 	font-family: SimHei;
-	font-size: 18px;
+	font-size: 1.4em;
 }
 
 .list-cont {
-	min-height: 90px;
-	line-height: 24px;
+	min-height: 100px;
+	// line-height: 1.4em;
+	font-size: 1em;
 	font-family: SimSun;
 }
 
@@ -154,7 +155,7 @@ ul.inline li{
 
 ul.list-bottom li{
 	display: inline-block;
-
+	border: none;
 }
 
 ul.border li {

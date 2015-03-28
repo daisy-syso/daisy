@@ -16,10 +16,10 @@ class SearchAPI < ApplicationAPI
     #   present :data, result, with: PolymorphicEntity
     # end
 
-    post do
+    get do
       has_scope :query
       data = apply_scopes! Hospitals::Hospital
-
+      data = data.page(params[:per] || 10)
       present! data, with: PolymorphicEntity, meta: { title: "搜索结果" }
     end
   end

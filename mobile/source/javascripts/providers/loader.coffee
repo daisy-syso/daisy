@@ -24,8 +24,9 @@ angular.module("DaisyApp").factory '$loader', [
 
         if $rootScope.city
           angular.extend defaultParams, $rootScope.city.params
-
+        # consol.log(config.params)
         config.params = angular.extend defaultParams, config.params
+        console.log(config.params)
         $http.get(url, config).error(error)
 
       post: (url, data, config = {}) ->
