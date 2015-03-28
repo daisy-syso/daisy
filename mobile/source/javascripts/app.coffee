@@ -139,12 +139,22 @@ angular.module 'DaisyApp', [
           searchHistory = $localStorage.get("searchHistory")
             .filter (word) -> word != query
           searchHistory.unshift query
+          page = $scope.page = 1
           $localStorage.set("searchHistory", searchHistory)
-          params = angular.extend { query: query }, $scope.params
-          console.log(params)
-          $loader.get("/api/search.json", params: params)
+          $scope.params = angular.extend { query: query }, $scope.params
+          console.log($scope.params)
+          $loader.get("/api/search.json", params: $scope.params)
             .success (data) ->
               $scope.data = data
+          $scope.loadMore = () ->
+            url = "/api/search.json"
+            page = $scope.page += 1
+            params = angular.extend { page: page }, $scope.params
+            console.log($scope.params)
+            $loader.get(url, params: params)
+              .success (data) ->
+                $scope.data['fin'] = data['fin']
+                $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
     $routeProvider.otherwise redirectTo: '/home'

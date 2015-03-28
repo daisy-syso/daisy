@@ -54,17 +54,42 @@
 .topic_jishu-tel { float:right;width:100%;height:100px;text-indent:-9999em;background:url(../images/ico-tel.png) center center no-repeat; background-size:100%;}
 .tab-news-con .more{ clear:both; display:block;height:75px;text-align:center;font-size:1.3em;line-height:75px;background:url(../images/line_more.gif) center center no-repeat;}
 
-.tab-iteam{margin:15px 0 5px 0;}
-.tab-iteam-hd{position:relative;width:100%;height:90px;overflow:hidden;background:#2d2d2d;}
-.tab-iteam-hd ul{ position:absolute;}
-.tab-iteam-hd li{float:left;height:60px;padding:0 15px;line-height:90px;font-size:2.2857em;color:#636363; cursor:pointer;}
+.tab-iteam {
+	margin:15px 0 5px 0;
+}
+.tab-iteam-hd {
+	position:relative;
+	width:100%;
+	height:90px;
+	overflow:hidden;
+	background:#2d2d2d;
+}
+.tab-iteam-hd ul { 
+	position:absolute;
+}
+.tab-iteam-hd li {
+	float:left;
+	height:60px;
+	padding:0 15px;
+	line-height:90px;
+	font-size:2.2857em;
+	color:#636363;
+	cursor:pointer;
+}
 .tab-iteam-hd li.on{color:#ffea00;text-decoration:underline;}
 
 .tab-iteam .tab-iteam-con{}
 .tab-iteam .active{ display:block;}
 .tab-iteam .tab-iteam-con ul{overflow:hidden}
 .tab-iteam .tab-iteam-con li{float:left;width:25%;display:table;}
-.tab-iteam .tab-iteam-con li a,.tab-iteam .tab-iteam-con li span{display:table-cell;width:100%;vertical-align:middle;font-size:13px;text-align:center;}
+.tab-iteam .tab-iteam-con li a, .tab-iteam .tab-iteam-con li span {
+	display:table-cell;
+	width:100%;
+	vertical-align:middle;
+	/*font-size:13px;*/
+	font-size:1.2em;
+	text-align:center;
+}
 .tab-iteam .tab-iteam-con li img{max-width:40px;width:40px;margin: 2px auto 2px}
 .tab-iteam .tab-iteam-con a.more{display:block;width:93.75%;height:82px;margin:20px auto;font-size:2.142em;line-height:82px;text-align:center;color:#fff;background:#339ee2;border-radius:5px;}
 

@@ -42,10 +42,32 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
 .description  li.right33{ float:right;}
 .description  li.left33 .zuo{ float:left; }
 .description  li.left33 .you{ float:left;}
-.description .left33 .zuo .qiwen{font-size:36px;font-weight:normal;text-align:left; float:left; padding-top:10px;}
-.description .left33 .you .qhcs{overflow:hidden; font-size:12px;}
-.description .left33 .you .kongqi{overflow:hidden;float:left;font-size:20px; padding-left:5px; border-left:1px #ccc solid;}
-.description .left33 .you .kongqi1{font-size:20px;font-weight:normal;text-align:left; float:left; padding-left:5px; border-left:1px #ccc solid;}
+.description .left33 .zuo .qiwen {
+	font-size:36px;
+	font-weight:normal;
+	text-align:left; 
+	float:left; 
+	padding-top:10px;
+}
+.description .left33 .you .qhcs {
+	overflow:hidden;
+	font-size:12px;
+}
+.description .left33 .you .kongqi {
+	overflow:hidden;
+	float:left;
+	font-size:1.4em;
+	padding-left:5px;
+	border-left:1px #ccc solid;
+}
+.description .left33 .you .kongqi1 {
+	font-size:20px;
+	font-weight:normal;
+	text-align:left;
+	float:left;
+	padding-left:5px;
+	border-left:1px #ccc solid;
+}
 .description .left33 .zuo .tqtp{ background:url(../images/ico-tt.png) center center no-repeat; height:38px; width:50px; float:left;}
 .description .left33 .you .xlcd{ background:url(../images/ico-xl.png) center center no-repeat; height:19px; width:25px; float:left;}
 .description  li.right33 .hyll{ float:left; font-size:20px; font-weight:bold; font-style:italic; line-height:40px; color:#FF5001;}
@@ -122,9 +144,22 @@ body{ margin:0;padding:0;font:14px/22px Microsoft Yahei;/* font-size:1em; line-h
   .description  li.right33{ float:right; width:50%}
   .description  li.left33 .zuo{ float:left; width:30%}
   .description  li.left33 .you{ float:left; width:70%}
-  .description .left33 .zuo .qiwen{font-size:18px;font-weight:normal;text-align:left; float:left;}
-  .description .left33 .you .qhcs{overflow:hidden; font-size:12px; float:left;}
-  .description .left33 .you .kongqi{overflow:hidden;float:left;font-size:16px;}
+  .description .left33 .zuo .qiwen {
+  	font-size:18px;
+  	font-weight:normal;
+  	text-align:left;
+  	float:left;
+  }
+  .description .left33 .you .qhcs {
+  	overflow:hidden;
+  	font-size:12px;
+  	float:left;
+  }
+  .description .left33 .you .kongqi {
+  	overflow:hidden;
+  	float:left;
+  	font-size:1.4em;
+  }
   .description .left33 .you .kongqi1{font-size:13px;font-weight:normal;text-align:left; float:left;}
   .description .left33 .zuo .tqtp{ background-size:25px 19px; width:25px;}
   .description .left33 .you .xlcd{ background-size:15px 11px; float:left;}

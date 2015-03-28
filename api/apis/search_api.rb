@@ -20,7 +20,7 @@ class SearchAPI < ApplicationAPI
       has_scope :query
       data = apply_scopes! Hospitals::Hospital
       data = data.page(params[:per] || 10)
-      present! data, with: PolymorphicEntity, meta: { title: "搜索结果" }
+      present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
     end
   end
 
