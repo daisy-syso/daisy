@@ -23,6 +23,7 @@ zh-CN:
       hospitals/hospital_type: 医院类型
       hospitals/hospital_room: 医院科室
       hospitals/doctor: 医生
+      hospitals/hospital_onsale: hospital_onsale
       diseases/disease: 疾病
       diseases/disease_type: 疾病类型
       drugs/drug: 药品

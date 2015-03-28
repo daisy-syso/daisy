@@ -1,3 +1,3 @@
-class ShapingOnsale < ActiveRecord::Base
+class Shapings::ShapingOnsale < ActiveRecord::Base
 
 end
