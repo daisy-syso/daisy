@@ -1,16 +1,18 @@
-<header class="bar bar-nav">
-  <a class="react action pull-left" ng-click="back()">
-    <span class="ionicon ion-chevron-left">
+<header class="bar bar-nav" style="height: 98px;">
+  <a class="react action pull-left" ng-click="back()" style="padding-top:40px;">
+    <span class="ionicon ion-chevron-left" style="font-size: 45px;">
   </a>
   <div class="input-wrapper">
-    <span class="ionicon ion-ios7-search-strong"></span>
-    <input class="search" type="text" placeholder="请输入您要搜索的内容" ng-model="query" ng-enter="search(query)" auto-focus style="margin:5px auto;">
+    <div search>
+    
+    </div>
   </div>
   
   
 </header>
 
-<div class="content">
+<div class="content" style="padding-top:100px;">
+
   <div keyword keyword-url="/api/keywords.json"></div>
 
   <div history></div>

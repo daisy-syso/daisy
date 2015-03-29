@@ -675,6 +675,10 @@ class HomeAPI < Grape::API
         type: "social_securities/social_securities",
         title: "医保定点药品",
         params: { social_security_type: 3 }
+      }, {
+        type: "social_securities/social_securities",
+        title: "团购药品",
+        params: { social_security_type: 3 }
       }]
     }, {
       type: "drugs/drugstores",

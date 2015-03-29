@@ -4,4 +4,5 @@ angular.module("DaisyApp").directive 'ngEnter', () ->
       if event.which == 13
         scope.$apply () ->
           scope.$eval(attrs.ngEnter)
+          console.log(attrs.ngEnter)
         event.preventDefault()

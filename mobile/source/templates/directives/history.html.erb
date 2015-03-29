@@ -1,5 +1,5 @@
 <ul class="history-view" ng-hide="hide">
-  <li ng-repeat="data in searchHistory | limitTo:5"><a ng-href="#/search/{{data}}">{{data}}</a></li>
+  <li ng-repeat="data in searchHistory | limitTo:5"><a ng-href="#/search/{{data.url}}">{{data.keyword}}</a></li>
   <li class="history-actions">
     <a ng-click="searchHistory = []">清除历史记录</a>
     <a class="pull-right" ng-click="hide = true">关闭</a>

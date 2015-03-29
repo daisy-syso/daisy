@@ -6,4 +6,5 @@ angular.module('DaisyApp').directive 'history', [
       templateUrl: "templates/directives/history.html"
       link: (scope, element, attrs) ->
         $localStorage.bind(scope, "searchHistory", [])
+        console.log(scope.searchHistory)
 ]

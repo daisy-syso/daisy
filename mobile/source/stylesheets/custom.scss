@@ -136,7 +136,8 @@ table.gridtable td a{
 .list-cont {
 	min-height: 100px;
 	// line-height: 1.4em;
-	font-size: 1em;
+	font-size: 0.8em;
+	color: #767676;
 	font-family: SimSun;
 }
 
@@ -146,7 +147,7 @@ table.gridtable td a{
 
 ul.inline li{
 	display: inline-block;
-	margin-bottom: 5px;
+	// margin-bottom: 5px;
 }
 
 .list-bottom {
@@ -163,6 +164,25 @@ ul.border li {
 	border:1px solid #000;
 }
 
+// 搜索页面
+
+.search-label {
+	display:inline-block;
+	border: 1px solid #000;
+	background:#fff;
+	margin:12px 0 0;
+	font-size: 1.6em;
+	color:#000;
+}
+
+.search-label li {
+	padding:5px;
+	border-right: 1px solid #000; 
+}
+
+.search-label li.active {
+	background-color: #ccc;
+}
 
 
 

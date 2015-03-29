@@ -130,22 +130,26 @@ angular.module 'DaisyApp', [
       controller: listCtrl
       reloadOnSearch: true
 
-    $routeProvider.when '/search/:query',   
+    $routeProvider.when '/search/:label/:query*',   
       templateUrl: "templates/list.html"
       controller: [
-        '$scope', '$routeParams', '$localStorage', '$loader'
-        ($scope, $routeParams, $localStorage, $loader) ->
+        '$scope', '$routeParams', '$localStorage', '$loader', '$location'
+        ($scope, $routeParams, $localStorage, $loader, $location) ->
+          label = $routeParams.label
           query = $routeParams.query
           searchHistory = $localStorage.get("searchHistory")
             .filter (word) -> word != query
-          searchHistory.unshift query
+          # searchHistory.unshift "#{label}/#{query}"
+          searchHistory.unshift {url: "#{label}/#{query}", keyword: "#{query}"}
           page = $scope.page = 1
           $localStorage.set("searchHistory", searchHistory)
-          $scope.params = angular.extend { query: query }, $scope.params
+          $scope.params = angular.extend { label: label, query: query }, $scope.params
           console.log($scope.params)
+
           $loader.get("/api/search.json", params: $scope.params)
             .success (data) ->
               $scope.data = data
+
           $scope.loadMore = () ->
             url = "/api/search.json"
             page = $scope.page += 1
@@ -202,6 +206,7 @@ angular.module 'DaisyApp', [
       $window.history.back()
 
     $rootScope.search = (query) ->
+      console.log(query)
       $location.path("/search/#{query}")
 ]
 

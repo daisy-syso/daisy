@@ -1,0 +1,14 @@
+<!-- <span class="ionicon ion-ios7-search-strong"></span> -->
+<ul class="inline search-label" style="display:inline-block;background:#fff;margin:12px 0 0;font-size: 1.6em;color:#000;">
+  <!-- <li class="active">医院</li>
+  <li>医生</li>
+  <li>症状</li>
+  <li>疾病</li>
+  <li>药品</li>
+  <li>药企</li> -->
+  <li ng-repeat="label in labels" ng-click="toggleLabel(label)" ng-class="{'active': label ==  current_label}">
+    {{enOfzh[label]}}
+  </li>
+</ul>
+<!-- <input class="search" type="text" placeholder="请输入您要搜索的内容" ng-model="query" ng-enter="search(query)" auto-focus style="margin:0px auto;"> -->
+<input class="search" type="text" placeholder="{{placeholder}}" ng-model="query" auto-focus style="margin:0px auto;" ng-model="label">
