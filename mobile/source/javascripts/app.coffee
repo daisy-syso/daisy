@@ -90,8 +90,8 @@ angular.module 'DaisyApp', [
       controller: detailCtrl
 
     listCtrl = [
-      '$scope', '$loader', '$route', '$location', '$alert'
-      ($scope, $loader, $route, $location, $alert) ->
+      '$scope', '$loader', '$route', '$location', '$routeParams'
+      ($scope, $loader, $route, $location, $routeParams) ->
 
         $scope.loadData = (type, params) ->
           $scope.type = type
@@ -113,7 +113,7 @@ angular.module 'DaisyApp', [
           $location.keep = false
 
         $scope.loadData($route.current.params.type, $location.search()) 
-
+        $scope.nofilters = true if $routeParams.type == "menus"
         $scope.loadMore = () ->
           url = "/api/#{$scope.type}.json"
           page = $scope.page += 1
@@ -142,6 +142,7 @@ angular.module 'DaisyApp', [
           # searchHistory.unshift "#{label}/#{query}"
           searchHistory.unshift {url: "#{label}/#{query}", keyword: "#{query}"}
           page = $scope.page = 1
+          $scope.nofilters = true
           $localStorage.set("searchHistory", searchHistory)
           $scope.params = angular.extend { label: label, query: query }, $scope.params
           console.log($scope.params)
