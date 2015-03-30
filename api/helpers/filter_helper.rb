@@ -301,6 +301,13 @@ module FilterHelper
     end
 
     def order_by_filters klass, options = {}
+#       离我最近
+# 最新发布
+# 人气最高
+# 评价最好
+# 价格最低
+# 价格最高
+
       {
         default: options[:default] || :auto,
         type: String,
