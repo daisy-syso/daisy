@@ -15,9 +15,12 @@ class Hospitals::DoctorsAPI < ApplicationAPI
         }),
         order_by: order_by_filters(Hospitals::Doctor),
         form: form_filters,
-        query: form_query_filters, 
-        position_query: form_query_filters("职称"), 
-        hospital_query: form_query_filters("所属医院")
+        need_order: form_switch_filters("无需预约"),
+        has_return: form_switch_filters("返现"),
+        # query: form_query_filters, 
+        # position_query: form_query_filters("职称"), 
+        # hospital_query: form_query_filters("所属医院"),
+        template: form_radio_array_filters_new("doctor", "当前主题精选")
       }
 
     show! Hospitals::Doctor
