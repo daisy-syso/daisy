@@ -80,6 +80,7 @@ p.font-14 {
 }
 
 table.gridtable {
+	 display: inline-block;
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
 	color:#333333;
@@ -95,7 +96,8 @@ table.gridtable th {
 	background-color: #dedede;
 }
 table.gridtable td {
-	width:30%;
+	// width:30%;
+	width:8em;
 	font-size: 15px;
 	border-width: 1px;
 	padding: 8px;
@@ -112,6 +114,10 @@ table.gridtable td a{
 	width:90%;
 	overflow: hidden;
 	margin: 25px 0 10px;
+}
+
+.slider-all img {
+	vertical-align: bottom;
 }
 
 .list-top {
