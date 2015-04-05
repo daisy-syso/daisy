@@ -23,8 +23,20 @@ class Hospitals::Doctor < ActiveRecord::Base
       .distinct : all
   }
 
+  # scope :query, -> (query) {
+  #   query.present? ? where{name.like("%#{query}%")} : all
+  # }
+
   scope :query, -> (query) {
-    query.present? ? where{name.like("%#{query}%")} : all
+    if query.present? 
+      where("name_initials LIKE ? 
+        or name LIKE ? ",
+        "%#{query}%", 
+        "%#{query}%"
+      ) 
+    else
+      all
+    end
   }
   
   scope :hospital_query, -> (query) {

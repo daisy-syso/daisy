@@ -9,8 +9,22 @@ class Drugs::Drugstore < ActiveRecord::Base
     boolean ? where(is_local_hot: true) : where.not(is_local_hot: true)
   }
   
+  # scope :query, -> (query) {
+  #   query.present? ? where{name.like("%#{query}%")} : all
+  # }
+
   scope :query, -> (query) {
-    query.present? ? where{name.like("%#{query}%")} : all
+    if query.present? 
+      where("name_initials LIKE ? 
+        or name LIKE ? 
+        or address LIKE ?",
+        "%#{query}%" ,
+        "%#{query}%", 
+        "%#{query}%"
+      ) 
+    else
+      all
+    end
   }
   
   scope :alphabet, -> (alphabet) { 

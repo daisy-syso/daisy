@@ -18,8 +18,24 @@ class Drugs::Drug < ActiveRecord::Base
       .distinct : all
   }
 
+  # scope :query, -> (query) {
+  #   query.present? ? where{name.like("%#{query}%")} : all
+  # }
+
   scope :query, -> (query) {
-    query.present? ? where{name.like("%#{query}%")} : all
+    if query.present? 
+      where("name_initials LIKE ? 
+        or name LIKE ? 
+        or maufatory_initials LIKE ? 
+        or maufatory LIKE ? ",
+        "%#{query}%" ,
+        "%#{query}%", 
+        "%#{query}%",
+        "%#{query}%"
+      )  
+    else
+      all
+    end
   }
   
   scope :manufactory_query, -> (query) {

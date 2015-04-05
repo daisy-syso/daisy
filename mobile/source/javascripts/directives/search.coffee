@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'search', [
-  '$loader', '$rootScope', '$route'
-  ($loader, $rootScope, $route) ->
+  '$loader', '$rootScope', '$route', '$timeout'
+  ($loader, $rootScope, $route, $timeout) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/search.html"
@@ -27,7 +27,6 @@ angular.module('DaisyApp').directive 'search', [
             current_label = scope.current_label
             query = scope.query
             scope.$apply () ->
-              console.log("ss")
               scope.$eval($rootScope.search("#{current_label}/#{query}"))
               # scope.$eval($rootScope.search("hospital"))
               console.log("#{current_label}?query=#{query}")
@@ -37,11 +36,31 @@ angular.module('DaisyApp').directive 'search', [
         
         scope.placeholder = "请输入您要搜索的医院"
         scope.current_label = "hospital"
+        # timeout = 0
         scope.toggleLabel = (label) ->
           scope.current_label = label
           label = scope.enOfzh[label]          
           scope.placeholder = "请输入您要搜索的#{label}"
-        
+          scope.resault_list = []
+        scope.$watch 'query', (query) -> 
+          if query
+            $timeout.cancel(timeout) if timeout
+            timeout = $timeout(
+              () ->
+                label = scope.current_label
+                query = scope.query
+                params = { label: label, query: query }
+                $loader.get("/api/search_index.json", params: params )
+                  .success (data) ->
+                    scope.resault_list = data
+                
+                console.log('sucess')
+              , 350)
+          else 
+            scope.resault_list = []
+
+
+           
 
         $rootScope.popupBox =
           toggle: () ->

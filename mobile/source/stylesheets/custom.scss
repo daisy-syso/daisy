@@ -171,6 +171,21 @@ ul.border li {
 	border:1px solid #000;
 }
 
+.circle:before {
+	content: "\25E6";
+	font-size: 40px;
+	vertical-align: top;
+
+}
+
+.dot:before {
+	content: "\2022";
+	font-size: 40px;
+	color: #2E8B57;
+	vertical-align: top;
+}
+
+
 // 搜索页面
 
 .search-label {
@@ -191,20 +206,21 @@ ul.border li {
 	background-color: #ccc;
 }
 
-
-.circle:before {
-	content: "\25E6";
-	font-size: 40px;
-	vertical-align: top;
+.resault-list {
 
 }
 
-.dot:before {
-	content: "\2022";
-	font-size: 40px;
-	color: #2E8B57;
-	vertical-align: top;
+.resault-list li {
+	padding-left: 10px;
+	line-height: 1.8em;
+	border-bottom: 1px solid #efe0ce
 }
+.resault-list li a{
+	color: #999;
+	font: 14px/22px Microsoft Yahei;
+}
+
+
 
 
 

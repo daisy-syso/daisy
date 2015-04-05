@@ -1,6 +1,18 @@
 class Diseases::Symptom < ActiveRecord::Base
   has_and_belongs_to_many :diseases
 
+  scope :query, -> (query) {
+    if query.present? 
+      where("name_initials LIKE ? 
+        or name LIKE ? ",
+        "%#{query}%" ,
+        "%#{query}%"
+      ) 
+    else
+      all
+    end
+  }
+
   class << self
     include Filterable
 

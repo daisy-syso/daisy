@@ -88,7 +88,17 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :query, -> (query) {
-    query.present? ? where{name.like("%#{query}%")} : all
+    if query.present? 
+      where("name_initials LIKE ? 
+        or name LIKE ? 
+        or address LIKE ? ",
+        "%#{query}%" ,
+        "%#{query}%", 
+        "%#{query}%"
+      )
+    else
+      all
+    end
   }
 
   include Localizable
