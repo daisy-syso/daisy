@@ -10,6 +10,14 @@ class Hospitals::DoctorEntity < Bases::ItemEntity
     object.hospital.name rescue "未知"
   end 
 
+  expose :doctor_sevice_list do |instance, options|
+    {
+      :zxzx => false,
+      :yjzx => false,
+      :sjgh => false
+    }
+  end
+
   with_options if: { detail: true } do
     expose :desc
 

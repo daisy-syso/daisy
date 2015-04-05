@@ -14,20 +14,14 @@
 </div>
 <p class="gray-line-1"></p>
 <ul class="font-14 list-bottom">
-  <li>
-    <span class="gr-dian">●  </span>处方药 
+  <li class="circle" ng-class="{dot: data.drug_sevice_list.cfy}">
+    处方药 
   </li>
-  <li>
-    <span class="circle">○</span>西药
+  <li class="circle" ng-class="{dot: data.drug_sevice_list.xy}">
+    西药
   </li>
-  <li>
-    <span class="circle">○</span> 医保定点
-  </li>
-  <li>
-    <span class="circle">○</span> 在线支付
-  </li>
-  <li>
-    <span class="circle">○</span> 当面支付
+  <li class="circle" ng-class="{dot: data.drug_sevice_list.ybdd}">
+   医保定点
   </li>
         
 </ul>

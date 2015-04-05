@@ -4,7 +4,7 @@ class RelatedResourcesAPI < Grape::API
   helpers do
     def related_resources_count klass
       Rails.cache.fetch([:api, :related, klass.name, :count]) do
-        klass.count
+        klass.all.count
       end
     end
 
@@ -20,8 +20,14 @@ class RelatedResourcesAPI < Grape::API
   end
   get :related do
     relateds = (RelatedClasses * 20).sample(20).map do |klass|
-      klass.offset(Random.rand(related_resources_count(klass))).first
+      klass = klass.all.has_url if klass == Hospitals::Hospital
+      begin 
+        related = klass.offset(Random.rand(related_resources_count(klass))).first
+      end while related.nil?
+      # t = klass.all.offset(Random.rand(related_resources_count(klass))).first
+      related
     end
+
     present! relateds, with: PolymorphicEntity
   end
 

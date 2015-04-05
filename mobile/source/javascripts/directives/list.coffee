@@ -36,7 +36,6 @@ angular.module('DaisyApp').directive 'list', [
         scope.templateUrl = (data) ->
           "templates/lists/#{data.template}.html"
 
-
       controller: [
         '$scope', '$loader', '$alert'
         ($scope, $loader, $alert) ->

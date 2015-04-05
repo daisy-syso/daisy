@@ -56,12 +56,12 @@ p.font-14 {
 	font-size: 14px;
 }
 
-.gr-dian {
+.gr_dian {
 	font-size: 24px;
 	color: #2E8B57;
 }
 
-.circle {
+.circle- {
 	font-size: 24px;
 }
 
@@ -77,7 +77,7 @@ p.font-14 {
 	white-space:nowrap;          /* 不换行 */
 	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
-	font-size: 14px;
+	font-size: 15px;
 }
 
 table.gridtable {
@@ -143,7 +143,7 @@ table.gridtable td a{
 .list-cont {
 	min-height: 85px;
 	// line-height: 1.4em;
-	font-size: 14px;
+	font-size: 15px;
 	color: #767676;
 	font-family: SimSun;
 }
@@ -191,12 +191,20 @@ ul.border li {
 	background-color: #ccc;
 }
 
-.h-55 {
-	height: 55px;
+
+.circle:before {
+	content: "\25E6";
+	font-size: 40px;
+	vertical-align: top;
+
 }
 
-.h-100 {
-	height: 100px;
+.dot:before {
+	content: "\2022";
+	font-size: 40px;
+	color: #2E8B57;
+	vertical-align: top;
 }
+
 
 

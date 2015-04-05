@@ -19,6 +19,25 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     end
 	end
 
+  expose :hospital_sevice_list do |instance, options|
+    hospital_type_list = instance.hospital_types.map do |hospital_type|
+                          hospital_type.name
+                        end
+    {
+      :tjjg => hospital_type_list.include?("体检"),
+      :zhyy => hospital_type_list.include?("综合"),
+      :wsyy => false,
+      :dhyy => false
+    }
+  end
+
+  expose :hospital_type_list do |instance, options|
+    
+    instance.hospital_types.map do |hospital_type|
+      hospital_type.name
+    end
+  end
+
   # with_options if: {hospital_onsales_no_type_id: true} do
   #   expose :hospital_onsales do |instance, options|
   #     instance.hospital_onsales.sample(1)

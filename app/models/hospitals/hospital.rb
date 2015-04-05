@@ -1,4 +1,5 @@
 class Hospitals::Hospital < ActiveRecord::Base
+  # default_scope -> { where.not(url: [nil, ""]) }
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
   
@@ -49,8 +50,8 @@ class Hospitals::Hospital < ActiveRecord::Base
     # order(hospital_level_id: :asc)
   }
 
-  scope :has_url, -> (boolean = true) {
-    boolean ? where.not(url: nil) : where(url: nil)
+  scope :has_url, -> (boolean=true) {
+    boolean ? where.not(url: [nil, '']) : where(url: nil)
   }
 
   scope :is_local_hot, -> (boolean = true) {
