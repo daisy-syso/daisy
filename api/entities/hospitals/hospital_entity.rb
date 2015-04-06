@@ -27,7 +27,10 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
       :tjjg => hospital_type_list.include?("体检"),
       :zhyy => hospital_type_list.include?("综合"),
       :wsyy => false,
-      :dhyy => false
+      :dhyy => false,
+      :yb => instance.medical_insurance.present? && instance.medical_insurance != "否"
+      :yywz => instance.url.present?
+      :sjgh => 
     }
   end
 
