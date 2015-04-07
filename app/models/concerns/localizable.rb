@@ -8,7 +8,9 @@ module Localizable
 
     scope :nearest, -> (lat, lng) {
       dlat = (arel_table[:lat] - lat).to_sql
+      # dlat = ((arel_table[:lat] - lat)*110.54).to_sql
       dlng = (arel_table[:lng] - lng).to_sql
+      # dlng = ((arel_table[:lng] - lng)*111.32).to_sql
       where.not(lng: nil, lat: nil)
         .order("(#{dlat} * #{dlat} + #{dlng} * #{dlng}) ASC")
     }

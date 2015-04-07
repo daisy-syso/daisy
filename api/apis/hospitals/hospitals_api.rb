@@ -132,6 +132,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         order_by_url: { scope_only: true, default: 4 },
         county: county_filters,
         order_by: hospital_order_by_filters,
+        # order_by: order_by_filters,
         form: form_filters,
         # query: form_query_filters, 
         # alphabet: form_alphabet_filters,

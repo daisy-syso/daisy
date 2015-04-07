@@ -21,6 +21,7 @@ angular.module('DaisyApp').directive 'search', [
           disease: "疾病"
           drug: "药品"
           manufactory: "药店"
+
         element.find('input').bind "keydown keypress", (event) ->
           if event.which == 13
             console.log(attrs)
@@ -28,7 +29,6 @@ angular.module('DaisyApp').directive 'search', [
             query = scope.query
             scope.$apply () ->
               scope.$eval($rootScope.search("#{current_label}/#{query}"))
-              # scope.$eval($rootScope.search("hospital"))
               console.log("#{current_label}?query=#{query}")
             event.preventDefault()
 
@@ -36,24 +36,27 @@ angular.module('DaisyApp').directive 'search', [
         
         scope.placeholder = "请输入您要搜索的医院"
         scope.current_label = "hospital"
-        # timeout = 0
+
         scope.toggleLabel = (label) ->
           scope.current_label = label
           label = scope.enOfzh[label]          
           scope.placeholder = "请输入您要搜索的#{label}"
           scope.resault_list = []
+        
         scope.$watch 'query', (query) -> 
           if query
+            console.log("if query is true: #{query}")
             $timeout.cancel(timeout) if timeout
             timeout = $timeout(
               () ->
                 label = scope.current_label
                 query = scope.query
                 params = { label: label, query: query }
+                console.log(params)
                 $loader.get("/api/search_index.json", params: params )
                   .success (data) ->
                     scope.resault_list = data
-                
+                    scope.resault_list = [] if query==""
                 console.log('sucess')
               , 350)
           else 
@@ -97,17 +100,6 @@ angular.module('DaisyApp').directive 'search', [
 
 ]
 
-
-# angular.module('DaisyApp').filter 'to_zh',
-#   (enl) ->
-#     enOfzh = 
-#       hospital: "医院"
-#       doctor: "医生"
-#       symptom: "症状"
-#       disease: "疾病"
-#       drug: "药品"
-#       manufactory: "药店"
-#     return enOfzh[enl]
 
 
 

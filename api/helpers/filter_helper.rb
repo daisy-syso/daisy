@@ -336,7 +336,7 @@ module FilterHelper
             { title: "价格最低", id: :cheapest},
             { title: "价格最高", id: :most_expensive}
           ]
-          parse_option_value filters, options[:children]
+          # parse_option_value filters, options[:children]
           filters
         end,
         has_scope: proc do |endpoint, collection, key|
