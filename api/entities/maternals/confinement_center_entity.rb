@@ -1,5 +1,5 @@
 class Maternals::ConfinementCenterEntity < Bases::PlaceNIEntity
-	expose :price
+	expose :price, :image_url
 	with_options if: { detail: true } do
     expose :url
     expose :telephone
