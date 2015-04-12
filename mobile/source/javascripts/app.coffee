@@ -126,17 +126,22 @@ angular.module 'DaisyApp', [
     ]
     
     $routeProvider.when '/list/:type*',
-      templateUrl: "templates/list.html"
+      templateUrl: (routeParams) ->
+        console.log("templates/#{routeParams.template || "list"}.html")
+        "templates/#{routeParams.template || "list"}.html"
       controller: listCtrl
       reloadOnSearch: true
 
-    $routeProvider.when '/search/:label/:query*',   
+    $routeProvider.when '/search/:label',   
       templateUrl: "templates/list.html"
       controller: [
         '$scope', '$routeParams', '$localStorage', '$loader', '$location'
         ($scope, $routeParams, $localStorage, $loader, $location) ->
           label = $routeParams.label
-          query = $routeParams.query
+          # query = $routeParams.query
+          query = $location.search()['query']
+          console.log($location.search()+"=======location")
+          console.log("query======#{query}")
           searchHistory = $localStorage.get("searchHistory")
             .filter (word) -> word != query
           # searchHistory.unshift "#{label}/#{query}"
@@ -206,9 +211,9 @@ angular.module 'DaisyApp', [
       $location.back = true
       $window.history.back()
 
-    $rootScope.search = (query) ->
-      console.log(query)
-      $location.path("/search/#{query}")
+    $rootScope.search = (path, attrs) ->
+      console.log(attrs)
+      $location.path("/search/#{path}").search(attrs)
 ]
 
 # Helpers $share

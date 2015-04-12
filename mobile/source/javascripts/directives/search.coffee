@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'search', [
-  '$loader', '$rootScope', '$route', '$timeout'
-  ($loader, $rootScope, $route, $timeout) ->
+  '$loader', '$rootScope', '$route', '$timeout', '$location'
+  ($loader, $rootScope, $route, $timeout, $location) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/search.html"
@@ -28,7 +28,15 @@ angular.module('DaisyApp').directive 'search', [
             current_label = scope.current_label
             query = scope.query
             scope.$apply () ->
-              scope.$eval($rootScope.search("#{current_label}/#{query}"))
+              template = "symptom" if current_label == "symptom"
+              # $location.path("#/search/#{current_label}?query=#{query}&template=#{template}").search({param: 'value'});
+              # $location.path("#/search/#{current_label}?query=#{query}&template=#{template}")
+              # console.log("#{current_label}/#{query}?template=#{template}")
+              # scope.$eval($rootScope.search("#{current_label}/#{query}"))
+              attrs = 
+                query: query
+                template: template
+              scope.$eval($rootScope.search("#{current_label}", attrs))
               console.log("#{current_label}?query=#{query}")
             event.preventDefault()
 
@@ -50,9 +58,9 @@ angular.module('DaisyApp').directive 'search', [
             timeout = $timeout(
               () ->
                 label = scope.current_label
-                query = scope.query
+                query = query
                 params = { label: label, query: query }
-                console.log(params)
+                console.log("============#{params}")
                 $loader.get("/api/search_index.json", params: params )
                   .success (data) ->
                     scope.resault_list = data

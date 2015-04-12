@@ -1,6 +1,8 @@
 <div class="media-body">
 
   <ul class="list-cont">
+    <li>距离：{{$root.getDistance(data) | number:2}}千米 
+    </li>
     <li class="text-overflow">
       <label>经营许可证：</label>
       {{data.Business_License}}

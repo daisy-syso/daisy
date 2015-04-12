@@ -3,11 +3,12 @@ class Diseases::Symptom < ActiveRecord::Base
 
   scope :query, -> (query) {
     if query.present? 
-      where("name_initials LIKE ? 
-        or name LIKE ? ",
+      all.where(
+        " name LIKE ? or
+          xgjc LIKE ? ",
         "%#{query}%" ,
         "%#{query}%"
-      ) 
+      )
     else
       all
     end

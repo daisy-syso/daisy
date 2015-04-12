@@ -314,10 +314,11 @@ module FilterHelper
         title: "智能排序",
         children: proc do
           filters = []
-          # filters << { title: "智能排序" , id: :auto }
+          filters << { title: "智能排序" , id: :auto }
           # if klass < Localizable && params[:location]
-          #   filters << { title: "离我最近" , id: :nearest }
-          # end
+          if klass < Localizable
+            filters << { title: "离我最近" , id: :nearest }
+          end
           # if klass < Reviewable
           #   filters << { title: "评价最好" , id: :favoriest }
           #   filters << { title: "人气最高" , id: :hotest }
@@ -329,7 +330,7 @@ module FilterHelper
           # end
 
           filters += [
-            { title: "离我最近", id: :nearest},
+            # { title: "离我最近", id: :nearest},
             { title: "最新发布", id: :newest},
             { title: "人气最高", id: :hotest},
             { title: "评价最好", id: :favoriest},
