@@ -81,6 +81,10 @@ class DaisyAPI < Grape::API
     mount PriceSearch::PriceSearchAPI
   end
 
+  namespace :infors do
+    mount Informations::HealthInforsAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

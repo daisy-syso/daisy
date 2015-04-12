@@ -85,7 +85,7 @@
   	<div class="back-color">
       <div class="bg team-ks">
         <div class="index-hd">
-          <a class="more" href="#">更多>></a>
+          <a class="more" href="#/infors/nav">更多>></a>
           <h3>健康资讯导航</h3>
         </div>
         <div class="bd">
@@ -119,10 +119,12 @@
               </div>
             </div>
             <div class="des">
+              <li ng-repeat=" infor in homeData.title_infors">
+                <a ng-href="{{infor.url}}">{{infor.name}}</a>
+              </li>
+              <!-- <li>激光美容科主任容科</li>
               <li>激光美容科主任容科</li>
-              <li>激光美容科主任容科</li>
-              <li>激光美容科主任容科</li>
-              <li>激光美容科主任容科</li>
+              <li>激光美容科主任容科</li> -->
             </div>
           </div>
         </div>

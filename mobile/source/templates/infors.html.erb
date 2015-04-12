@@ -1,0 +1,17 @@
+<style type="text/css">
+	.health-nav li {
+		padding: 0 10px;
+		line-height: 60px;
+		font-size: 1.6em;
+		border-bottom: 1px solid #000;
+	}
+
+</style>
+<p style="text-align: center;font-size: 2em;">{{infors.infor_type.name}}</p>
+
+<ul class="health-nav">
+	<li ng-repeat="infor in infors.infors">
+		<a href="{{infor.url}}">{{infor.name}}</a>	
+	</li>
+
+</ul>

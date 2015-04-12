@@ -1,9 +1,9 @@
 class Diseases::Symptom < ActiveRecord::Base
-  has_and_belongs_to_many :diseases
+  # has_and_belongs_to_many :diseases
 
   scope :query, -> (query) {
     if query.present? 
-      all.where(
+      where(
         " name LIKE ? or
           xgjc LIKE ? ",
         "%#{query}%" ,

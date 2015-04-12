@@ -1,7 +1,7 @@
 class HomeAPI < Grape::API
 
   get :home do
-    {
+    btns = {
       buttons: [{
         title: "医院大全",
         link: "#/list/hospitals/all?type=3",
@@ -77,6 +77,13 @@ class HomeAPI < Grape::API
         link: "categories/cities"
       }
     }
+
+    pictur_health_infors = Informations::HealthInformation.picture_infors
+    title_health_infors = Informations::HealthInformation.title_infors
+    
+    present btns
+    present :pictur_infors, pictur_health_infors
+    present :title_infors, title_health_infors
   end
 
   namespace :home do 

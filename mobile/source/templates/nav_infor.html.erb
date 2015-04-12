@@ -1,0 +1,18 @@
+<style type="text/css">
+	.health-nav li {
+		padding: 0 10px;
+		line-height: 60px;
+		font-size: 1.6em;
+		border-bottom: 1px solid #000;
+	}
+
+</style>
+<p style="text-align: center;font-size: 2em;">健康医疗资讯导航</p>
+
+<ul class="health-nav">
+	<li ng-repeat="nav in navList">
+		<span>{{nav.name}}</span>
+		<span class="pull-right"><a href="#infors/nav/{{nav.id}}">查看更多</a></span>
+	</li>
+
+</ul>

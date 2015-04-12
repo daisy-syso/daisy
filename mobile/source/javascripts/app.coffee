@@ -32,6 +32,25 @@ angular.module 'DaisyApp', [
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
+    $routeProvider.when '/infors/nav',
+      templateUrl: "templates/nav_infor.html"
+      controller:[
+        '$rootScope', '$scope', '$loader'
+        ($rootScope, $scope, $loader) ->
+          $loader.get("/api/infors/nav.json")
+            .success (data) ->
+              $scope.navList = data
+      ]
+    $routeProvider.when '/infors/nav/:id',
+      templateUrl: "templates/infors.html"
+      controller:[
+        '$rootScope', '$scope', '$loader', '$routeParams'
+        ($rootScope, $scope, $loader, $routeParams) ->
+          $loader.get("/api/infors/nav/#{$routeParams.id}.json")
+            .success (data) ->
+              $scope.infors = data
+      ]
+
     $routeProvider.when '/login/:redirectToPath*',
       templateUrl: "templates/login.html",
       controller: [
