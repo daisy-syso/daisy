@@ -1,0 +1,16 @@
+
+<ul>
+	<li ng-repeat="app_type in data.data">
+		<p style="font-size: 2em;">{{app_type.name}}</p>
+		<ul >
+			<li ng-repeat="app in app_type.app_informations" style="width:20%;display:inline; overflow: hidden">
+				<div><img src="app.image_url"></div>
+				{{app.name}}
+			</li>
+
+		</ul>
+	</li>
+
+
+
+</ul>

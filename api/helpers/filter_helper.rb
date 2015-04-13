@@ -315,8 +315,7 @@ module FilterHelper
         children: proc do
           filters = []
           filters << { title: "智能排序" , id: :auto }
-          # if klass < Localizable && params[:location]
-          if klass < Localizable
+          if klass < Localizable && params[:location]
             filters << { title: "离我最近" , id: :nearest }
           end
           # if klass < Reviewable

@@ -32,14 +32,15 @@ angular.module 'DaisyApp', [
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
-    $routeProvider.when '/infors/nav',
-      templateUrl: "templates/nav_infor.html"
+    $routeProvider.when '/infors/:type',
+      templateUrl: (routeParams) ->
+        "templates/#{routeParams.type}_infor.html"
       controller:[
-        '$rootScope', '$scope', '$loader'
-        ($rootScope, $scope, $loader) ->
-          $loader.get("/api/infors/nav.json")
+        '$rootScope', '$scope', '$loader', '$routeParams'
+        ($rootScope, $scope, $loader, $routeParams) ->
+          $loader.get("/api/infors/#{$routeParams.type}.json")
             .success (data) ->
-              $scope.navList = data
+              $scope.data = data
       ]
     $routeProvider.when '/infors/nav/:id',
       templateUrl: "templates/infors.html"
@@ -146,8 +147,8 @@ angular.module 'DaisyApp', [
     
     $routeProvider.when '/list/:type*',
       templateUrl: (routeParams) ->
-        console.log("templates/#{routeParams.template || "list"}.html")
-        "templates/#{routeParams.template || "list"}.html"
+        # console.log("templates/#{routeParams.template || "list"}.html")
+        "templates/#{routeParams.template1 || 'list'}.html"
       controller: listCtrl
       reloadOnSearch: true
 
@@ -368,7 +369,6 @@ angular.module 'DaisyApp', [
     navigator.geolocation.getCurrentPosition (geoposition) ->
       console.info coords: geoposition.coords
       $rootScope.coords = geoposition.coords
-
     $rootScope.getDistance = (data) ->
       coords = $rootScope.coords
       if data && data.lat && data.lng && coords

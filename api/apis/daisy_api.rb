@@ -83,6 +83,7 @@ class DaisyAPI < Grape::API
 
   namespace :infors do
     mount Informations::HealthInforsAPI
+    mount Informations::AppInforsAPI
   end
 
   mount NetInfos::HotSearchKeywordsAPI
