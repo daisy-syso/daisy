@@ -96,14 +96,13 @@
                   <a class="m-page" href="javascript:;" rel="js_btn_list">2</a>
                   <a class="m-page" href="javascript:;" rel="js_btn_list">3</a>
                   <a class="m-page" href="javascript:;" rel="js_btn_list">4</a>
-                  <a class="m-page" href="javascript:;" rel="js_btn_list">5</a>
               </div>
               <div class="scroll-wrap">
-                <div class="scroll_box_content" rel="scroll_box_content">
-                  <div class="content_list">
-                    <img src="images/adv/img01.jpg" />
-                  </div>
-                  <div class="content_list">
+                <ul rn-carousel class="image" rn-carousel-auto-slide style="overflow: visible">
+                  <li class="content_list" ng-repeat="pic in homeData.pictur_infors">
+                    <img src="{{pic.image_url}}" />
+                  </li>
+                  <!-- <div class="content_list">
                     <img src="images/adv/img02.jpg" />
                   </div>
                   <div class="content_list">
@@ -114,8 +113,8 @@
                   </div>
                   <div class="content_list">
                     <img src="images/adv/img05.jpg" />
-                  </div>
-                </div>
+                  </div> -->
+                </ul>
               </div>
             </div>
             <div class="des">

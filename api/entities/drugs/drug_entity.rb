@@ -1,6 +1,6 @@
 class Drugs::DrugEntity < Bases::ItemEntity
 
-  expose :image_url, :ori_price, :introduction, :brand, :spec
+  expose :image_url, :ori_price, :introduction, :brand, :spec, :manufactory
   expose :sale_price do |record, options|
     record.ori_price
   end

@@ -1,5 +1,5 @@
 class Drugs::DrugstoreEntity < Bases::PlaceEntity
-	expose :Business_License
+	expose :Business_License, :url
 
 	expose :drugstore_sevice_list do |instance, options|
     {
