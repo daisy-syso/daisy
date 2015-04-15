@@ -1,6 +1,6 @@
 class Hospitals::DoctorEntity < Bases::ItemEntity
 
-  expose :id, :position, :image_url
+  expose :id, :position, :image_url, :desc
 
   expose :hospital_room_name do |object, options|
     object.hospital_room.name rescue "未知"
@@ -19,7 +19,7 @@ class Hospitals::DoctorEntity < Bases::ItemEntity
   end
 
   with_options if: { detail: true } do
-    expose :desc
+    # expose :desc
 
     expose :link do |object, options|
       object.hospital.url
