@@ -86,6 +86,10 @@ class DaisyAPI < Grape::API
     mount Informations::AppInforsAPI
   end
 
+  namespace :raiders do
+    mount Raiders::RaiderDetailsAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

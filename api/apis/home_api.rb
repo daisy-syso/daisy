@@ -192,11 +192,10 @@ class HomeAPI < Grape::API
           title: "体检机构",
           count: 3456,
           params: { hospital_type: 3 }
-        },{
-          type: "hospitals/hospital_news",
-          title: "体检诊疗攻略",
-          count: 3456,
-          params: { hospital_type: 3 }
+        }, {
+          type: "raiders/raider_details",
+          title: "体检套餐攻略",
+          params: { raider_id: 3 }
         }, {
           type: "examinations/examinations",
           title: "体检价格攻略"
@@ -223,10 +222,14 @@ class HomeAPI < Grape::API
         children: [{
           title: "全部整形医院",
           filterTitle: "整形医院"
-        },{
+        }, {
           type: "hospitals/hospital_news",
-          title: "整形美容诊疗攻略",
+          title: "专科医院",
           params: { hospital_type: 2 }
+        }, {
+          type: "raiders/raider_details",
+          title: "整形美容诊疗攻略",
+          params: { railder_id: 2 }
         }, {
           type: "hospitals/hospital_charges",
           title: "整形美容价格攻略",
@@ -303,9 +306,9 @@ class HomeAPI < Grape::API
           title: "全部牙科医院",
           filterTitle: "牙科医院"
         }, {
-          type: "hospitals/hospital_news",
+          type: "raiders/raider_details",
           title: "牙科诊疗攻略",
-          params: { hospital_type: 6 }
+          params: { raider_id: 5 }
         }, {
           type: "hospitals/hospital_charges",
           title: "牙科价格攻略",
@@ -427,9 +430,9 @@ class HomeAPI < Grape::API
           title: "全部妇幼医院",
           filterTitle: "妇幼医院"
         }, { 
-          type: "hospitals/hospital_news",
+          type: "raiders/raider_details",
           title: "妇科诊疗攻略",
-          params: { hospital_type: 5 }
+          params: { raider_id: 2 }
         }, { 
           type: "hospitals/hospital_charges",
           title: "妇科价格攻略",
@@ -497,9 +500,9 @@ class HomeAPI < Grape::API
           title: "全部男科医院",
           filterTitle: "男科医院"
         }, {
-          type: "hospitals/hospital_news",
+          type: "raiders/raider_details",
           title: "男科诊疗攻略",
-          params: { hospital_type: 1 }
+          params: { raider_id: 1 }
         }, {
           type: "hospitals/hospital_charges",
           title: "男科价格攻略",
@@ -543,9 +546,9 @@ class HomeAPI < Grape::API
           title: "全部中医院",
           filterTitle: "中医院"
         }, {
-          type: "hospitals/hospital_news",
+          type: "raiders/raider_details",
           title: "中医诊疗攻略",
-          params: { hospital_type: 4 }
+          params: { railder_id: 4}
         }, {
           type: "hospitals/hospital_charges",
           title: "中医价格攻略",
