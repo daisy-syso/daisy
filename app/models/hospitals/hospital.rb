@@ -95,6 +95,10 @@ class Hospitals::Hospital < ActiveRecord::Base
     end
   }
 
+  scope :special, -> (hospital_type_id){
+    where(specialist: hospital_type_id)
+  }
+
   include Localizable
   include Reviewable
 

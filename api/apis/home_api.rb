@@ -223,9 +223,8 @@ class HomeAPI < Grape::API
           title: "全部整形医院",
           filterTitle: "整形医院"
         }, {
-          type: "hospitals/hospital_news",
           title: "专科医院",
-          params: { hospital_type: 2 }
+          params: { special: 2}
         }, {
           type: "raiders/raider_details",
           title: "整形美容诊疗攻略",
@@ -306,7 +305,8 @@ class HomeAPI < Grape::API
           title: "全部牙科医院",
           filterTitle: "牙科医院"
         }, {
-          title: "专科医院"
+          title: "专科医院",
+          params: { special: 6}
         }, {
           type: "raiders/raider_details",
           title: "牙科诊疗攻略",
@@ -432,7 +432,8 @@ class HomeAPI < Grape::API
           title: "全部妇幼医院",
           filterTitle: "妇幼医院"
         }, {
-          title: "专科医院"
+          title: "专科医院",
+          params: { special: 5}
         }, { 
           type: "raiders/raider_details",
           title: "妇科诊疗攻略",
@@ -504,7 +505,8 @@ class HomeAPI < Grape::API
           title: "全部男科医院",
           filterTitle: "男科医院"
         }, {
-          title: "专科医院"
+          title: "专科医院",
+          params: { special: 1}
         }, {
           type: "raiders/raider_details",
           title: "男科诊疗攻略",
@@ -552,7 +554,8 @@ class HomeAPI < Grape::API
           title: "全部中医院",
           filterTitle: "中医院"
         }, {
-          title: "专科医院"
+          title: "专科医院",
+          params: { special: 4}
         }, {
           type: "raiders/raider_details",
           title: "中医诊疗攻略",
