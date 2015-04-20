@@ -6,7 +6,7 @@ class Raiders::RaiderDetailsAPI < ApplicationAPI
       related: true,
       filters: { 
         # city: city_filters,
-        type: type_filters("男科医院"),
+        type: type_filters(proc { Raiders::Raider.where(id: params[:raider_id]).first.name}),
         # hospital_type: { scope_only: true, default: 1 },
         # order_by_url: { scope_only: true, default: 1 },
         county: county_filters,
