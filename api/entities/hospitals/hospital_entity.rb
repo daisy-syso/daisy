@@ -24,7 +24,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
                           hospital_type.name
                         end
     {
-      :tjjg => hospital_type_list.include?("体检"),
+      :tjjg => hospital_type_list.include?("体检") || instance.specialist == 3,
       :zhyy => hospital_type_list.include?("综合"),
       :wsyy => false,
       :dhyy => false,

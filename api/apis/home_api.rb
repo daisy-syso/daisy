@@ -116,14 +116,6 @@ class HomeAPI < Grape::API
           count: 3456,
           filterTitle: "综合医院"
         }, {
-          type: "hospitals/polyclinic_treatments",
-          count: 3456,
-          title: "综合医院诊疗攻略"
-        }, {
-          type: "hospitals/polyclinic_charges",
-          count: 3456,
-          title: "综合医院价格攻略"
-        }, {
           title: "三级甲等",
           count: 3456,
           params: { hospital_level: 2 }
@@ -177,7 +169,16 @@ class HomeAPI < Grape::API
           title: "社保定点医院",
           count: 3456,
           params: { social_security_type: 2 }
-        }]
+        }, {
+          type: "raiders/raider_details",
+          count: 3456,
+          title: "综合医院诊疗攻略",
+          params: { raider_id: 6 }
+        }, {
+          type: "hospitals/polyclinic_charges",
+          count: 3456,
+          title: "综合医院价格攻略"
+        },]
       }, { 
         type: "hospitals/tests",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
@@ -188,10 +189,10 @@ class HomeAPI < Grape::API
           count: 3456,
           filterTitle: "体检医院"
         }, {
-          type: "examinations/medical_institutions",
+          # type: "examinations/medical_institutions",
           title: "体检机构",
           count: 3456,
-          params: { hospital_type: 3 }
+          params: { special: 3 }
         }, {
           type: "raiders/raider_details",
           title: "体检套餐攻略",
@@ -598,7 +599,7 @@ class HomeAPI < Grape::API
       count: Diseases::Disease.count,
       title: "疾病查询",
       children: [{
-        id: :disease,
+        # id: :disease,
         title: "症状查疾病",
         params: { search_by: :symptom }
       }, {
