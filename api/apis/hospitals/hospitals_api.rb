@@ -51,6 +51,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         type: type_filters("男科医院"),
         hospital_type: { scope_only: true, default: 1 },
         order_by_url: { scope_only: true, default: 1 },
+        special: { scope_only: true, default: 1 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,

@@ -15,7 +15,7 @@
 
 <ul style="max-height: 400px;background-color: #ccc;overflow-y: scroll;" class="resault-list">
 	<li ng-repeat="resault in resault_list.data" class="">
-		<a href="{{resault.url}}">{{resault.name}}</a>
+		<a ng-href="{{link(resault)}}">{{resault.name}}</a>
 	</li>
 	<!-- <li>北京医院</li>
 	<li>上海医院</li>

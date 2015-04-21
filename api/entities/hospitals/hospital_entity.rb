@@ -30,7 +30,8 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
       :dhyy => false,
       :yb => instance.medical_insurance.present? && instance.medical_insurance != "否",
       :yywz => instance.url.present?,
-      :sjgh => false
+      :sjgh => false,
+      :zkyy => instance.specialist.present?
     }
   end
 

@@ -7,7 +7,7 @@ class Diseases::DiseaseEntity < ApplicationEntity
   end
 
   expose :params do |object, options|
-  	params = options[:env]["QUERY_STRING"].split("&")
+  	# params = options[:env]["QUERY_STRING"].split("&")
   	"type=134"
    # "common_disease=#{object.common_diseases.first.id}"
   end
