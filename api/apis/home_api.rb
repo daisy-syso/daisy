@@ -229,7 +229,7 @@ class HomeAPI < Grape::API
         }, {
           type: "raiders/raider_details",
           title: "整形美容诊疗攻略",
-          params: { railder_id: 2 }
+          params: { raider_id: 8 }
         }, {
           type: "hospitals/hospital_charges",
           title: "整形美容价格攻略",

@@ -82,8 +82,8 @@ angular.module 'DaisyApp', [
       ]
 
     detailCtrl = [
-      '$scope', '$routeParams', '$loader', '$alert'
-      ($scope, $routeParams, $loader, $alert) ->
+      '$scope', '$routeParams', '$loader', '$alert', '$location'
+      ($scope, $routeParams, $loader, $alert, $location) ->
         $scope.type = $routeParams.type
         if $routeParams.type == "hospitals/hospitals_polyclinic"
           $scope.type = "hospitals/hospitals"
@@ -104,9 +104,30 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/order.html"
       controller: detailCtrl
       
+    # $routeProvider.when '/detail/:type*/:id/:attr',
+    #   templateUrl: "templates/details/display.html"
+    #   controller: [
+    #     '$scope', '$routeParams', '$loader'
+    #     ($scope, $routeParams, $loader) ->
+    #       $scope.type = $routeParams.type
+    #       url = "/api/#{$routeParams.type}.json"
+    #       scope.to_zh = 
+    #         by: "病因"
+    #         zz: "症状"
+    #         jc: "检测"
+
+    #       scope.attr = $routeParams.attr
+    #       $loader.get(url)
+    #         .success (data) ->
+    #           $scope.data = data
+    #   ] 
+
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
-        "templates/details/#{routeParams.type}.html"
+        if routeParams.attr
+          "templates/details/display.html"
+        else
+          "templates/details/#{routeParams.type}.html"
       controller: detailCtrl
 
     listCtrl = [

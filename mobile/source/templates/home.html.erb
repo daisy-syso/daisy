@@ -97,8 +97,8 @@
                   <a class="m-page" href="javascript:;" rel="js_btn_list">3</a>
                   <a class="m-page" href="javascript:;" rel="js_btn_list">4</a>
               </div> -->
-              <!-- <div class="scroll-wrap">
-                <ul rn-carousel class="image" rn-carousel-auto-slide style="overflow: visible">
+              <div class="scroll-wrap">
+                <!-- <ul rn-carousel class="image" rn-carousel-auto-slide style="overflow: visible">
                   <li class="content_list" ng-repeat="pic in homeData.pictur_infors">
                     <img src="{{pic.image_url}}" />
                   </li>
@@ -114,18 +114,21 @@
                   <div class="content_list">
                     <img src="images/adv/img05.jpg" />
                   </div>
+                </ul> -->
+                <ul class="image">
+                  <li class="content_list"><img src="images/adv/img03.jpg" /></li>
                 </ul>
-
                 
-            </div> -->
-            <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered class="carousel2">
+            </div>
+            
+           <!--  <ul rn-carousel rn-carousel-index="carouselIndex2" rn-carousel-auto-slide rn-carousel-pause-on-hover rn-carousel-buffered class="carousel2">
                         <li ng-repeat="slide in homeData.pictur_infors track by slide.id" ng-class="'id-' + slide.id">
                             <div ng-style="{'background-image': 'url(' + slide.image_url + ')'}"  class="bgimage">
                               #{{ slide.id }}
                             </div>
                         </li>
                     </ul>
-                    <div rn-carousel-indicators ng-if="homeData.pictur_infors.length > 1" slides="homeData.pictur_infors" rn-carousel-index="carouselIndex2"></div>
+                    <div rn-carousel-indicators ng-if="homeData.pictur_infors.length > 1" slides="homeData.pictur_infors" rn-carousel-index="carouselIndex2"></div> -->
               </div>
             <div class="des">
               <li ng-repeat=" infor in homeData.title_infors">

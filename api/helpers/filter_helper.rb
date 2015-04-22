@@ -458,11 +458,11 @@ module FilterHelper
               title: drug_type.name,
               children: drug_type.children.map do |drug_type_child|
                 {
-                  id: drug_type_child.id,
+                  id: drug_type_child.disease_id,
                   title: drug_type_child.name,
                   children: drug_type_child.children.map do |drug_type_child_child|
                     {
-                      id: drug_type_child_child.id,
+                      id: drug_type_child_child.disease_id,
                       title: drug_type_child_child.name
                     } 
                   end 

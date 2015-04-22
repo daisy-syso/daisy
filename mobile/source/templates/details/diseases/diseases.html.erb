@@ -2,14 +2,48 @@
 
 <div class="content">
 
-  <%= partial 'templates/details/desc', locals: { subtitle: :desc } %>
+  <%#= partial 'templates/details/desc', locals: { subtitle: :desc } %>
 
-  <%= partial 'templates/details/detail', locals: { title: "病因", detail: :etiology } %>
-  <%= partial 'templates/details/detail', locals: { title: "症状", detail: :symptoms} %>
-  <%= partial 'templates/details/detail', locals: { title: "检测", detail: :examination } %>
-  <%= partial 'templates/details/detail', locals: { title: "治疗", detail: :treatment } %>
-  <%= partial 'templates/details/detail', locals: { title: "预防", detail: :prevention } %>
-  <%= partial 'templates/details/detail', locals: { title: "饮食", detail: :diet } %>
+  <%#= partial 'templates/details/detail', locals: { title: "病因", detail: :etiology } %>
+  <%#= partial 'templates/details/detail', locals: { title: "症状", detail: :symptoms} %>
+  <%#= partial 'templates/details/detail', locals: { title: "检测", detail: :examination } %>
+  <%#= partial 'templates/details/detail', locals: { title: "治疗", detail: :treatment } %>
+  <%#= partial 'templates/details/detail', locals: { title: "预防", detail: :prevention } %>
+  <%#= partial 'templates/details/detail', locals: { title: "饮食", detail: :diet } %>
+
+  <div class="card">
+  <ul class="table-view media">
+  	<li class="table-view-cell" style="font-size: 1.6em">
+      病因
+      <span class="pull-right more-box" >
+      	<a href="#/detail/diseases/diseases/{{data.id}}?attr=by" target="_self">查看更多
+      	</a>
+      </span>
+    </li>
+  	<li class="table-view-cell" style="font-size: 1.6em">
+      症状
+      <span class="pull-right more-box" >
+      	<a ng-href="#/detail/diseases/diseases/{{data.id}}?attr=bz">查看更多
+      	</a>
+      </span>
+    </li>
+    <li class="table-view-cell" style="font-size: 1.6em">
+      检查／检测
+      <span class="pull-right more-box" >查看更多</span>
+    </li>
+    <li class="table-view-cell" style="font-size: 1.6em">
+      治疗
+      <span class="pull-right more-box" >查看更多</span>
+    </li>
+    <li class="table-view-cell" style="font-size: 1.6em">
+      预防
+      <span class="pull-right more-box" >查看更多</span>
+    </li>
+    <li class="table-view-cell" style="font-size: 1.6em">
+      食疗
+      <span class="pull-right more-box" >查看更多</span>
+    </li>
+  </ul>
 
   <%= partial 'related' %> 
 
