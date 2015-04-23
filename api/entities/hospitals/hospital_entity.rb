@@ -1,5 +1,5 @@
 class Hospitals::HospitalEntity < Bases::PlaceEntity
-  
+  require 'rack/utils'
   expose :characteristic_departments
   expose :telephone do |instance, options|
     instance.telephone.try {|t| t[0..11]}
@@ -54,7 +54,9 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     # "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
     # end
     compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
-    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa
+    query_string =  options[:env].blank? ? "" : options[:env]["QUERY_STRING"]
+    params = Rack::Utils.parse_nested_query(query_string)
+    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || params["special"].present?
       "#/detail/hospitals/hospitals/#{instance.id}" 
     elsif options[:detail]
       instance.url
@@ -68,7 +70,9 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     # p "options========#{options}"
     # p "options[:meta]======#{options[:meta]}"
     compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
-    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || /\/hospitals\/characteristics/ =~ compa
+
+    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || /\/hospitals\/characteristics/ =~ compa 
+
       t = "hospitals/hospitals_polyclinic"     
     else
       t = instance.class.name.tableize
