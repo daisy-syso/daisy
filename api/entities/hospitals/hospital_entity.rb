@@ -56,7 +56,7 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     compa = options[:env].blank? ? "" : options[:env]["PATH_INFO"]
     query_string =  options[:env].blank? ? "" : options[:env]["QUERY_STRING"]
     params = Rack::Utils.parse_nested_query(query_string)
-    if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || params["special"].present?
+    if /\/hospitals\/polyclinics/  =~ compa || /\/diseases\/diseases/ =~ compa || params["special"].present? || params['is_service'] == 'f'
       "#/detail/hospitals/hospitals/#{instance.id}" 
     elsif /\/hospitals\/test/  =~ compa
       "#/list/examinations/examinations?hospital=#{instance.id}" 

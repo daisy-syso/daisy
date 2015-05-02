@@ -3,8 +3,8 @@ class Hospitals::Hospital < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
   
-  belongs_to :hospital_level
-  has_many :hospital_onsales
+  belongs_to :hospital_level, class_name: "Hospitals::HospitalLevel"
+  has_many :hospital_onsales, class_name: "Hospitals::HospitalOnsale"
 
   has_and_belongs_to_many :hospital_types, join_table: 'hospitals_types'
 
@@ -111,6 +111,13 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :special, -> (hospital_type_id){
     where(specialist: hospital_type_id)
   }
+
+  scope :only_onsales, -> (hospital_type_id){
+    @hospital_onsales = Hospitals::HospitalOnsale.joins(:hospital_charge).where(hospital_charge: { hospital_type_id: hospital_type_id })
+    hospital_ids = @hospital_onsales.map {|onsale| onsale.hospital_id}
+    Hospitals::Hospital.where(id: hospital_ids)
+  }
+
 
   include Localizable
   include Reviewable

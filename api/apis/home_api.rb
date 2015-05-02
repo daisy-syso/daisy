@@ -102,9 +102,8 @@ class HomeAPI < Grape::API
       title: "医院大全",
       count: Hospitals::Hospital.count,
       children: [{
-        type: "hospitals/all?type=3",
-        title: "全部分类",
-        count: 3456
+        # type: "hospitals/all?type=3",
+        title: "全部分类"
         }, {
         type: "hospitals/polyclinics",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Complex.png",
@@ -113,7 +112,6 @@ class HomeAPI < Grape::API
         children: [{
           id: :polyclinic,
           title: "全部医院",
-          count: 3456,
           filterTitle: "综合医院"
         }, {
           title: "三级甲等",
@@ -121,11 +119,9 @@ class HomeAPI < Grape::API
           params: { hospital_level: 2 }
         }, {
           title: "三级乙等",
-          count: 3456,
           params: { hospital_level: 3 }
         }, {
           title: "三级合格",
-          count: 3456,
           params: { hospital_level: 4 }
         }, {
           title: "二级甲等",
@@ -182,19 +178,18 @@ class HomeAPI < Grape::API
       }, { 
         type: "hospitals/tests",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Examination.png",
-        count: 3456,
         title: "全国体检",
         children: [{
           # type: "examinations/examinations",
           title: "全部体检医院",
           count: 3456,
           filterTitle: "体检医院",
-          params: {is_exam: 1 }
+          params: {is_exam: 1, is_service: 'f' }
         }, {
           # type: "examinations/medical_institutions",
           title: "体检机构",
           count: 3456,
-          params: { special: 3 }
+          params: { special: 3, is_service: 'f' }
         }, {
           type: "raiders/raider_details",
           title: "体检套餐攻略",
@@ -224,10 +219,11 @@ class HomeAPI < Grape::API
         title: "整形医院",
         children: [{
           title: "全部整形医院",
-          filterTitle: "整形医院"
+          filterTitle: "整形医院",
+          params: { is_service: 'f' }
         }, {
           title: "专科医院",
-          params: { special: 2}
+          params: { special: 2, is_service: 'f'}
         }, {
           type: "raiders/raider_details",
           title: "整形美容诊疗攻略",
@@ -238,67 +234,67 @@ class HomeAPI < Grape::API
           params: { hospital_parent_type: 2 }
         }, {
           title: "眼部整形",
-          params: { hospital_type: 58 }
+          params: { only_onsales: 58 }
         }, {
           title: "鼻部整形",
-          params: { hospital_type: 59 }
+          params: { only_onsales: 59 }
         }, {
           title: "耳部整形",
-          params: {hospital_type: 0}
+          params: { only_onsales: 0}
         }, {
           title: "口腔整形",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         }, {
           title: "激光美容",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         }, {
           title: "激光脱毛",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         }, {
           title: "祛斑除痣",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         }, {
           title: "生殖整形",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         },{
           title: "注射美容",
-          params: { hospital_type: 60 }
+          params: { only_onsales: 60 }
         },{
           title: "胸部整形",
-          params: { hospital_type: 61 }
+          params: { only_onsales: 61 }
         }, {
           title: "抽脂减肥",
-          params: { hospital_type: 62 }
+          params: { only_onsales: 62 }
         }, {
           title: "毛发移植",
-          params: { hospital_type: 63 }
+          params: { only_onsales: 63 }
         }, {
           title: "拉皮",
-          params: { hospital_type: 64 }
+          params: { only_onsales: 64 }
         }, {
           title: "脂肪移植",
-          params: { hospital_type: 65 }
+          params: { only_onsales: 65 }
         }, {
           title: "颌面整形",
-          params: { hospital_type: 66 }
+          params: { only_onsales: 66 }
         }, {
           title: "肉毒素",
-          params: { hospital_type: 67 }
+          params: { only_onsales: 67 }
         }, {
           title: "填充",
-          params: { hospital_type: 68 }
+          params: { only_onsales: 68 }
         }, {
           title: "其它",
-          params: { hospital_type: 69 }
+          params: { only_onsales: 69 }
         }, {
           title: "皮肤",
-          params: { hospital_type: 70 }
+          params: { only_onsales: 70 }
         }, {
           title: "半永久性化妆",
-          params: { hospital_type: 71 }
+          params: { only_onsales: 71 }
         }, {
           title: "疤痕修复",
-          params: { hospital_type: 71 }
+          params: { only_onsales: 71 }
         }]
       }, {
         type: "hospitals/dentals",
@@ -306,10 +302,11 @@ class HomeAPI < Grape::API
         title: "牙科医院",
         children: [{
           title: "全部牙科医院",
-          filterTitle: "牙科医院"
+          filterTitle: "牙科医院",
+          params: { is_service: 'f' }
         }, {
           title: "专科医院",
-          params: { special: 6}
+          params: { special: 6, is_service: 'f'}
         }, {
           type: "raiders/raider_details",
           title: "牙科诊疗攻略",
@@ -320,37 +317,37 @@ class HomeAPI < Grape::API
           params: { hospital_parent_type: 6 }
         }, {
           title: "号源",
-          params: { hospital_type: 26 }
+          params: { only_onsales: 26 }
         }, {
           title: "洗牙（洁牙）",
-          params: { hospital_type: 27 }
+          params: { only_onsales: 27 }
         }, {
           title: "烤瓷牙",
-          params: { hospital_type: 28 }
+          params: { only_onsales: 28 }
         }, {
           title: "牙齿矫正",
-          params: { hospital_type: 29 }
+          params: { only_onsales: 29 }
         }, {
           title: "隐形矫正",
-          params: { hospital_type: 30 }
+          params: { only_onsales: 30 }
          },{
         #   title: "牙齿美白",
         #   params: { hospital_type: 31 }
         # }, {
           title: "拔牙",
-          params: { hospital_type: 32 }
+          params: { only_onsales: 32 }
         }, {
           title: "根管治疗",
-          params: { hospital_type: 33 }
+          params: { only_onsales: 33 }
         },{
           title: "活动义齿",
-          params: { hospital_type: 33 }
+          params: { only_onsales: 33 }
         }, {
           title: "全口义齿",
-          params: { hospital_type: 34 }
+          params: { only_onsales: 34 }
         }, {
           title: "X光",
-          params: { hospital_type: 50 }
+          params: { only_onsales: 50 }
         },{
           title: "拔除术",
           params: {}
@@ -359,52 +356,52 @@ class HomeAPI < Grape::API
           params: {}
         }, {
           title: "补牙",
-          params: { hospital_type: 36 }
+          params: { only_onsales: 36 }
         }, {
           title: "矫正器",
-          params: { hospital_type: 36 }
+          params: { only_onsales: 36 }
         }, {
         #   title: "牙基",
         #   params: { hospital_type: 37 }
         # }, {
           title: "精密附件",
-          params: { hospital_type: 38 }
+          params: { only_onsales: 38 }
         }, {
           title: "麻醉",
-          params: { hospital_type: 48 }
+          params: { only_onsales: 48 }
         }, {
           title: "排牙",
-          params: { hospital_type: 44 }
+          params: { only_onsales: 44 }
         }, {
           title: "其他牙科手术",
-          params: { hospital_type: 46 }
+          params: { only_onsales: 46 }
         }, {
           title: "嵌体",
-          params: { hospital_type: 42 }
+          params: { only_onsales: 42 }
         }, {
           title: "上药",
-          params: { hospital_type: 47 }
+          params: { only_onsales: 47 }
         }, {
           title: "牙齿美白",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 0 }
         }, {
           title: "牙齿漂白",
-          params: { hospital_type: 39 }
+          params: { only_onsales: 39 }
         }, {
           title: "牙冠",
-          params: { hospital_type: 45 }
+          params: { only_onsales: 45 }
         }, {
           title: "牙基托",
-          params: { hospital_type: 45 }
+          params: { only_onsales: 45 }
         }, {
           title: "牙修复材料",
-          params: { hospital_type: 41 }
+          params: { only_onsales: 41 }
         }, {
           title: "隐形矫正",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 0 }
         },{
           title: "种植体",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 0 }
         # }, {
         #   title: "种植",
         #   params: { hospital_type: 40 }
@@ -433,10 +430,11 @@ class HomeAPI < Grape::API
         title: "妇幼医院",
         children: [{
           title: "全部妇幼医院",
-          filterTitle: "妇幼医院"
+          filterTitle: "妇幼医院",
+          params: { is_service: 'f' }
         }, {
           title: "专科医院",
-          params: { special: 5}
+          params: { special: 5, is_service: 'f'}
         }, { 
           type: "raiders/raider_details",
           title: "妇科诊疗攻略",
@@ -447,58 +445,58 @@ class HomeAPI < Grape::API
           params: { hospital_parent_type: 5 }
         }, {
           title: "B超",
-          params: { hospital_type: 82 }
+          params: { only_onsales: 82 }
         }, {
           title: "分泌物检验",
-          params: { hospital_type: 83 }
+          params: { only_onsales: 83 }
         }, {
           title: "尿液检验",
-          params: { hospital_type: 84 }
+          params: { only_onsales: 84 }
         }, {
           title: "通用检查",
-          params: { hospital_type: 85 }
+          params: { only_onsales: 85 }
         }, {
           title: "血液检查",
-          params: { hospital_type: 86 }
+          params: { only_onsales: 86 }
         }, {
           title: "阴道镜检查",
-          params: { hospital_type: 87 }
+          params: { only_onsales: 87 }
         }, {
           title: "孕期检查",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 78 }
         }, { 
           title: "无痛人流",
-          params: { hospital_type: 11 }
+          params: { only_onsales: 11 }
         }, {
           title: "四维／三维",
-          params: { hospital_type: 9 }
+          params: { only_onsales: 9 }
         }, { 
           title: "妇科整形",
-          params: { hospital_type: 10 }
+          params: { only_onsales: 10 }
         }, {
           title: "不孕不育",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 12 }
         }, {
           title: "妇科微创",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 80 }
         }, {
           title: "宫颈疾病手术",
-          params: { hospital_type: 9 }
+          params: { only_onsales: 9 }
         }, {
           title: "痛经中心",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 81 }
         }, { 
         #   title: "女性不孕检查",
         #   params: { hospital_type: 12 }
         # }, { 
           title: "妇科常规检查",
-          params: { hospital_type: 13 }
+          params: { only_onsales: 13 }
         }, { 
           title: "妇科常规治疗",
-          params: { hospital_type: 14 }
+          params: { only_onsales: 14 }
         }, { 
           title: "产科",
-          params: { hospital_type: 15 }
+          params: { only_onsales: 15 }
         }]
       }, {
         type: "hospitals/andrologies",
@@ -506,10 +504,11 @@ class HomeAPI < Grape::API
         title: "男科医院",
         children: [{
           title: "全部男科医院",
-          filterTitle: "男科医院"
+          filterTitle: "男科医院",
+          params: { is_service: 'f' }
         }, {
           title: "专科医院",
-          params: { special: 1}
+          params: { special: 1, is_service: 'f'}
         }, {
           type: "raiders/raider_details",
           title: "男科诊疗攻略",
@@ -555,10 +554,11 @@ class HomeAPI < Grape::API
         title: "中医院",
         children: [{
           title: "全部中医院",
-          filterTitle: "中医院"
+          filterTitle: "中医院",
+          params: {is_service: 'f'}
         }, {
           title: "专科医院",
-          params: { special: 4}
+          params: { special: 4, is_service: 'f'}
         }, {
           type: "raiders/raider_details",
           title: "中医诊疗攻略",
