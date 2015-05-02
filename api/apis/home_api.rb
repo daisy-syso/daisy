@@ -107,7 +107,6 @@ class HomeAPI < Grape::API
         }, {
         type: "hospitals/polyclinics",
         image_url: "http://syso.qiniudn.com/icon%2Fnavicon_Complex.png",
-        count: 3456,
         title: "综合医院",
         children: [{
           id: :polyclinic,

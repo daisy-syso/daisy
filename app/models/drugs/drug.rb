@@ -1,15 +1,22 @@
 class Drugs::Drug < ActiveRecord::Base
-  belongs_to :drug_type
+  # belongs_to :drug_type
+  # has_and_belongs_to_many :drug_types, class_name: "Drugs::DrugType", join_table: 'diseases_drugs', association_foreign_key: "disease_id"
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
   has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory", join_table: 'manufactory_drugs'
-
+  has_many :diseases_drugs, class_name: 'Drugs::DiseasesDrug'
+  
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
   scope :disease, -> (type) { 
-    type ? joins(:diseases)
-      .where(diseases_drugs: { disease_id: type })
-      .distinct : all 
+    if type 
+      disease_id = Drugs::DrugType.where(id: type).first.disease_id
+      Drugs::Drug.joins(:diseases_drugs)
+        .where(diseases_drugs: { disease_id: disease_id})
+        .distinct 
+    else 
+      all 
+    end
   }
 
   scope :hospital_room, -> (hospital_room) {

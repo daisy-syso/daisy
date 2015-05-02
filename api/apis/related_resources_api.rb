@@ -55,6 +55,9 @@ class RelatedResourcesAPI < Grape::API
     id = hospital_type_id params[:hospital_type]
     hospital_charges = Hospitals::HospitalCharge.where(hospital_type_parent_id: id)
     p "hospital_charges======#{hospital_charges.blank?}"
+    if params[:only_onsales]
+      hospital_charges = Hospitals::HospitalCharge.where(hospital_type_id: params[:only_onsales])
+    end
     if !hospital_charges.blank?
       relateds = []
       20.times do |i|

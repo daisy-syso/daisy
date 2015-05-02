@@ -1,6 +1,6 @@
 angular.module('DaisyApp').directive 'list', [
-  '$loader', '$alert'
-  ($loader, $alert) ->
+  '$loader', '$alert', '$routeParams'
+  ($loader, $alert, $routeParams) ->
     directive =
       restrict: 'A'
       templateUrl: "templates/directives/list.html"
@@ -15,7 +15,9 @@ angular.module('DaisyApp').directive 'list', [
         listFilters: "=?"
       link: (scope, element, attrs) ->
         if scope.listUrl
-          $loader.get(scope.listUrl)
+          console.log("#{$routeParams.only_onsales}======")
+          params = {only_onsales: $routeParams.only_onsales }
+          $loader.get(scope.listUrl, params: params)
             .success (json) ->
               scope.listFin = json.fin
               # $alert.info("1111related======#{json.data}")
