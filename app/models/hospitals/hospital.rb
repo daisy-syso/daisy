@@ -23,6 +23,11 @@ class Hospitals::Hospital < ActiveRecord::Base
       .where{hospitals_types.hospital_type_id == type}
       .distinct : where.not(parent_id: nil)
   }
+  # scope :have_examinations, -> (type) { 
+  #   type ? joins(:examinations_hospitals)
+  #     .where{hospitals_types.hospital_type_id == type}
+  #     .distinct : where.not(parent_id: nil)
+  # }
 
   scope :examination_type, -> (type) { 
     type ? joins(:examination_types)
@@ -93,6 +98,14 @@ class Hospitals::Hospital < ActiveRecord::Base
     else
       all
     end
+  }
+
+  scope :is_exam, -> (b="t") {
+    @examinations = Examinations::Examination.select(:hospital_id).distinct
+    hospital_ids = @examinations.map do |examination|
+      examination.hospital_id
+    end
+    @hospitals = Hospitals::Hospital.where(id: hospital_ids)
   }
 
   scope :special, -> (hospital_type_id){

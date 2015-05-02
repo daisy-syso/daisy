@@ -103,10 +103,11 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       filters: { 
         city: city_filters,
         type: type_filters("体检医院"),
-        examination_type: { scope_only: true },
-        hospital_type: { scope_only: true, default: 3 },
-        order_by_url: { scope_only: true, default: 3 },
-        special: { scope_only: true, default: 2 },
+        # examination_type: { scope_only: true },
+        # hospital_type: { scope_only: true, default: 3 },
+        # order_by_url: { scope_only: true, default: 3 },
+        # special: { scope_only: true },
+        is_exam: {scope_only: true, default: "t"},
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
@@ -123,6 +124,34 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       },
       template: "hospitals/hospitals_t2"
   end
+  # namespace :tests do
+  #   index! Examinations::Examination,
+  #     title: "体检医院",
+  #     related: true,
+  #     filters: { 
+  #       city: city_filters,
+  #       type: type_filters("体检医院"),
+  #       # examination_type: { scope_only: true },
+  #       # hospital_type: { scope_only: true, default: 3 },
+  #       # order_by_url: { scope_only: true, default: 3 },
+  #       # special: { scope_only: true },
+  #       about_hostpitals: {scope_only: true},
+  #       county: county_filters,
+  #       order_by: hospital_order_by_filters,
+  #       form: form_filters,
+  #       # query: form_query_filters, 
+  #       # alphabet: form_alphabet_filters,
+  #       # hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
+  #       # has_url: form_switch_filters("网址"),
+  #       # is_local_hot: form_switch_filters("热门医院")
+  #       need_order: form_switch_filters("无需预约"),
+  #       has_return: form_switch_filters("返现"),
+  #       template: form_radio_array_filters(%w(不限 基础体检 单位团体体检 常规体检 婚前体检 孕前体检 儿童体检 老年体检 妇科体检 青年体检 精英体检 高端体检),
+  #         "当前主题精选"),
+  #       price_scope: form_price_scope_filters([300, 600, 1000, 2000, 4000])
+  #     },
+  #     template: "hospitals/hospitals_t2"
+  # end
 
   namespace :tcm do
     index! Hospitals::Hospital,

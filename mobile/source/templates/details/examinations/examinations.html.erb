@@ -2,6 +2,7 @@
 
 <div class="content">
 
+  <%= partial 'templates/details/album', locals: { price: true, subtitle: :hospital_name } %> 
   <%= partial 'templates/details/desc', locals: { price: true, subtitle: :hospital_name } %>
 
   <%= partial 'templates/details/review' %>

@@ -58,6 +58,8 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     params = Rack::Utils.parse_nested_query(query_string)
     if /\/hospitals\/polyclinics/  =~ compa || options[:hospital_onsales_no_type_id] || /\/diseases\/diseases/ =~ compa || params["special"].present?
       "#/detail/hospitals/hospitals/#{instance.id}" 
+    elsif /\/hospitals\/test/  =~ compa
+      "#/list/examinations/examinations?hospital=#{instance.id}" 
     elsif options[:detail]
       instance.url
     else

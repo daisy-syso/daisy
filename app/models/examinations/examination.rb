@@ -1,6 +1,7 @@
 class Examinations::Examination < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
   belongs_to :examination_type
+  belongs_to :hospital, class_name: "Hospitals::Hospital"
 
   scope :city, -> (city) { where(city: city) }
   scope :examination_type, -> (type) { 
@@ -8,6 +9,9 @@ class Examinations::Examination < ActiveRecord::Base
   }
   scope :examination_parent_type, -> (type) { 
     type ? where(examination_type_parent_id: type) : all 
+  }
+  scope :hospital, -> (type) { 
+    type ? where(hospital_id: type) : all 
   }
 
   scope :price, -> (to, from = 0) {

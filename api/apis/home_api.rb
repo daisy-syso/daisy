@@ -185,9 +185,11 @@ class HomeAPI < Grape::API
         count: 3456,
         title: "全国体检",
         children: [{
+          # type: "examinations/examinations",
           title: "全部体检医院",
           count: 3456,
-          filterTitle: "体检医院"
+          filterTitle: "体检医院",
+          params: {is_exam: "t" }
         }, {
           # type: "examinations/medical_institutions",
           title: "体检机构",
