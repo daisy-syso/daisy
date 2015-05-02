@@ -100,7 +100,7 @@ class Hospitals::Hospital < ActiveRecord::Base
     end
   }
 
-  scope :is_exam, -> (b="t") {
+  scope :is_exam, -> (b=1) {
     @examinations = Examinations::Examination.select(:hospital_id).distinct
     hospital_ids = @examinations.map do |examination|
       examination.hospital_id

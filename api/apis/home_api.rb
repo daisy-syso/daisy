@@ -189,7 +189,7 @@ class HomeAPI < Grape::API
           title: "全部体检医院",
           count: 3456,
           filterTitle: "体检医院",
-          params: {is_exam: "t" }
+          params: {is_exam: 1 }
         }, {
           # type: "examinations/medical_institutions",
           title: "体检机构",

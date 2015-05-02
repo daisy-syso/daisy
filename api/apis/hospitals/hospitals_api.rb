@@ -107,7 +107,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # hospital_type: { scope_only: true, default: 3 },
         # order_by_url: { scope_only: true, default: 3 },
         # special: { scope_only: true },
-        is_exam: {scope_only: true, default: "t"},
+        is_exam: {scope_only: true, default: 1},
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
