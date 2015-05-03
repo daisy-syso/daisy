@@ -7,7 +7,6 @@ angular.module('DaisyApp').directive 'filter', [
       scope:
         filterData: "="
       link: (scope, element, attrs) ->
-
         scope.current = 
           titles: {}
 
@@ -15,15 +14,27 @@ angular.module('DaisyApp').directive 'filter', [
           if filterData
             for filter, index in filterData
               $rootScope.formatFilter(filter)
-                
+
+        console.log("scope.current.menu")
+        console.log(scope.current)
+
         scope.toggleMenu = (index, menu) ->
           if scope.current.index == index
             scope.closeMenu()
+
           else
             scope.current.index = index
             scope.current.menu = menu
+            console.log("222")
+            if scope.current.menu.current && scope.current.menu.children
+              i = scope.current.menu.current-1
+              scope.toggleColumn(0, i, scope.current.menu.children[i])
 
         scope.toggleColumn = (i, j, column) ->
+
+          console.log(i)
+          console.log(j)
+          console.log(column)
           scope.current.menu.indexes.splice i
           scope.current.menu.indexes.push j
           scope.current.menu.menus.splice i + 1

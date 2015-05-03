@@ -394,7 +394,17 @@ module FilterHelper
         template: "list",
         children: proc do
           Diseases::CommonDisease.all.map do |common_disease|
-            {title: common_disease.name, id: common_disease.id}
+            { 
+              title: common_disease.name, 
+              id: common_disease.id,
+              children: Diseases::Disease.common_disease(common_disease.id).map do |disease|
+                  {
+                    url: "#/detail/diseases/diseases/#{disease.id}",
+                    title: disease.name,
+                    id: disease.id
+                  }
+              end
+            }
           end
         end,
         current: proc {params[:common_disease]},

@@ -1,10 +1,12 @@
 <input type="text" placeholder="搜索" class="ng-hide" ng-model="filter" ng-show="current.menu.filterable">
 <div class="segmented-control" ng-style="{height: (current.menu.children.length > 7 ? 7 : current.menu.children.length) * 45 + 'px'}">
+  <!-- {{current.menu.current}} -->
   <div class="control-item" ng-repeat="(i, menu) in current.menu.menus">
     <div class="dropdown-scroll">
       <ul class="table-view media huge" ng-class="{last: $last}">
+        <!-- {{filtered(menu)}} -->
         <li class="table-view-cell" ng-class="{'media-more': column.children || column.link, active: current.menu.indexes[i] == j, focus: column.focus}" ng-repeat="(j, column) in filtered(menu)">
-          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)" ng-href="{{column.url}}">
+          <a ng-click="column.children ? toggleColumn(i, j, column) : redirectTo(column)" ng-href="{{column.url}}" >
             <img ng-src="{{column.image_url}}" class="pull-left" width="16" ng-if="column.image_url">
             {{column.title}}
             <span style="float:right;padding-right: 5px; ">{{column.count}}</span>
