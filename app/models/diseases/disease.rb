@@ -17,9 +17,21 @@ class Diseases::Disease < ActiveRecord::Base
   }
 
   scope :hospital_room, -> (hospital_room) {
-    hospital_room ? joins(:hospital_rooms)
-      .where{diseases_hospital_rooms.hospital_room_id == hospital_room}
-      .distinct : all
+
+    if hospital_room 
+      @hospital_room = Hospitals::HospitalRoom.where(id: hospital_room).first
+      if @hospital_room.parent_id.blank?
+        subroom_ids = @hospital_room.subroom.ids
+        Diseases::Disease.joins(:hospital_rooms)
+        .where(hospital_rooms: {id: subroom_ids})
+        .distinct
+      else
+        joins(:hospital_rooms)
+        .where{diseases_hospital_rooms.hospital_room_id == hospital_room}
+      end
+    else 
+      all
+    end
   }
 
   scope :common_disease, -> (common_disease) {
@@ -70,6 +82,15 @@ class Diseases::Disease < ActiveRecord::Base
 
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
+  }
+
+  scope :menu_list, -> (hospital_room) {
+    Diseases::Disease.hospital_room(hospital_room).map do |diseases|
+      {
+        name: diseases.name,
+        url: "#/detail/diseases/diseases/#{diseases.id}"
+      }
+    end
   }
 
   class << self

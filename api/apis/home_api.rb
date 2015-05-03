@@ -607,7 +607,8 @@ class HomeAPI < Grape::API
         params: { search_by: :symptom }
       }, {
         title: "科室查疾病",
-        params: { search_by: :hospital_room }
+        params: { search_by: :hospital_room },
+
       }, {
         title: "字母查疾病",
         params: { search_by: :alphabet }
@@ -1432,7 +1433,16 @@ class HomeAPI < Grape::API
         params: { search_by: :symptom }
       }, {
         title: "科室查疾病",
-        params: { search_by: :hospital_room }
+        # params: { search_by: :hospital_room }
+        children: Hospitals::HospitalRoom.where("parent_id is NULL").map do |hospital_room| 
+          {
+            title: hospital_room.name,
+            params: {
+              search_by: :hospital_room,
+              hospital_room: hospital_room.id
+            }
+          }
+        end
       }, {
         title: "字母查疾病",
         params: { search_by: :alphabet }

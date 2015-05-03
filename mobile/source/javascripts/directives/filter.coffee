@@ -25,7 +25,6 @@ angular.module('DaisyApp').directive 'filter', [
           else
             scope.current.index = index
             scope.current.menu = menu
-            console.log("222")
             if scope.current.menu.current && scope.current.menu.children
               i = scope.current.menu.current-1
               scope.toggleColumn(0, i, scope.current.menu.children[i])
