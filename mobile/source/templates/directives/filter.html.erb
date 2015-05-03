@@ -1,6 +1,6 @@
 <div class="backdrop ng-hide" ng-cloak ng-show="current.menu" ng-click="closeMenu()" style="z-index: -1"></div>
 <div class="dropdown">
-  <div class="segmented-control">
+  <div class="segmented-control" style="top:0">
     <div class="control-item" ng-repeat="data in filterData">
       <a ng-class="{active: current.index == $index}" ng-click="toggleMenu($index, data)">
         {{current.titles[$index] || data.title}}
