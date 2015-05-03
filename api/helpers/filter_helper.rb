@@ -290,12 +290,21 @@ module FilterHelper
         end,
         children: proc do
           search_by_options = options[params[:search_by]]
-          parse_option_value search_by_options[:children] do
-            search_by_options[:class].filters
-          end
+          # if method = search_by_options[:method]
+          #   search_by_options[:class].try(method, params[params[:search_by]])
+          # else
+            if search_by_options[:children]
+              parse_option_value search_by_options[:children]
+            else
+              parse_option_value do
+                search_by_options[:class].filters
+              end
+            
+            end
+          # end
         end,
         current: proc do
-          params[params[:search_by]]
+          params[params[:search_by]] unless options[:current] == nil
         end
       }
     end

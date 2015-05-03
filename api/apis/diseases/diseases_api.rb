@@ -9,7 +9,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         search_by: search_by_filters({
           default: :symptom,
           symptom: { title: "症状", class: Diseases::Symptom },
-          hospital_room: { title: proc { Hospitals::HospitalRoom.find_by_id(params[:hospital_room]).try(:name) || "科室" }, class: Hospitals::HospitalRoom, method: :menu_list },
+          hospital_room: { title: proc { Hospitals::HospitalRoom.find_by_id(params[:hospital_room]).try(:name) || "科室" }, class: Hospitals::HospitalRoom, method: :menu_list, children: proc { Hospitals::HospitalRoom.parent_menu}, current: nil  },
           alphabet: alphabet_filters,
           common_disease: common_diseas_filters,
           disease_type: { title: "疾病类别", class: Diseases::DiseaseType}
