@@ -1,0 +1,10 @@
+<div class="list-top">
+  <a ng-href="{{link(data)}}" class="list-title">{{data.<%= defined?(title) ? title : :name %>}}</a>  
+  <!-- <span class="pull-right">更多>></span> -->
+  <p class="pull-right">
+    <span  style="color: #ffd700">★★★★★</span>   5分
+  </p>
+</div>
+ 
+<%= partial 'templates/lists/image' %>
+<%= partial 'partial/body/hospital' %>

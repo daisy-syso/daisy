@@ -570,31 +570,31 @@ class HomeAPI < Grape::API
           params: { hospital_parent_type: 4 }
         }, {
           title: "中医推拿治疗",
-          params: { hospital_type: 55 }
+          params: { only_onsales: 55, is_hall: 't' }
         }, {
           title: "中医针灸治疗",
-          params: { hospital_type: 56 }
+          params: { only_onsales: 56, is_hall: 't' }
         }, {
           title: "其它",
-          params: { hospital_type: 57 }
+          params: { only_onsales: 57, is_hall: 't' }
         }, {
           title: "针灸",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 0, is_hall: 't' }
         }, {
           title: "针刺",
-          params: { hospital_type: 73 }
+          params: { only_onsales: 73, is_hall: 't' }
         }, {
           title: "中医肛肠",
-          params: { hospital_type: 74 }
+          params: { hospital_type: 74, is_hall: 't' }
         }, {
           title: "中医骨伤",
-          params: { hospital_type: 74 }
+          params: { hospital_type: 74, is_hall: 't' }
         }, {
           title: "中医特殊疗法",
-          params: { hospital_type: 76 }
+          params: { hospital_type: 76, is_hall: 't' }
         }, {
           title: "中医外治",
-          params: { hospital_type: 77 }
+          params: { hospital_type: 77, is_hall: 't' }
         }]
       }]
     }, {
@@ -1396,28 +1396,28 @@ class HomeAPI < Grape::API
           params: { hospital_parent_type: 4 }
         }, {
           title: "中医推拿治疗",
-          params: { hospital_type: 55 }
+          params: { only_onsales: 55, is_hall: 't' }
         }, {
           title: "中医针灸治疗",
-          params: { hospital_type: 56 }
+          params: { only_onsales: 56, is_hall: 't' }
         }, {
           title: "其它",
-          params: { hospital_type: 57 }
+          params: { only_onsales: 57, is_hall: 't'  }
         }, {
           title: "针灸",
-          params: { hospital_type: 0 }
+          params: { only_onsales: 0, is_hall: 't'  }
         }, {
           title: "针刺",
-          params: { hospital_type: 73 }
+          params: { only_onsales: 73, is_hall: 't'  }
         }, {
           title: "中医肛肠",
-          params: { hospital_type: 74 }
+          params: { only_onsales: 74, is_hall: 't'  }
         }, {
           title: "中医骨伤",
-          params: { hospital_type: 74 }
+          params: { only_onsales: 74, is_hall: 't'  }
         }, {
           title: "中医特殊疗法",
-          params: { hospital_type: 76 }
+          params: { hospital_type: 76, is_hall: 't'  }
         }, {
           title: "中医外治",
           params: { hospital_type: 77 }

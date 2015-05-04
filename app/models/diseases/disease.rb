@@ -7,7 +7,7 @@ class Diseases::Disease < ActiveRecord::Base
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
   has_and_belongs_to_many :common_diseases, class_name: "Diseases::CommonDisease", :join_table => :disease_commons, :association_foreign_key => :common_id
   has_and_belongs_to_many :disease_types, class_name: "Diseases::DiseaseType" , :join_table => :diseases_types , :association_foreign_key => :disease_types_id
-
+  has_many :disease_details, class_name: "Diseases::DiseaseDetail", :foreign_key => "parent_id"
   # scope :disease_type, -> (type) { type ? where(disease_type: type) : all }
 
   scope :symptom, -> (symptom) {

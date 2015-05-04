@@ -4,7 +4,10 @@ class Diseases::DiseaseEntity < ApplicationEntity
 
   with_options if: { detail: true } do
     expose :etiology, :symptoms, :examination, :treatment, :prevention, :diet
+  	expose :disease_details, using: Diseases::DiseaseDetailEntity
   end
+
+
 
   expose :params do |object, options|
   	# params = options[:env]["QUERY_STRING"].split("&")

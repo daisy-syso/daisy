@@ -26,6 +26,7 @@ module ResourcesHelper
         meta[:related] ||= parse_option_value options[:related]
         meta[:recommend] ||= parse_option_value options[:recommend]
         meta[:template] ||= parse_option_value options[:template]
+        klass = parse_option_value options[:klass] if (parse_option_value options[:klass]).present?
         hfilters = {}
 
         parse_option_value options[:before]

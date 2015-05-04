@@ -181,7 +181,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
           # "当前主题精选"),
         template: form_radio_array_filters_new("tcm", "当前主题精选"),
         price_scope: form_price_scope_filters([10, 50, 100])
-      }
+      },
+      klass: proc { params[:is_hall]=="t" ? Hospitals::Hall : nil}
   end
 
   namespace :gynaecologies do

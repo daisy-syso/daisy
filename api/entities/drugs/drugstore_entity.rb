@@ -1,9 +1,9 @@
 class Drugs::DrugstoreEntity < Bases::PlaceEntity
-	expose :Business_License, :url
+	expose :Business_License, :url, :telephone
 
 	expose :drugstore_sevice_list do |instance, options|
     {
-      :yb => false,
+      :yb => instance.is_insurance,
       :qt => false,
       :ps => false
     }
@@ -12,5 +12,6 @@ class Drugs::DrugstoreEntity < Bases::PlaceEntity
   with_options if: { detail: true } do
   	expose :GSP, :License, :Scope_of_business
   end
+
   
 end
