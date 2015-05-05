@@ -89,6 +89,7 @@ angular.module 'DaisyApp', [
           $scope.type = "hospitals/hospitals"
           # $alert.info($scope.type)
         $scope.id = $routeParams.id
+        $scope.detail_id = $routeParams.detail
         # url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
         # $alert.info(url)
@@ -124,7 +125,7 @@ angular.module 'DaisyApp', [
 
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
-        if routeParams.attr
+        if routeParams.detail
           "templates/details/display.html"
         else
           "templates/details/#{routeParams.type}.html"

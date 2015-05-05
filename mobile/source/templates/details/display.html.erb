@@ -1,6 +1,6 @@
-<%#= partial 'templates/details/header' locals: { title: "病因"} %>
-
-<p class="pre" ng-show="{{attr == 'by'}}">{{data.etiology}}</p>
-<p class="pre" ng-show="{{attr == 'zz'}}">{{data.etiology}}</p>
-<p class="pre" ng-show="{{attr == 'jc'}}">{{data.etiology}}</p>
-<p class="pre" ng-show="{{attr == 'zl'}}">{{data.etiology}}</p>
+<%= partial 'templates/details/header', locals: { title: "病因" } %>
+<div ng-repeat="detail in data.disease_details" style="">
+	<p class="pre" ng-show="{{detail_id == detail.id}}" style="margin-top:38px;padding:0 10px;;font-size: 1.2em">
+		{{detail.detail}}
+	</p>
+</div>
