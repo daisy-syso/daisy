@@ -1,6 +1,6 @@
 <%= partial 'templates/details/header', locals: { title: "病因" } %>
-<div ng-repeat="detail in data.disease_details" style="">
-	<p class="pre" ng-show="{{detail_id == detail.id}}" style="margin-top:38px;padding:0 10px;;font-size: 1.2em">
+<div ng-repeat="detail in data.disease_details" style="position: relative">
+	<p class="pre" ng-show="{{detail_id == detail.id}}" style="position:absolute;padding:0 10px;top:35px;font-size: 1.2em;overflow-y: auto;">
 		{{detail.detail}}
 	</p>
 </div>
