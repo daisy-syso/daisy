@@ -93,6 +93,10 @@ class Diseases::Disease < ActiveRecord::Base
     end
   }
 
+  scope :disease_id, ->(id) {
+    id.present? ? where(id: id) : all
+  }
+
   class << self
     include Filterable
 

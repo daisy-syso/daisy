@@ -6,6 +6,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
       filters: { 
         type: type_filters("疾病查询", :disease),
         disease_type: { scope_only: true },
+        disease_id: { scope_only: true },
         search_by: search_by_filters({
           default: :symptom,
           symptom: { title: "症状", class: Diseases::Symptom },

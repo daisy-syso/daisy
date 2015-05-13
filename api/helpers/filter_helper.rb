@@ -397,7 +397,7 @@ module FilterHelper
     def common_diseas_filters
       {
         title: proc do
-          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || Diseases::Disease.find(params[:id]).try(:name) || "鼻部病" 
+          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || Diseases::Disease.where(params[:id]).first.try(:name) || "鼻部病" 
         end,
         key: "common_disease",
         template: "list",
@@ -408,9 +408,10 @@ module FilterHelper
               id: common_disease.id,
               children: Diseases::Disease.common_disease(common_disease.id).map do |disease|
                   {
-                    url: "#/detail/diseases/diseases/#{disease.id}",
+                    # url: "#/detail/diseases/diseases/#{disease.id}",
                     title: disease.name,
-                    id: disease.id
+                    id: disease.id,
+                    params: { disease_id: disease.id, common_disease: common_disease.id }
                   }
               end
             }
