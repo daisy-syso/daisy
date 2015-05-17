@@ -6,10 +6,10 @@ class Raiders::RaiderDetailsAPI < ApplicationAPI
       related: true,
       filters: { 
         # city: city_filters,
-        type: type_filters(proc { Raiders::Raider.where(id: params[:raider_id]).first.name}),
+        type: type_filters(proc { Raiders::Raider.where(id: params[:raider_id]).first.try(:name) }),
         # hospital_type: { scope_only: true, default: 1 },
         # order_by_url: { scope_only: true, default: 1 },
-        county: county_filters,
+        # county: county_filters,
         raider_id: { scope_only: true },
         # order_by: hospital_order_by_filters,
         # form: form_filters,

@@ -1460,20 +1460,20 @@ class HomeAPI < Grape::API
             }
           }
           end
-      }, {
-        title: "病理查疾病",
-        # params: { search_by: :disease_type }
-        children: Diseases::DiseaseType.all.map do |disease_type|
-          {
-            title: disease_type.name,
-            # id: disease_type.id,
-            params: {
-              search_by: :disease_type,
-              disease_type: disease_type.id,
-              # type: 135
-            }
-          }
-        end
+      # }, {
+      #   title: "病理查疾病",
+      #   # params: { search_by: :disease_type }
+      #   children: Diseases::DiseaseType.all.map do |disease_type|
+      #     {
+      #       title: disease_type.name,
+      #       # id: disease_type.id,
+      #       params: {
+      #         search_by: :disease_type,
+      #         disease_type: disease_type.id,
+      #         # type: 135
+      #       }
+      #     }
+      #   end
       }]
     }, {
       type: "hospitals/characteristics",
