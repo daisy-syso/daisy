@@ -89,7 +89,7 @@ configure :build do
   # activate :relative_assets
 
   # Or use a different image path
-  set :http_prefix, "/mobile/"
+  set :http_prefix, "/mobiles/"
 end
 
 after_build do |builder|
