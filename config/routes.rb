@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Mobile JSON API
   mount DaisyAPI => '/api'
 
-  get "/mobiles" => redirect("/mobiles/index.html")
+  get "/mobile" => redirect("/mobile/index.html")
 
   root to: "home#index"
 
