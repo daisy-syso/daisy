@@ -4,6 +4,9 @@
 #= require angular-touch/angular-touch
 #= require angular-carousel/dist/angular-carousel
 #= require angular-loading-bar/build/loading-bar
+#= require angular-bootstrap/ui-bootstrap-tpls
+#= require ionic/release/js/ionic.bundle
+
 
 angular.module 'DaisyApp', [
   "ngAnimate"
@@ -12,16 +15,23 @@ angular.module 'DaisyApp', [
   "angular-local-storage"
   "angular-carousel"
   "angular-loading-bar"
+  'ui.bootstrap'
 ]
 
 .config [
-  '$routeProvider', '$locationProvider'
-  ($routeProvider, $locationProvider) ->
+  '$routeProvider'
+  ($routeProvider) ->
     $routeProvider.when '/home',
       templateUrl: "templates/home.html"
       controller: [
         '$rootScope', '$scope', '$loader'
         ($rootScope, $scope, $loader) ->
+          $scope.slides = [
+              # {image: "images/adv/1581.jpg", text: "image1"},
+              # {image: "images/adv/1632.jpg", text: "image2"},
+              {image: "images/adv/1610.jpg", text: "image3"},
+              {image: "images/adv/1596.jpg", text: "image4"}
+            ]
           unless $rootScope.homeData
             $loader.get("/api/home.json")
               .success (data) ->

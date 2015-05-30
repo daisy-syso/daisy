@@ -26,14 +26,15 @@ angular.module('DaisyApp').directive 'filter', [
             scope.current.index = index
             scope.current.menu = menu
             if scope.current.menu.current && scope.current.menu.children
+              console.log("===============")
               i = scope.current.menu.current-1
               scope.toggleColumn(0, i, scope.current.menu.children[i])
 
         scope.toggleColumn = (i, j, column) ->
 
-          console.log(i)
-          console.log(j)
-          console.log(column)
+          # console.log(i)
+          # console.log(j)
+          # console.log(column)
           scope.current.menu.indexes.splice i
           scope.current.menu.indexes.push j
           scope.current.menu.menus.splice i + 1

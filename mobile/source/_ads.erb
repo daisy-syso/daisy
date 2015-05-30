@@ -1,37 +1,6 @@
-<div id="slides" class="slider-focus" >
-		<div class="bd">
-	    	<ul rn-carousel rn-carousel-index="3" rn-carousel-auto-slide="3" class="carousel5">
-	        <li>
-	        	<a class='pic' href='#'>
-	        	 <img src='images/adv/1632.jpg' />
-	          </a>
-	      	</li>
-	      	<li>
-	      		<a class='pic' href='#'>
-	      			<img src='images/adv/1581.jpg' />
-	      		</a>
-	      	</li>
-	      	<li>
-	      		<a class='pic' href='#'>
-	      			<img src='images/adv/1581.jpg' />
-	      		</a>
-	      	</li>
-	        <li>
-	        	<a class='pic' href='#'>
-	        		<img src='images/adv/1596.jpg' />
-	        	</a>
-	        </li>
-	        <li>
-	        	<a class='pic' href='#'>
-	        		<img src='images/adv/1596.jpg' />
-	        	</a>
-	        </li>
-	        <li>
-	        	<a class='pic' href='#'>
-	        		<img src='images/adv/1610.jpg' />
-	        	</a>
-	        </li>        
-	      </ul>
-		</div>
-	  
-	</div>
+<carousel interval="3000">
+  <slide ng-repeat="slide in slides" active="slide.active">
+    <img ng-src="{{slide.image}}" style="margin:auto;">
+  </slide>
+</carousel>
+

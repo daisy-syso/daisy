@@ -6,10 +6,6 @@ img[src="http://icon.cnzz.com/img/pic1.gif"] {
 	display: none
 }
 
-.popover {
-	top:102px;
-}
-
 .popover-left .popover:before {
 	left: 86px;
 }
@@ -227,7 +223,14 @@ ul.border li {
 	font: 14px/22px Microsoft Yahei;
 }
 
+// 首页滚动广告条
+.carousel > .carousel-inner > .item {
+	padding: 0
+}
 
+.carousel > .carousel-control {
+	display: none;
+}
 
 
 

@@ -52,11 +52,6 @@ end
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
-# Reload the browser automatically whenever files change
-configure :development do
-  # activate :livereload
-end
-
 # Methods defined in the helpers block are available in templates
 # helpers do
 #   def some_helper
@@ -73,6 +68,13 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
 activate :bower
+
+configure :development do
+  set :debug_assets, true
+
+  # Reload the browser automatically whenever files change
+  activate :livereload
+end
 
 # Build-specific configuration
 configure :build do
@@ -110,7 +112,7 @@ activate :deploy do |deploy|
   deploy.method   = :sftp
   deploy.host     = '101.69.181.251'
   deploy.port     = 22
-  deploy.path     = '/var/www/daisy/shared/public/mobile'
+  deploy.path     = '/var/www/daisy/shared/public/mobiles'
   # Optional Settings
   deploy.user     = 'ubuntu' # no default
   # deploy.password = 'secret' # no default

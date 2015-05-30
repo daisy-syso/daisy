@@ -1,6 +1,8 @@
 /*
+ *= require bootstrap/dist/css/bootstrap
+ *= require angular-bootstrap/ui-bootstrap-csp
+ #= require ionic/release/css/ionic
  *= require ratchet/dist/css/ratchet
- *= require ionicons/css/ionicons
  *= require angular-carousel/dist/angular-carousel
  *= require angular-loading-bar/build/loading-bar
  *= require theme
@@ -8,6 +10,9 @@
  *= require common
  *= require style
  *= require eve
+ *= require ionicons/css/ionicons
+
  *= require custom
  *= require adapter
 */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
