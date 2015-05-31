@@ -1,6 +1,6 @@
-<div class="backdrop ng-hide" ng-cloak ng-show="$root.popover.show" ng-click="$root.popover.close()" style="z-index: 9"></div>
-<div class="popover dropdown ng-hide" ng-class="'popover-'+current.menus.length" ng-show="$root.popover.show" ng-cloak>
-  <div class="dropdown-menu segmented-control">
+<div class="backdrop ng-hide" ng-cloak ng-show="$root.popover.show" ng-click="$root.popover.close()" style="z-index: 9;visibility: visible;opacity: 1;"></div>
+<div class="popover dropdown ng-hide" ng-class="'popover-'+current.menus.length" ng-show="$root.popover.show" ng-cloak >
+  <div class="dropdown-menu segmented-control" style="position: static;">
     <div class="control-item" ng-repeat="(i, menu) in current.menus">
       <div class="dropdown-scroll">
         <ul class="table-view media huge" ng-class="{last: $last}">

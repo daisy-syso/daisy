@@ -1,11 +1,53 @@
-<div class="list-top">
+<<!-- div class="list-top">
   <a class="list-title" ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  <!-- <span class="pull-right">更多>></span> -->
   <p class="pull-right">
   	<span style="color: #ffd700">★★★★★</span>   5分
   </p>
+</div> -->
+
+<%=# partial 'templates/lists/image' %>
+<%=# partial 'partial/body/drugstore' %>
+<%= partial 'templates/lists/list_header' %>
+<div class="row" style="padding-bottom:0">
+	<div class="col" style="padding-bottom:0">
+		<div class="list" style="padding-bottom:0">
+
+	    <a class="item item-thumbnail-left" href="#" style="padding-bottom:0">
+	      <img ng-src="{{data.image_url}}">
+	      <ul class="list-cont">
+    <li>距离：{{$root.getDistance(data) | number:2}}千米 
+    </li>
+    <li class="text-overflow">
+      <label>经营许可证：</label>
+      {{data.Business_License}}
+    </li>
+    <li>
+      <label>电话：</label>{{data.telephone}}
+    </li>
+    <li>
+      <label>网址：</label>{{data.url}}
+    </li>
+  </ul>
+	    </a>
+
+		</div>
+	</div>
 </div>
-<%= partial 'templates/lists/image' %>
-<%= partial 'partial/body/drugstore' %>
-<%#= partial 'templates/lists/body' %>
-<%#= partial 'templates/lists/rating' %>
+
+<div class="row" >
+	<div class="col" style="padding-bottom:0">
+		<p class="gray-line-1"></p>
+<ul class="font-14 list-bottom">
+  <li class="circle" ng-class="{dot: data.drugstore_sevice_list.yb}">
+    医保
+  </li>
+  <li class="circle" ng-class="{dot: data.drugstore_sevice_list.qt}">
+    24小时
+  </li>
+  <li class="circle" ng-class="{dot: data.drugstore_sevice_list.ps}">
+    配送
+  </li>
+        
+</ul>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 /*
+ #= require ionic/release/css/ionic
  *= require bootstrap/dist/css/bootstrap
  *= require angular-bootstrap/ui-bootstrap-csp
- #= require ionic/release/css/ionic
  *= require ratchet/dist/css/ratchet
  *= require angular-carousel/dist/angular-carousel
  *= require angular-loading-bar/build/loading-bar
@@ -14,5 +14,6 @@
 
  *= require custom
  *= require adapter
+ *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

@@ -1,10 +1,54 @@
-<div class="list-top">
+<!-- <div class="list-top">
   <a ng-href="{{link(data)}}" class="list-title">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  <!-- <span class="pull-right">更多>></span> -->
   <p class="pull-right">
     <span  style="color: #ffd700">★★★★★</span>   5分
   </p>
 </div>
-<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}" style="height:85px;width:auto;">
-<%= partial 'partial/body/doctor', locals: { subtitle: :position } %>
+<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}" style="height:85px;width:auto;"> -->
+<%#= partial 'partial/body/doctor', locals: { subtitle: :position } %>
 <%#= partial 'templates/lists/body', locals: { subtitle: :position } %>
+
+
+
+<%= partial 'templates/lists/list_header' %>
+<div class="row" style="padding-bottom:0">
+  <div class="col" style="padding-bottom:0">
+    <div class="list" style="padding-bottom:0">
+
+      <a class="item item-thumbnail-left" href="#" style="padding-bottom:0">
+        <img ng-src="{{data.image_url}}">
+        <ul class="list-cont">
+    <li>科室：{{data.hospital_room_name}}</li>
+    <li class="text-overflow">
+      擅长：{{data.desc}}
+    </li>
+    <li>
+      医院：{{data.hospital_name}}
+      <!-- <span class="pull-right price-color" style="color:#fff">挂号</span> -->
+    </li>
+    <li>
+      出诊：
+    </li>
+  </ul>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="row" >
+  <div class="col" style="padding-bottom:0">
+    <p class="gray-line-1"></p>
+    <ul class="font-14 list-bottom">
+  <li class="circle" ng-class="{dot: data.doctor_sevice_list.zxzx}">
+   在线咨询
+  </li>
+  <li class="circle" ng-class="{dot: data.doctor_sevice_list.yjzx}">
+   邮件咨询
+  </li>
+  <li class="circle" ng-class="{dot: data.doctor_sevice_list.sjgh}">
+    手机挂号/查询
+  </li>
+</ul>
+  </div>
+</div>

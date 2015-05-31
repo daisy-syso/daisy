@@ -27,11 +27,17 @@ angular.module 'DaisyApp', [
         '$rootScope', '$scope', '$loader'
         ($rootScope, $scope, $loader) ->
           $scope.slides = [
-              # {image: "images/adv/1581.jpg", text: "image1"},
-              # {image: "images/adv/1632.jpg", text: "image2"},
+              {image: "images/adv/1581.jpg", text: "image1"},
+              {image: "images/adv/1632.jpg", text: "image2"},
               {image: "images/adv/1610.jpg", text: "image3"},
               {image: "images/adv/1596.jpg", text: "image4"}
             ]
+          $scope.slide_infos = [
+            {image: "images/adv/img02.jpg", text: "image1"},
+            {image: "images/adv/img03.jpg", text: "image2"},
+            {image: "images/adv/img04.jpg", text: "image3"},
+            {image: "images/adv/img05.jpg", text: "image4"}
+          ]
           unless $rootScope.homeData
             $loader.get("/api/home.json")
               .success (data) ->

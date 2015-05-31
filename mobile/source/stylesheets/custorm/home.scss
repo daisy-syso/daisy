@@ -1,0 +1,38 @@
+.health-apps-logo {
+	background: url(/images/note.png) no-repeat;
+  height: 24px;
+  width: 24px;
+  float: left;
+  /*padding-left: 10px;*/
+}
+
+.more-apps {
+	background: url(/images/update.png) no-repeat;
+  height: 24px;
+  width: 24px;
+  float: left;
+  /*padding-right: 10px;*/
+}
+
+.bi {
+	background: url(/images/bi.png) no-repeat;
+  height: 20px;
+  width: 20px;
+  float: right;
+}
+
+.hote {
+	display: inline-block;
+	width: 27px;
+  height: 15px;
+  background: url(/images/hot.png) center center no-repeat;
+}
+
+/*健康咨询导航*/
+
+.health-info-list {
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 30px;
+}

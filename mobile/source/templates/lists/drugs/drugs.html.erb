@@ -1,11 +1,44 @@
-<div class="list-top">
-  <a class="list-title" ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  <!-- <span class="pull-right">更多>></span> -->
-  <p class="pull-right">
-  	<span style="color: #ffd700">★★★★★</span>   5分
-  </p>
+<%= partial 'templates/lists/list_header' %>
+
+<div class="row" style="padding-bottom:0">
+	<div class="col" style="padding-bottom:0">
+		<div class="list" style="padding-bottom:0">
+
+	    <a class="item item-thumbnail-left" href="#" style="padding-bottom:0">
+	      <img ng-src="{{data.image_url}}">
+	      <ul class="list-cont">
+			    <li class="text-overflow">功能主治：{{data.introduction}}</li>
+			    <li>
+			      规格：{{data.spec}}
+			    </li>
+			    <li>
+			      厂商：{{data.manufactory}}
+			    </li>
+			    <li>
+			      参考价格：<span class="price-color" style="border:none;background-color: #FFF;color: #DC143C">￥{{data.sale_price}}元</span>
+			    </li>
+
+			  </ul>
+	    </a>
+
+		</div>
+	</div>
 </div>
-<%= partial 'templates/lists/image' %>
-<%= partial 'partial/body/drug' %>
-<%#= partial 'templates/lists/body' %>
-<%#= partial 'templates/lists/price' %>
+
+<div class="row" >
+	<div class="col" style="padding-bottom:0">
+		<p class="gray-line-1"></p>
+		<ul class="font-14 list-bottom">
+		  <li class="circle" ng-class="{dot: data.drug_sevice_list.cfy}">
+		    处方药 
+		  </li>
+		  <li class="circle" ng-class="{dot: data.drug_sevice_list.xy}">
+		    西药
+		  </li>
+		  <li class="circle" ng-class="{dot: data.drug_sevice_list.ybdd}">
+		   医保定点
+		  </li>
+		        
+		</ul>
+	</div>
+</div>
