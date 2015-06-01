@@ -1,15 +1,15 @@
 <div style="">
 <header class="bar bar-nav" style="position:relative">
-  <h1 class="title">{{ title || data['title'] }}</h1>
 
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
   </a>
+  <h1 class="title">{{ title || data['title'] }}</h1>
   <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
     {{ $root.popover.title || data['subtitle'].title }}
     <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
   </a>
-  <a href="#/search" class="pull-right" style="margin-right:25px;"><img src="images/topserch.png"> </a>
+  <a href="#/search" class="pull-right" style="margin-right:25px;position:absolute;top:0;right:18px;"><img src="images/topserch.png"> </a>
 </header>
 <%#= partial "ads"%>
 <nav popover="data['subtitle']"></nav>
