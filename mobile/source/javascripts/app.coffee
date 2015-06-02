@@ -14,7 +14,6 @@ angular.module 'DaisyApp', [
   "ngTouch"
   "angular-local-storage"
   "angular-carousel"
-  "angular-loading-bar"
   'ui.bootstrap'
 ]
 
