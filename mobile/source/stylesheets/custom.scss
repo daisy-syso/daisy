@@ -77,7 +77,7 @@ p.font-14 {
 	white-space:nowrap;          /* 不换行 */
 	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
-	font-size: 15px;
+	font-size: 18px;
 }
 
 table.gridtable {
@@ -137,13 +137,13 @@ table.gridtable td a{
 	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
 	text-overflow:ellipsis;
 	font-family: SimHei;
-	font-size: 1.4em;
+	font-size: 1.6em;
 }
 
 .list-cont {
 	min-height: 85px;
-	// line-height: 1.4em;
-	font-size: 15px;
+	line-height: 1.4em;
+	font-size: 18px;
 	color: #767676;
 	font-family: SimSun;
 }
