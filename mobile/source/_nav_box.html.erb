@@ -1,0 +1,37 @@
+<ion-slide-box on-slide-changed="slideHasChanged($index)" pager-click="index" show-pager=true style="background:#ccc;">
+
+    <ion-slide>
+      <div class="tab-iteam" id="tab-iteam1" style="background-color: #FFF;margin-top:5px;padding:25px 0;">
+        <div class="tab-iteam-con" id="tabBox1-bd">
+          <div class="con active">
+            <ul>
+              <li ng-repeat="button in homeData.buttons">
+                <a ng-href="{{button.link}}">
+                  <img ng-src="{{button.icon}}" /> <br>
+                  {{button.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+
+    <ion-slide>
+      <div class="tab-iteam" id="tab-iteam1" style="background-color: #FFF;margin-top:5px;padding:25px 0;">
+        <div class="tab-iteam-con" id="tabBox1-bd">
+          <div class="con active">
+            <ul>
+              <li ng-repeat="button in homeData.buttons">
+                <a ng-href="{{button.link}}">
+                  <img ng-src="{{button.icon}}" /> <br>
+                  {{button.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    
+  </ion-slide-box>

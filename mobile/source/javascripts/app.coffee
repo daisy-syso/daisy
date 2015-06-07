@@ -15,6 +15,7 @@ angular.module 'DaisyApp', [
   "angular-local-storage"
   "angular-carousel"
   'ui.bootstrap'
+  'ionic'
 ]
 
 .config [
@@ -23,8 +24,8 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/home',
       templateUrl: "templates/home.html"
       controller: [
-        '$rootScope', '$scope', '$loader'
-        ($rootScope, $scope, $loader) ->
+        '$rootScope', '$scope', '$loader', '$ionicSlideBoxDelegate'
+        ($rootScope, $scope, $loader, $ionicSlideBoxDelegate) ->
           $scope.slides = [
               {image: "images/adv/1581.jpg", text: "image1"},
               {image: "images/adv/1632.jpg", text: "image2"},

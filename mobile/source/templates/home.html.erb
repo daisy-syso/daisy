@@ -6,6 +6,10 @@
 	font-weight: 300;
 }
 
+.slider-pager {
+  bottom: 15px;
+}
+
 </style>
 <!-- <img id="mySpinner" src="/images/loading.gif" style="position:fixed;z-index:9999;top:50%;left:50%;margin-left:-40px;margin-top:-49px;" ng-show="loading"> -->
 <!-- <div id="nav-over"></div> -->
@@ -96,8 +100,9 @@
   
 	<!--图片滚动  -->
 	<%=partial "ads"%>
+  <%= partial "nav_box" %>
   	
-  	<div class="tab-iteam" id="tab-iteam1" style="background-color: #FFF">
+  	<!-- <div class="tab-iteam" id="tab-iteam1" style="background-color: #FFF">
   	  <div class="tab-iteam-con" id="tabBox1-bd">
   			<div class="con active">
   	  		<ul>
@@ -110,7 +115,7 @@
   	      </ul>
   	    </div>
   		</div>
-  	</div>
+  	</div> -->
 
     <div class="card" style="margin-bottom:0;">
       <div class="item item-text-wrap" style="padding:0">
