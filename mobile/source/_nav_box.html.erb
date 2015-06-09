@@ -5,7 +5,7 @@
         <div class="tab-iteam-con" id="tabBox1-bd">
           <div class="con active">
             <ul>
-              <li ng-repeat="button in homeData.buttons">
+              <li ng-repeat="button in homeData.buttons.slice(0,8)">
                 <a ng-href="{{button.link}}">
                   <img ng-src="{{button.icon}}" /> <br>
                   {{button.title}}
@@ -22,7 +22,7 @@
         <div class="tab-iteam-con" id="tabBox1-bd">
           <div class="con active">
             <ul>
-              <li ng-repeat="button in homeData.buttons">
+              <li ng-repeat="button in homeData.buttons.slice(8,-1)">
                 <a ng-href="{{button.link}}">
                   <img ng-src="{{button.icon}}" /> <br>
                   {{button.title}}

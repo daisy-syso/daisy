@@ -296,7 +296,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         template: form_radio_array_filters(%w(不限 热门医院 有网址),
           "当前主题精选"),
         alphabet: form_alphabet_filters
-      }
+      },
+      template: "hospitals/hospitals_t1"
   end
 
 
