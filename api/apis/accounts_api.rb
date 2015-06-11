@@ -1,7 +1,7 @@
 class AccountsAPI < Grape::API
 
   params do
-    requires :account do
+    requires :account, type: Hash do
       optional :email, type: String
       optional :username, type: String
       optional :password, type: String
@@ -18,7 +18,7 @@ class AccountsAPI < Grape::API
   end
 
   params do
-    requires :account do
+    requires :account, type: Hash do
       optional :email, type: String
       optional :username, type: String
       optional :password, type: String
@@ -35,7 +35,7 @@ class AccountsAPI < Grape::API
   end
 
   params do
-    requires :account do
+    requires :account, type: Hash do
       optional :uid, type: String
       optional :access_token, type: String
     end
