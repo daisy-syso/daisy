@@ -245,4 +245,18 @@ ul.border li {
 	min-height:85px;
 }
 
+.list .btn {
+	padding: 0 3px;
+}
+
+.item-thumbnail-left > a:first-child > img:first-child {
+	position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 80px;
+  max-height: 80px;
+  width: 100%;
+  height: 100%;
+}
+
 
