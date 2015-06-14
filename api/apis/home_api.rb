@@ -43,33 +43,37 @@ class HomeAPI < Grape::API
         # link: "#/list/price_search/strategy_list",
         icon: "images/icons/1-8.png"
       }, {
-        title: "热门专科",
+        title: "特色科室",
         link: "#/list/hospitals/specialists",
-        icon: "images/icons/1-9.png"
+        icon: "images/icons/2-1.png"
       }, {
-        title: "热门诊所",
+        title: "最新优惠",
         link: "#/home",
-        icon: "images/icons/1-10.png"
+        icon: "images/icons/2-2.png"
       }, {
         title: "全国体检",
         link: "#/list/examinations/examinations",
         icon: "images/icons/2-3.png"
       }, {
-        title: "养老服务",
+        title: "医保查询",
         link: "#/list/eldercares/nursing_rooms",
+        icon: "images/icons/2-4.png"
+      }, {
+        title: "症状查询",
+        link: "#/list/maternals/confinement_centers",
         icon: "images/icons/2-5.png"
       }, {
-        title: "月子中心",
-        link: "#/list/maternals/confinement_centers",
-        icon: "images/icons/2-10.png"
-      }, {
-        title: "母婴会馆",
+        title: "母婴亲子",
         link: "#/list/maternals/maternal_halls",
-        icon: "images/icons/2-11.png"
+        icon: "images/icons/2-6.png"
       }, {
-        title: "返利优惠",
+        title: "诊疗攻略",
+        link: "#/list/maternals/maternal_halls",
+        icon: "images/icons/2-7.png"
+      }, {
+        title: "健康保险",
         link: "#/list/coupons/drugs",
-        icon: "images/icons/1-11.png"
+        icon: "images/icons/2-8.png"
       # }
       # }, {
       #   title: "热门专科",
