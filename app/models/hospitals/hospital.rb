@@ -1,4 +1,7 @@
 class Hospitals::Hospital < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   # default_scope -> { where.not(url: [nil, ""]) }
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"

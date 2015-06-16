@@ -1,4 +1,7 @@
 class Drugs::Drug < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   # belongs_to :drug_type
   # has_and_belongs_to_many :drug_types, class_name: "Drugs::DrugType", join_table: 'diseases_drugs', association_foreign_key: "disease_id"
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"

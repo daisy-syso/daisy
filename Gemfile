@@ -1,4 +1,4 @@
-source 'https://ruby.taobao.org'
+source 'http://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
@@ -68,6 +68,11 @@ gem "squeel"
 gem "thinking-sphinx"
 
 gem 'settingslogic'
+
+gem 'rails_config'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 group :development do
   # Use Capistrano for deployment

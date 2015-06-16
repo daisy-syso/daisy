@@ -1,4 +1,7 @@
 class Hospitals::Doctor < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   belongs_to :hospital
   belongs_to :hospital_room
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
