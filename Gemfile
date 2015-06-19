@@ -69,6 +69,11 @@ gem "thinking-sphinx"
 
 gem 'settingslogic'
 
+gem 'rails_config'
+
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'

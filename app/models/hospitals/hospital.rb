@@ -1,4 +1,16 @@
 class Hospitals::Hospital < ActiveRecord::Base
+
+  settings index: {number_of_shards: 5} do
+    mappings do
+      indexes :name, boost:  100
+      indexes :name_initials, boost: 50
+    end
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: ['name','name_initials'])
+  end
+  
   # default_scope -> { where.not(url: [nil, ""]) }
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
