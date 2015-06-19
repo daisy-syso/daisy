@@ -1,4 +1,6 @@
 class Diseases::Disease < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   settings index: {number_of_shards: 5} do
     mappings do
@@ -64,11 +66,19 @@ class Diseases::Disease < ActiveRecord::Base
 
   scope :query, -> (query) {
     if query.present? 
-      where("name_initials LIKE ? 
-        or name LIKE ? ",
-        "%#{query}%", 
-        "%#{query}%"
-      ) 
+      search(
+        {
+          query: {
+            bool: {
+              should: [
+                match: {
+                  name: query
+                }
+              ]
+            }
+          }
+        }
+      )
     else
       all
     end

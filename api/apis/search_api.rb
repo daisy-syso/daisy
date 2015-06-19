@@ -41,9 +41,8 @@ class SearchAPI < ApplicationAPI
   namespace :search_index do
     get do
       has_scope :query
-      # data = apply_scopes! Hospitals::Hospital
       data = apply_scopes! search_resource(params[:label])
-      data = data.page(params[:per] || 1)
+      data = data.page(params[:per] || 1).records
       present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
     end
   end

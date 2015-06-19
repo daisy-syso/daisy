@@ -1,4 +1,6 @@
 class Hospitals::Hospital < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   settings index: {number_of_shards: 5} do
     mappings do
@@ -106,7 +108,20 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :query, -> (query) {
     if query.present? 
-      where("name LIKE :query or name_initials LIKE :query or address LIKE :query ", query: "%#{query}%")
+      # where("name LIKE :query or name_initials LIKE :query or address LIKE :query ", query: "%#{query}%")
+      search(
+        {
+          query: {
+            bool: {
+              should: [
+                match: {
+                  name: query
+                }
+              ]
+            }
+          }
+        }
+      )
     else
       all
     end
