@@ -71,6 +71,8 @@ gem 'settingslogic'
 
 gem 'rails_config'
 
+gem 'unicorn'
+
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
