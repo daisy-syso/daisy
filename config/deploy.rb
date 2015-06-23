@@ -29,7 +29,7 @@ set :linked_files, %w{config/database.yml config/thinking_sphinx.yml}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle 
-  public/system public/mobile db/sphinx}
+  public/system public/mobiles db/sphinx}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -68,6 +68,6 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :update_mobile
+  # after :publishing, :update_mobile
 
 end
