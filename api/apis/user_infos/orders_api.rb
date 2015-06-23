@@ -8,7 +8,7 @@ class UserInfos::OrdersAPI < Grape::API
     end
 
     params do
-      requires :order do
+      requires :order, type: Hash do
         optional :quantity, type: Integer
         optional :receive_name, type: String
         optional :receive_address, type: String

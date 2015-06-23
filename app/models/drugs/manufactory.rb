@@ -1,9 +1,45 @@
 class Drugs::Manufactory < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings index: {number_of_shards: 5} do
+    mappings do
+      indexes :name, boost:  100
+      indexes :name_initials, boost: 50
+    end
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: ['name','name_initials'])
+  end
+  
   has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
 
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
   }
+
+  scope :query, -> (query) {
+    if query.present? 
+      # where("name LIKE :query or name_initials LIKE :query or address LIKE :query ", query: "%#{query}%")
+      search(
+        {
+          query: {
+            bool: {
+              should: [
+                match: {
+                  name: query
+                }
+              ]
+            }
+          }
+        }
+      )
+    else
+      all
+    end
+  }
+  
   class << self
     include Filterable
 

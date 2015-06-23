@@ -1,0 +1,3 @@
+elasticsearch:
+  host: http://127.0.0.1:9200
+  log: 'log/elasticsearch.log'

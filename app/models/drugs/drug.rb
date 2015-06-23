@@ -1,4 +1,18 @@
 class Drugs::Drug < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings index: {number_of_shards: 5} do
+    mappings do
+      indexes :name, boost:  100
+      indexes :name_initials, boost: 50
+    end
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: ['name','name_initials'])
+  end
+  
   # belongs_to :drug_type
   # has_and_belongs_to_many :drug_types, class_name: "Drugs::DrugType", join_table: 'diseases_drugs', association_foreign_key: "disease_id"
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
@@ -31,15 +45,19 @@ class Drugs::Drug < ActiveRecord::Base
 
   scope :query, -> (query) {
     if query.present? 
-      where("name_initials LIKE ? 
-        or name LIKE ? 
-        or maufatory_initials LIKE ? 
-        or maufatory LIKE ? ",
-        "%#{query}%" ,
-        "%#{query}%", 
-        "%#{query}%",
-        "%#{query}%"
-      )  
+      search(
+        {
+          query: {
+            bool: {
+              should: [
+                match: {
+                  name: query
+                }
+              ]
+            }
+          }
+        }
+      )
     else
       all
     end
