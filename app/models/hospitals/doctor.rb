@@ -47,9 +47,16 @@ class Hospitals::Doctor < ActiveRecord::Base
         {
           query: {
             bool: {
-              should: [
-                match: {
-                  name: query
+              should:[
+                {
+                  match_phrase_prefix: {
+                    name_initials: query
+                  }
+                },
+                {
+                  match: {
+                    name: query
+                  }
                 }
               ]
             }
