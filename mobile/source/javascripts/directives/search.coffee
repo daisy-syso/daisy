@@ -15,7 +15,7 @@ angular.module('DaisyApp').directive 'search', [
         #     if popover.keep && $rootScope[popover.keep]
         #       $rootScope.popover.title = $rootScope[popover.keep].title   
         scope.link = (data) ->
-          data.url || "#/detail/#{data.template}/#{data.id}" unless data.nolink
+          "#/detail/#{data.template}/#{data.id}" unless data.nolink
         
         scope.enOfzh = 
           hospital: "医院"
