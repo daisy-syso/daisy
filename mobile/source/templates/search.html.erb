@@ -1,22 +1,17 @@
-<header class="bar bar-nav" style="height: 98px;overflow: visible;">
-  <a class="react action pull-left" ng-click="back()" style="padding-top:50px;">
+<header class="bar bar-nav" style="overflow: visible;">
+  <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left" style="font-size: 1.6em;">
   </a>
-  <div class="input-wrapper pull-right" style="position: static;width:92%">
-    <div search>
-    
-    </div>
-  </div>
-  
-  
+  <h1 id="search-title">搜索</h1>
 </header>
 
-<div class="content" style="padding-top:100px;">
+<div id="search" class="content">
+  <div class="seach-area" search></div>
 
   <div keyword keyword-url="/api/keywords.json"></div>
 
   <div history></div>
-  
+
   <%#= partial 'related' %>
 
 </div>

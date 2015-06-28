@@ -1,6 +1,6 @@
-<div class="card card-mini">
-  <h1>热门搜索：</h1>
-  <ul class="keyword-view">
-    <li ng-repeat="data in keywordData"><a ng-href="#/search/{{data['name']}}">{{data['name']}}</a></li>
-  </ul>
+<div id="HotSearchKey">
+  <a href="#"><em>热门搜索</em></a>
+  <a ng-href="#/search/{{data['name']}}" ng-repeat="data in keywordData">
+    {{data['name']}}
+  </a>
 </div>

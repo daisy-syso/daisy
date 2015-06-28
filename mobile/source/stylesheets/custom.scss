@@ -187,27 +187,106 @@ ul.border li {
 }
 
 .more-box {
-	border: 1px solid #000;
-	font-size: 16px;
+  border: 1px solid #000;
+  font-size: 16px;
 }
+
 // 搜索页面
-
-.search-label {
-	display:inline-block;
-	border: 1px solid #000;
-	background:#fff;
-	margin:12px 0 0;
-	font-size: 1.6em;
-	color:#000;
+/*热门搜索关键词*/
+#HotSearchKey{
+  width:100%;
+  margin:0 auto 3%;
+  border-left:1px solid #eaeaea;
+  border-top:1px solid #eaeaea;
+  overflow:hidden;
+  font-size:1.4em;
+}
+#HotSearchKey strong{
+  float:left;
+  width:25%;
+  border-bottom:1px solid #eaeaea;
+  border-right:1px solid #eaeaea;
+  height:54px;
+  line-height:54px;
+  text-align:center;
+  font-weight:normal;
+  position:relative;
+  margin-top:-1px;
+  color:#ffb301;
+  margin-left:-1px;
+}
+#HotSearchKey a{
+  float:left;
+  width:25%;
+  padding-top:4%;
+  padding-bottom:4%;
+  text-align:center;
+  position:relative;
+  border-bottom:1px solid #eaeaea;
+  border-right:1px solid #eaeaea;
+  color:#b8b8b8;
+  margin-left:-1px;
+  margin-top:-1px;
+}
+#HotSearchKey a:active{
+  background:#ffb400;
+  color:#fff;
+}
+#HotSearchKey em{
+  color:#ffb400;
 }
 
-.search-label li {
-	padding:5px;
-	border-right: 1px solid #000; 
+// /* 搜索框 */
+#search{
+  width: 90%;
+  padding: 62px 5% 0 5%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  .search-input{
+    float: left;
+    width: 53%;
+    border: 1px solid #eaeaea;
+    border-right: none;
+    line-height: 51px;
+    height: 55px;
+    background: url(../images/btn_search.gif) no-repeat left center;
+    font-size: 2.1em;
+    color: #b8b8b8;
+    padding-left:18%;
+  }
+  .btn_send {
+    float: left;
+    width: 20%;
+    background-color: #ffb400;
+    border: 0;
+    height: 53px;
+    line-height: 53px;
+    font-size: 22px;
+    font-family: '微软雅黑';
+    color: #fff;
+  }
+  .seach-area{
+    .search-label{
+      width: 100%;
+    }
+    .search-label li{
+     color: #333;
+     border-bottom: none;
+     width: 13%;
+     display: inline-block;
+     // float: left;
+     text-align: center;
+     font-size: 1.4em;
+     padding: 2% 3px;
+    }
+  }
 }
 
 .search-label li.active {
-	background-color: #ccc;
+  background-color: #eaeaea;
+  color: #333;
+  border: 1px solid #ececec;
+  border-bottom: none;
 }
 
 .resault-list {
