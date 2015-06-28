@@ -143,6 +143,8 @@ angular.module 'DaisyApp', [
       templateUrl: (routeParams) ->
         if routeParams.detail
           "templates/details/display.html"
+        else if routeParams.type == "hospitals"
+          "templates/details/#{routeParams.type}/#{routeParams.type}.html"
         else
           "templates/details/#{routeParams.type}.html"
       controller: detailCtrl
