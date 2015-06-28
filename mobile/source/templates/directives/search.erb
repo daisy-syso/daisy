@@ -11,17 +11,17 @@
   </li>
 </ul>
 <!-- <input class="search" type="text" placeholder="请输入您要搜索的内容" ng-model="query" ng-enter="search(query)" auto-focus style="margin:0px auto;"> -->
-<input class="search-input" type="text" ng-model="query" auto-focus>
-<button class="btn_send" type="submit">搜 索</button>
+<div class="search-content">
+  <input class="search-input" type="text" ng-model="query" auto-focus>
+  <button class="btn_send" type="submit">搜 索</button>
 
-<ul style="max-height: 400px;background-color: #ccc;overflow-y: scroll;" class="resault-list">
-	<li ng-repeat="resault in resault_list.data" class="">
-		<a ng-href="{{link(resault)}}">{{resault.name}}  {{resault.hospital_name}}</a>
-	</li>
-	<!-- <li>北京医院</li>
-	<li>上海医院</li>
-	<li>杨二庄医院</li>
-	<li>武安医院</li> -->
-
-
-</ul>
+  <ul class="resault-list">
+  	<li ng-repeat="resault in resault_list.data" class="">
+  		<a ng-href="{{link(resault)}}">{{resault.name}}  {{resault.hospital_name}}</a>
+  	</li>
+  	<!-- <li>北京医院</li>
+  	<li>上海医院</li>
+  	<li>杨二庄医院</li>
+  	<li>武安医院</li> -->
+  </ul>
+</div>
