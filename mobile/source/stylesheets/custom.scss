@@ -253,8 +253,10 @@ ul.border li {
   margin: 0 auto;
   margin-bottom: 5%;
   .search-input{
+    padding: 0 0 10px 0;
+    margin-left: -1px;
     float: left;
-    width: 53%;
+    width: 62%;
     border: 1px solid #eaeaea;
     border-right: none;
     line-height: 51px;
@@ -269,11 +271,12 @@ ul.border li {
     width: 20%;
     background-color: #ffb400;
     border: 0;
-    height: 53px;
+    height: 55px;
     line-height: 53px;
     font-size: 22px;
     font-family: '微软雅黑';
     color: #fff;
+    padding: 6px 0;
   }
   .seach-area{
     height: 20%;
@@ -305,17 +308,17 @@ ul.border li {
 
 .resault-list {
   position: absolute;
-  top: 56px;
-  width: 72%;
+  top: 67px;
+  width: 80%;
   max-height: 400px;
-  background-color: #ccc;
+  background-color: #F0EFEF;
   overflow-y: scroll;
   z-index: 999;
 }
 
 .resault-list li {
 	padding-left: 10px;
-	line-height: 1.8em;
+	line-height: 3em;
 	border-bottom: 1px solid #efe0ce
 }
 .resault-list li a{
