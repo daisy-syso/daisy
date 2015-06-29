@@ -1,4 +1,7 @@
 class Drugs::DrugsAPI < ApplicationAPI
+  # require 'grape/rabl'
+  format :json
+  # formatter :json, Grape::Formatter::Rabl
 
   namespace :drugs do 
     index! Drugs::Drug,
@@ -22,6 +25,38 @@ class Drugs::DrugsAPI < ApplicationAPI
         alphabet: form_alphabet_filters
       }
 
-    show! Drugs::Drug
+    # show! Drugs::Drug
+
+    # params do 
+    #   requires :id, type: Integer, desc: 'ID'
+    # end
+    # get '/:id' do
+    #   @drug = Drugs::Drug.find(2728)
+    #   # @drug_detaills = Drugs::DrugDetail.where(parent_id: @drug.id)
+    # end
+
+    # 第一层
+    
+
+    # 第二层
+    # params do
+    #   requires :drug_name, type: String, desc: 'Name'
+    # end
+    # get '/drug_on_manufactory' do
+    #   @drugs = Drugs::Drug.where(name: params[:drug_name])
+    #   present :drug, @drug, with: Drugs::ManufactoryEntity
+    # end
+
+    # 第三层
+    params do
+      requires :id, type: Integer, desc: 'ID'
+    end
+    get '/:id' do
+      @drug = Drugs::Drug.find(params[:id])
+      present :drug, @drug, with: Drugs::DrugEntity
+      @drug_detaills = Drugs::DrugDetail.where(parent_id: @drug.id)
+      present :drug_details, @drug_detaills, with: Drugs::DrugdetailEntity
+    end
+
   end
 end
