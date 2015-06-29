@@ -309,11 +309,12 @@ ul.border li {
 .resault-list {
   position: absolute;
   top: 67px;
-  width: 80%;
+  width: 100%;
   max-height: 400px;
-  background-color: #F0EFEF;
+  background-color: #FFFFFF;
   overflow-y: scroll;
   z-index: 999;
+  font-size: large;
 }
 
 .resault-list li {
@@ -323,7 +324,7 @@ ul.border li {
 }
 .resault-list li a{
 	color: #999;
-	font: 14px/22px Microsoft Yahei;
+	font: 20px/22px Microsoft Yahei;
 }
 
 // 首页滚动广告条
