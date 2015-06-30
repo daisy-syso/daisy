@@ -34,9 +34,12 @@ angular.module('DaisyApp').directive 'list', [
 
         scope.link = (data) ->
           data.url || "#/detail/#{data.template}/#{data.id}" unless data.nolink
-          
+
         scope.templateUrl = (data) ->
-          "templates/lists/#{data.template}.html"
+          if $routeParams.all_manufactory
+            "templates/lists/drugs/uniq_drugs.html"
+          else
+            "templates/lists/#{data.template}.html"
 
       controller: [
         '$scope', '$loader', '$alert'

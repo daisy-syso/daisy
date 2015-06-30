@@ -4,7 +4,7 @@ class Drugs::Drug < ActiveRecord::Base
 
   settings index: {number_of_shards: 5} do
     mappings do
-      indexes :name, boost:  100
+      indexes :name, type: 'string', index: :not_analyzed, analyzer: :keyword
       indexes :name_initials, boost: 50
     end
   end
@@ -56,7 +56,7 @@ class Drugs::Drug < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
+                  match_phrase_prefix: {
                     name: query
                   }
                 }

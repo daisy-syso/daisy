@@ -4,26 +4,26 @@ class Drugs::DrugsAPI < ApplicationAPI
   # formatter :json, Grape::Formatter::Rabl
 
   namespace :drugs do 
-    index! Drugs::Drug,
-      title: "药品大全",
-      filters: { 
-        city: fake_city_filters,
-        type: type_filters("药品大全", :drug),
-        search_by: search_by_filters({
-          default: :disease,
-          disease: { title: proc { Drugs::DrugType.where(id: params[:disease]).first.try(:name) || "疾病"}, class: Drugs::DrugType },
-          hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
-          alphabet: alphabet_filters,
-          manufactory: {title: "品牌", class: Drugs::Manufactory }
-        }),
-        order_by: order_by_filters(Drugs::Drug),
-        form: form_filters,
-        query: form_query_filters, 
-        price: form_price_filters,
-        manufactory_query: form_radio_array_filters(
-          %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
-        alphabet: form_alphabet_filters
-      }
+    # index! Drugs::Drug,
+    #   title: "药品大全",
+    #   filters: { 
+    #     city: fake_city_filters,
+    #     type: type_filters("药品大全", :drug),
+    #     search_by: search_by_filters({
+    #       default: :disease,
+    #       disease: { title: proc { Drugs::DrugType.where(id: params[:disease]).first.try(:name) || "疾病"}, class: Drugs::DrugType },
+    #       hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
+    #       alphabet: alphabet_filters,
+    #       manufactory: {title: "品牌", class: Drugs::Manufactory }
+    #     }),
+    #     order_by: order_by_filters(Drugs::Drug),
+    #     form: form_filters,
+    #     query: form_query_filters, 
+    #     price: form_price_filters,
+    #     manufactory_query: form_radio_array_filters(
+    #       %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
+    #     alphabet: form_alphabet_filters
+    #   }
 
     # show! Drugs::Drug
 
@@ -41,7 +41,36 @@ class Drugs::DrugsAPI < ApplicationAPI
       optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/' do
-      @drug = Drugs::Drug.all.page(page).per(per_page)
+      drugs_counts = Drugs::Drug.search({query:{match_all:{}},facets: {drugs_count: {terms: {field: "name", size: 10000000}}}}).response.facets['drugs_count']['terms']
+
+      count = []
+      drugs_counts.each do |drug|
+        tmp = {
+          name: drug['term'],
+          count: drug['count']
+        }
+        count << tmp
+      end
+
+      page = params[:page] || 0
+      per_page = params[:per_page] || 15
+
+      offset = page * per_page
+      
+      result_c = count[offset, per_page]
+
+      dds = []
+      result_c.each do |result|
+        dd = Drugs::Drug.where(name: result[:name]).first
+        tmp = {
+          name: dd.name,
+          image_url: dd.image_url,
+          count: result[:count]
+        }
+        dds << tmp
+      end
+
+      present :drugs, dds
     end
     
     # 第二层
@@ -50,18 +79,67 @@ class Drugs::DrugsAPI < ApplicationAPI
       optional :page, type: Integer, desc: 'page'
       optional :per_page, type: Integer, desc: 'per_page'
     end
-    get '/:id/manufactory' do
-      @drugs = Drugs::Drug.where(name: params[:drug_name]).page(page).per(per_page)
-      present :drug, @drugs, with: Drugs::ManufactoryEntity
+    get '/:drug_name/store' do
+      @drugs = Drugs::Drug.where(name: params[:drug_name]).page(params[:page]).per(params[:per_page])
+
+      drug_stores = []
+
+      @drugs.each do |drug|
+
+        dmfs = Drugs::DrugManufactoryStore.where(drug_id: drug.id)
+        drugstore_ids = dmfs.map(&:drugstore_id)
+
+        prices = dmfs.map(&:price)
+
+        ds = Drugs::Drugstore.where(id: drugstore_ids)
+
+        stores = []
+        ds.each_with_index do |s, index|
+          tmp_store = {
+            id: s.id,
+            name: s.name,
+            address: s.address,
+            telephone: s.telephone,
+            image_url: s.image_url,
+            lng: s.lng,
+            lat: s.lat,
+            star: s.star,
+            reviews_count: s.reviews_count,
+            price: prices[index]
+          }
+          stores << tmp_store
+        end
+
+        tmp = {
+          id: drug.id,
+          name: drug.name,
+          image_url: drug.image_url,
+          manufactory: drug.manufactory,
+          spec: drug.spec,
+          store: stores
+        }
+
+        drug_stores << tmp
+
+      end
+
+      present :drugs, drug_stores
     end
 
     # 第三层
     params do
       requires :id, type: Integer, desc: 'ID'
+      requires :store_id, type: Integer, desc: 'ID'
     end
-    get '/:id' do
+    get '/:id/:store_id' do
       @drug = Drugs::Drug.find(params[:id])
+
+      dmfs = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, drugstore_id: params[:store_id]).first
+
+      @drug.price = dmfs.price
+      @drug.save
       present :drug, @drug, with: Drugs::DrugEntity
+
       @drug_detaills = Drugs::DrugDetail.where(parent_id: @drug.id)
       present :drug_details, @drug_detaills, with: Drugs::DrugdetailEntity
     end
