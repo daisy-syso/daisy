@@ -36,16 +36,24 @@ class Drugs::DrugsAPI < ApplicationAPI
     # end
 
     # 第一层
+    params do
+      optional :page, type: Integer, desc: 'page'
+      optional :per_page, type: Integer, desc: 'per_page'
+    end
+    get '/' do
+      @drug = Drugs::Drug.all.page(page).per(per_page)
+    end
     
-
     # 第二层
-    # params do
-    #   requires :drug_name, type: String, desc: 'Name'
-    # end
-    # get '/drug_on_manufactory' do
-    #   @drugs = Drugs::Drug.where(name: params[:drug_name])
-    #   present :drug, @drug, with: Drugs::ManufactoryEntity
-    # end
+    params do
+      requires :drug_name, type: String, desc: 'Name'
+      optional :page, type: Integer, desc: 'page'
+      optional :per_page, type: Integer, desc: 'per_page'
+    end
+    get '/:id/manufactory' do
+      @drugs = Drugs::Drug.where(name: params[:drug_name]).page(page).per(per_page)
+      present :drug, @drugs, with: Drugs::ManufactoryEntity
+    end
 
     # 第三层
     params do
