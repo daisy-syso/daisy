@@ -125,10 +125,13 @@ class Drugs::DrugsAPI < ApplicationAPI
     params do
       requires :id, type: Integer, desc: 'ID'
       requires :manufactory_id, type: Integer, desc: 'ID'
+      optional :page, type: Integer, desc: 'page'
+      optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/:id/:manufactory_id' do
       @drug = Drugs::Drug.find(params[:id])
-      dmfss = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, manufactory_id: params[:manufactory_id])
+      
+      dmfss = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, manufactory_id: params[:manufactory_id]).page(params[:page]).per(params[:per_page])
 
       dmfss_prices = dmfss.map(&:price)
       stores = []
