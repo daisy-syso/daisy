@@ -32,7 +32,7 @@ class Drugs::DrugsAPI < ApplicationAPI
     # end
     # get '/:id' do
     #   @drug = Drugs::Drug.find(2728)
-    #   # @drug_detaills = Drugs::DrugDetail.where(parent_id: @drug.id)
+    #   # @drug_detaills = Drugs::DrugDet3ail.where(parent_id: @drug.id)
     # end
 
     # 第一层
@@ -79,22 +79,20 @@ class Drugs::DrugsAPI < ApplicationAPI
       optional :page, type: Integer, desc: 'page'
       optional :per_page, type: Integer, desc: 'per_page'
     end
-    get '/:drug_name/store' do
+    get '/:drug_name/manufactories' do
       @drugs = Drugs::Drug.where(name: params[:drug_name]).page(params[:page]).per(params[:per_page])
 
-      drug_stores = []
+      drug_manufactory = []
 
       @drugs.each do |drug|
 
         dmfs = Drugs::DrugManufactoryStore.where(drug_id: drug.id)
-        drugstore_ids = dmfs.map(&:drugstore_id)
+        manufactory_ids = dmfs.map(&:manufactory_id)
 
-        prices = dmfs.map(&:price)
+        dm = Drugs::Manufactory.where(id: manufactory_ids)
 
-        ds = Drugs::Drugstore.where(id: drugstore_ids)
-
-        stores = []
-        ds.each_with_index do |s, index|
+        manufactories = []
+        dm.each_with_index do |s, index|
           tmp_store = {
             id: s.id,
             name: s.name,
@@ -104,10 +102,9 @@ class Drugs::DrugsAPI < ApplicationAPI
             lng: s.lng,
             lat: s.lat,
             star: s.star,
-            reviews_count: s.reviews_count,
-            price: prices[index]
+            reviews_count: s.reviews_count
           }
-          stores << tmp_store
+          manufactories << tmp_store
         end
 
         tmp = {
@@ -116,32 +113,48 @@ class Drugs::DrugsAPI < ApplicationAPI
           image_url: drug.image_url,
           manufactory: drug.manufactory,
           spec: drug.spec,
-          store: stores
+          manufactories: manufactories
         }
 
-        drug_stores << tmp
-
+        drug_manufactory << tmp
       end
 
-      present :drugs, drug_stores
+      present :drugs, drug_manufactory
     end
 
     # 第三层
     params do
       requires :id, type: Integer, desc: 'ID'
-      requires :store_id, type: Integer, desc: 'ID'
+      requires :manufactoy_id, type: Integer, desc: 'ID'
     end
-    get '/:id/:store_id' do
+    get '/:id/:manufactoy_id' do
       @drug = Drugs::Drug.find(params[:id])
+      dmfss = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, manufactoy_id: params[:manufactoy_id])
 
-      dmfs = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, drugstore_id: params[:store_id]).first
+      dmfss_prices = dmfss.map(&:price)
+      stores = []
+      dmfss.each_with_index do |dmfs, index|
+        store = Drugs::Drugstore.find(dmfs.drugstore_id)
+        tmp = {
+          name: store.name,
+          address: store.address,
+          telephone: store.telephone,
+          image_url: store.image_url,
+          star: store.star,
+          reviews_count: store.reviews_count,
+          price: dmfss_prices[index]
+        }
+        stores << tmp
 
-      @drug.price = dmfs.price
-      @drug.save
+      end
+
       present :drug, @drug, with: Drugs::DrugEntity
 
       @drug_detaills = Drugs::DrugDetail.where(parent_id: @drug.id)
+
       present :drug_details, @drug_detaills, with: Drugs::DrugdetailEntity
+
+      present :stores, stores
     end
 
   end
