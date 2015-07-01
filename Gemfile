@@ -31,6 +31,8 @@ gem 'omniauth-weibo-oauth2'
 # Alipay
 gem 'alipay'
 
+gem 'ruby-pinyin'
+
 # Settings
 gem "rails-settings-cached"
 

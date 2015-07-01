@@ -43,6 +43,8 @@ class Drugs::DrugsAPI < ApplicationAPI
     get '/' do
       drugs_counts = Drugs::Drug.search({query:{match_all:{}},facets: {drugs_count: {terms: {field: "name", size: 10000000}}}}).response.facets['drugs_count']['terms']
 
+      drugs_counts.sort_by!{|u| u.term}
+
       count = []
       drugs_counts.each do |drug|
         tmp = {
@@ -53,7 +55,7 @@ class Drugs::DrugsAPI < ApplicationAPI
       end
 
       page = params[:page] || 0
-      per_page = params[:per_page] || 15
+      per_page = params[:per_page] || 25
 
       offset = page * per_page
       
@@ -85,7 +87,7 @@ class Drugs::DrugsAPI < ApplicationAPI
       drug_manufactory = []
 
       @drugs.each do |drug|
-
+        # debugger
         dmfs = Drugs::DrugManufactoryStore.where(drug_id: drug.id)
         manufactory_ids = dmfs.map(&:manufactory_id)
 
@@ -93,18 +95,15 @@ class Drugs::DrugsAPI < ApplicationAPI
 
         manufactories = []
         dm.each_with_index do |s, index|
-          tmp_store = {
+          tmp_manu = {
             id: s.id,
             name: s.name,
-            address: s.address,
-            telephone: s.telephone,
-            image_url: s.image_url,
-            lng: s.lng,
-            lat: s.lat,
-            star: s.star,
-            reviews_count: s.reviews_count
+            address: s.registered_address,
+            telephone: s.tel,
+            url: s.url,
+            production_classification: s.production_classification
           }
-          manufactories << tmp_store
+          manufactories << tmp_manu
         end
 
         tmp = {
@@ -125,11 +124,11 @@ class Drugs::DrugsAPI < ApplicationAPI
     # 第三层
     params do
       requires :id, type: Integer, desc: 'ID'
-      requires :manufactoy_id, type: Integer, desc: 'ID'
+      requires :manufactory_id, type: Integer, desc: 'ID'
     end
-    get '/:id/:manufactoy_id' do
+    get '/:id/:manufactory_id' do
       @drug = Drugs::Drug.find(params[:id])
-      dmfss = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, manufactoy_id: params[:manufactoy_id])
+      dmfss = Drugs::DrugManufactoryStore.where(drug_id: @drug.id, manufactory_id: params[:manufactory_id])
 
       dmfss_prices = dmfss.map(&:price)
       stores = []
@@ -145,7 +144,6 @@ class Drugs::DrugsAPI < ApplicationAPI
           price: dmfss_prices[index]
         }
         stores << tmp
-
       end
 
       present :drug, @drug, with: Drugs::DrugEntity
