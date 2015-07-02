@@ -1,4 +1,4 @@
-class Diseases::Symptom < ActiveRecord::Base
+class Symptoms::Symptom < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   

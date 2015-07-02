@@ -247,6 +247,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rmmseg-cpp (0.2.9)
+    ruby-pinyin (0.4.5)
+      rmmseg-cpp (~> 0.2)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -336,6 +339,7 @@ DEPENDENCIES
   rails_admin
   rails_config
   rest-client
+  ruby-pinyin
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   settingslogic

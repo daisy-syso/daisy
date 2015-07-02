@@ -5,7 +5,7 @@ class SearchAPI < ApplicationAPI
       { 
         hospital: Hospitals::Hospital,
         doctor: Hospitals::Doctor,
-        symptom: Diseases::Symptom,
+        symptom: Symptoms::Symptom,
         disease: Diseases::Disease,
         drug: Drugs::Drug,
         manufactory: Drugs::Manufactory

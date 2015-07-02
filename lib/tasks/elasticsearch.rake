@@ -7,10 +7,11 @@ task elasticsearch_create_indexes: :environment do
     end 
   end
 
-  %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Diseases::Symptom Drugs::Manufactory).each do |klass|
+  %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Symptoms::Symptom Drugs::Manufactory).each do |klass|
     class_string(klass).__elasticsearch__.create_index! force: true
     class_string(klass).import
 
     puts "#{klass} finished !"
   end
+  
 end
