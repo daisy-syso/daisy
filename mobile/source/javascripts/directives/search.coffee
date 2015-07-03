@@ -13,11 +13,11 @@ angular.module('DaisyApp').directive 'search', [
         #     scope.current = popover
 
         #     if popover.keep && $rootScope[popover.keep]
-        #       $rootScope.popover.title = $rootScope[popover.keep].title   
+        #       $rootScope.popover.title = $rootScope[popover.keep].title
         scope.link = (data) ->
           "#/detail/#{data.template}/#{data.id}" unless data.nolink
-        
-        scope.enOfzh = 
+
+        scope.enOfzh =
           hospital: "医院"
           doctor: "医生"
           symptom: "症状"
@@ -36,25 +36,38 @@ angular.module('DaisyApp').directive 'search', [
               # $location.path("#/search/#{current_label}?query=#{query}&template=#{template}")
               # console.log("#{current_label}/#{query}?template=#{template}")
               # scope.$eval($rootScope.search("#{current_label}/#{query}"))
-              attrs = 
+              attrs =
                 query: query
                 template: template
               scope.$eval($rootScope.search("#{current_label}", attrs))
               console.log("#{current_label}?query=#{query}")
             event.preventDefault()
 
+        element.find("button").bind "click", (event) ->
+          console.log(attrs)
+          current_label = scope.current_label
+          query = scope.query
+          scope.$apply () ->
+            template = "symptom" if current_label == "symptom"
+            attrs =
+              query: query
+              template: template
+            scope.$eval($rootScope.search("#{current_label}", attrs))
+            console.log("#{current_label}?query=#{query}")
+          event.preventDefault()
+
         scope.labels = ['hospital', 'doctor', 'symptom', 'disease', 'drug', 'manufactory']
-        
+
         scope.placeholder = "请输入您要搜索的医院"
         scope.current_label = "hospital"
 
         scope.toggleLabel = (label) ->
           scope.current_label = label
-          label = scope.enOfzh[label]          
+          label = scope.enOfzh[label]
           scope.placeholder = "请输入您要搜索的#{label}"
           scope.resault_list = []
-        
-        scope.$watch 'query', (query) -> 
+
+        scope.$watch 'query', (query) ->
           if query
             console.log("if query is true: #{query}")
             $timeout.cancel(timeout) if timeout
@@ -70,11 +83,8 @@ angular.module('DaisyApp').directive 'search', [
                     scope.resault_list = [] if query==""
                 console.log('sucess')
               , 350)
-          else 
+          else
             scope.resault_list = []
-
-
-           
 
         $rootScope.popupBox =
           toggle: () ->
@@ -100,17 +110,13 @@ angular.module('DaisyApp').directive 'search', [
         #     params = column.params || {}
         #   else
         #     type = listScope.type
-        #     params = angular.extend {}, 
+        #     params = angular.extend {},
         #       listScope.params, column.params
         #   listScope.redirectTo? type, params
 
         #   keep = scope.current.keep
         #   $rootScope[keep] = column if keep
-          
+
         #   $rootScope.popupBox.close()
 
 ]
-
-
-
-
