@@ -342,16 +342,13 @@ ul.border li {
 
 .table-view .table-view-cell {
   padding: 0 10px;
-  .more-detail{
-    position: absolute;
-    top: 36%;
-    z-index: 999;
-    left: 80%;
-  }
-}
-.table-view-cell{
-  .item-thumbnail-left{
-    border: 0px;
+  &.media-more{
+    font-size: 15px;
+    color: #2bb2a3;
+    height: 50px;
+    text-align: center;
+    top: 10px;
+    padding-top:10px;
   }
 }
 .item-thumbnail-left {
