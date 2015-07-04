@@ -64,6 +64,7 @@ class Drugs::DrugsAPI < ApplicationAPI
       dds = []
       result_c.each do |result|
         dd = Drugs::Drug.where(name: result[:name]).first
+        next if dd.blank?
         tmp = {
           name: dd.name,
           image_url: dd.image_url,
