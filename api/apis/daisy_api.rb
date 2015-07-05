@@ -18,6 +18,9 @@ class DaisyAPI < Grape::API
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
   mount UserInfos::ReviewsAPI
+
+  mount Reviews::ReviewsAPI
+  
   mount UserInfos::OrdersAPI
 
   namespace :categories do
@@ -49,6 +52,10 @@ class DaisyAPI < Grape::API
 
   namespace :diseases do
     mount Diseases::DiseasesAPI
+  end
+
+  namespace :symptoms do
+    mount Symptoms::SymptomsAPI
   end
 
   namespace :shapings do

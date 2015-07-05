@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922120311) do
+ActiveRecord::Schema.define(version: 20150704065722) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -38,6 +38,78 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   add_index "accounts", ["type", "id"], name: "index_accounts_on_type_and_id", unique: true, using: :btree
 
+  create_table "actors", force: true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "actors_movies", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "actor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "actors_movies", ["actor_id"], name: "index_actors_movies_on_actor_id", using: :btree
+  add_index "actors_movies", ["movie_id"], name: "index_actors_movies_on_movie_id", using: :btree
+
+  create_table "andrology_charges", force: true do |t|
+    t.integer  "andrology_type_id"
+    t.string   "name"
+    t.string   "pice"
+    t.string   "andrology_type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "andrology_onsales", force: true do |t|
+    t.integer  "hospital_id"
+    t.integer  "type_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "name"
+    t.string   "price"
+    t.string   "sales"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "andrology_types", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "app_information_types", force: true do |t|
+    t.string "name", limit: 50
+  end
+
+  create_table "app_informations", force: true do |t|
+    t.integer "type_id"
+    t.string  "name",      limit: 50
+    t.string  "image_url"
+    t.text    "detail"
+    t.string  "url"
+  end
+
+  create_table "avtags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: true do |t|
+    t.string   "title"
+    t.string   "picture"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -47,10 +119,40 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
+  create_table "chapters", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "chapters", ["book_id"], name: "index_chapters_on_book_id", using: :btree
+
+  create_table "characteristic_hospitals", force: true do |t|
+    t.integer "characteristic_id"
+    t.integer "hospital_id"
+  end
+
+  create_table "characteristics", force: true do |t|
+    t.string "name", limit: 50
+  end
+
+  create_table "charge_resources", force: true do |t|
+    t.integer  "province_id"
+    t.integer  "city_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cities", force: true do |t|
-    t.integer "index"
-    t.integer "province_id"
-    t.string  "name"
+    t.integer  "index"
+    t.integer  "province_id"
+    t.string   "name"
+    t.string   "initial"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "cities", ["province_id"], name: "index_cities_on_province_id", using: :btree
@@ -68,12 +170,38 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "comments", ["hospital_id"], name: "index_comments_on_hospital_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "commercial_insurances", force: true do |t|
+    t.string   "sex",            limit: 50
+    t.string   "demand"
+    t.string   "classification"
+    t.string   "characteristic"
+    t.string   "quota"
+    t.string   "company"
+    t.string   "age"
+    t.string   "name"
+    t.string   "price"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.text     "detail"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "common_diseases", force: true do |t|
+    t.string "name",          limit: 50
+    t.string "name_initials", limit: 50
+  end
+
   create_table "confinement_centers", force: true do |t|
     t.integer  "city_id"
+    t.integer  "county_id"
     t.string   "name"
     t.string   "address"
     t.string   "telephone"
     t.string   "url"
+    t.string   "initial"
+    t.string   "price"
+    t.string   "image_url"
     t.float    "lng",           limit: 53
     t.float    "lat",           limit: 53
     t.string   "geohash"
@@ -87,6 +215,13 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "confinement_centers", ["reviews_count"], name: "index_confinement_centers_on_reviews_count", using: :btree
   add_index "confinement_centers", ["star"], name: "index_confinement_centers_on_star", using: :btree
 
+  create_table "counties", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "coupons", force: true do |t|
     t.integer  "item_id"
     t.string   "item_type"
@@ -96,15 +231,60 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "coupons", ["item_id", "item_type"], name: "index_coupons_on_item_id_and_item_type", using: :btree
 
-  create_table "disease_types", force: true do |t|
-    t.string  "name"
+  create_table "dental_charges", force: true do |t|
+    t.integer  "dental_type_id"
+    t.string   "name"
+    t.string   "pice"
+    t.string   "dental_type_name"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dental_onsales", force: true do |t|
+    t.integer  "type_id"
+    t.integer  "hospital_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "name"
+    t.string   "price"
+    t.string   "sales"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dental_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "disease_commons", force: true do |t|
+    t.integer "disease_id"
+    t.integer "common_id"
+  end
+
+  create_table "disease_details", force: true do |t|
     t.integer "parent_id"
+    t.string  "title",     limit: 50
+    t.text    "detail"
+  end
+
+  create_table "disease_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "disease_types", ["parent_id"], name: "index_disease_types_on_parent_id", using: :btree
 
   create_table "diseases", force: true do |t|
     t.string   "name"
+    t.string   "name_initials"
+    t.string   "image_url"
     t.text     "etiology"
     t.text     "symptoms"
     t.text     "examination"
@@ -119,29 +299,60 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "diseases", ["disease_type_id"], name: "index_diseases_on_disease_type_id", using: :btree
 
-  create_table "diseases_doctors", id: false, force: true do |t|
-    t.integer "doctor_id",  null: false
-    t.integer "disease_id", null: false
+  create_table "diseases_doctors", force: true do |t|
+    t.integer  "doctor_id",  null: false
+    t.integer  "disease_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "diseases_doctors", ["disease_id"], name: "index_diseases_doctors_on_disease_id", using: :btree
   add_index "diseases_doctors", ["doctor_id"], name: "index_diseases_doctors_on_doctor_id", using: :btree
 
-  create_table "diseases_drugs", id: false, force: true do |t|
-    t.integer "drug_id"
-    t.integer "disease_id"
+  create_table "diseases_drugs", force: true do |t|
+    t.integer  "drug_id",    null: false
+    t.integer  "disease_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diseases_drugs", ["disease_id"], name: "index_diseases_drugs_on_disease_id", using: :btree
+  add_index "diseases_drugs", ["drug_id"], name: "index_diseases_drugs_on_drug_id", using: :btree
+
+  create_table "diseases_hospital_rooms", force: true do |t|
+    t.integer  "disease_id"
+    t.integer  "hospital_room_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "diseases_hospitals", id: false, force: true do |t|
-    t.integer "hospital_id", null: false
-    t.integer "disease_id",  null: false
+    t.integer  "hospital_id", null: false
+    t.integer  "disease_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases_symptoms", force: true do |t|
+    t.integer  "disease_id"
+    t.integer  "symptom_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diseases_types", force: true do |t|
+    t.integer "disease_id"
+    t.integer "disease_types_id"
   end
 
   create_table "doctors", force: true do |t|
     t.string   "name"
+    t.string   "name_initials"
     t.integer  "hospital_id"
     t.integer  "hospital_room_id"
     t.string   "position"
+    t.string   "nationality"
+    t.integer  "is_insurance",     limit: 1
     t.string   "hospital_room"
     t.text     "desc"
     t.string   "image_url"
@@ -168,16 +379,50 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "down_prices", ["drug_id"], name: "index_down_prices_on_drug_id", using: :btree
 
-  create_table "drug_types", force: true do |t|
-    t.string  "name"
-    t.integer "parent_id"
+  create_table "downloads", force: true do |t|
+    t.text     "link"
+    t.string   "link_type"
+    t.string   "size"
+    t.integer  "movie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "downloads", ["movie_id"], name: "index_downloads_on_movie_id", using: :btree
+
+  create_table "drug_details", force: true do |t|
+    t.integer "parent_id"
+    t.string  "title",     limit: 50
+    t.text    "detail"
+  end
+
+  add_index "drug_details", ["parent_id"], name: "parent_id", using: :btree
+
+  create_table "drug_manufactory_stores", force: true do |t|
+    t.integer "drug_id"
+    t.integer "manufactory_id"
+    t.integer "drugstore_id"
+    t.string  "price",          limit: 50
+    t.string  "pinyin",         limit: 50
+    t.string  "english_name",   limit: 50
+    t.text    "introduction"
+  end
+
+  create_table "drug_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.integer  "disease_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drug_types", ["parent_id"], name: "index_drug_types_on_parent_id", using: :btree
 
   create_table "drugs", force: true do |t|
     t.string   "name"
     t.string   "manufactory"
-    t.decimal  "ori_price",                precision: 10, scale: 0
-    t.decimal  "sale_price",               precision: 10, scale: 0
+    t.decimal  "ori_price",                       precision: 10, scale: 0
+    t.decimal  "price",                           precision: 10, scale: 0
     t.text     "introduction"
     t.string   "image_url"
     t.integer  "drug_type_id"
@@ -185,16 +430,31 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "code"
     t.string   "expiry_date"
     t.string   "spec"
+    t.string   "dosage"
+    t.string   "is_store"
+    t.string   "name_initials"
+    t.string   "manufactory_initials"
     t.integer  "disease_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "star",          limit: 24,                          default: 0.0
-    t.integer  "reviews_count",                                     default: 0
+    t.boolean  "is_insurance"
+    t.boolean  "is_prescription"
+    t.boolean  "is_westren"
+    t.boolean  "is_show"
+    t.float    "star",                 limit: 24,                          default: 0.0
+    t.integer  "reviews_count",                                            default: 0
   end
 
   add_index "drugs", ["disease_id"], name: "index_drugs_on_disease_id", using: :btree
+  add_index "drugs", ["drug_type_id"], name: "index_drugs_on_drug_type_id", using: :btree
+  add_index "drugs", ["name"], name: "name", using: :btree
   add_index "drugs", ["reviews_count"], name: "index_drugs_on_reviews_count", using: :btree
   add_index "drugs", ["star"], name: "index_drugs_on_star", using: :btree
+
+  create_table "drugs_hospital_rooms", force: true do |t|
+    t.integer "drug_id"
+    t.integer "hospital_room_id"
+  end
 
   create_table "drugs_types", force: true do |t|
     t.integer "drug_type_id"
@@ -216,16 +476,25 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "address"
     t.string   "telephone"
     t.string   "image_url"
+    t.string   "name_initials"
+    t.string   "url"
+    t.string   "GSP"
+    t.string   "Business_License"
+    t.string   "License"
+    t.string   "License_Time"
+    t.string   "Scope_of_business", limit: 500
     t.integer  "city_id"
+    t.integer  "county_id"
     t.boolean  "is_local_hot"
+    t.boolean  "is_insurance"
     t.boolean  "is_national_hot"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "lng",             limit: 53
-    t.float    "lat",             limit: 53
+    t.float    "lng",               limit: 53
+    t.float    "lat",               limit: 53
     t.string   "geohash"
-    t.float    "star",            limit: 24, default: 0.0
-    t.integer  "reviews_count",              default: 0
+    t.float    "star",              limit: 24,  default: 0.0
+    t.integer  "reviews_count",                 default: 0
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
@@ -254,9 +523,35 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "eldercares", ["city_id"], name: "index_eldercares_on_city_id", using: :btree
 
-  create_table "examination_types", force: true do |t|
+  create_table "endowment_services", force: true do |t|
+    t.integer  "endowment_id", default: 0
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "endowments", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "examination_charges", force: true do |t|
+    t.integer "examination_type_id"
+    t.string  "min_price",           limit: 50
+    t.string  "max_price",           limit: 50
+  end
+
+  create_table "examination_reminds", force: true do |t|
     t.string  "name"
+    t.text    "desc"
     t.integer "parent_id"
+  end
+
+  create_table "examination_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "examination_types", ["parent_id"], name: "index_examination_types_on_parent_id", using: :btree
@@ -264,17 +559,22 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   create_table "examinations", force: true do |t|
     t.string   "name"
     t.integer  "examination_type_id"
+    t.integer  "examination_type_parent_id"
     t.integer  "city_id"
+    t.integer  "hospital_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
     t.string   "hospital_name"
     t.string   "applicable"
     t.string   "feature"
-    t.float    "price",               limit: 24
-    t.float    "save_price",          limit: 24
+    t.string   "image_url"
+    t.float    "price",                      limit: 24
+    t.float    "save_price",                 limit: 24
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "star",                limit: 24, default: 0.0
-    t.integer  "reviews_count",                  default: 0
+    t.float    "star",                       limit: 24, default: 0.0
+    t.integer  "reviews_count",                         default: 0
   end
 
   add_index "examinations", ["city_id"], name: "index_examinations_on_city_id", using: :btree
@@ -282,6 +582,13 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "examinations", ["geohash"], name: "index_examinations_on_geohash", using: :btree
   add_index "examinations", ["reviews_count"], name: "index_examinations_on_reviews_count", using: :btree
   add_index "examinations", ["star"], name: "index_examinations_on_star", using: :btree
+
+  create_table "examinations_hospitals", force: true do |t|
+    t.integer "examination_id"
+    t.integer "examination_type_id"
+    t.integer "examination_type_parent_id"
+    t.integer "hospital_id"
+  end
 
   create_table "favorites", force: true do |t|
     t.integer  "account_id"
@@ -308,6 +615,162 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "friendly_links", ["friendly_link_type_id"], name: "index_friendly_links_on_friendly_link_type_id", using: :btree
 
+  create_table "friendsites", force: true do |t|
+    t.string   "name"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "goodfriend_pictures", force: true do |t|
+    t.string   "file_key"
+    t.integer  "file_size"
+    t.string   "file_type"
+    t.integer  "goodfriend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goodfriend_pictures", ["goodfriend_id"], name: "index_goodfriend_pictures_on_goodfriend_id", using: :btree
+
+  create_table "goodfriends", force: true do |t|
+    t.string   "qq"
+    t.string   "weixin"
+    t.string   "telephone"
+    t.date     "birth"
+    t.string   "gender"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gynaecology_charges", force: true do |t|
+    t.integer  "gynaecology_type_id"
+    t.string   "name",                  limit: 50
+    t.string   "gynaecology_type_name", limit: 50
+    t.string   "pice",                  limit: 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gynaecology_onsales", force: true do |t|
+    t.integer  "type_id"
+    t.string   "name"
+    t.integer  "hospital_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "price"
+    t.string   "sales"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gynaecology_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "halls", force: true do |t|
+    t.integer  "city_id"
+    t.string   "name"
+    t.text     "address"
+    t.string   "image_url"
+    t.float    "lng",        limit: 53
+    t.float    "lat",        limit: 53
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "health_information_types", force: true do |t|
+    t.string "name", limit: 50
+  end
+
+  create_table "health_informations", force: true do |t|
+    t.integer "type_id"
+    t.string  "name"
+    t.string  "url"
+    t.string  "image_url"
+    t.integer "flag"
+  end
+
+  create_table "herbalist_doctor_charges", force: true do |t|
+    t.integer  "herbalist_doctor_type_id"
+    t.string   "name"
+    t.string   "pice"
+    t.string   "duration"
+    t.string   "herbalist_doctor_type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "herbalist_doctor_onsales", force: true do |t|
+    t.integer  "hall_id"
+    t.integer  "type_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "name"
+    t.string   "price"
+    t.string   "sales"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "herbalist_doctor_types", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hospital_charges", force: true do |t|
+    t.integer  "hospital_type_parent_id"
+    t.integer  "hospital_type_id"
+    t.string   "name"
+    t.string   "price_scope"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hospital_doctors", force: true do |t|
+    t.integer "hospital_id"
+    t.integer "doctor_id"
+  end
+
+  create_table "hospital_levels", force: true do |t|
+    t.string "name"
+  end
+
+  add_index "hospital_levels", ["id"], name: "index_hospital_levels_on_id_and_position", using: :btree
+
+  create_table "hospital_news", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "hospital_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hospital_news", ["hospital_type_id"], name: "index_hospital_type_news_on_hospital_type_id", using: :btree
+
+  create_table "hospital_onsales", force: true do |t|
+    t.integer  "hospital_id"
+    t.integer  "hospital_charge_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "name"
+    t.string   "price"
+    t.string   "sales"
+    t.string   "image_url"
+    t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "thumb"
+  end
+
   create_table "hospital_rooms", force: true do |t|
     t.string   "name"
     t.integer  "parent_id"
@@ -317,20 +780,22 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "hospital_rooms", ["parent_id"], name: "index_hospital_rooms_on_parent_id", using: :btree
 
-  create_table "hospital_type_news", force: true do |t|
-    t.string   "title"
-    t.string   "url"
-    t.integer  "hospital_type_id"
+  create_table "hospital_types", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "hospital_type_news", ["hospital_type_id"], name: "index_hospital_type_news_on_hospital_type_id", using: :btree
-
-  create_table "hospital_types", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "hospitalinfo", force: true do |t|
+    t.string "chengshi"
+    t.string "name"
+    t.string "dengji"
+    t.text   "jianjie"
+    t.text   "address"
+    t.string "tel"
+    t.string "pic",      limit: 500
   end
 
   create_table "hospitals", force: true do |t|
@@ -339,34 +804,64 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "address"
     t.string   "image_url"
     t.string   "url"
+    t.string   "mobile_url"
+    t.string   "medical_insurance"
+    t.string   "characteristic_departments"
     t.integer  "city_id"
+    t.integer  "county_id"
+    t.integer  "specialist"
     t.boolean  "is_local_hot"
     t.boolean  "is_national_hot"
     t.boolean  "is_best_reputation"
     t.string   "level"
-    t.integer  "click_count",                   default: 0
-    t.float    "lng",                limit: 53
-    t.float    "lat",                limit: 53
+    t.integer  "click_count",                           default: 0
+    t.float    "lng",                        limit: 53
+    t.float    "lat",                        limit: 53
     t.string   "geohash"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "star",               limit: 24, default: 0.0
-    t.integer  "reviews_count",                 default: 0
+    t.float    "star",                       limit: 24, default: 0.0
+    t.integer  "reviews_count",                         default: 0
+    t.float    "equipment_star",             limit: 24, default: 0.0
+    t.float    "skill_star",                 limit: 24, default: 0.0
+    t.float    "service_star",               limit: 24, default: 0.0
+    t.float    "environment_star",           limit: 24, default: 0.0
+    t.text     "environment_desc"
+    t.text     "service_desc"
+    t.text     "skill_desc"
+    t.text     "equipment_desc"
+    t.integer  "hospital_level_id"
+    t.string   "name_initials",              limit: 50
+    t.boolean  "is_foreign"
+    t.boolean  "is_community"
+    t.boolean  "is_other"
+    t.boolean  "is_insurance"
+    t.text     "backup"
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
   add_index "hospitals", ["click_count"], name: "index_hospitals_on_click_count", using: :btree
   add_index "hospitals", ["geohash"], name: "index_hospitals_on_geohash", using: :btree
+  add_index "hospitals", ["hospital_level_id"], name: "index_hospitals_on_hospital_level_id", using: :btree
   add_index "hospitals", ["reviews_count"], name: "index_hospitals_on_reviews_count", using: :btree
   add_index "hospitals", ["star"], name: "index_hospitals_on_star", using: :btree
 
+  create_table "hospitals_levels", force: true do |t|
+    t.integer  "hospital_id"
+    t.integer  "hospital_level_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hospitals_types", force: true do |t|
-    t.integer "hospital_id"
-    t.integer "type_id"
+    t.integer  "hospital_id"
+    t.integer  "hospital_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "hospitals_types", ["hospital_id"], name: "index_hospitals_types_on_hospital_id", using: :btree
-  add_index "hospitals_types", ["type_id"], name: "index_hospitals_types_on_type_id", using: :btree
+  add_index "hospitals_types", ["hospital_type_id"], name: "index_hospitals_types_on_type_id", using: :btree
 
   create_table "hospitals_users", force: true do |t|
     t.integer  "hospital_id"
@@ -388,33 +883,83 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.datetime "updated_at"
   end
 
-  create_table "insurance_categories", force: true do |t|
-    t.string "name"
+  create_table "infos", force: true do |t|
+    t.integer  "actor_id"
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "infos", ["actor_id"], name: "index_infos_on_actor_id", using: :btree
 
   create_table "insurance_companies", force: true do |t|
     t.string "name"
     t.string "url"
   end
 
+  create_table "insurance_types", force: true do |t|
+    t.string "name"
+  end
+
   create_table "insurances", force: true do |t|
     t.string  "name"
+    t.string  "price"
+    t.string  "type_name"
     t.string  "url"
-    t.integer "insurance_category_id"
+    t.integer "appointment"
+    t.integer "rebate"
+    t.integer "insurance_type_id"
     t.integer "insurance_company_id"
   end
 
-  add_index "insurances", ["insurance_category_id"], name: "index_insurances_on_insurance_category_id", using: :btree
   add_index "insurances", ["insurance_company_id"], name: "index_insurances_on_insurance_company_id", using: :btree
+  add_index "insurances", ["insurance_type_id"], name: "index_insurances_on_insurance_type_id", using: :btree
+
+  create_table "jokes", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufactories", force: true do |t|
+    t.string  "name",                      limit: 50
+    t.string  "name_initials",             limit: 50
+    t.integer "city_id"
+    t.string  "certificate_number",        limit: 50
+    t.string  "issuing_date",              limit: 50
+    t.string  "validity_period",           limit: 50
+    t.string  "legal_representative",      limit: 50
+    t.string  "business_owners",           limit: 50
+    t.string  "enterprise_type",           limit: 50
+    t.text    "registered_address"
+    t.text    "production_address"
+    t.text    "production_classification"
+    t.string  "url",                       limit: 500
+    t.string  "tel",                       limit: 50
+  end
+
+  create_table "manufactory_drugs", force: true do |t|
+    t.integer "manufactory_id"
+    t.integer "drug_id"
+    t.string  "price_range",    limit: 50
+    t.string  "code",           limit: 500
+    t.string  "spec",           limit: 50
+    t.string  "dosage",         limit: 50
+  end
 
   create_table "maternal_halls", force: true do |t|
     t.integer  "city_id"
+    t.integer  "county_id"
     t.string   "name"
     t.string   "address"
     t.string   "telephone"
+    t.string   "image_url"
     t.float    "lng",           limit: 53
     t.float    "lat",           limit: 53
     t.string   "geohash"
+    t.string   "initial"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "star",          limit: 24, default: 0.0
@@ -435,6 +980,11 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "medical_institutions", force: true do |t|
+    t.string  "name",        limit: 50
+    t.integer "hospital_id"
   end
 
   create_table "medical_posts", force: true do |t|
@@ -477,6 +1027,28 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "menus", ["parent_id"], name: "index_menus_on_parent_id", using: :btree
 
+  create_table "movies", force: true do |t|
+    t.string   "duration"
+    t.string   "fid"
+    t.string   "title"
+    t.string   "poster"
+    t.string   "small_poster"
+    t.boolean  "has_download"
+    t.date     "release_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "movies_avtags", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "avtag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "movies_avtags", ["avtag_id"], name: "index_movies_avtags_on_avtag_id", using: :btree
+  add_index "movies_avtags", ["movie_id"], name: "index_movies_avtags_on_movie_id", using: :btree
+
   create_table "net_infos", force: true do |t|
     t.string   "title"
     t.string   "image_url"
@@ -486,13 +1058,46 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "net_infos", ["hospital_type_id"], name: "index_net_infos_on_hospital_type_id", using: :btree
 
+  create_table "newthing_pictures", force: true do |t|
+    t.string   "file_key"
+    t.integer  "file_size"
+    t.string   "file_type"
+    t.integer  "newthing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "newthing_pictures", ["newthing_id"], name: "index_newthing_pictures_on_newthing_id", using: :btree
+
+  create_table "newthings", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "note_categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "note_category_id"
+  end
+
   create_table "nursing_rooms", force: true do |t|
     t.string   "name"
     t.string   "address"
     t.string   "telephone"
     t.string   "image_url"
     t.integer  "city_id"
+    t.integer  "county_id"
     t.string   "geohash"
+    t.string   "initial"
     t.float    "lat",           limit: 53
     t.float    "lng",           limit: 53
     t.datetime "created_at"
@@ -533,6 +1138,26 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "orders", ["account_id"], name: "index_orders_on_account_id", using: :btree
   add_index "orders", ["item_type", "item_id"], name: "index_orders_on_item_type_and_item_id", using: :btree
 
+  create_table "parts", force: true do |t|
+    t.string "name", limit: 50, default: "0", null: false
+  end
+
+  create_table "photo_categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photo_details", force: true do |t|
+    t.integer  "click_times"
+    t.integer  "download_times"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_details", ["photo_id"], name: "index_photo_details_on_photo_id", using: :btree
+
   create_table "photos", force: true do |t|
     t.string   "picture"
     t.datetime "created_at"
@@ -541,6 +1166,14 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   end
 
   add_index "photos", ["category_id"], name: "index_photos_on_category_id", using: :btree
+
+  create_table "polyclinic_charges", force: true do |t|
+    t.integer  "province_id"
+    t.string   "name",        limit: 50
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "price_notifications", force: true do |t|
     t.integer  "account_id"
@@ -555,7 +1188,20 @@ ActiveRecord::Schema.define(version: 20140922120311) do
   add_index "price_notifications", ["item_id", "item_type"], name: "index_price_notifications_on_item_id_and_item_type", using: :btree
 
   create_table "provinces", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "raider_details", force: true do |t|
+    t.integer "parent_id"
+    t.string  "name",      limit: 50
+    t.text    "details"
+  end
+
+  create_table "raiders", force: true do |t|
     t.string "name"
+    t.text   "detail"
   end
 
   create_table "reviews", force: true do |t|
@@ -567,6 +1213,10 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "environment"
+    t.integer  "service"
+    t.integer  "charge"
+    t.integer  "technique"
   end
 
   add_index "reviews", ["account_id"], name: "index_reviews_on_account_id", using: :btree
@@ -584,6 +1234,32 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  create_table "sex_pictures", force: true do |t|
+    t.string   "file_key"
+    t.integer  "sex_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sex_pictures", ["sex_id"], name: "index_sex_pictures_on_sex_id", using: :btree
+
+  create_table "sex_versions", force: true do |t|
+    t.string   "last_record_at"
+    t.integer  "total"
+    t.string   "category"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "sexes", force: true do |t|
+    t.string   "title"
+    t.datetime "record_at"
+    t.string   "pictures_href"
+    t.string   "category"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "shaping_items", force: true do |t|
     t.string   "name"
     t.string   "price_scope"
@@ -592,47 +1268,82 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.string   "note"
     t.string   "life_note"
     t.string   "remark"
+    t.string   "shaping_type_name"
     t.integer  "shaping_type_id"
     t.string   "image_url"
-    t.float    "star",            limit: 24, default: 5.0
+    t.float    "star",              limit: 24, default: 5.0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "reviews_count",              default: 0
+    t.integer  "reviews_count",                default: 0
   end
 
   add_index "shaping_items", ["reviews_count"], name: "index_shaping_items_on_reviews_count", using: :btree
   add_index "shaping_items", ["shaping_type_id"], name: "index_shaping_items_on_shaping_type_id", using: :btree
   add_index "shaping_items", ["star"], name: "index_shaping_items_on_star", using: :btree
 
+  create_table "shaping_onsales", force: true do |t|
+    t.integer  "type_id"
+    t.integer  "hospital_id"
+    t.integer  "appointment"
+    t.integer  "rebate"
+    t.string   "name"
+    t.string   "price"
+    t.string   "sales"
+    t.string   "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "shaping_types", force: true do |t|
-    t.string  "name"
-    t.integer "parent_id"
-    t.string  "desc"
-    t.string  "image_url"
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "desc"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "shaping_types", ["parent_id"], name: "index_shaping_types_on_parent_id", using: :btree
 
+  create_table "sidekiq_jobs", force: true do |t|
+    t.string   "jid"
+    t.string   "queue"
+    t.string   "class_name"
+    t.text     "args"
+    t.boolean  "retry"
+    t.datetime "enqueued_at"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.string   "status"
+    t.string   "name"
+    t.text     "result"
+  end
+
+  add_index "sidekiq_jobs", ["class_name"], name: "index_sidekiq_jobs_on_class_name", using: :btree
+  add_index "sidekiq_jobs", ["enqueued_at"], name: "index_sidekiq_jobs_on_enqueued_at", using: :btree
+  add_index "sidekiq_jobs", ["finished_at"], name: "index_sidekiq_jobs_on_finished_at", using: :btree
+  add_index "sidekiq_jobs", ["jid"], name: "index_sidekiq_jobs_on_jid", using: :btree
+  add_index "sidekiq_jobs", ["queue"], name: "index_sidekiq_jobs_on_queue", using: :btree
+  add_index "sidekiq_jobs", ["retry"], name: "index_sidekiq_jobs_on_retry", using: :btree
+  add_index "sidekiq_jobs", ["started_at"], name: "index_sidekiq_jobs_on_started_at", using: :btree
+  add_index "sidekiq_jobs", ["status"], name: "index_sidekiq_jobs_on_status", using: :btree
+
   create_table "social_securities", force: true do |t|
-    t.integer "city_id"
-    t.string  "url"
+    t.string   "name"
+    t.integer  "city_id"
+    t.integer  "province_id"
+    t.integer  "social_security_type_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "social_securities", ["city_id"], name: "index_social_securities_on_city_id", using: :btree
+  add_index "social_securities", ["province_id"], name: "index_social_securities_on_province_id", using: :btree
 
-  create_table "social_security_drugstores", force: true do |t|
-    t.integer "city_id"
-    t.string  "url"
+  create_table "social_security_types", force: true do |t|
+    t.string "name"
   end
-
-  add_index "social_security_drugstores", ["city_id"], name: "index_social_security_drugstores_on_city_id", using: :btree
-
-  create_table "social_security_hospitals", force: true do |t|
-    t.integer "city_id"
-    t.string  "url"
-  end
-
-  add_index "social_security_hospitals", ["city_id"], name: "index_social_security_hospitals_on_city_id", using: :btree
 
   create_table "stat_daily_ips", force: true do |t|
     t.string   "ip"
@@ -645,6 +1356,26 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "stat_daily_ips", ["city_id"], name: "index_stat_daily_ips_on_city_id", using: :btree
 
+  create_table "symptom_details", force: true do |t|
+    t.string "title"
+    t.string "detail_id"
+    t.text   "detail"
+    t.string "image_url"
+  end
+
+  create_table "symptoms", force: true do |t|
+    t.string   "name"
+    t.string   "name_initials"
+    t.integer  "part_id"
+    t.string   "xgjc"
+    t.string   "detail_id"
+    t.string   "xgzz"
+    t.string   "xgyp"
+    t.string   "xgjb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "temps", force: true do |t|
     t.string   "name"
     t.integer  "age"
@@ -652,6 +1383,28 @@ ActiveRecord::Schema.define(version: 20140922120311) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tmp", id: false, force: true do |t|
+    t.integer "id"
+  end
+
+  create_table "torrent_versions", force: true do |t|
+    t.string   "title"
+    t.date     "version_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "torrents", force: true do |t|
+    t.string   "title"
+    t.string   "picture"
+    t.string   "file_path"
+    t.integer  "torrent_version_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "torrents", ["torrent_version_id"], name: "index_torrents_on_torrent_version_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -675,5 +1428,13 @@ ActiveRecord::Schema.define(version: 20140922120311) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "weixins", force: true do |t|
+    t.string   "content"
+    t.string   "report"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

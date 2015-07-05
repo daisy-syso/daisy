@@ -1,0 +1,258 @@
+FORMAT: 1A
+HOST: http://www.syso.com.cn
+
+# Daisy
+
+### Daisy 前端 API
+
+## 症状 [/api/symptoms/symptoms]
+
+### 症状列表页 [GET]
+
++ Parameters
+  + page (integer) - 页数
+  + per_page (integer) - 每页几条
+
++ Response 200 (application/json)
+
+    {
+      "symptoms": [
+        {
+          "id": 1,
+          "name": "恶心与呕吐"
+        },
+        {
+          "id": 2,
+          "name": "腹泻"
+        },
+        {
+          "id": 3,
+          "name": "呼吸困难"
+        }
+      ]
+    }
+
+
+## 症状详细 [/api/symptoms/symptoms/:id]
+
+### 症状详细 [GET]
+
++ Response 200 (application/json)
+
+    {
+      symptoms: {
+        symptom: {
+          id: 4782,
+          name: "喃喃重复自语",
+          xgjc: "",
+          xgzz: "",
+          xgyp: "",
+          xgjb: ""
+        },
+        details: [
+          {
+            title: "喃喃重复自语概述",
+            detail: "词语性自动症为复杂部分性发作的一种。喃喃自语、背诵或伴叫声或笑声，常见重复词组或语句。",
+            image_url: "http://syso.qiniudn.com/zz/2015317189321712252.jpg"
+          },
+          {
+            title: "喃喃重复自语原因",
+            detail: "颞叶发作、精神运动性发作，痫性放电通常起源于努叶或也叶内侧，额可起源于其他部位，由于起源、扩散途径及速度不同，临床表现有较大差异。可先出现单纯部分性发作(时间可长可短)，再出现意识障碍。",
+            image_url: "http://syso.qiniudn.com/zz/2015317189353284421.jpg"
+          },
+          {
+            title: "喃喃重复自语检查",
+            detail: "1)表现意识障碍：",
+            image_url: "http://syso.qiniudn.com/zz/2015317189353433762.jpg"
+          },
+          {
+            title: "喃喃重复自语鉴别诊断",
+            detail: "喃喃重复自语的鉴别诊断：",
+            image_url: "http://syso.qiniudn.com/zz/2015317189353433762.jpg"
+          },
+          {
+            title: "喃喃重复自语缓解方法",
+            detail: "(1)确定是否用药：由于人一生中偶发一至数次癫痫发作(包括状态关联性发作)的机会高达5%，并不需要AEDs治疗。首次发作患者在查清病因前通常不宜用药，待到下次发作时再决定是否用药;发作间期长于1年、有酒精或药物刺激等诱因者，不能坚持服药(如人格异常)可不用AEDs。如1年中有2次或多次发作可酌情用单药治疗，进行性脑疾病或EEG显示癫痫放电者需用药治疗。",
+            image_url: "http://syso.qiniudn.com/zz/2015317189353433762.jpg"
+          }
+        ]
+      }
+    }
+
+## 药品列表统计页 [/api/drugs/drugs]
+
+### 药品列表统计页 [GET]
+
++ Parameters
+  + page (integer) - 页数
+  + per_page (integer) - 每页几条
+
++ Response 200 (application/json)
+  
+  {
+    drugs: [
+      {
+        name: "(亚健灵)强身健脑片",
+        image_url: "http://syso.qiniudn.com/nopicture/drug.jpg",
+        count: 1
+      },
+      {
+        name: "(伊安)蹄甲多肽片",
+        image_url: "http://syso.qiniudn.com/nopicture/drug.jpg",
+        count: 1
+      },
+      {
+        name: "(唐龙)内消瘰疠丸",
+        image_url: "http://syso.qiniudn.com/ydtup/1352719803.jpg",
+        count: 1
+      },
+      {
+        name: "(帮备)盐酸班布特罗口服液",
+        image_url: "http://syso.qiniudn.com/nopicture/drug.jpg",
+        count: 1
+      },
+      {
+        name: "(迪诺新)盐酸左氧氟沙星氯化钠注射液",
+        image_url: "http://syso.qiniudn.com/nopicture/drug.jpg",
+        count: 2
+      }
+    ]
+  }
+
+## 药品列表（不同厂家） [/api/drugs/drugs/drug_manufactories]
+
+### 药品列表（不同厂家）[GET]
+
++ Parameters
+  + name (string) - 药品名称
+
++ Response 200 (application/json)
+
+  {
+  "drug_manufactories": [
+    {
+      "drug_id": 4460,
+      "drug_name": "胃复安片甲氧氯普胺片",
+      "drug_image_url": "http://syso.qiniudn.com/ydtup/1310351156.jpg",
+      "spec": "5mg*100T",
+      "manufactory_id": 507,
+      "manufactory_name": "临汾宝珠制药有限公司",
+      "manufactory_address": "山西省临汾市解放东路130号",
+      "manufactory_telephone": "0357-3010822",
+      "manufactory_url": "www.bzpharm.com",
+      "manufactory_production_classification": "原料药（甘草锌、芦丁、甲硝唑、异烟肼）、片剂（含激素类）、硬胶囊剂、颗粒剂、散剂、精神药品（地西泮片、艾司唑仑片）、中药提取*原料药（氢氧化铝）*"
+    },
+    {
+      "drug_id": 4460,
+      "drug_name": "胃复安片甲氧氯普胺片",
+      "drug_image_url": "http://syso.qiniudn.com/ydtup/1310351156.jpg",
+      "spec": "5mg*100T",
+      "manufactory_id": 728,
+      "manufactory_name": "内蒙古黄河制药厂",
+      "manufactory_address": "托县双河北路41号",
+      "manufactory_telephone": "0471-6713200",
+      "manufactory_url": "www.yaopinnet.com/c/c2668h.htm",
+      "manufactory_production_classification": "片剂、硬胶囊剂（含头孢菌素类）、颗粒剂、口服液、散剂、酊剂、糖浆剂（含中药前处理、提取）*"
+    },
+    {
+      "drug_id": 4460,
+      "drug_name": "胃复安片甲氧氯普胺片",
+      "drug_image_url": "http://syso.qiniudn.com/ydtup/1310351156.jpg",
+      "spec": "5mg*100T",
+      "manufactory_id": 1355,
+      "manufactory_name": "四川大冢制药有限公司",
+      "manufactory_address": "乐山市高新技术产业开发区临江北路1号",
+      "manufactory_telephone": "028-86083256/86083265/86725682",
+      "manufactory_url": "welcome.sclop.com.cn:8000",
+      "manufactory_production_classification": "气雾剂、硬胶囊剂、合剂（含口服液）（含中药前处理提取）、片剂、口服溶液剂、糖浆剂、粉雾剂（含激素类）、颗粒剂、第二类精神药品单方制剂（艾司唑仑片）*"
+    }
+  }
+
+## 药品列表（不同药店） [/api/drugs/drugs/:id/:manufactory_id]
+
+### 药品列表（不同药店）[GET]
+
++ Parameters
+  + page (integer) - 页数
+  + per_page (integer) - 每页几条
+  + drug_id (integer) - 药品ID
+  + manufactory_id (integer) - 药厂ID
+
++ Response 200 (application/json)
+
+  {
+    "drug": {
+      "id": 4460,
+      "name": "胃复安片甲氧氯普胺片",
+      "manufactory": "山西临汾云鹏药业有限公司",
+      "ori_price": 3,
+      "price": null,
+      "introduction": null,
+      "image_url": "http://syso.qiniudn.com/ydtup/1310351156.jpg",
+      "drug_type_id": 99,
+      "brand": null,
+      "code": "国药准字H14020782",
+      "expiry_date": "36个月",
+      "spec": "5mg*100T",
+      "dosage": null,
+      "is_store": "1",
+      "name_initials": "WFAPJYLPAP",
+      "manufactory_initials": "WFAPJYLPAP",
+      "disease_id": null,
+      "created_at": null,
+      "updated_at": null,
+      "is_insurance": null,
+      "is_prescription": null,
+      "is_westren": null,
+      "is_show": false,
+      "star": 0,
+      "reviews_count": 0
+    },
+    "drug_details": [],
+    "stores": [
+      {
+        "name": "山东恒丰仁和大药房连锁有限责任公司",
+        "address": "山东省济南市市中区腊山路18-39号",
+        "telephone": null,
+        "image_url": "http://syso.qiniudn.com/nopicture/drugstore.jpg",
+        "star": 0,
+        "reviews_count": 0,
+        "price": "6.55"
+      },
+      {
+        "name": "天津市滨海新区塘沽天天健大药房",
+        "address": "天津市滨海新区塘沽海西路395号",
+        "telephone": null,
+        "image_url": "http://syso.qiniudn.com/nopicture/drugstore.jpg",
+        "star": 0,
+        "reviews_count": 0,
+        "price": "4.50"
+      },
+      {
+        "name": "陕西东信医药有限责任公司西安弘康店",
+        "address": "陕西省西安市莲湖区红光路91号",
+        "telephone": null,
+        "image_url": "http://syso.qiniudn.com/nopicture/drugstore.jpg",
+        "star": 0,
+        "reviews_count": 0,
+        "price": "3.50"
+      }
+    ]
+  }
+
+## 评论提交 [/api/reviews_new]
+
+### 评论提交 [POST]
+  
++ Parameters
+  + item_type (string) - 类型
+  + item_id (integer) - 类型ID
+  + desc (string) - 描述
+  + account_id (integer) - 用户ID
+  + environment (integer) - 环境评分
+  + service (integer) - 服务评分
+  + charge (integer) - 价格评分
+  + technique (integer) - 技术评分
+
++ Response 201 (application/json)
+
