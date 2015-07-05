@@ -38,23 +38,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   add_index "accounts", ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   add_index "accounts", ["type", "id"], name: "index_accounts_on_type_and_id", unique: true, using: :btree
 
-  create_table "actors", force: true do |t|
-    t.string   "name"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "actors_movies", force: true do |t|
-    t.integer  "movie_id"
-    t.integer  "actor_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "actors_movies", ["actor_id"], name: "index_actors_movies_on_actor_id", using: :btree
-  add_index "actors_movies", ["movie_id"], name: "index_actors_movies_on_movie_id", using: :btree
-
   create_table "andrology_charges", force: true do |t|
     t.integer  "andrology_type_id"
     t.string   "name"
@@ -96,20 +79,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.string  "url"
   end
 
-  create_table "avtags", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "books", force: true do |t|
-    t.string   "title"
-    t.string   "picture"
-    t.string   "author"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -118,16 +87,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   end
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
-
-  create_table "chapters", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "book_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "chapters", ["book_id"], name: "index_chapters_on_book_id", using: :btree
 
   create_table "characteristic_hospitals", force: true do |t|
     t.integer "characteristic_id"
@@ -379,17 +338,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
 
   add_index "down_prices", ["drug_id"], name: "index_down_prices_on_drug_id", using: :btree
 
-  create_table "downloads", force: true do |t|
-    t.text     "link"
-    t.string   "link_type"
-    t.string   "size"
-    t.integer  "movie_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "downloads", ["movie_id"], name: "index_downloads_on_movie_id", using: :btree
-
   create_table "drug_details", force: true do |t|
     t.integer "parent_id"
     t.string  "title",     limit: 50
@@ -614,35 +562,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   end
 
   add_index "friendly_links", ["friendly_link_type_id"], name: "index_friendly_links_on_friendly_link_type_id", using: :btree
-
-  create_table "friendsites", force: true do |t|
-    t.string   "name"
-    t.string   "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "goodfriend_pictures", force: true do |t|
-    t.string   "file_key"
-    t.integer  "file_size"
-    t.string   "file_type"
-    t.integer  "goodfriend_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "goodfriend_pictures", ["goodfriend_id"], name: "index_goodfriend_pictures_on_goodfriend_id", using: :btree
-
-  create_table "goodfriends", force: true do |t|
-    t.string   "qq"
-    t.string   "weixin"
-    t.string   "telephone"
-    t.date     "birth"
-    t.string   "gender"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "gynaecology_charges", force: true do |t|
     t.integer  "gynaecology_type_id"
@@ -883,16 +802,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.datetime "updated_at"
   end
 
-  create_table "infos", force: true do |t|
-    t.integer  "actor_id"
-    t.string   "key"
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "infos", ["actor_id"], name: "index_infos_on_actor_id", using: :btree
-
   create_table "insurance_companies", force: true do |t|
     t.string "name"
     t.string "url"
@@ -915,13 +824,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
 
   add_index "insurances", ["insurance_company_id"], name: "index_insurances_on_insurance_company_id", using: :btree
   add_index "insurances", ["insurance_type_id"], name: "index_insurances_on_insurance_type_id", using: :btree
-
-  create_table "jokes", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "manufactories", force: true do |t|
     t.string  "name",                      limit: 50
@@ -1027,28 +929,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
 
   add_index "menus", ["parent_id"], name: "index_menus_on_parent_id", using: :btree
 
-  create_table "movies", force: true do |t|
-    t.string   "duration"
-    t.string   "fid"
-    t.string   "title"
-    t.string   "poster"
-    t.string   "small_poster"
-    t.boolean  "has_download"
-    t.date     "release_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "movies_avtags", force: true do |t|
-    t.integer  "movie_id"
-    t.integer  "avtag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "movies_avtags", ["avtag_id"], name: "index_movies_avtags_on_avtag_id", using: :btree
-  add_index "movies_avtags", ["movie_id"], name: "index_movies_avtags_on_movie_id", using: :btree
-
   create_table "net_infos", force: true do |t|
     t.string   "title"
     t.string   "image_url"
@@ -1057,37 +937,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   end
 
   add_index "net_infos", ["hospital_type_id"], name: "index_net_infos_on_hospital_type_id", using: :btree
-
-  create_table "newthing_pictures", force: true do |t|
-    t.string   "file_key"
-    t.integer  "file_size"
-    t.string   "file_type"
-    t.integer  "newthing_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "newthing_pictures", ["newthing_id"], name: "index_newthing_pictures_on_newthing_id", using: :btree
-
-  create_table "newthings", force: true do |t|
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "note_categories", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "notes", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "note_category_id"
-  end
 
   create_table "nursing_rooms", force: true do |t|
     t.string   "name"
@@ -1141,22 +990,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   create_table "parts", force: true do |t|
     t.string "name", limit: 50, default: "0", null: false
   end
-
-  create_table "photo_categories", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "photo_details", force: true do |t|
-    t.integer  "click_times"
-    t.integer  "download_times"
-    t.integer  "photo_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "photo_details", ["photo_id"], name: "index_photo_details_on_photo_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.string   "picture"
@@ -1234,32 +1067,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
-  create_table "sex_pictures", force: true do |t|
-    t.string   "file_key"
-    t.integer  "sex_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "sex_pictures", ["sex_id"], name: "index_sex_pictures_on_sex_id", using: :btree
-
-  create_table "sex_versions", force: true do |t|
-    t.string   "last_record_at"
-    t.integer  "total"
-    t.string   "category"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  create_table "sexes", force: true do |t|
-    t.string   "title"
-    t.datetime "record_at"
-    t.string   "pictures_href"
-    t.string   "category"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "shaping_items", force: true do |t|
     t.string   "name"
     t.string   "price_scope"
@@ -1304,29 +1111,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   end
 
   add_index "shaping_types", ["parent_id"], name: "index_shaping_types_on_parent_id", using: :btree
-
-  create_table "sidekiq_jobs", force: true do |t|
-    t.string   "jid"
-    t.string   "queue"
-    t.string   "class_name"
-    t.text     "args"
-    t.boolean  "retry"
-    t.datetime "enqueued_at"
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.string   "status"
-    t.string   "name"
-    t.text     "result"
-  end
-
-  add_index "sidekiq_jobs", ["class_name"], name: "index_sidekiq_jobs_on_class_name", using: :btree
-  add_index "sidekiq_jobs", ["enqueued_at"], name: "index_sidekiq_jobs_on_enqueued_at", using: :btree
-  add_index "sidekiq_jobs", ["finished_at"], name: "index_sidekiq_jobs_on_finished_at", using: :btree
-  add_index "sidekiq_jobs", ["jid"], name: "index_sidekiq_jobs_on_jid", using: :btree
-  add_index "sidekiq_jobs", ["queue"], name: "index_sidekiq_jobs_on_queue", using: :btree
-  add_index "sidekiq_jobs", ["retry"], name: "index_sidekiq_jobs_on_retry", using: :btree
-  add_index "sidekiq_jobs", ["started_at"], name: "index_sidekiq_jobs_on_started_at", using: :btree
-  add_index "sidekiq_jobs", ["status"], name: "index_sidekiq_jobs_on_status", using: :btree
 
   create_table "social_securities", force: true do |t|
     t.string   "name"
@@ -1388,24 +1172,6 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.integer "id"
   end
 
-  create_table "torrent_versions", force: true do |t|
-    t.string   "title"
-    t.date     "version_date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "torrents", force: true do |t|
-    t.string   "title"
-    t.string   "picture"
-    t.string   "file_path"
-    t.integer  "torrent_version_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "torrents", ["torrent_version_id"], name: "index_torrents_on_torrent_version_id", using: :btree
-
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "account"
@@ -1428,13 +1194,5 @@ ActiveRecord::Schema.define(version: 20150704065722) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "weixins", force: true do |t|
-    t.string   "content"
-    t.string   "report"
-    t.boolean  "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

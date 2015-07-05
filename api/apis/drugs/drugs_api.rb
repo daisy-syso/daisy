@@ -26,7 +26,7 @@ class Drugs::DrugsAPI < ApplicationAPI
       per_page = params[:per_page] || 25
 
       offset = page * per_page
-      
+
       result_c = count[offset, per_page]
 
       dds = []
@@ -43,7 +43,7 @@ class Drugs::DrugsAPI < ApplicationAPI
 
       present :drugs, dds
     end
-    
+
     # 第二层
     params do
       requires :name, type: String, desc: 'Name'
@@ -80,7 +80,7 @@ class Drugs::DrugsAPI < ApplicationAPI
         end
       end
 
-      present :drug_manufactories, drug_manufactories
+      present :drugs, drug_manufactories
     end
 
     # 第三层

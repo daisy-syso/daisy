@@ -213,28 +213,29 @@ angular.module 'DaisyApp', [
     DrugListCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
-        url = if $routeParams.title
-          "/api/drugs/drugs/#{$routeParams.title}/manufactories"
+        url = if $routeParams.name
+          "/api/drugs/drugs/drug_manufactories.json"
         else
           "/api/drugs/drugs.json"
 
-        $scope.withTitle = $routeParams.title
+        $scope.withTitle = $routeParams.name
         $scope.moreData = true
 
         $scope.drugUrl = (drug) ->
-          if $routeParams.title
-            "#/detail/drugs/drugs/#{ drug.id }/#{drug.manufactory_id}"
+          if $routeParams.name
+            "#/detail/drugs/drugs/#{ drug.drug_id }/#{drug.manufactory_id}"
           else
-            "#/list/drugs/drugs?title=#{ drug.name } "
+            "#/list/drugs/drugs?name=#{ drug.name } "
 
-        $scope.loadData = (type, params) ->
+        $scope.loadData = (type, params) =>
           $scope.type = type
           $scope.params = params
           # $alert.info($scope.listUrl)
           page = $scope.page = 1
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
-            .success (data) ->
+            .success (data) =>
+              if data.drugs.length < 1  then  $scope.moreData = false
               $scope.drugs = data.drugs
 
         $scope.loadData($route.current.params.type, $location.search())
@@ -243,8 +244,10 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, $scope.params
           $loader.get(url, params: params)
             .success (data) ->
-              if data.drugs.length < 1  then  $scope.moreData = false
-              $scope.drugs = $scope.drugs.concat data.drugs
+              if data.drugs.length < 1
+                $scope.moreData = false
+              else
+                $scope.drugs = $scope.drugs.concat data.drugs
 
     ]
 
