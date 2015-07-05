@@ -23,7 +23,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-4.png"
       }, {
         title: "药品大全",
-        link: "#/list/drugs/drugs?all_manufactory=true",
+        link: "#/list/drugs/drugs",
         icon: "images/icons/1-5.png"
       }, {
         title: "身边药房",

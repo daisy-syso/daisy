@@ -83,7 +83,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
-    
+
     $routeProvider.when '/menu/:type',
       templateUrl: "templates/menu.html"
       controller: [
@@ -117,10 +117,32 @@ angular.module 'DaisyApp', [
 
     ]
 
-    $routeProvider.when '/order/:type*/:id', 
+    drugDetailCtrl = [
+      '$scope', '$routeParams', '$loader', '$alert', '$location'
+      ($scope, $routeParams, $loader, $alert, $location) ->
+        url = "/api/drugs/drugs/#{$routeParams.id}/#{$routeParams.manufactory_id}"
+
+        $scope.getDetail = (title) ->
+          content = ""
+          $scope.data.drug_details.forEach (detail) ->
+            if detail.title == title
+              content = detail.detail
+          content
+
+        $loader.get(url)
+          .success (data) ->
+            $scope.data = data
+            $scope.data['ingredient'] = $scope.getDetail('成份：')
+            $scope.data['character'] = $scope.getDetail('性状：')
+            $scope.data['efficient'] = $scope.getDetail('功能主治：')
+            $scope.data['summarize'] = $scope.getDetail("药品名称：")
+
+    ]
+
+    $routeProvider.when '/order/:type*/:id',
       templateUrl: "templates/order.html"
       controller: detailCtrl
-      
+
     # $routeProvider.when '/detail/:type*/:id/:attr',
     #   templateUrl: "templates/details/display.html"
     #   controller: [
@@ -128,7 +150,7 @@ angular.module 'DaisyApp', [
     #     ($scope, $routeParams, $loader) ->
     #       $scope.type = $routeParams.type
     #       url = "/api/#{$routeParams.type}.json"
-    #       scope.to_zh = 
+    #       scope.to_zh =
     #         by: "病因"
     #         zz: "症状"
     #         jc: "检测"
@@ -137,7 +159,11 @@ angular.module 'DaisyApp', [
     #       $loader.get(url)
     #         .success (data) ->
     #           $scope.data = data
-    #   ] 
+    #   ]
+
+    $routeProvider.when '/detail/drugs/drugs/:id/:manufactory_id',
+      templateUrl: "templates/details/drugs/drugs.html"
+      controller: drugDetailCtrl
 
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
@@ -152,7 +178,6 @@ angular.module 'DaisyApp', [
     listCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
-
         $scope.loadData = (type, params) ->
           $scope.type = type
           $scope.params = params
@@ -172,7 +197,7 @@ angular.module 'DaisyApp', [
           $location.replace()
           $location.keep = false
 
-        $scope.loadData($route.current.params.type, $location.search()) 
+        $scope.loadData($route.current.params.type, $location.search())
         $scope.nofilters = true if $routeParams.type == "menus"
         $scope.loadMore = () ->
           url = "/api/#{$scope.type}.json"
@@ -184,7 +209,49 @@ angular.module 'DaisyApp', [
               $scope.data['data'] = $scope.data['data'].concat data['data']
 
     ]
-    
+
+    DrugListCtrl = [
+      '$scope', '$loader', '$route', '$location', '$routeParams'
+      ($scope, $loader, $route, $location, $routeParams) ->
+        url = if $routeParams.title
+          "/api/drugs/drugs/#{$routeParams.title}/manufactories"
+        else
+          "/api/drugs/drugs.json"
+
+        $scope.withTitle = $routeParams.title
+        $scope.moreData = true
+
+        $scope.drugUrl = (drug) ->
+          if $routeParams.title
+            "#/detail/drugs/drugs/#{ drug.id }/#{drug.manufactory_id}"
+          else
+            "#/list/drugs/drugs?title=#{ drug.name } "
+
+        $scope.loadData = (type, params) ->
+          $scope.type = type
+          $scope.params = params
+          # $alert.info($scope.listUrl)
+          page = $scope.page = 1
+          params = angular.extend { page: page }, params
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.drugs = data.drugs
+
+        $scope.loadData($route.current.params.type, $location.search())
+        $scope.loadMore = () ->
+          page = $scope.page += 1
+          params = angular.extend { page: page }, $scope.params
+          $loader.get(url, params: params)
+            .success (data) ->
+              if data.drugs.length < 1  then  $scope.moreData = false
+              $scope.drugs = $scope.drugs.concat data.drugs
+
+    ]
+
+    $routeProvider.when '/list/drugs/drugs',
+      templateUrl: "templates/drugs_list.html"
+      controller: DrugListCtrl
+
     $routeProvider.when '/list/:type*',
       templateUrl: (routeParams) ->
         # console.log("templates/#{routeParams.template || "list"}.html")
@@ -192,7 +259,7 @@ angular.module 'DaisyApp', [
       controller: listCtrl
       reloadOnSearch: true
 
-    $routeProvider.when '/search/:label',   
+    $routeProvider.when '/search/:label',
       templateUrl: "templates/list.html"
       controller: [
         '$scope', '$routeParams', '$localStorage', '$loader', '$location'
@@ -250,7 +317,7 @@ angular.module 'DaisyApp', [
     $rootScope.animateNone = true
 
     $rootScope.$on '$locationChangeStart', () ->
-      $rootScope.routeDirection = 
+      $rootScope.routeDirection =
         if $location.back
           $location.back = false
           'back'
@@ -281,7 +348,7 @@ angular.module 'DaisyApp', [
   '$rootScope', '$modal'
   ($rootScope, $modal) ->
     $rootScope.share = (data) ->
-      $modal.open "分享", 
+      $modal.open "分享",
         templateUrl: "templates/modals/baiduShare.html"
         onload: () ->
           baidu.socShare.init
@@ -313,7 +380,7 @@ angular.module 'DaisyApp', [
   ($rootScope, $location, $loader, $alert, $modal) ->
     $rootScope.priceNotification = (type, id) ->
       if $rootScope.account
-        $modal.open "降价通知", 
+        $modal.open "降价通知",
           templateUrl: "templates/modals/priceNotification.html"
           onload: () ->
             $rootScope.priceNotificationUrl = "/api/price_notifications/#{type}/#{id}"
@@ -330,7 +397,7 @@ angular.module 'DaisyApp', [
   ($rootScope, $location, $loader, $alert, $modal) ->
     $rootScope.review = (type, id) ->
       if $rootScope.account
-        $modal.open "评价", 
+        $modal.open "评价",
           templateUrl: "templates/modals/review.html"
           onload: () ->
             $rootScope.reviewUrl = "/api/reviews/#{type}/#{id}"
@@ -351,7 +418,7 @@ angular.module 'DaisyApp', [
 # Get filters
 .run [
   '$rootScope', '$loader'
-  ($rootScope, $loader) ->          
+  ($rootScope, $loader) ->
     $rootScope.filters = {}
 
     $rootScope.formatFilter = (filter) ->
@@ -370,7 +437,7 @@ angular.module 'DaisyApp', [
                 node.params[filter.key] ||= node.id
 
               if parent.type && !node.type
-                node.type = parent.type    
+                node.type = parent.type
 
               delete node.focus
               if node.id == filter.current

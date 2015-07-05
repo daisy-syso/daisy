@@ -1,0 +1,63 @@
+<style>
+  td {
+    border: solid 1px #000;
+    width: 38px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+</style>
+<%= partial 'subheader' %>
+
+<div class="content" ng-class="type" style="padding-bottom:0;">
+  <div style="height:55px"></div>
+  <div class="card list">
+  <ul class="table-view media">
+    <li class="table-view-cell media-content" ng-repeat="data in drugs" ng-class="{last: listFin && $last}">
+      <div class="row">
+        <div class="col">
+          <a class="list-title" ng-href="{{drugUrl(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="list">
+            <a class="item item-thumbnail-left" href="javascript:;">
+              <img ng-src="{{data.image_url}}">
+              <ul class="list-cont">
+                <li class="text-overflow" ng-show="withTitle">功能主治：{{data.introduction}}</li>
+                <li ng-show="withTitle">
+                  规格：{{data.spec}}
+                </li>
+                <li ng-hide="withTitle">
+                  共成产厂家：{{ data.count || 12 }}
+                </li>
+                <li ng-show="withTitle">
+                  成产厂家：{{ data.manufactory }}
+                </li>
+                <li ng-show="withTitle">
+                  参考价格：<span class="price-color" style="border:none;background-color: #FFF;color: #DC143C">￥{{data.sale_price}}元</span>
+                </li>
+              </ul>
+            </a>
+            <div class="more-detail" ng-hide="withTitle">
+              <a ng-href="#/list/drugs/drugs?title={{data.<%= defined?(title) ? title : :name %>}}">查看详情</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="table-view-cell media-more" ng-show="moreData">
+       <a class="react" ng-click="loadMore()">查看更多</a>
+    </li>
+  </ul>
+
+  <div class="bg team" ng-if="data['recommend']">
+      <div class="fix index-hd">
+        <!-- <a class="more" href="#">更多>></a> -->
+        <h3>猜你喜欢</h3>
+      </div>
+    <%= partial 'related' %>
+    </div>
+</div>

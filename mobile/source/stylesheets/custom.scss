@@ -350,6 +350,12 @@ ul.border li {
     top: 10px;
     padding-top:10px;
   }
+  .more-detail{
+    position: absolute;
+    top: 36%;
+    z-index: 999;
+    left: 80%;
+  }
 }
 .item-thumbnail-left {
 	min-height:85px;
