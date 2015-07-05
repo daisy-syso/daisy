@@ -25,7 +25,7 @@ Diseases::Disease.__elasticsearch__.client = Elasticsearch::Client.new(
 )
 
 # 症状
-Diseases::Symptom.__elasticsearch__.client = Elasticsearch::Client.new(
+Symptoms::Symptom.__elasticsearch__.client = Elasticsearch::Client.new(
   host: Settings.elasticsearch.host, 
   logger: Logger.new(Rails.root.join(Settings.elasticsearch.log ))
 )
