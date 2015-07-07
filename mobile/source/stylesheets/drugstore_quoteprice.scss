@@ -1,0 +1,110 @@
+/*- - - - - - - - -药店报价.html - - - - - - - -*/
+  #YaoDianBaoJia {
+    font: 14px/22px Microsoft Yahei;
+    width: 100%;
+    height: auto;
+    background: #fff;
+    margin: 0px auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+  }
+
+  .Content{
+    li{
+      .fl{
+        font: 14px/22px Microsoft Yahei;
+        min-height: 30px;
+        line-height: 30px;
+        float: none;
+      }
+      h3{
+        font-size:14px;
+        min-height: 30px;
+        line-height: 30px;
+        font-weight: bold;
+      }
+    }
+  }
+  .listBottom{
+    li{
+      display: inline;
+      background: url(../images/listBottomIcon.gif) left center no-repeat;
+      background-size: 14px 14px;
+      padding-left: 18px;
+      margin-right: 10px;
+      line-height: 40px;
+      border: none;
+      padding-bottom: 0px;
+      font-size: 1.6em;
+      clear: none;
+    }
+  }
+  #YaoDianBaoJia .topimg {width:100%; height:400px; overflow:hidden;}
+  #YaoDianBaoJia .topimg img {width:400px; height:400px;}
+  #YaoDianBaoJia .price {width:90%; margin:0px auto; height:60px; line-height:60px;  background:#FFF;}
+  #YaoDianBaoJia .price h1 {float:left; font-size:2.5em; color:#f277b8;}
+  #YaoDianBaoJia .borderBottom10 {border-bottom:10px solid #e5e5e5; width:100%; height:1px;}
+  #YaoDianBaoJia .borderBottom1 {border-bottom:1px solid #e5e5e5; width:100%; height:1px;}
+  #YaoDianBaoJia .price span {float:right; color:#b8b8b8; font-size:1.6em;}
+
+  #YaoDianBaoJia .pingfen {width:90%; height:60px; margin:0px auto;}
+  .pingfen .star_t{color:#FC0; text-align:center; font-size:2.6em; font-weight:bold; line-height:60px; float:left;}
+  .pingfen .dp_boxc{ float:left; border:0px; margin-top:18px;}
+  .pingfen .revinp{ clear:both; border:0px;}
+  .pingfen .level .level_solid,.level .level_hollow{border:0px;float:left;background-image:url("../images/star.png");background-repeat:no-repeat; background-size:24px 24px;display:inline-block;width:26px;height:24px;}
+  .pingfen .level .level_hollow{background-image:url("../images/ico-star.png");background-repeat:no-repeat; background-size:24px 24px;}
+  .pingfen .revgrade{margin-left:10px; line-height:24px; display:none;}
+  .pingfen .scored {line-height:60px; font-size:1.6em; color:#b8b8b8;}
+  .pj_tb{width:90%; height:auto; overflow:hidden; margin:10px auto;}
+  .pj_tb a{ float:left; display:inline-block; padding:5px; height:24px; font-size:1.4em; line-height:24px; margin-right:10px; margin-bottom:10px;}
+  .pj_tb a.bg01{ background:#f8d4a7; color:#e17f1e;}
+  .pj_tb a.bg02{ background:#e3e3e3; color:#7a7a7a;}
+  #YaoDianBaoJia .Buy a {width:90%; height:60px; display:block; background:#f277b8; border-radius:5px; margin:10px auto; text-align:center; font-size:1.8em; line-height:60px; color:#fff;}
+  #YaoDianBaoJia .Content {width:90%; margin:10px auto; height:auto; overflow:hidden;}
+  #YaoDianBaoJia .Content li {width:100%; line-height:30px; border-bottom:1px solid #eaeaea; clear:both; font-size:1.4em; min-height: 30px}
+  #YaoDianBaoJia .Content h3 {float:left; text-align:center; width:30%;color:#333;}
+  #YaoDianBaoJia .Content .txt {width:70%; height:30px; line-height:30px; color:#333;}
+  #YaoDianBaoJia .Content .txt span {color:#f00;}
+  #YaoDianBaoJia .Content a {color:#f277b8;}
+  #YaoDianBaoJia .remind {width:90%; height:auto; line-height:60px; margin: 0 auto;}
+  #YaoDianBaoJia .remind .icon-button a {width:90%; margin:0px auto; padding:0px 10px; display:block; background:#f277b8; border-radius:5px;text-align:center; font-size:1.8em; line-height:60px; color:#fff;}
+  #YaoDianBaoJia .remind .icon-button a span {font-size:0.8em;}
+  #YaoDianBaoJia .remind .txt {font-size:1.2em; color:#b8b8b8; width:90%; margin:0px auto; line-height:30px; text-align:center;}
+  .myscore {width:280px; text-align:center; height:60px; margin:0px auto;}
+  .myscored {margin-right:10px; font-size:2.0em; color:#333; line-height:60px;}
+  .myscore .star_t{width:47px; color:#FC0; text-align:center; font-size:2.6em; font-weight:bold; line-height:60px; float:left;}
+  .myscore .dp_boxc{ float:left; border:0px; margin-top:18px;}
+  .myscore .revinp{ clear:both; border:0px;}
+  .myscore .level .level_solid,.level .level_hollow{border:0px;float:left;background-image:url("../images/star.png");background-repeat:no-repeat; background-size:24px 24px;display:inline-block;width:26px;height:24px;}
+  .myscore .level .level_hollow{background-image:url("../images/ico-star.png");background-repeat:no-repeat; background-size:24px 24px;}
+  .myscore .revgrade{margin-left:10px; line-height:24px; display:none;}
+
+  .shoplist {width:90%;}
+  .shoplist .title {width:90%; margin:0px auto; height:60px; line-height:60px; position: relative;text-align: left;}
+  .shoplist h1 {font-size:2.0em; font-weight:normal; color:#333; height: 60px;line-height: 60px;}
+  .shoplist .store-list{
+    li:last-child{
+      margin-bottom: 40px;
+    }
+  }
+  .shoplist ul {
+    margin:0px auto;
+  }
+  .shoplist li {border-bottom:1px solid #eaeaea; padding-bottom:10px; clear:both;}
+  .shoplist .name {width:100%; line-height:40px; height:40px;}
+  .shoplist .name h2 {font-size:1.6em; color:#333; float:left; font-weight:normal; line-height: 40px; height: 40px; width: 60%; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+  .shoplist .name span {float:right; font-size:1.8em; font-weight:bold; font-style:italic; color:#f277b8;}
+  .shoplist .img {margin-right:10px; height: 112px; width: 112px; width: 40%;}
+  .shoplist .txt {min-width:162px; width:56%; font-size:1.2em;}
+  .shoplist .txt li {border:none; padding-bottom:0px;margin-bottom: 4px;}
+  .txt .star {width:140px;}
+  .txt .star_t{width:47px; color:#FC0; text-align:center; font-weight:bold; font-size:1.6em; float:left;}
+  .txt .dp_boxc{ float:left; border:0px; margin-top:5px;}
+  .txt .revinp{ clear:both; border:0px;}
+  .txt .level .level_solid,.txt .level .level_hollow{border:0px;float:left;background-image:url("../images/star.png");background-repeat:no-repeat; background-size:14px 14px;display:inline-block;width:16px;height:14px;}
+  .txt .level .level_hollow{background-image:url("../images/ico-star.png");background-repeat:no-repeat; background-size:14px 14px;}
+  .txt .revgrade{margin-left:10px;display:none;}

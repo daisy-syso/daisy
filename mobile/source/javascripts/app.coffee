@@ -132,6 +132,7 @@ angular.module 'DaisyApp', [
         $loader.get(url)
           .success (data) ->
             $scope.data = data
+            $scope.data.name = "药品报价"
             $scope.data['ingredient'] = $scope.getDetail('成份：')
             $scope.data['character'] = $scope.getDetail('性状：')
             $scope.data['efficient'] = $scope.getDetail('功能主治：')
