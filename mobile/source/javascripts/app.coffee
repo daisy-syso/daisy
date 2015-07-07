@@ -126,7 +126,7 @@ angular.module 'DaisyApp', [
           content = ""
           $scope.data.drug_details.forEach (detail) ->
             if detail.title == title
-              content = detail.detail
+              content = detail.detail.trim()
           content
 
         $loader.get(url)
