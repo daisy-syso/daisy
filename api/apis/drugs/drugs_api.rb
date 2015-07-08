@@ -29,19 +29,22 @@ class Drugs::DrugsAPI < ApplicationAPI
 
       result_c = count[offset, per_page]
 
-      dds = []
+      ddss = []
       result_c.each do |result|
-        dd = Drugs::Drug.where(name: result[:name]).first
-        next if dd.blank?
+        dds = Drugs::Drug.where(name: result[:name])
+        next if dds.blank?
         tmp = {
-          name: dd.name,
-          image_url: dd.image_url,
-          count: result[:count]
+          name: dds.first.name,
+          image_url: dds.first.image_url,
+          count: result[:count],
+          code: dds.first.code,
+          spec: dds.first.spec,
+          brand: dds.first.brand
         }
-        dds << tmp
+        ddss << tmp
       end
 
-      present :drugs, dds
+      present :drugs, ddss
     end
 
     # 第二层
@@ -51,33 +54,25 @@ class Drugs::DrugsAPI < ApplicationAPI
       optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/drug_manufactories' do
-
-      @drugs = Drugs::Drug.where(name: params[:name]).page(params[:page]).per(params[:per_page])
-
+      drugs = Drugs::Drug.where(name: params[:name])
       drug_manufactories = []
 
-      @drugs.each do |drug|
-
-        dmfs = Drugs::DrugManufactoryStore.where(drug_id: drug.id)
-        manufactory_ids = dmfs.map(&:manufactory_id)
-
-        dm = Drugs::Manufactory.where(id: manufactory_ids)
-
-        dm.each do |s|
-          tmp_manu = {
-            drug_id: drug.id,
-            drug_name: drug.name,
-            drug_image_url: drug.image_url,
-            spec: drug.spec,
-            manufactory_id: s.id,
-            manufactory_name: s.name,
-            manufactory_address: s.registered_address,
-            manufactory_telephone: s.tel,
-            manufactory_url: s.url,
-            manufactory_production_classification: s.production_classification
-          }
-          drug_manufactories << tmp_manu
-        end
+      drugs.each do |drug|
+        dm = Drugs::Manufactory.where(name: drug.manufactory).first
+        next if dm.blank?
+        tmp_manu = {
+          drug_id: drug.id,
+          drug_name: drug.name,
+          drug_image_url: drug.image_url,
+          spec: drug.spec,
+          manufactory_id: dm.id,
+          manufactory_name: dm.name,
+          manufactory_address: dm.registered_address,
+          manufactory_telephone: dm.tel,
+          manufactory_url: dm.url,
+          manufactory_production_classification: dm.production_classification
+        }
+        drug_manufactories << tmp_manu
       end
 
       present :drugs, drug_manufactories
