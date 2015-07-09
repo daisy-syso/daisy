@@ -44,78 +44,12 @@
   <div class="borderBottom10"></div>
   <div class="Content">
     <ul>
-    <li ng-show="data.authentication_code">
-      <h3>【批准文号】</h3>
-      <div class="fl" id="txt">
-        {{data.authentication_code }}
-      </div>
-    </li>
-    <li ng-show="data.shelf_life">
-      <h3>【保质期】</h3>
-      <div class="fl" id="txt2">
-        {{ data.shelf_life }}
-      </div>
-    </li>
-    <li ng-show="data.summarize">
-      <h3>【药品概述】</h3>
-      <div class="fl" id="txt3">
-        {{data.summarize}}
-      </div>
-    </li>
-    <li ng-show="data.drug.sale_price">
-      <h3>【参考价格】</h3>
-      <div class="fl" id="txt4">
-        {{data.drug.sale_price}}元
-      </div>
-    </li>
-    <li ng-show="data.ingredient">
-      <h3>【主要成分】</h3>
-      <div class="fl" id="txt5">
-        {{ data.ingredient }}
-      </div>
-    </li>
-    <li ng-show="data.efficient">
-      <h3>【功能主治】</h3>
-      <div class="fl" id="txt5">
-        {{data.efficient}}
-      </div>
-    </li>
-    <li ng-show="data.useage">
-      <h3>【用法用量】</h3>
-      <div class="fl" id="txt5">
-        {{data.useage}}
-      </div>
-    </li>
-    <li ng-show="data.package">
-      <h3>【包装规格】</h3>
-        <div class="fl" id="txt5">
-          {{ data.package }}
+      <li ng-repeat="detail in data.drug_details">
+        <h3>【{{detail.title.split("：")[0]}}】</h3>
+        <div class="fl" id="txt">
+          {{::detail.detail.trim() }}
         </div>
-    </li>
-    <li ng-show="data.untoward_effect">
-      <h3>【不良反应】</h3>
-      <div class="fl" id="txt5">
-        {{ data.untoward_effect }}
-      </div>
-    </li>
-    <li ng-show="data.attention">
-      <h3>【注意事项】</h3>
-      <div class="fl" id="txt5">
-        {{data.attention}}
-      </div>
-    </li>
-    <!-- <li>
-      <h3>【其他】</h3>
-      <div class="fl" id="txt5">
-        无
-      </div>
-    </li> -->
-    <li ng-show="data.tapu">
-      <h3>【禁忌】</h3>
-      <div class="fl" id="txt5">
-        {{ data.tapu }}
-      </div>
-    </li>
+      </li>
     </ul>
   </div>
   <div class="remind">

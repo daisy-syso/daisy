@@ -98,7 +98,14 @@
   .shoplist .name {width:100%; line-height:40px; height:40px;}
   .shoplist .name h2 {font-size:1.6em; color:#333; float:left; font-weight:normal; line-height: 40px; height: 40px; width: 60%; word-wrap: break-word; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
   .shoplist .name span {float:right; font-size:1.8em; font-weight:bold; font-style:italic; color:#f277b8;}
-  .shoplist .img {margin-right:10px; height: 112px; width: 112px; width: 40%;}
+  .shoplist .img {
+    img{
+      width: 112px;
+      height: 112px;
+    }
+    margin-right:10px;
+    max-width: 40%;
+  }
   .shoplist .txt {min-width:162px; width:56%; font-size:1.2em;}
   .shoplist .txt li {border:none; padding-bottom:0px;margin-bottom: 4px;}
   .txt .star {width:140px;}
