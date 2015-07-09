@@ -27,8 +27,17 @@
               <img ng-src="{{data.image_url}}">
               <ul class="list-cont">
                 <li class="text-overflow" ng-show="withTitle">功能主治：{{data.introduction}}</li>
-                <li ng-show="withTitle">
+                <li>
                   规格：{{data.spec}}
+                </li>
+                <li ng-hide="withTitle">
+                  品牌：{{data.brand}}
+                </li>
+                <li ng-hide="withTitle">
+                  批准文号: {{data.code}}
+                </li>
+                <li ng-show="withTitle">
+                  药店数量：{{data.manufactory_count}}
                 </li>
                 <li ng-hide="withTitle">
                   共成产厂家：{{ data.count }}

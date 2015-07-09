@@ -212,7 +212,10 @@ angular.module 'DaisyApp', [
 
         $scope.drugUrl = (drug) ->
           if $routeParams.name
-            "#/detail/drugs/drugs/#{ drug.drug_id }/#{drug.manufactory_id}"
+            if drug.manufactory_count < 1
+              ""
+            else
+              "#/detail/drugs/drugs/#{ drug.drug_id }/#{drug.manufactory_id}"
           else
             "#/list/drugs/drugs?name=#{ drug.name } "
 
