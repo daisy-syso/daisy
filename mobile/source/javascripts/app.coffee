@@ -122,13 +122,6 @@ angular.module 'DaisyApp', [
       ($scope, $routeParams, $loader, $alert, $location) ->
         url = "/api/drugs/drugs/#{$routeParams.id}/#{$routeParams.manufactory_id}"
 
-        $scope.getDetail = (title) ->
-          content = ""
-          $scope.data.drug_details.forEach (detail) ->
-            if detail.title == title
-              content = detail.detail.trim()
-          content
-
         $loader.get(url)
           .success (data) ->
             $scope.data = data
