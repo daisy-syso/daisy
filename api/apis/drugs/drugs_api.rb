@@ -49,17 +49,20 @@ class Drugs::DrugsAPI < ApplicationAPI
 
     # 第二层
     params do
-      requires :name, type: String, desc: 'name'
+      requires :name, type: String, desc: 'Name'
       optional :page, type: Integer, desc: 'page'
       optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/drug_manufactories' do
       drugs = Drugs::Drug.where(name: params[:name])
       drug_manufactories = []
-      puts params
+
       drugs.each do |drug|
         dm = Drugs::Manufactory.where(name: drug.manufactory).first
         next if dm.blank?
+
+        dmfss = Drugs::DrugManufactoryStore.where(drug_id: drug.id, manufactory_id: dm.id)
+
         tmp_manu = {
           drug_id: drug.id,
           drug_name: drug.name,
@@ -70,7 +73,8 @@ class Drugs::DrugsAPI < ApplicationAPI
           manufactory_address: dm.registered_address,
           manufactory_telephone: dm.tel,
           manufactory_url: dm.url,
-          manufactory_production_classification: dm.production_classification
+          manufactory_production_classification: dm.production_classification,
+          manufactory_count: dmfss.size
         }
         drug_manufactories << tmp_manu
       end
