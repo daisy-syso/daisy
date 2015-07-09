@@ -49,14 +49,14 @@ class Drugs::DrugsAPI < ApplicationAPI
 
     # 第二层
     params do
-      requires :name, type: String, desc: 'Name'
+      requires :name, type: String, desc: 'name'
       optional :page, type: Integer, desc: 'page'
       optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/drug_manufactories' do
       drugs = Drugs::Drug.where(name: params[:name])
       drug_manufactories = []
-
+      puts params
       drugs.each do |drug|
         dm = Drugs::Manufactory.where(name: drug.manufactory).first
         next if dm.blank?
