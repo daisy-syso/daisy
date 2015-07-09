@@ -133,20 +133,6 @@ angular.module 'DaisyApp', [
           .success (data) ->
             $scope.data = data
             $scope.data.name = "药品报价"
-            $scope.data["authentication_code"] = $scope.getDetail("批准文号：")
-            $scope.data['ingredient'] = $scope.getDetail('成份：')
-            $scope.data['character'] = $scope.getDetail('性状：')
-            $scope.data['efficient'] = $scope.getDetail('功能主治：')
-            $scope.data['summarize'] = $scope.getDetail("药品概述：")
-            $scope.data["attention"] = $scope.getDetail("注意事项：")
-            $scope.data["drug_title"] = $scope.getDetail("药品名称：")
-            $scope.data["useage"] = $scope.getDetail("用法用量：")
-            $scope.data["hoarding"] = $scope.getDetail("贮藏：")
-            $scope.data["package"] = $scope.getDetail("包装规格：")
-            $scope.data["untoward_effect"] = $scope.getDetail("不良反应：")
-            $scope.data["tapu"] = $scope.getDetail("禁忌：")
-            $scope.data["shelf_life"] = $scope.getDetail("有效期：shelf life")
-
     ]
 
     $routeProvider.when '/order/:type*/:id',
