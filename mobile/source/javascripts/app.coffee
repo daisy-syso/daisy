@@ -243,6 +243,16 @@ angular.module 'DaisyApp', [
 
     ]
 
+    SymptomsListCtrl = [
+      '$scope', '$loader', '$route', '$location', '$routeParams'
+      ($scope, $loader, $route, $location, $routeParams) ->
+
+    ]
+
+    $routeProvider.when '/list/symptoms/symptoms',
+      templateUrl: 'templates/dsymptoms_list.html'
+      controller: SymptomsListCtrl
+
     $routeProvider.when '/list/drugs/drugs',
       templateUrl: "templates/drugs_list.html"
       controller: DrugListCtrl

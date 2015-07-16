@@ -60,7 +60,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-4.png"
       }, {
         title: "症状查询",
-        link: "#/list/maternals/confinement_centers",
+        link: "#/list/symptoms/symptoms",
         icon: "images/icons/2-5.png"
       }, {
         title: "母婴亲子",

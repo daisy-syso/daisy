@@ -1,0 +1,53 @@
+/*- - - - - - - - -样式属症状显示详细.html - - - - - - - -*/
+#symptoms{
+  width:90%;
+  margin:0 auto;
+  margin-top:20px;
+  border:1px solid #e9e9e9;
+  font-size:1.4em;
+  line-height:1.4em;
+}
+#symptoms ul li{border-bottom:1px solid #eaeaea;
+  width:100%;
+  overflow:hidden;
+  padding-top:25px;
+  padding-bottom:25px;
+  background:url(../images/2.png) no-repeat 95% 45px;
+}
+#symptoms ul li img{
+  width: 63px;
+  height: 63px;
+  float:left;
+  margin-left:4%;
+  margin-right:4%;
+}
+#symptoms ul li strong{display:block;
+  font-size:1.6em;
+  height:38px;
+  line-height:38px;
+  overflow:hidden;
+  font-weight:normal;
+}
+#symptoms ul li em{display:block;
+  color:#b9b9b9;
+  line-height:29px;
+  height:29px;
+  overflow:hidden;
+}
+#symptoms ul li .box{border-top:1px solid #eaeaea;
+  padding-top:25px;
+  padding-bottom:25px;
+  padding-left:22px;
+  padding-right:22px;
+  font-size:1.6em;
+  line-height:1.8em;
+  margin-top:25px;
+  display:none;
+}
+#symptoms ul li .box a{
+  display:inline-block;
+}
+#symptoms ul li.change {
+  background-image:url(../images/1.png);
+}
+
