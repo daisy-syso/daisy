@@ -15,6 +15,7 @@
  *= require custom
  *= require adapter
  *= require drugstore_quoteprice
+ *= require symptoms
  *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

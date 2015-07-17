@@ -1,0 +1,87 @@
+/*- - - - - - - - -样式属症状显示详细.html - - - - - - - -*/
+body{
+  background-color: white;
+  .main{
+    height: 100%;
+  }
+}
+#symptoms{
+  width:90%;
+  margin:0 auto;
+  margin-top:56px;
+  font-size:1.4em;
+  line-height:1.4em;
+  font-family: 微软雅黑;
+  height: 100%;
+  overflow: scroll;
+}
+#symptoms ul{
+  border:1px solid #e9e9e9;
+  margin-bottom: 180px;
+}
+#symptoms ul li{border-bottom:1px solid #eaeaea;
+  width:100%;
+  overflow:hidden;
+  padding-top:25px;
+  padding-bottom:25px;
+  background:url(../images/down-arrow.png) no-repeat 95% 45px;
+}
+#symptoms ul li img{
+  width: 63px;
+  height: 63px;
+  float:left;
+  margin-left:4%;
+  margin-right:4%;
+}
+#symptoms ul li strong{
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  display:block;
+  font-size:1.3em;
+  height:38px;
+  line-height:38px;
+  overflow:hidden;
+}
+#symptoms ul li em{
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  display:block;
+  color:#b9b9b9;
+  line-height:29px;
+  height:29px;
+  overflow:hidden;
+  span{
+    padding: 0 6px;
+  }
+}
+#symptoms ul li .box{
+  // overwrite the eve.css
+  border: none;
+
+  border-top:1px solid #eaeaea;
+  padding-top:25px;
+  padding-bottom:25px;
+  padding-left:22px;
+  padding-right:22px;
+  font-size:1.6em;
+  line-height:1.8em;
+  margin-top:25px;
+  display:none;
+}
+#symptoms ul li .box a{
+  display:inline-block;
+  font-family: 微软雅黑;
+  font-size: 22.3999996185303px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  height: 40px;
+  line-height: 40.3199996948242px;
+}
+#symptoms ul li.change {
+  background-image:url(../images/up-arrow.png);
+}
+
