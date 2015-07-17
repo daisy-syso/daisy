@@ -246,11 +246,73 @@ angular.module 'DaisyApp', [
     SymptomsListCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
+        $scope.moreData = true
+        $scope.getImageUrl = (symptom) =>
+          switch symptom.part_name
+            when "头部"
+              "images/body-regions/brain.png"
+            when "颈部"
+              "images/body-regions/neck.png"
+            when "胸部"
+              "images/body-regions/chest.png"
+            when "腹部"
+              "images/body-regions/abdomen.png"
+            when "腰部"
+              "images/body-regions/waist.png"
+            when "臀部"
+              "images/body-regions/buttocks.png"
+            when "上肢"
+              "images/body-regions/upper-limbs.png"
+            when "下肢"
+              "images/body-regions/lower-limbs.png"
+            when "骨"
+              "images/body-regions/bone.png"
+            when "女性生殖"
+              "images/body-regions/female-reprodution.png"
+            when "男性生殖"
+              "images/body-regions/male-reproduction.png"
+            when "全身"
+              "images/body-regions/body.png"
+            when "心理"
+              "images/body-regions/mental.png"
+            when "背部"
+              "images/body-regions/back.png"
+            when "其他"
+              "images/body-regions/others.png"
+            when "会阴部"
+              "images/body-regions/perineum.png"
+            when "盆腔"
+              "images/body-regions/pelvic-cavity.png"
 
+        $scope.getCommentSymtoms = (symptom) =>
+          symptom.symptoms.slice(0, 3)
+
+        url = "/api/symptoms/symptoms"
+        $scope.loadData = (type, params) =>
+          $scope.type = type
+          $scope.params = params
+          # $alert.info($scope.listUrl)
+          page = $scope.page = 1
+          params = angular.extend { page: page }, params
+          $loader.get(url, params: params)
+            .success (data) =>
+              if data.symptoms.length < 1  then  $scope.moreData = false
+              $scope.symptoms = data.symptoms
+
+        $scope.loadData($route.current.params.type, $location.search())
+        $scope.loadMore = () ->
+          page = $scope.page += 1
+          params = angular.extend { page: page }, $scope.params
+          $loader.get(url, params: params)
+            .success (data) ->
+              if data.symptoms.length < 1
+                $scope.moreData = false
+              else
+                $scope.symptoms = $scope.symptoms.concat data.symptoms
     ]
 
     $routeProvider.when '/list/symptoms/symptoms',
-      templateUrl: 'templates/dsymptoms_list.html'
+      templateUrl: 'templates/symptoms_list.html'
       controller: SymptomsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
