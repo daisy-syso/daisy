@@ -55,6 +55,26 @@ class Drugs::DrugsAPI < ApplicationAPI
     end
     get '/drug_manufactories' do
       drugs = Drugs::Drug.where(name: params[:name])
+
+      hash_drugs = []
+      drugs.each do |d|
+        tmp = [d.id, "#{d.name}#{d.manufactory}#{d.ori_price}#{d.spec}"]
+        hash_drugs << tmp
+      end
+
+      ids = []
+      hash_drugs.each_with_index do |id, i|
+        hash_drugs[i+1, hash_drugs.size].each do |j|
+          if id[1] == j[1]
+            ids << id[0]
+          end
+        end
+      end
+
+      uniq_ids = hash_drugs.map{|p| p[0]} - ids
+
+      drugs = Drugs::Drug.where(id: uniq_ids)
+
       drug_manufactories = []
 
       drugs.each do |drug|

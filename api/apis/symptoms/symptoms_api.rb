@@ -4,20 +4,31 @@ class Symptoms::SymptomsAPI < ApplicationAPI
   namespace :symptoms do 
     
     params do
-      optional :page, type: Integer, desc: 'page'
-      optional :per_page, type: Integer, desc: 'per_page'
     end
     get '/' do
-      symptoms = Symptoms::Symptom.all.page(params[:page]).per(params[:per_page])
+      parts = Symptoms::Part.all
 
       results = []
+      parts.each do |part|
 
-      symptoms.each do |s|
-        tmp = {
-          id: s.id,
-          name: s.name
+        symptoms = Symptoms::Symptom.where(part_id: part.id)
+
+        symptoms_arr = []
+
+        symptoms.each do |s|
+          tmp = {
+            id: s.id,
+            name: s.name
+          }
+          symptoms_arr << tmp
+        end
+
+        tt = {
+          part_name: part.name,
+          symptoms: symptoms_arr
         }
-        results << tmp
+
+        results << tt
       end
 
       {symptoms: results} 

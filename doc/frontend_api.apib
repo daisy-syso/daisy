@@ -9,25 +9,26 @@ HOST: http://www.syso.com.cn
 
 ### 症状列表页 [GET]
 
-+ Parameters
-  + page (integer) - 页数
-  + per_page (integer) - 每页几条
-
 + Response 200 (application/json)
 
     {
       "symptoms": [
         {
-          "id": 1,
-          "name": "恶心与呕吐"
-        },
-        {
-          "id": 2,
-          "name": "腹泻"
-        },
-        {
-          "id": 3,
-          "name": "呼吸困难"
+          "part_name": "头部",
+          "symptoms": [
+            {
+              "id": 9,
+              "name": "惊厥"
+            },
+            {
+              "id": 11,
+              "name": "红晕"
+            },
+            {
+              "id": 16,
+              "name": "咽部粘膜弥漫充血"
+            }
+          ]
         }
       ]
     }
