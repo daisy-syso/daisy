@@ -128,6 +128,17 @@ angular.module 'DaisyApp', [
             $scope.data.name = "药品报价"
     ]
 
+    symptomsDetailCtrl = [
+      '$scope', '$routeParams', '$loader', '$alert', '$location'
+      ($scope, $routeParams, $loader, $alert, $location) ->
+        url = "/api/symptoms/symptoms/#{$routeParams.id}"
+
+        $loader.get(url)
+          .success (data) ->
+            $scope.symptoms = data.symptoms
+            $scope.title = data.symptoms.symptom.name
+    ]
+
     $routeProvider.when '/order/:type*/:id',
       templateUrl: "templates/order.html"
       controller: detailCtrl
@@ -153,6 +164,10 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/detail/drugs/drugs/:id/:manufactory_id',
       templateUrl: "templates/details/drugs/drugs.html"
       controller: drugDetailCtrl
+
+    $routeProvider.when '/detail/symptoms/symptoms/:id',
+      templateUrl: "templates/details/symptoms/symptom_item.html"
+      controller: symptomsDetailCtrl
 
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
