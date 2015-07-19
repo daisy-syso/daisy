@@ -244,6 +244,8 @@ angular.module 'DaisyApp', [
             .success (data) =>
               if data.drugs.length < 1  then  $scope.moreData = false
               $scope.drugs = data.drugs
+              $scope.data = {}
+              $scope.data.filters = data.filters
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->
