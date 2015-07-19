@@ -155,6 +155,7 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   include Localizable
   include Reviewable
+  include JoinAppliable
 
   class << self
     include Filterable
