@@ -10,7 +10,8 @@
 <%= partial 'subheader' %>
 
 <div class="content" ng-class="type" style="padding-bottom:0;">
-  <div style="height:55px"></div>
+  <div class="oneHeight" ng-if="!data.filters"></div>
+  <div class="twiceHeight" ng-if="data.filters"></div>
   <div class="card list">
   <ul class="table-view media">
     <li class="table-view-cell media-content" ng-repeat="data in drugs" ng-class="{last: listFin && $last}">
