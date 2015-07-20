@@ -1,0 +1,932 @@
+{
+  "title": "找医生",
+  "related": null,
+  "recommend": null,
+  "template": null,
+  "subtitle": {
+    "keep": "city",
+    "link": "categories/cities",
+    "key": "city",
+    "title": "位置",
+    "template": "list",
+    "current": 2
+  },
+  "filters": [
+    {
+      "link": "types",
+      "key": "type",
+      "title": "找医生",
+      "template": "list",
+      "current": "doctor"
+    },
+    {
+      "key": "disease",
+      "title": "疾病",
+      "template": "list",
+      "children": [
+        {
+          "title": "全部",
+          "parent": true,
+          "id": null
+        },
+        {
+          "id": 1,
+          "title": "感染性疾病",
+          "children": [
+            {
+              "id": 40,
+              "title": "肺炎"
+            },
+            {
+              "id": 41,
+              "title": "细菌性痢疾"
+            },
+            {
+              "id": 42,
+              "title": "梅毒"
+            },
+            {
+              "id": 43,
+              "title": "白喉"
+            },
+            {
+              "id": 44,
+              "title": "阿米巴痢疾"
+            },
+            {
+              "id": 45,
+              "title": "病毒性肝炎"
+            },
+            {
+              "id": 46,
+              "title": "乙型病毒性肝炎"
+            },
+            {
+              "id": 47,
+              "title": "艾滋病"
+            },
+            {
+              "id": 48,
+              "title": "化脓性脑膜炎"
+            },
+            {
+              "id": 49,
+              "title": "流行性乙型脑炎"
+            },
+            {
+              "id": 52,
+              "title": "败血症"
+            },
+            {
+              "id": 53,
+              "title": "伤寒"
+            },
+            {
+              "id": 54,
+              "title": "肝硬化"
+            },
+            {
+              "id": 55,
+              "title": "猩红热"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "呼吸系统疾病",
+          "children": [
+            {
+              "id": 56,
+              "title": "支气管哮喘"
+            },
+            {
+              "id": 57,
+              "title": "肺癌"
+            },
+            {
+              "id": 58,
+              "title": "支气管扩张"
+            },
+            {
+              "id": 67,
+              "title": "流行性感冒"
+            },
+            {
+              "id": 68,
+              "title": "肺炎"
+            },
+            {
+              "id": 69,
+              "title": "急性上呼吸道感染"
+            },
+            {
+              "id": 70,
+              "title": "支气管炎"
+            },
+            {
+              "id": 71,
+              "title": "肺结核"
+            },
+            {
+              "id": 72,
+              "title": "慢性阻塞性肺疾病"
+            },
+            {
+              "id": 73,
+              "title": "肺栓塞"
+            },
+            {
+              "id": 74,
+              "title": "胸膜炎"
+            },
+            {
+              "id": 75,
+              "title": "间质性肺炎"
+            },
+            {
+              "id": 76,
+              "title": "睡眠呼吸暂停综合症"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "精神疾病",
+          "children": [
+            {
+              "id": 124,
+              "title": "精神分裂症"
+            },
+            {
+              "id": 125,
+              "title": "强迫症"
+            },
+            {
+              "id": 135,
+              "title": "抑郁症"
+            },
+            {
+              "id": 136,
+              "title": "焦虑症"
+            },
+            {
+              "id": 137,
+              "title": "恐惧症"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "泌尿生殖疾病",
+          "children": [
+            {
+              "id": 36,
+              "title": "前列腺炎"
+            },
+            {
+              "id": 37,
+              "title": "肾病综合征"
+            },
+            {
+              "id": 38,
+              "title": "前列腺增生"
+            },
+            {
+              "id": 39,
+              "title": "肾结石"
+            },
+            {
+              "id": 50,
+              "title": "尿路感染"
+            },
+            {
+              "id": 51,
+              "title": "膀胱炎"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "免疫系统疾病",
+          "children": [
+            {
+              "id": 108,
+              "title": "风湿性关节炎"
+            },
+            {
+              "id": 109,
+              "title": "类风湿性关节炎"
+            },
+            {
+              "id": 110,
+              "title": "痛风"
+            },
+            {
+              "id": 111,
+              "title": "强直性脊柱炎"
+            },
+            {
+              "id": 112,
+              "title": "系统性红斑狼疮"
+            },
+            {
+              "id": 113,
+              "title": "皮肌炎"
+            },
+            {
+              "id": 114,
+              "title": "过敏性紫癜"
+            },
+            {
+              "id": 115,
+              "title": "变应性血管炎"
+            },
+            {
+              "id": 116,
+              "title": "系统性硬化病"
+            },
+            {
+              "id": 117,
+              "title": "干燥综合征"
+            },
+            {
+              "id": 126,
+              "title": "白塞病"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "内分泌系统",
+          "children": [
+            {
+              "id": 96,
+              "title": "骨质疏松"
+            },
+            {
+              "id": 97,
+              "title": "糖尿病"
+            },
+            {
+              "id": 98,
+              "title": "甲状腺功能亢进"
+            },
+            {
+              "id": 99,
+              "title": "尿崩症"
+            },
+            {
+              "id": 100,
+              "title": "急性肾小球肾炎"
+            },
+            {
+              "id": 101,
+              "title": "甲状腺功能减退症"
+            },
+            {
+              "id": 102,
+              "title": "糖尿病神经病变"
+            },
+            {
+              "id": 103,
+              "title": "甲状腺瘤"
+            },
+            {
+              "id": 104,
+              "title": "脑垂体瘤"
+            },
+            {
+              "id": 105,
+              "title": "糖尿病足"
+            },
+            {
+              "id": 106,
+              "title": "甲状腺炎"
+            },
+            {
+              "id": 107,
+              "title": "矮小症"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "神经科疾病",
+          "children": [
+            {
+              "id": 119,
+              "title": "帕金森病"
+            },
+            {
+              "id": 120,
+              "title": "面肌痉挛"
+            },
+            {
+              "id": 121,
+              "title": "重症肌无力"
+            },
+            {
+              "id": 122,
+              "title": "脑膜瘤"
+            },
+            {
+              "id": 123,
+              "title": "脑垂体瘤"
+            },
+            {
+              "id": 127,
+              "title": "偏头痛"
+            },
+            {
+              "id": 128,
+              "title": "神经衰弱"
+            },
+            {
+              "id": 129,
+              "title": "失眠"
+            },
+            {
+              "id": 130,
+              "title": "脑外伤"
+            },
+            {
+              "id": 131,
+              "title": "三叉神经痛"
+            },
+            {
+              "id": 132,
+              "title": "癫痫"
+            },
+            {
+              "id": 133,
+              "title": "脑梗塞"
+            },
+            {
+              "id": 134,
+              "title": "痴呆"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "五官科疾病",
+          "children": [
+            {
+              "id": 26,
+              "title": "中耳炎"
+            },
+            {
+              "id": 27,
+              "title": "口角炎"
+            },
+            {
+              "id": 138,
+              "title": "咽炎"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "消化系统",
+          "children": [
+            {
+              "id": 59,
+              "title": "功能性消化不良"
+            },
+            {
+              "id": 60,
+              "title": "肠炎"
+            },
+            {
+              "id": 61,
+              "title": "腹泻"
+            },
+            {
+              "id": 62,
+              "title": "肠胃炎"
+            },
+            {
+              "id": 63,
+              "title": "便秘"
+            },
+            {
+              "id": 64,
+              "title": "胃炎"
+            },
+            {
+              "id": 65,
+              "title": "胃溃疡"
+            },
+            {
+              "id": 66,
+              "title": "十二指肠溃疡"
+            },
+            {
+              "id": 77,
+              "title": "肝硬化"
+            },
+            {
+              "id": 78,
+              "title": "反流性食管炎"
+            },
+            {
+              "id": 79,
+              "title": "病毒性肝炎"
+            },
+            {
+              "id": 80,
+              "title": "胃癌"
+            },
+            {
+              "id": 81,
+              "title": "脂肪肝"
+            },
+            {
+              "id": 82,
+              "title": "消化道出血"
+            },
+            {
+              "id": 83,
+              "title": "酒精性肝炎"
+            },
+            {
+              "id": 84,
+              "title": "结肠炎"
+            },
+            {
+              "id": 85,
+              "title": "胰腺炎"
+            },
+            {
+              "id": 86,
+              "title": "丙型病毒性肝炎"
+            },
+            {
+              "id": 118,
+              "title": "乙型病毒性肝炎"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "心脑血管疾病",
+          "children": [
+            {
+              "id": 9,
+              "title": "冠心病"
+            },
+            {
+              "id": 10,
+              "title": "高血压"
+            },
+            {
+              "id": 11,
+              "title": "高脂血症"
+            },
+            {
+              "id": 12,
+              "title": "脑供血不足"
+            },
+            {
+              "id": 13,
+              "title": "心肌梗死"
+            },
+            {
+              "id": 14,
+              "title": "心内膜炎"
+            },
+            {
+              "id": 15,
+              "title": "动脉硬化闭塞症"
+            },
+            {
+              "id": 16,
+              "title": "心房颤动"
+            },
+            {
+              "id": 17,
+              "title": "风湿性心脏病"
+            },
+            {
+              "id": 25,
+              "title": "心绞痛"
+            },
+            {
+              "id": 28,
+              "title": "心律失常"
+            },
+            {
+              "id": 29,
+              "title": "脑动脉硬化"
+            },
+            {
+              "id": 30,
+              "title": "脑梗塞"
+            },
+            {
+              "id": 31,
+              "title": "心肌炎"
+            },
+            {
+              "id": 32,
+              "title": "阵发性室上性心动过速"
+            },
+            {
+              "id": 33,
+              "title": "肺源性心脏病"
+            },
+            {
+              "id": 34,
+              "title": "低血压"
+            },
+            {
+              "id": 35,
+              "title": "心肌病"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "血液系统疾病",
+          "children": [
+            {
+              "id": 87,
+              "title": "贫血"
+            },
+            {
+              "id": 88,
+              "title": "淋巴瘤"
+            },
+            {
+              "id": 89,
+              "title": "白血病"
+            },
+            {
+              "id": 90,
+              "title": "特发性血小板减少性紫癜"
+            },
+            {
+              "id": 91,
+              "title": "继发性血小板减少性紫癜"
+            },
+            {
+              "id": 92,
+              "title": "多发性骨髓瘤"
+            },
+            {
+              "id": 93,
+              "title": "急性非淋巴细胞白血病"
+            },
+            {
+              "id": 94,
+              "title": "骨髓异常增生综合征"
+            },
+            {
+              "id": 95,
+              "title": "慢性髓细胞性白血病"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "肿瘤疾病",
+          "children": [
+            {
+              "id": 1,
+              "title": "淋巴瘤"
+            },
+            {
+              "id": 2,
+              "title": "癌痛"
+            },
+            {
+              "id": 3,
+              "title": "结肠癌"
+            },
+            {
+              "id": 4,
+              "title": "直肠癌"
+            },
+            {
+              "id": 5,
+              "title": "原发性肝癌"
+            },
+            {
+              "id": 6,
+              "title": "肾癌"
+            },
+            {
+              "id": 7,
+              "title": "前列腺癌"
+            },
+            {
+              "id": 8,
+              "title": "胰腺癌"
+            },
+            {
+              "id": 18,
+              "title": "鼻咽癌"
+            },
+            {
+              "id": 19,
+              "title": "骨肿瘤"
+            },
+            {
+              "id": 20,
+              "title": "肺癌"
+            },
+            {
+              "id": 21,
+              "title": "乳腺癌"
+            },
+            {
+              "id": 22,
+              "title": "胃癌"
+            },
+            {
+              "id": 23,
+              "title": "食管癌"
+            },
+            {
+              "id": 24,
+              "title": "宫颈癌"
+            }
+          ]
+        }
+      ],
+      "current": null
+    },
+    {
+      "key": "order_by",
+      "title": "智能排序",
+      "template": "list",
+      "children": [
+        {
+          "title": "智能排序",
+          "id": "auto"
+        },
+        {
+          "title": "最新发布",
+          "id": "newest"
+        },
+        {
+          "title": "人气最高",
+          "id": "hotest"
+        },
+        {
+          "title": "评价最好",
+          "id": "favoriest"
+        },
+        {
+          "title": "价格最低",
+          "id": "cheapest"
+        },
+        {
+          "title": "价格最高",
+          "id": "most_expensive"
+        }
+      ],
+      "current": "auto"
+    },
+    {
+      "template": "form",
+      "key": "form",
+      "title": "筛选",
+      "current": null,
+      "children": [
+        {
+          "title": "无需预约",
+          "template": "switch",
+          "key": "need_order",
+          "current": false
+        },
+        {
+          "title": "返现",
+          "template": "switch",
+          "key": "has_return",
+          "current": false
+        },
+        {
+          "title": "当前主题精选",
+          "template": "radio",
+          "key": "template",
+          "children": [
+            {
+              "title": "不限",
+              "id": 0
+            },
+            {
+              "title": "主任医师",
+              "id": 1
+            },
+            {
+              "title": "主任技师",
+              "id": 2
+            },
+            {
+              "title": "主任检验师",
+              "id": 3
+            },
+            {
+              "title": "主治医师",
+              "id": 4
+            },
+            {
+              "title": "主管技师",
+              "id": 5
+            },
+            {
+              "title": "住院医师",
+              "id": 6
+            },
+            {
+              "title": "副主任医师",
+              "id": 7
+            },
+            {
+              "title": "副主任技师",
+              "id": 8
+            },
+            {
+              "title": "副主任检验师",
+              "id": 9
+            },
+            {
+              "title": "副主任药师",
+              "id": 10
+            },
+            {
+              "title": "医师",
+              "id": 11
+            },
+            {
+              "title": "药师",
+              "id": 12
+            },
+            {
+              "title": "讲师",
+              "id": 13
+            },
+            {
+              "title": "高级按摩师",
+              "id": 14
+            }
+          ],
+          "current": null
+        }
+      ]
+    }
+  ],
+  "data": [
+    {
+      "template": "hospitals/doctors",
+      "id": 408128,
+      "name": "李敬宣",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "运动障碍,神经康复,神经遗传病运动障碍,神经康复,神经遗传病",
+      "hospital_room_name": "中医眼科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 429051,
+      "name": "刘晓萍",
+      "position": "主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "从事临床工作以来深入呼吸内科专业领域诊治了大量呼吸系统疾病患者，积累了丰富的临床经验，尤其对呼吸系统感染性疾病宫颈癌的康复治疗，手术无痛流产术，妇科内分泌疾病、子宫内膜异...肝、胆、胰疾病，腹腔镜胆囊切除术，消化道肿瘤、甲状腺疾病的诊治",
+      "hospital_room_name": "中医妇产科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 429784,
+      "name": "曹国敏",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "消化道肿瘤、肝胆疾病、甲状腺疾病的诊治，擅长十二指肠镜的治疗治疗小儿常见病、多发病骨关节疾病、关节镜技术、人工关节置换",
+      "hospital_room_name": "中医儿科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 430263,
+      "name": "常正云",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "失眠症,焦虑症,抑郁症,心理咨询甲状腺、胃肠道疾病及普通外科常见疾病的诊治诊治小儿呼吸、消化系统疾病",
+      "hospital_room_name": "中医儿科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 430596,
+      "name": "姜磊",
+      "position": "住院医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "小儿呼吸系统常见病如感冒、扁桃体炎、气管炎、支气管炎、肺炎、...运动障碍,神经康复,神经遗传病肝、胆、胰疾病，腹腔镜胆囊切除术，消化道肿瘤、甲状腺疾病的诊治",
+      "hospital_room_name": "中医儿科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 431171,
+      "name": "任守平",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "颅脑外伤急性期,恢复期,康复期治疗急性脑血管病的高压氧治疗；缺血,缺氧性脑病,一氧化碳中毒,脑血管疾病神外疾病,颅内、髓内各部位肿瘤、癫痫、脑溢血、脑外伤、运动障碍性疾病、功能神经疾病的外科治疗脊柱外科",
+      "hospital_room_name": "中医骨科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 431772,
+      "name": "杨书华",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "四肢骨关节、脊柱、腹部、甲状腺、乳腺等高难度手术帕金森氏病,运动障碍疾病甲状腺疾病，消化道肿瘤等疾病的诊治",
+      "hospital_room_name": "中医骨科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 431924,
+      "name": "刘仲玉",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "失眠症,焦虑症,抑郁症,心理咨询治疗各种痛症：颈椎综合症-眩晕、颈肩臂痛、手指麻木等帕金森氏病,运动障碍疾病",
+      "hospital_room_name": "中医骨科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 432162,
+      "name": "张志成",
+      "position": "副主任医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "甲状腺疾病，消化道肿瘤等疾病的诊治各种呼吸系统疾病的诊断、治疗，尤其擅长呼吸系统肿瘤、慢性支气管炎、阻塞性肺气肿及慢性肺心病的诊断与治疗骨伤外科、腹部外科、乳腺外科、颈椎病、腰腿痛疾病",
+      "hospital_room_name": "中医骨科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    },
+    {
+      "template": "hospitals/doctors",
+      "id": 432237,
+      "name": "刘献强",
+      "position": "主治医师",
+      "image_url": "http://syso.qiniudn.com/nopicture%2Fdoctor.jpg",
+      "desc": "从事临床工作以来深入呼吸内科专业领域诊治了大量呼吸系统疾病患者，积累了丰富的临床经验，尤其对呼吸系统感染性疾病劲肩腰腿痛脑血管病,运动障碍,遗传变性病,痴呆",
+      "hospital_room_name": "中医骨科",
+      "hospital_name": "北辰中医医院",
+      "doctor_sevice_list": {
+        "zxzx": false,
+        "yjzx": false,
+        "sjgh": false
+      }
+    }
+  ]
+}
