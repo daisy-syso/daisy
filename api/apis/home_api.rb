@@ -16,7 +16,7 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/doctors",
         icon: "images/icons/1-3.png"
       }, {
-        title: "价格搜索",
+        title: "诊疗攻略",
         link: "#/list/price_search/strategy_list",
         # title: "手机挂号",
         # link: "#/list/hospitals/polyclinics",
@@ -781,7 +781,7 @@ class HomeAPI < Grape::API
         title: "健康险攻略"
       }]
     }, {
-      title: "价格搜索",
+      title: "诊疗攻略",
       children: [{
         id: :price_search,
         url:  "#/list/hospitals/polyclinic_charges?type=price_search",
@@ -1615,7 +1615,7 @@ class HomeAPI < Grape::API
         title: "健康险攻略"
       }]
     }, {
-      title: "价格搜索",
+      title: "诊疗攻略",
       children: [{
         id: :price_search,
         url:  "#/list/hospitals/polyclinic_charges?type=price_search",

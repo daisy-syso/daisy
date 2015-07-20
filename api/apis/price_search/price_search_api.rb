@@ -2,15 +2,15 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
 
 	get :strategy_list do
 		{
-      title: "价格搜索",
+      title: "诊疗攻略",
       filters: [
         {
             link: "types",
             key: "type",
-            title: "价格搜索",
+            title: "诊疗攻略",
             template: "list",
             current: "price_search"
-        },{ 
+        },{
         title: "类别",
         children: Categories::County.filters(params[:city]),
         filter_only: true
