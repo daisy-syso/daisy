@@ -58,7 +58,7 @@ class Drugs::DrugsAPI < ApplicationAPI
 
       hash_drugs = []
       drugs.each do |d|
-        tmp = [d.id, "#{d.name}#{d.manufactory}#{d.ori_price}#{d.spec}"]
+        tmp = [d.id, "#{d.name}#{d.manufactory}"]
         hash_drugs << tmp
       end
 
