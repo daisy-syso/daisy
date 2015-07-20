@@ -83,6 +83,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/join_league', templateUrl: 'templates/join_league.html'
 
     $routeProvider.when '/menu/:type',
       templateUrl: "templates/menu.html"

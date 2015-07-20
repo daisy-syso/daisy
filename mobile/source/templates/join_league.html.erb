@@ -1,0 +1,51 @@
+<%= partial 'header', locals: { title: "商家加盟及更正，增添信息" } %>
+
+<div id="join_leage">
+  <div style="height: 60px;"></div>
+  <div class="info-wrapper">
+    <h1>请选择类型</h1>
+    <select name="target_type" class="target-type-select">
+      <option ng-repeat="target_type in target_type" value="">医院</option>
+      <option>药店</option>
+      <option>药厂</option>
+      <option>医生</option>
+      <option>养老公寓</option>
+      <option>月子中心</option>
+      <option>母婴会馆</option>
+      <option>保险公司</option>
+    </select>
+
+    <input name="" type="checkbox" class="input" value="">
+    <span>医院地址</span>
+
+    <input name="hospital_address" class="txtarea" type="text" placeholder="请输入医院地址"  />
+    <input name="" type="checkbox" class="input" value="">
+    <span>医院电话</span>
+
+     <input name="textfield" class="txtarea" type="text" placeholder="请输入医院电话"  />
+
+    <input name="" type="checkbox" class="input" value="">
+    <span>医院网址</span>
+
+     <input name="textfield" class="txtarea" type="text" placeholder="请输入医院网址"  />
+
+    <input name="" type="checkbox" class="input" value="">
+    <span>特色科室</span>
+
+     <input name="textfield" class="txtarea" type="text" placeholder="请输入特色科室"  />
+
+    <input name="" type="checkbox" class="input" value="">
+    <span>社保加入</span>
+
+     <input name="textfield" class="txtarea" type="text" placeholder="请输入社保加入"  />
+
+    <input name="" type="checkbox" class="input" value="">
+    <span>在线咨询</span>
+
+    <input name="textfield" class="txtarea" type="text" placeholder="请输入问题" />
+    <input name="" type="checkbox" class="input" value="">
+    <span>手机挂号</span>
+
+    <input name="textfield" class="txtarea" type="text" placeholder="请输入手机挂号相关问题" />
+  </div>
+</div>
