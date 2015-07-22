@@ -60,13 +60,13 @@ body{
 #symptoms ul li .box{
   // overwrite the eve.css
   border: none;
+  padding: 0 10px;
 
   border-top:1px solid #eaeaea;
-  padding: 25px 22px;
   font-size:1.6em;
-  line-height:1.8em;
   margin-top:25px;
   display:none;
+  width: 100%;
 }
 #symptoms ul li .box a{
   display:inline-block;
@@ -77,6 +77,12 @@ body{
   font-weight: normal;
   height: 40px;
   line-height: 40.3199996948242px;
+  width: 32%;
+  overflow:hidden; /*不显示超过对象宽度的内容*/
+  text-overflow:ellipsis; /*当对象内文本溢出时显示省略标记（...）*/
+  white-space:nowrap; /*限制在一行内显示所有文本*/
+  border: 1px solid #eaeaea;
+  text-align: center;
 }
 #symptoms ul li.change {
   background-image:url(../images/up-arrow.png);
