@@ -3,10 +3,10 @@
 <div id="symptoms">
   <ul>
     <li class="" toggle ng-repeat="symptom in symptoms">
-      <img ng-src="{{ getImageUrl(symptom)}}" alt="图片描述"><strong>{{ symptom.part_name }}</strong>
-      <em><span ng-repeat="comment_symptom in getCommentSymtoms(symptom)">{{comment_symptom.name}}</span></em>
-      <div class="box" style="display: none;">
-        <a ng-href="#/detail/symptoms/symptoms/{{symptom_item.id }}" ng-repeat="symptom_item in symptom.symptoms">{{ symptom_item.name }} | </a>
+      <img ng-src="{{ ::getImageUrl(symptom)}}" alt="图片描述"><strong>{{ ::symptom.part_name }}</strong>
+      <em><span ng-repeat="comment_symptom in getCommentSymtoms(symptom)">{{::comment_symptom.name}}</span></em>
+      <div class="box">
+        <a ng-href="#/detail/symptoms/symptoms/{{symptom_item.id }}" ng-repeat="symptom_item in symptom.symptoms">{{ symptom_item.name }}</a>
       </div>
     </li>
   </ul>

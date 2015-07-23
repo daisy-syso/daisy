@@ -81,7 +81,7 @@
   </div> -->
 
   <div class="borderBottom10"></div>
-  <div class="shoplist">
+  <div class="shoplist" ng-if="data.stores.length > 0">
     <div class="title">
       <h1>商家报价</h1>
     </div>
@@ -92,10 +92,10 @@
           <h2>{{ store.name }}</h2><span><em>{{ store.price }}元</em></span>
         </div>
         <div class="list">
-          <div class="fl img">
+          <div class="img">
             <img ng-src="{{ store.image_url }}" />
           </div>
-          <div class="fl txt">
+          <div class="txt">
             <ul>
               <li><strong>距离：</strong>{{  }}</li>
               <li><strong>经营许可证：</strong>{{ store.code }}</li>
