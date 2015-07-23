@@ -7,7 +7,7 @@ angular.module('DaisyApp').directive 'toggle', () ->
           $(this).removeClass("change")
           $(this).find(".box").slideUp(300)
           return
-        $("#symptoms").find(".box").slideUp(0);
+        $("#symptoms, .symptoms").find(".box").slideUp(0);
         $(this).parent().find("li.change").removeClass("change")
         $(this).addClass("change")
 
