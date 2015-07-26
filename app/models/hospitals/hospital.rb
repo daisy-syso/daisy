@@ -10,13 +10,15 @@ class Hospitals::Hospital < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    as_json(only: ['name','name_initials'])
+    as_json(only: ['name','name_initials', 'city_id'])
   end
-  
+
   # default_scope -> { where.not(url: [nil, ""]) }
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
-  
+  belongs_to :province, class_name: "Categories::Province"
+  belongs_to :country, class_name: "Categories::Country"
+
   belongs_to :hospital_level, class_name: "Hospitals::HospitalLevel"
   has_many :hospital_onsales, class_name: "Hospitals::HospitalOnsale"
 
@@ -31,6 +33,8 @@ class Hospitals::Hospital < ActiveRecord::Base
 
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
+  scope :province, -> (province) { where(city: Categories::City.by_province(province)) }
+  scope :country, -> (country) { where(city: province(country)) }
 
   scope :hospital_type, -> (type) { 
     type ? joins(:hospital_types)
@@ -107,7 +111,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :query, -> (query) {
-    if query.present? 
+    if query.present?
       # where("name LIKE :query or name_initials LIKE :query or address LIKE :query ", query: "%#{query}%")
       search(
         {

@@ -36,9 +36,28 @@ module FilterHelper
 
   module ClassMethods
 
+    def oversea_city_filters
+      {
+        meta: {
+          keep: :city,
+          link: :"categories/cities"
+        },
+        default: 2,
+        title: "位置",
+        titleize: true,
+      }
+    end
+
+    def oversea_county_filters
+      {
+        title: proc {Categories::Province.find(params[:province]).try(:name)},
+        children: proc { Categories::City.overses_filters(params[:province]) },
+      }
+    end
+
     def city_filters
-      { 
-        meta: { 
+      {
+        meta: {
           keep: :city,
           link: :"categories/cities"
         },
@@ -49,15 +68,15 @@ module FilterHelper
     end
 
     def fake_city_filters
-      { 
-        meta: { 
+      {
+        meta: {
           keep: :city,
           link: :"categories/cities"
         },
-        default: 1, 
-        class: Categories::City, 
-        title: "位置", 
-        titleize: true, 
+        default: 1,
+        class: Categories::City,
+        title: "位置",
+        titleize: true,
         filter_only: true
       }
     end
