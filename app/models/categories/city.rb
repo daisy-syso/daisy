@@ -1,10 +1,18 @@
 class Categories::City < ActiveRecord::Base
-  belongs_to :province
+  belongs_to :province, class_name: "Categories::Province"
 
   validates :name, uniqueness: true
 
+  scope :province, -> (province) { where(province: province) }
+  scope :overses, -> { where(province_id: 35) }
+  scope :by_province, -> (province) { where(province: province) }
+
   class << self
     include Filterable
+
+    define_filter_method :overses_filters do |province|
+      self.province(province)
+    end
 
     def generate_filter record, key = nil
       Hash.new.tap do |ret|

@@ -68,7 +68,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-6.png"
       }, {
         title: "海外医疗",
-        link: "#/list/maternals/maternal_halls",
+        link: "#/list/hospitals/overseas",
         icon: "images/icons/2-7.png"
       }, {
         title: "健康保险",

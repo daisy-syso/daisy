@@ -306,7 +306,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :all do
     index! Hospitals::Hospital,
       title: "医院大全",
-      filters: { 
+      filters: {
         city: city_filters,
         type: type_filters("医院大全"),
         # hospital_type: { scope_only: true, default: 7 },
@@ -332,5 +332,24 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       }
   end
 
+  namespace :overseas do
+    index! Hospitals::Hospital,
+      title: "海外医院",
+      filters: {
+        type: type_filters("医院大全"),
+        province: oversea_city_filters,
+        city: oversea_county_filters,
+        order_by: hospital_order_by_filters,
+        form: form_filters,
+        is_foreign: { scope_only: true, type: Object },
+        is_other: { scope_only: true, type: Object },
+        is_community: { scope_only: true, type: Object },
+        has_mobile_url: form_switch_filters("手机挂号"),
+        has_return: form_switch_filters("优惠返利"),
+        template: form_radio_array_filters(%w(不限 热门医院 有网址),
+          "当前主题精选"),
+        alphabet: form_alphabet_filters
+      }
+  end
 
 end
