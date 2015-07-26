@@ -336,7 +336,6 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: "海外医院",
       filters: {
-        type: type_filters("医院大全"),
         province: oversea_city_filters,
         city: oversea_county_filters,
         order_by: hospital_order_by_filters,

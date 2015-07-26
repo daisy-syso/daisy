@@ -5,7 +5,7 @@ class HomeAPI < Grape::API
       buttons: [{
         title: "医院大全",
         # link: "#/list/hospitals/all?type=3",
-        link: "#/list/hospitals/polyclinics?type=polyclinic",
+        link: "#/list/hospitals/polyclinics?type=polyclinic&country=1",
         icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
@@ -68,7 +68,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-6.png"
       }, {
         title: "海外医疗",
-        link: "#/list/hospitals/overseas",
+        link: "#/list/hospitals/overseas?country=2",
         icon: "images/icons/2-7.png"
       }, {
         title: "健康保险",

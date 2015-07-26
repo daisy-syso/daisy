@@ -42,7 +42,7 @@ module FilterHelper
           keep: :city,
           link: :"categories/cities"
         },
-        default: 35,
+        default: 2,
         title: "位置",
         titleize: true,
       }
@@ -50,8 +50,8 @@ module FilterHelper
 
     def oversea_county_filters
       {
-        title: proc {Categories::Province.find_by_id(35).try(:name) || "海外" },
-        children: proc { Categories::City.overses_filters(35) },
+        title: proc {Categories::Province.find(params[:province]).try(:name)},
+        children: proc { Categories::City.overses_filters(params[:province]) },
       }
     end
 
