@@ -1,8 +1,8 @@
 class Drugs::DrugsAPI < ApplicationAPI
-  # namespace :drugs do 
+  # namespace :drugs do
   #   index! Drugs::Drug,
   #     title: "药品大全",
-  #     filters: { 
+  #     filters: {
   #       city: fake_city_filters,
   #       type: type_filters("药品大全", :drug),
   #       search_by: search_by_filters({
@@ -14,7 +14,7 @@ class Drugs::DrugsAPI < ApplicationAPI
   #       }),
   #       order_by: order_by_filters(Drugs::Drug),
   #       form: form_filters,
-  #       query: form_query_filters, 
+  #       query: form_query_filters,
   #       price: form_price_filters,
   #       manufactory_query: form_radio_array_filters(
   #         %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
@@ -110,7 +110,7 @@ class Drugs::DrugsAPI < ApplicationAPI
         tmp_manu = {
           drug_id: drug.id,
           drug_name: drug.name,
-          drug_image_url: drug.image_url,
+          image_url: drug.image_url,
           spec: drug.spec,
           manufactory_id: dm.id,
           manufactory_name: dm.name,
