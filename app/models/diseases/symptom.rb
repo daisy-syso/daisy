@@ -28,8 +28,8 @@ class Diseases::Symptom < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]

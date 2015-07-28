@@ -56,8 +56,8 @@ class Drugs::Drug < ActiveRecord::Base
                   }
                 },
                 {
-                  match_phrase_prefix: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]

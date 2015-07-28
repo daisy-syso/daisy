@@ -54,8 +54,8 @@ class Hospitals::Doctor < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]

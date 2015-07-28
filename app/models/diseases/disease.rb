@@ -77,8 +77,8 @@ class Diseases::Disease < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]
