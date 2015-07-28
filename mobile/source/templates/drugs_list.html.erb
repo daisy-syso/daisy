@@ -24,7 +24,7 @@
         <div class="col">
           <div class="list">
             <a class="item item-thumbnail-left" href="javascript:;">
-              <img ng-src="{{data.image_url}}">
+              <img ng-src="{{data.image_url || data.drug_image_url }}">
               <ul class="list-cont">
                 <li class="text-overflow" ng-show="withTitle">功能主治：{{data.introduction}}</li>
                 <li>
