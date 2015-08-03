@@ -84,6 +84,30 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
 
+    $routeProvider.when '/review',
+      templateUrl: "templates/review.html"
+      controller:[
+        '$scope', '$routeParams', '$loader'
+        ($scope, $routeParams, $loader) ->
+          $scope.desc = ""
+          $scope.account_id = 12
+          $scope.environment = 0
+          $scope.service = 0
+          $scope.charge = 0
+          $scope.technique = 0
+          $scope.submit = () =>
+            $loader.post("/api/reviews_new",{
+              item_type: $routeParams.item_type,
+              item_id: $routeParams.item_id,
+              desc: $scope.desc,
+              account_id: $scope.account_id || 7,
+              environment: $scope.service,
+              charge: $scope.charge,
+              technique: $scope.technique
+            }).success (data) ->
+              debugger
+      ]
+
     $routeProvider.when '/menu/:type',
       templateUrl: "templates/menu.html"
       controller: [
