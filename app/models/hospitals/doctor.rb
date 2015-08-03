@@ -83,5 +83,5 @@ class Hospitals::Doctor < ActiveRecord::Base
   }
 
   include Reviewable
-
+  include JoinAppliable
 end

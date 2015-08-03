@@ -256,3 +256,31 @@ HOST: http://www.syso.com.cn
 
 + Response 201 (application/json)
 
+
+### 商家加盟提交，等待审核
++ Parameters
+  + email (string) - 联系邮箱
+  + target_type (integer) - 加盟类型 # 医院，药店，药厂，医生，养老院，月子中心，母婴会馆，保险公司 [0..7]
+  + target_attrs (array) - 对应加盟类型的的属性值，比如医院的所有的属性
+  + contact_user (string) - 联系人
+  + contact_phone (string) - 联系电话
+
++ Example:
+  method: post
+  url: api/join_applies/join_applies/post_apply.json
+  data: {email: 'xx@gmail.com', target_type: 0, target_attrs[name]: '仁爱医院'}
+
++ Response 200 (application/json)
+{
+  "id": 2,
+  "target_id": 51448,
+  "target_type": "Hospitals::Hospital",
+  "email": "ss@gmail.com",
+  "contact_user": null,
+  "contact_phone": null,
+  "admin_comment": null,
+  "status": 0,
+  "created_at": "2015-07-19T18:15:33.247+08:00",
+  "updated_at": "2015-07-19T18:15:33.247+08:00"
+}
+

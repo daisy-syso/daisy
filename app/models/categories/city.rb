@@ -1,10 +1,19 @@
 class Categories::City < ActiveRecord::Base
-  belongs_to :province
+  self.table_name = "cities"
+
+  belongs_to :province, class_name: "Categories::Province"
 
   validates :name, uniqueness: true
 
+  scope :province, -> (province) { where(province: province) }
+  scope :by_province, -> (province) { where(province: province) }
+
   class << self
     include Filterable
+
+    define_filter_method :overses_filters do |province|
+      self.province(province)
+    end
 
     def generate_filter record, key = nil
       Hash.new.tap do |ret|
@@ -14,8 +23,8 @@ class Categories::City < ActiveRecord::Base
       end
     end
 
-    def filters
-      Categories::Province.includes(:cities).map do |province|
+    def filters(country_id = nil)
+      Categories::Province.by_country(country_id).includes(:cities).map do |province|
         cities = province.cities.load
 
         if cities.length == 1

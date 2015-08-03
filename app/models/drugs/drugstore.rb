@@ -26,10 +26,11 @@ class Drugs::Drugstore < ActiveRecord::Base
       all
     end
   }
-  
+
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
   }
   include Reviewable
-  
+  include JoinAppliable
+
 end

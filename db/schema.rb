@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150704065722) do
+ActiveRecord::Schema.define(version: 20150726035823) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.datetime "updated_at"
     t.float    "star",          limit: 24, default: 0.0
     t.integer  "reviews_count",            default: 0
+    t.integer  "status",                   default: 1
   end
 
   add_index "confinement_centers", ["city_id"], name: "index_confinement_centers_on_city_id", using: :btree
@@ -177,6 +178,13 @@ ActiveRecord::Schema.define(version: 20150704065722) do
   create_table "counties", force: true do |t|
     t.integer  "city_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -320,6 +328,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.integer  "drugstore_id"
     t.float    "star",             limit: 24, default: 0.0
     t.integer  "reviews_count",               default: 0
+    t.integer  "status",                      default: 1
   end
 
   add_index "doctors", ["drugstore_id"], name: "index_doctors_on_drugstore_id", using: :btree
@@ -443,6 +452,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.string   "geohash"
     t.float    "star",              limit: 24,  default: 0.0
     t.integer  "reviews_count",                 default: 0
+    t.integer  "status",                        default: 1
   end
 
   add_index "drugstores", ["city_id"], name: "index_drugstores_on_city_id", using: :btree
@@ -756,6 +766,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.boolean  "is_other"
     t.boolean  "is_insurance"
     t.text     "backup"
+    t.integer  "status",                                default: 1
   end
 
   add_index "hospitals", ["city_id"], name: "index_hospitals_on_city_id", using: :btree
@@ -820,10 +831,25 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.integer "rebate"
     t.integer "insurance_type_id"
     t.integer "insurance_company_id"
+    t.integer "status",               default: 1
   end
 
   add_index "insurances", ["insurance_company_id"], name: "index_insurances_on_insurance_company_id", using: :btree
   add_index "insurances", ["insurance_type_id"], name: "index_insurances_on_insurance_type_id", using: :btree
+
+  create_table "join_applies", force: true do |t|
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.string   "email"
+    t.string   "contact_user"
+    t.string   "contact_phone"
+    t.text     "admin_comment"
+    t.integer  "status",        default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "join_applies", ["target_id", "target_type"], name: "index_join_applies_on_target_id_and_target_type", using: :btree
 
   create_table "manufactories", force: true do |t|
     t.string  "name",                      limit: 50
@@ -840,6 +866,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.text    "production_classification"
     t.string  "url",                       limit: 500
     t.string  "tel",                       limit: 50
+    t.integer "status",                                default: 1
   end
 
   create_table "manufactory_drugs", force: true do |t|
@@ -866,6 +893,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.datetime "updated_at"
     t.float    "star",          limit: 24, default: 0.0
     t.integer  "reviews_count",            default: 0
+    t.integer  "status",                   default: 1
   end
 
   add_index "maternal_halls", ["city_id"], name: "index_maternal_halls_on_city_id", using: :btree
@@ -953,6 +981,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.datetime "updated_at"
     t.float    "star",          limit: 24, default: 0.0
     t.integer  "reviews_count",            default: 0
+    t.integer  "status",                   default: 1
   end
 
   add_index "nursing_rooms", ["city_id"], name: "index_nursing_rooms_on_city_id", using: :btree
@@ -1024,6 +1053,7 @@ ActiveRecord::Schema.define(version: 20150704065722) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
   create_table "raider_details", force: true do |t|

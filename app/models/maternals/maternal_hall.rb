@@ -11,5 +11,6 @@ class Maternals::MaternalHall < ActiveRecord::Base
   
   include Localizable
   include Reviewable
-  
+  include JoinAppliable
+
 end

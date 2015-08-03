@@ -97,6 +97,10 @@ class DaisyAPI < Grape::API
     mount Raiders::RaiderDetailsAPI
   end
 
+  namespace :join_applies do
+    mount JoinApplies::JoinAppliesAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do
