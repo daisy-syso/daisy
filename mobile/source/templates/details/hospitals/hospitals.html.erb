@@ -3,7 +3,7 @@
 <div class="content">
 
   <%= partial 'templates/details/album' %>
-  
+
   <div class="card">
     <ul class="table-view media">
       <li class="table-view-cell">
@@ -15,7 +15,7 @@
   </div>
 
 <div class="card">
-  <ul class="table-view media"> 
+  <ul class="table-view media">
     <li class="table-view-cell">
       <div class="media-detail">
         <p><span style="color:#838383">特色科室：</span>
@@ -30,7 +30,7 @@
         </p>
       </div>
     </li>
-    
+
   </ul>
 </div>
 
@@ -44,11 +44,13 @@
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">
-          <span  class="pull-left" style="color: #ffd700">★★★★★5分</span>   
+          <a href="#/review/Hospitals::Hospital/{{::id}}">
+            <span  class="pull-left" style="color: #ffd700">★★★★★5分</span>
+          </a>
           <span class="pull-right">{{data.reviews_count}}人点评</span>
         </h4>
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
@@ -66,7 +68,7 @@
     </li>
   </ul>
 </div>
-  
+
   <!-- <div class="card">
     <ul class="table-view media">
 
@@ -88,7 +90,7 @@
     </ul>
   </div> -->
 
-   
+
 
   <%= partial 'templates/details/map' %>
   <div class="card">
@@ -105,7 +107,7 @@
     <div class="fix index-hd">
       <h3>猜你喜欢</h3>
     </div>
-    <%= partial 'related' %> 
-  </div> 
+    <%= partial 'related' %>
+  </div>
 
 </div>

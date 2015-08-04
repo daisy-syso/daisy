@@ -1,7 +1,7 @@
 <%= partial 'header', locals: { title: "点评" } %>
 <div style="height: 50px;"></div>
 <div class="dp_title">星级点评</div>
-<form action="" ng-submit="submit()" name="form_dp" method="post">
+<form action="" name="form_review" method="post">
   <div class="dp_box" id="dp_box">
     <li>
       <div class="star_t">环境</div>
@@ -48,10 +48,10 @@
     </li>
 
     <li class="nobor">
-      <textarea placeholder="请输入您要评价的内容" class="dptext">{{ desc }}</textarea>
+      <textarea placeholder="请输入您要评价的内容" class="dptext" ng-model='desc' required></textarea>
     </li>
   </div>
   <div class="dp_sub">
-    <input type="submit" name="sub" value="发 表" class="subcls">
+    <input type="button" name="sub" value="发 表" class="subcls" ng-click="submit()" ng-disabled="form_review.$invalid">
   </div>
 </form>

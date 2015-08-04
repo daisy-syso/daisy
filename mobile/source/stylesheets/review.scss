@@ -96,3 +96,10 @@
   border-radius:5px;
   outline:none;
 }
+
+textarea.ng-invalid.ng-touched {
+  border: 1px solid #FA787E;
+}
+input[disabled]{
+  background-color: #CBAB4A;
+}

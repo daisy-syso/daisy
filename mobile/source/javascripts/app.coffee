@@ -84,11 +84,11 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
 
-    $routeProvider.when '/review',
+    $routeProvider.when '/review/:item_type/:item_id',
       templateUrl: "templates/review.html"
       controller:[
-        '$scope', '$routeParams', '$loader'
-        ($scope, $routeParams, $loader) ->
+        '$scope', '$routeParams', '$loader', '$http'
+        ($scope, $routeParams, $loader, $http) ->
           $scope.desc = ""
           $scope.account_id = 12
           $scope.environment = 0
@@ -96,16 +96,17 @@ angular.module 'DaisyApp', [
           $scope.charge = 0
           $scope.technique = 0
           $scope.submit = () =>
-            $loader.post("/api/reviews_new",{
-              item_type: $routeParams.item_type,
-              item_id: $routeParams.item_id,
+            $http.post("/api/reviews_new/",{
+              item_type: $routeParams.item_type || "Drugs::Drug",
+              item_id: $routeParams.item_id || 700640,
               desc: $scope.desc,
               account_id: $scope.account_id || 7,
-              environment: $scope.service,
+              environment: $scope.environment,
+              service: $scope.service,
               charge: $scope.charge,
               technique: $scope.technique
             }).success (data) ->
-              debugger
+              window.history.back();
       ]
 
     $routeProvider.when '/menu/:type',
@@ -145,6 +146,9 @@ angular.module 'DaisyApp', [
       '$scope', '$routeParams', '$loader', '$alert', '$location'
       ($scope, $routeParams, $loader, $alert, $location) ->
         url = "/api/drugs/drugs/#{$routeParams.id}/#{$routeParams.manufactory_id}"
+
+        $scope.review = () ->
+          $location.path("review/Drugs::Drug/#{$routeParams.id}")
 
         $loader.get(url)
           .success (data) ->
@@ -588,4 +592,3 @@ angular.module 'DaisyApp', [
       else
         0
 ]
-
