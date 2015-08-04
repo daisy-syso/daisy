@@ -5,6 +5,7 @@
 //= require jquery-1.9.1.min
 //= require js/TouchSlide.1.1
 //= require jquery.min
+//= require jquery.raty.min
 //= require js/lrzj
 //= require js/swt
 //= require js/history

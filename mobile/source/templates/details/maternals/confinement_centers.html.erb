@@ -17,13 +17,13 @@
         <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}" style="color:#fff;">立即购买</a>
       </div>
     </li>
-      
+
     </ul>
   </div>
   <%#= partial 'templates/details/desc' %>
 
   <%#= partial 'templates/details/review' %>
-  
+
   <div class="card">
   <ul class="table-view media">
     <li class="table-view-cell">
@@ -35,17 +35,19 @@
         <p>工作时间：8：00-21：00(全年无休)</p>
 
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">
         	中心服务总评
-          <span style="color: #ffd700">★★★★★5分</span>   
+					<a href="#/review/Maternals::ConfinementCenter/{{::id}}">
+          	<span style="color: #ffd700">★★★★★5分</span>
+					</a>
           <span class="pull-right">{{data.reviews_count}}人参与评分</span>
         </h4>
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
@@ -78,7 +80,7 @@
 
   </ul>
 </div>
-  
+
 
   <%= partial 'templates/details/map' %>
 
@@ -86,7 +88,7 @@
     <div class="fix index-hd">
       <h3>猜你喜欢</h3>
     </div>
-    <%= partial 'related' %> 
+    <%= partial 'related' %>
   </div>
 
 </div>
