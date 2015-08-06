@@ -1,6 +1,8 @@
 class Symptoms::Symptom < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+
+  belongs_to :part, class_name: "Symptoms::Part"
   
   settings index: {number_of_shards: 5} do
     mappings do
