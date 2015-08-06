@@ -1,0 +1,105 @@
+/*点评*/
+.dp_title{
+  width:90%;
+  height:30px;
+  line-height:30px;
+  margin:0 auto;
+  font-size:16px;
+  margin-top:3%;
+  margin-bottom:10px;
+}
+.dp_box{
+  width:90%;
+  height:auto;
+  overflow:hidden;
+  margin:0 auto;
+  border:1px #eaeaea solid;
+  margin:0 auto;
+}
+.dp_box .nobor{
+  border-bottom:0px;
+  padding-bottom:0px;
+  padding-top:0px;
+}
+.dp_box .dptext{
+  width:90%;
+  padding-left:5%;
+  padding-right:5%;
+  font-size:15px;
+  line-height:26px;
+  min-height:120px;
+  border:0px;
+  background:none;
+  float:left;
+}
+.star_t{
+  width:100px;
+  text-align:center;
+  font-size:14px;
+  line-height:24px;
+  float:left;
+}
+.dp_box li{
+  list-style:none;
+  min-height:24px;
+  padding-top:12px;
+  padding-bottom:15px;
+  border-bottom:1px #eaeaea solid;
+  clear:both;
+}
+.dp_box li .revtit{
+  text-align:right;
+  display:block;
+  float:left;
+  margin-right:10px;
+  width:215px;
+}
+.dp_boxc{
+  float:left;
+  border:0px;
+}
+.revinp{
+  clear:both;
+  border: 0px;
+  img{
+    border: 0px;
+    background-repeat:no-repeat;
+    background-size:24px 24px;
+    display:inline-block;
+    width:24px;
+    height:24px
+  }
+}
+.revgrade{
+  margin-left:10px;
+  line-height:24px;
+  display:none;
+}
+.dp_sub{
+  width:90%;
+  margin:0 auto;
+  height:auto;
+  overflow:hidden;
+  clear:both;
+  text-align:right;
+  padding-top:10px;
+}
+.subcls{
+  width:106px;
+  height:38px;
+  line-height:38px;
+  text-align:center;
+  font-size:15px;
+  color:#fff;
+  border:0px;
+  background:#ffc30b;
+  border-radius:5px;
+  outline:none;
+}
+
+textarea.ng-invalid.ng-touched {
+  border: 1px solid #FA787E;
+}
+input[disabled]{
+  background-color: #CBAB4A;
+}
