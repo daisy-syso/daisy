@@ -189,7 +189,7 @@ angular.module 'DaisyApp', [
 
         $loader.get(url)
           .success (data) ->
-            $scope.symptoms = data.symptoms
+            $scope.symptoms = data.data
             $scope.title = data.symptoms.symptom.name
     ]
 
@@ -314,7 +314,7 @@ angular.module 'DaisyApp', [
       ($scope, $loader, $route, $location, $routeParams) ->
         $scope.moreData = true
         $scope.getImageUrl = (symptom) =>
-          switch symptom.part_name
+          switch symptom.name
             when "头部"
               "images/body-regions/brain.png"
             when "颈部"
@@ -362,8 +362,7 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) =>
-              if data.symptoms.length < 1  then  $scope.moreData = false
-              $scope.symptoms = data.symptoms
+              $scope.data = data
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->
