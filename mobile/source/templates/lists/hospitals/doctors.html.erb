@@ -10,7 +10,18 @@
 
 
 
-<%= partial 'templates/lists/list_header' %>
+<div class="row">
+  <div class="col">
+    <a class="list-title" ng-href="{{link(data)}}">
+      {{data.<%= defined?(title) ? title : :name %>}}
+      <span style="font-size:90%;color:#696969"> {{data.position}}</span>
+    </a>  
+    <p class="pull-right">
+      <span style="color: #ffd700">★★★★★</span>   5分
+    </p>
+  </div>
+</div>
+
 <div class="row" style="padding-bottom:0">
   <div class="col" style="padding-bottom:0;padding-top: 0px;">
     <div class="list" style="padding-bottom:0">

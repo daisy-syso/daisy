@@ -1,11 +1,43 @@
 <%#= partial 'templates/lists/body' %>
 <%#= partial 'templates/lists/rating' %>
-<div class="list-top">
-  <a class="list-title" ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  <!-- <span class="pull-right">更多>></span> -->
-  <p class="pull-right">
-  	<span style="color: #ffd700">★★★★★</span>   5分
-  </p>
+<%= partial 'templates/lists/list_header' %>
+
+<%#= partial 'partial/body/maternal_hall', locals: { subtitle: :position } %>
+
+<div class="row" style="padding-bottom:0">
+  <div class="col" style="padding-bottom:0;padding-top: 0px;">
+    <div class="list" style="padding-bottom:0">
+      <a class="item item-thumbnail-left" ng-href="{{link(data)}}" style="padding-bottom:0">
+        <img ng-src="{{data.image_url}}">
+        <ul class="list-cont">
+			    <li> 距离：{{$root.getDistance(data) | number:2 }}千米 </li>
+			    <li class="text-overflow">
+			      特色：集孕期、产后、婴儿、幼儿的综合服务机构
+			    </li>
+			    <li>
+			      <span>产品：小鹿叮叮 十片试用装</span> 
+			    </li>
+			  </ul>
+      </a>
+
+    </div>
+  </div>
 </div>
-<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
-<%= partial 'partial/body/maternal_hall', locals: { subtitle: :position } %>
+
+<div class="row" >
+  <div class="col" style="padding-bottom:0">
+    <p class="gray-line-1"></p>
+    <ul class="font-14 list-bottom">
+  <li class="circle" ng-class="{dot: data.hospital_sevice_list.yb}">
+    资质
+  </li>
+  <li class="circle" ng-class="{dot: data.hospital_sevice_list.yywz}">
+    在线咨询 
+  </li>
+  <li class="circle" ng-class="{dot: data.hospital_sevice_list.sjgh}">
+    连锁机构
+  </li>
+
+</ul>
+  </div>
+</div>
