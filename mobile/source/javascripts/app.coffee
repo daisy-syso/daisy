@@ -123,22 +123,48 @@ angular.module 'DaisyApp', [
       ]
 
     detailCtrl = [
-      '$scope', '$routeParams', '$loader', '$alert', '$location'
-      ($scope, $routeParams, $loader, $alert, $location) ->
+      '$scope', '$routeParams', '$loader', '$alert', '$location', '$rootScope'
+      ($scope, $routeParams, $loader, $alert, $location, $rootScope) ->
         $scope.type = $routeParams.type
+        $rootScope.footerHide = true
         if $routeParams.type == "hospitals/hospitals_polyclinic"
           $scope.type = "hospitals/hospitals"
-          # $alert.info($scope.type)
         $scope.id = $routeParams.id
+        $scope.ifShow = []
+        $scope.showDoctors = (i) ->
+          if $scope.ifShow[i]
+            $scope.ifShow[i] = false
+          else
+            $scope.ifShow[i] = true
+
+        $scope.array_3 = (a) ->
+          new_array = []
+          ele = []
+          angular.forEach(a, (e, i)->
+            if (i+1)%3 == 0
+              ele.push(e)
+              new_array.push(ele)
+              ele = [] 
+            else
+              ele.push(e)
+          )
+          new_array.push(ele) if ele.length < 3 && ele.length > 0
+          return new_array
+
+        $scope.params_hospital_rooms = (a) ->
+          angular.forEach(a, (e, i)-> 
+            e.doctors = $scope.array_3(e.doctors)
+            console.log(e.doctors)
+          )
+
+        
         $scope.detail_id = $routeParams.detail
-        # url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
-        # $alert.info(url)
         params = angular.extend { onsale_id: $routeParams.onsale_id }, params
-        # $alert.info($routeParams.onsale_id)
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+            $scope.params_hospital_rooms($scope.data.hospital_rooms) if $scope.data.hospital_rooms
 
     ]
 

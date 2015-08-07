@@ -33,11 +33,24 @@
 
   </ul>
 </div>
+<div class="list">
+  <div class="item item-icon-right" ng-repeat="hospital_room in data.hospital_rooms">
+    <p ng-click="showDoctors($index)">
+    <i class="ion-chevron-down" style="float:right"></i>
 
-<div class="btns-block">
-    <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}" style="color:#fff">就诊查询／挂号</a>
+    {{hospital_room.hospital_room}} </p>
+      <div ng-show="ifShow[$index]" >
+        <div class="row" ng-repeat="ds in hospital_room.doctors"> 
+          <div class="col col-33" ng-repeat="doctor in ds">
+            <a href="#/detail/hospitals/doctors/{{doctor.id}}">{{doctor.name}} </a>
+            <p>{{doctor.position}}</p>
+          </div>
+        </div>
+      </div>
+
   </div>
 
+</div>
   <%#= partial 'templates/details/review' %>
 <div class="card">
   <ul class="table-view media">
@@ -111,3 +124,12 @@
   </div>
 
 </div>
+
+<footer class="footer">
+  <menu class="footer-con">
+    
+    <div class="btns-block" style="opacity: 0.7;">
+      <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}" style="color:#fff">就诊查询／挂号</a>
+    </div>
+  </menu>
+</footer>

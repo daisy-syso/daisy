@@ -1,5 +1,5 @@
 class Hospitals::HospitalRoom < ActiveRecord::Base
-  belongs_to :parent, class_name: 'HospitalRoom', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Hospitals::HospitalRoom', foreign_key: 'parent_id'
   has_many :subroom, class_name: 'HospitalRoom', foreign_key: 'parent_id'
 
 
