@@ -1,11 +1,61 @@
-<div class="list-top">
+<!-- <div class="list-top">
 	<a ng-href="{{link(data)}}" class="list-title">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-	<!-- <span class="pull-right">更多>></span> -->
 	<p class="pull-right">
 		<span style="color: #ffd700">★★★★★</span>   5分
 	</p>
-</div>
-<%= partial 'templates/lists/image' %>
-<%= partial 'partial/body/nursing_room' %>
+</div> -->
+<%#= partial 'templates/lists/image' %>
+<%#= partial 'partial/body/nursing_room' %>
 <%#= partial 'templates/lists/body' %>
 <%#= partial 'templates/lists/rating' %>
+
+<%= partial 'templates/lists/list_header' %>
+
+
+<div class="row" style="padding-bottom:0">
+  <div class="col" style="padding-bottom:0;padding-top: 0px;">
+    <div class="list" style="padding-bottom:0">
+      <a class="item item-thumbnail-left" ng-href="{{link(data)}}" style="padding-bottom:0">
+        <img ng-src="{{data.image_url}}">
+        <ul class="list-cont">
+			    <li> 距离：{{$root.getDistance(data) | number:2 }}千米 </li>
+			    <li class="text-overflow">
+			      床 位：{{data.bed}}张
+			    </li>
+			    <li>
+            收住对象：{{data.target}}
+          </li>
+          <li>
+			      收费标准： 
+            <span class="price-color" style="border:none;background-color: #fff; color: #DC143C">￥{{data.price}}/月</span>
+			    </li>
+          <li>
+            特色服务：{{data.service}}
+          </li>
+			  </ul>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="row" >
+  <div class="col" style="padding-bottom:0">
+    <p class="gray-line-1"></p>
+    <ul class="font-14 list-bottom">
+  <li class="circle" ng-class="{dot: data.nature == '公办'}">
+    公办
+  </li>
+  <li class="circle" ng-class="{dot: data.nature == '民办'}">
+    民办
+  </li>
+  <li class="circle" ng-class="{dot: data.mold == '养老公寓' }">
+    养老公寓
+  </li>
+  <li class="circle" ng-class="{dot: data.mold == '养老院' }">
+    养老院
+  </li>
+
+</ul>
+  </div>
+</div>
