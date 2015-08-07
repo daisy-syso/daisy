@@ -5,7 +5,10 @@
     </li>
     <li class="table-view-cell media-detail">
       <h1>{{data.name}}</h1>
-      <p>联系电话：{{data.telephone}} <img src="images/phone.gif" width="15"> 
+      <p>联系电话：
+        <a href="tel:{{data.telephone}}">{{data.telephone}}
+          <img src="images/phone.gif" width="15"> 
+        </a>
       </p>
       <p>地址：{{data.address}}</p>
       <div class="map" map map-data="data"></div>
