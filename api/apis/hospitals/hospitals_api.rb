@@ -1,25 +1,10 @@
 class Hospitals::HospitalsAPI < ApplicationAPI
 
   namespace :hospitals do
-    # index! Hospitals::Hospital,
-    #   title: "医院大全",
-    #   filters: { 
-    #     city: city_filters,
-    #     type: type_filters(:hospital),
-    #     hospital_type: { scope_only: true },
-    #     county: county_filters,
-    #     order_by: hospital_order_by_filters,
-    #     form: form_filters,
-    #     query: form_query_filters, 
-    #     alphabet: form_alphabet_filters,
-    #     hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
-    #     has_url: form_switch_filters("网址"),
-    #     is_local_hot: form_switch_filters("热门医院")
-    #   }
 
     get ":id" do
       hospital = Hospitals::Hospital.find params[:id]
-      present! hospital, detail: true
+      present! hospital, detail: true 
       hospital.click!
     end
   end
@@ -306,7 +291,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
   namespace :all do
     index! Hospitals::Hospital,
       title: "医院大全",
-      filters: { 
+      filters: {
         city: city_filters,
         type: type_filters("医院大全"),
         # hospital_type: { scope_only: true, default: 7 },
@@ -332,5 +317,23 @@ class Hospitals::HospitalsAPI < ApplicationAPI
       }
   end
 
+  namespace :overseas do
+    index! Hospitals::Hospital,
+      title: "海外医院",
+      filters: {
+        province: oversea_city_filters,
+        city: oversea_county_filters,
+        order_by: hospital_order_by_filters,
+        form: form_filters,
+        is_foreign: { scope_only: true, type: Object },
+        is_other: { scope_only: true, type: Object },
+        is_community: { scope_only: true, type: Object },
+        has_mobile_url: form_switch_filters("手机挂号"),
+        has_return: form_switch_filters("优惠返利"),
+        template: form_radio_array_filters(%w(不限 热门医院 有网址),
+          "当前主题精选"),
+        alphabet: form_alphabet_filters
+      }
+  end
 
 end

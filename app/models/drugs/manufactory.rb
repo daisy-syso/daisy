@@ -1,6 +1,7 @@
 class Drugs::Manufactory < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  include JoinAppliable
 
   settings index: {number_of_shards: 5} do
     mappings do

@@ -17,6 +17,7 @@
  *= require drugstore_quoteprice
  *= require symptoms
  *= require join_league
+ *= require review
  *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

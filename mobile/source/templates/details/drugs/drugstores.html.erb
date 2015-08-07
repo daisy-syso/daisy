@@ -14,7 +14,7 @@
         <!-- <p class="pre">{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p> -->
       </div>
     </li>
-      
+
     </ul>
   </div>
   <div class="card">
@@ -29,17 +29,17 @@
         <p>网址：www.。。。（可申请免费使用药店定制网页→）</p>
 
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">
         	药店服务总评
-          <span style="color: #ffd700">★★★★★5分</span>   
+          <a href="#/review/Drugs::Drugstore/{{::id}}"><span style="color: #ffd700">★★★★★5分</span> </a>  
           <span class="pull-right">{{data.reviews_count}}人参与评分</span>
         </h4>
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
@@ -52,11 +52,11 @@
       </div>
     </li>
 
-    
+
   </ul>
 </div>
   <%#= partial 'templates/details/review' %>
-  
+
   <%= partial 'templates/details/map' %>
 
   <div class="card">
@@ -72,7 +72,7 @@
     <div class="fix index-hd">
       <h3>猜你喜欢</h3>
     </div>
-    <%= partial 'related' %> 
+    <%= partial 'related' %>
   </div>
 
 </div>

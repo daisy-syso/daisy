@@ -5,7 +5,7 @@ class HomeAPI < Grape::API
       buttons: [{
         title: "医院大全",
         # link: "#/list/hospitals/all?type=3",
-        link: "#/list/hospitals/polyclinics?type=polyclinic",
+        link: "#/list/hospitals/polyclinics?type=polyclinic&country=1",
         icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
@@ -16,7 +16,7 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/doctors",
         icon: "images/icons/1-3.png"
       }, {
-        title: "价格搜索",
+        title: "诊疗攻略",
         link: "#/list/price_search/strategy_list",
         # title: "手机挂号",
         # link: "#/list/hospitals/polyclinics",
@@ -68,7 +68,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-6.png"
       }, {
         title: "海外医疗",
-        link: "#/list/maternals/maternal_halls",
+        link: "#/list/hospitals/overseas?country=2",
         icon: "images/icons/2-7.png"
       }, {
         title: "健康保险",
@@ -781,7 +781,7 @@ class HomeAPI < Grape::API
         title: "健康险攻略"
       }]
     }, {
-      title: "价格搜索",
+      title: "诊疗攻略",
       children: [{
         id: :price_search,
         url:  "#/list/hospitals/polyclinic_charges?type=price_search",
@@ -1615,7 +1615,7 @@ class HomeAPI < Grape::API
         title: "健康险攻略"
       }]
     }, {
-      title: "价格搜索",
+      title: "诊疗攻略",
       children: [{
         id: :price_search,
         url:  "#/list/hospitals/polyclinic_charges?type=price_search",

@@ -13,8 +13,8 @@ class Hospitals::Doctor < ActiveRecord::Base
     as_json(only: ['name','name_initials'])
   end
   
-  belongs_to :hospital
-  belongs_to :hospital_room
+  belongs_to :hospital, class_name: "Hospitals::Hospital"
+  belongs_to :hospital_room, class_name: "Hospitals::HospitalRoom"
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
 
   scope :city, -> (city) { 
@@ -83,5 +83,5 @@ class Hospitals::Doctor < ActiveRecord::Base
   }
 
   include Reviewable
-
+  include JoinAppliable
 end

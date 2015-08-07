@@ -4,7 +4,7 @@
 	<div class="list list-inset" ng-repeat="app_type in data.data">
 
     <div class="item">
-      <div class="row">
+      <!-- <div class="row">
 	    	<p style="font-size: 2em;">{{app_type.name}}</p>
 	    </div>
 	    <div class="row"> 
@@ -14,14 +14,12 @@
 						<p style="text-align:center;verflow:hidden;margin-top:5px;">{{app.name}}</p>
 					</div>
 	    	</div>
-	    	<!-- <ul >
-					<li ng-repeat="app in app_type.app_informations" style="display:inline-block; overflow: hidden">
-						<div ><img src="{{app.image_url}}" width="20%"></div>
-						{{app.name}}
-					</li>
+	    	
+	    </div> -->
 
-				</ul>
- -->
+	    <p>{{app_type.name}}</p>
+	    <div wt-slide slide-list="{{app_type.app_informations}}">
+	    	
 	    </div>
     </div>
 

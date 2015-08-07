@@ -15,11 +15,10 @@ class Reviews::ReviewsAPI < ApplicationAPI
       requires :technique, type: Integer, desc: '技术'
     end
     post '/' do
-      debugger
       review = UserInfos::Review.new(
-        item_type: params[:item_type], 
-        item_id: params[:item_id], 
-        desc: params[:desc], 
+        item_type: params[:item_type],
+        item_id: params[:item_id],
+        desc: params[:desc],
         account_id: params[:account_id],
         environment: params[:environment],
         service: params[:service],

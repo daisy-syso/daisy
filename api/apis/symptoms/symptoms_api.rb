@@ -1,38 +1,12 @@
 class Symptoms::SymptomsAPI < ApplicationAPI
   format :json
 
-  namespace :symptoms do 
-    
-    params do
-    end
-    get '/' do
-      parts = Symptoms::Part.all
+  namespace :symptoms do
 
-      results = []
-      parts.each do |part|
+    index! Symptoms::Part,
+      title: '症状查询'
 
-        symptoms = Symptoms::Symptom.where(part_id: part.id)
-
-        symptoms_arr = []
-
-        symptoms.each do |s|
-          tmp = {
-            id: s.id,
-            name: s.name
-          }
-          symptoms_arr << tmp
-        end
-
-        tt = {
-          part_name: part.name,
-          symptoms: symptoms_arr
-        }
-
-        results << tt
-      end
-
-      {symptoms: results} 
-    end
+    show! Symptoms::Symptom
 
     params do
       optional :id, type: Integer, desc: 'ID'

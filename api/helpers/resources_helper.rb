@@ -89,6 +89,13 @@ module ResourcesHelper
 
     def filter! klass, options = {}
       get :filters do
+        # province_id = params[:province].to_i
+        # if province_id > 0
+        #   country = Categories::Province.find(province_id).try(:country)
+        #  present(klass.filters(country.try(:id)))
+        # else
+        #   present(klass.filters)
+        # end
         present(klass.filters)
       end
     end

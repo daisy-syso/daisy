@@ -12,8 +12,9 @@ class Maternals::ConfinementCenter < ActiveRecord::Base
   scope :query, -> (query) {
     query.present? ? where{name.like("%#{query}%")} : all
   }
-  
+
   include Localizable
   include Reviewable
-  
+  include JoinAppliable
+
 end
