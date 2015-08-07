@@ -4,8 +4,11 @@ angular.module('DaisyApp').directive 'dropDown', () ->
 		link: (scope, element, attrs) ->
 			scope.ifShow = []
 			scope.showDoctors = (i) ->
-				console.log("click")
 				if scope.ifShow[i]
-          scope.ifShow[i] = false
-      	else
-          scope.ifShow[i] = true
+					$("i", element[0].children[i]).removeClass("ion-chevron-up")
+					$("i", element[0].children[i]).addClass("ion-chevron-down")
+					scope.ifShow[i] = false
+				else	
+					$("i", element[0].children[i]).removeClass("ion-chevron-down")
+					$("i", element[0].children[i]).addClass("ion-chevron-up")
+					scope.ifShow[i] = true

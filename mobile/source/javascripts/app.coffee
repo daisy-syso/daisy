@@ -130,12 +130,6 @@ angular.module 'DaisyApp', [
         if $routeParams.type == "hospitals/hospitals_polyclinic"
           $scope.type = "hospitals/hospitals"
         $scope.id = $routeParams.id
-        $scope.ifShow = []
-        $scope.showDoctors = (i) ->
-          if $scope.ifShow[i]
-            $scope.ifShow[i] = false
-          else
-            $scope.ifShow[i] = true
 
         $scope.array_3 = (a) ->
           new_array = []
@@ -154,7 +148,6 @@ angular.module 'DaisyApp', [
         $scope.params_hospital_rooms = (a) ->
           angular.forEach(a, (e, i)-> 
             e.doctors = $scope.array_3(e.doctors)
-            console.log(e.doctors)
           )
 
         
