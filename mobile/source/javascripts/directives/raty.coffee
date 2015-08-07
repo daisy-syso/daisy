@@ -6,8 +6,8 @@ angular.module('DaisyApp').directive 'raty', () ->
         $(element).raty
           score: scope[attrs.ngModel]
           number: attrs.number
-          starOn : '../images/star.png'
-          starOff  : '../images/ico-star.png'
+          starOn : 'images/star.png'
+          starOff  : 'images/ico-star.png'
           click: (score, event) ->
             scope[attrs.ngModel] = score;
             scope.$apply();
