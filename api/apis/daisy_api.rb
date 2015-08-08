@@ -101,6 +101,10 @@ class DaisyAPI < Grape::API
     mount JoinApplies::JoinAppliesAPI
   end
 
+  namespace :strategies do
+    mount Strategies::HospitalChargesAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

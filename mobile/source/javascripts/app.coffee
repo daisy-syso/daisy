@@ -150,10 +150,11 @@ angular.module 'DaisyApp', [
             e.doctors = $scope.array_3(e.doctors)
           )
 
-        
+        $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
-        params = angular.extend { onsale_id: $routeParams.onsale_id }, params
+        params = angular.extend { onsale_id: $routeParams.onsale_id }, $scope.params
+        console.log(params)
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
@@ -190,24 +191,6 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/order.html"
       controller: detailCtrl
 
-    # $routeProvider.when '/detail/:type*/:id/:attr',
-    #   templateUrl: "templates/details/display.html"
-    #   controller: [
-    #     '$scope', '$routeParams', '$loader'
-    #     ($scope, $routeParams, $loader) ->
-    #       $scope.type = $routeParams.type
-    #       url = "/api/#{$routeParams.type}.json"
-    #       scope.to_zh =
-    #         by: "病因"
-    #         zz: "症状"
-    #         jc: "检测"
-
-    #       scope.attr = $routeParams.attr
-    #       $loader.get(url)
-    #         .success (data) ->
-    #           $scope.data = data
-    #   ]
-
     $routeProvider.when '/detail/drugs/drugs/:id/:manufactory_id',
       templateUrl: "templates/details/drugs/drugs.html"
       controller: drugDetailCtrl
@@ -216,12 +199,26 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/details/symptoms/symptom_item.html"
       controller: symptomsDetailCtrl
 
+    # $routeProvider.when '/detail/strategies/hospital_charge',
+    #   templateUrl: "templates/details/strategies/hospital_charge.html"
+    #   controller: [
+    #     '$scope', '$loader', '$route', '$location', '$routeParams'
+    #     ($scope, $loader, $route, $location, $routeParams) ->
+    #       params = $location.search()
+    #       console.log(params)
+    #       $loader.get(url, params: params)
+    #         .success (data) ->
+    #           $scope.data = data   
+    #   ]
+
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
         if routeParams.detail
           "templates/details/display.html"
         else if routeParams.type == "hospitals"
           "templates/details/#{routeParams.type}/#{routeParams.type}.html"
+        else if routeParams.type == "strategies"
+          "templates/details/strategies/hospital_charge.html"
         else
           "templates/details/#{routeParams.type}.html"
       controller: detailCtrl

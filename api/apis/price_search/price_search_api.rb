@@ -59,7 +59,8 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         template: "price_search/strategy_list",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=2&type=134",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=2",
-        url: "#/list/hospitals/hospital_types?hospital_parent_type=2",
+        # url: "#/list/hospitals/hospital_types?hospital_parent_type=2",
+        url: "#/detail/strategies/hospital_charge?hospital_parent_type=2",
         type: "hospitals/hospital_charges",
         title: "整形医院价格攻略",
         params: { hospital_parent_type: 2 }
