@@ -42,11 +42,11 @@
   <ul>
 
   <div class="list" drop-down>
-  <div class="item item-icon-right" ng-repeat="hospital_room in data.hospital_rooms">
-    <p ng-click="showDoctors($index)">
-      <i class="ion-chevron-down" style="float:right"></i>
-      {{hospital_room.hospital_room}} 
-    </p>
+    <div class="item item-icon-right" ng-repeat="hospital_room in data.hospital_rooms">
+      <p ng-click="showDoctors($index)">
+        <i class="ion-chevron-down" style="float:right"></i>
+        {{hospital_room.hospital_room}} 
+      </p>
       <div ng-show="ifShow[$index]" >
         <div class="row" ng-repeat="ds in hospital_room.doctors"> 
           <div class="col col-33" ng-repeat="doctor in ds">
@@ -56,9 +56,8 @@
         </div>
       </div>
 
+    </div>
   </div>
-
-</div>
 </div>
 
 

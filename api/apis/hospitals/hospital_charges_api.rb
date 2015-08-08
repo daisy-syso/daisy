@@ -32,7 +32,6 @@ class Hospitals::HospitalChargesAPI < ApplicationAPI
     params do
       requires :hospital_parent_type, type: Integer
     end
-    # p params[:hospital_parent_type]
     index! Hospitals::HospitalCharge, 
       meta: { nolink: true },
       # parent: proc { Hospitals::HospitalCharge.where(hospital_type_id: params[:type])},

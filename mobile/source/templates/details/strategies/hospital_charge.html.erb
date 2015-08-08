@@ -1,0 +1,45 @@
+<%= partial 'templates/details/header' %>
+<div class="content">
+<div class="list" drop-down>
+  <div class="item item-divider" ng-repeat="hospital_type in data">
+    <p ng-click="showDoctors($index)" style="line-height:2em;">
+      <i class="ion-chevron-down" style="float:right"></i>
+      {{hospital_type.name}} 
+    </p>
+    <div ng-show="ifShow[$index]" style="margin-top:15px;">
+        <div ng-repeat="disease in hospital_type.charges" class="item">
+        <img src="images/icons/1-8.gif" style="width:36px;">
+        <a href="#/detail/hospitals/doctors/{{doctor.id}}">{{disease.name}} </a>
+        <span style="float:right;color: #DC143C;">{{disease.price_scope}}</span>
+        </div>
+        <div class="item">
+          <div class="row">
+            <div class="col col-33" style="text-align:center">
+              <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{params.hospital_parent_type}}/doctors">
+                <img ng-src="images/icons/icon_doctor.jpg" width="16">医生
+              </a>
+            </div>
+            <div class="col col-33" style="text-align:center">
+              <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{params.hospital_parent_type}}/hospitals" style="margin:0 20px;">
+                <img ng-src="images/icons/icon_hospital.jpg" width="16" >医院
+              </a>
+            </div>
+            <div class="col col-33" style="text-align:center">
+              <a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{params.hospital_parent_type}}/drugs">
+                <img ng-src="images/icons/icon_drug.jpg" width="16">药品
+              </a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<a class="btn btn-warning" ng-href="#/list/hospitals/hospital_type/{{listFilters[1]['current']}}/doctors">
+        <img ng-src="images/icons/icon_doctor.jpg" width="16" style="margin-right:5px">医生
+      </a>
+      
+      
