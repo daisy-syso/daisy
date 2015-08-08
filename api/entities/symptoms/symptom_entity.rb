@@ -8,6 +8,7 @@ class Symptoms::SymptomEntity < ApplicationEntity
 		  	symptom.send(xg.to_sym).nil? ? [] : symptom.send(xg.to_sym).split('、')
 		end
 	end
+	expose :symptom_details
   end
 
 end
