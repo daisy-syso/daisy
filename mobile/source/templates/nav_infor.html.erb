@@ -8,30 +8,26 @@
 	}
 
 </style>
-<div style="">
-<header class="bar bar-nav" style="position:relative">
-  <h1 class="title">健康医疗资讯导航</h1>
 
-  <a class="react action pull-left" ng-click="back()">
-    <span class="ionicon ion-chevron-left">
-  </a>
-  <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']">
-    {{ $root.popover.title || data['subtitle'].title }}
-    <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
-  </a>
-  <a href="#/search" class="pull-right" style="margin-right:25px;"><img src="images/topserch.png"> </a>
-</header>
-<%#= partial "ads"%>
-<nav popover="data['subtitle']"></nav>
 
-<nav ng-class="{'bar bar-header-secondary filters': data['filters']}" filter filter-data="data['filters']" ng-show="data['filters']" style="position:relative;top:0">
-</nav>
+<%= partial 'header', locals: { title: "健康医疗资讯导航" } %>
+<div class="content">
+	<div class="list" drop-down>
+    <div  ng-repeat="nav in data">
+      <p ng-click="showDoctors($index)" class="item item-divider">
+        <i class="ion-chevron-down" style="float:right"></i>
+        {{nav.name}}
+      </p>
+
+      <div ng-show="ifShow[$index]" >
+        <a class="item" href="{{health_infomation.url}}" ng-repeat="health_infomation in nav.health_informations">{{health_infomation.name}}</a>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
 </div>
-
-<ul class="health-nav">
-	<li ng-repeat="nav in data">
-		<span>{{nav.name}}</span>
-		<span class="pull-right"><a href="#infors/nav/{{nav.id}}">查看更多</a></span>
-	</li>
-
-</ul>

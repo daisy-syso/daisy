@@ -68,7 +68,8 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         template: "price_search/strategy_list",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=6&type=135",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=6",
-        url: "#/list/hospitals/hospital_types?hospital_parent_type=6",
+        # url: "#/list/hospitals/hospital_types?hospital_parent_type=6",
+        url: "#/detail/strategies/hospital_charge?hospital_parent_type=6",
         type: "hospitals/hospital_charges",
         title: "牙科医院价格攻略",
         params: { hospital_parent_type: 6 }
@@ -76,7 +77,8 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         template: "price_search/strategy_list",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=5&type=136",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=5",
-        url: "#/list/hospitals/hospital_types?hospital_parent_type=5",
+        # url: "#/list/hospitals/hospital_types?hospital_parent_type=5",
+        url: "#/detail/strategies/hospital_charge?hospital_parent_type=5",
         type: "hospitals/hospital_charges",
         title: "妇幼医院价格攻略",
         params: { hospital_parent_type: 5 }
@@ -84,7 +86,8 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         template: "price_search/strategy_list",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=1&type=137",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=1",
-        url: "#/list/hospitals/hospital_types?hospital_parent_type=1",
+        # url: "#/list/hospitals/hospital_types?hospital_parent_type=1",
+        url: "#/detail/strategies/hospital_charge?hospital_parent_type=1",
         type: "hospitals/hospital_charges",
         title: "男科医院价格攻略",
         params: { hospital_parent_type: 1 }
@@ -92,7 +95,8 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         template: "price_search/strategy_list",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=4&type=138",
         # url: "#/list/hospitals/hospital_charges?hospital_parent_type=4",
-        url: "#/list/hospitals/hospital_types?hospital_parent_type=4",
+        # url: "#/list/hospitals/hospital_types?hospital_parent_type=4",
+        url: "#/detail/strategies/hospital_charge?hospital_parent_type=4",
         type: "hospitals/hospital_charges",
         title: "中医院价格攻略",
         params: { hospital_parent_type: 4 }

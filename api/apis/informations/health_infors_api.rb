@@ -2,9 +2,9 @@ class Informations::HealthInforsAPI < ApplicationAPI
 
   namespace :nav do
     get do
-      navs = Informations::HealthInformationType.all
+      navs = Informations::HealthInformationType.all.includes(:health_informations)
       # present :tpl,
-      present navs
+      present navs, with: Informations::HealthInformationTypeEntity
     end
 
     get ":id" do
