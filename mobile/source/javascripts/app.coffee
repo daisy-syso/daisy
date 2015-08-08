@@ -83,7 +83,15 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
-    $routeProvider.when '/join_league', templateUrl: 'templates/join_league.html'
+    $routeProvider.when '/join_league',
+      templateUrl: 'templates/join_league.html'
+      controller:[
+        '$scope', '$routeParams', '$loader'
+        ($scope, $routeParams, $loader) ->
+          $loader.get("api/join_applies/join_applies/apply_types.json")
+            .success (data) ->
+              $scope.apply_types = data.apply_types
+      ]
 
     $routeProvider.when '/review/:item_type/:item_id',
       templateUrl: "templates/review.html"
@@ -139,7 +147,7 @@ angular.module 'DaisyApp', [
             if (i+1)%3 == 0
               ele.push(e)
               new_array.push(ele)
-              ele = [] 
+              ele = []
             else
               ele.push(e)
           )
@@ -147,11 +155,11 @@ angular.module 'DaisyApp', [
           return new_array
 
         $scope.params_hospital_rooms = (a) ->
-          angular.forEach(a, (e, i)-> 
+          angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
 
-        
+
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
         params = angular.extend { onsale_id: $routeParams.onsale_id }, params
