@@ -1,25 +1,10 @@
 class Hospitals::HospitalsAPI < ApplicationAPI
 
   namespace :hospitals do
-    # index! Hospitals::Hospital,
-    #   title: "医院大全",
-    #   filters: { 
-    #     city: city_filters,
-    #     type: type_filters(:hospital),
-    #     hospital_type: { scope_only: true },
-    #     county: county_filters,
-    #     order_by: hospital_order_by_filters,
-    #     form: form_filters,
-    #     query: form_query_filters, 
-    #     alphabet: form_alphabet_filters,
-    #     hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
-    #     has_url: form_switch_filters("网址"),
-    #     is_local_hot: form_switch_filters("热门医院")
-    #   }
 
     get ":id" do
       hospital = Hospitals::Hospital.find params[:id]
-      present! hospital, detail: true
+      present! hospital, detail: true 
       hospital.click!
     end
   end

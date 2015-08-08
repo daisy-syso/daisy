@@ -95,6 +95,46 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     expose :medical_insurance
     expose :equipment_star, :skill_star, :service_star, :environment_star
     expose :equipment_desc, :skill_desc, :service_desc, :environment_desc
+    expose :hospital_rooms do |object, options| 
+      # doctors = Hospitals::Doctor.select("id, name, position, hospital_room_id").where(hospital_id: object.id).group_by{|d| d.hospital_room_id}
+      # sub_room = doctors.map do |room_id, ds|
+      #   room = Hospitals::HospitalRoom.find(room_id)
+      #   {
+      #     hospital_room: room.parent.present? ? room.parent.name : room.name, 
+      #     doctors: ds
+      #   }
+      # end
+
+ #      doctors = Hospitals::Doctor.find_by_sql("select t3.name as hospital_room, t2.name as small,t1.name from doctors t1 left join hospital_rooms t2 on t2.id=t1.hospital_room_id 
+ # left join hospital_rooms t3 on t3.id=t2.parent_id  where hospital_id=15270")
+ #      rooms_doctors= doctors.group_by{|d| d["hospital_room"]}
+ #      rooms_doctors.map do |room, doctors|
+ #        {
+ #          hospital_room: room,
+ #          doctors: doctors
+ #        }
+ #      end
+        ds = Hospitals::Doctor.joins(hospital_room: :parent).where(hospital_id: object.id)
+        ds.group_by{|d| d.hospital_room.parent.id}.map do |room_id, doctors|
+          room = Hospitals::HospitalRoom.find(room_id)
+          {
+            hospital_room: room.name,
+            doctors: doctors.as_json({only: [:id, :name, :position]}),
+          }
+        end
+    end
+
+    # hosptital_rooms: [
+    #   {
+    #     hosptital_rooms: xxx, 
+    #     doctors: [{}, {}]
+    #   }, {
+    #     hosptital_rooms: xxx, 
+    #     doctors: [{}, {}]
+    #   }
+    # ]
+    #
+    #
   end
 
   private

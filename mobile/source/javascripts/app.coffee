@@ -123,22 +123,42 @@ angular.module 'DaisyApp', [
       ]
 
     detailCtrl = [
-      '$scope', '$routeParams', '$loader', '$alert', '$location'
-      ($scope, $routeParams, $loader, $alert, $location) ->
+      '$scope', '$routeParams', '$loader', '$alert', '$location', '$rootScope'
+      ($scope, $routeParams, $loader, $alert, $location, $rootScope) ->
         $scope.type = $routeParams.type
+        $rootScope.footerHide = true
         if $routeParams.type == "hospitals/hospitals_polyclinic"
           $scope.type = "hospitals/hospitals"
-          # $alert.info($scope.type)
         $scope.id = $routeParams.id
+
+        $scope.array_3 = (a) ->
+          new_array = []
+          ele = []
+          angular.forEach(a, (e, i)->
+            if (i+1)%3 == 0
+              ele.push(e)
+              new_array.push(ele)
+              ele = [] 
+            else
+              ele.push(e)
+          )
+          new_array.push(ele) if ele.length < 3 && ele.length > 0
+          return new_array
+
+        $scope.params_hospital_rooms = (a) ->
+          angular.forEach(a, (e, i)-> 
+            e.doctors = $scope.array_3(e.doctors)
+          )
+
+        $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
-        # url = "/api/#{$routeParams.type}/#{$routeParams.id}.json"
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
-        # $alert.info(url)
-        params = angular.extend { onsale_id: $routeParams.onsale_id }, params
-        # $alert.info($routeParams.onsale_id)
+        params = angular.extend { onsale_id: $routeParams.onsale_id }, $scope.params
+        console.log(params)
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+            $scope.params_hospital_rooms($scope.data.hospital_rooms) if $scope.data.hospital_rooms
 
     ]
 
@@ -163,31 +183,13 @@ angular.module 'DaisyApp', [
 
         $loader.get(url)
           .success (data) ->
-            $scope.symptoms = data.symptoms
+            $scope.symptoms = data.data
             $scope.title = data.symptoms.symptom.name
     ]
 
     $routeProvider.when '/order/:type*/:id',
       templateUrl: "templates/order.html"
       controller: detailCtrl
-
-    # $routeProvider.when '/detail/:type*/:id/:attr',
-    #   templateUrl: "templates/details/display.html"
-    #   controller: [
-    #     '$scope', '$routeParams', '$loader'
-    #     ($scope, $routeParams, $loader) ->
-    #       $scope.type = $routeParams.type
-    #       url = "/api/#{$routeParams.type}.json"
-    #       scope.to_zh =
-    #         by: "病因"
-    #         zz: "症状"
-    #         jc: "检测"
-
-    #       scope.attr = $routeParams.attr
-    #       $loader.get(url)
-    #         .success (data) ->
-    #           $scope.data = data
-    #   ]
 
     $routeProvider.when '/detail/drugs/drugs/:id/:manufactory_id',
       templateUrl: "templates/details/drugs/drugs.html"
@@ -197,12 +199,26 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/details/symptoms/symptom_item.html"
       controller: symptomsDetailCtrl
 
+    # $routeProvider.when '/detail/strategies/hospital_charge',
+    #   templateUrl: "templates/details/strategies/hospital_charge.html"
+    #   controller: [
+    #     '$scope', '$loader', '$route', '$location', '$routeParams'
+    #     ($scope, $loader, $route, $location, $routeParams) ->
+    #       params = $location.search()
+    #       console.log(params)
+    #       $loader.get(url, params: params)
+    #         .success (data) ->
+    #           $scope.data = data   
+    #   ]
+
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
         if routeParams.detail
           "templates/details/display.html"
         else if routeParams.type == "hospitals"
           "templates/details/#{routeParams.type}/#{routeParams.type}.html"
+        else if routeParams.type == "strategies"
+          "templates/details/strategies/hospital_charge.html"
         else
           "templates/details/#{routeParams.type}.html"
       controller: detailCtrl
@@ -288,7 +304,7 @@ angular.module 'DaisyApp', [
       ($scope, $loader, $route, $location, $routeParams) ->
         $scope.moreData = true
         $scope.getImageUrl = (symptom) =>
-          switch symptom.part_name
+          switch symptom.name
             when "头部"
               "images/body-regions/brain.png"
             when "颈部"
@@ -336,8 +352,7 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) =>
-              if data.symptoms.length < 1  then  $scope.moreData = false
-              $scope.symptoms = data.symptoms
+              $scope.data = data
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->

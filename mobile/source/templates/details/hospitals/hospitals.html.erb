@@ -34,9 +34,32 @@
   </ul>
 </div>
 
-<div class="btns-block">
-    <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}" style="color:#fff">就诊查询／挂号</a>
+<div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell media-title">
+      医生列表
+    </li>
+  <ul>
+
+  <div class="list" drop-down>
+    <div class="item item-icon-right" ng-repeat="hospital_room in data.hospital_rooms">
+      <p ng-click="showDoctors($index)">
+        <i class="ion-chevron-down" style="float:right"></i>
+        {{hospital_room.hospital_room}} 
+      </p>
+      <div ng-show="ifShow[$index]" >
+        <div class="row" ng-repeat="ds in hospital_room.doctors"> 
+          <div class="col col-33" ng-repeat="doctor in ds">
+            <a href="#/detail/hospitals/doctors/{{doctor.id}}">{{doctor.name}} </a>
+            <p>{{doctor.position}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
+</div>
+
 
   <%#= partial 'templates/details/review' %>
 <div class="card">
@@ -69,28 +92,6 @@
   </ul>
 </div>
 
-  <!-- <div class="card">
-    <ul class="table-view media">
-
-      <% titles = { equipment: "医院设备", skill: "医疗技术水平", service: "服务水平", environment: "医院环境" } %>
-      <% %i(equipment skill service environment).each do |key| %>
-        <li class="table-view-cell">
-          <div class="media-detail">
-            <div class="block">
-              <h4>
-                <span style="color:#838383"><%= titles[key] %>：</span>
-                <span stars="data.<%= key %>_star" class="stars"></span>
-              </h4>
-              <p class="pre">{{data.<%= key %>_desc}}</p>
-            </div>
-          </div>
-        </li>
-      <% end %>
-
-    </ul>
-  </div> -->
-
-
 
   <%= partial 'templates/details/map' %>
   <div class="card">
@@ -111,3 +112,12 @@
   </div>
 
 </div>
+
+<footer class="footer">
+  <menu class="footer-con">
+    
+    <div class="btns-block">
+      <a class="btn btn-warning btn-large btn-half-block btn-text-purple" ng-href="{{data.url}}" style="color:#fff">就诊查询／挂号</a>
+    </div>
+  </menu>
+</footer>

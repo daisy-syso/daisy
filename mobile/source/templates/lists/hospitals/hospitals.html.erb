@@ -4,22 +4,19 @@
 <div class="row" style="padding-bottom:0">
   <div class="col" style="padding-bottom:0;padding-top: 0px;">
     <div class="list" style="padding-bottom:0">
-
-      <a class="item item-thumbnail-left" href="#" style="padding-bottom:0">
+      <a class="item item-thumbnail-left" ng-href="{{link(data)}}" style="padding-bottom:0">
         <img ng-src="{{data.image_url}}">
         <ul class="list-cont">
-    <li>距离：{{$root.getDistance(data) | number:2}}千米 
+          <li>距离：{{$root.getDistance(data) | number:2}}千米 
       <!-- <span class="pull-right price-color" style="background-color: #E62418;color:#FFF">就诊查讯</span> -->
-    </li>
-    <li class="text-overflow">
-      特色项目：{{data.characteristic_departments}}
-      
-    </li>
-    <li>
-      <span>预约电话：{{data.telephone}}</span> 
-      
-    </li>
-  </ul>
+          </li>
+          <li class="text-overflow">
+            特色项目：{{data.characteristic_departments}}
+          </li>
+          <li>
+            <span>预约电话：{{data.telephone}}</span> 
+          </li>
+        </ul>
       </a>
 
     </div>

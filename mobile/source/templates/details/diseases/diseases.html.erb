@@ -1,34 +1,16 @@
 <%= partial 'templates/details/header' %>
 
 <div class="content">
-
-  <%#= partial 'templates/details/desc', locals: { subtitle: :desc } %>
-
-  <%#= partial 'templates/details/detail', locals: { title: "病因", detail: :etiology } %>
-  <%#= partial 'templates/details/detail', locals: { title: "症状", detail: :symptoms} %>
-  <%#= partial 'templates/details/detail', locals: { title: "检测", detail: :examination } %>
-  <%#= partial 'templates/details/detail', locals: { title: "治疗", detail: :treatment } %>
-  <%#= partial 'templates/details/detail', locals: { title: "预防", detail: :prevention } %>
-  <%#= partial 'templates/details/detail', locals: { title: "饮食", detail: :diet } %>
-
-  <div class="card">
-  <ul class="table-view media">
-
-    <li class="table-view-cell" style="padding:20px 10px;font-size: 2em" ng-repeat="type in data.disease_details">
-      {{type.title}}
-      <span class="pull-right more-box" >
-        <a href="#/detail/diseases/diseases/{{data.id}}?detail={{type.id}}" target="_self">查看更多
-        </a>
-      </span>
-    </li>
-
-  </ul>
-
-
+  <div class="list" drop-down>
+    <div class="item" ng-repeat="type in data.disease_details">
+      <p ng-click="showDoctors($index)">
+        <i class="ion-chevron-down" style="float:right"></i>
+        {{type.title}}
+      </p>
+      <div ng-show="ifShow[$index]" style="margin-top: 10px;white-space: normal;">
+        {{type.detail}}
+      </div>
+    </div>
+  </div>
 </div>
 
-<ul class="list">
-    <li class="item" ng-repeat="type in data.disease_details">
-      {{type.title}}
-    </li>
-</ul>
