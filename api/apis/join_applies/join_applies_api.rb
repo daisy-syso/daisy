@@ -49,5 +49,11 @@ class JoinApplies::JoinAppliesAPI < ApplicationAPI
 
       {symptoms: join_applies}
     end
+
+    get :apply_types do
+      apply_types = JoinApplies::JoinApply::TARGET_TYPES_MAPPING
+      {apply_types: apply_types}
+    end
+
   end
 end
