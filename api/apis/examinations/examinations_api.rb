@@ -1,16 +1,15 @@
 class Examinations::ExaminationsAPI < ApplicationAPI
 
   namespace :examinations do
+    
     index! Examinations::Examination,
       title: "全国体检",
       filters: { 
         city: city_filters,
         type: type_filters(:examination),
         examination_type: { scope_only: true },
-        examination_parent_type: { scope_only: true },
         hospital: { scope_only: true },
         # county: fake_county_filters,
-        county: examination_parent_type,
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,
         query: form_query_filters,

@@ -1,6 +1,7 @@
 class Examinations::ExaminationType < ActiveRecord::Base
-  # belongs_to :parent, class_name: 'ExaminationType'
-  # has_many :children, class_name: 'ExaminationType', foreign_key: 'parent_id'
+  
+  has_many :examinations_one, class_name: 'Examinations::Examination', foreign_key: 'examination_type_one_id'
+  has_many :examinations_two, class_name: 'Examinations::Examination', foreign_key: 'examination_type_two_id'
   has_one :examination_charge
 
   def self.demand_attrs
