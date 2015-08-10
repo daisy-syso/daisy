@@ -6,7 +6,7 @@
         <h1>相关检查</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.xgjb[0] }}</a>
+        <a href="#" ng-repeat="xgjc in symptoms.xgjc">{{ xgjc }}</a>
       </div>
     </li>
     <li>
@@ -14,7 +14,7 @@
         <h1>相关疾病</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.xgjb[0] }}</a>
+        <a href="#" ng-repeat="xgjb in symptoms.xgjb">{{ xgjb }}</a>
       </div>
     </li>
     <li>
@@ -22,7 +22,15 @@
         <h1>相关药品</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.xgyp[0] }}</a>
+        <a href="#" ng-repeat="xgyp in symptoms.xgyp">{{ xgyp }}</a>
+      </div>
+    </li>
+    <li>
+      <div class="fl symptom-title">
+        <h1>相关症状</h1>
+      </div>
+      <div class="fl related-content">
+        <a href="#" ng-repeat="xgzz in symptoms.xgzz">{{ xgzz }}</a>
       </div>
     </li>
   </ul>
