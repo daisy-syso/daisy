@@ -2,7 +2,7 @@ class Examinations::Examination < ActiveRecord::Base
 
   self.table_name = "examinations_new"
 
-  include Reviewable
+  # include Reviewable
 
   belongs_to :city, class_name: "Categories::City"
   belongs_to :hospital, class_name: "Hospitals::Hospital"
