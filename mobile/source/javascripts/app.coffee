@@ -54,6 +54,16 @@ angular.module 'DaisyApp', [
       controller:[
         '$rootScope', '$scope', '$loader', '$routeParams'
         ($rootScope, $scope, $loader, $routeParams) ->
+          $scope.start = [0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+          $scope.swipeLeft = (i, l) ->
+            console.log("swipe left")
+            $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
+            
+          $scope.swipeRight = (i) ->
+            console.log("swipe right")
+            $scope.start[i] += -1  unless $scope.start[i] == 0
+
           $loader.get("/api/infors/#{$routeParams.type}.json")
             .success (data) ->
               $scope.data = data
