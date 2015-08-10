@@ -52,8 +52,8 @@ angular.module 'DaisyApp', [
       templateUrl: (routeParams) ->
         "templates/#{routeParams.type}_infor.html"
       controller:[
-        '$rootScope', '$scope', '$loader', '$routeParams'
-        ($rootScope, $scope, $loader, $routeParams) ->
+        '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+        ($rootScope, $scope, $loader, $routeParams, $animate) ->
           $scope.start = [0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
           $scope.swipeLeft = (i, l) ->
@@ -77,6 +77,16 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.infors = data
       ]
+
+    $routeProvider.when '/infors/app_types/:id',
+    templateUrl: "templates/informations/apps/more.html"
+    controller:[
+      '$rootScope', '$scope', '$loader', '$routeParams'
+      ($rootScope, $scope, $loader, $routeParams) ->
+        $loader.get("/api/infors/apps/#{$routeParams.id}.json")
+          .success (data) ->
+            $scope.infors = data
+    ]
 
     $routeProvider.when '/login/:redirectToPath*',
       templateUrl: "templates/login.html",

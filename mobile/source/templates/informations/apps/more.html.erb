@@ -1,0 +1,16 @@
+<%= partial 'header', locals: { title: "{{infors.app_type.name}}" } %>
+<div class="content">
+	<div class="list">
+
+	    <a class="item item-thumbnail-left" href="{{app.url}}" ng-repeat="app in infors.apps">
+	      <img src="{{app.image_url}}">
+	      <h2>{{app.name}}</h2>
+	      <p>{{app.detail}}</p>
+	    </a>
+
+	    
+
+	</div>	
+
+
+</div>

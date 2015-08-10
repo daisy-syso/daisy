@@ -8,10 +8,10 @@ class Informations::AppInforsAPI < ApplicationAPI
     end
 
     get ":id" do
-      infor_type = Informations::HealthInformationType.where(id: params[:id]).first
-      infors = infor_type.health_informations
-      present :infor_type, infor_type
-      present :infors, infors
+      app_type = Informations::AppInformationType.where(id: params[:id]).first
+      apps = app_type.app_informations
+      present :app_type, app_type
+      present :apps, apps
     end
   end
 

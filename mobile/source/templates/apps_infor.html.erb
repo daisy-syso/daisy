@@ -5,7 +5,10 @@
 
     <div class="item">
       <div class="row">
-	    	<p style="font-size: 1.4em;">{{app_type.name}}</p>
+	    	<p class="col-33" style="font-size: 1.4em;">
+	    		{{app_type.name}}
+	    	</p>
+	    	<a href="#/infors/app_types/{{app_type.id}}" class="col-offset-50">查看更多</a>
 	    </div>
 	    <div class="row" ng-swipe-left="swipeLeft($index, app_type.app_informations.length)" ng-swipe-right="swipeRight($index)"> 
 	    	<div class="col-20" ng-repeat="app in app_type.app_informations.slice(start[$index],start[$index]+5)" >

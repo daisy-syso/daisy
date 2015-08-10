@@ -9,6 +9,9 @@ class Eldercares::NursingRoom < ActiveRecord::Base
     query.present? ? where{name.like("%#{query}%")} : all
   }
 
+  scope :null_last, -> (a) {
+  	order("bed is null")
+  }
   include Reviewable
   include JoinAppliable
 
