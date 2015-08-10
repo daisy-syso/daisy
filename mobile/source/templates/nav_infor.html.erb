@@ -14,19 +14,20 @@
 <div class="content">
 	<div class="list" drop-down>
     <div  ng-repeat="nav in data">
-      <p ng-click="showDoctors($index)" class="item item-divider">
+      <p ng-click="showDoctors($index)" class="item item-divider" style="color:#828282;font-size:1.4em;">
         <i class="ion-chevron-down" style="float:right"></i>
         {{nav.name}}
       </p>
 
       <div ng-show="ifShow[$index]" >
-        <a class="item" href="{{health_infomation.url}}" ng-repeat="health_infomation in nav.health_informations">{{health_infomation.name}}</a>
+        <a class="item" href="#/show_web?url={{health_infomation.url}}" ng-repeat="health_infomation in nav.health_informations" style="color:#828282;">{{health_infomation.name}}</a>
       </div>
 
     </div>
 
 
   </div>
+
 
 
 
