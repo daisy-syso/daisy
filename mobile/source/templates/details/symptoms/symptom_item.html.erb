@@ -36,7 +36,7 @@
   </ul>
 
   <div class="symptoms">
-    <ul ng-if="symptoms.symptom_details.length > 1">
+    <ul ng-if="symptoms.symptom_details.length > 0">
       <li ng-repeat="detail in symptoms.symptom_details" toggle>
         <strong>{{ detail.title }}</strong>
         <div class="box">
