@@ -1,4 +1,4 @@
-<%= partial 'header', locals: { title: "{{ title }}" } %>
+<%= partial 'header', locals: { title: "{{ symptoms.name }}" } %>
 <div id="symptoms_detail">
   <ul>
     <li>
@@ -6,7 +6,7 @@
         <h1>相关检查</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.symptom.xgjb }}</a>
+        <a href="#">{{ symptoms.xgjb[0] }}</a>
       </div>
     </li>
     <li>
@@ -14,7 +14,7 @@
         <h1>相关疾病</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.symptom.xgjb }}</a>
+        <a href="#">{{ symptoms.xgjb[0] }}</a>
       </div>
     </li>
     <li>
@@ -22,14 +22,14 @@
         <h1>相关药品</h1>
       </div>
       <div class="fl related-content">
-        <a href="#">{{ symptoms.symptom.xgyp }}</a>
+        <a href="#">{{ symptoms.xgyp[0] }}</a>
       </div>
     </li>
   </ul>
 
   <div class="symptoms">
-    <ul ng-if="symptoms.details.length > 1">
-      <li ng-repeat="detail in symptoms.details" toggle>
+    <ul ng-if="symptoms.symptom_details.length > 1">
+      <li ng-repeat="detail in symptoms.symptom_details" toggle>
         <strong>{{ detail.title }}</strong>
         <div class="box">
           <a href="javascript:;">{{ detail.detail }}</a>
@@ -38,4 +38,3 @@
     </ul>
   </div>
 </div>
-
