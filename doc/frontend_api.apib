@@ -284,3 +284,92 @@ HOST: http://www.syso.com.cn
   "updated_at": "2015-07-19T18:15:33.247+08:00"
 }
 
+### 体检列表
++ Parameters
+  + page (integer) - 页数
+
++ Example:
+  method: get
+  url: /api/examinations/examinations.json?page=1
+
++ Response 200 (application/json)
+{
+  "title":"全国体检",
+  "data":[
+    {
+      "template":"examinations/examinations",
+      "id":7155,
+      "name":"解放军第302医院男性基础体检2",
+      "price":"645",
+      "image_url":"http://syso.qiniudn.com/nopicture/tijiantaocan.jpg",
+      "types":[
+        {
+          "template":"examinations/examination_types",
+          "name":"职场白领",
+          "examination_charge":{
+            "id":76,
+            "examination_type_id":80,
+            "min_price":"0",
+            "max_price":"40740"
+          },
+          "url":"#/list/examinations/examinations?type=80"
+        }
+      ]
+    }
+  ]
+}
+
+### 体检详细页
++ Parameters
+  + id (integer)
+
++ Example:
+  method: get
+  url: /api/examinations/examinations/:id.json
+
++ Response 200 (application/json)
+{
+  "data":
+  {
+    "template":"examinations/examinations",
+    "id":7155,
+    "name":"解放军第302医院男性基础体检2",
+    "star":0,
+    "reviews_count":0,
+    "reviewable":false,
+    "price":"645",
+    "image_url":"http://syso.qiniudn.com/nopicture/tijiantaocan.jpg",
+    "types":[
+      {
+        "template":"examinations/examination_types",
+        "name":"职场白领",
+        "examination_charge":
+          {
+            "id":76,
+            "examination_type_id":80,
+            "min_price":"0",
+            "max_price":"40740"
+          },
+        "url":"#/list/examinations/examinations?type=80"
+      }
+    ],
+    "address":"北京市丰台区西四环中路100号",
+    "hospital_name":"中国人民解放军第302医院体检中心",
+    "details":[
+      {
+        "template":"examinations/examination_details",
+        "types":"体检套餐属性",
+        "title":"适用人群",
+        "content":"青年女性"
+      },
+      {
+        "template":"examinations/examination_details",
+        "types":"体检套餐深度解析",
+        "title":"空腹血糖(GLU)",
+        "content":"1.生理性增高，见于餐后1～2h和情绪紧张时，但不应超过1Ommol／L。2．病理性增高：（1）糖尿病是造成高血糖最常见的原因之一。（2）颅内压升高，（3）由于脱水引起的高血糖，3．生理性血糖降低见于饥饿、妊娠、剧烈运动后。4．病理性血糖降低。"
+      }
+      ...
+    ]
+  }
+}
+

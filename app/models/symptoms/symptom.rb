@@ -3,6 +3,12 @@ class Symptoms::Symptom < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
 
   belongs_to :part, class_name: "Symptoms::Part"
+
+
+  def symptom_details
+    details = Symptoms::SymptomDetail.where(detail_id: self.detail_id)
+    details.collect{|d| {title: d.title, detail: d.detail, image_url: d.image_url}}
+  end
   
   settings index: {number_of_shards: 5} do
     mappings do
