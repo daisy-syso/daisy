@@ -59,7 +59,7 @@ angular.module 'DaisyApp', [
           $scope.swipeLeft = (i, l) ->
             console.log("swipe left")
             $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
-            
+
           $scope.swipeRight = (i) ->
             console.log("swipe right")
             $scope.start[i] += -1  unless $scope.start[i] == 0
@@ -158,7 +158,7 @@ angular.module 'DaisyApp', [
             if (i+1)%3 == 0
               ele.push(e)
               new_array.push(ele)
-              ele = [] 
+              ele = []
             else
               ele.push(e)
           )
@@ -166,7 +166,7 @@ angular.module 'DaisyApp', [
           return new_array
 
         $scope.params_hospital_rooms = (a) ->
-          angular.forEach(a, (e, i)-> 
+          angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
 
@@ -204,7 +204,6 @@ angular.module 'DaisyApp', [
         $loader.get(url)
           .success (data) ->
             $scope.symptoms = data.data
-            $scope.title = data.symptoms.symptom.name
     ]
 
     $routeProvider.when '/order/:type*/:id',
@@ -228,7 +227,7 @@ angular.module 'DaisyApp', [
     #       console.log(params)
     #       $loader.get(url, params: params)
     #         .success (data) ->
-    #           $scope.data = data   
+    #           $scope.data = data
     #   ]
 
     $routeProvider.when '/detail/:type*/:id',
