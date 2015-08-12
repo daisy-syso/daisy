@@ -6,6 +6,8 @@
 #= require angular-loading-bar/build/loading-bar
 #= require angular-bootstrap/ui-bootstrap-tpls
 #= require ionic/release/js/ionic.bundle
+#= require lodash/lodash.min
+#= require angular-google-maps/dist/angular-google-maps.min
 
 
 angular.module 'DaisyApp', [
@@ -16,6 +18,7 @@ angular.module 'DaisyApp', [
   "angular-carousel"
   'ui.bootstrap'
   'ionic'
+  'uiGmapgoogle-maps'
 ]
 
 .config [
@@ -48,6 +51,7 @@ angular.module 'DaisyApp', [
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
+    # app分类展示页面
     $routeProvider.when '/infors/:type',
       templateUrl: (routeParams) ->
         "templates/#{routeParams.type}_infor.html"
@@ -55,7 +59,6 @@ angular.module 'DaisyApp', [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
           $scope.start = [0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
           $scope.swipeLeft = (i, l) ->
             console.log("swipe left")
             $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
@@ -68,6 +71,7 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
       ]
+
     $routeProvider.when '/infors/nav/:id',
       templateUrl: "templates/infors.html"
       controller:[
@@ -78,6 +82,7 @@ angular.module 'DaisyApp', [
               $scope.infors = data
       ]
 
+    # 同类别app展示页面
     $routeProvider.when '/infors/app_types/:id',
     templateUrl: "templates/informations/apps/more.html"
     controller:[
@@ -178,6 +183,7 @@ angular.module 'DaisyApp', [
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+            $scope.map = { center: { latitude: $scope.data.lat, longitude: $scope.data.lng }, zoom: 8 }
             $scope.params_hospital_rooms($scope.data.hospital_rooms) if $scope.data.hospital_rooms
 
     ]
@@ -229,6 +235,7 @@ angular.module 'DaisyApp', [
     #         .success (data) ->
     #           $scope.data = data
     #   ]
+
 
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
@@ -436,6 +443,15 @@ angular.module 'DaisyApp', [
       ]
 
     $routeProvider.otherwise redirectTo: '/home'
+]
+
+.config [
+  'uiGmapGoogleMapApiProvider'
+  (uiGmapGoogleMapApiProvider) -> 
+    uiGmapGoogleMapApiProvider.configure
+      key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
 ]
 
 # .config [

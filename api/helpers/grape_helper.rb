@@ -4,7 +4,7 @@ module GrapeHelper
     resource = apply_scopes resource
     if params[:page]
       resource = resource.page(params[:page])
-      resource = resource.per(params[:per] || 10)
+      # resource = resource.per(params[:per] || 10)
     end
     resource
   end

@@ -10,6 +10,7 @@ asset 'angular-loading-bar'
 asset 'angular-local-storage'
 asset 'angular-growl-v2'
 asset 'angular-bootstrap'
+asset 'angular-google-maps'
 
 asset 'ratchet'
 asset 'ionicons'

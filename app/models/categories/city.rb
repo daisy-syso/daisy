@@ -24,7 +24,7 @@ class Categories::City < ActiveRecord::Base
     end
 
     def filters(country_id = nil)
-      Categories::Province.by_country(country_id).includes(:cities).map do |province|
+      Categories::Province.where(country_id: 1).by_country(country_id).includes(:cities).map do |province|
         cities = province.cities.load
 
         if cities.length == 1
