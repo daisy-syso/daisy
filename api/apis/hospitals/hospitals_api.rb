@@ -264,9 +264,13 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # hospital_type: { scope_only: true, default: 7 },
         # hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
-        characteristic_hospitals: { scope_only: true, default: 8},
+        characteristic_hospitals: { scope_only: true, default: 1},
         # order_by_level: { scope_only: true, default: 7 },
-        county: county_filters,
+        # county: county_filters,
+        characteristic: { 
+          title: proc { Hospitals::Characteristic.find_by_id(params[:characteristic_hospitals]).try(:name) || "特色科室"}, 
+          children: proc { Hospitals::Characteristic.filters}
+        },
         order_by: hospital_order_by_filters,
         form: form_filters,
         # query: form_query_filters, 

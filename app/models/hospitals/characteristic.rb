@@ -19,7 +19,11 @@ class Hospitals::Characteristic< ActiveRecord::Base
   	hospitals.distinct.count
   end
 
-  # def self.hospital_count
-  	
-  # end
+  class << self
+    include Filterable
+
+    define_filter_method :filters do |characteristic|
+      Hospitals::Characteristic.all
+    end
+  end
 end
