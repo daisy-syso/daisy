@@ -269,7 +269,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         # county: county_filters,
         characteristic: { 
           title: proc { Hospitals::Characteristic.find_by_id(params[:characteristic_hospitals]).try(:name) || "特色科室"}, 
-          children: proc { Hospitals::Characteristic.filters}
+          children: proc { Hospitals::Characteristic.filters},
+          key: "characteristic_hospitals"
         },
         order_by: hospital_order_by_filters,
         form: form_filters,

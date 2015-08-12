@@ -48,6 +48,7 @@ angular.module 'DaisyApp', [
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
+    # app分类展示页面
     $routeProvider.when '/infors/:type',
       templateUrl: (routeParams) ->
         "templates/#{routeParams.type}_infor.html"
@@ -55,7 +56,6 @@ angular.module 'DaisyApp', [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
           $scope.start = [0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
           $scope.swipeLeft = (i, l) ->
             console.log("swipe left")
             $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
@@ -68,6 +68,7 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
       ]
+
     $routeProvider.when '/infors/nav/:id',
       templateUrl: "templates/infors.html"
       controller:[
@@ -78,6 +79,7 @@ angular.module 'DaisyApp', [
               $scope.infors = data
       ]
 
+    # 同类别app展示页面
     $routeProvider.when '/infors/app_types/:id',
     templateUrl: "templates/informations/apps/more.html"
     controller:[
@@ -229,6 +231,7 @@ angular.module 'DaisyApp', [
     #         .success (data) ->
     #           $scope.data = data
     #   ]
+
 
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
