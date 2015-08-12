@@ -6,6 +6,8 @@
 #= require angular-loading-bar/build/loading-bar
 #= require angular-bootstrap/ui-bootstrap-tpls
 #= require ionic/release/js/ionic.bundle
+#= require lodash/lodash.min
+#= require angular-google-maps/dist/angular-google-maps.min
 
 
 angular.module 'DaisyApp', [
@@ -16,6 +18,7 @@ angular.module 'DaisyApp', [
   "angular-carousel"
   'ui.bootstrap'
   'ionic'
+  'uiGmapgoogle-maps'
 ]
 
 .config [
@@ -180,6 +183,7 @@ angular.module 'DaisyApp', [
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+            $scope.map = { center: { latitude: $scope.data.lat, longitude: $scope.data.lng }, zoom: 8 }
             $scope.params_hospital_rooms($scope.data.hospital_rooms) if $scope.data.hospital_rooms
 
     ]
@@ -439,6 +443,15 @@ angular.module 'DaisyApp', [
       ]
 
     $routeProvider.otherwise redirectTo: '/home'
+]
+
+.config [
+  'uiGmapGoogleMapApiProvider'
+  (uiGmapGoogleMapApiProvider) -> 
+    uiGmapGoogleMapApiProvider.configure
+      key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
 ]
 
 # .config [

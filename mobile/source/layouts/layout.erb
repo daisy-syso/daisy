@@ -24,6 +24,8 @@
     <%= javascript_include_tag  "all" %>
     <!-- Baidu Map -->
     <script src="http://api.map.baidu.com/api?type=quick&amp;ak=E5072c8281660dfc534548f8fda2be11&amp;v=1.0"></script>
+    <!-- 谷歌地图 -->
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <!-- Baidu Share -->
     <script type="text/javascript" src="http://openapi.baidu.com/widget/social/1.0/share.js"> </script>
     <!-- Weibo -->
@@ -34,12 +36,7 @@
   
   <body ng-class="routeDirection">
     <%= yield %>
-  <script>
-    // adaptUILayout.adapt(480); //适配当前页面
-    // $(function(){
-    //   $("#cnzz_stat_icon_1254633904").css({ "display": "none"});
-    // })
-  </script>  
+ 
   <script type="text/javascript">
     var cnzz_protocol = (
       ("https:" == document.location.protocol) ? " https://" : " http://"
