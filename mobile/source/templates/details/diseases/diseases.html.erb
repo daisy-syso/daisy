@@ -3,12 +3,12 @@
 <div class="content">
   <div class="list" drop-down>
     <div class="item" ng-repeat="type in data.disease_details">
-      <p ng-click="showDoctors($index)">
+      <p ng-click="showDoctors($index)" style="font-size:1.4em">
         <i class="ion-chevron-down" style="float:right"></i>
         {{type.title}}
       </p>
       <div ng-show="ifShow[$index]" style="margin-top: 10px;white-space: normal;">
-        <pre>{{type.detail}}</pre>
+        <pre style="font-size:1.2em;">{{type.detail}}</pre>
       </div>
     </div>
   </div>
