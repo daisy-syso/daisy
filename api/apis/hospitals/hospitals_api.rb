@@ -340,7 +340,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         template: form_radio_array_filters(%w(不限 热门医院 有网址),
           "当前主题精选"),
         alphabet: form_alphabet_filters
-      }
+      },
+      parent: proc { Hospitals::Hospital.joins(city: :province).where("provinces.country_id" => 2)}
   end
 
 end
