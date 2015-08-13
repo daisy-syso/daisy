@@ -48,12 +48,15 @@ module FilterHelper
       }
     end
 
-    def oversea_county_filters
+    def oversea_country_filters
       {
-        title: proc {Categories::Province.find(params[:province]).try(:name)},
-        children: proc { Categories::City.overses_filters(params[:province]) },
+        key: "province",
+        title: proc {Categories::Province.where(country_id: 2, id: params[:province]).first.try(:name) || "全部"},
+        children: proc { Categories::Province.overses_filters(params[:country]) },
+        # children: proc { Categories::Province.all },
       }
     end
+
 
     def city_filters
       {
