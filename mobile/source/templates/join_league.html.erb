@@ -1,44 +1,114 @@
-<%= partial 'header', locals: { title: "商家加盟及更正，增添信息" } %>
+<form class="info-wrapper" id="apply_join" ng-submit="submitForm()">
+  <header class="bar bar-nav">
+    <a class="react action pull-left" ng-click="back()">
+      <span class="ionicon ion-chevron-left">
+    </a>
+    <h1 class="title">商家加盟及更正，增添信息</h1>
+      <input type="submit" class="react action pull-right" href="javascript:;" value="提交">
+  </header>
+
 
 <div id="join_leage">
   <div style="height: 60px;"></div>
-  <div class="info-wrapper">
+
     <h1>请选择类型</h1>
-    <select name="target_type" class="target-type-select">
-      <option ng-repeat="target_type in apply_types" value="{{::target_type.type }}">{{::target_type.name}}</option>
-    </select>
+    <select ng-options="apply_type.type as apply_type.name for apply_type in apply_types" ng-model="selected" ng-change="changeType()"></select>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>邮箱</span>
+      <input name="email" class="txtarea" type="text" ng-model="form.email" required placeholder="请输入邮箱地址"  />
+    </div>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>联系人</span>
+      <input name="contact_user" class="txtarea" type="text" ng-model="form.contact_user" placeholder="请输入联系人地址" />
+    </div>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>联系电话</span>
+      <input name="contact_phone" class="txtarea" type="text" ng-model="form.contact_phone" placeholder="请输入联系电话" />
+    </div>
 
-    <input name="" type="checkbox" class="input" value="">
-    <span>医院地址</span>
 
-    <input name="hospital_address" class="txtarea" type="text" placeholder="请输入医院地址"  />
-    <input name="" type="checkbox" class="input" value="">
-    <span>医院电话</span>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>{{ currentType.name }}地址</span>
+      <input name="address" class="txtarea" type="text" ng-model="address" placeholder="请输入{{ currentType.name }}地址"  />
+    </div>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>{{ currentType.name }}电话</span>
+      <input name="telephone" class="txtarea" type="text" ng-model="telephone" placeholder="请输入{{ currentType.name }}电话"  />
+    </div>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>{{ currentType.name }}网址</span>
+      <input name="url" class="txtarea" type="text" ng-model="url" placeholder="请输入{{ currentType.name }}网址"  />
+    </div>
+    <div>
+      <input name="" type="checkbox" class="input" value="">
+      <span>特色科室</span>
+      <input name="specialist" class="txtarea" type="text" ng-model="specialist" placeholder="请输入特色科室"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Drugstore'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>GSP证号</span>
+      <input name="GSP" class="txtarea" type="text" ng-model="GSP" placeholder="请输入GSP证号"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Drugstore'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>营业执照证号</span>
+      <input name="Business_License" class="txtarea" type="text" ng-model="Business_License" placeholder="请输入营业执照证号"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Drugstore'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>经营范围</span>
+      <input name="License" class="txtarea" type="text" ng-model="License" placeholder="请输入经营范围"  />
+    </div>
 
-     <input name="textfield" class="txtarea" type="text" placeholder="请输入医院电话"  />
+    <!-- 药厂属性 -->
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>证书编号</span>
+      <input name="certificate_number" class="txtarea" type="text" ng-model="certificate_number" placeholder="请输入证书编号"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>注册地址</span>
+      <input name="registered_address" class="txtarea" type="text" ng-model="registered_address" placeholder="请输入证书编号"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>生产地址</span>
+      <input name="production_address" class="txtarea" type="text" ng-model="production_address" placeholder="请输入生产地址"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>产品分类</span>
+      <input name="production_classification" class="txtarea" type="text" ng-model="production_classification" placeholder="请输入生产地址"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>法人代表</span>
+      <input name="legal_representative" class="txtarea" type="text" ng-model="legal_representative" placeholder="请输入法人代表"  />
+    </div>
+    <div ng-if="selected == 'Drugs::Manufactory'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>企业负责人</span>
+      <input name="business_owners" class="txtarea" type="text" ng-model="business_owners" placeholder="请输入企业负责人"  />
+    </div>
 
-    <input name="" type="checkbox" class="input" value="">
-    <span>医院网址</span>
-
-     <input name="textfield" class="txtarea" type="text" placeholder="请输入医院网址"  />
-
-    <input name="" type="checkbox" class="input" value="">
-    <span>特色科室</span>
-
-     <input name="textfield" class="txtarea" type="text" placeholder="请输入特色科室"  />
-
-    <input name="" type="checkbox" class="input" value="">
-    <span>社保加入</span>
-
-     <input name="textfield" class="txtarea" type="text" placeholder="请输入社保加入"  />
-
-    <input name="" type="checkbox" class="input" value="">
-    <span>在线咨询</span>
-
-    <input name="textfield" class="txtarea" type="text" placeholder="请输入问题" />
-    <input name="" type="checkbox" class="input" value="">
-    <span>手机挂号</span>
-
-    <input name="textfield" class="txtarea" type="text" placeholder="请输入手机挂号相关问题" />
-  </div>
+    <!-- 医生属性 -->
+    <div ng-if="selected == 'Hospitals::Doctor'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>职位</span>
+      <input name="position" class="txtarea" type="text" ng-model="position" placeholder="请输入职位"  />
+    </div>
+    <div ng-if="selected == 'Hospitals::Doctor'">
+      <input name="" type="checkbox" class="input" value="">
+      <span>擅长描述</span>
+      <input name="desc" class="txtarea" type="text" ng-model="desc" placeholder="请输入擅长描述"  />
+    </div>
 </div>
+
+</form>

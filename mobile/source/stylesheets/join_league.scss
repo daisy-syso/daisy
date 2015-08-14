@@ -2,13 +2,27 @@
 #join_leage{
   width:90%;
   margin:0px auto;
-  // margin-top: 60px;
-  .info-wrapper{
-    height: 100%;
-    overflow:scroll;
-    padding-bottom: 300px;
-  }
+  margin-bottom: 100px;
  }
+.info-wrapper{
+   height: 100%;
+   overflow:scroll;
+   padding-bottom: 300px;
+   select{
+     width: 90%;
+   }
+ }
+#apply_join{
+  .bar-nav h1.title{
+    width: 80%;
+  }
+  .action{
+    cursor: pointer;
+    background-color: rgb(230, 36, 24);
+    border: none;
+    width: 36px;
+  }
+}
 #join_leage h1 {
   font-size:1.5em;
   color:#333;

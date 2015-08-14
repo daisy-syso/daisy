@@ -86,11 +86,31 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/join_league',
       templateUrl: 'templates/join_league.html'
       controller:[
-        '$scope', '$routeParams', '$loader'
-        ($scope, $routeParams, $loader) ->
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $scope.form = {}
+          $scope.changeType = () ->
+            $scope.selected = this.selected
+            $scope.currentType = $scope.getApplyTypes()[0]
+
+          $scope.getApplyTypes = () =>
+            $scope.apply_types.filter (apply_type) =>
+              if apply_type.type == $scope.selected then apply_type
+
+          $scope.submitForm = () =>
+            $loader.post("/api/join_applies/join_applies/post_apply.json",{
+                email: $scope.form.email
+                target_attrs: $scope.form
+                target_type: $scope.selected
+              }).success (data) ->
+                $location.path("/")
+
           $loader.get("api/join_applies/join_applies/apply_types.json")
             .success (data) ->
+              $scope.currentType = data.apply_types[0]
+              $scope.selected = $scope.currentType.type
               $scope.apply_types = data.apply_types
+
       ]
 
     $routeProvider.when '/review/:item_type/:item_id',
