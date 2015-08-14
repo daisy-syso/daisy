@@ -4,7 +4,7 @@ class JoinApplies::JoinAppliesAPI < ApplicationAPI
   namespace :join_applies do
     params do
       requires :email, type: String
-      requires :target_type, type: Integer
+      requires :target_type, type: String
       requires :target_attrs, type: Hash
 
       optional :contact_user, type: String
@@ -12,7 +12,7 @@ class JoinApplies::JoinAppliesAPI < ApplicationAPI
     end
 
     post :post_apply do
-      target_type = JoinApplies::JoinApply::TARGET_TYPES[params[:target_type]]
+      target_type = params[:target_type]
       target_attrs = params[:target_attrs].except(:id).merge({status: 0})
 
       if target_type.present?
