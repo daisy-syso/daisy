@@ -31,11 +31,11 @@ module ResourcesHelper
 
         parse_option_value options[:before]
 
+        # 筛选栏数据生成
         filters.each do |key, options|
           next if options[:scope_only]
 
           filter = generate_filter key, options
-
           if options[:titleize]
             meta[:subtitle] = filter
           elsif options[:append]
@@ -45,8 +45,10 @@ module ResourcesHelper
             hfilters[key] = filter
           end
         end
+        
         meta[:filters] = hfilters.values if hfilters.any?
 
+        #要查询的数据声明
         filters.each do |filter, options|
           next if options[:filter_only]
           
@@ -70,8 +72,7 @@ module ResourcesHelper
           end
         end
         data = apply_scopes!(data)
-
-        opts = options.slice(:with)
+        opts = parse_option_value options[:with] || {}
         opts[:meta] = meta
         present! data, opts
       end

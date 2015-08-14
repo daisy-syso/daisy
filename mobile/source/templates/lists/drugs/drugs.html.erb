@@ -1,6 +1,26 @@
-<%= partial 'templates/lists/list_header' %>
+<%= partial 'subheader' %>
 
-<div class="row" style="padding-bottom:0">
+<div class="content" style="top:100px;bottom:50px;">
+
+<div class="list">
+	<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" href="#/list/drugs/drugs?drug={{drug.name}}">
+		<img ng-src="{{drug.image_url}}" style="top:36px;">
+		<p style="position:absolute;top:10px;left:10px;">{{drug.name}}</p>
+		<p>规格：{{drug.spec}}</p>
+		<p>品牌：{{drug.brand}}</p>
+		<p>批准文号：{{drug.code}}</p>
+		<p>生产厂家：{{drug.factory_count}}</p>
+	</a>
+</div>
+
+<button class="button button-block button-balanced" ng-click="loadMore()" ng-show="moreData">
+ 查看更多
+</button>
+</div>
+
+
+
+<!-- <div class="row" style="padding-bottom:0">
 	<div class="col" style="padding-bottom:0;padding-top: 0px;">
 		<div class="list" style="padding-bottom:0">
 
@@ -23,9 +43,9 @@
 
 		</div>
 	</div>
-</div>
+</div> -->
 
-<div class="row" >
+<!-- <div class="row" >
 	<div class="col" style="padding-bottom:0">
 		<p class="gray-line-1"></p>
 		<ul class="font-14 list-bottom">
@@ -41,4 +61,4 @@
 
 		</ul>
 	</div>
-</div>
+</div> -->

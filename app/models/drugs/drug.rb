@@ -33,6 +33,10 @@ class Drugs::Drug < ActiveRecord::Base
     end
   }
 
+  scope :drug, -> (t) {
+    where(name: t)
+  }
+
   scope :hospital_room, -> (hospital_room) {
     hospital_room ? joins(:hospital_rooms)
       .where{drugs_hospital_rooms.hospital_room_id == hospital_room}

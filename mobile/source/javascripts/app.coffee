@@ -287,11 +287,12 @@ angular.module 'DaisyApp', [
     DrugListCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
-        url = if $routeParams.name
-          "/api/drugs/drugs/drug_manufactories.json"
-        else
-          "/api/drugs/drugs.json"
-
+        # url = if $routeParams.name
+        #   "/api/drugs/drugs/drug_manufactories.json"
+        # else
+        #   "/api/drugs/drugs.json"
+        url = "/api/drugs/drugs.json"
+        console.log('000000000')
         $scope.withTitle = $routeParams.name
         $scope.moreData = true
 
@@ -309,8 +310,10 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) =>
-              if data.drugs.length < 1  then  $scope.moreData = false
-              $scope.drugs = data.drugs
+              # if data.drugs.length < 1  then  $scope.moreData = false
+              # $scope.drugs = data.drugs
+              $scope.moreData = false if  data.data.length < 25
+              $scope.data = data
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->
@@ -318,10 +321,15 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, $scope.params
           $loader.get(url, params: params)
             .success (data) ->
-              if data.drugs.length < 1
+              # if data.drugs.length < 1
+              #   $scope.moreData = false
+              # else
+              #   # $scope.drugs = $scope.drugs.concat data.drugs
+              if data.data.length < 1
                 $scope.moreData = false
               else
-                $scope.drugs = $scope.drugs.concat data.drugs
+                $scope.data.data = $scope.data.data.concat data.data
+
 
     ]
 
@@ -392,13 +400,27 @@ angular.module 'DaisyApp', [
                 $scope.symptoms = $scope.symptoms.concat data.symptoms
     ]
 
+    $routeProvider.when '/list/manufactories/manufactories',
+      templateUrl: 'templates/lists/manufactories.html'
+      controller: [
+
+
+
+      ]
+
     $routeProvider.when '/list/symptoms/symptoms',
       templateUrl: 'templates/symptoms_list.html'
       controller: SymptomsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
-      templateUrl: "templates/drugs_list.html"
+      # templateUrl: "templates/drugs_list.html"
+      templateUrl: (routeParams) ->
+        if routeParams.drug
+          "templates/lists/drugs/drug.html"
+        else
+          "templates/lists/drugs/drugs.html"
       controller: DrugListCtrl
+      reloadOnSearch: true
 
     $routeProvider.when '/list/:type*',
       templateUrl: (routeParams) ->
@@ -442,9 +464,11 @@ angular.module 'DaisyApp', [
                 $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
+
     $routeProvider.otherwise redirectTo: '/home'
 ]
 
+#  谷歌地图api 配置
 .config [
   'uiGmapGoogleMapApiProvider'
   (uiGmapGoogleMapApiProvider) -> 
@@ -572,7 +596,7 @@ angular.module 'DaisyApp', [
     $localStorage.bind($rootScope, "city", null)
 ]
 
-# Get filters
+# Get filters  加载筛选导航数据
 .run [
   '$rootScope', '$loader'
   ($rootScope, $loader) ->
