@@ -130,7 +130,7 @@ angular.module 'DaisyApp', [
               }).success (data) ->
                 $location.path("/")
 
-          $loader.get("api/join_applies/join_applies/apply_types.json")
+          $loader.get("/api/join_applies/join_applies/apply_types.json")
             .success (data) ->
               $scope.currentType = data.apply_types[0]
               $scope.selected = $scope.currentType.type
@@ -475,7 +475,7 @@ angular.module 'DaisyApp', [
 
 .config [
   'uiGmapGoogleMapApiProvider'
-  (uiGmapGoogleMapApiProvider) -> 
+  (uiGmapGoogleMapApiProvider) ->
     uiGmapGoogleMapApiProvider.configure
       key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
       v: '3.17',
