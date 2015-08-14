@@ -1,0 +1,55 @@
+/*- - - - - - - - -商家信息报错.html - - - - - - - -*/
+#join_leage{
+  width:90%;
+  margin:0px auto;
+  margin-bottom: 100px;
+ }
+.info-wrapper{
+   height: 100%;
+   overflow:scroll;
+   padding-bottom: 300px;
+   select{
+     width: 90%;
+   }
+ }
+#apply_join{
+  .bar-nav h1.title{
+    width: 80%;
+  }
+  .action{
+    cursor: pointer;
+    background-color: rgb(230, 36, 24);
+    border: none;
+    width: 36px;
+  }
+}
+#join_leage h1 {
+  font-size:1.5em;
+  color:#333;
+}
+#join_leage .target-type-select {
+  width:90%;
+  height:30px;
+  line-height:30px;
+  color:#333;
+  margin: 10px 0px;
+  padding: 0 15px;
+}
+#join_leage .input {
+  vertical-align:text-bottom;
+  margin-bottom:2px;
+  margin-bottom:-2px\9;
+}
+#join_leage span {
+  padding-left:10px;
+  height:30px;
+  line-height:30px;
+  font-size:1.4em;
+  line-height:30px;
+  color:#333;
+}
+#join_leage .txtarea {
+  width:90%;
+  height:30px;
+  line-height:30px;
+}

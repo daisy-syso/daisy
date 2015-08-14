@@ -108,6 +108,35 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/join_league',
+      templateUrl: 'templates/join_league.html'
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $scope.form = {}
+          $scope.changeType = () ->
+            $scope.selected = this.selected
+            $scope.currentType = $scope.getApplyTypes()[0]
+
+          $scope.getApplyTypes = () =>
+            $scope.apply_types.filter (apply_type) =>
+              if apply_type.type == $scope.selected then apply_type
+
+          $scope.submitForm = () =>
+            $loader.post("/api/join_applies/join_applies/post_apply.json",{
+                email: $scope.form.email
+                target_attrs: $scope.form
+                target_type: $scope.selected
+              }).success (data) ->
+                $location.path("/")
+
+          $loader.get("/api/join_applies/join_applies/apply_types.json")
+            .success (data) ->
+              $scope.currentType = data.apply_types[0]
+              $scope.selected = $scope.currentType.type
+              $scope.apply_types = data.apply_types
+
+      ]
 
     $routeProvider.when '/review/:item_type/:item_id',
       templateUrl: "templates/review.html"
@@ -174,7 +203,6 @@ angular.module 'DaisyApp', [
           angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
-
         $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
@@ -471,7 +499,7 @@ angular.module 'DaisyApp', [
 #  谷歌地图api 配置
 .config [
   'uiGmapGoogleMapApiProvider'
-  (uiGmapGoogleMapApiProvider) -> 
+  (uiGmapGoogleMapApiProvider) ->
     uiGmapGoogleMapApiProvider.configure
       key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
       v: '3.17',
