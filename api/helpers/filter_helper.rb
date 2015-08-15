@@ -50,7 +50,7 @@ module FilterHelper
 
     def oversea_country_filters
       {
-        key: "province",
+        key: "province_oversease",
         title: proc {Categories::Province.where(country_id: 2, id: params[:province]).first.try(:name) || "全部"},
         children: proc { Categories::Province.overses_filters(params[:country]) },
         # children: proc { Categories::Province.all },
@@ -64,7 +64,7 @@ module FilterHelper
           keep: :city,
           link: :"categories/cities"
         },
-        default: 1,
+        default: 2,
         title: "位置",
         titleize: true,
       }

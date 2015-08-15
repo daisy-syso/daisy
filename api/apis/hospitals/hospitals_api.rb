@@ -334,7 +334,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         is_other: { scope_only: true, type: Object },
         is_community: { scope_only: true, type: Object },
         # country: { scope_only: true, type: Integer },
-        province: { scope_only: true, type: Integer },
+        province_oversease: { scope_only: true, type: Integer },
         has_mobile_url: form_switch_filters("手机挂号"),
         has_return: form_switch_filters("优惠返利"),
         template: form_radio_array_filters(%w(不限 热门医院 有网址),

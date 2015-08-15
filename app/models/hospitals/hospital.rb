@@ -34,6 +34,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
   scope :province, -> (province) { where(city: Categories::City.by_province(province)) }
+  scope :province_oversease, -> (province) { where(city: Categories::City.by_province(province)) }
   scope :country, -> (country) { where(city: province(country)) }
 
   scope :hospital_type, -> (type) { 
