@@ -1,9 +1,9 @@
 <%= partial 'subheader' %>
 
-<div class="content" style="top:100px;">
+<div class="content" style="top:100px;bottom:50px;">
 
 	<div class="list">
-		<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" href="#/list/drugs/drugs?drug={{drug.name}}">
+		<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" href="#/detail/drugs/drugs/{{drug.id}}">
 			<img ng-src="{{drug.image_url}}" style="top:36px;">
 			<p style="position:absolute;top:10px;left:10px;">{{drug.name}}</p>
 			<p>功能主治：{{drug.spec}}</p>

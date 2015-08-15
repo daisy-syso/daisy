@@ -14,8 +14,25 @@ class Drugs::DrugEntity < Bases::ItemEntity
 
   with_options if: {kinds_of_drug: false} do
   	expose :manufactory
-  	# expose :drugstore_count
+  	expose :drugstore_count do |obj, opt|
+      obj.drugstores.count
+    end
   	expose :ori_price
+  end
+
+  with_options if: { detail: true } do
+    expose :brand, :ori_price
+    expose :drug_details
+    expose :drugstores do |obj, opt|
+      obj.drugstores.map do |store|
+        # store.instance_eval do 
+        #   self[:price] = obj.drug_manufactory_stores.where(drugstore_id: store.id).first.price
+        # end
+        price = obj.drug_manufactory_stores.where(drugstore_id: store.id).first.price
+        # store.instance_variable_set(:@price, price)
+        store.attributes.merge({price: obj.drug_manufactory_stores.where(drugstore_id: store.id).first.price })
+      end
+    end
   end
 
 end

@@ -320,7 +320,6 @@ angular.module 'DaisyApp', [
         # else
         #   "/api/drugs/drugs.json"
         url = "/api/drugs/drugs.json"
-        console.log('000000000')
         $scope.withTitle = $routeParams.name
         $scope.moreData = true
 
@@ -357,7 +356,6 @@ angular.module 'DaisyApp', [
                 $scope.moreData = false
               else
                 $scope.data.data = $scope.data.data.concat data.data
-
 
     ]
 
@@ -446,7 +444,7 @@ angular.module 'DaisyApp', [
         if routeParams.drug
           "templates/lists/drugs/drug.html"
         else
-          "templates/lists/drugs/drugs.html"
+          "templates/lists/drugs/drugs_list.html"
       controller: DrugListCtrl
       reloadOnSearch: true
 
