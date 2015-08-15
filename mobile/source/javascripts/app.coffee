@@ -357,6 +357,13 @@ angular.module 'DaisyApp', [
               else
                 $scope.data.data = $scope.data.data.concat data.data
 
+        $scope.redirectTo = (type, params) ->
+          $scope.loadData(type, params)
+          $location.path("list/#{type}")
+          $location.search(params)
+          $location.replace()
+          $location.keep = false
+
     ]
 
     SymptomsListCtrl = [
