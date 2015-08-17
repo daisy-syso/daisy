@@ -1,6 +1,4 @@
 class UserInfos::ReviewEntity < ApplicationEntity
-
-	include GrapeHelper
   
 	expose :id, :item_type, :star, :desc, :created_at, :environment, :service, :charge, :technique
 
