@@ -18,6 +18,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
       obj.drugstores.count
     end
   	expose :ori_price
+    expose :introduction
   end
 
   with_options if: { detail: true } do

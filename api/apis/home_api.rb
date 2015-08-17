@@ -1526,7 +1526,7 @@ class HomeAPI < Grape::API
       },{
       type: "hospitals/doctors",
       title: "找医生",
-    #  count: Hospitals::Docto#r.count,
+    #  count: Hospitals::Doctor.count,
       children: [{
         type: "hospitals/all",
         id: :doctor,
