@@ -351,7 +351,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
           "当前主题精选"),
         alphabet: form_alphabet_filters
       },
-      parent: proc { Hospitals::Hospital.joins(city: :province).where("provinces.country_id" => 2)}
+      parent: proc { Hospitals::Hospital.order_by_telephone.joins(city: :province).where("provinces.country_id" => 2)}
   end
 
 end

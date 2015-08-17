@@ -74,6 +74,19 @@ class Hospitals::Hospital < ActiveRecord::Base
     # order(hospital_level_id: :asc)
   }
 
+  scope :order_by_telephone, -> () {
+    order("telephone is null")
+  }
+
+  scope :order_by, -> (seq) {
+    case seq
+    when "hotest"
+      order(click_count: :desc)
+    when "newest"
+
+    end
+  }
+
   scope :has_url, -> (boolean=true) {
     boolean ? where.not(url: [nil, '']) : where(url: nil)
   }

@@ -382,7 +382,8 @@ module FilterHelper
           when :favoriest
             collection.order(star: :desc)
           when :hotest
-            collection.order(reviews_count: :desc)
+            # collection.order(reviews_count: :desc)
+            collection.order(click_count: :desc)
           when :newest
             collection.order(created_at: :desc)
           when :cheapest
