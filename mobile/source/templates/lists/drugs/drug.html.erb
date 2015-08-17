@@ -6,7 +6,7 @@
 		<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" href="#/detail/drugs/drugs/{{drug.id}}">
 			<img ng-src="{{drug.image_url}}" style="top:36px;">
 			<p style="position:absolute;top:10px;left:10px;">{{drug.name}}</p>
-			<p>功能主治：{{drug.spec}}</p>
+			<p>功能主治：{{drug.introduction}}</p>
 			<p>规格：{{drug.spec}}</p>
 			<p>药店数量：{{drug.drugstore_count}}</p>
 			<p>生产厂家：{{drug.manufactory}}</p>
