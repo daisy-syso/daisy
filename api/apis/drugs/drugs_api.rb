@@ -10,10 +10,11 @@ class Drugs::DrugsAPI < ApplicationAPI
           disease: { title: proc { Drugs::DrugType.where(id: params[:disease]).first.try(:name) || "疾病"}, class: Drugs::DrugType },
           hospital_room: { title: "科室", class: Hospitals::HospitalRoom },
           alphabet: alphabet_filters,
-          manufactory: {title: "品牌", class: Drugs::Manufactory }
+          manufactory: {title: "品牌", class: Drugs::Manufactory}
         }),
         drug: {scope_only: true, type: String},
         order_by: order_by_filters(Drugs::Drug),
+        extension: { scope_only: true, default: 1, type: Integer},
         form: form_filters,
         query: form_query_filters,
         price: form_price_filters,
@@ -23,9 +24,9 @@ class Drugs::DrugsAPI < ApplicationAPI
       },
       parent: proc {
         if params[:drug]
-          Drugs::Drug
+          Drugs::Drug.group(:name, :manufactory)
         else
-          Drugs::Drug.select("id, name, image_url, spec, code, brand, count(*) as factory_count").group(:name)
+          Drugs::Drug.select("id, name, image_url, spec, code, brand, count(distinct manufactory) as factory_count").group(:name)
         end
       },
       with: proc {

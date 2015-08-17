@@ -157,6 +157,10 @@ class Hospitals::Hospital < ActiveRecord::Base
     Hospitals::Hospital.where(id: hospital_ids)
   }
 
+  scope :extension, ->(b) {
+    b ==1 ? order(extension: :asc) : order(id: :asc)
+  }
+
 
   include Localizable
   include Reviewable

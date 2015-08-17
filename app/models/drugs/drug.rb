@@ -2,6 +2,8 @@ class Drugs::Drug < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  validates_uniqueness_of [:name, :manufactory] 
+
   settings index: {number_of_shards: 5} do
     mappings do
       indexes :name, type: 'string', index: :not_analyzed, analyzer: :keyword
@@ -94,6 +96,10 @@ class Drugs::Drug < ActiveRecord::Base
       .distinct : all 
   }
   
+  scope :extension, -> (b) {
+    b ==1 ? order(extension: :asc) : order(id: :asc)
+  }
+
   include Reviewable
 
 end
