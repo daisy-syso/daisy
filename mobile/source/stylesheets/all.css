@@ -16,6 +16,7 @@
  *= require adapter
  *= require drugstore_quoteprice
  *= require symptoms
+ *= require join_league
  *= require review
  *= require_tree ./custorm
 */

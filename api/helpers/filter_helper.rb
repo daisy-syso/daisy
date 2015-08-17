@@ -48,12 +48,15 @@ module FilterHelper
       }
     end
 
-    def oversea_county_filters
+    def oversea_country_filters
       {
-        title: proc {Categories::Province.find(params[:province]).try(:name)},
-        children: proc { Categories::City.overses_filters(params[:province]) },
+        key: "province_oversease",
+        title: proc {Categories::Province.where(country_id: 2, id: params[:province]).first.try(:name) || "全部"},
+        children: proc { Categories::Province.overses_filters(params[:country]) },
+        # children: proc { Categories::Province.all },
       }
     end
+
 
     def city_filters
       {
@@ -61,7 +64,7 @@ module FilterHelper
           keep: :city,
           link: :"categories/cities"
         },
-        default: 1,
+        default: 2,
         title: "位置",
         titleize: true,
       }
@@ -379,7 +382,8 @@ module FilterHelper
           when :favoriest
             collection.order(star: :desc)
           when :hotest
-            collection.order(reviews_count: :desc)
+            # collection.order(reviews_count: :desc)
+            collection.order(click_count: :desc)
           when :newest
             collection.order(created_at: :desc)
           when :cheapest

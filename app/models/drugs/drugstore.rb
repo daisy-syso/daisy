@@ -1,6 +1,8 @@
 class Drugs::Drugstore < ActiveRecord::Base
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
+  has_and_belongs_to_many :drugs, class_name: "Drugs::Drug", join_table: 'drug_manufactory_stores'
+  has_many :drug_manufactory_stores, class_name: "Drugs::DrugManufactoryStore"
   
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }

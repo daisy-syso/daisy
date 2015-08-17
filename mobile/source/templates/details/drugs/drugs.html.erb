@@ -1,11 +1,12 @@
 <%= partial 'templates/details/header' %>
-<div class="clear"></div>
+<div class="content" style="top:50px;">
+<!-- <div class="clear"></div> -->
 <div id="YaoDianBaoJia">
   <div class="topimg">
-    <img ng-src="{{data.drug.image_url}}" />
+    <img ng-src="{{data.image_url}}" />
   </div>
   <div class="price">
-    <h1>￥{{ data.drug.ori_price }}</h1><span>已售{{data.count || 0}}份</span>
+    <h1>￥{{ data.ori_price }}</h1><span>已售{{data.count || 0}}份</span>
   </div>
 
   <div class="borderBottom10"></div>
@@ -26,7 +27,7 @@
       </div>
       <div class="star_t"><em>5.0</em></div>
     </form>
-    <span class="fr scored">{{ data.drug.reviews_count}}人评分</span>
+    <span class="fr scored">{{ data.reviews_count}}人评分</span>
   </div>
 
   <div class="borderBottom1"></div>
@@ -81,13 +82,13 @@
   </div> -->
 
   <div class="borderBottom10"></div>
-  <div class="shoplist" ng-if="data.stores.length > 0">
+  <div class="shoplist" ng-show="data.drugstores.length">
     <div class="title">
       <h1>商家报价</h1>
     </div>
     <div class="borderBottom1"></div>
     <ul class="store-list">
-      <li  ng-repeat="store in data.stores">
+      <li  ng-repeat="store in data.drugstores">
         <div class="name">
           <h2>{{ store.name }}</h2><span><em>{{ store.price }}元</em></span>
         </div>
@@ -97,8 +98,8 @@
           </div>
           <div class="txt">
             <ul>
-              <li><strong>距离：</strong>{{  }}</li>
-              <li><strong>经营许可证：</strong>{{ store.code }}</li>
+              <li><strong>距离：</strong>{{$root.getDistance(store) | number:2}}千米 </li>
+              <li><strong>经营许可证：</strong>{{ store.License }}</li>
               <li><strong>电话：</strong>{{ store.telephone }}</li>
               <li><strong>网址：</strong>www.zhuni.com</li>
               <li>
@@ -135,3 +136,5 @@
   </div>
 </div>
   <!-- YaoDianBaoJia结束 -->
+
+</div>

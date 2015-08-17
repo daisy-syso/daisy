@@ -44,7 +44,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-8.png"
       }, {
         title: "特色科室",
-        link: "#/list/hospitals/specialists",
+        link: "#/list/hospitals/characteristics",
         icon: "images/icons/2-1.png"
       }, {
         title: "最新优惠",
@@ -1526,7 +1526,7 @@ class HomeAPI < Grape::API
       },{
       type: "hospitals/doctors",
       title: "找医生",
-    #  count: Hospitals::Docto#r.count,
+    #  count: Hospitals::Doctor.count,
       children: [{
         type: "hospitals/all",
         id: :doctor,
@@ -1560,9 +1560,10 @@ class HomeAPI < Grape::API
         title: "字母查药品",
         params: { search_by: :alphabet }
       }, {
-        type: "drugs/manufactories",
+        # type: "drugs/manufactories",
+        type: "drugs/drugs",
         title: "药企查药品",
-        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:alphabet => alph }}}
+        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:alphabet => alph, search_by: :alphabet}}}
         # params: { search_by: :manufactory }
       }, {
         type: "social_securities/social_securities",

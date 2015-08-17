@@ -11,11 +11,19 @@ class Hospitals::Characteristic< ActiveRecord::Base
   #     .where{characteristic_hospitals.characteristic_id == id}
   #     .distinct.count
   # }
+
+  scope :order_by_abc, -> (a) {
+    order(name_initials: :asc)
+  }
   def hospital_count
   	hospitals.distinct.count
   end
 
-  # def self.hospital_count
-  	
-  # end
+  class << self
+    include Filterable
+
+    define_filter_method :filters do |characteristic|
+      Hospitals::Characteristic.all
+    end
+  end
 end

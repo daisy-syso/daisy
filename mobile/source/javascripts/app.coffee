@@ -6,6 +6,8 @@
 #= require angular-loading-bar/build/loading-bar
 #= require angular-bootstrap/ui-bootstrap-tpls
 #= require ionic/release/js/ionic.bundle
+#= require lodash/lodash.min
+#= require angular-google-maps/dist/angular-google-maps.min
 
 
 angular.module 'DaisyApp', [
@@ -16,6 +18,7 @@ angular.module 'DaisyApp', [
   "angular-carousel"
   'ui.bootstrap'
   'ionic'
+  'uiGmapgoogle-maps'
 ]
 
 .config [
@@ -48,6 +51,7 @@ angular.module 'DaisyApp', [
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
 
+    # app分类展示页面
     $routeProvider.when '/infors/:type',
       templateUrl: (routeParams) ->
         "templates/#{routeParams.type}_infor.html"
@@ -55,7 +59,6 @@ angular.module 'DaisyApp', [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
           $scope.start = [0, 0, 0, 0, 0, 0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
           $scope.swipeLeft = (i, l) ->
             console.log("swipe left")
             $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
@@ -68,6 +71,7 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data
       ]
+
     $routeProvider.when '/infors/nav/:id',
       templateUrl: "templates/infors.html"
       controller:[
@@ -78,6 +82,7 @@ angular.module 'DaisyApp', [
               $scope.infors = data
       ]
 
+    # 同类别app展示页面
     $routeProvider.when '/infors/app_types/:id',
     templateUrl: "templates/informations/apps/more.html"
     controller:[
@@ -103,6 +108,35 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/join_league',
+      templateUrl: 'templates/join_league.html'
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $scope.form = {}
+          $scope.changeType = () ->
+            $scope.selected = this.selected
+            $scope.currentType = $scope.getApplyTypes()[0]
+
+          $scope.getApplyTypes = () =>
+            $scope.apply_types.filter (apply_type) =>
+              if apply_type.type == $scope.selected then apply_type
+
+          $scope.submitForm = () =>
+            $loader.post("/api/join_applies/join_applies/post_apply.json",{
+                email: $scope.form.email
+                target_attrs: $scope.form
+                target_type: $scope.selected
+              }).success (data) ->
+                $location.path("/")
+
+          $loader.get("/api/join_applies/join_applies/apply_types.json")
+            .success (data) ->
+              $scope.currentType = data.apply_types[0]
+              $scope.selected = $scope.currentType.type
+              $scope.apply_types = data.apply_types
+
+      ]
 
     $routeProvider.when '/review/:item_type/:item_id',
       templateUrl: "templates/review.html"
@@ -169,7 +203,6 @@ angular.module 'DaisyApp', [
           angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
-
         $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
@@ -178,6 +211,7 @@ angular.module 'DaisyApp', [
         $loader.get(url, params: params)
           .success (data) ->
             $scope.data = data['data']
+            $scope.map = { center: { latitude: $scope.data.lat, longitude: $scope.data.lng }, zoom: 8 }
             $scope.params_hospital_rooms($scope.data.hospital_rooms) if $scope.data.hospital_rooms
 
     ]
@@ -230,6 +264,7 @@ angular.module 'DaisyApp', [
     #           $scope.data = data
     #   ]
 
+
     $routeProvider.when '/detail/:type*/:id',
       templateUrl: (routeParams) ->
         if routeParams.detail
@@ -280,11 +315,11 @@ angular.module 'DaisyApp', [
     DrugListCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
-        url = if $routeParams.name
-          "/api/drugs/drugs/drug_manufactories.json"
-        else
-          "/api/drugs/drugs.json"
-
+        # url = if $routeParams.name
+        #   "/api/drugs/drugs/drug_manufactories.json"
+        # else
+        #   "/api/drugs/drugs.json"
+        url = "/api/drugs/drugs.json"
         $scope.withTitle = $routeParams.name
         $scope.moreData = true
 
@@ -302,8 +337,10 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) =>
-              if data.drugs.length < 1  then  $scope.moreData = false
-              $scope.drugs = data.drugs
+              # if data.drugs.length < 1  then  $scope.moreData = false
+              # $scope.drugs = data.drugs
+              $scope.moreData = false if  data.data.length < 25
+              $scope.data = data
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->
@@ -311,10 +348,21 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, $scope.params
           $loader.get(url, params: params)
             .success (data) ->
-              if data.drugs.length < 1
+              # if data.drugs.length < 1
+              #   $scope.moreData = false
+              # else
+              #   # $scope.drugs = $scope.drugs.concat data.drugs
+              if data.data.length < 1
                 $scope.moreData = false
               else
-                $scope.drugs = $scope.drugs.concat data.drugs
+                $scope.data.data = $scope.data.data.concat data.data
+
+        $scope.redirectTo = (type, params) ->
+          $scope.loadData(type, params)
+          $location.path("list/#{type}")
+          $location.search(params)
+          $location.replace()
+          $location.keep = false
 
     ]
 
@@ -385,13 +433,27 @@ angular.module 'DaisyApp', [
                 $scope.symptoms = $scope.symptoms.concat data.symptoms
     ]
 
+    $routeProvider.when '/list/manufactories/manufactories',
+      templateUrl: 'templates/lists/manufactories.html'
+      controller: [
+
+
+
+      ]
+
     $routeProvider.when '/list/symptoms/symptoms',
       templateUrl: 'templates/symptoms_list.html'
       controller: SymptomsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
-      templateUrl: "templates/drugs_list.html"
+      # templateUrl: "templates/drugs_list.html"
+      templateUrl: (routeParams) ->
+        if routeParams.drug
+          "templates/lists/drugs/drug.html"
+        else
+          "templates/lists/drugs/drugs_list.html"
       controller: DrugListCtrl
+      reloadOnSearch: true
 
     $routeProvider.when '/list/:type*',
       templateUrl: (routeParams) ->
@@ -435,7 +497,18 @@ angular.module 'DaisyApp', [
                 $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
+
     $routeProvider.otherwise redirectTo: '/home'
+]
+
+#  谷歌地图api 配置
+.config [
+  'uiGmapGoogleMapApiProvider'
+  (uiGmapGoogleMapApiProvider) ->
+    uiGmapGoogleMapApiProvider.configure
+      key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
 ]
 
 # .config [
@@ -556,7 +629,7 @@ angular.module 'DaisyApp', [
     $localStorage.bind($rootScope, "city", null)
 ]
 
-# Get filters
+# Get filters  加载筛选导航数据
 .run [
   '$rootScope', '$loader'
   ($rootScope, $loader) ->

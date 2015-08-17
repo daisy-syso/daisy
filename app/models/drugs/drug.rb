@@ -2,6 +2,8 @@ class Drugs::Drug < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  validates_uniqueness_of [:name, :manufactory] 
+
   settings index: {number_of_shards: 5} do
     mappings do
       indexes :name, type: 'string', index: :not_analyzed, analyzer: :keyword
@@ -18,8 +20,10 @@ class Drugs::Drug < ActiveRecord::Base
   has_and_belongs_to_many :diseases, class_name: "Diseases::Disease"
   has_and_belongs_to_many :hospital_rooms, class_name: "Hospitals::HospitalRoom"
   has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory", join_table: 'manufactory_drugs'
+  has_and_belongs_to_many :drugstores, class_name: "Drugs::Drugstore", join_table: 'drug_manufactory_stores'
+  has_many :drug_manufactory_stores, class_name: "Drugs::DrugManufactoryStore"
   has_many :diseases_drugs, class_name: 'Drugs::DiseasesDrug'
-  
+  has_many :drug_details, class_name: 'Drugs::DrugDetail'
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
   scope :disease, -> (type) { 
@@ -31,6 +35,10 @@ class Drugs::Drug < ActiveRecord::Base
     else 
       all 
     end
+  }
+
+  scope :drug, -> (t) {
+    where(name: t)
   }
 
   scope :hospital_room, -> (hospital_room) {
@@ -88,6 +96,10 @@ class Drugs::Drug < ActiveRecord::Base
       .distinct : all 
   }
   
+  scope :extension, -> (b) {
+    b ==1 ? order(extension: :asc) : order(id: :asc)
+  }
+
   include Reviewable
 
 end

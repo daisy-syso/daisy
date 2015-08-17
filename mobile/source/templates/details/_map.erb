@@ -11,7 +11,13 @@
         </a>
       </p>
       <p>地址：{{data.address}}</p>
-      <div class="map" map map-data="data"></div>
+      <div class="map" map map-data="data" ng-hide="data.is_foreign"></div>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
     </li>
   </ul>
 </div>
+
+<style type="text/css">
+  
+  .angular-google-map-container { height: 400px; }
+</style>

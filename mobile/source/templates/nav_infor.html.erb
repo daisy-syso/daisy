@@ -20,7 +20,7 @@
       </p>
 
       <div ng-show="ifShow[$index]" >
-        <a class="item" href="#/show_web?url={{health_infomation.url}}" ng-repeat="health_infomation in nav.health_informations" style="color:#828282;">{{health_infomation.name}}</a>
+        <a class="item" href="{{health_infomation.url}}" ng-repeat="health_infomation in nav.health_informations" style="color:#828282;">{{health_infomation.name}}</a>
       </div>
 
     </div>

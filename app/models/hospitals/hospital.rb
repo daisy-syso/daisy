@@ -34,6 +34,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :city, -> (city) { where(city: city) }
   scope :county, -> (county) { where(county: county) }
   scope :province, -> (province) { where(city: Categories::City.by_province(province)) }
+  scope :province_oversease, -> (province) { where(city: Categories::City.by_province(province)) }
   scope :country, -> (country) { where(city: province(country)) }
 
   scope :hospital_type, -> (type) { 
@@ -71,6 +72,19 @@ class Hospitals::Hospital < ActiveRecord::Base
   scope :order_by_level, -> (t = true) {
     # p "ssss======"
     # order(hospital_level_id: :asc)
+  }
+
+  scope :order_by_telephone, -> () {
+    order("telephone is null")
+  }
+
+  scope :order_by, -> (seq) {
+    case seq
+    when "hotest"
+      order(click_count: :desc)
+    when "newest"
+
+    end
   }
 
   scope :has_url, -> (boolean=true) {
@@ -154,6 +168,10 @@ class Hospitals::Hospital < ActiveRecord::Base
     @hospital_onsales = Hospitals::HospitalOnsale.joins(:hospital_charge).where(hospital_charge: { hospital_type_id: hospital_type_id })
     hospital_ids = @hospital_onsales.map {|onsale| onsale.hospital_id}
     Hospitals::Hospital.where(id: hospital_ids)
+  }
+
+  scope :extension, ->(b) {
+    b ==1 ? order(extension: :asc) : order(id: :asc)
   }
 
 
