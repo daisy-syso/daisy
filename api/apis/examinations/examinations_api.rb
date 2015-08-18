@@ -5,7 +5,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
     index! Examinations::Examination,
       title: "全国体检",
       filters: { 
-        city: city_filters,
+        city: fake_city_filters,
         type: type_filters(:examination),
         examination_type: { scope_only: true },
         hospital: { scope_only: true },
