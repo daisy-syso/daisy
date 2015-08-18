@@ -34,32 +34,6 @@
   </ul>
 </div>
 
-<div class="card">
-  <ul class="table-view media">
-    <li class="table-view-cell media-title">
-      医生列表
-    </li>
-  <ul>
-
-  <div class="list" drop-down>
-    <div class="item item-icon-right" ng-repeat="hospital_room in data.hospital_rooms">
-      <p ng-click="showDoctors($index)">
-        <i class="ion-chevron-down" style="float:right"></i>
-        {{hospital_room.hospital_room}} 
-      </p>
-      <div ng-show="ifShow[$index]" >
-        <div class="row" ng-repeat="ds in hospital_room.doctors"> 
-          <div class="col col-33" ng-repeat="doctor in ds">
-            <a href="#/detail/hospitals/doctors/{{doctor.id}}">{{doctor.name}} </a>
-            <p>{{doctor.position}}</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 
   <%#= partial 'templates/details/review' %>
 <div class="card">
@@ -137,3 +111,4 @@
     </div>
   </menu>
 </footer>
+
