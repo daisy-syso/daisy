@@ -5,7 +5,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
   #   record.ori_price
   # end
 
-  expose :image_url, :spec, :code, :ori_price
+  expose :image_url, :spec, :code, :ori_price,:manufactory, :introduction
 
   with_options if: {kinds_of_drug: true} do
   	expose :factory_count
@@ -13,20 +13,19 @@ class Drugs::DrugEntity < Bases::ItemEntity
   end
 
   with_options if: {kinds_of_drug: false} do
-  	expose :manufactory 
+  	# expose :manufactory, :introduction
     expose :manufactory_id do |obj|
       Drugs::Manufactory.where(name: obj.manufactory).first.id
     end 
   	expose :drugstore_count do |obj, opt|
       obj.drugstores.joins(:drug_manufactory_stores).where.not("drug_manufactory_stores.price is null").count
     end
-    expose :introduction
+
   end
 
   with_options if: { detail: true } do
-    expose :manufactory
     expose :brand
-    expose :introduction
+    # expose :introduction
     expose :drug_details
     expose :drugstores do |obj, opt|
       obj.drugstores.map do |store|
