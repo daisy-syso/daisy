@@ -170,3 +170,32 @@ body{
     }
   }
 }
+
+#loading_div {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1000;
+  background-color:grey;
+  opacity: .8;
+  display: none;
+  .ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;
+    height: 64px;
+    width: 64px;
+    img{
+      display: block;
+    }
+    span{
+      margin-left: -20%;
+      color: #fff;
+    }
+  }
+ }

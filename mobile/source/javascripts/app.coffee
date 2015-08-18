@@ -380,6 +380,7 @@ angular.module 'DaisyApp', [
       '$scope', '$loader', '$route', '$location', '$routeParams'
       ($scope, $loader, $route, $location, $routeParams) ->
         $scope.moreData = true
+        $('#loading_div').show()
         $scope.getImageUrl = (symptom) =>
           switch symptom.name
             when "头部"
@@ -429,6 +430,7 @@ angular.module 'DaisyApp', [
           params = angular.extend { page: page }, params
           $loader.get(url, params: params)
             .success (data) =>
+              $('#loading_div').hide();
               $scope.data = data
 
         $scope.loadData($route.current.params.type, $location.search())
@@ -454,6 +456,10 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/list/symptoms/symptoms',
       templateUrl: 'templates/symptoms_list.html'
       controller: SymptomsListCtrl
+
+    # $routeProvider.when '/list/examinations/examinations',
+    #   templateUrl: 'templates/examinations_list.html'
+    #   controller: ExaminationsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
       # templateUrl: "templates/drugs_list.html"
