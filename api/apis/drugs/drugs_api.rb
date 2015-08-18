@@ -27,6 +27,7 @@ class Drugs::DrugsAPI < ApplicationAPI
           Drugs::Drug.group(:name, :manufactory)
         else
           Drugs::Drug.select("drugs.id, name, image_url, spec, code, brand, ori_price,count(distinct manufactory) as factory_count").group(:name)
+          # Drugs::Drug.drug_grouop
         end
       },
       with: proc {

@@ -100,6 +100,7 @@ class Drugs::Drug < ActiveRecord::Base
     b ==1 ? order(extension: :asc) : order(id: :asc)
   }
 
+
   include Reviewable
 
 end

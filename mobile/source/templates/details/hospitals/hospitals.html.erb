@@ -123,7 +123,7 @@
 </div>
 
 <footer class="footer">
-  <menu class="footer-con" style="background-color:rgba(0,0,0,0.51);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
+  <menu class="footer-con" style="background-color:rgba(255,255,255,0.7);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
     <!-- <div class="button-bar" style="text-align:center;">
       <a class="button pink-button button-small" href="tel:{{data.telephone}}">
         <span></span>拨打电话</a>
@@ -132,8 +132,8 @@
      
     </div> -->
     <div>
-    <a href="" class="btn"><i class="icon ion-ios-telephone" style="font-size:1.6em;margin-right:5px;"></i>拨打电话</a>
-    <a href="" class="btn"><i class="icon ion-ios-medkit" style="font-size:1.6em;margin-right:5px;"></i>就诊查询／挂号</a>
+    <a href="tel:{{data.telephone}}" class="btn"><i class="icon ion-iphone" style="font-size:1.6em;margin-right:5px;"></i>拨打电话</a>
+    <a ng-href="{{data.url}}" class="btn"><i class="icon ion-ios-medkit" style="font-size:1.6em;margin-right:5px;"></i>就诊查询／挂号</a>
     </div>
   </menu>
 </footer>

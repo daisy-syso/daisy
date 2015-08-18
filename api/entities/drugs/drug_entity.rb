@@ -24,7 +24,9 @@ class Drugs::DrugEntity < Bases::ItemEntity
   end
 
   with_options if: { detail: true } do
+    expose :manufactory
     expose :brand
+    expose :introduction
     expose :drug_details
     expose :drugstores do |obj, opt|
       obj.drugstores.map do |store|

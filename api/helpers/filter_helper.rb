@@ -64,7 +64,7 @@ module FilterHelper
           keep: :city,
           link: :"categories/cities"
         },
-        default: 2,
+        # default: 2,
         title: "位置",
         titleize: true,
       }
@@ -333,16 +333,18 @@ module FilterHelper
 
     def order_by_filters klass, options = {}
 #       离我最近
-# 最新发布
-# 人气最高
-# 评价最好
-# 价格最低
-# 价格最高
 
+      filters_list = {
+        newest: "最新发布",
+        hotest: "人气最高",
+        favoriest: "评价最好",
+        cheapest: "价格最低",
+        most_expensive: "价格最高"
+      }
       {
         default: options[:default] || :auto,
         type: String,
-        title: "智能排序",
+        title: proc { filters_list[params[:order_by].to_sym] ||"智能排序"},
         children: proc do
           filters = []
           filters << { title: "智能排序" , id: :auto }
