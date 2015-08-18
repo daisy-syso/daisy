@@ -340,7 +340,7 @@ angular.module 'DaisyApp', [
           $location.replace()
 
         $scope.loadData = (type, params) =>
-          $scope.type = type
+          $scope.type = "drugs/drugs"
           $scope.params = params
           # $alert.info($scope.listUrl)
           page = $scope.page = 1

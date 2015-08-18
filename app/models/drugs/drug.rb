@@ -95,6 +95,12 @@ class Drugs::Drug < ActiveRecord::Base
       .where(manufactory_drugs: { manufactory_id: type })
       .distinct : all 
   }
+
+  scope :manufactory_alph, -> (alph) {
+    alph ? joins(:manufactories)
+      .where("manufactories.name_initials like '%#{alph}%'")
+       : all 
+  }
   
   scope :extension, -> (b) {
     b ==1 ? order(extension: :asc) : order(id: :asc)

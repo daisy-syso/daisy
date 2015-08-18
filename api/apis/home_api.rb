@@ -1563,7 +1563,7 @@ class HomeAPI < Grape::API
         # type: "drugs/manufactories",
         type: "drugs/drugs",
         title: "药企查药品",
-        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:alphabet => alph, search_by: :alphabet}}}
+        children: ('a'..'z').to_a.map(&:upcase).map {|alph| {:title => alph, :id => alph, :params => {:manufactory_alph => alph, search_by: :manufactory_alph}}}
         # params: { search_by: :manufactory }
       }, {
         type: "social_securities/social_securities",
