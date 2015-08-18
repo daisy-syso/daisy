@@ -276,6 +276,7 @@ angular.module 'DaisyApp', [
         else
           "templates/details/#{routeParams.type}.html"
       controller: detailCtrl
+      reloadOnSearch: true
 
     listCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
@@ -314,7 +315,7 @@ angular.module 'DaisyApp', [
 
     DrugListCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'
-      ($scope, $loader, $route, $location, $routeParams) ->
+      ($scope, $loader, $route, $location, $routeParams ) ->
         # url = if $routeParams.name
         #   "/api/drugs/drugs/drug_manufactories.json"
         # else
@@ -328,6 +329,15 @@ angular.module 'DaisyApp', [
             "#/detail/drugs/drugs/#{ drug.drug_id }/#{drug.manufactory_id}"
           else
             "#/list/drugs/drugs?name=#{ drug.name } "
+
+        $scope.linkToManufactory = (id) ->
+          console.log("==========linkToManufactory========")
+          $location.path("detail/drugs/manufactories/#{id}")
+          $location.replace()
+
+        $scope.linkToDrugDetail = (id) ->
+          $location.path("/detail/drugs/drugs/#{id}")
+          $location.replace()
 
         $scope.loadData = (type, params) =>
           $scope.type = type

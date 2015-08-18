@@ -240,7 +240,7 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         type: type_filters("综合医院"),
         hospital_type: { scope_only: true},
         hospital_level: { scope_only: true, default: false },
-        order_by_url: { scope_only: true, default: 7 },
+        # order_by_url: { scope_only: true, default: 7 },
         # order_by_level: { scope_only: true, default: 7 },
         county: county_filters,
         order_by: hospital_order_by_filters,

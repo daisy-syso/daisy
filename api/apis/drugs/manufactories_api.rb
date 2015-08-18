@@ -12,5 +12,6 @@ class Drugs::ManufactoriesAPI < ApplicationAPI
         alphabet: form_alphabet_filters
       }
 
+    show! Drugs::Manufactory
   end
 end

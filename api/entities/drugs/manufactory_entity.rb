@@ -9,4 +9,9 @@ class Drugs::ManufactoryEntity < ApplicationEntity
   expose :url do |object, options|
   	"#/list/drugs/drugs?search_by=manufactory&type=#{object.name_initials}&manufactory=#{object.id}"
   end
+
+  with_options if: { detail: true } do
+    expose :url, :telephone, :image_url, :address
+    
+  end
 end

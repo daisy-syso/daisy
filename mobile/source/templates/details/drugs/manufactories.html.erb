@@ -1,0 +1,113 @@
+<%= partial 'templates/details/header'%>
+
+<div class="content">
+
+  <%= partial 'templates/details/album' %>
+
+  <div class="card">
+    <ul class="table-view media">
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <h1>{{data.name}}</h1>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+<div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <p><span style="color:#838383">特色科室：</span>
+          {{data.characteristic_departments}}
+        </p>
+        <p style="text-align: justify;-webkit-text-align-last:justify;">
+          <span style="text-align:justify;color:#838383">医&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保：</span>{{data.medical_insurance}}
+        </p>
+        <p>
+          <span style="color:#838383">网&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+        <a href="{{data.url}}"> {{data.url}}</a>
+        </p>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+
+  <%#= partial 'templates/details/review' %>
+<div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <h4 class="fix">
+          <a href="#/review/Hospitals::Hospital/{{::id}}">
+            <span  class="pull-left" style="color: #ffd700">★★★★★5分</span>
+          </a>
+          <span class="pull-right">{{data.reviews_count}}人点评</span>
+        </h4>
+      </div>
+
+    </li>
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <ul class="inline border" style="text-align: justify;">
+          <li>医院设备完善</li>
+          <li>服务质量良好</li>
+          <li>医院环境优美</li>
+          <li>技术水平高</li>
+          <li>技术一般</li>
+          <li>环境一般</li>
+          <li>服务态度一般</li>
+          <li>个方面都不错</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+  <%= partial 'templates/details/map' %>
+  <div class="card">
+    <ul class="table-view media">
+
+      <li class="table-view-cell">
+        <%= partial 'templates/details/actions' %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <ul class="table-view media">
+
+      <li class="table-view-cell">
+        <a href="#/join_league">商家加盟及报错更正</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3>猜你喜欢</h3>
+    </div>
+    <%= partial 'related' %>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <menu class="footer-con" style="background-color:rgba(0,0,0,0.51);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
+    <!-- <div class="button-bar" style="text-align:center;">
+      <a class="button pink-button button-small" href="tel:{{data.telephone}}">
+        <span></span>拨打电话</a>
+      <a class="button pink-button" ng-href="{{data.url}}">就诊查询／挂号</a>
+
+     
+    </div> -->
+    <div>
+    <a href="" class="btn"><i class="icon ion-ios-telephone" style="font-size:1.6em;margin-right:5px;"></i>拨打电话</a>
+    <a href="" class="btn"><i class="icon ion-ios-medkit" style="font-size:1.6em;margin-right:5px;"></i>就诊查询／挂号</a>
+    </div>
+  </menu>
+</footer>
