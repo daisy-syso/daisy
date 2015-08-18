@@ -60,7 +60,8 @@ body{
 #symptoms ul li .box{
   // overwrite the eve.css
   border: none;
-  padding: 0 10px;
+  padding: 0px;
+  text-align: center;
 
   border-top:1px solid #eaeaea;
   font-size:1.6em;
@@ -76,7 +77,7 @@ body{
   font-weight: normal;
   height: 40px;
   line-height: 40.3199996948242px;
-  width: 32.7%;
+  width: 31.95%;
   overflow:hidden; /*不显示超过对象宽度的内容*/
   text-overflow:ellipsis; /*当对象内文本溢出时显示省略标记（...）*/
   white-space:nowrap; /*限制在一行内显示所有文本*/
@@ -117,7 +118,7 @@ body{
   margin-left:20px;
 }
 #symptoms_detail a {
-  color:#b8b8b8;
+  color: #000000;
   margin-right: 10px;
 }
 
@@ -148,9 +149,10 @@ body{
           // overwrite the eve.css
           border: none;
           overflow: scroll;
+          text-align: center;
 
           border-top:1px solid #eaeaea;
-          padding: 25px 22px;
+          padding: 0;
           font-size:1.6em;
           margin-top:25px;
           display:none;
