@@ -48,7 +48,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-1.png"
       }, {
         title: "最新优惠",
-        link: "#/home",
+        link: "#/privileges",
         icon: "images/icons/2-2.png"
       }, {
         title: "全国体检",

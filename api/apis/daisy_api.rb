@@ -105,6 +105,10 @@ class DaisyAPI < Grape::API
     mount Strategies::HospitalChargesAPI
   end
 
+  namespace :privileges do
+    mount Privileges::HospitalsAPI
+  end
+
   mount NetInfos::HotSearchKeywordsAPI
 
   route :any, '*path' do

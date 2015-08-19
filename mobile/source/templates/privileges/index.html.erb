@@ -1,0 +1,16 @@
+<%= partial 'subheader',local: { title: "最新优惠"} %>
+<div class="content" style="top:50px;bottom:50px;">
+	<div class="list" drop-down>
+		<div ng-repeat="hospital_type in data.data">
+			<div class="item item-divider " ng-click="showList($index)" style="color:#828282;font-size:1.4em;">
+				<img src="{{hospital_type.image_url}}">
+				<i class="ion-chevron-down" style="float:right"></i>
+				{{hospital_type.name}}
+			</div>
+			<div ng-show="ifShow[$index]">
+				<a class="item" href="{{health_infomation.url}}" ng-repeat="child in hospital_type.children" style="color:#828282;">{{child.name}}</a>
+			</div>
+		</div>
+	</div>
+
+</div>

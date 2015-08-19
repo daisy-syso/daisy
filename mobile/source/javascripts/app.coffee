@@ -50,6 +50,32 @@ angular.module 'DaisyApp', [
             length = value?.title?.length || 2
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
+    # 最新优惠
+    $routeProvider.when '/privileges',
+      templateUrl: "templates/privileges/index.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+        ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $scope.title = "最新优惠"
+          $loader.get("/api/privileges/hospitals/hospital_types")
+            .success (data) ->
+              $scope.data = data
+              console.log(data)
+              console.log(1)
+      ]
+
+    $routeProvider.when '/privileges/hospital_types/hospital_charges',
+    templateUrl: "templates/privileges/index.html"
+    controller: [
+      '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+      ($rootScope, $scope, $loader, $routeParams, $animate) ->
+        $scope.title = "最新优惠"
+        $loader.get("/api/privileges/hospitals/hospital_types")
+          .success (data) ->
+            $scope.data = data
+            console.log(data)
+            console.log(1)
+    ]
 
     # app分类展示页面
     $routeProvider.when '/infors/:type',
@@ -331,7 +357,6 @@ angular.module 'DaisyApp', [
             "#/list/drugs/drugs?name=#{ drug.name } "
 
         $scope.linkToManufactory = (id) ->
-          console.log("==========linkToManufactory========")
           $location.path("detail/drugs/manufactories/#{id}")
           $location.replace()
 
@@ -486,8 +511,6 @@ angular.module 'DaisyApp', [
           label = $routeParams.label
           # query = $routeParams.query
           query = $location.search()['query']
-          console.log($location.search()+"=======location")
-          console.log("query======#{query}")
           searchHistory = $localStorage.get("searchHistory")
             .filter (word) -> word != query
           # searchHistory.unshift "#{label}/#{query}"
@@ -715,3 +738,5 @@ angular.module 'DaisyApp', [
       else
         0
 ]
+
+#= require_tree ./routes

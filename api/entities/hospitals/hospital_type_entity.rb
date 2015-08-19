@@ -8,4 +8,18 @@ class Hospitals::HospitalTypeEntity < ApplicationEntity
   expose :charges, using: Hospitals::HospitalChargeEntity do |instance, options|
   	Hospitals::HospitalCharge.hospital_type(instance.id)
 	end
+
+	with_options if: { privileges: true } do
+		unexpose :url
+		unexpose :charges
+		unexpose :template
+		expose :image_url
+		expose :children do |obj, opt|
+			Hospitals::HospitalTypeEntity.represent(obj.hospital_types, only: [:id, :name])
+		end
+	end
+
 end
+
+
+
