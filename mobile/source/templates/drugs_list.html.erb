@@ -8,6 +8,7 @@
 
 </style>
 <%= partial 'subheader' %>
+<%= partial 'error_check' %>
 
 <div class="content" ng-class="type" style="padding-bottom:0;">
   <div style="height:55px"></div>
@@ -61,7 +62,6 @@
        <a class="react" ng-click="loadMore()">查看更多</a>
     </li>
   </ul>
-
   <div class="bg team" ng-if="data['recommend']">
       <div class="fix index-hd">
         <!-- <a class="more" href="#">更多>></a> -->

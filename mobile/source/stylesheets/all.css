@@ -18,6 +18,7 @@
  *= require symptoms
  *= require join_league
  *= require review
+ *= require error_check
  *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
