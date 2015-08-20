@@ -64,18 +64,45 @@ angular.module 'DaisyApp', [
               console.log(1)
       ]
 
-    $routeProvider.when '/privileges/hospital_types/hospital_charges',
-    templateUrl: "templates/privileges/index.html"
+    $routeProvider.when '/privileges/hospital_types/:id/hospital_charges',
+    templateUrl: "templates/privileges/hospital_charges.html"
     controller: [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
         $scope.title = "最新优惠"
-        $loader.get("/api/privileges/hospitals/hospital_types")
+        $loader.get("/api/privileges/hospitals/hospital_types/#{$routeParams.id}/hospital_charges")
           .success (data) ->
             $scope.data = data
             console.log(data)
             console.log(1)
     ]
+
+    $routeProvider.when '/privileges/hospital_types/hospital_charges/:charge_id/hospital_onsales',
+    templateUrl: "templates/privileges/hospital_onsales.html"
+    controller: [
+      '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+      ($rootScope, $scope, $loader, $routeParams, $animate) ->
+        $scope.title = "最新优惠"
+        $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/#{$routeParams.charge_id}/hospital_onsales")
+          .success (data) ->
+            $scope.data = data
+            console.log(data)
+            console.log(1)
+    ]
+
+    $routeProvider.when '/privileges/hospital_types/hospital_charges/hospital_onsales/:id',
+    templateUrl: "templates/privileges/hospital_onsale_show.html"
+    controller: [
+      '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+      ($rootScope, $scope, $loader, $routeParams, $animate) ->
+        $scope.title = "最新优惠"
+        $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
+          .success (data) ->
+            $scope.data = data.data
+            console.log(data)
+            console.log(1)
+    ]
+
 
     # app分类展示页面
     $routeProvider.when '/infors/:type',

@@ -8,7 +8,7 @@
 				{{hospital_type.name}}
 			</div>
 			<div ng-show="ifShow[$index]">
-				<a class="item" href="{{health_infomation.url}}" ng-repeat="child in hospital_type.children" style="color:#828282;">{{child.name}}</a>
+				<a class="item" href="#/privileges/hospital_types/{{child.id}}/hospital_charges" ng-repeat="child in hospital_type.children" style="color:#828282;">{{child.name}}</a>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,9 @@
+<%= partial 'subheader',local: { title: "最新优惠"} %>
+<div class="content" style="top:50px;">
+<div class="list">
+	<a class="item" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
+		 {{onsale.name}}
+	</a>
+
+</div>
+</div>
