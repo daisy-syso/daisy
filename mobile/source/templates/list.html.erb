@@ -23,12 +23,12 @@
 
   <div list list-data="data['related']" list-url="/api/related_hospital.json?hospital_type={{data['title']}}" list-title="其他相关" list-more="查看所有相关" list-more-link="#/list" ng-if="data['related']" list-fin="data['fin']">
   </div>
-
+  <%= partial 'error_check' %>
   <div class="bg team" ng-if="data['recommend']">
       <div class="fix index-hd">
         <!-- <a class="more" href="#">更多>></a> -->
         <h3>猜你喜欢</h3>
       </div>
-    <%= partial 'related' %> 
-    </div> 
+    <%= partial 'related' %>
+    </div>
 </div>
