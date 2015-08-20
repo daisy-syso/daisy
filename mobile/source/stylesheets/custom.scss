@@ -66,8 +66,10 @@ p.font-14 {
 }
 
 .price-color {
-	background-color: #DC143C;
 	padding: 0 5px;
+  border:none;
+  // background-color: #FFF;
+  color: #DC143C
 }
 
 .text-overflow {

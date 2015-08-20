@@ -47,7 +47,7 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/characteristics",
         icon: "images/icons/2-1.png"
       }, {
-        title: "最新优惠",
+        title: "团购优惠",
         link: "#/privileges",
         icon: "images/icons/2-2.png"
       }, {
