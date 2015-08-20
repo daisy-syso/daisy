@@ -1,4 +1,4 @@
-<%= partial 'subheader',local: { title: "最新优惠"} %>
+<%= partial 'subheader',local: { title: "团购优惠"} %>
 <div class="content" style="top:50px;bottom:50px;">
 	<div class="list" drop-down>
 		<div ng-repeat="hospital_type in data.data">
@@ -8,7 +8,20 @@
 				{{hospital_type.name}}
 			</div>
 			<div ng-show="ifShow[$index]">
-				<a class="item" href="#/privileges/hospital_types/{{child.id}}/hospital_charges" ng-repeat="child in hospital_type.children" style="color:#828282;">{{child.name}}</a>
+				<div ng-repeat="child in hospital_type.children" drop-down>
+					<div class="item" href="#/privileges/hospital_types/{{child.id}}/hospital_charges"  style="color:#828282;" ng-click="getCharges(child.id);showList($index)">
+					{{child.name}}
+						<i class="ion-chevron-down" style="float:right"></i>
+					
+					</div>
+					<div ng-show="ifShow[$index]">
+						<a class="item" ng-repeat="charge in charges[child.id]" href="#/privileges/hospital_types/hospital_charges/{{charge.id}}/hospital_onsales">
+							{{charge.name}}
+						</a>
+
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>

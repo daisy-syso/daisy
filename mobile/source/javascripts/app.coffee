@@ -56,7 +56,23 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
-          $scope.title = "最新优惠"
+          $scope.title = "团购优惠"
+          $scope.charges = []
+          $scope.showCharges = []
+          $scope.getCharges = (id) ->
+            unless $scope.charges[id]
+              $loader.get("/api/privileges/hospitals/hospital_types/#{id}/hospital_charges")
+                .success (data) ->
+                  $scope.charges[id] = data.data
+                  console.log("charge")
+            # $scope.showCharges[id] = !$scope.showCharges[id]
+            # if $scope.showCharges[id]
+            #   $("i", tag).removeClass("ion-chevron-down")    
+            #   $("i", tag).addClass("ion-chevron-up")
+            # else
+            #   $("i", tag).removeClass("ion-chevron-up")    
+            #   $("i", tag).addClass("ion-chevron-down")
+            # console.log($scope.showCharges[id])
           $loader.get("/api/privileges/hospitals/hospital_types")
             .success (data) ->
               $scope.data = data
@@ -69,7 +85,7 @@ angular.module 'DaisyApp', [
     controller: [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
-        $scope.title = "最新优惠"
+        $scope.title = "团购优惠"
         $loader.get("/api/privileges/hospitals/hospital_types/#{$routeParams.id}/hospital_charges")
           .success (data) ->
             $scope.data = data
@@ -82,7 +98,7 @@ angular.module 'DaisyApp', [
     controller: [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
-        $scope.title = "最新优惠"
+        $scope.title = "团购优惠"
         $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/#{$routeParams.charge_id}/hospital_onsales")
           .success (data) ->
             $scope.data = data
@@ -95,7 +111,7 @@ angular.module 'DaisyApp', [
     controller: [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
-        $scope.title = "最新优惠"
+        $scope.title = "团购优惠"
         $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
           .success (data) ->
             $scope.data = data.data

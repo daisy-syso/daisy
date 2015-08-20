@@ -14,7 +14,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
 
 			get "/hospital_charges/:id/hospital_onsales" do 
 				hospital_onsales = Hospitals::HospitalOnsale.where(hospital_charge_id: params[:id])
-				present :data, hospital_onsales
+				present :data, hospital_onsales, with: Hospitals::HospitalOnsaleEntity
 			end
 
 			get "hospital_charges/hospital_onsales/:id" do

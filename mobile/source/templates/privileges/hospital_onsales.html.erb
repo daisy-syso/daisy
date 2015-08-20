@@ -1,8 +1,12 @@
-<%= partial 'subheader',local: { title: "最新优惠"} %>
+<%= partial 'subheader',local: { title: "团购优惠"} %>
 <div class="content" style="top:50px;">
 <div class="list">
-	<a class="item" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
-		 {{onsale.name}}
+	<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
+		<img src="{{onsale.hospital.image_url}}" style="top:36px;">
+		<p style="position:absolute;top:10px;left:10px;">{{onsale.hospital.name}}</p>
+		<p>距离：{{$root.getDistance(onsale.hospital) | number:2}}千米 </p>
+		<p>电话：{{onsale.hospital.telephone}}</p>
+		<p>优惠价格：{{onsale.price}}</p>
 	</a>
 
 </div>

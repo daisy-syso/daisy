@@ -1,6 +1,7 @@
 class Hospitals::HospitalType < ActiveRecord::Base
   has_and_belongs_to_many :hospitals, join_table: 'hospitals_types'
   has_many :hospital_types, class_name: 'HospitalType', foreign_key: 'parent_id'
+  has_many :hospital_charges, class_name: "Hospitals::HospitalCharge"
   class << self
     include Filterable
 
