@@ -9,7 +9,7 @@
 			<p>功能主治：{{drug.introduction}}</p>
 			<p>规格：{{drug.spec}}</p>
 			<p>药店数量：{{drug.drugstore_count}}</p>
-			<p ng-click="linkToManufactory(drug.manufactory_id);$event.stopPropagation();">生产厂家：<a style="text-decoration: underline;font-size: 1.2em;">	{{drug.manufactory}}</a>	 </p>
+			<p ng-click="linkToManufactory(drug.manufactory_id);$event.stopPropagation();">生产厂家：<span style="text-decoration: underline;font-size: 1.2em;">	{{drug.manufactory}}</span>	 </p>
 			<p>参考价格：￥{{drug.ori_price}}</p>
 		</a>
 	</div>
