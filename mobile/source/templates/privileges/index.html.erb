@@ -1,5 +1,7 @@
 <%= partial 'subheader',local: { title: "团购优惠"} %>
-<div class="content" style="top:50px;bottom:50px;">
+
+</nav>
+<div class="content" style="bottom:50px;top:100px;">
 	<div class="list" drop-down>
 		<div ng-repeat="hospital_type in data.data">
 			<div class="item item-divider " ng-click="showList($index)" style="color:#828282;font-size:1.4em;">
@@ -15,6 +17,7 @@
 					
 					</div>
 					<div ng-show="ifShow[$index]">
+						<a class="item" href="#/privileges/hospital_types/hospital_charges/all/hospital_onsales" style="padding-left:2.4em;color:#028C14">全部</a>
 						<a class="item" ng-repeat="charge in charges[child.id]" href="#/privileges/hospital_types/hospital_charges/{{charge.id}}/hospital_onsales" style="padding-left:2.4em;color:#028C14">
 							{{charge.name}}
 						</a>

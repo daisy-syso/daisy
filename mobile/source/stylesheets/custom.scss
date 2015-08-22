@@ -396,3 +396,16 @@ a.pink-button, .pink-button {
   line-height: 36px;
   border-radius: 0.06rem;
 }
+
+.loading-container .loading {
+  background:none
+}
+
+.spinner-energized {
+  width: 28px;
+  height: 28px;
+  margin-right: 20px;
+  stroke: #444;
+  fill: #fff;
+
+}

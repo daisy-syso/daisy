@@ -24,6 +24,8 @@ angular.module 'DaisyApp', [
 .config [
   '$routeProvider'
   ($routeProvider) ->
+
+    # 主页
     $routeProvider.when '/home',
       templateUrl: "templates/home.html"
       controller: [
@@ -65,19 +67,9 @@ angular.module 'DaisyApp', [
                 .success (data) ->
                   $scope.charges[id] = data.data
                   console.log("charge")
-            # $scope.showCharges[id] = !$scope.showCharges[id]
-            # if $scope.showCharges[id]
-            #   $("i", tag).removeClass("ion-chevron-down")    
-            #   $("i", tag).addClass("ion-chevron-up")
-            # else
-            #   $("i", tag).removeClass("ion-chevron-up")    
-            #   $("i", tag).addClass("ion-chevron-down")
-            # console.log($scope.showCharges[id])
           $loader.get("/api/privileges/hospitals/hospital_types")
             .success (data) ->
               $scope.data = data
-              console.log(data)
-              console.log(1)
       ]
 
     $routeProvider.when '/privileges/hospital_types/:id/hospital_charges',
@@ -86,11 +78,12 @@ angular.module 'DaisyApp', [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
         $scope.title = "团购优惠"
+        page = $scope.page = 1
         $loader.get("/api/privileges/hospitals/hospital_types/#{$routeParams.id}/hospital_charges")
           .success (data) ->
             $scope.data = data
-            console.log(data)
-            console.log(1)
+
+        
     ]
 
     $routeProvider.when '/privileges/hospital_types/hospital_charges/:charge_id/hospital_onsales',
@@ -99,11 +92,22 @@ angular.module 'DaisyApp', [
       '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
       ($rootScope, $scope, $loader, $routeParams, $animate) ->
         $scope.title = "团购优惠"
-        $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/#{$routeParams.charge_id}/hospital_onsales")
+        url = "/api/privileges/hospitals/hospital_types/hospital_charges/#{$routeParams.charge_id}/hospital_onsales"
+        page = $scope.page = 1
+
+        $loader.get(url)
           .success (data) ->
             $scope.data = data
             console.log(data)
             console.log(1)
+        
+        $scope.loadMore = () ->
+          page = $scope.page += 1
+          params = { page: page }
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.moreData = false if  data.data.length < 25
+              $scope.data['data'] = $scope.data['data'].concat data['data']
     ]
 
     $routeProvider.when '/privileges/hospital_types/hospital_charges/hospital_onsales/:id',
@@ -131,6 +135,7 @@ angular.module 'DaisyApp', [
           $scope.swipeLeft = (i, l) ->
             console.log("swipe left")
             $scope.start[i] += 1 unless $scope.start[i] + 5 == l || l <= 5
+            console.log($scope.start[i])
 
           $scope.swipeRight = (i) ->
             console.log("swipe right")
@@ -383,8 +388,8 @@ angular.module 'DaisyApp', [
     ]
 
     DrugListCtrl = [
-      '$scope', '$loader', '$route', '$location', '$routeParams'
-      ($scope, $loader, $route, $location, $routeParams ) ->
+      '$scope', '$loader', '$route', '$location', '$routeParams', '$ionicLoading'
+      ($scope, $loader, $route, $location, $routeParams, $ionicLoading ) ->
         # url = if $routeParams.name
         #   "/api/drugs/drugs/drug_manufactories.json"
         # else
@@ -413,17 +418,24 @@ angular.module 'DaisyApp', [
           # $alert.info($scope.listUrl)
           page = $scope.page = 1
           params = angular.extend { page: page }, params
+          $ionicLoading.show({
+            template: '<ion-spinner class="spinner-energized"></ion-spinner>'
+          });
           $loader.get(url, params: params)
             .success (data) =>
               # if data.drugs.length < 1  then  $scope.moreData = false
               # $scope.drugs = data.drugs
               $scope.moreData = false if  data.data.length < 25
               $scope.data = data
+              $ionicLoading.hide();
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->
           page = $scope.page += 1
           params = angular.extend { page: page }, $scope.params
+          $ionicLoading.show({
+            template: '<ion-spinner class="spinner-energized"></ion-spinner>'
+          });
           $loader.get(url, params: params)
             .success (data) ->
               # if data.drugs.length < 1
@@ -434,6 +446,7 @@ angular.module 'DaisyApp', [
                 $scope.moreData = false
               else
                 $scope.data.data = $scope.data.data.concat data.data
+              $ionicLoading.hide();
 
         $scope.redirectTo = (type, params) ->
           $scope.loadData(type, params)

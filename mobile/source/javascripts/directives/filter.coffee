@@ -13,28 +13,19 @@ angular.module('DaisyApp').directive 'filter', [
         scope.$watch 'filterData', (filterData) ->
           if filterData
             for filter, index in filterData
-              console.log ("**************")
-              console.log (filterData)
               $rootScope.formatFilter(filter)
-              console.log ("============")
-              console.log($rootScope.formatFilter(filter))
-
-        console.log("scope.current.menu")
-        console.log(scope.current)
 
         scope.toggleMenu = (index, menu) ->
-          console.log ("#{index},#{menu}")
           if scope.current.index == index
             scope.closeMenu()
-
           else
             scope.current.index = index
             scope.current.menu = menu
-            console.log("#{menu}") 
-            # if scope.current.menu.current && scope.current.menu.children
-            #   console.log("===============")
-            #   i = scope.current.menu.current-1
-            #   scope.toggleColumn(0, i, scope.current.menu.children[i])
+            if scope.current.menu.current && scope.current.menu.children
+              console.log("===============")
+              console.log(scope.current.menu.children)
+              # i = scope.current.menu.current-1
+              # scope.toggleColumn(0, i, scope.current.menu.children[i])
 
         scope.toggleColumn = (i, j, column) ->
 
@@ -48,9 +39,7 @@ angular.module('DaisyApp').directive 'filter', [
 
         scope.redirectTo = (column) ->
           return if column.url
-
           listScope = $route.current.scope
-
           if column.type
             type = column.type
             params = column.params || {}

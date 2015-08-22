@@ -15,7 +15,6 @@ angular.module('DaisyApp').directive 'list', [
         listFilters: "=?"
       link: (scope, element, attrs) ->
         if scope.listUrl
-          console.log("#{$routeParams.only_onsales}======")
           params = {only_onsales: $routeParams.only_onsales }
           $loader.get(scope.listUrl, params: params)
             .success (json) ->

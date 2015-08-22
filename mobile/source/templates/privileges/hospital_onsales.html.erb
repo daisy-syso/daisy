@@ -1,5 +1,5 @@
 <%= partial 'subheader',local: { title: "团购优惠"} %>
-<div class="content" style="top:50px;">
+<div class="content" style="top:100px;bottom:50px;">
 <div class="list">
 	<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
 		<img src="{{onsale.hospital.image_url}}" style="top:36px;">
@@ -10,4 +10,7 @@
 	</a>
 
 </div>
+<button class="button button-full button-balanced" ng-click="loadMore()" ng-show="moreData">
+  查看更多
+</button>
 </div>
