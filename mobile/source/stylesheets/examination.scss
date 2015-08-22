@@ -1,0 +1,26 @@
+.examinations-content{
+  top:100px;
+  bottom:50px;
+  .price{
+    color: #FFA500;
+    font-size: 20px;
+  }
+  .list{
+    .item-thumbnail-left{
+      padding-top:36px;
+      img{
+        top:36px;
+      }
+    }
+  }
+
+  .examination-name{
+    position:absolute;
+    top:10px;
+    left:10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    width: 80%;
+  }
+}
