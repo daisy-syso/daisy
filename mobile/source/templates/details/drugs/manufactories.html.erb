@@ -1,6 +1,6 @@
 <%= partial 'templates/details/header'%>
 
-<div class="content">
+<div class="content" style="bottom:50px;">
 
   <%= partial 'templates/details/album' %>
 
@@ -86,13 +86,17 @@
     </ul>
   </div>
 
-
   <div class="bg team">
     <div class="fix index-hd">
-      <h3>猜你喜欢</h3>
+      <h3>相关药品</h3>
     </div>
-    <%= partial 'related' %>
+    <div list list-url="/api/drugs/manufactories/{{data.id}}/drugs" list-title="其他相关" list-load-more="查看更多" list-more-link="#/list" ng-if="data.id" list-tpl="templates/lists/drugs/drugs.html">
+      
+      {{listData}}
+    </div>
   </div>
+
+
 
 </div>
 

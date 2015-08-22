@@ -277,6 +277,7 @@ angular.module 'DaisyApp', [
           angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
+
         $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
@@ -428,7 +429,7 @@ angular.module 'DaisyApp', [
               # $scope.drugs = data.drugs
               $scope.moreData = false if  data.data.length < 25
               $scope.data = data
-              # $ionicLoading.hide();
+              $ionicLoading.hide();
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->

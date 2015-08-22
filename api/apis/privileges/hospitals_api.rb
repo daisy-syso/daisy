@@ -7,6 +7,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
 					city: city_filters,
 	        type: type_filters("团购优惠"),
 	        charge: { title: "团购", class: Hospitals::HospitalCharge },
+	        order_by: order_by_filters(Hospitals::Hospital),
 	        form: form_filters,
 	        need_order: form_switch_filters("无需预约"),
 	        has_return: form_switch_filters("返现"),
