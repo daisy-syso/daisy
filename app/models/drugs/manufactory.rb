@@ -14,7 +14,7 @@ class Drugs::Manufactory < ActiveRecord::Base
     as_json(only: ['name','name_initials'])
   end
   
-  has_and_belongs_to_many :drugs, class_name: "Drugs::Drug"
+  has_and_belongs_to_many :drugs, class_name: "Drugs::Drug", join_table: 'manufactory_drugs'
 
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 

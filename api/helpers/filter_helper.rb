@@ -344,7 +344,7 @@ module FilterHelper
       {
         default: options[:default] || :auto,
         type: String,
-        title: proc { filters_list[params[:order_by].to_sym] ||"智能排序"},
+        title: proc { filters_list[params[:order_by].try(:to_sym)] ||"智能排序"},
         children: proc do
           filters = []
           filters << { title: "智能排序" , id: :auto }

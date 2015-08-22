@@ -13,15 +13,15 @@ angular.module('DaisyApp').directive 'list', [
         listMoreLink: "@"
         listLoadMore: "@"
         listFilters: "=?"
+        listTpl: "@"
       link: (scope, element, attrs) ->
         if scope.listUrl
-          console.log("#{$routeParams.only_onsales}======")
           params = {only_onsales: $routeParams.only_onsales }
           $loader.get(scope.listUrl, params: params)
             .success (json) ->
               scope.listFin = json.fin
-              # $alert.info("1111related======#{json.data}")
               scope.listData = json.data
+
 
         # scope.$watch "data['title']", (value) ->
         #   $alert.info("/api/related_hospital.json?hospital_type=#{value}")
@@ -36,7 +36,7 @@ angular.module('DaisyApp').directive 'list', [
           data.url || "#/detail/#{data.template}/#{data.id}" unless data.nolink
 
         scope.templateUrl = (data) ->
-          "templates/lists/#{data.template}.html"
+          scope.listTpl || "templates/lists/#{data.template}.html"
 
       controller: [
         '$scope', '$loader', '$alert'

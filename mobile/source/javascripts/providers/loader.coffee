@@ -1,6 +1,6 @@
 angular.module("DaisyApp").factory '$loader', [
-  '$rootScope', '$http', '$location', '$alert'
-  ($rootScope, $http, $location, $alert) ->
+  '$rootScope', '$http', '$location', '$alert', '$ionicLoading'
+  ($rootScope, $http, $location, $alert, $ionicLoading) ->
     error = (data, status) ->
       if data.error
         $alert.error(data.error)
@@ -26,7 +26,9 @@ angular.module("DaisyApp").factory '$loader', [
           angular.extend defaultParams, $rootScope.city.params
         # consol.log(config.params)
         config.params = angular.extend defaultParams, config.params
+        # config.cache = true
         console.log(config.params)
+
         $http.get(url, config).error(error)
 
       post: (url, data, config = {}) ->
