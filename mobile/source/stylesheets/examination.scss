@@ -13,14 +13,15 @@
       }
     }
   }
-
   .examination-name{
     position:absolute;
     top:10px;
     left:10px;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    overflow: hidden;
-    width: 80%;
   }
+}
+.examination-name{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  width: 95%;
 }
