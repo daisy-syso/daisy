@@ -7,7 +7,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       filters: {
         city: fake_city_filters,
         type: type_filters("体检"),
-        # examination_type: { scope_only: true },
+        examination_type: { scope_only: true },
         hospital: { scope_only: true },
         # county: fake_county_filters,
         order_by: order_by_filters(Examinations::Examination),
