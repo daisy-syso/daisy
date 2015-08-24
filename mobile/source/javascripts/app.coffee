@@ -124,7 +124,7 @@ angular.module 'DaisyApp', [
           .success (data) ->
             $scope.data = data
 
-        
+
     ]
 
     $routeProvider.when '/privileges/hospital_types/hospital_charges/:charge_id/hospital_onsales',
@@ -141,7 +141,7 @@ angular.module 'DaisyApp', [
             $scope.data = data
             console.log(data)
             console.log(1)
-        
+
         $scope.loadMore = () ->
           page = $scope.page += 1
           params = { page: page }
@@ -356,6 +356,16 @@ angular.module 'DaisyApp', [
             $scope.symptoms = data.data
     ]
 
+    examinationsDetailCtrl = [
+      '$scope', '$routeParams', '$loader', '$alert', '$location'
+      ($scope, $routeParams, $loader, $alert, $location) ->
+        url = "/api/examinations/examinations/#{$routeParams.id}"
+
+        $loader.get(url)
+          .success (data) ->
+            $scope.data = data.data
+    ]
+
     $routeProvider.when '/order/:type*/:id',
       templateUrl: "templates/order.html"
       controller: detailCtrl
@@ -367,6 +377,10 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/detail/symptoms/symptoms/:id',
       templateUrl: "templates/details/symptoms/symptom_item.html"
       controller: symptomsDetailCtrl
+
+      $routeProvider.when '/detail/examinations/examinations/:id',
+        templateUrl: 'templates/details/examinations/examination_item.html'
+        controller: examinationsDetailCtrl
 
     # $routeProvider.when '/detail/strategies/hospital_charge',
     #   templateUrl: "templates/details/strategies/hospital_charge.html"
@@ -569,21 +583,44 @@ angular.module 'DaisyApp', [
                 $scope.symptoms = $scope.symptoms.concat data.symptoms
     ]
 
+    ExaminationsListCtrl = [
+      '$scope', '$loader', '$route', '$location', '$routeParams'
+      ($scope, $loader, $route, $location, $routeParams) ->
+        url = "/api/examinations/examinations"
+        $scope.moreData = true
+        $scope.loadData = (type, params) =>
+          $scope.type = type
+          $scope.params = params
+          page = $scope.page = 1
+          params = angular.extend { page: page }, params
+          $loader.get(url, params: params)
+            .success (data) =>
+              $scope.moreData = false if  data.data.length < 25
+              $scope.data = data
+
+        $scope.loadData($route.current.params.type, $location.search())
+        $scope.loadMore = () ->
+          page = $scope.page += 1
+          params = angular.extend { page: page }, $scope.params
+          $loader.get(url, params: params)
+            .success (data) ->
+              if data.data.length < 1
+                $scope.moreData = false
+              else
+                $scope.data = $scope.data.concat data.data
+    ]
+
     $routeProvider.when '/list/manufactories/manufactories',
       templateUrl: 'templates/lists/manufactories.html'
-      controller: [
-
-
-
-      ]
+      controller: []
 
     $routeProvider.when '/list/symptoms/symptoms',
       templateUrl: 'templates/symptoms_list.html'
       controller: SymptomsListCtrl
 
-    # $routeProvider.when '/list/examinations/examinations',
-    #   templateUrl: 'templates/examinations_list.html'
-    #   controller: ExaminationsListCtrl
+    $routeProvider.when '/list/examinations/examinations',
+      templateUrl: 'templates/examinations_list.html'
+      controller: ExaminationsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
       # templateUrl: "templates/drugs_list.html"

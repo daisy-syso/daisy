@@ -28,7 +28,7 @@ class Examinations::Examination < ActiveRecord::Base
     }
   end
   
-  def examination_types
+  def examination_type
     [examination_type_one, examination_type_two]
   end
 
