@@ -459,15 +459,11 @@ module FilterHelper
             {
               image_url:hospital_type.image_url, 
               title: hospital_type.name, 
-              children: hospital_type.hospital_types.map do |ht|
-                {
-                  title: ht.name
-                }
-              end, 
+              children: Hospitals::HospitalType.filters(hospital_type.hospital_types)
             }
           end
         end,
-        current: proc {params[:hospital_type]},
+        # current: proc { params[:hospital_type]},
         class: :hospital_type
       }
     end

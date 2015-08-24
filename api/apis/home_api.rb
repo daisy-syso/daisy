@@ -48,7 +48,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-1.png"
       }, {
         title: "团购优惠",
-        link: "#/privileges",
+        link: "#/privileges/hospitals",
         icon: "images/icons/2-2.png"
       }, {
         title: "全国体检",
@@ -1733,11 +1733,11 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "养老服务",
-      #  count: Eldercares::NursingRoo#m.count+SocialSecurities::SocialSecurity.where(social_security_type_id: 5#).count+Insurances::Insuranc#e.count,
+      #  count: Eldercares::NursingRoom.count+SocialSecurities::SocialSecurity.where(social_security_type_id: 5#).count+Insurances::Insuranc#e.count,
         children: [{
           id: :eldercare,
           type: :"eldercares/nursing_rooms",
-        #  count: Eldercares::NursingRoo#m.count,
+        #  count: Eldercares::NursingRoom.count,
           title: "养老公寓"
         }, {
           type: :"social_securities/social_securities",
@@ -1746,9 +1746,19 @@ class HomeAPI < Grape::API
           params: { social_security_type: 5 }
         }, {
           type: :"insurances/insurances",
-        #  count: Insurances::Insuranc#e.count,
+        #  count: Insurances::Insurance.count,
           title: "养老保险（商业）攻略"
         }]
+      }, {
+        title: "团购优惠",
+        children: Hospitals::HospitalType.where(parent_id: [nil, '']).map do |hospital_type|
+          {
+            title: hospital_type.name,
+            params: {
+              hospital_type: hospital_type.id
+            }
+          }
+        end
       }, {
         title: "母婴亲子",
       #  count: Maternals::ConfinementCente#r.count+Maternals::MaternalHal#l.count,

@@ -52,15 +52,25 @@ angular.module 'DaisyApp', [
             length = value?.title?.length || 2
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
-    # 最新优惠
+    # 最新优惠 暂时不用
     $routeProvider.when '/privileges',
       templateUrl: "templates/privileges/index.html"
       controller: [
-        '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
-        ($rootScope, $scope, $loader, $routeParams, $animate) ->
+        '$rootScope', '$scope', '$loader', '$routeParams', '$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
           $scope.title = "团购优惠"
           $scope.charges = []
           $scope.showCharges = []
+          $scope.type = "privileges/hospitals/hospital_types"
+          $scope.redirectTo = (type, params) ->
+            console.log(type)
+            console.log(params)
+            # $scope.loadData(type, params)
+            $location.path("#{type}/#{params['type']}")
+            # $location.search(params)
+            $location.replace()
+            # $location.keep = false
+
           $scope.getCharges = (id) ->
             unless $scope.charges[id]
               $loader.get("/api/privileges/hospitals/hospital_types/#{id}/hospital_charges")
@@ -70,6 +80,37 @@ angular.module 'DaisyApp', [
           $loader.get("/api/privileges/hospitals/hospital_types")
             .success (data) ->
               $scope.data = data
+
+      ]
+
+    $routeProvider.when '/privileges/hospitals',
+      templateUrl: "templates/privileges/hospitals/index.html"
+      controller: [
+        '$scope', '$loader', '$routeParams', '$location'
+        ($scope, $loader, $routeParams, $location) ->
+          $scope.page = 1
+          params = angular.extend { page: $scope.page }, $location.search()
+          console.log(params)
+          url = "/api/privileges/hospitals"
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.moreData = true unless data.data.length < 25
+              $scope.data = data
+          $scope.type = "privileges/hospitals"
+          $scope.redirectTo = (type, params) ->
+            # $scope.loadData(type, params)
+            console.log(params)
+            $location.path("list/#{type}")
+            $location.path("privileges/hospitals") if type = "privileges/hospitals"
+            $location.search(params)
+            $location.replace()
+            # $location.keep = false
+          $scope.loadMore = () ->
+            params = angular.extend { page: $scope.page += 1 }, $location.search()
+            $loader.get(url, params: params)
+              .success (data) ->
+                $scope.moreData = false if  data.data.length < 25
+                $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
     $routeProvider.when '/privileges/hospital_types/:id/hospital_charges',
