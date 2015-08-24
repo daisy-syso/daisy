@@ -113,7 +113,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
 			title: "团购优惠",
       filters: { 
         type: type_filters("团购优惠"),
-        hospital_type: hospital_type_filters,
+        hospital_charge: hospital_charge_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
         extension: { scope_only: true, default: 1, type: Integer},

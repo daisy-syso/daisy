@@ -19,8 +19,8 @@ class Hospitals::HospitalCharge < ActiveRecord::Base
       end
     end
 
-    define_filter_method :filters do
-      self.all
+    define_filter_method :filters do |records|
+      records || self.all
     end
 
   end

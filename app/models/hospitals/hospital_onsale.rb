@@ -10,4 +10,8 @@ class Hospitals::HospitalOnsale < ActiveRecord::Base
   	charges_ids = Hospitals::HospitalType.where(id: i).first.hospital_charges.try(:ids) || []
   	where(hospital_charge_id: charges_ids)
   }
+
+  scope :hospital_charge, ->(i) {
+  	where(hospital_charge_id: i)
+  }
 end

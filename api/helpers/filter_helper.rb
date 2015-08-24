@@ -468,6 +468,31 @@ module FilterHelper
       }
     end
 
+    def hospital_charge_filters
+      {
+        title: proc do 
+          Hospitals::HospitalCharge.where(id: params[:hospital_charge]).first.try(:name) || "全部"
+        end,
+        key: "hospital_charge",
+        template: "list",
+        children: proc do 
+          Hospitals::HospitalType.where(parent_id: nil).map do |hospital_type|
+            {
+              image_url:hospital_type.image_url, 
+              title: hospital_type.name, 
+              children: hospital_type.hospital_types.map do |ht|
+                {
+                  title: ht.name,
+                  children: Hospitals::HospitalCharge.filters(ht.hospital_charges)
+                }
+              end
+            }
+          end
+        end
+
+      }
+    end
+
     def drug_type_filters
       {
         key: "drug_type",

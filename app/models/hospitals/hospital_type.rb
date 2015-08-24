@@ -5,8 +5,8 @@ class Hospitals::HospitalType < ActiveRecord::Base
   
 
   def hospital_charges
+    return Hospitals::HospitalCharge.where(hospital_type_id: self.hospital_types.ids ) if self.parent_id.blank? 
     super
-    Hospitals::HospitalCharge.where(hospital_type_id: self.hospital_types.ids ) if self.parent_id.blank? 
   end
 
   class << self
