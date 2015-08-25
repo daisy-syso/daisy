@@ -4,7 +4,10 @@
 		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
 			<img src="{{onsale.hospital.image_url}}">
 			<h2>{{onsale.hospital.name}}</h2>
-			<p><span style="color: #ffd700">★★★★★</span>  5分 <span style="float:right">(已有24个评价)</span></p>
+			<p>
+				<span style="color: #ffd700">★★★★★</span>  5分 
+				<span style="float:right">(已有24个评价)</span>
+			</p>
 			<p>[{{onsale.name}}]<span style="float:right">2849人购买</span></p>
 			<p> 
 				<span class="price-color">现价：￥{{onsale.sales}}</span>
