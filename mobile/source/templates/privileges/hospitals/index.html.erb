@@ -1,17 +1,21 @@
 <%= partial 'subheader',local: { title: "团购优惠"} %>
 <div class="content" style="top:100px;bottom:50px;">
 	<div class="list">
-		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}">
+		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}" style="padding-top:12px;">
 			<img src="{{onsale.hospital.image_url}}">
-			<h2>{{onsale.hospital.name}}</h2>
+			<p>{{onsale.hospital.name}}</p>
 			<p>
 				<span style="color: #ffd700">★★★★★</span>  5分 
-				<span style="float:right">(已有24个评价)</span>
+				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.reviews_count || 0}}个评价</span>
 			</p>
-			<p>[{{onsale.name}}]<span style="float:right">2849人购买</span></p>
+			<p>
+				<span style="color:#02DF82">[{{onsale.name}}]</span>
+				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.sales_volume || 0}}人购买</span>
+			</p>
+			<p>优惠：<span class="price-color">{{onsale.sales}}</span></p>
 			<p> 
-				<span class="price-color">现价：￥{{onsale.sales}}</span>
-				<span class="price-color" style="float:right">原：￥{{onsale.price}}</span>
+				<span class="price-color">现价：￥{{onsale.price}}</span>
+				<span style="color:#adadad;text-decoration:line-through">{{onsale.original_price}}</span>
 			</p>
 		</a>
 
