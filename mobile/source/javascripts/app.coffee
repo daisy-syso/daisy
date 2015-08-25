@@ -292,8 +292,8 @@ angular.module 'DaisyApp', [
       ]
 
     detailCtrl = [
-      '$scope', '$routeParams', '$loader', '$alert', '$location', '$rootScope'
-      ($scope, $routeParams, $loader, $alert, $location, $rootScope) ->
+      '$scope', '$routeParams', '$loader', '$alert', '$location', '$rootScope', '$anchorScroll'
+      ($scope, $routeParams, $loader, $alert, $location, $rootScope, $anchorScroll) ->
         $scope.type = $routeParams.type
         $rootScope.footerHide = true
         if $routeParams.type == "hospitals/hospitals_polyclinic"
@@ -318,7 +318,10 @@ angular.module 'DaisyApp', [
           angular.forEach(a, (e, i)->
             e.doctors = $scope.array_3(e.doctors)
           )
-
+        $scope.goto = (id) ->
+          console.log($location.hash())
+          $location.hash(id)
+          $anchorScroll()
         $scope.params = $location.search()
         $scope.detail_id = $routeParams.detail
         url = "/api/#{$scope.type}/#{$routeParams.id}.json"
@@ -406,7 +409,7 @@ angular.module 'DaisyApp', [
         else
           "templates/details/#{routeParams.type}.html"
       controller: detailCtrl
-      reloadOnSearch: true
+      reloadOnSearch: false
 
     listCtrl = [
       '$scope', '$loader', '$route', '$location', '$routeParams'

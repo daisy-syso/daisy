@@ -66,6 +66,11 @@
   </ul>
 </div>
 
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3 ng-click="goto('aboutDrugs-start')">厂家相关药品列表</h3>
+    </div>
+  </div>
 
   <%= partial 'templates/details/map' %>
   <div class="card">
@@ -85,14 +90,12 @@
       </li>
     </ul>
   </div>
-
+  <div id="aboutDrugs-start"></div>
   <div class="bg team">
     <div class="fix index-hd">
-      <h3>相关药品</h3>
+      <h3>厂家相关药品列表</h3>
     </div>
-    <div list list-url="/api/drugs/manufactories/{{data.id}}/drugs" list-title="其他相关" list-load-more="查看更多" list-more-link="#/list" ng-if="data.id" list-tpl="templates/lists/drugs/drugs.html">
-      
-      {{listData}}
+    <div list list-url="/api/drugs/manufactories/{{data.id}}/drugs" list-title="其他相关" list-more="查看更多" ng-if="data.id" list-tpl="templates/lists/drugs/drugs.html">
     </div>
   </div>
 

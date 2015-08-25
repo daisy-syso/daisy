@@ -23,8 +23,8 @@
       </a>
     </li>
 
-    <li class="table-view-cell media-more" ng-show="listMore && listMoreLink">
-      <a class="react" ng-href="{{listMoreLink}}">{{listMore}}</a>
+    <li class="table-view-cell media-more" ng-show="listMore && moreShow">
+      <a class="react" ng-click="loadMore()">{{listMore}}</a>
     </li>
 
     <li class="table-view-cell media-load-more" ng-show="listLoadMore && $parent.loadMore && !listFin">

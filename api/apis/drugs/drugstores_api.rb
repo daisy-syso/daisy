@@ -17,7 +17,11 @@ class Drugs::DrugstoresAPI < ApplicationAPI
         alphabet: form_alphabet_filters,
         is_local_hot: form_switch_filters("热门药店")
       }
-
+    get "/:id/drugs" do 
+      drugstore = Drugs::Drugstore.where(id: params[:id]).first
+      present :data, drugstore.drugs.page(params[:page])
+      # present! drugstore.drugs
+    end
     show! Drugs::Drugstore
   end
 end

@@ -14,8 +14,8 @@ class Drugs::ManufactoriesAPI < ApplicationAPI
 
     get "/:id/drugs" do 
       manufactory = Drugs::Manufactory.where(id: params[:id]).first
-      manufactory.drugs
-      present :data, manufactory.drugs
+      present :data, manufactory.drugs.page(params[:page])
+      # present! manufactory.drugs
     end
     show! Drugs::Manufactory
 

@@ -18,45 +18,50 @@
     </ul>
   </div>
   <div class="card">
-  <ul class="table-view media">
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <!-- <h1> <span>{{data.position}}</span></h1> -->
-        <p>营业时间：</p>
-        <p>GSP证号：{{data.GSP}}</p>
-        <p>经营许可证号：{{data.Business_License}}</p>
-        <p>经营范围：{{data.Scope_of_business}}</p>
-        <p>网址：www.。。。（可申请免费使用药店定制网页→）</p>
+    <ul class="table-view media">
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <!-- <h1> <span>{{data.position}}</span></h1> -->
+          <p>营业时间：</p>
+          <p>GSP证号：{{data.GSP}}</p>
+          <p>经营许可证号：{{data.Business_License}}</p>
+          <p>经营范围：{{data.Scope_of_business}}</p>
+          <p>网址：www.。。。（可申请免费使用药店定制网页→）</p>
 
-      </div>
+        </div>
 
-    </li>
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <h4 class="fix">
-        	药店服务总评
-          <a href="#/review/Drugs::Drugstore/{{::id}}"><span style="color: #ffd700">★★★★★5分</span> </a>  
-          <span class="pull-right">{{data.reviews_count}}人参与评分</span>
-        </h4>
-      </div>
+      </li>
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <h4 class="fix">
+          	药店服务总评
+            <a href="#/review/Drugs::Drugstore/{{::id}}"><span style="color: #ffd700">★★★★★5分</span> </a>  
+            <span class="pull-right">{{data.reviews_count}}人参与评分</span>
+          </h4>
+        </div>
 
-    </li>
-    <li class="table-view-cell">
-      <div class="media-detail">
-        <ul class="inline border" style="text-align: justify;">
-          <% remarks = %i(客户服务 发货速度 物流速度 商品包装) %>
-          <% remarks.each do |remark|%>
-          <li><%=remark%></li>
-          <%end%>
-        </ul>
-      </div>
-    </li>
+      </li>
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <ul class="inline border" style="text-align: justify;">
+            <% remarks = %i(客户服务 发货速度 物流速度 商品包装) %>
+            <% remarks.each do |remark|%>
+            <li><%=remark%></li>
+            <%end%>
+          </ul>
+        </div>
+      </li>
 
+    </ul>
+  </div>
 
-  </ul>
-</div>
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3 ng-click="goto('aboutDrugs-start')">药店相关药品列表</h3>
+    </div>
+  </div>
+
   <%#= partial 'templates/details/review' %>
-
   <%= partial 'templates/details/map' %>
 
   <div class="card">
@@ -67,12 +72,25 @@
       </li>
     </ul>
   </div>
-
+  <div id="aboutDrugs-start"></div>
   <div class="bg team">
     <div class="fix index-hd">
-      <h3>猜你喜欢</h3>
+      <h3>药店相关药品列表</a></h3>
     </div>
-    <%= partial 'related' %>
+    <div list list-url="/api/drugs/drugstores/{{data.id}}/drugs" list-title="其他相关" list-more="查看更多"  ng-if="data.id" list-tpl="templates/lists/drugs/drugs.html">      
+    </div>
   </div>
 
+ 
+
 </div>
+
+<footer class="footer">
+  <menu class="footer-con" style="background-color:rgba(0,0,0,0.7);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
+    <div>
+    <a href="tel:{{data.telephone}}"><image src="images/call.jpg" width="100%">  </a>
+    <a ng-href="{{data.url}}"><image src="images/search.jpg" width="100%"></a>
+    </div>
+  </menu>
+</footer>
+

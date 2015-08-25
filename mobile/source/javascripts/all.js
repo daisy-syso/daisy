@@ -11,4 +11,3 @@
 //= require js/history
 //= require js/index
 //= require js/foot
-//= require js/adapter
