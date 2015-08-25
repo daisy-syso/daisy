@@ -11,7 +11,7 @@ class Drugs::ManufactoryEntity < ApplicationEntity
   end
 
   with_options if: { detail: true } do
-    expose :url, :telephone, :image_url, :address
+    expose :url, :telephone, :image_url, :address, :business_owners
     
   end
 end
