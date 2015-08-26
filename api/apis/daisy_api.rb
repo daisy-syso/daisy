@@ -107,6 +107,7 @@ class DaisyAPI < Grape::API
 
   namespace :privileges do
     mount Privileges::HospitalsAPI
+    mount Privileges::InsurancesAPI
   end
 
   mount NetInfos::HotSearchKeywordsAPI

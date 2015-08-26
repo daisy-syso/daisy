@@ -1,0 +1,21 @@
+<%= partial 'subheader',local: { title: "团购优惠"} %>
+<div class="content" style="top:100px;bottom:50px;">
+	<div class="list">
+		<a class="item item-thumbnail-left" ng-repeat="insurance in data.data" href="#/privileges/insurances/{{insurance.id}}" style="padding-top:12px;">
+			<img src="{{insurance.image_url}}">
+			<p>{{insurance.name}}</p>
+			<p>
+				保险期限：{{insurance.rebate}}年龄： {{insurance.age}}
+			</p>
+			<p><span class="green">{{insurance.detail || "少儿专刊，满期返还型"}}</span></p>
+			<p> 
+				<span class="price-color">￥{{insurance.price}}</span>
+				<span style="color:#adadad;float:right">累计销量：{{insurance.count}}</span>
+			</p>
+		</a>
+
+	</div>
+	<button class="button button-full button-balanced" ng-click="loadMore()" ng-show="moreData">
+	  查看更多
+	</button>
+</div>

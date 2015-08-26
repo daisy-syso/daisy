@@ -71,8 +71,8 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/overseas?country=2",
         icon: "images/icons/2-7.png"
       }, {
-        title: "健康保险",
-        link: "#/list/coupons/drugs",
+        title: "疾病保险",
+        link: "#/privileges/insurances",
         icon: "images/icons/2-8.png"
       # }
       # }, {

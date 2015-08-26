@@ -468,6 +468,18 @@ module FilterHelper
       }
     end
 
+    def classification_filters
+      {
+        title: proc do 
+          params[:classification] || "全部"
+        end,
+        key: "classification",
+        template: "list",
+        children: Insurances::CommercialInsurance.filters,
+        type: String
+      }
+    end
+
     def hospital_charge_filters
       {
         title: proc do 
