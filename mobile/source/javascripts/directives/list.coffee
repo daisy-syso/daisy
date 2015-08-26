@@ -18,16 +18,18 @@ angular.module('DaisyApp').directive 'list', [
         if scope.listUrl
           scope.page = 1
           params = {only_onsales: $routeParams.only_onsales, page: scope.page }
-          $ionicLoading.show(
-            template: '<ion-spinner class="spinner-wighte"></ion-spinner>',
-            noBackdrop: true
-          )
+          # $ionicLoading.show(
+          #   template: '<ion-spinner class="spinner-wighte"></ion-spinner>',
+          #   noBackdrop: true
+          # )
+          $('#loading_div').show()
           $loader.get(scope.listUrl, params: params)        
             .success (json) ->
               scope.listFin = json.fin
               scope.listData = json.data
               scope.moreShow = true unless json.data < 25
-              $ionicLoading.hide()
+              # $ionicLoading.hide()
+              $('#loading_div').hide()
 
         scope.loadMore = () ->
           scope.page += 1

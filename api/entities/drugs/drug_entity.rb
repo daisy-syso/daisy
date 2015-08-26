@@ -5,7 +5,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
   #   record.ori_price
   # end
 
-  expose :image_url, :spec, :code, :ori_price, :manufactory, :introduction
+  expose :image_url, :spec, :code, :ori_price, :manufactory, :introduction, :is_otc
 
   with_options if: {kinds_of_drug: true} do
   	expose :factory_count

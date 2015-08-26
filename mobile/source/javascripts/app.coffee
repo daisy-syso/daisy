@@ -477,17 +477,19 @@ angular.module 'DaisyApp', [
           # $alert.info($scope.listUrl)
           page = $scope.page = 1
           params = angular.extend { page: page }, params
-          $ionicLoading.show(
-            template: '<ion-spinner class="spinner-wighte"></ion-spinner>',
-            noBackdrop: true
-          )
+          # $ionicLoading.show(
+          #   template: '<ion-spinner class="spinner-wighte"></ion-spinner>',
+          #   noBackdrop: true
+          # )
+          $('#loading_div').show()
           $loader.get(url, params: params)
             .success (data) =>
               # if data.drugs.length < 1  then  $scope.moreData = false
               # $scope.drugs = data.drugs
               $scope.moreData = false if  data.data.length < 25
               $scope.data = data
-              $ionicLoading.hide();
+              # $ionicLoading.hide();
+              $('#loading_div').hide();
 
         $scope.loadData($route.current.params.type, $location.search())
         $scope.loadMore = () ->

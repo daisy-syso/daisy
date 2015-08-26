@@ -5,7 +5,12 @@
 	<div class="list">
 		<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" ng-click="linkToDrugDetail(drug.id)">
 			<img ng-src="{{drug.image_url}}" style="top:36px;">
-			<p style="position:absolute;top:10px;left:10px;">{{drug.name}}</p>
+			<p style="position:absolute;top:10px;left:10px;">
+				{{drug.name}}
+				<span ng-class="{'otc otc-red': drug.is_otc == '1', 'otc otc-green': drug.is_otc == '2' || drug.is_otc == '3'}">
+				{{drug.is_otc | otcLogo}}
+				</span>
+			</p>
 			<p>功能主治：{{drug.introduction}}</p>
 			<p>规格：{{drug.spec}}</p>
 			<p>药店数量：{{drug.drugstore_count}}</p>

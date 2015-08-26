@@ -63,9 +63,14 @@ class Hospitals::Hospital < ActiveRecord::Base
     # order(hospital_level_id: :desc).order(url: :desc)
   }
 
+  # scope :joins_table_order_desc, -> (od){
+  #   od ? reverse_order : all
+  # }
+
   scope :characteristic_hospitals, ->(type = true) {
     type ? joins(:characteristics)
       .where{characteristic_hospitals.characteristic_id == type}
+      .order("characteristic_hospitals.characteristic_id desc")
       .distinct : all
   }
 

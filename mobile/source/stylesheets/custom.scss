@@ -413,3 +413,26 @@ a.pink-button, .pink-button {
 .item p {
   font-size: 16px;
 }
+.green {
+  color:#02DF82
+}
+
+.otc {
+  display: inline-block;
+  width:30px;
+  height: 15px;
+  -moz-border-radius: 100px / 50px;
+  -webkit-border-radius: 100px / 50px;
+  border-radius: 100px / 50px; 
+  line-height: 15px;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.otc-red {
+  background-color:red;
+}
+
+.otc-green {
+  background-color:green;
+}

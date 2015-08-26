@@ -6,12 +6,16 @@
 <div class="list">
 	<a class="item item-thumbnail-left" style="padding-top:36px;" ng-repeat="drug in data.data" href="#/list/drugs/drugs?drug={{drug.name}}">
 		<img ng-src="{{drug.image_url}}" style="top:36px;">
-		<p style="position:absolute;top:10px;left:10px;">{{drug.name}}</p>
+		<p style="position:absolute;top:10px;left:10px;">
+			{{drug.name}}
+			<span ng-class="{'otc otc-red': drug.is_otc == '1', 'otc otc-green': drug.is_otc == '2' || drug.is_otc == '3'}">
+				{{drug.is_otc | otcLogo}}
+			</span>
+		</p>
 		<p>规格：{{drug.spec}}</p>
-		<p>品牌：{{drug.brand}}</p>
-		<p>批准文号：{{drug.code}}</p>
-		<p>生产厂家：{{drug.factory_count}}</p>
-		<p>参考价格：￥{{drug.ori_price}}</p>
+		<p>批号：<span class="green">{{drug.code}}</span>		</p>
+		<p>厂家：{{drug.factory_count}}</p>
+		<p>价格：<span class="price-color">￥{{drug.ori_price}}</span></p>
 	</a>
 </div>
 
