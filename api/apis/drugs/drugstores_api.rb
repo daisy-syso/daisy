@@ -4,6 +4,7 @@ class Drugs::DrugstoresAPI < ApplicationAPI
     index! Drugs::Drugstore,
       title: "身边药房",
       filters: { 
+        extension: { scope_only: true, default: 1, type: Integer},
         city: city_filters,
         type: type_filters("身边药房", :drugstore),
         county: county_filters,

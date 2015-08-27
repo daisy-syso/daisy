@@ -266,7 +266,6 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: proc { Hospitals::Characteristic.find_by_id(params[:characteristic_hospitals]).try(:name) || "特色科室"},
       filters: { 
-        # joins_table_order_desc: { scope_only: true, default: 1, type: Integer},
         extension: { scope_only: true, default: 1, type: Integer},
         city: city_filters,
         type: type_filters("特色科室"),
@@ -336,8 +335,9 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: "海外医院",
       filters: {
+        type: type_filters("海外医院"),
         # province: oversea_city_filters,
-        city: oversea_country_filters,
+        oversease: oversea_country_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
         extension: { scope_only: true, default: 1, type: Integer},

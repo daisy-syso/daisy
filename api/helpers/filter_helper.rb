@@ -50,10 +50,10 @@ module FilterHelper
 
     def oversea_country_filters
       {
-        key: "province_oversease",
         title: proc {Categories::Province.where(country_id: 2, id: params[:province]).first.try(:name) || "全部"},
+        key: "province_oversease",
+        template: "list",
         children: proc { Categories::Province.overses_filters(params[:country]) },
-        # children: proc { Categories::Province.all },
       }
     end
 

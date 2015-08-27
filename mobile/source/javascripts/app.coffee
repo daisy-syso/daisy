@@ -65,7 +65,7 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.moreData = true unless data.data.length < 25
               $scope.data = data
-          $scope.type = "/privileges/hospitals"
+          $scope.type = "privileges/hospitals"
           $scope.redirectTo = (type, params) ->
             # $scope.loadData(type, params)
             console.log(params)

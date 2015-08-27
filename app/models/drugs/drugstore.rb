@@ -29,6 +29,10 @@ class Drugs::Drugstore < ActiveRecord::Base
     end
   }
 
+  scope :extension, ->(b) {
+    b ==1 ? order(extension: :asc) : order(id: :asc)
+  }
+
   scope :alphabet, -> (alphabet) { 
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
   }
