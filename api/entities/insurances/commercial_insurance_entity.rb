@@ -4,7 +4,7 @@ class Insurances::CommercialInsuranceEntity < ApplicationEntity
 
   with_options if: { detail: true } do
     expose :age, :company, :detail
-
+    expose :insurance_company
    
   end
 

@@ -176,7 +176,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :extension, ->(b) {
-    b ==1 ? order(extension: :asc) : order(id: :asc)
+    b ==1 ? order(extension: :desc) : order(id: :asc)
   }
 
 

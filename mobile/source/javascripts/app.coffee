@@ -52,7 +52,8 @@ angular.module 'DaisyApp', [
             length = value?.title?.length || 2
             $rootScope.searchLeft = "#{20*length+40}px"
       ]
-
+    # ============== 团购 ===========
+    # 团购优惠
     $routeProvider.when '/privileges/hospitals',
       templateUrl: "templates/privileges/hospitals/index.html"
       controller: [
@@ -83,49 +84,61 @@ angular.module 'DaisyApp', [
       ]
 
     $routeProvider.when '/privileges/hospital_types/hospital_charges/hospital_onsales/:id',
-    templateUrl: "templates/privileges/hospitals/hospital_onsale.html"
-    controller: [
-      '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
-      ($rootScope, $scope, $loader, $routeParams, $animate) ->
-        $scope.title = "团购优惠"
-        $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
-          .success (data) ->
-            $scope.data = data.data
-            console.log(data)
-            console.log(1)
-    ]
+      templateUrl: "templates/privileges/hospitals/hospital_onsale.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+        ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $scope.title = "团购优惠"
+          $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
+            .success (data) ->
+              $scope.data = data.data
+      ]
 
+    #  疾病保险
     $routeProvider.when '/privileges/insurances',
-    templateUrl: "templates/privileges/insurances/index.html"
-    controller: [
-      '$rootScope', '$scope', '$loader', '$routeParams','$location'
-      ($rootScope, $scope, $loader, $routeParams, $location) ->
-        $scope.page = 1
-        params = angular.extend { page: $scope.page }, $location.search()
-        url = "/api/privileges/insurances"
-        $scope.title = "疾病保险"
-        $loader.get(url, params: params)
-          .success (data) ->
-            $scope.moreData = true unless data.data.length < 25
-            $scope.data = data
-        $scope.type = "privileges/insurances"
-        console.log($rootScope.newRedirectolink.indexOf($scope.type))
-        $scope.redirectTo = (type, params) ->
-          # $scope.loadData(type, params)
-          console.log(params)
-          $location.path("list/#{type}")
-          $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
-          $location.search(params)
-          $location.replace()
-        $scope.loadMore = () ->
-          params = angular.extend { page: $scope.page += 1 }, $location.search()
+      templateUrl: "templates/privileges/insurances/index.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams','$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $scope.page = 1
+          params = angular.extend { page: $scope.page }, $location.search()
+          url = "/api/privileges/insurances"
+          $scope.title = "疾病保险"
           $loader.get(url, params: params)
             .success (data) ->
-              $scope.moreData = false if  data.data.length < 25
-              $scope.data['data'] = $scope.data['data'].concat data['data']
+              $scope.moreData = true unless data.data.length < 25
+              $scope.data = data
+          $scope.type = "privileges/insurances"
+          console.log($rootScope.newRedirectolink.indexOf($scope.type))
+          $scope.redirectTo = (type, params) ->
+            # $scope.loadData(type, params)
+            console.log(params)
+            $location.path("list/#{type}")
+            $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            $location.search(params)
+            $location.replace()
+          $scope.loadMore = () ->
+            params = angular.extend { page: $scope.page += 1 }, $location.search()
+            $loader.get(url, params: params)
+              .success (data) ->
+                $scope.moreData = false if  data.data.length < 25
+                $scope.data['data'] = $scope.data['data'].concat data['data']
 
-    ]
+      ]
 
+    $routeProvider.when '/privileges/insurances/:id',
+      templateUrl: 'templates/privileges/insurances/insurance.html'
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams','$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $loader.get("/api/privileges/insurances/#{$routeParams.id}")
+            .success (data) ->
+              $scope.data = data.data
+              console.log(data)
+              console.log(1)
+      ]
+
+    # ===================团购 end=======================================
 
     # app分类展示页面
     $routeProvider.when '/infors/:type',

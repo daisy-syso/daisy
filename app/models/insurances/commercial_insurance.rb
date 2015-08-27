@@ -1,5 +1,5 @@
 class Insurances::CommercialInsurance < ActiveRecord::Base
-  
+  belongs_to :insurance_company, class_name: "Insurances::InsuranceCompany", foreign_key: 'company_id'
   scope :classification, -> (cf) {
   	cf ? where(classification: cf ) : all
   }

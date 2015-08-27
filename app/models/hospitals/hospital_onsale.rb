@@ -3,7 +3,7 @@ class Hospitals::HospitalOnsale < ActiveRecord::Base
   belongs_to :hospital, class_name: "Hospitals::Hospital"
   include Reviewable
   scope :extension, -> (flag) {
-  	flag == 1 ? order(extension: :asc) : all
+  	flag == 1 ? order(extension: :desc) : all
   }
 
   scope :hospital_type, -> (i) {
