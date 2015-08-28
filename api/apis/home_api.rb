@@ -64,7 +64,8 @@ class HomeAPI < Grape::API
         icon: "images/icons/2-5.png"
       }, {
         title: "母婴亲子",
-        link: "#/list/maternals/maternal_halls",
+        # link: "#/list/maternals/maternal_halls",
+        link: "#/privileges/maternals",
         icon: "images/icons/2-6.png"
       }, {
         title: "海外医疗",
