@@ -386,6 +386,10 @@ angular.module 'DaisyApp', [
       templateUrl: "templates/order.html"
       controller: detailCtrl
 
+    $routeProvider.when '/detail/examinations/examinations/:id',
+      templateUrl: 'templates/details/examinations/examination_item.html'
+      controller: examinationsDetailCtrl
+
     $routeProvider.when '/detail/drugs/drugs/:id/:manufactory_id',
       templateUrl: "templates/details/drugs/drugs.html"
       controller: drugDetailCtrl
@@ -393,10 +397,6 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/detail/symptoms/symptoms/:id',
       templateUrl: "templates/details/symptoms/symptom_item.html"
       controller: symptomsDetailCtrl
-
-    $routeProvider.when '/detail/examinations/examinations/:id',
-      templateUrl: 'templates/details/examinations/examination_item.html'
-      controller: examinationsDetailCtrl
 
     # $routeProvider.when '/detail/strategies/hospital_charge',
     #   templateUrl: "templates/details/strategies/hospital_charge.html"
@@ -632,13 +632,13 @@ angular.module 'DaisyApp', [
       templateUrl: 'templates/lists/manufactories.html'
       controller: []
 
-    $routeProvider.when '/list/symptoms/symptoms',
-      templateUrl: 'templates/symptoms_list.html'
-      controller: SymptomsListCtrl
-
     $routeProvider.when '/list/examinations/examinations',
       templateUrl: 'templates/examinations_list.html'
       controller: ExaminationsListCtrl
+
+    $routeProvider.when '/list/symptoms/symptoms',
+      templateUrl: 'templates/symptoms_list.html'
+      controller: SymptomsListCtrl
 
     $routeProvider.when '/list/drugs/drugs',
       # templateUrl: "templates/drugs_list.html"
@@ -900,6 +900,6 @@ angular.module 'DaisyApp', [
       "privileges/hospitals"
       "privileges/insurances"
       "privileges/maternals"
-    ] 
+    ]
 ]
 #= require_tree ./routes
