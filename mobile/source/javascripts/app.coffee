@@ -57,8 +57,8 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/privileges/hospitals',
       templateUrl: "templates/privileges/hospitals/index.html"
       controller: [
-        '$scope', '$loader', '$routeParams', '$location'
-        ($scope, $loader, $routeParams, $location) ->
+        '$scope', '$loader', '$routeParams', '$location', '$rootScope'
+        ($scope, $loader, $routeParams, $location, $rootScope) ->
           $scope.page = 1
           params = angular.extend { page: $scope.page }, $location.search()
           url = "/api/privileges/hospitals"
@@ -134,10 +134,48 @@ angular.module 'DaisyApp', [
           $loader.get("/api/privileges/insurances/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
-              console.log(data)
-              console.log(1)
       ]
 
+    # 母婴亲子
+
+    $routeProvider.when '/privileges/maternals',
+      templateUrl: 'templates/privileges/maternals/index.html'
+      controller: [
+        '$scope', '$loader', '$routeParams', '$location'
+        ($scope, $loader, $routeParams, $location) ->
+          $scope.page = 1
+          params = angular.extend { page: $scope.page }, $location.search()
+          # url = "/api/privileges/hospitals"
+          url = "/api/maternals/maternal_halls"
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.moreData = true unless data.data.length < 25
+              $scope.data = data
+          $scope.type = "privileges/hospitals"
+          $scope.redirectTo = (type, params) ->
+            console.log(params)
+            $location.path("list/#{type}")
+            $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            $location.search(params)
+            $location.replace()
+            # $location.keep = false
+          $scope.loadMore = () ->
+            params = angular.extend { page: $scope.page += 1 }, $location.search()
+            $loader.get(url, params: params)
+              .success (data) ->
+                $scope.moreData = false if  data.data.length < 25
+                $scope.data['data'] = $scope.data['data'].concat data['data']
+      ]
+
+    $routeProvider.when '/privileges/maternals/:id',
+      templateUrl: 'templates/privileges/maternals/maternal_hall.html'
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams','$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $loader.get("/api/maternals/maternal_halls/#{$routeParams.id}")
+            .success (data) ->
+              $scope.data = data.data
+      ]
     # ===================团购 end=======================================
 
     # app分类展示页面
@@ -861,6 +899,7 @@ angular.module 'DaisyApp', [
     $rootScope.newRedirectolink = [
       "privileges/hospitals"
       "privileges/insurances"
+      "privileges/maternals"
     ]
 ]
 #= require_tree ./routes

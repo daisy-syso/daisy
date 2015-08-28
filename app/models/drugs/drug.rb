@@ -22,6 +22,7 @@ class Drugs::Drug < ActiveRecord::Base
   has_and_belongs_to_many :manufactories, class_name: "Drugs::Manufactory", join_table: 'manufactory_drugs'
   has_and_belongs_to_many :drugstores, class_name: "Drugs::Drugstore", join_table: 'drug_manufactory_stores'
   has_many :drug_manufactory_stores, class_name: "Drugs::DrugManufactoryStore"
+  has_many :manufactory_drugs, class_name: "Drugs::ManufactoryDrug"
   has_many :diseases_drugs, class_name: 'Drugs::DiseasesDrug'
   has_many :drug_details, class_name: 'Drugs::DrugDetail'
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
@@ -90,11 +91,11 @@ class Drugs::Drug < ActiveRecord::Base
     alphabet ? where{name_initials.like("#{alphabet}%")} : all 
   }
 
-  scope :manufactory, -> (type) { 
-    type ? joins(:manufactories)
-      .where(manufactory_drugs: { manufactory_id: type })
-      .distinct : all 
-  }
+  # scope :manufactory, -> (type) { 
+  #   type ? joins(:manufactories)
+  #     .where(manufactory_drugs: { manufactory_id: type })
+  #     .distinct : all 
+  # }
 
   scope :manufactory_alph, -> (alph) {
     alph ? joins(:manufactories)
