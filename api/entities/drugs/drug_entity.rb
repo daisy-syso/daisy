@@ -18,7 +18,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
       Drugs::Manufactory.where(name: obj.manufactory).first.id
     end 
   	expose :drugstore_count do |obj, opt|
-      obj.drugstores.joins(:drug_manufactory_stores).where.not("drug_manufactory_stores.price is null").count
+      obj.drugstores.includes(:drug_manufactory_stores).where.not("drug_manufactory_stores.price is null").count
     end
 
   end
@@ -32,7 +32,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
         # store.instance_eval do 
         #   self[:price] = obj.drug_manufactory_stores.where(drugstore_id: store.id).first.price
         # end
-        price = obj.drug_manufactory_stores.joins(:drug_manufactory_stores).where.not("drug_manufactory_stores.price is null").where(drugstore_id: store.id).first.price
+        price = obj.drug_manufactory_stores.where.not("drug_manufactory_stores.price is null").where(drugstore_id: store.id).first.price
         # store.instance_variable_set(:@price, price)
         store.attributes.merge({price: obj.drug_manufactory_stores.where(drugstore_id: store.id).first.price })
       end
