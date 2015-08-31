@@ -14,6 +14,7 @@ angular.module('DaisyApp').directive 'list', [
         listLoadMore: "@"
         listFilters: "=?"
         listTpl: "@"
+        linkUrl: "@"
       link: (scope, element, attrs) ->
         if scope.listUrl
           scope.page = 1
@@ -54,6 +55,7 @@ angular.module('DaisyApp').directive 'list', [
         #       scope.listData = json.data
 
         scope.link = (data) ->
+          return scope.linkUrl+data.id if scope.linkUrl
           data.url || "#/detail/#{data.template}/#{data.id}" unless data.nolink
 
         scope.templateUrl = (data) ->

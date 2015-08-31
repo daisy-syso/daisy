@@ -101,48 +101,50 @@
     <div class="borderBottom1"></div>
     <ul class="store-list">
       <li  ng-repeat="store in data.drugstores">
-        <div class="name">
-          <h2>{{ store.name }}</h2><span><em>{{ store.price }}元</em></span>
-        </div>
-        <div class="list">
-          <div class="img">
-            <img ng-src="{{ store.image_url }}" />
+        <a href="#/detail/drugs/drugstores/{{store.id}}">
+          <div class="name">
+            <h2>{{ store.name }}</h2><span><em>{{ store.price }}元</em></span>
           </div>
-          <div class="txt">
-            <ul>
-              <li><strong>距离：</strong>{{$root.getDistance(store) | number:2}}千米 </li>
-              <li><strong>经营许可证：</strong>{{ store.License }}</li>
-              <li><strong>电话：</strong>{{ store.telephone }}</li>
-              <li><strong>网址：</strong>www.zhuni.com</li>
-              <li>
-                <form action="" name="form_dp" method="post" class="star">
-                  <div class="dp_boxc fr">
-                    <input class="fr" type="checkbox" style="margin-top:2px; display:none;" name="InterviewCommentInfoSub[expAuth]" value="0" />
-                    <div class="revinp">
-                      <span class="level">
-                          <i class="level_hollow" cjmark=""></i>
-                          <i class="level_hollow" cjmark=""></i>
-                          <i class="level_hollow" cjmark=""></i>
-                          <i class="level_hollow" cjmark=""></i>
-                          <i class="level_hollow" cjmark=""></i>
-                      </span>
-                      <span class="revgrade">良</span>
+          <div class="list">
+            <div class="img">
+              <img ng-src="{{ store.image_url }}" />
+            </div>
+            <div class="txt">
+              <ul>
+                <li><strong>距离：</strong>{{$root.getDistance(store) | number:2}}千米 </li>
+                <li><strong>经营许可证：</strong>{{ store.License }}</li>
+                <li><strong>电话：</strong>{{ store.telephone }}</li>
+                <li><strong>网址：</strong>www.zhuni.com</li>
+                <li>
+                  <form action="" name="form_dp" method="post" class="star">
+                    <div class="dp_boxc fr">
+                      <input class="fr" type="checkbox" style="margin-top:2px; display:none;" name="InterviewCommentInfoSub[expAuth]" value="0" />
+                      <div class="revinp">
+                        <span class="level">
+                            <i class="level_hollow" cjmark=""></i>
+                            <i class="level_hollow" cjmark=""></i>
+                            <i class="level_hollow" cjmark=""></i>
+                            <i class="level_hollow" cjmark=""></i>
+                            <i class="level_hollow" cjmark=""></i>
+                        </span>
+                        <span class="revgrade">良</span>
+                      </div>
                     </div>
-                  </div>
-                  <div class="star_t"><em>5.0</em></div>
-                </form>
-              </li>
+                    <div class="star_t"><em>5.0</em></div>
+                  </form>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="listBottom">
+            <ul>
+              <li>医保</li>
+              <li>24小时</li>
+              <li>配送</li>
             </ul>
           </div>
-        </div>
-
-        <div class="listBottom">
-          <ul>
-            <li>医保</li>
-            <li>24小时</li>
-            <li>配送</li>
-          </ul>
-        </div>
+        </a>
       </li>
     </ul>
   </div>
