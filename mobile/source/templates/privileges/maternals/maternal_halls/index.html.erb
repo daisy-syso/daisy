@@ -1,0 +1,27 @@
+<%= partial 'subheader',local: { title: "团购优惠"} %>
+<div class="content" style="top:100px;bottom:50px;">
+	<div class="list">
+		<a class="item item-thumbnail-left" ng-repeat="maternal in data.data" href="#/privileges/maternals/maternal_halls/{{maternal.id}}" style="padding-top:12px;">
+			<img src="{{maternal.image_url}}">
+			<p>{{maternal.name}}</p>
+			<p>
+				<span style="color: #ffd700">★★★★★</span>  5分 
+				<span style="float:right;color:#adadad;font-size:0.8em;">{{maternal.reviews_count || 0}}个评价</span>
+			</p>
+			<p>
+				婴儿用品：吉米婴儿浴盆
+				<span class="price-color" style="float:right;">￥189</span>
+
+
+			</p>
+			<p> 
+				孕妇装备：产褥期护理垫
+				<span class="price-color" style="float:right;">￥58</span>
+			</p>
+		</a>
+
+	</div>
+	<button class="button button-full button-balanced" ng-click="loadMore()" ng-show="moreData">
+	  查看更多
+	</button>
+</div>

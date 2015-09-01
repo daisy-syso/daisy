@@ -1,0 +1,47 @@
+<%= partial 'subheader' %>
+<ul class="list">
+    <li class="item">
+      <span>一清片</span>
+      <span style="float:right;">62元</span>
+    </li>
+    <li class="item">
+      数量：
+      <span style="float:right;font-size:1.4em;">
+      	<i class="ion-minus-circled" ng-click="changeCount('minus')"></i>
+      	<span ng-bind="count || 1"></span>
+      	<i class="ion-plus-circled" ng-click="changeCount('plus')"></i>
+      </span>
+    </li>
+    <li class="item">
+    	小计：<span style="float:right;">¥62元</span>
+    </li>
+</ul>
+
+<div class="list">
+
+  <div class="item item-input-inset">
+    <label class="item-input-wrapper">
+      <input type="text" placeholder="请输入手机号码">
+    </label>
+    <button class="button button-small">
+      发送验证码
+    </button>
+  </div>
+
+  <label class="item item-input">
+    <i class="icon ion-key placeholder-icon"></i>
+    <input type="text" placeholder="请输入短信中的验证码">
+  </label>
+
+</div>
+
+<button class="button button-full button-positive">
+  快捷下单
+</button>
+<p style="text-align:right;">
+	<a href="">有搜一搜账号，请登录 > </a>
+</p>
+
+<p style="margin-top:40px;">
+	温馨提示：未注册搜医搜账号的手机号，登录时将自动注册搜医搜账号，且代表您已同意 <a href="">《搜医搜网用户协议》</a>
+</p>

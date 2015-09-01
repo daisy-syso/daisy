@@ -65,7 +65,7 @@ class HomeAPI < Grape::API
       }, {
         title: "母婴亲子",
         # link: "#/list/maternals/maternal_halls",
-        link: "#/privileges/maternals",
+        link: "#/privileges/maternals/confinement_centers",
         icon: "images/icons/2-6.png"
       }, {
         title: "海外医疗",
@@ -1765,12 +1765,12 @@ class HomeAPI < Grape::API
       #  count: Maternals::ConfinementCente#r.count+Maternals::MaternalHal#l.count,
         children: [{
           id: :eldercare,
-          type: "maternals/confinement_centers",
+          type: "privileges/maternals/confinement_centers",
           image_url: "http://syso.qiniudn.com/iconyuezizhongxin_icon.png",
         #  count: Maternals::ConfinementCente#r.count,
           title: "月子中心"
         }, {
-          type: "maternals/maternal_halls",
+          type: "privileges/maternals/maternal_halls",
           image_url: "http://syso.qiniudn.com/iconyuyinghuiguan_icon.jpg",
         #  count: Maternals::MaternalHal#l.count,
           title: "母婴会馆",

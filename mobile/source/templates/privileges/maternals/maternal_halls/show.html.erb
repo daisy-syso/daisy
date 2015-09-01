@@ -1,9 +1,10 @@
 <%= partial 'subheader',local: { title: "最新优惠"} %>
+{{data}}
 <div class="content" style="top:50px;">
   <div class="album">
-  <img ng-src="{{data.image_url}}" />
-  <!-- <div class="desc">点击图片查看相册</div> -->
-</div>
+    <img ng-src="{{data.image_url}}" />
+    <!-- <div class="desc">点击图片查看相册</div> -->
+  </div>
   <div class="card">
   <ul class="table-view media">
     <li class="table-view-cell">

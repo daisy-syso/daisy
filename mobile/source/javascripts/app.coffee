@@ -138,22 +138,23 @@ angular.module 'DaisyApp', [
 
     # 母婴亲子
 
-    $routeProvider.when '/privileges/maternals',
-      templateUrl: 'templates/privileges/maternals/index.html'
+    $routeProvider.when '/privileges/maternals/:type',
+      templateUrl: (routeParams) ->
+        "templates/privileges/maternals/#{routeParams.type}/index.html"
       controller: [
-        '$scope', '$loader', '$routeParams', '$location'
-        ($scope, $loader, $routeParams, $location) ->
+        '$scope', '$loader', '$routeParams', '$location', '$rootScope'
+        ($scope, $loader, $routeParams, $location, $rootScope) ->
           $scope.page = 1
           params = angular.extend { page: $scope.page }, $location.search()
           # url = "/api/privileges/hospitals"
-          url = "/api/maternals/maternal_halls"
+
+          url = "/api/maternals/#{$routeParams.type}"
           $loader.get(url, params: params)
             .success (data) ->
               $scope.moreData = true unless data.data.length < 25
               $scope.data = data
-          $scope.type = "privileges/hospitals"
+          $scope.type = "privileges/maternals/#{$routeParams.type}"
           $scope.redirectTo = (type, params) ->
-            console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
             $location.search(params)
@@ -167,12 +168,13 @@ angular.module 'DaisyApp', [
                 $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
-    $routeProvider.when '/privileges/maternals/:id',
-      templateUrl: 'templates/privileges/maternals/maternal_hall.html'
+    $routeProvider.when '/privileges/maternals/:type/:id',
+      templateUrl: (routeParams) ->
+        "templates/privileges/maternals/#{routeParams.type}/show.html"
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
-          $loader.get("/api/maternals/maternal_halls/#{$routeParams.id}")
+          $loader.get("/api/maternals/#{$routeParams.type}/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
       ]
@@ -690,6 +692,23 @@ angular.module 'DaisyApp', [
                 $scope.data['data'] = $scope.data['data'].concat data['data']
       ]
 
+    $routeProvider.when '/deal/order',
+      templateUrl: "templates/deal/order.html"
+      controller: [
+        '$scope', '$rootScope', '$routeParams', '$localStorage', '$loader', '$location'
+        ($scope, $rootScope, $routeParams, $localStorage, $loader, $location) ->
+          $scope.title = "提交订单"
+          $rootScope.footerHide = true
+          $scope.count = 1
+          $scope.changeCount = (type) ->
+            if type == "minus" and $scope.count > 1
+              $scope.count -= 1
+            else if type == "plus" 
+              $scope.count += 1
+
+
+
+      ]
 
     $routeProvider.otherwise redirectTo: '/home'
 ]
@@ -899,7 +918,8 @@ angular.module 'DaisyApp', [
     $rootScope.newRedirectolink = [
       "privileges/hospitals"
       "privileges/insurances"
-      "privileges/maternals"
+      "privileges/maternals/maternal_halls"
+      "privileges/maternals/confinement_centers"
     ]
 ]
 #= require_tree ./routes

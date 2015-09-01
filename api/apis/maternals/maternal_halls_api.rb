@@ -4,6 +4,7 @@ class Maternals::MaternalHallsAPI < ApplicationAPI
     index! Maternals::MaternalHall,
       title: "母婴会馆",
       filters: { 
+        type: type_filters,
         city: city_filters,
         county: county_filters,
         order_by: order_by_filters(Maternals::MaternalHall),

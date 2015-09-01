@@ -3,7 +3,8 @@ class Maternals::ConfinementCentersAPI < ApplicationAPI
   namespace :confinement_centers do
     index! Maternals::ConfinementCenter,
       title: "月子中心",
-      filters: { 
+      filters: {
+        type: type_filters, 
         city: city_filters,
         county: county_filters,
         order_by: order_by_filters(Maternals::ConfinementCenter),
