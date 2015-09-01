@@ -10,12 +10,17 @@
 			<p>
 				价格：<span class="price">￥{{examination.price}}</span>
 			</p>
-			<div ng-repeat="examination_type in examination.examination_type">
+			<!-- <div ng-repeat="examination_type in examination.examination_type">
 			 	<a ng-href="{{ examination_type.url }}">适应人群：{{examination_type.name}}</a>
 				<p>
 					价格区间: ￥{{ examination_type.examination_charge.min_price }} - ￥{{ examination_type.examination_charge.max_price }}
 				</p>
-			</div>
+			</div> -->
+			<p>适应范围：
+				<span ng-repeat="examination_type in examination.examination_type">
+					{{examination_type.name}}
+				</span>
+			</p>
 		</li>
 	</ul>
 
