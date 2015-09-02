@@ -1,0 +1,118 @@
+<%= partial 'templates/details/header' %>
+
+<div class="content">
+
+  <div class="album">
+	  <img ng-src="{{data.drug.image_url}}" />
+	  <!-- <div class="desc">点击图片查看相册</div> -->
+	</div>
+
+  <div class="list">
+  	<div class="item">
+			<span class="price-color">￥{{ data.drug.ori_price }}</span>
+			<span style="float:right;">已售{{data.count || 0}}份</span>
+		</div>
+  </div>
+
+  <a href="#/deal/order?kind=drug&id={{data.id}}" class="btn btn-large btn-warning" style="width:100%;color:#fff">我要订购</a>
+  <ul class="list intro">
+    <li class="item">
+      <p>品牌：{{data.drug.brand}}</p>
+      <p>厂家：
+        <a>
+        	{{data.drug.manufactory}}
+        </a>
+      </p>
+      <p>批准文号：{{data.drug.code}}</p>
+      <p>规格：{{data.drug.spec}}</p>
+    </li>
+  </ul>
+
+  <div class="card">
+    <ul class="table-view media">
+     <li class="table-view-cell">
+      <div class="media-detail">
+        <h1>{{data.drugstore.<%= defined?(title) ? title : :name %>}}</h1>
+        <!-- <p class="pre">{{data.<%= defined?(subtitle) ? subtitle : :name %>}}</p> -->
+      </div>
+    </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <ul class="table-view media">
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <!-- <h1> <span>{{data.position}}</span></h1> -->
+          <p>营业时间：</p>
+          <p>GSP证号：{{data.drugstore.GSP}}</p>
+          <p>经营许可证号：{{data.drugstore.Business_License}}</p>
+          <p>经营范围：{{data.drugstore.Scope_of_business}}</p>
+          <p>网址：www.。。。（可申请免费使用药店定制网页→）</p>
+
+        </div>
+
+      </li>
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <h4 class="fix">
+          	药店服务总评
+            <a href="#/review/Drugs::Drugstore/{{::id}}"><span style="color: #ffd700">★★★★★5分</span> </a>  
+            <span class="pull-right">{{data.reviews_count}}人参与评分</span>
+          </h4>
+        </div>
+
+      </li>
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <ul class="inline border" style="text-align: justify;">
+            <% remarks = %i(客户服务 发货速度 物流速度 商品包装) %>
+            <% remarks.each do |remark|%>
+            <li><%=remark%></li>
+            <%end%>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3 ng-click="goto('aboutDrugs-start')" style="text-decoration: underline;color:#E62418">药店相关药品列表</h3>
+    </div>
+  </div>
+
+  <%#= partial 'templates/details/review' %>
+  <%= partial 'templates/details/map' %>
+
+  <div class="card">
+    <ul class="table-view media">
+
+      <li class="table-view-cell">
+        <%= partial 'templates/details/actions' %>
+      </li>
+    </ul>
+  </div>
+  <div id="aboutDrugs-start"></div>
+  <div class="bg team">
+    <div class="fix index-hd">
+      <h3>药店相关药品列表</a></h3>
+    </div>
+    <div list list-url="/api/drugs/drugstores/{{data.drugstore.id}}/drugs" list-title="其他相关" list-more="查看更多"  ng-if="data.drugstore.id" list-tpl="templates/lists/drugs/drugs.html" link-url="#/detail/drugs/drugs/">      
+    </div>
+  </div>
+
+ 
+
+</div>
+
+<footer class="footer">
+  <menu class="footer-con" style="background-color:rgba(0,0,0,0.7);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
+    <div>
+    <a href="tel:{{data.telephone}}"><image src="images/call.jpg" width="100%">  </a>
+    <a ng-href="{{data.url}}"><image src="images/search.jpg" width="100%"></a>
+    </div>
+  </menu>
+</footer>
+

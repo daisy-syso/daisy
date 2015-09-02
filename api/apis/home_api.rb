@@ -55,8 +55,10 @@ class HomeAPI < Grape::API
         link: "#/list/examinations/examinations",
         icon: "images/icons/2-3.png"
       }, {
-        title: "医保查询",
-        link: "#/list/eldercares/nursing_rooms",
+        # title: "医保查询",
+        title: "最新优惠",
+        # link: "#/list/eldercares/nursing_rooms",
+        link: "#/privileges/newest",
         icon: "images/icons/2-4.png"
       }, {
         title: "症状查询",
@@ -931,6 +933,9 @@ class HomeAPI < Grape::API
         title: "母婴会馆",
         params: { social_security_type: 5 }
       }]
+    }, {
+      title: "最新优惠"
+    #  count: Maternals::ConfinementCente#r.count+Maternals::MaternalHal#l.count,
     }]
   end
 

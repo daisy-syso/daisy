@@ -23,6 +23,13 @@ class Drugs::DrugstoresAPI < ApplicationAPI
       present :data, drugstore.drugs.page(params[:page])
       # present! drugstore.drugs
     end
+    get "/:drugstore_id/drugs/:drug_id" do 
+      drugstore = Drugs::Drugstore.where(id: params[:drugstore_id]).first
+      drug = drugstore.drugs.where(id: params[:drug_id]).first
+      present :drug, drug
+      present :drugstore, drugstore
+      # present! drugstore.drugs
+    end
     show! Drugs::Drugstore
   end
 end

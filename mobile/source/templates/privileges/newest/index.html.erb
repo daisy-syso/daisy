@@ -1,0 +1,25 @@
+<%= partial 'subheader',local: { title: "最新优惠"} %>
+<div class="content" style="top:100px;bottom:50px;">
+	<div class="list">
+		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}" style="padding-top:12px;">
+			<img src="{{onsale.hospital.image_url}}">
+			<p>{{onsale.hospital.name}}</p>
+			<p>
+				<span style="color: #ffd700">★★★★★</span>  5分 
+				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.reviews_count || 0}}个评价</span>
+			</p>
+			<p>
+				<span>优惠：</span>
+				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.sales_volume || 0}}人购买</span>
+			</p>
+			<p> 
+				<span class="price-color">现价：￥{{onsale.price}}</span>
+				<span style="color:#adadad;text-decoration:line-through">{{onsale.original_price}}</span>
+			</p>
+		</a>
+
+	</div>
+	<button class="button button-full button-balanced" ng-click="loadMore()" ng-show="moreData">
+	  查看更多
+	</button>
+</div>

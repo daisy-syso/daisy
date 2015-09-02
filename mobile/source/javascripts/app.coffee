@@ -178,7 +178,35 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.data = data.data
       ]
+      # 最新优惠
+    $routeProvider.when '/privileges/newest',
+      templateUrl: "templates/privileges/newest/index.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams','$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
+          url = "/api/privileges/hospitals"
+          console.log(url)
+          $scope.page = 1
+          params = angular.extend { page: $scope.page }, $location.search()
+          $loader.get(url, params: params)
+            .success (data) ->
+              $scope.moreData = true unless data.data.length < 25
+              $scope.data = data
+
+      ]
     # ===================团购 end=======================================
+
+    $routeProvider.when '/detail/drugstores/:store_id/drugs/:drug_id',
+      templateUrl: "templates/details/drugs/drugstore.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams','$location'
+        ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $loader.get("/api/drugs/drugstores/#{$routeParams.store_id}/drugs/#{$routeParams.drug_id}")
+            .success (data) ->
+              console.log("drugs=============")
+              $scope.data = data
+
+      ]
 
     # app分类展示页面
     $routeProvider.when '/infors/:type',
