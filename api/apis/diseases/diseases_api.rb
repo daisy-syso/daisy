@@ -37,7 +37,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
           common_disease: common_diseas_filters,
           # city: city_filters,
           # hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部" } },
-          hospital_type: hospital_type_filters,
+          # hospital_type: hospital_type_filters,
           county: fake_county_filters,
           order_by: order_by_filters(Diseases::Disease),
           form: form_filters,

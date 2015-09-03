@@ -22,7 +22,7 @@ class HomeAPI < Grape::API
         # link: "#/list/hospitals/polyclinics",
         icon: "images/icons/1-4.png"
       }, {
-        title: "药品大全",
+        title: "药品团购",
         link: "#/list/drugs/drugs",
         icon: "images/icons/1-5.png"
       }, {
@@ -30,7 +30,7 @@ class HomeAPI < Grape::API
         link: "#/list/drugs/drugstores",
         icon: "images/icons/1-6.png"
       }, {
-        title: "养老服务",
+        title: "养老精选",
         link: "#/list/eldercares/nursing_rooms",
         # title: "医保查询",
         # link: "#/list/social_securities/social_securities",
@@ -47,11 +47,11 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/characteristics",
         icon: "images/icons/2-1.png"
       }, {
-        title: "团购优惠",
+        title: "医疗团购",
         link: "#/privileges/hospitals",
         icon: "images/icons/2-2.png"
       }, {
-        title: "全国体检",
+        title: "体检团购",
         link: "#/list/examinations/examinations",
         icon: "images/icons/2-3.png"
       }, {
@@ -65,7 +65,7 @@ class HomeAPI < Grape::API
         link: "#/list/symptoms/symptoms",
         icon: "images/icons/2-5.png"
       }, {
-        title: "母婴亲子",
+        title: "月子中心",
         # link: "#/list/maternals/maternal_halls",
         link: "#/privileges/maternals/confinement_centers",
         icon: "images/icons/2-6.png"
@@ -831,9 +831,20 @@ class HomeAPI < Grape::API
         type: "maternals/confinement_centers",
         title: "月子中心价格查询"
       }, {
-        title: "返利优惠"
+        type: "maternals/confinement_centers",
+        title: "海外医疗就诊攻略"
       }, {
-        title: "代金券"
+        type: "maternals/confinement_centers",
+        title: "安全用药攻略"
+      }, {
+        type: "maternals/confinement_centers",
+        title: "找月子中心攻略"
+      }, {
+        type: "maternals/confinement_centers",
+        title: "网上买药攻略"
+      }, {
+        type: "maternals/confinement_centers",
+        title: "查化验单攻略"
       }]
     }, {
       type: "examinations/examinations",
@@ -1661,7 +1672,7 @@ class HomeAPI < Grape::API
           title: "药品价格查询"
         }, {
           type: "insurances/insurances",
-          title: "健康保险价格查询"
+          title: "疾病保险价格查询"
         }, {
           type: "insurances/insurances",
           title: "养老保险价格查询"

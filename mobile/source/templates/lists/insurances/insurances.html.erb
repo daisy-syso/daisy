@@ -1,10 +1,47 @@
-<!-- <div class="media-body-only">
-  <h1>{{data.name}}</h1>
+<!-- <div class="row" style="padding-bottom:0">
+  <div class="col" style="padding-bottom:0;padding-top: 0px;">
+    <div class="list" style="padding-bottom:0">
+      <a class="item item-thumbnail-left" ng-href="{{link(data)}}" style="padding-bottom:0">
+        <img ng-src="{{data.image_url}}">
+        <ul class="list-cont">
+          <li>
+          	产品特色：重疾保障金：返保费105%•特定部位原位癌：40000元，重大疾病保障涵盖30种疾病短投长保
+          </li>
+          <li class="text-overflow">
+            承保年龄:  18-50岁人群
+            <span class="pull-right price-color" style="color:#fff">查看详情</span>
+          </li>
+          <li>
+            保险期限： 20年
+            <span class="pull-right price-color" style="border:none;background-color: #FFF;">已售{{data.sold_count || 0}}件 ≥ </span>
+          </li>
+        </ul>
+      </a>
+    </div>
+  </div>
 </div> -->
-<p style="padding: 5px 0;font-size:15px;">
-  <a ng-href="{{link(data)}}">{{data.<%= defined?(title) ? title : :name %>}}</a>  
-  <!-- <span class="pull-right">更多>></span> -->
-  <span style="color: #ffd700">★★★★★</span>   5分
-</p>
-<img class="media-object pull-left height-auto" ng-src="{{data.image_url}}">
-<%= partial 'partial/body/insurance', locals: { subtitle: :position } %>
+
+<div class="list" style="margin-bottom:0">
+	<a class="item item-thumbnail-left" style="padding-top:30px;padding-bottom:0;" ng-href="#/detail/insurances/insurances/{{data.id}}">
+		<img ng-src="{{data.image_url}}" style="top:30px;">
+		<p style="position:absolute;top:0px;left:0;">{{data.name}}</p>
+		<p>
+			<span style="color: #ffd700">★★★★★</span>  5分 
+			<span style="float:right;color:#adadad;font-size:0.8em;">{{data.reviews_count || 0}}个评价</span>
+		</p>
+		<p>重疾保障金：返保费105%•特定部位原位癌：40000元，重大疾病保障涵盖30种疾病短投长保</p>
+		<p>
+			承保年龄:<span class="price-color">  18-50岁</span>
+		</p>
+		<p>
+			保障期限： 
+			<span class="price-color">20年</span>
+		</p>
+		<p> 
+			现价：<span class="price-color">￥{{data.price}}</span>
+			<span style="color:#adadad;text-decoration:line-through">{{data.original_price}}</span>
+		</p>
+	</a>
+
+</div>
+

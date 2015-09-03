@@ -208,6 +208,8 @@ angular.module 'DaisyApp', [
 
       ]
 
+    # $routeProvider.when '/details/insurances/insurances/:id'
+
     # app分类展示页面
     $routeProvider.when '/infors/:type',
       templateUrl: (routeParams) ->

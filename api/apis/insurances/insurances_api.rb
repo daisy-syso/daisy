@@ -18,5 +18,6 @@ class Insurances::InsurancesAPI < ApplicationAPI
           "当前主题精选"),
         price_scope: form_price_scope_filters([1000, 5000, 10000, 50000, 100000])
       }
+    show! Insurances::Insurance
   end
 end
