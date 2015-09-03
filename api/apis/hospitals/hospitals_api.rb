@@ -236,16 +236,16 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: "综合医院",
       filters: { 
+        extension: { scope_only: true, default: 1, type: Integer},
         city: city_filters,
         type: type_filters("综合医院"),
         hospital_type: { scope_only: true},
         hospital_level: { scope_only: true, default: false },
         # order_by_url: { scope_only: true, default: 7 },
-        # order_by_level: { scope_only: true, default: 7 },
+        order_by_level: { scope_only: true, default: 7 },
         county: county_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
-        extension: { scope_only: true, default: 1, type: Integer},
         # query: form_query_filters, 
         # hospital_level: form_radio_filters(Hospitals::HospitalLevel, "医院等级"),
         # has_url: form_switch_filters("网址"),
@@ -259,7 +259,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
           "当前主题精选"),
         alphabet: form_alphabet_filters
       },
-      template: "hospitals/hospitals_t1"
+      template: "hospitals/hospitals_t1",
+      includes: [:hospital_onsales, :hospital_types]
   end
 
   namespace :characteristics do

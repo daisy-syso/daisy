@@ -115,6 +115,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
         type: type_filters("团购优惠"),
         hospital_charge: hospital_charge_filters,
         order_by: hospital_order_by_filters,
+        hospital_type: { scope_only: true, type: Integer},
         form: form_filters,
         extension: { scope_only: true, default: 1, type: Integer},
         need_order: form_switch_filters("无需预约"),

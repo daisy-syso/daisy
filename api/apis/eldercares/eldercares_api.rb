@@ -2,10 +2,10 @@ class Eldercares::EldercaresAPI < ApplicationAPI
 
   namespace :nursing_rooms do
     index! Eldercares::NursingRoom,
-      title: "养老公寓",
+      title: "养老精选",
       filters: { 
         city: city_filters,
-        type: type_filters("养老公寓", :eldercare),
+        type: type_filters("养老精选"),
         county: county_filters,
         null_last: { scope_only: true, default: 1 },
         order_by: order_by_filters(Eldercares::NursingRoom),

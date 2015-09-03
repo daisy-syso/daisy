@@ -75,8 +75,7 @@ class Hospitals::Hospital < ActiveRecord::Base
   }
 
   scope :order_by_level, -> (t = true) {
-    # p "ssss======"
-    # order(hospital_level_id: :asc)
+    order(hospital_level_id: :asc)
   }
 
   scope :order_by_telephone, -> () {

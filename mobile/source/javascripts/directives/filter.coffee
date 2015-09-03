@@ -11,9 +11,13 @@ angular.module('DaisyApp').directive 'filter', [
           titles: {}
 
         scope.$watch 'filterData', (filterData) ->
+          console.log("filterData")
+          console.log(filterData)
           if filterData
             for filter, index in filterData
               $rootScope.formatFilter(filter)
+              console.log(111111)
+              console.log($rootScope.formatFilter(filter))
 
         scope.toggleMenu = (index, menu) ->
           if scope.current.index == index
