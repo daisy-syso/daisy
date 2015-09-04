@@ -332,14 +332,14 @@ module FilterHelper
     end
 
     def order_by_filters klass, options = {}
-#       离我最近
 
       filters_list = {
         newest: "最新发布",
         hotest: "人气最高",
         favoriest: "评价最好",
         cheapest: "价格最低",
-        most_expensive: "价格最高"
+        most_expensive: "价格最高",
+        nearest: "离我最近"
       }
       {
         default: options[:default] || :auto,

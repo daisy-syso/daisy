@@ -58,7 +58,7 @@ class HomeAPI < Grape::API
         link: "#/list/symptoms/symptoms",
         icon: "images/icons/2-5.png"
       }, {
-        title: "月子中心",
+        title: "月子团购",
         # link: "#/list/maternals/maternal_halls",
         link: "#/privileges/maternals/confinement_centers",
         icon: "images/icons/2-6.png"
