@@ -3,6 +3,8 @@ class Drugs::DrugsAPI < ApplicationAPI
     index! Drugs::Drug,
       title: "药品大全",
       filters: {
+        extension: { scope_only: true, default: 1, type: Integer},
+        drug: {scope_only: true, type: String},
         city: fake_city_filters,
         type: type_filters("药品大全", :drug),
         search_by: search_by_filters({
@@ -12,15 +14,12 @@ class Drugs::DrugsAPI < ApplicationAPI
           alphabet: alphabet_filters,
           manufactory_alph: {title: "品牌", class: Drugs::Manufactory}
         }),
-        drug: {scope_only: true, type: String},
         order_by: order_by_filters(Drugs::Drug),
-        extension: { scope_only: true, default: 1, type: Integer},
         form: form_filters,
-        query: form_query_filters,
-        price: form_price_filters,
-        manufactory_query: form_radio_array_filters(
-          %w(三精制药 同仁堂 修正药业 太极集团), "品牌"),
-        alphabet: form_alphabet_filters
+        appointment: form_switch_filters("无需预约"),
+        has_return: form_switch_filters("优惠返利"),
+        drug_category: form_radio_array_filters(%w(西药系列 中药系列 处方药 非处方药 保健品 医疗器械 化妆品 进口西药 进口中药 进口保健品), "药品分类"),
+        dosage_form: form_radio_array_filters(%w(膏药 软膏 胶囊 注射液 颗粒 贴 丸 滴眼液 片 泡腾片 栓 口服液 冲剂 针剂 喷剂 糖浆), "剂型主题精选")
       },
       parent: proc {
         if params[:drug]

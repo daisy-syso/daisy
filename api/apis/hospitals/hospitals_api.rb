@@ -255,9 +255,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         is_community: { scope_only: true, type: Object },
         has_mobile_url: form_switch_filters("手机挂号"),
         has_return: form_switch_filters("优惠返利"),
-        template: form_radio_array_filters(%w(不限 热门医院 有网址),
-          "当前主题精选"),
-        alphabet: form_alphabet_filters
+        template: form_radio_array_filters(%w(不限 医保定点医院 网上挂号/咨询 手机挂号/咨询 电话预约/咨询 字母),
+          "当前主题精选")
       },
       template: "hospitals/hospitals_t1",
       includes: [:hospital_onsales, :hospital_types]
@@ -327,8 +326,8 @@ class Hospitals::HospitalsAPI < ApplicationAPI
         has_mobile_url: form_switch_filters("手机挂号"),
         has_return: form_switch_filters("优惠返利"),
         template: form_radio_array_filters(%w(不限 热门医院 有网址),
-          "当前主题精选"),
-        alphabet: form_alphabet_filters
+          "当前主题精选")
+        # alphabet: form_alphabet_filters
       }
   end
 
