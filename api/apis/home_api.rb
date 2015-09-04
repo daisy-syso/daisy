@@ -15,18 +15,18 @@ class HomeAPI < Grape::API
         title: "找医生",
         link: "#/list/hospitals/doctors",
         icon: "images/icons/1-3.png"
-      },  {
-        title: "医疗团购",
-        link: "#/privileges/hospitals",
-        icon: "images/icons/2-2.png"
+      }, {
+        title: "身边药房",
+        link: "#/list/drugs/drugstores",
+        icon: "images/icons/1-6.png"
       }, {
         title: "药品团购",
         link: "#/list/drugs/drugs",
         icon: "images/icons/1-5.png"
       }, {
-        title: "身边药房",
-        link: "#/list/drugs/drugstores",
-        icon: "images/icons/1-6.png"
+        title: "医疗团购",
+        link: "#/privileges/hospitals",
+        icon: "images/icons/2-2.png"
       }, {
         # title: "医保查询",
         title: "最新优惠",
@@ -42,11 +42,9 @@ class HomeAPI < Grape::API
         link: "#/list/hospitals/characteristics",
         icon: "images/icons/2-1.png"
       }, {
-        title: "养老精选",
-        link: "#/list/eldercares/nursing_rooms",
-        # title: "医保查询",
-        # link: "#/list/social_securities/social_securities",
-        icon: "images/icons/1-7.png"
+        title: "症状查询",
+        link: "#/list/symptoms/symptoms",
+        icon: "images/icons/2-5.png"
       }, {
         title: "诊疗攻略",
         link: "#/list/price_search/strategy_list",
@@ -54,9 +52,11 @@ class HomeAPI < Grape::API
         # link: "#/list/hospitals/polyclinics",
         icon: "images/icons/1-4.png"
       }, {
-        title: "症状查询",
-        link: "#/list/symptoms/symptoms",
-        icon: "images/icons/2-5.png"
+        title: "养老精选",
+        link: "#/list/eldercares/nursing_rooms",
+        # title: "医保查询",
+        # link: "#/list/social_securities/social_securities",
+        icon: "images/icons/1-7.png"
       }, {
         title: "月子团购",
         # link: "#/list/maternals/maternal_halls",
