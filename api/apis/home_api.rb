@@ -15,12 +15,10 @@ class HomeAPI < Grape::API
         title: "找医生",
         link: "#/list/hospitals/doctors",
         icon: "images/icons/1-3.png"
-      }, {
-        title: "诊疗攻略",
-        link: "#/list/price_search/strategy_list",
-        # title: "手机挂号",
-        # link: "#/list/hospitals/polyclinics",
-        icon: "images/icons/1-4.png"
+      },  {
+        title: "医疗团购",
+        link: "#/privileges/hospitals",
+        icon: "images/icons/2-2.png"
       }, {
         title: "药品团购",
         link: "#/list/drugs/drugs",
@@ -30,36 +28,31 @@ class HomeAPI < Grape::API
         link: "#/list/drugs/drugstores",
         icon: "images/icons/1-6.png"
       }, {
+        # title: "医保查询",
+        title: "最新优惠",
+        # link: "#/list/eldercares/nursing_rooms",
+        link: "#/privileges/newest",
+        icon: "images/icons/2-4.png"
+      }, {
+        title: "体检团购",
+        link: "#/list/examinations/examinations",
+        icon: "images/icons/2-3.png"
+      }, {
+        title: "特色科室",
+        link: "#/list/hospitals/characteristics",
+        icon: "images/icons/2-1.png"
+      }, {
         title: "养老精选",
         link: "#/list/eldercares/nursing_rooms",
         # title: "医保查询",
         # link: "#/list/social_securities/social_securities",
         icon: "images/icons/1-7.png"
       }, {
-        title: "全部类别",
-        link: "#/list/menus",
-        # title: "价格搜索",
-        # link: "#/list/price_search/drugs",
-        # link: "#/list/price_search/strategy_list",
-        icon: "images/icons/1-8.png"
-      }, {
-        title: "特色科室",
-        link: "#/list/hospitals/characteristics",
-        icon: "images/icons/2-1.png"
-      }, {
-        title: "医疗团购",
-        link: "#/privileges/hospitals",
-        icon: "images/icons/2-2.png"
-      }, {
-        title: "体检团购",
-        link: "#/list/examinations/examinations",
-        icon: "images/icons/2-3.png"
-      }, {
-        # title: "医保查询",
-        title: "最新优惠",
-        # link: "#/list/eldercares/nursing_rooms",
-        link: "#/privileges/newest",
-        icon: "images/icons/2-4.png"
+        title: "诊疗攻略",
+        link: "#/list/price_search/strategy_list",
+        # title: "手机挂号",
+        # link: "#/list/hospitals/polyclinics",
+        icon: "images/icons/1-4.png"
       }, {
         title: "症状查询",
         link: "#/list/symptoms/symptoms",
@@ -77,35 +70,10 @@ class HomeAPI < Grape::API
         title: "疾病保险",
         link: "#/privileges/insurances",
         icon: "images/icons/2-8.png"
-      # }
-      # }, {
-      #   title: "热门专科",
-      #   link: "#/list/hospitals/specialists",
-      #   icon: "images/icons/1-9.png"
-      # }, {
-      #   title: "热门诊所",
-      #   link: "#/home",
-      #   icon: "images/icons/1-10.png"
-      # }, {
-      #   title: "全国体检",
-      #   link: "#/list/examinations/examinations",
-      #   icon: "images/icons/2-3.png"
-      # }, {
-      #   title: "养老服务",
-      #   link: "#/list/eldercares/nursing_rooms",
-      #   icon: "images/icons/2-5.png"
-      # }, {
-      #   title: "月子中心",
-      #   link: "#/list/maternals/confinement_centers",
-      #   icon: "images/icons/2-10.png"
-      # }, {
-      #   title: "母婴会馆",
-      #   link: "#/list/maternals/maternal_halls",
-      #   icon: "images/icons/2-11.png"
-      # }, {
-      #   title: "返利优惠",
-      #   link: "#/list/coupons/drugs",
-      #   icon: "images/icons/1-11.png"
+      }, {
+        title: "全部类别",
+        link: "#/list/menus",
+        icon: "images/icons/1-8.png"
       }],
       subtitle: {
         key: :city,
