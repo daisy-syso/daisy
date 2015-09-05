@@ -9,7 +9,7 @@ class Informations::AppInforsAPI < ApplicationAPI
 
     desc "获取前四个"
     get "examples" do 
-      present :apps, Informations::AppInformation.group(:type_id).order(:type_id).first(4)
+      present :apps, Informations::AppInformation.group(:type_id).order(:type_id).first(5)
     end
 
     get ":id" do
