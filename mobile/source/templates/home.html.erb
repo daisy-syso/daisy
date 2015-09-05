@@ -90,14 +90,10 @@
         </div>
 
         <div class="row" style="margin: auto 0">
-          <div class="col col50">
-            <a href="dongtai/211484.html">粉红时光拯救乳</a>
-            <a class="hote" rel="nofollow" href="#" onclick="msgOnline('tel','news');"></a>
-          </div>
-          <div class="col col50">
-            <a href="#">高新技术重塑男</a>
-            <a class="hote" rel="nofollow" href="tel_3A//075525890396" onclick="msgOnline('tel','news');"></a>
 
+          <div class="col col25" ng-repeat="app in apps"> 
+            <img src="{{app.image_url}}" width="90%">
+            <p style="text-align:center;width:90%;overflow:hidden;white-space:nowrap;">{{app.name}}</p>
           </div>
         </div>
       </div>

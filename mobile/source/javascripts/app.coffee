@@ -47,7 +47,9 @@ angular.module 'DaisyApp', [
             $loader.get("/api/home.json")
               .success (data) ->
                 $rootScope.homeData = data
-
+          $loader.get("/api/infors/apps/examples")
+            .success (data) ->
+              $rootScope.apps = data.apps
           $rootScope.$watch "city", (value) ->
             length = value?.title?.length || 2
             $rootScope.searchLeft = "#{20*length+40}px"

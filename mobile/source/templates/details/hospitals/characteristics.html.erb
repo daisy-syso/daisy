@@ -1,0 +1,12 @@
+<%= partial 'subheader' %>
+<div class="content" ng-class="type" style="padding-bottom:0;">
+	<div style="height:55px"></div>
+	<div ng-hide="nofilters" style="height:54px"></div>
+	<div class="list" >
+		<a href="#/list/hospitals/characteristics?search_by=characteristic&characteristic_hospitals={{characteristic.id}}" class="item" ng-repeat="characteristic in data.data" style="font-size:1.4em;">
+			<i class="ion-chevron-right" style="float:right"></i>
+			{{characteristic.name}}
+		</a>
+	</div>
+
+</div>

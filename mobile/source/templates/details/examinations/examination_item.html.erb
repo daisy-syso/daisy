@@ -17,7 +17,7 @@
       </li>
     </ul>
   </div>
-
+<!-- 
   <div class="borderBottom10"></div>
   <div class="pingfen" ng-click="review()">
     <form action="" name="form_dp" method="post">
@@ -36,16 +36,40 @@
       </div>
       <div class="star_t"><em>5.0</em></div>
     </form>
-    <span class="fr scored">{{ data.reviews_count || 0}}人评分</span>
-  </div>
+    <span class="fr scored">{{ data.reviews_count}}人评分</span>
+  </div> -->
 
-  <div class="borderBottom10"></div>
+  <!-- <div class="borderBottom10"></div>
   <div class="pj_tb">
     <a href="#" class="bg01">环境不错 222</a>
     <a href="#" class="bg01">有导医 21</a>
     <a href="#" class="bg01">服务到位 43</a>
     <a href="#" class="bg01">设备先进 874</a>
     <a href="#" class="bg02">味道不好 874</a>
+  </div> -->
+
+  <div class="card">
+    <ul class="table-view media">
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <h4 class="fix">
+            中心服务总评
+            <span style="color: #ffd700">★★★★★5分</span>   
+            <span class="pull-right">{{data.reviews_count}}人参与评分</span>
+          </h4>
+        </div>
+      </li>
+      <li class="table-view-cell">
+        <div class="media-detail">
+          <ul class="inline border" style="text-align: justify;">
+            <li>医术精准</li>
+            <li>服务细致</li>
+            <li>环境优雅</li>
+            <li>性价比高</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <div class="card">

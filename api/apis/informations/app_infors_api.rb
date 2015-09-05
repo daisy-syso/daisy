@@ -7,12 +7,19 @@ class Informations::AppInforsAPI < ApplicationAPI
       present! apps, width: Informations::AppInformationTypeEntity
     end
 
+    desc "获取前四个"
+    get "examples" do 
+      present :apps, Informations::AppInformation.group(:type_id).order(:type_id).first(4)
+    end
+
     get ":id" do
       app_type = Informations::AppInformationType.where(id: params[:id]).first
       apps = app_type.app_informations
       present :app_type, app_type
       present :apps, apps
     end
+
+
   end
 
 end
