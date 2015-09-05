@@ -11,8 +11,9 @@ class Privileges::HospitalsAPI < ApplicationAPI
 	        form: form_filters,
 	        need_order: form_switch_filters("无需预约"),
 	        has_return: form_switch_filters("返现"),
-	        template: form_radio_array_filters_new("andrology", "当前主题精选"),
-	        price_scope: form_price_scope_filters([500, 1000, 5000, 10000, 20000])
+	        # template: form_radio_array_filters_new("andrology", "当前主题精选"),
+	        # price_scope: form_price_scope_filters([500, 1000, 5000, 10000, 20000]),
+          price_type:form_radio_array_filters(%w(不限 500元以下 500-1000元 1000-3000元 3000-5000元 5000元以上), "价格排列按钮")
 				}
 			hfilters = {}
 

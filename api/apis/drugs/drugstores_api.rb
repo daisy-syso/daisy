@@ -8,15 +8,13 @@ class Drugs::DrugstoresAPI < ApplicationAPI
         city: city_filters,
         type: type_filters("身边药房", :drugstore),
         county: county_filters,
-        # search_by: search_by_filters({
-        #   alphabet: alphabet_filters
-        # }),
-        # alphabet: alphabet_filters,
         order_by: order_by_filters(Drugs::Drugstore),
         form: form_filters,
         query: form_query_filters, 
-        alphabet: form_alphabet_filters,
-        is_local_hot: form_switch_filters("热门药店")
+        # is_local_hot: form_switch_filters("热门药店")
+        appointment: form_switch_filters("无需预约"),
+        has_return: form_switch_filters("优惠返利"),
+        theme: form_radio_array_filters(%w(定点药房 24小时营业 网上药店资质 连锁药店 品质药店加盟商), "主题精选")
       }
     get "/:id/drugs" do 
       drugstore = Drugs::Drugstore.where(id: params[:id]).first

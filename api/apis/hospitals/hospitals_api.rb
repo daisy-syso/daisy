@@ -335,22 +335,21 @@ class Hospitals::HospitalsAPI < ApplicationAPI
     index! Hospitals::Hospital,
       title: "海外医院",
       filters: {
+        extension: { scope_only: true, default: 1, type: Integer},
+        province_oversease: { scope_only: true, type: Integer },
         type: type_filters("海外医院"),
         # province: oversea_city_filters,
         oversease: oversea_country_filters,
         order_by: hospital_order_by_filters,
         form: form_filters,
-        extension: { scope_only: true, default: 1, type: Integer},
         is_foreign: { scope_only: true, type: Object },
         is_other: { scope_only: true, type: Object },
         is_community: { scope_only: true, type: Object },
         # country: { scope_only: true, type: Integer },
-        province_oversease: { scope_only: true, type: Integer },
-        has_mobile_url: form_switch_filters("手机挂号"),
+        need_order: form_switch_filters("无需预约"),
         has_return: form_switch_filters("优惠返利"),
-        template: form_radio_array_filters(%w(不限 热门医院 有网址),
-          "当前主题精选"),
-        alphabet: form_alphabet_filters
+        template: form_radio_array_filters(%w(内科 儿科 整形外科 脑神经外科 心脏血管外科 耳鼻咽喉科 皮肤科 癌症科 糖尿病与内分泌科 放射肿瘤科 肾病科 呼吸科 ),
+          "当前主题精选")
       },
       parent: proc { Hospitals::Hospital.order_by_telephone.joins(city: :province).where("provinces.country_id" => 2)}
   end
