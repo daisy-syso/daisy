@@ -108,9 +108,10 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
       }, {
         template: "price_search/strategy_list",
         # url: "#/list/insurances/insurances?type=8436",
-        url: "#/list/insurances/commercial_insurances",
+        # url: "#/list/insurances/commercial_insurances",
+        url: "#/privileges/insurances",
         type: :"insurances/commercial_insurances",
-        title: "健康保险价格查询"
+        title: "疾病保险"
       }, {
         template: "price_search/strategy_list",
         url: "#/list/insurances/insurances?type=8435",
@@ -121,6 +122,31 @@ class PriceSearch::PriceSearchAPI < ApplicationAPI
         url: "##/list/maternals/confinement_centers?type=142",
         type: :"maternals/confinement_centers",
         title: "月子中心价格查询"
+      }, {
+        template: "price_search/strategy_list",
+        url: "##/list/maternals/confinement_centers?type=142",
+        type: :"maternals/confinement_centers",
+        title: "海外医疗就诊攻略"
+      }, {
+        template: "price_search/strategy_list",
+        url: "##/list/maternals/confinement_centers?type=142",
+        type: :"maternals/confinement_centers",
+        title: "安全用药攻略"
+      }, {
+        template: "price_search/strategy_list",
+        url: "##/list/maternals/confinement_centers?type=142",
+        type: :"maternals/confinement_centers",
+        title: "办社保攻略"
+      }, {
+        template: "price_search/strategy_list",
+        url: "##/list/maternals/confinement_centers?type=142",
+        type: :"maternals/confinement_centers",
+        title: "网上买药攻略"
+      }, {
+        template: "price_search/strategy_list",
+        url: "##/list/maternals/confinement_centers?type=142",
+        type: :"maternals/confinement_centers",
+        title: "查化验单攻略"
       }, {
         template: "price_search/strategy_list",
         url: "#/list/price_search/strategy_list?type=143",

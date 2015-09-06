@@ -67,7 +67,10 @@
 
   <div class="bg team">
     <div class="fix index-hd">
-      <h3 ng-click="goto('aboutDrugs-start')" style="text-decoration: underline;color:#E62418">厂家相关药品列表</h3>
+      <h3 ng-click="goto('aboutDrugs-start')" style="text-decoration: underline;color:#008000"> 
+        厂家相关药品列表
+        <i class="ion ion-chevron-right" style="float:right;"></i>
+      </h3>
     </div>
   </div>
 
@@ -81,14 +84,9 @@
     </ul>
   </div>
 
-  <div class="card">
-    <ul class="table-view media">
+  <!-- 商家加盟及报错更正 -->
+  <%= partial 'templates/details/league'%>
 
-      <li class="table-view-cell">
-        <a href="#/join_league">商家加盟及报错更正</a>
-      </li>
-    </ul>
-  </div>
   <div id="aboutDrugs-start"></div>
   <div class="bg team">
     <div class="fix index-hd">

@@ -1,4 +1,4 @@
-<%= partial 'subheader',local: { title: "最新优惠"} %>
+<%= partial 'subheader',local: { title: "疾病保险"} %>
 <div class="content" style="top:50px;">
   <div class="album">
   <img ng-src="{{data.hospital.image_url}}" />
@@ -6,6 +6,13 @@
 </div>
   <div class="card">
   <ul class="table-view media">
+    <li class="table-view-cell">
+      <div class="media-detail huge">
+        <span><strong>{{data.price||"&nbsp;"}}</strong>元</span>
+        <span>{{data.sales}}</span>
+        <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}" style="color:#fff;">立即购买</a>
+      </div>
+    </li>
     <li class="table-view-cell">
       <div class="media-detail huge">
         <span>{{data.company}}</span>

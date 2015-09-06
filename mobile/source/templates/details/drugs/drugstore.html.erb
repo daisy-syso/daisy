@@ -7,26 +7,36 @@
 	  <!-- <div class="desc">点击图片查看相册</div> -->
 	</div>
 
-  <div class="list">
-  	<div class="item">
-			<span class="price-color">￥{{ data.drug.ori_price }}</span>
-			<span style="float:right;">已售{{data.count || 0}}份</span>
-		</div>
-  </div>
+  <div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell">
+      <div class="media-detail huge">
+        <span><strong>{{data.drug.price||"&nbsp;"}}</strong>元</span>
+        <span>{{data.drug.sales}}</span>
+        <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/{{data.type}}/{{data.id}}" style="color:#fff;">立即购买</a>
+      </div>
+    </li>
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <h1>{{data.<%= defined?(title) ? title : :name %>}}</h1>
+        <p class="pre">{{data.drug.name}}</p>
+      </div>
+    </li>
 
-  <a href="#/deal/order?kind=drug&id={{data.id}}" class="btn btn-large btn-warning" style="width:100%;color:#fff">我要订购</a>
-  <ul class="list intro">
-    <li class="item">
-      <p>品牌：{{data.drug.brand}}</p>
-      <p>厂家：
-        <a>
-        	{{data.drug.manufactory}}
-        </a>
-      </p>
+    <li class="table-view-cell">
+      <div class="media-detail">
+        <p>品牌：{{data.drug.brand}}</p>
+        <p>厂家：
+          <a>
+            {{data.drug.manufactory}}
+          </a>
+        </p>
       <p>批准文号：{{data.drug.code}}</p>
       <p>规格：{{data.drug.spec}}</p>
+      </div>
     </li>
   </ul>
+</div>
 
   <div class="card">
     <ul class="table-view media">
@@ -79,7 +89,10 @@
 
   <div class="bg team">
     <div class="fix index-hd">
-      <h3 ng-click="goto('aboutDrugs-start')" style="text-decoration: underline;color:#E62418">药店相关药品列表</h3>
+      <h3 ng-click="goto('aboutDrugs-start')" style="text-decoration: underline;color:#008000">
+        药店相关药品列表
+        <i class="ion ion-chevron-right" style="float:right;"></i>
+      </h3>
     </div>
   </div>
 
