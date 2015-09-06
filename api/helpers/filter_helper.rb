@@ -299,7 +299,7 @@ module FilterHelper
         type: Symbol,
         filter_only: true,
         default: options[:default],
-        key: proc { params[:search_by] },
+        key: proc { params[:search_by] || options[:default] },
         before: proc do
           search_by_key = params[:search_by]
           search_by_options = options[search_by_key]
@@ -326,7 +326,7 @@ module FilterHelper
           # end
         end,
         current: proc do
-          params[params[:search_by]] unless options[:current] == nil
+          options[:current] || params[params[:search_by]]
         end
       }
     end
@@ -419,10 +419,10 @@ module FilterHelper
       }
     end
 
-    def common_diseas_filters
+    def common_disease_filters
       {
         title: proc do
-          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || Diseases::Disease.where(params[:id]).first.try(:name) || "鼻部病" 
+          Diseases::CommonDisease.all.where(id: params[:common_disease]).first.try(:name) || Diseases::Disease.where(id: params[:id]).first.try(:name) || "全部" 
         end,
         key: "common_disease",
         template: "list",
@@ -442,8 +442,8 @@ module FilterHelper
             }
           end
         end,
-        current: proc {params[:common_disease]},
-        class: :common_disease
+        current: proc { params[:disease_id] },
+        # class: :common_disease
       }
     end
 

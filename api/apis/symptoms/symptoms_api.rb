@@ -14,7 +14,7 @@ class Symptoms::SymptomsAPI < ApplicationAPI
            part: { title: "症状部位", class: Symptoms::Part },
            hospital_room: { title: proc { Hospitals::HospitalRoom.find_by_id(params[:hospital_room]).try(:name) || "科室" }, class: Hospitals::HospitalRoom, method: :menu_list, children: proc { Hospitals::HospitalRoom.parent_menu}, current: nil  },
            alphabet: alphabet_filters,
-           common_disease: common_diseas_filters,
+           common_disease: common_disease_filters,
          }),
          order_by: order_by_filters(Symptoms::Symptom),
          form: form_filters,

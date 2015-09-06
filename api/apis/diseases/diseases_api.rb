@@ -8,11 +8,11 @@ class Diseases::DiseasesAPI < ApplicationAPI
         disease_type: { scope_only: true },
         disease_id: { scope_only: true },
         search_by: search_by_filters({
-          default: :symptom,
+          default: :common_disease,
           symptom: { title: "症状", class: Diseases::Symptom },
           hospital_room: { title: proc { Hospitals::HospitalRoom.find_by_id(params[:hospital_room]).try(:name) || "科室" }, class: Hospitals::HospitalRoom, method: :menu_list, children: proc { Hospitals::HospitalRoom.parent_menu}, current: nil  },
           alphabet: alphabet_filters,
-          common_disease: common_diseas_filters,
+          common_disease: common_disease_filters,
           # disease_type: { title: "疾病类别", class: Diseases::DiseaseType}
         }),
         order_by: order_by_filters(Diseases::Disease),
@@ -34,7 +34,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).hospitals },
         filters: { 
           type: type_filters("疾病查询", :disease),
-          common_disease: common_diseas_filters,
+          common_disease: common_disease_filters,
           # city: city_filters,
           # hospital_type: { class: Hospitals::HospitalType, title: proc { Hospitals::HospitalType.find_by_id(params[:hospital_type]).try(:name) || "全部" } },
           # hospital_type: hospital_type_filters,
@@ -56,7 +56,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
         parent: proc { Diseases::Disease.find(params[:id]).doctors },
         filters: { 
           type: type_filters("疾病查询", :disease),
-          common_disease: common_diseas_filters,
+          common_disease: common_disease_filters,
           # city: city_filters,
           # hospital: { 
           #   class: Hospitals::Hospital, 
@@ -84,7 +84,7 @@ class Diseases::DiseasesAPI < ApplicationAPI
           # city: fake_city_filters,
           # drug_type: { class: Drugs::DrugType, title: "类别" },
           # drug_type: drug_type_filters,
-          common_disease: common_diseas_filters,
+          common_disease: common_disease_filters,
           # disease: { title: "疾病", class: Diseases::Disease },
           # search_by: search_by_filters({
           #   default: :disease,

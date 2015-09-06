@@ -9,7 +9,7 @@ class HomeAPI < Grape::API
         icon: "images/icons/1-1.png"
       }, {
         title: "疾病查询",
-        link: "#/list/diseases/diseases?search_by=common_disease&type=134&common_disease=8",
+        link: "#/list/diseases/diseases",
         icon: "images/icons/1-2.png"
       }, {
         title: "找医生",
