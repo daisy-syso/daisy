@@ -5,22 +5,22 @@
 		<li class="item item-thumbnail-left" ng-repeat="examination in data.data">
 			<img ng-src="{{examination.image_url}}">
 			<a href="#/detail/examinations/examinations/{{examination.id}}" class="examination-name">
-				{{examination.name}}
-			</a>
-			<p>
-				价格：<span class="price">￥{{examination.price}}</span>
-			</p>
-			<!-- <div ng-repeat="examination_type in examination.examination_type">
-			 	<a ng-href="{{ examination_type.url }}">适应人群：{{examination_type.name}}</a>
+				<p>{{examination.name}}</p>
 				<p>
-					价格区间: ￥{{ examination_type.examination_charge.min_price }} - ￥{{ examination_type.examination_charge.max_price }}
+					<span style="color: #ffd700">★★★★★</span>  5分
+					<span style="float:right;color:#adadad;font-size:0.8em;" class="ng-binding">0个评价</span>
 				</p>
-			</div> -->
-			<p>适应范围：
-				<span ng-repeat="examination_type in examination.examination_type">
-					{{examination_type.name}}
-				</span>
-			</p>
+				<p>
+					<span class="price-color">价格：￥{{examination.price}}</span>
+					<span style="float:right;color:#adadad;font-size:0.8em;" class="ng-binding">0人购买</span>
+				</p>
+			</a>
+
+			<span ng-repeat="examination_type in examination.examination_type">
+			 	<a ng-href="{{ examination_type.url }}">
+			 		[{{examination_type.name}}]
+			 	</a>
+			</span>
 		</li>
 	</ul>
 

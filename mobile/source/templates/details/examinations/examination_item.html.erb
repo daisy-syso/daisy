@@ -13,40 +13,13 @@
           <span>价格：<strong>{{data.price || 0}}</strong>元</span>
           <p>地址： {{data.address}}</p>
           <p>医院： {{ data.hospital_name }}</p>
+          <p>适应对象：
+            <span ng-repeat="type in data.examination_type"> [{{ type.name }}]</span>
+          </p>
         </div>
       </li>
     </ul>
   </div>
-<!-- 
-  <div class="borderBottom10"></div>
-  <div class="pingfen" ng-click="review()">
-    <form action="" name="form_dp" method="post">
-      <div class="dp_boxc">
-        <input class="fl" type="checkbox" style="margin-top:2px; display:none;" name="InterviewCommentInfoSub[expAuth]" value="0" />
-        <div class="revinp">
-          <span class="level">
-            <i class="level_hollow" cjmark=""></i>
-            <i class="level_hollow" cjmark=""></i>
-            <i class="level_hollow" cjmark=""></i>
-            <i class="level_hollow" cjmark=""></i>
-            <i class="level_hollow" cjmark=""></i>
-          </span>
-          <span class="revgrade">良</span>
-        </div>
-      </div>
-      <div class="star_t"><em>5.0</em></div>
-    </form>
-    <span class="fr scored">{{ data.reviews_count}}人评分</span>
-  </div> -->
-
-  <!-- <div class="borderBottom10"></div>
-  <div class="pj_tb">
-    <a href="#" class="bg01">环境不错 222</a>
-    <a href="#" class="bg01">有导医 21</a>
-    <a href="#" class="bg01">服务到位 43</a>
-    <a href="#" class="bg01">设备先进 874</a>
-    <a href="#" class="bg02">味道不好 874</a>
-  </div> -->
 
   <div class="card">
     <ul class="table-view media">
@@ -54,7 +27,7 @@
         <div class="media-detail">
           <h4 class="fix">
             中心服务总评
-            <span style="color: #ffd700">★★★★★5分</span>   
+            <span style="color: #ffd700">★★★★★5分</span>
             <span class="pull-right">{{data.reviews_count}}人参与评分</span>
           </h4>
         </div>
@@ -74,14 +47,14 @@
 
   <div class="card">
     <ul class="table-view media">
-      <li class="table-view-cell" ng-repeat="examination_type in data.types">
+      <li class="table-view-cell" ng-repeat="examination_detail in data.examination_details">
         <div class="media-detail">
-          <a ng-href="{{ examination_type.url }}">适应人群：{{examination_type.name}}</a>
-          <p>价格区间: ￥{{ examination_type.examination_charge.min_price }} -
-            ￥{{ examination_type.examination_charge.max_price }}</p>
+          <h4>{{examination_detail.title}}</h4>
+          <p>{{examination_detail.types}}</p>
+          <p>{{examination_detail.content}}</p>
         </div>
       </li>
     </ul>
   </div>
-  <%= partial 'related' %> 
+  <%= partial 'related' %>
 </div>
