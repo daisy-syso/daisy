@@ -142,8 +142,8 @@ class Hospitals::Hospital < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]

@@ -34,8 +34,8 @@ class Drugs::Manufactory < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
-                    name: query
+                  wildcard: {
+                    name: "*#{query}*"
                   }
                 }
               ]
