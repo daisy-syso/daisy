@@ -194,6 +194,21 @@ angular.module 'DaisyApp', [
             .success (data) ->
               $scope.moreData = true unless data.data.length < 25
               $scope.data = data
+          $scope.type = "privileges/newest"
+          $scope.redirectTo = (type, params) ->
+            # $scope.loadData(type, params)
+            console.log(params)
+            $location.path("list/#{type}")
+            $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            $location.search(params)
+            $location.replace()
+            # $location.keep = false
+          $scope.loadMore = () ->
+            params = angular.extend { page: $scope.page += 1 }, $location.search()
+            $loader.get(url, params: params)
+              .success (data) ->
+                $scope.moreData = false if  data.data.length < 25
+                $scope.data['data'] = $scope.data['data'].concat data['data']
 
       ]
 
@@ -963,6 +978,7 @@ angular.module 'DaisyApp', [
       "privileges/insurances"
       "privileges/maternals/maternal_halls"
       "privileges/maternals/confinement_centers"
+      "privileges/newest"
     ]
 ]
 #= require_tree ./routes

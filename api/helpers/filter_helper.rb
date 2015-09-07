@@ -510,7 +510,11 @@ module FilterHelper
               children: hospital_type.hospital_types.map do |ht|
                 {
                   title: ht.name,
-                  children: Hospitals::HospitalCharge.filters(ht.hospital_charges)
+                  children: Hospitals::HospitalCharge.filters(ht.hospital_charges).each do |filter|
+                    if filter[:title] == "全部" 
+                      filter.merge!({title:"全部", url: "#/privileges/newest?hospital_type=#{ht.id}"})
+                    end
+                  end
                 }
               end
             }
