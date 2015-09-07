@@ -111,9 +111,9 @@ class Privileges::HospitalsAPI < ApplicationAPI
 		end
 
 		index! Hospitals::HospitalOnsale,
-			title: "团购优惠",
+			title: "医疗团购",
       filters: { 
-        type: type_filters("团购优惠"),
+        type: type_filters("医疗团购"),
         hospital_charge: hospital_charge_filters,
         order_by: hospital_order_by_filters,
         hospital_type: { scope_only: true, type: Integer},
@@ -125,7 +125,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
           # "当前主题精选"),
         price_scope: form_price_scope_filters([500, 1000, 3000, 5000, 10000])
       },
-      includes: [:hospital]
+      includes: [:hospital, :hall]
 
 	end
 

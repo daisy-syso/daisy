@@ -1,6 +1,7 @@
 class Hospitals::HospitalOnsale < ActiveRecord::Base
   belongs_to :hospital_charge, class_name: "Hospitals::HospitalCharge"
   belongs_to :hospital, class_name: "Hospitals::Hospital"
+  belongs_to :hall, class_name: "Hospitals::Hall", foreign_key: :hospital_id
   include Reviewable
   scope :extension, -> (flag) {
   	flag == 1 ? order(extension: :desc) : all

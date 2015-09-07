@@ -4,7 +4,7 @@
   <a class="react action pull-left" ng-click="back()">
     <span class="ionicon ion-chevron-left">
   </a>
-  <h1 class="title" style="margin:0;font-size:22px;">{{ title || data['title'] }}</h1>
+  <h1 class="title" style="margin:0;font-size:22px;">{{ title || data['title'] || data['name']}}</h1>
   <a class="react pull-right" ng-click="$root.popover.toggle()" ng-if="data['subtitle']" style="position:absolute;top:0;right:10px;font-size:16px">
     {{ $root.popover.title || data['subtitle'].title }}
     <span ng-class="$root.popover.show ? 'ion-arrow-down-b' : 'ion-arrow-up-b'" class="ion-arrow-up-b"></span>
