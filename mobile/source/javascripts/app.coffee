@@ -90,7 +90,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
-          $scope.title = "团购优惠"
+          $scope.title = "医疗团购"
           $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
