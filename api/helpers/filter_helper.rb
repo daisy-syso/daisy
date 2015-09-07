@@ -495,7 +495,13 @@ module FilterHelper
       }
     end
 
-    def hospital_charge_filters
+    def hospital_charge_filters(type)
+      url = case type
+            when "newest"
+              "#/privileges/newest"
+            when "hospitals"
+              "#/privileges/hospitals"
+            end
       {
         title: proc do 
           Hospitals::HospitalCharge.where(id: params[:hospital_charge]).first.try(:name) || "全部"
@@ -512,7 +518,7 @@ module FilterHelper
                   title: ht.name,
                   children: Hospitals::HospitalCharge.filters(ht.hospital_charges).each do |filter|
                     if filter[:title] == "全部" 
-                      filter.merge!({title:"全部", url: "#/privileges/newest?hospital_type=#{ht.id}"})
+                      filter.merge!({title:"全部", url: "#{url}?hospital_type=#{ht.id}"})
                     end
                   end
                 }
