@@ -419,6 +419,21 @@ module FilterHelper
       }
     end
 
+    def hospital_onsale_order_by_filters
+      order_by_filters Hospitals::HospitalOnsale, {
+        children: proc do |filters|
+          filters.insert(1, { title: "医院等级" , id: :hospital_level })
+        end,
+        has_scope: proc do |endpoint, collection, key|
+          if key.to_sym == :hospital_level
+            collection.hospital_level
+          else
+            collection
+          end
+        end
+      }
+    end
+
     def common_disease_filters
       {
         title: proc do
