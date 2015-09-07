@@ -7,6 +7,14 @@ class Drugs::DrugEntity < Bases::ItemEntity
 
   expose :image_url, :spec, :code, :ori_price, :manufactory, :introduction, :is_otc
 
+  expose :price_scope do |object, options|
+    prices = object.drug_manufactory_stores.where.not("drug_manufactory_stores.price is null").pluck(:price).delete_if(&:blank?).map(&:to_i)
+    if prices.blank?
+      ""
+    else
+      "#{prices.min}-#{prices.max}" 
+    end
+  end
   with_options if: {kinds_of_drug: true} do
   	expose :factory_count
   	expose :brand
