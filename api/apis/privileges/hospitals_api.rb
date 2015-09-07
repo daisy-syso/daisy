@@ -5,7 +5,7 @@ class Privileges::HospitalsAPI < ApplicationAPI
 			
 			filters = {
 					city: city_filters,
-	        type: type_filters("团购优惠"),
+	        type: type_filters("医疗团购"),
 	        charge: { title: "团购", class: Hospitals::HospitalCharge },
 	        order_by: order_by_filters(Hospitals::Hospital),
 	        form: form_filters,

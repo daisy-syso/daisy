@@ -1,12 +1,12 @@
 class Drugs::DrugsAPI < ApplicationAPI
   namespace :drugs do
     index! Drugs::Drug,
-      title: "药品大全",
+      title: "药品团购",
       filters: {
         extension: { scope_only: true, default: 1, type: Integer},
         drug: {scope_only: true, type: String},
         city: fake_city_filters,
-        type: type_filters("药品大全", :drug),
+        type: type_filters("药品团购", :drug),
         search_by: search_by_filters({
           default: :disease,
           disease: { title: proc { Drugs::DrugType.where(id: params[:disease]).first.try(:name) || "疾病"}, class: Drugs::DrugType },

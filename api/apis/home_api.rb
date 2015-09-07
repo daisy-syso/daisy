@@ -607,8 +607,8 @@ class HomeAPI < Grape::API
       title: "疾病查询",
       children: [{
         # id: :disease,
-        title: "症状查疾病",
-        params: { search_by: :symptom }
+        url: "#/list/symptoms/symptoms",
+        title: "症状查疾病"
       }, {
         title: "科室查疾病",
         params: { search_by: :hospital_room },
@@ -913,7 +913,8 @@ class HomeAPI < Grape::API
         params: { social_security_type: 5 }
       }]
     }, {
-      title: "最新优惠"
+      title: "最新优惠",
+      url: "#/privileges/newest"
     #  count: Maternals::ConfinementCente#r.count+Maternals::MaternalHal#l.count,
     }]
   end
@@ -1174,8 +1175,9 @@ class HomeAPI < Grape::API
       #  count: Diseases::Diseas#e.count,
         title: "疾病查询",
         children: [{
-          # id: :disease,
+          id: :disease,
           title: "症状查疾病",
+          url: "#/list/symptoms/symptoms",
           params: { search_by: :symptom }
         }, {
           title: "科室查疾病",

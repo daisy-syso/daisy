@@ -3,7 +3,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
   namespace :examinations do
 
     index! Examinations::Examination,
-      title: "全国体检",
+      title: "体检团购",
       filters: {
         city: fake_city_filters,
         type: type_filters("体检"),
