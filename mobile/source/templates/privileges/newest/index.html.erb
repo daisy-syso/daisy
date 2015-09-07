@@ -1,7 +1,7 @@
 <%= partial 'subheader',local: { title: "最新优惠"} %>
 <div class="content" style="top:100px;bottom:50px;">
 	<div class="list">
-		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/hospital_types/hospital_charges/hospital_onsales/{{onsale.id}}" style="padding-top:12px;">
+		<a class="item item-thumbnail-left" ng-repeat="onsale in data.data" href="#/privileges/newest/{{onsale.id}}" style="padding-top:12px;">
 			<img src="{{onsale.hospital.image_url}}">
 			<p>{{onsale.hospital.name}}</p>
 			<p>
@@ -9,7 +9,7 @@
 				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.reviews_count || 0}}个评价</span>
 			</p>
 			<p>
-				<span>优惠：</span>
+				<span>优惠：{{onsale.discount}}</span>
 				<span style="float:right;color:#adadad;font-size:0.8em;">{{onsale.sales_volume || 0}}人购买</span>
 			</p>
 			<p> 

@@ -186,7 +186,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
-          url = "/api/privileges/hospitals"
+          url = "/api/privileges/newest"
           console.log(url)
           $scope.page = 1
           params = angular.extend { page: $scope.page }, $location.search()
@@ -195,6 +195,17 @@ angular.module 'DaisyApp', [
               $scope.moreData = true unless data.data.length < 25
               $scope.data = data
 
+      ]
+
+    $routeProvider.when '/privileges/newest/:id',
+      templateUrl: "templates/privileges/newest/hospital_onsale.html"
+      controller: [
+        '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
+        ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $scope.title = "最新优惠"
+          $loader.get("/api/privileges/newest/#{$routeParams.id}")
+            .success (data) ->
+              $scope.data = data.data
       ]
     # ===================团购 end=======================================
 
