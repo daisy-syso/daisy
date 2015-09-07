@@ -71,8 +71,6 @@ angular.module 'DaisyApp', [
           $scope.type = "privileges/hospitals"
           $scope.redirectTo = (type, params) ->
             # $scope.loadData(type, params)
-            console.log("redirectTo=============")
-            console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
             params = angular.extend params, $location.search()
@@ -119,6 +117,7 @@ angular.module 'DaisyApp', [
             console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend params, $location.search()
             $location.search(params)
             $location.replace()
           $scope.loadMore = () ->
@@ -161,6 +160,7 @@ angular.module 'DaisyApp', [
           $scope.redirectTo = (type, params) ->
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend params, $location.search()
             $location.search(params)
             $location.replace()
             # $location.keep = false
