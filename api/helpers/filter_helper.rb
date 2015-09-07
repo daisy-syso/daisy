@@ -488,7 +488,7 @@ module FilterHelper
         key: "hospital_charge",
         template: "list",
         children: proc do 
-          Hospitals::HospitalType.where(parent_id: nil).map do |hospital_type|
+          Hospitals::HospitalType.where(parent_id: nil, filter: true).map do |hospital_type|
             {
               image_url:hospital_type.image_url, 
               title: hospital_type.name, 
