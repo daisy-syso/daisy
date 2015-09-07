@@ -1452,7 +1452,7 @@ class HomeAPI < Grape::API
         }]
       }, {
         title: "团购优惠",
-        children: Hospitals::HospitalType.where(parent_id: [nil, '']).map do |hospital_type|
+        children: Hospitals::HospitalType.where(parent_id: [nil, ''], filter: true).map do |hospital_type|
           {
             title: hospital_type.name,
             params: {
