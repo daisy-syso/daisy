@@ -75,7 +75,24 @@
   <%#= partial 'templates/details/review' %>
  
 
-  <%= partial 'templates/details/map' %>
+<div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell media-title">
+      商家位置
+    </li>
+    <li class="table-view-cell media-detail">
+      <h1>{{data.hospital.name}}</h1>
+      <p>联系电话：
+        <a href="tel:{{data.telephone}}">{{data.hospital.telephone}}
+          <img src="images/phone.gif" width="15"> 
+        </a>
+      </p>
+      <p>地址：{{data.address}}</p>
+      <div class="map" map map-data="data.hospital" ng-hide="data.is_foreign"></div>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
+    </li>
+  </ul>
+</div>
 
   <div class="bg team">
     <div class="fix index-hd">
