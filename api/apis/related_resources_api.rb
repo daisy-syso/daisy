@@ -30,8 +30,9 @@ class RelatedResourcesAPI < Grape::API
     counts = {}
     counts.default = 0
     relateds = (RelatedClasses * 20).sample(20).map do |klass|
-      klass = klass.all.has_url if klass == Hospitals::Hospital
-      related = klass.extension(1).limit(1).offset(counts[klass.to_s]).first
+      collects = klass.all
+      collects = klass.all.has_url if klass == Hospitals::Hospital
+      related = collects.extension(1).limit(1).offset(counts[klass.to_s]).first
       counts[klass.to_s] += 1
       related
     end
