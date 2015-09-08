@@ -19,12 +19,20 @@ class RelatedResourcesAPI < Grape::API
     end
   end
   get :related do
+    # relateds = (RelatedClasses * 20).sample(20).map do |klass|
+    #   klass = klass.all.has_url if klass == Hospitals::Hospital
+    #   begin 
+    #     related = klass.offset(Random.rand(related_resources_count(klass))).first
+    #   end while related.nil?
+    #   # t = klass.all.offset(Random.rand(related_resources_count(klass))).first
+    #   related
+    # end
+    counts = {}
+    counts.default = 0
     relateds = (RelatedClasses * 20).sample(20).map do |klass|
       klass = klass.all.has_url if klass == Hospitals::Hospital
-      begin 
-        related = klass.offset(Random.rand(related_resources_count(klass))).first
-      end while related.nil?
-      # t = klass.all.offset(Random.rand(related_resources_count(klass))).first
+      related = klass.extension(1).limit(1).offset(counts[klass.to_s]).first
+      counts[klass.to_s] += 1
       related
     end
 
