@@ -113,8 +113,8 @@ class Privileges::HospitalsAPI < ApplicationAPI
 		index! Hospitals::HospitalOnsale,
 			title: "医疗团购",
       filters: { 
-        extension: { scope_only: true, default: 1, type: Integer},
-        hospital_type: { scope_only: true, type: Integer},
+        extension: { scope_only: true, default: 1, type: Integer },
+        hospital_type: { scope_only: true, type: Integer },
         type: type_filters("医疗团购"),
         hospital_charge: hospital_charge_filters("hospitals"),
         order_by: hospital_onsale_order_by_filters,

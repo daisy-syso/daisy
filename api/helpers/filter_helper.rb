@@ -510,6 +510,10 @@ module FilterHelper
         template: "list",
         children: proc do 
           Hospitals::HospitalType.where(parent_id: nil, filter: true).map do |hospital_type|
+            all = {
+              title: "全部",
+              url: "#{url}?hospital_type=#{hospital_type.id}"
+            }
             {
               image_url:hospital_type.image_url, 
               title: hospital_type.name, 
@@ -522,7 +526,7 @@ module FilterHelper
                     end
                   end
                 }
-              end
+              end.unshift(all)
             }
           end
         end
