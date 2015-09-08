@@ -78,6 +78,24 @@
   <%#= partial 'templates/details/review' %>
  
 
-  <%= partial 'templates/details/map' %>
+<div class="card">
+  <ul class="table-view media">
+    <li class="table-view-cell media-title">
+      商家位置
+    </li>
+    <li class="table-view-cell media-detail">
+      <h1>{{data.insurance_company.name}}</h1>
+      <p>联系电话：
+        <a href="tel:{{data.telephone}}">{{data.insurance_company.telephone}}
+          <img src="images/phone.gif" width="15"> 
+        </a>
+      </p>
+      <p>地址：{{data.insurance_company.address}}</p>
+      <div class="map" map map-data="data.insurance_company" ng-hide="data.is_foreign"></div>
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
+    </li>
+  </ul>
+</div>
+
 
 </div>
