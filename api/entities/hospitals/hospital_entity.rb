@@ -70,7 +70,11 @@ class Hospitals::HospitalEntity < Bases::PlaceEntity
     elsif options[:detail]
       instance.url
     else
-      "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
+      if instance.hospital_onsales.blank?
+        "#/detail/hospitals/hospitals/#{instance.id}" 
+      else
+        "#/detail/hospitals/hospital_onsales/#{instance.hospital_onsales.first.try(:id)}"
+      end
     end
   end
 
