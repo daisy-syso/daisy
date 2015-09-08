@@ -73,7 +73,7 @@ angular.module 'DaisyApp', [
             # $scope.loadData(type, params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
-            params = angular.extend params, $location.search()
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
             # $location.keep = false
@@ -114,10 +114,9 @@ angular.module 'DaisyApp', [
           console.log($rootScope.newRedirectolink.indexOf($scope.type))
           $scope.redirectTo = (type, params) ->
             # $scope.loadData(type, params)
-            console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
-            params = angular.extend params, $location.search()
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
           $scope.loadMore = () ->
@@ -202,7 +201,7 @@ angular.module 'DaisyApp', [
             console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
-            params = angular.extend params, $location.search()
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
             # $location.keep = false
@@ -505,6 +504,7 @@ angular.module 'DaisyApp', [
           $scope.loadData(type, params)
 
           $location.path("list/#{type}")
+          params = angular.extend $location.search(), params
           $location.search(params)
           $location.replace()
           $location.keep = false

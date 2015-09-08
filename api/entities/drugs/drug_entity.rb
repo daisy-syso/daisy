@@ -5,7 +5,7 @@ class Drugs::DrugEntity < Bases::ItemEntity
   #   record.ori_price
   # end
 
-  expose :image_url, :spec, :code, :ori_price, :manufactory, :introduction, :is_otc
+  expose :image_url, :spec, :code, :ori_price, :manufactory, :introduction, :is_otc, :price
 
   expose :price_scope do |object, options|
     prices = object.drug_manufactory_stores.where.not("drug_manufactory_stores.price is null").pluck(:price).delete_if(&:blank?).map(&:to_i)
@@ -15,9 +15,17 @@ class Drugs::DrugEntity < Bases::ItemEntity
       "#{prices.min}-#{prices.max}" 
     end
   end
-  with_options if: {kinds_of_drug: true} do
+  with_options if: {kinds_of_drug: true} do 
   	expose :factory_count
   	expose :brand
+    expose :factory_price_scope do |obj, opts|
+      prices = Drugs::Drug.where(name: obj.name).pluck(:price).delete_if(&:blank?).map(&:to_i)
+      if prices.blank?
+      ""
+      else
+        "#{prices.min}-#{prices.max}" 
+      end
+    end
   end
 
   with_options if: {kinds_of_drug: false} do

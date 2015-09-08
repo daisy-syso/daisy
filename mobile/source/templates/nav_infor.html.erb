@@ -14,8 +14,9 @@
 <div class="content">
 	<div class="list" drop-down>
     <div  ng-repeat="nav in data">
-      <p ng-click="showDoctors($index)" class="item item-divider" style="color:#828282;font-size:1.4em;">
+      <p ng-click="showDoctors($index)" class="item item-divider" style="color:#828282;font-size:1.4em;line-height: 3em;">
         <i class="ion-chevron-down" style="float:right"></i>
+        <img src="{{nav.image_url}}">
         {{nav.name}}
       </p>
 

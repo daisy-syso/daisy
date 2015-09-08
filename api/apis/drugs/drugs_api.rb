@@ -25,7 +25,8 @@ class Drugs::DrugsAPI < ApplicationAPI
         if params[:drug]
           Drugs::Drug.group(:name, :manufactory)
         else
-          Drugs::Drug.select("drugs.id, drugs.name, drugs.image_url, drugs.spec, drugs.code, drugs.brand, drugs.manufactory,drugs.introduction,drugs.ori_price,drugs.is_otc,count(distinct manufactory) as factory_count").group(:name)
+          Drugs::Drug.select("drugs.id, drugs.name, drugs.image_url, drugs.spec, drugs.code, drugs.brand, drugs.manufactory,drugs.introduction, drugs.ori_price, drugs.price, drugs.is_otc,count(distinct manufactory) as factory_count")
+                     .group(:name)
           # Drugs::Drug.drug_grouop
         end
       },
