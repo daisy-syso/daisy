@@ -1,5 +1,4 @@
 <%= partial 'subheader' %>
-<%= partial 'error_check' %>
 <div class="content examinations-content">
 	<ul class="list">
 		<li class="item item-thumbnail-left" ng-repeat="examination in data.data">
@@ -27,4 +26,5 @@
 	<button class="button button-block button-balanced" ng-click="loadMore()" ng-show="moreData">
 	 查看更多
 	</button>
+	<%= partial 'error_check' %>
 </div>

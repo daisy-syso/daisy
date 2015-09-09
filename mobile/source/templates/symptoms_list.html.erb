@@ -9,6 +9,7 @@
         <a ng-href="#/detail/symptoms/symptoms/{{symptom_item.id }}" ng-repeat="symptom_item in data.symptoms">{{ symptom_item.name }}</a>
       </div>
     </li>
+    <%= partial 'error_check' %>
   </ul>
-  <%= partial 'error_check' %>
 </div>
+
