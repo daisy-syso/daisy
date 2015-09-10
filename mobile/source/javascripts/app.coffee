@@ -71,9 +71,9 @@ angular.module 'DaisyApp', [
           $scope.type = "privileges/hospitals"
           $scope.redirectTo = (type, params) ->
             # $scope.loadData(type, params)
-            console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
             # $location.keep = false
@@ -90,7 +90,8 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
-          $scope.title = "团购优惠"
+          $rootScope.footerHide = true
+          $scope.title = "医疗团购"
           $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
@@ -114,9 +115,9 @@ angular.module 'DaisyApp', [
           console.log($rootScope.newRedirectolink.indexOf($scope.type))
           $scope.redirectTo = (type, params) ->
             # $scope.loadData(type, params)
-            console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
           $scope.loadMore = () ->
@@ -133,6 +134,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $rootScope.footerHide = true
           $loader.get("/api/privileges/insurances/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
@@ -159,6 +161,7 @@ angular.module 'DaisyApp', [
           $scope.redirectTo = (type, params) ->
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend params, $location.search()
             $location.search(params)
             $location.replace()
             # $location.keep = false
@@ -176,6 +179,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $rootScope.footerHide = true
           $loader.get("/api/maternals/#{$routeParams.type}/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
@@ -200,6 +204,7 @@ angular.module 'DaisyApp', [
             console.log(params)
             $location.path("list/#{type}")
             $location.path(type) if $rootScope.newRedirectolink.indexOf(type) >= 0
+            params = angular.extend $location.search(), params
             $location.search(params)
             $location.replace()
             # $location.keep = false
@@ -217,6 +222,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $rootScope.footerHide = true
           $scope.title = "最新优惠"
           $loader.get("/api/privileges/newest/#{$routeParams.id}")
             .success (data) ->
@@ -502,6 +508,7 @@ angular.module 'DaisyApp', [
           $scope.loadData(type, params)
 
           $location.path("list/#{type}")
+          params = angular.extend $location.search(), params
           $location.search(params)
           $location.replace()
           $location.keep = false

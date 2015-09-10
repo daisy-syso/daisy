@@ -1,8 +1,8 @@
 class Hospitals::HospitalOnsalesAPI < ApplicationAPI
 	
 	params do
-        requires :id, type: Integer
-    end
+    requires :id, type: Integer
+  end
 
 	get :thumb do
 		hospital_onsale = Hospitals::HospitalOnsale.where(id:params[:id]).first

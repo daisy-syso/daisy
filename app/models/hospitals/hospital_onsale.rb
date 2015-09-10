@@ -8,8 +8,8 @@ class Hospitals::HospitalOnsale < ActiveRecord::Base
   }
 
   scope :hospital_type, -> (i) {
-  	charges_ids = Hospitals::HospitalType.where(id: i).first.hospital_charges.try(:ids) || []
-  	where(hospital_charge_id: charges_ids)
+    charges_ids = Hospitals::HospitalType.where(id: i).first.hospital_charges.try(:ids) || []
+    where(hospital_charge_id: charges_ids)
   }
 
   scope :hospital_charge, ->(i) {

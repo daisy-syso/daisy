@@ -1,6 +1,6 @@
 class Informations::HealthInformationTypeEntity < ApplicationEntity
 
-  expose :id, :name
+  expose :id, :name, :image_url
 
   expose :health_informations do |instance, options|
   	instance.health_informations
