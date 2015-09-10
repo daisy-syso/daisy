@@ -90,6 +90,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $rootScope.footerHide = true
           $scope.title = "医疗团购"
           $loader.get("/api/privileges/hospitals/hospital_types/hospital_charges/hospital_onsales/#{$routeParams.id}")
             .success (data) ->
@@ -133,6 +134,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $rootScope.footerHide = true
           $loader.get("/api/privileges/insurances/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
@@ -177,6 +179,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams','$location'
         ($rootScope, $scope, $loader, $routeParams, $location) ->
+          $rootScope.footerHide = true
           $loader.get("/api/maternals/#{$routeParams.type}/#{$routeParams.id}")
             .success (data) ->
               $scope.data = data.data
@@ -219,6 +222,7 @@ angular.module 'DaisyApp', [
       controller: [
         '$rootScope', '$scope', '$loader', '$routeParams', '$animate'
         ($rootScope, $scope, $loader, $routeParams, $animate) ->
+          $rootScope.footerHide = true
           $scope.title = "最新优惠"
           $loader.get("/api/privileges/newest/#{$routeParams.id}")
             .success (data) ->

@@ -1,9 +1,9 @@
 <%= partial 'subheader',local: { title: "疾病保险"} %>
 <div class="content" style="top:50px;">
   <div class="album">
-  <img ng-src="{{data.hospital.image_url}}" />
-  <!-- <div class="desc">点击图片查看相册</div> -->
-</div>
+    <img ng-src="{{data.hospital.image_url}}" />
+    <!-- <div class="desc">点击图片查看相册</div> -->
+  </div>
   <div class="card">
   <ul class="table-view media">
     <li class="table-view-cell">
@@ -99,3 +99,12 @@
 
 
 </div>
+
+<footer class="footer">
+  <menu class="footer-con" style="background-color:rgba(0,0,0,0.7);display:table-cell;text-align:center;vertical-align:middle;line-height:44px;">
+    <div>
+    <a href="tel:{{data.telephone}}"><image src="images/call.jpg" width="100%">  </a>
+    <a ng-href="{{data.url}}"><image src="images/search.jpg" width="100%"></a>
+    </div>
+  </menu>
+</footer>
