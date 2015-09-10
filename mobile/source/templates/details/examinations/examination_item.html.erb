@@ -8,9 +8,14 @@
   <div class="card">
     <ul class="table-view media">
       <li class="table-view-cell">
+        <div class="media-detail huge">
+         <span>价格：<strong>{{data.price || 0}}</strong>元</span>
+          <a class="btn btn-large btn-warning pull-right" ng-href="#/login/order/examinations/{{data.id}}">立即购买</a>
+        </div>
+      </li>
+      <li class="table-view-cell">
         <div class="media-detail">
-          <h1 class="examination-name">{{data.name }}</h1>
-          <span>价格：<strong>{{data.price || 0}}</strong>元</span>
+          <h4 class="examination-name">{{data.name }}</h4>
           <p>地址： {{data.address}}</p>
           <p>医院： {{ data.hospital_name }}</p>
           <p>适应对象：

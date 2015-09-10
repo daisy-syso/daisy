@@ -2,7 +2,7 @@
   <ul class="table-view media">
 
     <!-- <li class="table-view-cell media-title" ng-show="listTitle">
-      {{listTitle}} 
+      {{listTitle}}
     </li> -->
 
     <li class="table-view-cell media-content" ng-repeat="data in listData" ng-class="{last: listFin && $last}">
@@ -30,6 +30,8 @@
     <li class="table-view-cell media-load-more" ng-show="listLoadMore && $parent.loadMore && !listFin">
       <a class="react" ng-click="$parent.loadMore()">{{listLoadMore}}</a>
     </li>
+
+    <li class="table-view-cell"><a href="#/join_league" style="color:#008000;margin:0px; margin-left: 30%;"><strong><</strong> 信息纠错与加盟</a></li>
 
   </ul>
 </div>
