@@ -77,7 +77,7 @@ class Diseases::Disease < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
+                  match_phrase_prefix: {
                     name: query
                   }
                 }

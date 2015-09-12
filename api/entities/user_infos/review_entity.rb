@@ -7,7 +7,7 @@ class UserInfos::ReviewEntity < ApplicationEntity
   	end
 
   	expose :account do |instance, options|
-  		instance.account.username
+  		instance.account.blank? ? '' : instance.account.username  
   	end
 
 end

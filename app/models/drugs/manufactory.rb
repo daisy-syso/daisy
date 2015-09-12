@@ -34,7 +34,7 @@ class Drugs::Manufactory < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
+                  match_phrase_prefix: {
                     name: query
                   }
                 }

@@ -142,7 +142,7 @@ class Hospitals::Hospital < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
+                  match_phrase_prefix: {
                     name: query
                   }
                 }

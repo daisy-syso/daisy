@@ -1,0 +1,41 @@
+.listtop a {
+  text-shadow: 1px 1px white;
+  background: url(../images/indexes-arrow.gif) no-repeat right center;
+  display: block;
+  color: #333;
+  font-size: 1.2em;
+  margin: 0;
+  padding-right: 8px;
+  background-color: #e7e5f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e7e5f2));
+  background: -o-linear-gradient(top, #ffffff 0%,#e7e5f2 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #e7e5f2 100%);
+}
+
+.listtop a span {
+  display: block;
+  padding: 9px 0;
+}
+
+.listtop a {
+  text-shadow: 1px 1px white;
+  background: url(../images/indexes-arrow.gif) no-repeat right center;
+  display: block;
+  color: #333;
+  font-size: 1.2em;
+  padding: 0.5% 26px 0.5% 14px;
+}
+
+.listtop {
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #B0B0B0;
+  margin: 0;
+  border-bottom: none;
+  background-color: #e7e5f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e7e5f2));
+  background: -o-linear-gradient(top, #ffffff 0%,#e7e5f2 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%, #e7e5f2 100%);
+}

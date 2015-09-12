@@ -54,7 +54,7 @@ class Hospitals::Doctor < ActiveRecord::Base
                   }
                 },
                 {
-                  match: {
+                  match_phrase_prefix: {
                     name: query
                   }
                 }

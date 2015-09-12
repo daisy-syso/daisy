@@ -20,6 +20,7 @@ class Examinations::Examination < ActiveRecord::Base
   scope :hospital_query, -> (query) {
     query.present? ? where{hospital_name.like("%#{query}%")} : all
   }
+  scope :types, -> (type) {type.present? ? where("examination_type_one_id = ? or examination_type_two_id = ?", type, type) : all}
 
   def self.demand_attrs
     {
