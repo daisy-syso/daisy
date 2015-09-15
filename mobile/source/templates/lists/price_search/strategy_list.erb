@@ -1,9 +1,5 @@
-<div class="media-body">
-  <h1 >
-  	<a ng-href="{{link(data)}}" style="font-size:20px;">{{data.<%= defined?(:title) ? :title : :name %>}} </a>
-  	<span class="pull-right">
-  		<a ng-href="{{link(data)}}">>></a>
-  	</span>
-  </h1>
-  <!-- <p>{{data.<%= defined?(subtitle) ? subtitle : :name %> | limitToEllipsis:50}}</p> -->
+<div class="listtop">
+  <a ng-href="{{link(data)}}">
+    <span>{{data.<%= defined?(:title) ? :title : :name %>}}</span>
+  </a>
 </div>
