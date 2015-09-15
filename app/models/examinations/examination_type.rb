@@ -4,17 +4,22 @@ class Examinations::ExaminationType < ActiveRecord::Base
   has_many :examinations_two, class_name: 'Examinations::Examination', foreign_key: 'examination_type_two_id'
   has_one :examination_charge
 
-  def self.demand_attrs
-  	{ :only => [:id, :name],
-  		:include => [
-  			:examination_charge => [:min_price, :max_price]
-  		],
-  		:methods => [:template]
-  	}
-  end
-
-  def template
-  	"examinations/examination_types"
+  def self.generate_attrs
+    select("id, name").where(parent_id: nil).map{|et| 
+        {id: et.id,
+         name: et.name,
+         template: "examinations/examination_types", 
+         url: "#/list/examinations/examinations?type=#{et.id}",
+         child_types: self.select("id, name").where(parent_id: et.id).map{|o|
+            {
+              id: o.id,
+              name: o.name,
+              template: "examinations/examination_types", 
+              url: "#/list/examinations/examinations?type=#{o.id}"
+            }
+         }
+       }
+    }
   end
 
   class << self

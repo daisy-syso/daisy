@@ -26,13 +26,9 @@ class Examinations::ExaminationsAPI < ApplicationAPI
 
     show! Examinations::Examination
     get do
-      examination_type_id = params[:examination_type_id]
-      # type_id = params[:type] || 2
-      if params[:examination_type_id].present?
-        @examinations = Examinations::Examination.types(examination_type_id).page(params[:page])
-      else
-        @examinations = Examinations::Examination.all.page(params[:page])
-      end
+      examination_type_id = params[:type]
+      city_id = params[:city] || 1
+      @examinations = Examinations::Examination.types(examination_type_id).city(city_id).page(params[:page])
       present title: "全国体检"
       present filters: [
                           {
@@ -42,13 +38,21 @@ class Examinations::ExaminationsAPI < ApplicationAPI
                               template: "list",
                               current: "examination"
                           },{
-                          title: "类别",
-                          children: Examinations::ExaminationType.where(parent_id: nil),
-                          template: "list",
-                          filter_only: true,
-                          current: 1,
-                          key: "type"
+                            title: "体检类别",
+                            children: Examinations::ExaminationType.generate_attrs,
+                            template: "list",
+                            filter_only: true,
+                            current: 1,
+                            key: "type"
                           },{
+                              title: "位置",
+                              link: "categories/cities",
+                              key: 'city',
+                              template: "list",
+                              children: Categories::City.all,
+                              default: 1
+                          },
+                          {
                               key: "order_by",
                               title: "智能排序",
                               template: "list",
