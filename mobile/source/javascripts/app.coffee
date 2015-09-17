@@ -302,6 +302,8 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/healthInformation',  templateUrl: "templates/health_information.html"
+
     $routeProvider.when '/join_league',
       templateUrl: 'templates/join_league.html'
       controller:[
@@ -768,7 +770,7 @@ angular.module 'DaisyApp', [
           $scope.changeCount = (type) ->
             if type == "minus" and $scope.count > 1
               $scope.count -= 1
-            else if type == "plus" 
+            else if type == "plus"
               $scope.count += 1
 
 

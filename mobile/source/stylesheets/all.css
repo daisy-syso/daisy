@@ -21,6 +21,7 @@
  *= require error_check
  *= require examination
  *= require strategy
+ *= require health_nformation
  *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
