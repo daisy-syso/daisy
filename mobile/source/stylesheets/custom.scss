@@ -424,7 +424,7 @@ a.pink-button, .pink-button {
   height: 15px;
   -moz-border-radius: 100px / 50px;
   -webkit-border-radius: 100px / 50px;
-  border-radius: 100px / 50px; 
+  border-radius: 100px / 50px;
   line-height: 13px;
   text-align: center;
   font-size: 0.8em;
@@ -437,4 +437,35 @@ a.pink-button, .pink-button {
 
 .otc-green {
   background-color:green;
+}
+
+// ############# baidu map ############
+.custom-subheader{
+  padding: 0px;
+  margin: 0px
+}
+.custom-row{
+  padding: 0px;
+  margin: 4px 0 0 0;
+}
+.custom-tips{
+  text-align: center;
+  margin-top: 40px;
+  font-size: 18px;
+}
+.BMap_stdMpZoom{
+  top: -300px !important;
+}
+#allmap{
+  height: 60%;
+  width: 100%;
+  margin-top: 88px;
+}
+#r-result{
+  overflow: scroll;
+  height: 40%;
+  table{
+    margin-bottom: 200px;
+  }
+
 }

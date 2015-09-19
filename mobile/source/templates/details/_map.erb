@@ -7,10 +7,11 @@
       <h1>{{data.name}}</h1>
       <p>联系电话：
         <a href="tel:{{data.telephone}}">{{data.telephone}}
-          <img src="images/phone.gif" width="15"> 
+          <img src="images/phone.gif" width="15">
         </a>
       </p>
       <p>地址：{{data.address}}</p>
+      <a ng-href="#/mapNavigation?lng={{ data.lng}}&lat={{data.lat}}">到这里去 > </a>
       <div class="map" map map-data="data" ng-hide="data.is_foreign"></div>
       <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
     </li>
@@ -18,6 +19,6 @@
 </div>
 
 <style type="text/css">
-  
+
   .angular-google-map-container { height: 400px; }
 </style>

@@ -25,16 +25,16 @@
         <p class="pre">工作时间：8：00-21：00(全年无休)</p>
       </div>
     </li>
-    
+
     <li class="table-view-cell">
       <div class="media-detail">
         <h4 class="fix">
           中心服务总评
-          <span style="color: #ffd700">★★★★★5分</span>   
+          <span style="color: #ffd700">★★★★★5分</span>
           <span class="pull-right">{{data.reviews_count}}人参与评分</span>
         </h4>
       </div>
-      
+
     </li>
     <li class="table-view-cell">
       <div class="media-detail">
@@ -73,7 +73,7 @@
   </ul>
 </div>
   <%#= partial 'templates/details/review' %>
- 
+
 
 <div class="card">
   <ul class="table-view media">
@@ -84,10 +84,11 @@
       <h1>{{data.hospital.name}}</h1>
       <p>联系电话：
         <a href="tel:{{data.hospital.telephone}}">{{data.hospital.telephone}}
-          <img src="images/phone.gif" width="15"> 
+          <img src="images/phone.gif" width="15">
         </a>
       </p>
       <p>地址：{{data.address}}</p>
+      <a ng-href="#/mapNavigation?lng={{ data.hospital.lng}}&lat={{data.hospital.lat}}">到这里去 > </a>
       <div class="map" map map-data="data.hospital" ng-hide="data.is_foreign"></div>
       <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
     </li>
@@ -98,7 +99,7 @@
     <div class="fix index-hd">
       <h3>猜你喜欢</h3>
     </div>
-    <%= partial 'related' %> 
+    <%= partial 'related' %>
   </div>
 
 </div>
