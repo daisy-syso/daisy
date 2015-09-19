@@ -304,6 +304,46 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
     $routeProvider.when '/healthInformation',  templateUrl: "templates/health_information.html"
 
+    $routeProvider.when '/mapNavigation',
+      templateUrl: "templates/map_navigation.html"
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          # 百度地图API功能
+          map = new BMap.Map("allmap")
+          map.addControl(new BMap.NavigationControl());        # 添加平移缩放控件
+          map.addControl(new BMap.ScaleControl());             # 添加比例尺控件
+          map.addControl(new BMap.OverviewMapControl());       # 添加缩略地图
+          geolocation = new BMap.Geolocation()
+          destinationPoint = new BMap.Point(Number($routeParams.lng),Number($routeParams.lat))
+          map.centerAndZoom(destinationPoint,12)
+
+          # get current location
+          geolocation.getCurrentPosition (r) ->
+            if this.getStatus() == BMAP_STATUS_SUCCESS
+              mk = new BMap.Marker(r.point)
+              map.addOverlay(mk)
+              map.panTo(r.point)
+              $scope.currentPoint = r.point
+            else
+              alert('failed'+this.getStatus());
+          ,{enableHighAccuracy: true}
+
+          $scope.transitRoute = () ->
+            transit = new BMap.TransitRoute(map, {
+              renderOptions: {map: map, panel: "r-result"}
+            });
+            transit.search($scope.currentPoint, destinationPoint);
+
+          $scope.drivingRoute = () =>
+            driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}});
+            driving.search($scope.currentPoint, destinationPoint)
+
+          $scope.walkingRoute = () ->
+            walking = new BMap.WalkingRoute(map, {renderOptions: {map: map, panel: "r-result", autoViewport: true}});
+            walking.search($scope.currentPoint, destinationPoint);
+      ]
+
     $routeProvider.when '/join_league',
       templateUrl: 'templates/join_league.html'
       controller:[
