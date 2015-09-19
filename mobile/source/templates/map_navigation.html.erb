@@ -4,12 +4,14 @@
   </a>
   <h1 class="title">导航</h1>
 </div>
-<div class="bar bar-subheader" style="padding: 0px;margin: 0px">
-  <div class="row" style="padding: 0px;margin: 4px 0 0 0">
+<div class="bar bar-subheader custom-subheader">
+  <div class="row custom-row">
     <div class="col button" ng-click="walkingRoute()">步行</div>
     <div class="col button" ng-click="drivingRoute()">驾车</div>
     <div class="col button" ng-click="transitRoute()">公交</div>
   </div>
 </div>
 <div id="allmap"></div>
-<div id="r-result">暂无数据</div>
+<div id="r-result">
+  <p class="custom-tips">请选择导航方式<p>
+</div>
