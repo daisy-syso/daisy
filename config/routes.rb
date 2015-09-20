@@ -12,4 +12,17 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+  resources :editors
+
+  resources :drugs
+
+  resources :drugstores
+
+
+  # constraints :subdomain => /^(stores(.*))$/i  do
+  #   namespace :stores, path: '/' do
+  #     root 'main#index'
+  #   end
+  # end
+
 end

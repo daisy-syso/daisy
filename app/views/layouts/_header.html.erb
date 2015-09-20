@@ -1,0 +1,25 @@
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">药店管理</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li id="drugstores">
+          <%= link_to '我的药店', drugstores_path %>
+        </li>
+        <li id="drugs">
+          <%= link_to '我的药品', drugs_path %>
+        </li>
+        <li id='editors'>
+          <%= link_to '所有用户', editors_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
