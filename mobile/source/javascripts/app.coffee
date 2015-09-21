@@ -303,6 +303,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
     $routeProvider.when '/healthInformation',  templateUrl: "templates/health_information.html"
+    $routeProvider.when '/healthInformationDetail',  templateUrl: "templates/health_information_detail.html"
 
     $routeProvider.when '/mapNavigation',
       templateUrl: "templates/map_navigation.html"
