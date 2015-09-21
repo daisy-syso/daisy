@@ -1,13 +1,39 @@
+#health_information_detail,
 #health_information{
   background-color:white;
   height: 100%;
   overflow: scroll;
-  .download-reminder{
-    margin-left: 50px;
+  .ad-picture{
+    li{
+      display: inline-block;
+      width: 40%;
+      margin-right: 10px;
+    }
   }
-  .information-item{
+  .information-items{
     margin-left: 20px;
+    .information-item{
+      padding: 5px 0px;
+    }
   }
+  section{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    &:last-child{
+      margin-bottom: 140px;
+    }
+  }
+  h4{
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+header{
+  .download-reminder{
+    color: white;
+  }
+}
+#health_information{
   .category-information{
     font-size: 22px;
     line-height: 34px;
@@ -28,6 +54,7 @@
         float: left;
         list-style:none;
         margin-left: 10px;
+        padding: 5px 0px;
       }
     }
   }
@@ -40,26 +67,11 @@
     font-size: 15px;
     border-bottom: 2px solid #ccc;
   }
-  .ad-picture{
-    li{
-      display: inline-block;
-      width: 40%;
-      margin-right: 10px;
-    }
-  }
   nav{
-    background-color: #E62418;
+    // background-color: #E62418;
     padding: 10px;
     text-align: left;
     font-size: 18px;
-  }
-
-  section{
-    margin-top: 10px;
-    margin-bottom: 5px;
-    &:last-child{
-      margin-bottom: 60px;
-    }
   }
 
   ul a{
@@ -92,5 +104,16 @@
   h1 {
     color: maroon;
     margin-left: 40px;
+  }
+}
+#health_information_detail{
+  h4{
+    margin-bottom: 5px;
+  }
+  .information-title{
+    text-align: center;
+  }
+  .information-detail{
+    padding: 10px;
   }
 }
