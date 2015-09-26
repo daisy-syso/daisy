@@ -15,4 +15,16 @@ class Informations::HealthInforsAPI < ApplicationAPI
     end
   end
 
+  namespace :health_infors do
+    get do
+      information_type_id = params[:type] || 1
+      @informations = Informations::HealthInformation.where(type_id: information_type_id).page(params[:page])
+      present title: "健康资讯"
+      present :information_types, Informations::HealthInformationType.where(parent_id: [nil, '']), with: Informations::HealthInformationTypeEntity
+      present :data, @informations, with: Informations::HealthInformationEntity
+    end
+
+    show! Informations::HealthInformation
+  end
+
 end
