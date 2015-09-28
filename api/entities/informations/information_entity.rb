@@ -1,8 +1,8 @@
-class Informations::HealthInformationEntity < ApplicationEntity
+class Informations::InformationEntity < ApplicationEntity
 
-  expose :id, :name, :url, :image_url
+  expose :id, :name, :source, :image_url
 
-  expose :health_information_type, using: Informations::HealthInformationTypeEntity
+  expose :information_type, using: Informations::InformationTypeEntity
 
   expose :template do |object, options|
     "infors/health_infors"
