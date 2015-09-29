@@ -12,8 +12,13 @@
   }
   .information-items{
     margin-left: 20px;
+    width: 90%;
     .information-item{
       padding: 5px 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
     }
   }
   section{
@@ -35,6 +40,7 @@ header{
 }
 #health_information{
   .category-information{
+    position: relative;
     font-size: 22px;
     line-height: 34px;
     margin-top: 10px;
@@ -43,18 +49,22 @@ header{
       display: inline;
     }
     .category-items{
+      position: absolute;
+      right: 0px;
+      top: -4px;
       display: inline;
       vertical-align: top;
       margin: 0px;
       padding:0px;
       width: 100%;
       float: right;
-      width: 50%;
+      width: 60%;
       li{
-        float: left;
+        float: right;
         list-style:none;
         margin-left: 10px;
         padding: 5px 0px;
+        font-size: 18px;
       }
     }
   }
@@ -93,7 +103,7 @@ header{
 
   li{
     list-style: none;
-    display: flex;
+    display: block;
   }
 
   a{

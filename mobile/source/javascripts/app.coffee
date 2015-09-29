@@ -302,8 +302,33 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
-    $routeProvider.when '/healthInformation',  templateUrl: "templates/health_information.html"
-    $routeProvider.when '/healthInformationDetail',  templateUrl: "templates/health_information_detail.html"
+    $routeProvider.when '/healthInformation',
+      templateUrl: "templates/health_information.html"
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $scope.page = 0;
+          $scope.latest_informations = [];
+          $scope.loadMore = () ->
+            $scope.page += 1;
+            $loader.get("/api/infors/health_infors.json?page=#{$scope.page}&type=#{$routeParams.type || 1}")
+            .success (data) ->
+              $scope.health_infors = data;
+              $scope.latest_informations =  $scope.latest_informations.concat data.data[0].latest_informations
+
+          $scope.loadMore()
+      ]
+
+
+    $routeProvider.when '/healthInformationDetail',
+      templateUrl: "templates/health_information_detail.html"
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $loader.get("/api/infors/health_infors/#{$routeParams.id}.json")
+            .success (data) ->
+              $scope.health_infor = data.data
+      ]
 
     $routeProvider.when '/mapNavigation',
       templateUrl: "templates/map_navigation.html"
