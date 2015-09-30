@@ -11,7 +11,7 @@ class Informations::Information < ActiveRecord::Base
 		Informations::Information.select('id, name, image_url').where.not(id: self.id, image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
 	end
 
-	def selected_types
-		Informations::InformationType.select('id, name').where(parent_id: nil).limit(8)
+	def selected
+		Informations::Information.select('id, name').where.not(id: self.id).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
 	end
 end
