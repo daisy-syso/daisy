@@ -3,12 +3,12 @@
     <span class="ionicon ion-chevron-left">
   </a>
   <h1 class="title" style="margin:0;font-size:22px;">
-    {{ health_infors.data[0].name }}
+    今日健康头条
   </h1>
-  <a href="" class="download-reminder  pull-right">下载吃药提醒</a>
 </header>
 
 <div id="health_information">
+  <div style="text-align: center;"><a href="">中国医院挂号网</a></div>
   <nav style="">
     <div>
       <a ng-href="#/healthInformation?type={{information_type.id }}" id="1" ng-repeat="information_type in health_infors.information_types">
@@ -27,27 +27,27 @@
     </div>
   </section>
 
-  <section ng-repeat="data in health_infors.data">
+  <section ng-repeat="infor_item in infor_items">
     <div>
       <div class="category-information" style="">
-        <h3 class="category-title">{{ data.name }}</h3>
+        <h3 class="category-title">{{ infor_item.name }}</h3>
         <ul class="category-items">
-          <li ng-repeat="children_item in data.children_items | limitTo:3">
+          <li ng-repeat="children_item in infor_item.children_items | limitTo:3">
             <a href="#/healthInformation?id={{children_item.id}}"></a> {{ children_item.name }} |
           </li>
         </ul>
       </div>
       <div>
         <ul class="information-items">
-          <li class="information-item" ng-repeat="information in latest_informations">
+          <li class="information-item" ng-repeat="information in infor_item.latest_informations">
             <!-- <a href="">{{information.type_name }} | {{ information.name   }}</a> -->
             <a href="#/healthInformationDetail?id={{information.id}}"> {{ information.name   }}</a>
           </li>
         </ul>
       </div>
     </div>
-    <div class="load-more">
-      <a href="" ng-click="loadMore()">查看更多>></a>
+    <div class="load-more" ng-if="infor_item.latest_informations.length > 0">
+      <a href="" ng-click="loadMore({{infor_item.id}})">查看更多>></a>
     </div>
   </section>
 

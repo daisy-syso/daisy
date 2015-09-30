@@ -307,14 +307,24 @@ angular.module 'DaisyApp', [
       controller:[
         '$scope', '$routeParams', '$loader', '$location'
         ($scope, $routeParams, $loader, $location) ->
-          $scope.page = 0;
-          $scope.latest_informations = [];
-          $scope.loadMore = () ->
-            $scope.page += 1;
-            $loader.get("/api/infors/health_infors.json?page=#{$scope.page}&type=#{$routeParams.type || 1}")
+          $scope.infor_items = {};
+          $scope.loadMore = (type) ->
+            if $scope["#{type}_page"]
+              page = $scope["#{type}_page"] +=1
+            else
+              page = $scope["#{type}_page"] = 2
+            url = if type
+              "/api/infors/health_infors.json?page=#{page}&type=#{type}"
+            else
+              "/api/infors/health_infors.json"
+            $loader.get(url)
             .success (data) ->
-              $scope.health_infors = data;
-              $scope.latest_informations =  $scope.latest_informations.concat data.data[0].latest_informations
+              if !type
+                $scope.health_infors = data;
+                for infor_item in data.data
+                  $scope.infor_items["type_#{infor_item.id}"] = infor_item
+              else
+                $scope.infor_items["type_#{data.data[0].id}"].latest_informations = $scope.infor_items["type_#{data.data[0].id}"].latest_informations.concat data.data[0].latest_informations
 
           $scope.loadMore()
       ]
