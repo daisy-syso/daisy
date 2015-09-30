@@ -3,25 +3,17 @@
     <span class="ionicon ion-chevron-left">
   </a>
   <h1 class="title" style="margin:0;font-size:22px;">
-    健康资讯头条
+    {{ health_infors.data[0].name }}
   </h1>
-  <a href="" class="download-reminder  pull-right">下载吃药提醒？</a>
+  <a href="" class="download-reminder  pull-right">下载吃药提醒</a>
 </header>
 
 <div id="health_information">
   <nav style="">
     <div>
-      <a href="">资讯头条 |</a>
-      <a href="">养身 |</a>
-      <a href="">养老 |</a>
-      <a href="">瘦身 |</a>
-      <a href="">健康管理 </a>
-    </div>
-    <div>
-      <a href="">寻医搜药 |</a>
-      <a href="">热门专科 |</a>
-      <a href="">母婴健康 |</a>
-      <a href="">海外医讯 </a>
+      <a ng-href="#/healthInformation?type={{information_type.id }}" id="1" ng-repeat="information_type in health_infors.information_types">
+        {{ information_type.name }} |
+      </a>
     </div>
   </nav>
 
@@ -35,19 +27,27 @@
     </div>
   </section>
 
-  <section>
+  <section ng-repeat="data in health_infors.data">
     <div>
-      <h3>资讯头条</h3>
-      <ul class="information-items">
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协会获国家级 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-      </ul>
+      <div class="category-information" style="">
+        <h3 class="category-title">{{ data.name }}</h3>
+        <ul class="category-items">
+          <li ng-repeat="children_item in data.children_items | limitTo:3">
+            <a href="#/healthInformation?id={{children_item.id}}"></a> {{ children_item.name }} |
+          </li>
+        </ul>
+      </div>
+      <div>
+        <ul class="information-items">
+          <li class="information-item" ng-repeat="information in latest_informations">
+            <!-- <a href="">{{information.type_name }} | {{ information.name   }}</a> -->
+            <a href="#/healthInformationDetail?id={{information.id}}"> {{ information.name   }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="load-more">
+      <a href="" ng-click="loadMore()">查看更多>></a>
     </div>
   </section>
 
@@ -60,30 +60,6 @@
           <img style="width: 100%;" src="http://lorempixel.com/400/200" alt=""></li>
       </ul>
     </div>
-  </section>
-
-  <section>
-    <div>
-      <div class="category-information" style="">
-        <h3 class="category-title">养身</h3>
-        <ul class="category-items">
-          <li>睡眠 |</li>
-          <li>中医 |</li>
-          <li>养老 </li>
-        </ul>
-      </div>
-      <ul class="information-items">
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协会获国家级 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-      </ul>
-    </div>
-    <div class="load-more"><a href="">查看更多>></a></div>
   </section>
 </div>
 
