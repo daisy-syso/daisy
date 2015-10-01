@@ -21,7 +21,7 @@ class Informations::InformationEntity < ApplicationEntity
   	expose :reviews, using: UserInfos::ReviewEntity
   	expose :recommended
   	expose :hot_images
-  	expose :selected_types
+  	expose :selected
   end
 
 end
