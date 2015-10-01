@@ -1,8 +1,12 @@
+.afterHeight {
+  height: 26px;
+}
 #health_information_detail,
 #health_information{
   background-color:white;
   height: 100%;
   overflow: scroll;
+  margin-top: 4%;
   .ad-picture{
     li{
       display: inline-block;

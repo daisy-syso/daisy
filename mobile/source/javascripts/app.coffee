@@ -305,9 +305,20 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
-        '$scope', '$routeParams', '$loader', '$location'
-        ($scope, $routeParams, $loader, $location) ->
+        '$scope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
+        ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {};
+          $scope.afterHeight = false
+          $scope.gotoCategory = (id) ->
+            document.getElementById(id).scrollIntoView()
+            $scope.afterHeight = true
+            $timeout( () ->
+               scroll = document.querySelector('.scroll-content')
+               console.info(scroll.scrollTop);
+               if (scroll)
+                scroll.scrollTop = 0
+            ,0,false)
+
           $scope.loadMore = (type) ->
             if $scope["#{type}_page"]
               page = $scope["#{type}_page"] +=1
