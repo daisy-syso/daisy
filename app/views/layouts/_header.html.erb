@@ -10,9 +10,11 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li id="current_editor">
-          <%= link_to session[:editor] %>
-        </li>
+        <% if @current_editor %>
+          <li id="current_editor">
+            <%= link_to session[:editor] %>
+          </li>
+        <% end %>
         <% if @current_editor %>
           <% if @current_editor && @current_editor.has_role?(:admin) %>
             <li id="editors">
