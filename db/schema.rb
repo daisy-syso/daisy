@@ -734,16 +734,24 @@ ActiveRecord::Schema.define(version: 20151007032359) do
   end
 
   create_table "health_information_types", force: true do |t|
-    t.string "name",      limit: 50
-    t.string "image_url"
+    t.string   "name",       limit: 50
+    t.string   "image_url"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "health_informations", force: true do |t|
-    t.integer "type_id"
-    t.string  "name"
-    t.string  "url"
-    t.string  "image_url"
-    t.integer "flag"
+    t.integer  "type_id"
+    t.string   "name"
+    t.string   "url"
+    t.string   "image_url"
+    t.integer  "flag"
+    t.text     "content"
+    t.float    "star",          limit: 24
+    t.integer  "reviews_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "herbalist_doctor_charges", force: true do |t|
@@ -949,6 +957,25 @@ ActiveRecord::Schema.define(version: 20151007032359) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "information_type", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "informations", force: true do |t|
+    t.string   "name"
+    t.integer  "information_type_id"
+    t.text     "content"
+    t.string   "source"
+    t.string   "image_url"
+    t.string   "created_at",          limit: 50
+    t.datetime "updated_at"
+    t.float    "star",                limit: 24
+    t.integer  "reviews_count"
   end
 
   create_table "insurance_companies", force: true do |t|

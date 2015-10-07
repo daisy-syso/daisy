@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :get_current_editor
 
   def check_auth
-    if session[:editor] == nil
+    if Editor.find_by(email: session[:editor]).nil?
       redirect_to logout_editors_session_index_path
     end
   end

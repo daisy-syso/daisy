@@ -1,6 +1,6 @@
 editor = Editor.new
-editor.email = '651019063@qq.com'
-editor.username = 'menghuanwd'
+editor.email = 'admin@admin.com'
+editor.username = 'dasiy_manager'
 editor.telephone = '15201991025'
 editor.password = 'Daisy1234'
 
