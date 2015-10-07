@@ -34,6 +34,14 @@ class DrugsDrugstoresController < ApplicationController
     respond_with(@drugstore)
   end
 
+  def destroy
+    @drugstore.destroy
+
+    flash[:notice] = '药店下架成功.' 
+
+    redirect_to drugs_drugstore_path
+  end
+
   private
     def set_drugstore
       @drugstore = Drugs::Drugstore.find(params[:id])

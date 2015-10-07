@@ -13,7 +13,11 @@ class EditorsSessionController < ApplicationController
   end
 
   def login
-    @editor = Editor.new
+    if session[:editor].present?
+      redirect_to drugs_drugs_path
+    else
+      @editor = Editor.new
+    end
   end
 
   def logout
