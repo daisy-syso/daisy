@@ -10,13 +10,22 @@ Rails.application.routes.draw do
 
   get "/mobiles" => redirect("/mobiles/index.html")
 
-  root to: "home#index"
+  # root to: "home#index"
+
+  root 'editors_session#login'
 
   resources :editors
 
-  resources :drugs
+  resources :editors_session do
+    collection do
+      get 'login'
+      get 'logout'
+    end
+  end
 
-  resources :drugstores
+  resources :drugs_drugs
+
+  resources :drugs_drugstores
 
 
   # constraints :subdomain => /^(stores(.*))$/i  do

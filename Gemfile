@@ -65,6 +65,7 @@ gem 'settingslogic'
 
 gem 'rails_config'
 
+gem 'bcrypt'
 gem 'cancancan'
 gem 'rolify'
 

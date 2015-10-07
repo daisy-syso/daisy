@@ -1,4 +1,8 @@
 class Drugs::Drugstore < ActiveRecord::Base
+  belongs_to :editors
+
+  validates_presence_of :name, :address, :telephone, :county_id, :city_id
+
   belongs_to :city, class_name: "Categories::City"
   belongs_to :county, class_name: "Categories::County"
   has_and_belongs_to_many :drugs, class_name: "Drugs::Drug", join_table: 'drug_manufactory_stores'

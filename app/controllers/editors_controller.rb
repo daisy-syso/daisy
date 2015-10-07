@@ -1,11 +1,18 @@
 class EditorsController < ApplicationController
+  before_action :check_auth
   before_action :set_editor, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @editors = Editor.all
-    respond_with(@editors)
+    email = session[:editor]
+    editor = Editor.find_by(email: email)
+    if editor.role == 'admin'
+      @editors = Editor.all.page(params[:page]).per(params[:per])
+      respond_with(@editors)
+    else
+      redirect_to drugs_drugs_path
+    end
   end
 
   def show
@@ -22,7 +29,11 @@ class EditorsController < ApplicationController
 
   def create
     @editor = Editor.new(editor_params)
-    flash[:notice] = 'Editor was successfully created.' if @editor.save
+    
+    if @editor.save
+      flash[:notice] = 'Editor was successfully created.' 
+      @editor.add_role :store_owner
+    end
     respond_with(@editor)
   end
 
@@ -42,6 +53,6 @@ class EditorsController < ApplicationController
     end
 
     def editor_params
-      params.require(:editor).permit(:email, :username, :telephone, :password_hash)
+      params.require(:editor).permit(:email, :username, :telephone, :password)
     end
 end

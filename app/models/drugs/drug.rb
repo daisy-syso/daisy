@@ -2,6 +2,7 @@ class Drugs::Drug < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  validates_presence_of :name, :manufactory
   validates_uniqueness_of [:name, :manufactory] 
 
   settings index: {number_of_shards: 5} do
@@ -25,6 +26,9 @@ class Drugs::Drug < ActiveRecord::Base
   has_many :manufactory_drugs, class_name: "Drugs::ManufactoryDrug"
   has_many :diseases_drugs, class_name: 'Drugs::DiseasesDrug'
   has_many :drug_details, class_name: 'Drugs::DrugDetail'
+
+  belongs_to :editors
+
   scope :drug_type, -> (type) { type ? where(drug_type: type) : all }
   
   scope :disease, -> (type) { 

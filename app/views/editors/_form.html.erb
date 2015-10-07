@@ -1,4 +1,4 @@
-<%= form_for(@editor) do |f| %>
+<%= simple_form_for @editor, wrapper: :common_form do |f| %>
   <% if @editor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@editor.errors.count, "error") %> prohibited this editor from being saved:</h2>
@@ -11,19 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :telephone %><br>
-    <%= f.text_field :telephone %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.input :email, label: '邮箱' %>
+  <%= f.input :username, label: '用户名' %>
+  <%= f.input :password, label: '密码' %>
+  <%= f.input :telephone, label: '电话' %>
+  <%= f.button :submit %>
+  <%= link_to '返回', editors_path, class: 'btn btn-info' %>
 <% end %>
