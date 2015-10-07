@@ -1,14 +1,58 @@
+.afterHeight {
+  height: 26px;
+}
+#health_information_detail,
 #health_information{
   background-color:white;
   height: 100%;
   overflow: scroll;
-  .download-reminder{
-    margin-left: 50px;
+  margin-top: 4%;
+  .infor-content{
+    text-indent: 20px;
+    line-height: 2;
+    p{
+      margin-top: 8px;
+      line-height: 1.9 !important;
+    }
   }
-  .information-item{
+  .ad-picture{
+    li{
+      display: inline-block;
+      width: 40%;
+      margin-right: 10px;
+    }
+  }
+  .information-items{
     margin-left: 20px;
+    width: 90%;
+    .information-item{
+      padding: 5px 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+    }
   }
+  section{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    &:last-child{
+      margin-bottom: 140px;
+    }
+  }
+  h4{
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+header{
+  .download-reminder{
+    color: white;
+  }
+}
+#health_information{
   .category-information{
+    position: relative;
     font-size: 22px;
     line-height: 34px;
     margin-top: 10px;
@@ -17,17 +61,22 @@
       display: inline;
     }
     .category-items{
+      position: absolute;
+      right: 0px;
+      top: -4px;
       display: inline;
       vertical-align: top;
       margin: 0px;
       padding:0px;
       width: 100%;
       float: right;
-      width: 50%;
+      width: 60%;
       li{
-        float: left;
+        float: right;
         list-style:none;
         margin-left: 10px;
+        padding: 5px 0px;
+        font-size: 18px;
       }
     }
   }
@@ -40,26 +89,11 @@
     font-size: 15px;
     border-bottom: 2px solid #ccc;
   }
-  .ad-picture{
-    li{
-      display: inline-block;
-      width: 40%;
-      margin-right: 10px;
-    }
-  }
   nav{
-    background-color: #E62418;
+    // background-color: #E62418;
     padding: 10px;
     text-align: left;
     font-size: 18px;
-  }
-
-  section{
-    margin-top: 10px;
-    margin-bottom: 5px;
-    &:last-child{
-      margin-bottom: 60px;
-    }
   }
 
   ul a{
@@ -81,7 +115,7 @@
 
   li{
     list-style: none;
-    display: flex;
+    display: block;
   }
 
   a{
@@ -92,5 +126,16 @@
   h1 {
     color: maroon;
     margin-left: 40px;
+  }
+}
+#health_information_detail{
+  h4{
+    margin-bottom: 5px;
+  }
+  .information-title{
+    text-align: center;
+  }
+  .information-detail{
+    padding: 10px;
   }
 }

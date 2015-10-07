@@ -1,0 +1,77 @@
+<header class="bar bar-nav" style="position:relative">
+
+  <a class="react action pull-left" ng-click="back()">
+    <span class="ionicon ion-chevron-left">
+  </a>
+  <h1 class="title" style="margin:0;font-size:22px;">
+    {{ health_infor.type_name}}
+  </h1>
+  <a href="" class="download-reminder  pull-right">详情页界面</a>
+</header>
+
+<div id="health_information_detail">
+  <section>
+    <div>
+      <ul style="padding: 0px;">
+        <li>
+          <img style="width:100%;" ng-src="{{ health_infor.image_url }} " alt="" ng-if="health_infor.image_url">
+          <img src="http://lorempixel.com/400/200" alt="" ng-if="!health_infor.image_url">
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="information-title">{{health_infor.name}} </h3>
+    <div class="information-detail">
+      <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
+      <hr>
+      <p class="infor-content" ng-bind-html="health_infor.content">
+      </p>
+    </div>
+  </section>
+
+  <section ng-if="health_infor.reviews.length > 0">
+    <h4>热门评论:</h4>
+    <div class="list">
+      <a class="item item-avatar" href="#" ng-repeat="review in health_infor.reviews">
+        <img src="venkman.jpg">
+        <h2>{{ review.account }}</h2>
+        <p>{{ review.desc }}</p>
+      </a>
+    </div>
+    <button class="button button-full button-balanced">
+      全部评论
+    </button>
+  </section>
+
+  <section ng-if="health_infor.recommended.length > 0">
+    <h4>推荐阅读:</h4>
+    <ul class="information-items">
+      <li class="information-item" ng-repeat="recommended in health_infor.recommended">
+        <a href="#/healthInformationDetail?id={{recommended.id}}">{{recommended.name}}</a>
+      </li>
+    </ul>
+  </section>
+
+  <section ng-if="health_infor.selected.length > 0">
+    <h4>频道精选:</h4>
+    <ul class="information-items">
+      <li class="information-item" ng-repeat="select in health_infor.selected">
+        <a href="#/healthInformationDetail?id={{select.id}}">{{select.name}}</a>
+      </li>
+    </ul>
+  </section>
+
+  <section ng-if="health_infor.hot_images.length > 0">
+    <h4>热门图片:</h4>
+    <div class="ad-picture">
+      <ul class="information-items">
+        <li>
+          <img  style="width: 100%;" ng-src="{{ health_infor.hot_images[0].image_url }}" alt=""></li>
+        <li>
+          <img style="width: 100%;" ng-src="{{ health_infor.hot_images[1].image_url }}"></li>
+      </ul>
+    </div>
+  </section>
+</div>

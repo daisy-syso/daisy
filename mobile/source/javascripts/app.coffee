@@ -302,7 +302,54 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
-    $routeProvider.when '/healthInformation',  templateUrl: "templates/health_information.html"
+    $routeProvider.when '/healthInformation',
+      templateUrl: "templates/health_information.html"
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
+        ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
+          $scope.infor_items = {};
+          $scope.afterHeight = false
+          $scope.gotoCategory = (id) ->
+            document.getElementById(id).scrollIntoView()
+            $scope.afterHeight = true
+            $timeout( () ->
+               scroll = document.querySelector('.scroll-content')
+               console.info(scroll.scrollTop);
+               if (scroll)
+                scroll.scrollTop = 0
+            ,0,false)
+
+          $scope.loadMore = (type) ->
+            if $scope["#{type}_page"]
+              page = $scope["#{type}_page"] +=1
+            else
+              page = $scope["#{type}_page"] = 2
+            url = if type
+              "/api/infors/health_infors.json?page=#{page}&type=#{type}"
+            else
+              "/api/infors/health_infors.json"
+            $loader.get(url)
+            .success (data) ->
+              if !type
+                $scope.health_infors = data;
+                for infor_item in data.data
+                  $scope.infor_items["type_#{infor_item.id}"] = infor_item
+              else
+                $scope.infor_items["type_#{data.data[0].id}"].latest_informations = $scope.infor_items["type_#{data.data[0].id}"].latest_informations.concat data.data[0].latest_informations
+
+          $scope.loadMore()
+      ]
+
+
+    $routeProvider.when '/healthInformationDetail',
+      templateUrl: "templates/health_information_detail.html"
+      controller:[
+        '$scope', '$routeParams', '$loader', '$location'
+        ($scope, $routeParams, $loader, $location) ->
+          $loader.get("/api/infors/health_infors/#{$routeParams.id}.json")
+            .success (data) ->
+              $scope.health_infor = data.data
+      ]
 
     $routeProvider.when '/mapNavigation',
       templateUrl: "templates/map_navigation.html"

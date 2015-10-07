@@ -1,18 +1,19 @@
 class Informations::HealthInforsAPI < ApplicationAPI
 
-  namespace :nav do
+  namespace :health_infors do
     get do
-      navs = Informations::HealthInformationType.all.includes(:health_informations)
-      # present :tpl,
-      present navs, with: Informations::HealthInformationTypeEntity
+      information_types = Informations::InformationType.select("id, name").where(parent_id: [nil, ''])
+      information_type = Informations::InformationType.where(id: params[:type]) if params[:type]
+      information_type ||= information_types
+      information_type.each do |it|
+        it.latest_informations = it.informations.order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").page(params[:page]).per(8)
+      end
+      present title: "健康资讯"
+      present information_types: information_types
+      present :data, information_type, with: Informations::InformationTypeEntity
     end
 
-    get ":id" do
-      infor_type = Informations::HealthInformationType.where(id: params[:id]).first
-      infors = infor_type.health_informations
-      present :infor_type, infor_type
-      present :infors, infors
-    end
+    show! Informations::Information
   end
 
 end
