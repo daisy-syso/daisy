@@ -2,7 +2,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
 
   namespace :health_infors do
     get do
-      information_types = Informations::InformationType.select("id, name").where(parent_id: [nil, ''])
+      information_types = Informations::InformationType.select("id, name").where(parent_id: [nil, '']).order("created_at desc")
       information_type = Informations::InformationType.where(id: params[:type]) if params[:type]
       information_type ||= information_types
       information_type.each do |it|

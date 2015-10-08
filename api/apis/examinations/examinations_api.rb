@@ -44,13 +44,6 @@ class Examinations::ExaminationsAPI < ApplicationAPI
                             filter_only: true,
                             current: 1,
                             key: "type"
-                          },{
-                              title: "位置",
-                              link: "categories/cities",
-                              key: 'city',
-                              template: "list",
-                              children: Categories::City.all,
-                              default: 1
                           },
                           {
                               key: "order_by",
@@ -76,6 +69,15 @@ class Examinations::ExaminationsAPI < ApplicationAPI
                               children: []
                           }
                         ]
+
+        present subtitle: {
+                              title: "位置",
+                              link: "categories/cities",
+                              key: 'city',
+                              template: "list",
+                              children: Categories::City.all,
+                              default: 1
+                          }
 
         present :data, @examinations, with: Examinations::ExaminationEntity
     end
