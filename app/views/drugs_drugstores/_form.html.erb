@@ -1,0 +1,31 @@
+<%= simple_form_for @drugstore, wrapper: :common_form do |f| %>
+  <% if @drugstore.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@drugstore.errors.count, "error") %> prohibited this drugstore from being saved:</h2>
+
+      <ul>
+      <% @drugstore.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name, label: '店名' %>
+  <%= f.input :address, label: '地址' %>
+  <%= f.input :telephone, label: '电话' %>
+  <%= f.input :image_url, label: '图片' %>
+
+  <%= f.select :city_id, get_cities, label: '城市' %>
+  <%= f.select :county_id, get_counties, label: '区县' %>
+
+  <br />
+  <%= f.button :submit %>
+  <%= link_to '返回', drugs_drugstores_path, class: 'btn btn-info' %>
+<% end %>
+
+<script type="text/javascript">
+  $("#drugs_drugstore_city_id").click(function(){
+    console.log('reflush it');
+  });
+</script>
