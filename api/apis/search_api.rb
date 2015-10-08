@@ -130,6 +130,7 @@ class SearchAPI < ApplicationAPI
       data = search_resource(params.label).search(query)
       data = data.records
       present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
+    end
   end
 
 end
