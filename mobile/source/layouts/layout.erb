@@ -22,17 +22,6 @@
 
     <%= stylesheet_link_tag "all" %>
     <%= javascript_include_tag  "all" %>
-    <!-- Baidu Map -->
-    <!-- <script src="http://api.map.baidu.com/api?type=quick&amp;ak=E5072c8281660dfc534548f8fda2be11&amp;v=1.0"></script> -->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=E5072c8281660dfc534548f8fda2be11"></script>
-    <!-- 谷歌地图 -->
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <!-- Baidu Share -->
-    <script type="text/javascript" src="http://openapi.baidu.com/widget/social/1.0/share.js"> </script>
-    <!-- Weibo -->
-    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=6634719&amp;debug=true" type="text/javascript" charset="utf-8"></script>
-    <!-- QQ Connect -->
-    <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101150059" charset="utf-8"></script>
   </head>
 
   <body ng-class="routeDirection">
@@ -45,6 +34,46 @@
     document.write(unescape("%3Cspan id='cnzz_stat_icon_1254633904'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1254633904%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
 
 
+    </script>
+
+    <script type="text/javascript">
+        function loadScript(url, callback){
+            var script = document.createElement ("script")
+            script.type = "text/javascript";
+            if (script.readyState){ //IE
+                script.onreadystatechange = function(){
+                    if (script.readyState == "loaded" || script.readyState == "complete"){
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                };
+            } else { //Others
+                script.onload = function(){
+                    callback();
+                };
+            }
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+        }
+        loadScript("http://api.map.baidu.com/api?v=2.0&ak=E5072c8281660dfc534548f8fda2be11",function() {
+            console.info("baidu api...");
+        })
+
+        loadScript("https://maps.googleapis.com/maps/api/js?sensor=false",function() {
+            console.info("google map api...")
+        })
+
+        loadScript("http://openapi.baidu.com/widget/social/1.0/share.js",function() {
+            console.info("baidu share...")
+        })
+
+        loadScript("http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=6634719&amp;debug=true",function() {
+            console.info("Weibo...")
+        })
+
+        loadScript("http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js",function() {
+            console.info("qq...")
+        })
     </script>
   </body>
 </html>
