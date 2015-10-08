@@ -5,9 +5,11 @@ namespace :redundancy do
 
     # 医生类型
     puts "Starting Hospitals::Doctor"
-    Hospitals::Doctor.all.offset(310437).each_with_index do |doctor, index|
+    doctors = Hospitals::Doctor.where(hospital_name: nil)
+    total = doctors.size
+    doctors.each_with_index do |doctor, index|
       begin
-        puts index
+        puts "#{index}/total"
         hospital = Hospitals::Hospital.find(doctor.hospital_id)
         hospital_room = Hospitals::HospitalRoom.find(doctor.hospital_room_id)
         doctor.hospital_name = hospital.name
