@@ -14,37 +14,122 @@ class SearchAPI < ApplicationAPI
   end
 
   namespace :search do
-    # post do
-    #   i = 0
-    #   begin
-    #     i += 1
-    #     result = Hospitals::Hospital.search(params[:query],
-    #       page: params[:page] || 1,
-    #       per_page: params[:per] || 10
-    #     ).to_a
-    #   rescue
-    #     sleep(0.1)
-    #   end until result || i > 3
-    #   present title: "搜索结果"
-    #   present :data, result, with: PolymorphicEntity
-    # end
-
+    params do
+      requires :label, type: String, desc: '类别'
+      optional :city, type: String, desc: '上海'
+      optional :province, type: String, desc: '松江'
+      optional :query, type: String, desc: '张三'
+    end
     get do
-      has_scope :query
-      # data = apply_scopes! Hospitals::Hospital
-      data = apply_scopes! search_resource(params[:label])
-      data = data.page(params[:per] || 1).records
+      query = if params.label == 'doctor'
+        {
+          query: {
+            bool: {
+              should:[
+                {
+                  more_like_this: {
+                    fields: ["name", "hospital_name", "name_initials"],
+                    like_text: params.query,
+                    min_term_freq: 1,
+                    max_query_terms: 12
+                  }
+                },
+                {
+                  match: {
+                    name: params.query
+                  }
+                }
+              ]
+            }
+          }
+        }
+      else
+        {
+          query: {
+            bool: {
+              should:[
+                {
+                  match_phrase_prefix: {
+                    name_initials: query
+                  }
+                },
+                {
+                  match_phrase_prefix: {
+                    name: query
+                  }
+                }
+              ]
+            }
+          }
+        }
+      end
+
+      data = search_resource(params.label).search(query)
+      data = data.records
       present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
     end
   end
 
   namespace :search_index do
-    get do
-      has_scope :query
-      data = apply_scopes! search_resource(params[:label])
-      data = data.page(params[:per] || 1).records
-      present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
+    # get do
+    #   has_scope :query
+    #   data = apply_scopes! search_resource(params[:label])
+    #   data = data.page(params[:per] || 1).records
+    #   present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
+    # end
+    params do
+      requires :label, type: String, desc: '类别'
+      optional :city, type: String, desc: '上海'
+      optional :province, type: String, desc: '松江'
+      optional :query, type: String, desc: '张三'
     end
+    get do
+      query = if params.label == 'doctor'
+        {
+          query: {
+            bool: {
+              should:[
+                {
+                  more_like_this: {
+                    fields: ["name", "hospital_name", "name_initials"],
+                    like_text: params.query,
+                    min_term_freq: 1,
+                    max_query_terms: 12
+                  }
+                },
+                {
+                  match: {
+                    name: params.query
+                  }
+                }
+              ]
+            }
+          }
+        }
+      else
+        {
+          query: {
+            bool: {
+              should:[
+                {
+                  match_phrase_prefix: {
+                    name_initials: query
+                  }
+                },
+                {
+                  match_phrase_prefix: {
+                    name: query
+                  }
+                }
+              ]
+            }
+          }
+        }
+      end
+
+      data = search_resource(params.label).search(query)
+      data = data.records
+      present! data, with: PolymorphicEntity, meta: { title: "搜索结果", fin: false }
   end
 
 end
