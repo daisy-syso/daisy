@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<strong>名称:</strong>
+<div class="alert alert-success" role="alert"><%= @drugstore.name %></div>
+<strong>地址:</strong>
+<div class="alert alert-success" role="alert"><%= @drugstore.address %></div>
+<strong>电话:</strong>
+<div class="alert alert-success" role="alert"><%= @drugstore.telephone %></div>
+<strong>图片:</strong>
+<div class="alert alert-success" role="alert"><%= @drugstore.image_url %></div>
+<strong>国家:</strong>
+<div class="alert alert-success" role="alert"><%= get_city_by_id(@drugstore.city_id) %></div>
+<strong>区县:</strong>
+<div class="alert alert-success" role="alert"><%= get_county_by_id(@drugstore.county_id) %></div>
+
+<%= link_to '编辑', edit_drugs_drugstore_path(@drugstore), class: 'btn btn-default' %>
+<%= link_to '返回', drugs_drugstores_path, class: 'btn btn-info' %>

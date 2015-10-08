@@ -26,8 +26,7 @@
     <div class="information-detail">
       <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
       <hr>
-      <p style="text-indent: 20px;">
-        {{ health_infor.content }}
+      <p class="infor-content" ng-bind-html="health_infor.content">
       </p>
     </div>
   </section>
@@ -55,18 +54,13 @@
     </ul>
   </section>
 
-  <section>
+  <section ng-if="health_infor.selected.length > 0">
     <h4>频道精选:</h4>
     <ul class="information-items">
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协会获国家级 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">中国 | 非公立医疗机构协 疗机构协会获国</a></li>
-        <li class="information-item"><a href="">原创 | 世界预防自杀日 疗机构协会获国</a></li>
-      </ul>
+      <li class="information-item" ng-repeat="select in health_infor.selected">
+        <a href="#/healthInformationDetail?id={{select.id}}">{{select.name}}</a>
+      </li>
+    </ul>
   </section>
 
   <section ng-if="health_infor.hot_images.length > 0">

@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<strong>邮箱:</strong>
+<div class="alert alert-success" role="alert"><%= @editor.email %></div>
+<strong>用户名:</strong>
+<div class="alert alert-success" role="alert"><%= @editor.username %></div>
+<strong>电话:</strong>
+<div class="alert alert-success" role="alert"><%= @editor.telephone %></div>
+<strong>角色:</strong>
+<div class="alert alert-success" role="alert"><%= get_role(@editor.role) %></div>
+
+<%= link_to '编辑', edit_editor_path(@editor), class: 'btn btn-default' %>
+<%= link_to '返回', editors_path, class: 'btn btn-info' %>

@@ -1,0 +1,32 @@
+<div class="row">
+  <p id="notice"><%= notice %></p>
+  <%= link_to '添加', new_drugs_drug_path, class: "btn btn-info" %>
+  <hr>
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead>
+      <tr class="active">
+        <th>药品名称</th>
+        <th>厂家</th>
+        <th>出厂价(￥)</th>
+        <th>现价(￥)</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drugs.each do |drug|%>
+        <tr>
+          <td><%= drug.name %></td>
+          <td><%= drug.manufactory %></td>
+          <td><%= drug.ori_price %></td>
+          <td><%= drug.price %></td>
+          <td>
+            <%= link_to '详情', drug, class: "btn btn-info"%>
+            <%= link_to '修改', edit_drugs_drug_path(drug), class: "btn btn-warning"%>
+            <%= link_to '下架', drugs_drug_path(drug), method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @drugs %>
+</div>

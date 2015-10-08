@@ -1,0 +1,39 @@
+<%= simple_form_for @drug, wrapper: :common_form do |f| %>
+  <% if @drug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@drug.errors.count, "error") %> prohibited this drug from being saved:</h2>
+
+      <ul>
+      <% @drug.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.input :name, label: '药名' %>
+  <%= f.input :manufactory, label: '工厂' %>
+  <%= f.input :ori_price, label: '原价' %>
+  <%= f.input :price, label: '现价' %>
+
+  <%= f.input :introduction, label: '介绍' %>
+  <%#= f.input :drug_type_id, label: '药品类型' %>
+  
+  <%= f.input :brand, label: '品牌商标' %>
+
+  <%= f.input :image_url, label: '图片' %>
+
+  <%= f.input :spec, label: '规格' %>
+  <%= f.input :is_store, label: 'is_store' %>
+
+  <br />
+  <%= f.button :submit %>
+  <%= link_to '返回', drugs_drugs_path, class: 'btn btn-info' %>
+<% end %>
+
+<script type="text/javascript">
+  $("#drugs_drug_city_id").click(function(){
+    console.log('reflush it');
+  });
+</script>
+

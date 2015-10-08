@@ -56,18 +56,20 @@ gem 'unicorn'
 # Use RailsAdmin for the backend administration
 gem 'rails_admin' #, github: 'sferik/rails_admin'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
-# Use kaminari to pagerate
-gem "kaminari"
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 gem "squeel"
-# gem "thinking-sphinx"
 
 gem 'settingslogic'
 
 gem 'rails_config'
+
+gem 'bcrypt'
+gem 'cancancan'
+gem 'rolify'
+
+gem 'simple_form'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
@@ -75,6 +77,7 @@ gem 'newrelic_rpm'
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'
+  gem 'byebug'
   gem 'capistrano-rvm'
   gem 'capistrano3-unicorn'
   
@@ -83,5 +86,9 @@ group :development do
   gem 'pry-rails'
   gem 'grape-rails-routes'
   # gem "middleman", "~>3.2.2"
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 
 end

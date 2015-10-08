@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<strong>店名:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.name %></div>
+<strong>工厂:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.manufactory %></div>
+<strong>原价:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.ori_price %></div>
+<strong>现价:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.price %></div>
+<strong>品牌:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.image_url %></div>
+<strong>规格:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.spec %></div>
+<strong>is_store:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.is_store %></div>
+
+<%= link_to '编辑', edit_drugs_drug_path(@drug), class: 'btn btn-default' %>
+<%= link_to '返回', drugs_drugs_path, class: 'btn btn-info' %>
