@@ -9,7 +9,7 @@ namespace :redundancy do
     total = doctors.size
     doctors.each_with_index do |doctor, index|
       begin
-        puts "#{index}/total"
+        puts "#{index}/#{total}"
         hospital = Hospitals::Hospital.find(doctor.hospital_id)
         hospital_room = Hospitals::HospitalRoom.find(doctor.hospital_room_id)
         doctor.hospital_name = hospital.name
