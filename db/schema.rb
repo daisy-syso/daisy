@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007032359) do
+ActiveRecord::Schema.define(version: 20151008034406) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -363,6 +363,8 @@ ActiveRecord::Schema.define(version: 20151007032359) do
     t.integer  "reviews_count",                 default: 0
     t.integer  "status",                        default: 1
     t.integer  "click_count",                   default: 1
+    t.string   "hospital_name"
+    t.string   "hospital_room_name"
   end
 
   add_index "doctors", ["drugstore_id"], name: "index_doctors_on_drugstore_id", using: :btree
