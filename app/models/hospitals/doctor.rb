@@ -4,13 +4,15 @@ class Hospitals::Doctor < ActiveRecord::Base
 
   settings index: {number_of_shards: 5} do
     mappings do
-      indexes :name, type: 'string', index: :not_analyzed, analyzer: :keyword
-      indexes :name_initials, boost: 50
+      indexes :name, type: 'string'
+      indexes :name_initials, type: 'string'
+      indexes :hospital_name, type: 'string'
+      indexes :hospital_room_name, type: 'string'
     end
   end
 
   def as_indexed_json(options={})
-    as_json(only: ['name','name_initials'])
+    as_json(only: ['name','name_initials','hospital_room_name', 'hospital_name'])
   end
   
   belongs_to :hospital, class_name: "Hospitals::Hospital"
