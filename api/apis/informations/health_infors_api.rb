@@ -14,6 +14,13 @@ class Informations::HealthInforsAPI < ApplicationAPI
     end
 
     show! Informations::Information
+
+    get ":id/read" do
+      information =  Informations::Information.find(params[:id])
+      information.update_attributes(read_count: (information.read_count.to_i + 1))
+      status 201
+    end
+
   end
 
 end

@@ -12,6 +12,6 @@ class Informations::Information < ActiveRecord::Base
 	end
 
 	def selected
-		Informations::Information.select('id, name').where.not(id: self.id).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
+		Informations::Information.select('id, name').where.not(id: self.id).order("read_count desc").limit(8)
 	end
 end
