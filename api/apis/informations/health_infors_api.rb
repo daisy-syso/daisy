@@ -6,7 +6,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
       information_type = Informations::InformationType.where(id: params[:type]) if params[:type]
       information_type ||= information_types
       information_type.each do |it|
-        it_ids = it.parent_id.blank? ? [] : it.children_items.map(&:id)
+        it_ids = it.parent_id.blank? ? it.children_items.map(&:id) : []
         it_ids << it.id
         it.latest_informations = Informations::Information.where(information_type_id: it_ids).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").page(params[:page]).per(8)
       end
