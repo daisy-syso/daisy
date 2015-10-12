@@ -13,7 +13,7 @@
       </div>
       <div>
         <a href="javascript:;" ng-click="gotoCategory({{information_type.id}})" ng-repeat="information_type in health_infors.information_types">
-          {{ information_type.name }} |
+          {{ information_type.name }}
         </a>
       </div>
     </nav>
@@ -36,7 +36,7 @@
           </h3>
           <ul class="category-items">
             <li ng-repeat="children_item in infor_item.children_items | limitTo:3">
-              <a href="#/healthInformation?id={{children_item.id}}"></a> {{ children_item.name }} |
+              <a href="#/healthInformation?id={{children_item.id}}"></a> {{ children_item.name }}
             </li>
           </ul>
         </div>
