@@ -5,7 +5,7 @@ class Informations::InformationType < ActiveRecord::Base
 	attr_accessor :latest_informations
 
 	def children_items
-		Informations::InformationType.select('id, name').where(parent_id: self.id)
+		Informations::InformationType.select('id, name').where(parent_id: self.id).order("created_at desc")
 	end
 
 end
