@@ -113,12 +113,12 @@ class SearchAPI < ApplicationAPI
               should:[
                 {
                   match_phrase_prefix: {
-                    name_initials: query
+                    name_initials: params.query
                   }
                 },
                 {
                   match_phrase_prefix: {
-                    name: query
+                    name: params.query
                   }
                 }
               ]
