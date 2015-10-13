@@ -8,7 +8,7 @@ class SearchAPI < ApplicationAPI
         symptom: Symptoms::Symptom,
         disease: Diseases::Disease,
         drug: Drugs::Drug,
-        manufactory: Drugs::Manufactory
+        manufactory: Drugs::Drugstore
       }[klass.to_sym]
     end
   end

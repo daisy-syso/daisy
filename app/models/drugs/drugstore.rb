@@ -1,4 +1,14 @@
 class Drugs::Drugstore < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  settings index: {number_of_shards: 5} do
+    mappings do
+      indexes :name, type: 'string', index: :not_analyzed, analyzer: :keyword
+      indexes :name_initials, boost: 50
+    end
+  end
+
   belongs_to :editors
 
   validates_presence_of :name, :address, :telephone, :county_id, :city_id

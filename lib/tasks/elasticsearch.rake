@@ -8,7 +8,7 @@ namespace :elasticsearch do
       end 
     end
 
-    %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Symptoms::Symptom Drugs::Manufactory).each do |klass|
+    %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Symptoms::Symptom Drugs::Manufactory Drugs::Drugstore).each do |klass|
       class_string(klass).__elasticsearch__.create_index! force: true
       class_string(klass).import
 
@@ -16,7 +16,7 @@ namespace :elasticsearch do
     end
   end
 
-  %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Symptoms::Symptom Drugs::Manufactory).each do |es|
+  %w(Drugs::Drug Hospitals::Doctor Hospitals::Hospital Diseases::Disease Symptoms::Symptom Drugs::Manufactory Drugs::Drugstore).each do |es|
     namespace es.to_sym do
       desc "Initialize #{es} indexes"
       task create_indexes: :environment do

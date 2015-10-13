@@ -35,3 +35,9 @@ Drugs::Manufactory.__elasticsearch__.client = Elasticsearch::Client.new(
   host: Settings.elasticsearch.host, 
   logger: Logger.new(Rails.root.join(Settings.elasticsearch.log ))
 )
+
+# 药企
+Drugs::Drugstore.__elasticsearch__.client = Elasticsearch::Client.new(
+  host: Settings.elasticsearch.host, 
+  logger: Logger.new(Rails.root.join(Settings.elasticsearch.log ))
+)
