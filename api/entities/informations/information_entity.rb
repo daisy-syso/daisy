@@ -1,6 +1,6 @@
 class Informations::InformationEntity < ApplicationEntity
 
-  expose :id, :name, :source, :image_url
+  expose :id, :name, :source, :image_url, :is_top
 
   expose :type_name do |object, options|
     object.information_type.name
