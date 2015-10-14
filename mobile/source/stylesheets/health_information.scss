@@ -10,6 +10,7 @@
   .infor-content{
     text-indent: 20px;
     line-height: 2;
+    font-size: 15px;
     p{
       margin-top: 8px;
       line-height: 1.9 !important;
@@ -25,12 +26,18 @@
   .information-items{
     margin-left: 20px;
     width: 90%;
+    font-size: 16.7px;
     .information-item{
       padding: 5px 0px;
       overflow: hidden;
       text-overflow: ellipsis;
       word-break: break-all;
       white-space: nowrap;
+    }
+    .information-item:nth-child(-n+3){
+      a {
+        color: #c6171e;
+      }
     }
   }
   section{
@@ -88,6 +95,8 @@ header{
     text-align: center;
     font-size: 15px;
     border-bottom: 2px solid #ccc;
+    margin: 0 10px;
+    background-color: #dfdfdf;
   }
   nav{
     // background-color: #E62418;
