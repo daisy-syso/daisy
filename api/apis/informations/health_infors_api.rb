@@ -4,7 +4,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
     get do
       information_types = Informations::InformationType.select("id, name, parent_id").where(parent_id: [nil, '']).order("created_at desc")
       information_type = Informations::InformationType.where(id: params[:type]) if params[:type]
-      Informations::Information.update_all(updated_at: DateTime.now, information_type_id: params[:type]) if params[:type]
+      Informations::Information.where(information_type_id: params[:type]).update_all(updated_at: DateTime.now) if params[:type]
       information_type ||= information_types
       information_type.each do |it|
         it_ids = it.parent_id.blank? ? (it.children_items.map(&:id) + [it.id]) : (it.parent_item.children_items.map(&:id) + [it.parent_item.id])
