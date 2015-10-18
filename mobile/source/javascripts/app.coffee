@@ -349,6 +349,9 @@ angular.module 'DaisyApp', [
           $loader.get("/api/infors/health_infors/#{$routeParams.id}.json")
             .success (data) ->
               $scope.health_infor = data.data
+          $loader.get("/api/infors/health_infors/#{$routeParams.id}/read.json")
+            .success (data) ->
+              console.info("log the read");
       ]
 
     $routeProvider.when '/mapNavigation',
