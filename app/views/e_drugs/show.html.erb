@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<strong>店名:</strong>
+<strong>药名:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.name %></div>
 <strong>工厂:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.manufactory %></div>
@@ -8,8 +8,18 @@
 <div class="alert alert-success" role="alert"><%= @drug.ori_price %></div>
 <strong>现价:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.price %></div>
-<strong>品牌:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.image_url %></div>
+<strong>介绍:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.introduction %></div>
+<strong>图片:</strong>
+<div class="alert alert-success" role="alert">
+  <img src="<%= @drug.image_url%>" />
+</div>
+<strong>品牌商标:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.brand %></div>
+<strong>国药准字:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.code %></div>
+<strong>有效期:</strong>
+<div class="alert alert-success" role="alert"><%= @drug.expiry_date %></div>
 <strong>规格:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.spec %></div>
 
