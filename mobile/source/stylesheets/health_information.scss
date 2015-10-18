@@ -7,6 +7,11 @@
   height: 100%;
   overflow: scroll;
   margin-top: 4%;
+  .ads-image{
+    width:100%;
+    height: 200px;
+    border: 1px solid #ccc;
+  }
   .empty-tip{
     padding: 10px;
   }
