@@ -14,7 +14,7 @@ class EditorsSessionController < ApplicationController
 
   def login
     if session[:editor].present?
-      redirect_to drugs_drugs_path
+      redirect_to e_drugstores_path
     else
       @editor = Editor.new
     end

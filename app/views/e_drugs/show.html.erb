@@ -12,8 +12,6 @@
 <div class="alert alert-success" role="alert"><%= @drug.image_url %></div>
 <strong>规格:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.spec %></div>
-<strong>is_store:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.is_store %></div>
 
-<%= link_to '编辑', edit_drugs_drug_path(@drug), class: 'btn btn-default' %>
-<%= link_to '返回', drugs_drugs_path, class: 'btn btn-info' %>
+<%= link_to '编辑', edit_e_drugstore_e_drug_path(@drugstore.id, @drug.id), class: 'btn btn-default' %>
+<%= link_to '返回', e_drugstore_e_drugs_path(@drugstore.id), class: 'btn btn-info' %>

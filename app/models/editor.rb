@@ -3,8 +3,11 @@ class Editor < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 6}
   validates :username, presence: true
 
-  has_many :drugstores, class_name: "Drugs::Drugstore"
-  has_many :drugs, class_name: "Drugs::Drug"
+  # has_many :drugstores, class_name: "Drugs::Drugstore"
+  # has_many :drugs, class_name: "Drugs::Drug"
+
+  has_many :e_drugstores, dependent: :destroy
+  has_many :e_drugs, dependent: :destroy
 
   include BCrypt
 

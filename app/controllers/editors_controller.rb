@@ -11,7 +11,7 @@ class EditorsController < ApplicationController
       @editors = Editor.all.page(params[:page]).per(params[:per])
       respond_with(@editors)
     else
-      redirect_to drugs_drugs_path
+      redirect_to e_drugstores_path
     end
   end
 
@@ -45,6 +45,18 @@ class EditorsController < ApplicationController
   def destroy
     @editor.destroy
     respond_with(@editor)
+  end
+
+  def drugstores
+    @editor = Editor.find(params[:editor_id])
+
+    @drugstores = @editor.e_drugstores.all.page(params[:page]).per(params[:per])
+  end
+
+  def drugs
+    @editor = Editor.find(params[:editor_id])
+
+    @drugs = @editor.e_drugs.all.page(params[:page]).per(params[:per])
   end
 
   private

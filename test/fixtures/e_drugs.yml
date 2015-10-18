@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  ori_price: 1.5
+  price: 1.5
+  manufactory: MyString
+  introduction: MyString
+  image_url: MyString
+  brand: MyString
+  code: MyString
+  expiry_date: MyString
+  spec: MyString
+
+two:
+  name: MyString
+  ori_price: 1.5
+  price: 1.5
+  manufactory: MyString
+  introduction: MyString
+  image_url: MyString
+  brand: MyString
+  code: MyString
+  expiry_date: MyString
+  spec: MyString

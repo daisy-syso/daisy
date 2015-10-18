@@ -20,6 +20,10 @@
           <td><%= editor.telephone %></td>
           <td>
             <%= link_to '详情', editor, class: "btn btn-info"%>
+            <% unless editor.has_role?(:admin) %>
+              <%= link_to '名下药店', editor_drugstores_path(editor.id), class: "btn btn-info"%>
+              <%= link_to '名下药品', editor_drugs_path(editor.id), class: "btn btn-default"%>
+            <% end %>
             <%= link_to '修改', edit_editor_path(editor), class: "btn btn-warning"%>
             <%= link_to '禁用', editor, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
           </td>

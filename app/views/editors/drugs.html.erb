@@ -1,0 +1,29 @@
+<div class="row">
+  <h1>药品管理</h1>
+</div>
+<div class="row">
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead>
+      <tr class="active">
+        <th>药品名称</th>
+        <th>所属药店</th>
+        <th>厂家</th>
+        <th>出厂价(￥)</th>
+        <th>现价(￥)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drugs.each do |drug|%>
+        <tr>
+          <td><%= drug.name %></td>
+          <td><%= drug.e_drugstore.name %></td>
+          <td><%= drug.manufactory %></td>
+          <td><%= drug.ori_price %></td>
+          <td><%= drug.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @drugs %>
+</div>
+
