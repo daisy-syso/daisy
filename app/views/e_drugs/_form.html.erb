@@ -10,20 +10,20 @@
       </ul>
     </div>
   <% end %>
-  
+  <!-- :name, :manufactory, :ori_price, :price, :introduction, :image_url, :drug_type_id, :brand, :code, :spec, :expiry_date -->
   <%= f.input :name, label: '药名' %>
   <%= f.input :manufactory, label: '工厂' %>
   <%= f.input :ori_price, label: '原价' %>
   <%= f.input :price, label: '现价' %>
-
   <%= f.input :introduction, label: '介绍' %>
   <%#= f.input :drug_type_id, label: '药品类型' %>
-  
   <%= f.input :brand, label: '品牌商标' %>
-
-  <%= f.input :image_url, label: '图片' %>
-
+  <%= f.input :code, label: '国药准字' %>
+  <%= f.input :expiry_date, label: '有效期' %>
   <%= f.input :spec, label: '规格' %>
+
+  <%= f.input :image_url, as: :file, label: '图片' %>
+  <img src="<%= @drug.image_url%>" />
 
   <br />
   <%= f.button :submit %>

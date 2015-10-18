@@ -1,3 +1,6 @@
 elasticsearch:
   host: http://127.0.0.1:9200
   log: 'log/elasticsearch.log'
+qiniu:
+  ak: yRXGIzOvJBBfMOelm4O3vqasPGXj_lAuVTso4qul
+  sk: ijola0yT9Gymxh7bw9ZPfQSfGZ09aHvyzWK4PRvD

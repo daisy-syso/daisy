@@ -74,6 +74,11 @@ gem 'simple_form'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'newrelic_rpm'
+
+gem 'qiniu'
+gem 'carrierwave'
+gem 'carrierwave-qiniu'
+
 group :development do
   # Use Capistrano for deployment
   gem 'capistrano-rails'

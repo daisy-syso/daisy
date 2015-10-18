@@ -7,7 +7,9 @@
 <strong>电话:</strong>
 <div class="alert alert-success" role="alert"><%= @drugstore.telephone %></div>
 <strong>图片:</strong>
-<div class="alert alert-success" role="alert"><%= @drugstore.image_url %></div>
+<div class="alert alert-success" role="alert">
+  <img src="<%= @drugstore.image_url%>" />
+</div>
 <strong>城市:</strong>
 <div class="alert alert-success" id="drugstore_city" role="alert"><%= get_city_by_id(@drugstore.city_id) %></div>
 <!-- <strong>区县:</strong>

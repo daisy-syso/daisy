@@ -13,11 +13,12 @@
   <%= f.input :name, label: '店名' %>
   <%= f.input :address, label: '地址' %>
   <%= f.input :telephone, label: '电话' %>
-  <%= f.input :image_url, label: '图片' %>
+  <%= f.input :image_url, as: :file, label: '图片' %>
+  <img src="<%= @drugstore.image_url%>" />
   <%= f.input :lng, label: '经度' %>
   <%= f.input :lat, label: '纬度' %>
   <%= f.input :business_license, label: '商业执照' %>
-  <%= f.select :city_id, get_cities, label: '城市' %>
+  <%= f.select :city_id, Categories::City.all.map { |c| [c.name, c.id]}, label: '城市' %>
   <%#= f.select :county_id, get_counties, label: '区县' %>
   <br />
   <br />
@@ -39,7 +40,7 @@
 
   map.setDefaultCursor("url('bird.cur')");   //设置地图默认的鼠标指针样式
 
-  map.centerAndZoom('上海', 15);                 // 初始化地图，设置中心点坐标和地图级别  
+  map.centerAndZoom('北京', 15);                 // 初始化地图，设置中心点坐标和地图级别  
 
   map.addEventListener("click",function(e){
     map.clearOverlays();  //去除点
