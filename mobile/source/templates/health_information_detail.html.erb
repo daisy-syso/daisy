@@ -31,18 +31,24 @@
     </div>
   </section>
 
-  <section ng-if="health_infor.reviews.length > 0">
+  <section ng-if="health_infor.reviews">
     <h4>热门评论:</h4>
-    <div class="list">
-      <a class="item item-avatar" href="#" ng-repeat="review in health_infor.reviews">
+    <div class="list" ng-show = "health_infor.reviews.length > 0">
+      <a class="item item-avatar" href="javascript:;" ng-repeat="review in health_infor.reviews">
         <img src="venkman.jpg">
         <h2>{{ review.account }}</h2>
         <p>{{ review.desc }}</p>
       </a>
     </div>
-    <button class="button button-full button-balanced">
+    <div class="empty-tip" ng-show = "health_infor.reviews.length == 0">
+      <p>暂无评论</p>
+    </div>
+    <button class="button button-full button-balanced" ng-if="health_infor.reviews.length > 0">
       全部评论
     </button>
+    <a class="button button-full button-balanced" ng-click="review()">
+      我要评论
+    </a>
   </section>
 
   <section ng-if="health_infor.recommended.length > 0">

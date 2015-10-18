@@ -310,6 +310,13 @@ angular.module 'DaisyApp', [
           $scope.infor_items = {}
           $scope.afterHeight = false
           itemShowWithPicture = ["健身减肥","美食","养身", "天天护理"]
+
+          $scope.showChildreninfors = (parent_id, children_id) ->
+            url = "/api/infors/health_infors.json?type=#{children_id}"
+            $loader.get(url)
+              .success (data) ->
+                $scope.infor_items["type_#{parent_id}"].latest_informations =  data.data[0].latest_informations
+
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
             $scope.afterHeight = true
@@ -353,6 +360,12 @@ angular.module 'DaisyApp', [
           $loader.get("/api/infors/health_infors/#{$routeParams.id}.json")
             .success (data) ->
               $scope.health_infor = data.data
+          $loader.get("/api/infors/health_infors/#{$routeParams.id}/read.json")
+            .success (data) ->
+              console.info("log the read");
+
+          $scope.review = () ->
+            $location.path("review/Informations::Information/#{$routeParams.id}")
       ]
 
     $routeProvider.when '/mapNavigation',
@@ -436,6 +449,7 @@ angular.module 'DaisyApp', [
           $scope.service = 0
           $scope.charge = 0
           $scope.technique = 0
+          if $routeParams.item_type == "Informations::Information" then $scope.hiddenStar = true
           $scope.submit = () =>
             $http.post("/api/reviews_new/",{
               item_type: $routeParams.item_type || "Drugs::Drug",
