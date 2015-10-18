@@ -309,7 +309,7 @@ angular.module 'DaisyApp', [
         ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {}
           $scope.afterHeight = false
-          itemShowWithPicture = ["健身减肥","美食","养身", "天天护理"]
+          itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
 
           $scope.showChildreninfors = (parent_id, children_id) ->
             url = "/api/infors/health_infors.json?type=#{children_id}"
@@ -362,10 +362,20 @@ angular.module 'DaisyApp', [
               $scope.health_infor = data.data
           $loader.get("/api/infors/health_infors/#{$routeParams.id}/read.json")
             .success (data) ->
-              console.info("log the read");
+              console.info("log the read")
 
-          $scope.review = () ->
-            $location.path("review/Informations::Information/#{$routeParams.id}")
+          $scope.review = (desc) ->
+            $loader.post("/api/reviews_new/",{
+              item_type: 'Informations::Information',
+              item_id: $routeParams.id,
+              desc: desc,
+              account_id: 1,
+              environment: 1,
+              service: 1,
+              charge: 1,
+              technique: 1
+            }).success (review) ->
+              $scope.health_infor.reviews.push(review)
       ]
 
     $routeProvider.when '/mapNavigation',
@@ -449,7 +459,7 @@ angular.module 'DaisyApp', [
           $scope.service = 0
           $scope.charge = 0
           $scope.technique = 0
-          if $routeParams.item_type == "Informations::Information" then $scope.hiddenStar = true
+          # if $routeParams.item_type == "Informations::Information" then $scope.hiddenStar = true
           $scope.submit = () =>
             $http.post("/api/reviews_new/",{
               item_type: $routeParams.item_type || "Drugs::Drug",

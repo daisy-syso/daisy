@@ -30,7 +30,7 @@ class Reviews::ReviewsAPI < ApplicationAPI
 
       if review.save
 
-        status 201
+        present review
       end
     end
   end

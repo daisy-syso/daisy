@@ -9,7 +9,7 @@
   <div id="health_information" >
     <nav>
       <div style="text-align: center;">
-        <a href="">中国医院挂号网</a>
+        <!-- <a href="">中国医院挂号网</a> -->
       </div>
       <div>
         <a href="javascript:;" ng-click="gotoCategory({{information_type.id}})" ng-repeat="information_type in health_infors.information_types">
@@ -63,7 +63,7 @@
 
             <!-- the first information item is: picture + word, others just word -->
             <div ng-if="!itemWithPicture2(information.type_name)">
-              <a class="item item-thumbnail-left" ng-if="$index == 0">
+              <a class="item item-thumbnail-left" ng-if="$index == 0" ng-href="#/healthInformationDetail?id={{information.id}}">
                 <img ng-src="{{ information.image_url }}" src="http://lorempixel.com/400/200">
                 <h2 style="margin-top: 10px;">{{ information.name  }}</h2>
               </a>

@@ -10,10 +10,25 @@
   .empty-tip{
     padding: 10px;
   }
+  .review-list{
+    margin-top: 10px;
+  }
+  .review-wrapper{
+    padding: 10px;
+    background-color: #f3f3f3;
+    textarea{
+      padding: 10px;
+      width: 95%;
+    }
+    .review-infor{
+      margin-top: 10px;
+      margin-left: 285px;
+    }
+  }
   .infor-content{
     text-indent: 20px;
     line-height: 2;
-    font-size: 15px;
+    font-size: 18px;
     p{
       margin-top: 8px;
       line-height: 1.9 !important;
@@ -30,7 +45,8 @@
   .information-items{
     margin-left: 20px;
     width: 90%;
-    font-size: 16.7px;
+    font-size: 20px;
+    margin-top: 10px;
     .information-item{
       padding: 5px 0px;
       overflow: hidden;
@@ -141,7 +157,7 @@ header{
 
   ul a{
     width: 90%;
-    font-size: 16.7px;
+    font-size: 17.6px;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;

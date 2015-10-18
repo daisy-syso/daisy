@@ -32,12 +32,13 @@
   </section>
 
   <section ng-if="health_infor.reviews">
-    <h4>热门评论:</h4>
-    <div class="list" ng-show = "health_infor.reviews.length > 0">
+    <h3>热门评论:</h3>
+    <div class="list review-list" ng-show = "health_infor.reviews.length > 0">
       <a class="item item-avatar" href="javascript:;" ng-repeat="review in health_infor.reviews">
         <img src="venkman.jpg">
         <h2>{{ review.account }}</h2>
         <p>{{ review.desc }}</p>
+        <p>{{ review.created_at | date: "yyyy-MM-dd HH:mm:ss" }}</p>
       </a>
     </div>
     <div class="empty-tip" ng-show = "health_infor.reviews.length == 0">
@@ -46,13 +47,14 @@
     <button class="button button-full button-balanced" ng-if="health_infor.reviews.length > 0">
       全部评论
     </button>
-    <a class="button button-full button-balanced" ng-click="review()">
-      我要评论
-    </a>
+    <form class="review-wrapper" name="form_review">
+      <textarea placeholder="我要评论..." ng-model="desc" ng-focus="focus = true" ng-blur="focus = false" required></textarea>
+      <input name="sub" value="发 表" class="subcls review-infor" ng-click="review(desc)" ng-disabled="form_review.$invalid" ng-show="focus">
+    </form>
   </section>
 
   <section ng-if="health_infor.recommended.length > 0">
-    <h4>推荐阅读:</h4>
+    <h3>推荐阅读:</h3>
     <ul class="information-items">
       <li class="information-item" ng-repeat="recommended in health_infor.recommended">
         <a href="#/healthInformationDetail?id={{recommended.id}}">{{recommended.name}}</a>
@@ -61,7 +63,7 @@
   </section>
 
   <section ng-if="health_infor.selected.length > 0">
-    <h4>频道精选:</h4>
+    <h3>频道精选:</h3>
     <ul class="information-items">
       <li class="information-item" ng-repeat="select in health_infor.selected">
         <a href="#/healthInformationDetail?id={{select.id}}">{{select.name}}</a>
@@ -70,7 +72,7 @@
   </section>
 
   <section ng-if="health_infor.hot_images.length > 0">
-    <h4>热门图片:</h4>
+    <h3>热门图片:</h3>
     <div class="ad-picture">
       <ul class="information-items">
         <li>
