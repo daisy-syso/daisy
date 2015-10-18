@@ -13,10 +13,15 @@
   <%= f.input :name, label: '店名', placeholder: "店名" %>
   <%= f.input :address, label: '地址', placeholder: "地址" %>
   <%= f.input :telephone, label: '电话', placeholder: "021-1111111" %>
-  <%= f.input :image_url, as: :file, label: '图片' %>
+  <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
   <img src="<%= @drugstore.image_url%>" />
+  <br />
+  <br />
   <%= f.select :city_id, Categories::City.all.map { |c| [c.name, c.id]}, label: '上海' %>
+  <br />
+  <br />
   <div id="container"></div> 
+  <br />
   <%= f.input :lng, label: '经度', placeholder: "116.407949" %>
   <%= f.input :lat, label: '纬度', placeholder: "39.926729" %>
   <%= f.input :business_license, label: '商业执照', placeholder: "京DA0509070" %>

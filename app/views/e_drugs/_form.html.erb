@@ -21,7 +21,7 @@
   <%= f.input :expiry_date, label: '有效期', placeholder: "36个月" %>
   <%= f.input :spec, label: '规格', placeholder: "2.6g*9袋" %>
 
-  <%= f.input :image_url, as: :file, label: '图片' %>
+  <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
   <img src="<%= @drug.image_url%>" />
 
   <br />
