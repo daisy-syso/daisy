@@ -3,53 +3,55 @@
 <div class="dp_title">星级点评</div>
 <form action="" name="form_review" method="post">
   <div class="dp_box" id="dp_box">
-    <li>
-      <div class="star_t">环境</div>
-      <div class="dp_boxc">
-        <input class="fl" type="checkbox" style="margin-top:2px; display:none;" name="InterviewCommentInfoSub[expAuth]" value="0" />
-        <div class="revinp">
-          <raty id="star{{$index}}" ng-model="environment" number="5"></raty>
-          <span class="revgrade">良</span>
+    <ul>
+      <li ng-hide="hiddenStar">
+        <div class="star_t">环境</div>
+        <div class="dp_boxc">
+          <input class="fl" type="checkbox" style="margin-top:2px; display:none;" name="InterviewCommentInfoSub[expAuth]" value="0" />
+          <div class="revinp">
+            <raty id="star{{$index}}" ng-model="environment" number="5"></raty>
+            <span class="revgrade">良</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="star_t">服务</div>
-      <div class="dp_boxc">
-        <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[killAuth]" value="0" />
-        <div class="revinp">
-          <raty id="star{{$index}}" ng-model="service"number="5"></raty>
-          <span class="revgrade">良</span>
+      <li ng-hide="hiddenStar">
+        <div class="star_t">服务</div>
+        <div class="dp_boxc">
+          <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[killAuth]" value="0" />
+          <div class="revinp">
+            <raty id="star{{$index}}" ng-model="service"number="5"></raty>
+            <span class="revgrade">良</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="star_t">收费</div>
-      <div class="dp_boxc">
-        <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[followTime]" value="0" />
-        <div class="revinp">
-          <raty id="star{{$index}}" ng-model="charge"number="5"></raty>
-          <span class="revgrade">良</span>
+      <li ng-hide="hiddenStar">
+        <div class="star_t">收费</div>
+        <div class="dp_boxc">
+          <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[followTime]" value="0" />
+          <div class="revinp">
+            <raty id="star{{$index}}" ng-model="charge"number="5"></raty>
+            <span class="revgrade">良</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li>
-      <div class="star_t">技术</div>
-      <div class="dp_boxc">
-        <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[formality]" value="0" />
-        <div class="revinp">
-          <raty id="star{{$index}}" ng-model="technique" number="5"></raty>
-          <span class="revgrade">良</span>
+      <li ng-hide="hiddenStar">
+        <div class="star_t">技术</div>
+        <div class="dp_boxc">
+          <input class="fl" type="checkbox" style="margin-top:2px;display:none;" name="InterviewCommentInfoSub[formality]" value="0" />
+          <div class="revinp">
+            <raty id="star{{$index}}" ng-model="technique" number="5"></raty>
+            <span class="revgrade">良</span>
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
 
-    <li class="nobor">
-      <textarea placeholder="请输入您要评价的内容" class="dptext" ng-model='desc' required></textarea>
-    </li>
+      <li class="nobor">
+        <textarea placeholder="请输入您要评价的内容" class="dptext" ng-model='desc' required></textarea>
+      </li>
+    </ul>
   </div>
   <div class="dp_sub">
     <input type="button" name="sub" value="发 表" class="subcls" ng-click="submit()" ng-disabled="form_review.$invalid">

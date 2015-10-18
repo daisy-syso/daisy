@@ -352,6 +352,9 @@ angular.module 'DaisyApp', [
           $loader.get("/api/infors/health_infors/#{$routeParams.id}/read.json")
             .success (data) ->
               console.info("log the read");
+
+          $scope.review = () ->
+            $location.path("review/Informations::Information/#{$routeParams.id}")
       ]
 
     $routeProvider.when '/mapNavigation',
@@ -435,6 +438,7 @@ angular.module 'DaisyApp', [
           $scope.service = 0
           $scope.charge = 0
           $scope.technique = 0
+          if $routeParams.item_type == "Informations::Information" then $scope.hiddenStar = true
           $scope.submit = () =>
             $http.post("/api/reviews_new/",{
               item_type: $routeParams.item_type || "Drugs::Drug",
