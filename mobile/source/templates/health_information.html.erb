@@ -22,14 +22,14 @@
       <div>
         <ul style="padding: 0px;">
           <li>
-            <img style="width:100%;" src="http://lorempixel.com/400/200" alt="">
+            <img style="width:100%; height: 200px; border: 1px solid #ccc;" src="http://lorempixel.com/400/200" alt="">
           </li>
         </ul>
       </div>
     </section>
 
     <div class="list" id="{{infor_item.id}}" ng-repeat="infor_item in infor_items">
-      <div>
+      <div ng-class="{true: 'first-category', false: ''}[$index == 0]">
         <div class="category-information" style="">
           <h3 class="category-title">
             <a>{{ infor_item.name }}</a>
@@ -40,14 +40,41 @@
             </li>
           </ul>
         </div>
-        <div>
-          <ul class="information-items">
-            <li class="information-item" ng-repeat="information in infor_item.latest_informations">
-              <!-- <a href="">{{information.type_name }} | {{ information.name   }}</a> -->
-              <a href="#/healthInformationDetail?id={{information.id}}"> {{ information.name   }}</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="information-items">
+          <li class="information-item" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'picture-ads', false: 'picture-infors'}[itemWithPicture2(information.type_name)]">
+
+            <!-- the first two information items just use picture, others just word -->
+            <div ng-if="itemWithPicture2(information.type_name)">
+              <div ng-if="$index <= 1">
+                <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}">
+                  <img ng-src="{{information.image_url}}" src="http://lorempixel.com/400/200">
+                  <p class="info-name">{{information.name}}</p>
+                </a>
+                <!-- <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}">
+                  <img ng-src="{{information.image_url}}">
+                  <p class="info-name">{{information.name}}</p>
+                </a> -->
+              </div>
+
+              <a href="#/healthInformationDetail?id={{information.id}}" ng-if="$index > 1 ">
+                {{ information.name }}
+              </a>
+            </div>
+
+            <!-- the first information item is: picture + word, others just word -->
+            <div ng-if="!itemWithPicture2(information.type_name)">
+              <a class="item item-thumbnail-left" ng-if="$index == 0">
+                <img ng-src="{{ information.image_url }}" src="http://lorempixel.com/400/200">
+                <h2 style="margin-top: 10px;">{{ information.name  }}</h2>
+              </a>
+
+              <a href="#/healthInformationDetail?id={{information.id}}" ng-if="$index != 0">
+                {{ information.name }}
+              </a>
+            </div>
+
+          </li>
+        </ul>
       </div>
       <div class="load-more" ng-if="infor_item.latest_informations.length > 0">
         <a href="" ng-click="loadMore({{infor_item.id}})">查看更多>></a>
@@ -58,9 +85,11 @@
       <div class="ad-picture">
         <ul class="information-item">
           <li>
-            <img  style="width: 100%;" src="http://lorempixel.com/400/200" alt=""></li>
+            <img  style="width: 100%;" src="http://lorempixel.com/400/200" alt="">
+          </li>
           <li>
-            <img style="width: 100%;" src="http://lorempixel.com/400/200" alt=""></li>
+            <img style="width: 100%;" src="http://lorempixel.com/400/200" alt="">
+          </li>
         </ul>
       </div>
     </section>

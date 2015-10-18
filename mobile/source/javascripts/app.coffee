@@ -307,8 +307,9 @@ angular.module 'DaisyApp', [
       controller:[
         '$scope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
         ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
-          $scope.infor_items = {};
+          $scope.infor_items = {}
           $scope.afterHeight = false
+          itemShowWithPicture = ["健身减肥","美食","养身", "天天护理"]
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
             $scope.afterHeight = true
@@ -318,6 +319,9 @@ angular.module 'DaisyApp', [
                if (scroll)
                 scroll.scrollTop = 0
             ,0,false)
+
+          $scope.itemWithPicture2 = (name) ->
+            if name in itemShowWithPicture then true
 
           $scope.loadMore = (type) ->
             if $scope["#{type}_page"]
