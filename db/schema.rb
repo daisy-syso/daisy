@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151008034406) do
+ActiveRecord::Schema.define(version: 20151017103624) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -552,6 +552,47 @@ ActiveRecord::Schema.define(version: 20151008034406) do
     t.datetime "updated_at"
   end
 
+  create_table "e_drugs", force: true do |t|
+    t.string   "name"
+    t.float    "ori_price",      limit: 24
+    t.float    "price",          limit: 24
+    t.string   "manufactory"
+    t.string   "introduction"
+    t.string   "image_url"
+    t.string   "brand"
+    t.string   "code"
+    t.string   "expiry_date"
+    t.string   "spec"
+    t.integer  "editor_id"
+    t.integer  "e_drugstore_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "e_drugs", ["e_drugstore_id"], name: "index_e_drugs_on_e_drugstore_id", using: :btree
+  add_index "e_drugs", ["editor_id"], name: "index_e_drugs_on_editor_id", using: :btree
+  add_index "e_drugs", ["name"], name: "index_e_drugs_on_name", using: :btree
+
+  create_table "e_drugstores", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.string   "image_url"
+    t.float    "lng",              limit: 24
+    t.float    "lat",              limit: 24
+    t.integer  "city_id"
+    t.integer  "county_id"
+    t.integer  "editor_id"
+    t.string   "business_license"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "e_drugstores", ["city_id"], name: "index_e_drugstores_on_city_id", using: :btree
+  add_index "e_drugstores", ["county_id"], name: "index_e_drugstores_on_county_id", using: :btree
+  add_index "e_drugstores", ["editor_id"], name: "index_e_drugstores_on_editor_id", using: :btree
+  add_index "e_drugstores", ["name"], name: "index_e_drugstores_on_name", using: :btree
+
   create_table "editors", force: true do |t|
     t.string   "email"
     t.string   "username"
@@ -978,6 +1019,8 @@ ActiveRecord::Schema.define(version: 20151008034406) do
     t.datetime "updated_at"
     t.float    "star",                limit: 24
     t.integer  "reviews_count"
+    t.integer  "read_count",                     default: 0
+    t.boolean  "is_top",                         default: false
   end
 
   create_table "insurance_companies", force: true do |t|

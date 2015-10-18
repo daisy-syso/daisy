@@ -1,6 +1,9 @@
 <div class="row">
+  <h1>药店管理</h1>
+</div>
+<div class="row">
   <p id="notice"><%= notice %></p>
-  <%= link_to '添加', new_drugs_drugstore_path, class: "btn btn-info" %>
+  <%= link_to '添加', new_e_drugstore_path, class: "btn btn-info" %>
   <hr>
   <table class="table table-striped table-bordered table-hover table-condensed">
     <thead>
@@ -18,9 +21,10 @@
           <td><%= drugstore.address %></td>
           <td><%= drugstore.telephone %></td>
           <td>
-            <%= link_to '详情', drugs_drugstore_path(drugstore), class: "btn btn-info"%>
-            <%= link_to '修改', edit_drugs_drugstore_path(drugstore), class: "btn btn-warning"%>
-            <%= link_to '下架', drugs_drugstore_path(drugstore), method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+            <%= link_to '详情', e_drugstore_path(drugstore), class: "btn btn-info"%>
+            <%= link_to '我的药品', e_drugstore_e_drugs_path(drugstore), class: "btn btn-default"%>
+            <%= link_to '修改', edit_e_drugstore_path(drugstore), class: "btn btn-warning"%>
+            <%= link_to '删除', e_drugstore_path(drugstore), method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>

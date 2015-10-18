@@ -14,7 +14,16 @@ Rails.application.routes.draw do
 
   root 'editors_session#login'
 
-  resources :editors
+  resources :editors do
+    get 'drugstores'
+    get 'drugs'
+  end
+
+  # resources :e_drugs
+
+  resources :e_drugstores do
+    resources :e_drugs
+  end
 
   resources :editors_session do
     collection do

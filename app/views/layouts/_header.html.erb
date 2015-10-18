@@ -20,14 +20,12 @@
             <li id="editors">
               <%= link_to '所有用户', editors_path %>
             </li>
+          <% else %>
+            <li id="drugstores">
+              <%= link_to '我的药店', e_drugstores_path %>
+            </li>
           <% end %>
         <% end %>
-        <li id="drugstores">
-          <%= link_to '我的药店', drugs_drugstores_path %>
-        </li>
-        <li id="drugs">
-          <%= link_to '我的药品', drugs_drugs_path %>
-        </li>
         <li id='editor_logout'>
           <%= link_to '退出', logout_editors_session_index_path %>
         </li>

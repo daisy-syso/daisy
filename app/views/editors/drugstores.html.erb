@@ -1,0 +1,26 @@
+<div class="row">
+  <h1>药店管理</h1>
+</div>
+<div class="row">
+  <p id="notice"><%= notice %></p>
+  <hr>
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead>
+      <tr class="active">
+        <th>药店名称</th>
+        <th>地址</th>
+        <th>电话</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drugstores.each do |drugstore|%>
+        <tr>
+          <td><%= drugstore.name %></td>
+          <td><%= drugstore.address %></td>
+          <td><%= drugstore.telephone %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @drugstores %>
+</div>
