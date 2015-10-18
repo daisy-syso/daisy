@@ -10,17 +10,16 @@
       </ul>
     </div>
   <% end %>
-  <!-- :name, :manufactory, :ori_price, :price, :introduction, :image_url, :drug_type_id, :brand, :code, :spec, :expiry_date -->
-  <%= f.input :name, label: '药名' %>
-  <%= f.input :manufactory, label: '工厂' %>
-  <%= f.input :ori_price, label: '原价' %>
-  <%= f.input :price, label: '现价' %>
-  <%= f.input :introduction, label: '介绍' %>
+  <%= f.input :name, label: '药名', placeholder: "药品名称" %>
+  <%= f.input :manufactory, label: '厂家', placeholder: "厂家" %>
+  <%= f.input :ori_price, label: '原价', placeholder: "0.0" %>
+  <%= f.input :price, label: '现价', placeholder: "0.0" %>
+  <%= f.input :introduction, label: '介绍', placeholder: "药品效果" %>
   <%#= f.input :drug_type_id, label: '药品类型' %>
-  <%= f.input :brand, label: '品牌商标' %>
-  <%= f.input :code, label: '国药准字' %>
-  <%= f.input :expiry_date, label: '有效期' %>
-  <%= f.input :spec, label: '规格' %>
+  <%= f.input :brand, label: '品牌商标', placeholder: "同仁堂" %>
+  <%= f.input :code, label: '国药准字', placeholder: "国药准字Z11020197" %>
+  <%= f.input :expiry_date, label: '有效期', placeholder: "36个月" %>
+  <%= f.input :spec, label: '规格', placeholder: "2.6g*9袋" %>
 
   <%= f.input :image_url, as: :file, label: '图片' %>
   <img src="<%= @drug.image_url%>" />

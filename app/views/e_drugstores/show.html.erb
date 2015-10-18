@@ -11,7 +11,7 @@
   <img src="<%= @drugstore.image_url%>" />
 </div>
 <strong>城市:</strong>
-<div class="alert alert-success" id="drugstore_city" role="alert"><%= get_city_by_id(@drugstore.city_id) %></div>
+<div class="alert alert-success" id="drugstore_city" role="alert"><%= Categories::City.find(@drugstore.city_id).name %></div>
 <!-- <strong>区县:</strong>
 <div class="alert alert-success" role="alert"><%#= get_county_by_id(@drugstore.county_id) %></div> -->
 
