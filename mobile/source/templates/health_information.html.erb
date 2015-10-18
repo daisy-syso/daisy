@@ -35,8 +35,8 @@
             <a>{{ infor_item.name }}</a>
           </h3>
           <ul class="category-items">
-            <li ng-repeat="children_item in infor_item.children_items | limitTo:3">
-              <a href="#/healthInformation?id={{children_item.id}}"></a> {{ children_item.name }}
+            <li ng-repeat="children_item in infor_item.children_items | limitTo:3" ng-click="showChildreninfors(infor_item.id, children_item.id)">
+              <a href="javascript:;"></a> {{ children_item.name }}
             </li>
           </ul>
         </div>

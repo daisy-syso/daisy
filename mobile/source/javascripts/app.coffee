@@ -310,6 +310,13 @@ angular.module 'DaisyApp', [
           $scope.infor_items = {}
           $scope.afterHeight = false
           itemShowWithPicture = ["健身减肥","美食","养身", "天天护理"]
+
+          $scope.showChildreninfors = (parent_id, children_id) ->
+            url = "/api/infors/health_infors.json?type=#{children_id}"
+            $loader.get(url)
+              .success (data) ->
+                $scope.infor_items["type_#{parent_id}"].latest_informations =  data.data[0].latest_informations
+
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
             $scope.afterHeight = true
