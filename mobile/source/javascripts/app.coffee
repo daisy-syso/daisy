@@ -309,7 +309,7 @@ angular.module 'DaisyApp', [
         ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {}
           $scope.afterHeight = false
-          itemShowWithPicture = ["健身减肥","美食","养生", "天天护理", "睡眠", "营养", "中医", "牙.眼", "美肤", "塑身", "健身", "减肥", "瑜伽"]
+          itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
 
           $scope.showChildreninfors = (parent_id, children_id) ->
             url = "/api/infors/health_infors.json?type=#{children_id}"
