@@ -23,11 +23,6 @@ class Informations::HealthInforsAPI < ApplicationAPI
       present :data, information_type, with: Informations::InformationTypeEntity
     end
 
-    get "hot_imgs" do
-      infors = Informations::Information.where(is_top: true).where.not(image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(4)
-      present :data, infors, with: Informations::InformationEntity
-    end
-
     show! Informations::Information
 
     get ":id/read" do
@@ -35,7 +30,13 @@ class Informations::HealthInforsAPI < ApplicationAPI
       information.update_attributes(read_count: (information.read_count.to_i + 1))
       status 201
     end
+  end
 
+  namespace :hot do
+    get do
+      infors = Informations::Information.where(is_top: true).where.not(image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(4)
+      present :data, infors, with: Informations::InformationEntity
+    end
   end
 
 end
