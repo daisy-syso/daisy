@@ -1,3 +1,12 @@
+.health-information-detail-header{
+  .custom-back{
+    width: 40px;
+  }
+  .title{
+    margin:0;
+    font-size:22px;
+  }
+}
 .afterHeight {
   height: 26px;
 }
@@ -48,10 +57,17 @@
     }
   }
   .information-items{
-    margin-left: 20px;
+    margin-left: 17.6px;
     width: 90%;
-    font-size: 20px;
+    font-size: 17.6px;
     margin-top: 10px;
+    .information-wrapper{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+      width: 98%;
+    }
     .information-item{
       padding: 5px 0px;
       overflow: hidden;

@@ -62,7 +62,7 @@
             </div>
 
             <!-- the first information item is: picture + word, others just word -->
-            <div ng-if="!itemWithPicture2(information.name)">
+            <div ng-if="!itemWithPicture2(infor_item.name)" class="information-wrapper">
               <a class="item item-thumbnail-left" ng-if="$index == 0" ng-href="#/healthInformationDetail?id={{information.id}}">
                 <img ng-src="{{ information.image_url }}">
                 <h2 style="margin-top: 10px;">{{ information.name  }}</h2>
