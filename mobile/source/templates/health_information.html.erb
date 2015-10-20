@@ -21,9 +21,10 @@
     <section>
       <div class="ads-images">
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
-          <ion-slide ng-repeat="hot_image in hotImages">
+          <ion-slide ng-repeat="hot_ads in hotAds">
             <div class="box">
-              <img class="ads-image" ng-src="{{ hot_image.image_url }}" alt="广告图片"></img>
+              <img class="ads-image" ng-src="{{ hot_ads.image_url }}" alt="广告图片"></img>
+              <a class="information-title" ng-href="#/healthInformationDetail?id={{hot_ads.id}}" >{{ hot_ads.name }}</a>
             </div>
           </ion-slide>
         </ion-slide-box>

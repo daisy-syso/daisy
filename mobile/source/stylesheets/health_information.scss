@@ -26,6 +26,16 @@
     .box{
       height: 100%;
       border: none;
+      .information-title{
+        position: absolute;
+        bottom: 0px;
+        background-color: rgba(54, 47, 47, 0.36);
+        color: white;
+        font-size: 16.7px;
+        height: 30px;
+        width: 96.5%;
+        line-height: 30px;
+      }
     }
   }
   .empty-tip{
