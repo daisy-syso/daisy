@@ -19,12 +19,14 @@
     </nav>
 
     <section>
-      <div>
-        <ul style="padding: 0px;">
-          <li>
-            <img class="ads-image" alt="">
-          </li>
-        </ul>
+      <div class="ads-images">
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+          <ion-slide ng-repeat="hot_image in hotImages">
+            <div class="box">
+              <img class="ads-image" ng-src="{{ hot_image.image_url }}" alt="广告图片"></img>
+            </div>
+          </ion-slide>
+        </ion-slide-box>
       </div>
     </section>
 
