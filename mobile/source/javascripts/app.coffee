@@ -317,6 +317,11 @@ angular.module 'DaisyApp', [
               .success (data) ->
                 $scope.infor_items["type_#{parent_id}"].latest_informations =  data.data[0].latest_informations
 
+          $scope.getHotAds = () ->
+            $loader.get("/api/infors/hot.json")
+              .success (data) ->
+                $scope.hotAds = data.data;
+
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
             $scope.afterHeight = true
@@ -349,6 +354,7 @@ angular.module 'DaisyApp', [
                 $scope.infor_items["type_#{data.data[0].id}"].latest_informations = $scope.infor_items["type_#{data.data[0].id}"].latest_informations.concat data.data[0].latest_informations
 
           $scope.loadMore()
+          $scope.getHotAds()
       ]
 
 
