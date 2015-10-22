@@ -19,7 +19,7 @@
     </nav>
 
     <section>
-      <div class="ads-images">
+      <div class="ads-images" ng-if="hotAds">
         <ion-slide-box on-slide-changed="slideHasChanged($index)">
           <ion-slide ng-repeat="hot_ads in hotAds">
             <div class="box">
