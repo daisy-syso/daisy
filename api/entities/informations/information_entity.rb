@@ -11,7 +11,7 @@ class Informations::InformationEntity < ApplicationEntity
   end
 
   with_options if: { detail: true } do
-  	expose :content, :created_at
+  	expose :content
   	expose :information_type do |object, options|
 	    {
 	    	id: object.information_type.id,
