@@ -19,6 +19,7 @@
   .ads-image{
     height: 200px;
     width:100%;
+    margin-left: 0px;
   }
   .ads-images{
     width:100%;
@@ -64,10 +65,17 @@
     text-indent: 20px;
     line-height: 2;
     font-size: 22px;
+    color: black;
+    img{
+      width: 97%;
+      margin-left: -12px;
+      max-height: 150px;
+    }
     p{
       margin-top: 8px;
       line-height: 1.9 !important;
       font-size: 22px;
+      color: black;
     }
   }
   .ad-picture{
