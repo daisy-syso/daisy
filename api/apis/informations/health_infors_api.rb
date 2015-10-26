@@ -2,11 +2,11 @@ class Informations::HealthInforsAPI < ApplicationAPI
 
   namespace :health_infors do
     get do
-      information_types = Informations::InformationType.select("id, name, parent_id").where(parent_id: nil).order("created_at desc")
+      information_types = Informations::InformationType.select("id, name, parent_id, top_number").where(parent_id: nil).order("created_at desc")
       information_type = params[:type].blank? ? information_types : Informations::InformationType.where(id: params[:type])
       information_type.each do |it|
         parent_id = it.parent_id || it.id
-        top_infors = "(select *, 1 as rank from informations where information_type_id = #{parent_id} and is_top is true and types = 0 order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit 1)"
+        top_infors = "(select *, 1 as rank from informations where information_type_id = #{parent_id} and is_top is true and types = 0 order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit #{it.top_number})"
         if it.parent_id.blank?
           ids = it.children_items.map(&:id) + [it.id]
           select_infos = "(select *, 2 as rank from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0)"
@@ -38,8 +38,18 @@ class Informations::HealthInforsAPI < ApplicationAPI
       present :data, infors, with: Informations::InformationEntity
     end
 
-    get 'guess' do
-      infos = Informations::RecommendedInformation.order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(12)
+    get 'guessed' do
+      infos = Informations::Information.guessed.order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(12)
+      present :data, infos, with: Informations::InformationEntity
+    end
+
+    get 'recommended' do
+      infos = Informations::Information.recommended.order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(12)
+      present :data, infos, with: Informations::InformationEntity
+    end
+
+    get 'selected' do
+      infos = Informations::Information.selected.order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(12)
       present :data, infos, with: Informations::InformationEntity
     end
   end
