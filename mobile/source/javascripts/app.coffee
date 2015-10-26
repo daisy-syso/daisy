@@ -312,6 +312,7 @@ angular.module 'DaisyApp', [
           itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
 
           $scope.showChildreninfors = (parent_id, children_id) ->
+            $scope["#{parent_id}_current_category"] = children_id
             url = "/api/infors/health_infors.json?type=#{children_id}"
             $loader.get(url)
               .success (data) ->
@@ -340,18 +341,20 @@ angular.module 'DaisyApp', [
               page = $scope["#{type}_page"] +=1
             else
               page = $scope["#{type}_page"] = 2
+
             url = if type
-              "/api/infors/health_infors.json?page=#{page}&type=#{type}"
+              current_category = $scope["#{type}_current_category"] || type
+              "/api/infors/health_infors.json?page=#{page}&type=#{current_category}"
             else
               "/api/infors/health_infors.json"
             $loader.get(url)
-            .success (data) ->
-              if !type
-                $scope.health_infors = data;
-                for infor_item in data.data
-                  $scope.infor_items["type_#{infor_item.id}"] = infor_item
-              else
-                $scope.infor_items["type_#{data.data[0].id}"].latest_informations = $scope.infor_items["type_#{data.data[0].id}"].latest_informations.concat data.data[0].latest_informations
+              .success (data) ->
+                if !type
+                  $scope.health_infors = data;
+                  for infor_item in data.data
+                    $scope.infor_items["type_#{infor_item.id}"] = infor_item
+                else
+                  $scope.infor_items["type_#{type}"].latest_informations = $scope.infor_items["type_#{type}"].latest_informations.concat data.data[0].latest_informations
 
           $scope.loadMore()
           $scope.getHotAds()

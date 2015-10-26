@@ -47,17 +47,15 @@
           <li class="information-item" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'picture-ads', false: 'picture-infors'}[itemWithPicture2(infor_item.name)]">
 
             <!-- the first two information items just use picture, others just word -->
-            <div ng-if="itemWithPicture2(infor_item.name)">
-              <div ng-if="$index <= 1">
-                <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}">
-                  <img ng-src="{{information.image_url}}">
-                  <!-- <p class="info-name">{{information.name}}</p> -->
-                </a>
+            <div ng-if="itemWithPicture2(infor_item.name)" style="height: 100%; width: 100%;">
+              <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}" ng-if="$index <= 1">
+                <img ng-src="{{information.image_url}}">
+                <p class="info-name">{{information.name}}</p>
+              </a>
                 <!-- <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}">
                   <img ng-src="{{information.image_url}}">
                   <p class="info-name">{{information.name}}</p>
                 </a> -->
-              </div>
 
               <a href="#/healthInformationDetail?id={{information.id}}" ng-if="$index > 1 ">
                 {{ information.name }}

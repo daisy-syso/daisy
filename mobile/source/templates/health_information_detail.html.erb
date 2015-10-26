@@ -6,79 +6,80 @@
   <h1 class="title">
     {{ health_infor.type_name}}
   </h1>
-  <a href="" class="download-reminder  pull-right">详情页界面</a>
 </header>
 
-<div id="health_information_detail">
-  <section>
-    <div>
-      <ul style="padding: 0px;">
-        <li>
-          <img class="ads-image" ng-src="{{ health_infor.image_url }} ">
+<ion-content class="has-header" overflow-scroll="true">
+  <div id="health_information_detail">
+    <section>
+      <div>
+        <ul style="padding: 0px;">
+          <li>
+            <img class="ads-image" ng-src="{{ health_infor.image_url }} ">
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="information-title">{{health_infor.name}} </div>
+      <div class="information-detail">
+        <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
+        <hr>
+        <p class="infor-content" ng-bind-html="health_infor.content">
+        </p>
+      </div>
+    </section>
+
+    <section ng-if="health_infor.reviews">
+      <div class="detail-normal-title">热门评论:</div>
+      <div class="list review-list" ng-show = "health_infor.reviews.length > 0">
+        <a class="item item-avatar" href="javascript:;" ng-repeat="review in health_infor.reviews">
+          <img src="venkman.jpg">
+          <h2>{{ review.account }}</h2>
+          <p>{{ review.desc }}</p>
+          <p>{{ review.created_at | date: "yyyy-MM-dd HH:mm:ss" }}</p>
+        </a>
+      </div>
+      <div class="empty-tip" ng-show = "health_infor.reviews.length == 0">
+        <p>暂无评论</p>
+      </div>
+      <button class="button button-full button-balanced" ng-if="health_infor.reviews.length > 0">
+        全部评论
+      </button>
+      <form class="review-wrapper" name="form_review">
+        <textarea placeholder="我要评论..." ng-model="desc" ng-focus="focus = true" ng-blur="focus = false" required></textarea>
+        <input name="sub" value="发 表" class="subcls review-infor" ng-click="review(desc)" ng-disabled="form_review.$invalid" ng-show="focus">
+      </form>
+    </section>
+
+    <section ng-if="health_infor.recommended.length > 0">
+      <div class="detail-normal-title">推荐阅读:</div>
+      <ul class="information-items">
+        <li class="information-item" ng-repeat="recommended in health_infor.recommended">
+          <a href="#/healthInformationDetail?id={{recommended.id}}">{{recommended.name}}</a>
         </li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <h3 class="information-title">{{health_infor.name}} </h3>
-    <div class="information-detail">
-      <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
-      <hr>
-      <p class="infor-content" ng-bind-html="health_infor.content">
-      </p>
-    </div>
-  </section>
-
-  <section ng-if="health_infor.reviews">
-    <h3>热门评论:</h3>
-    <div class="list review-list" ng-show = "health_infor.reviews.length > 0">
-      <a class="item item-avatar" href="javascript:;" ng-repeat="review in health_infor.reviews">
-        <img src="venkman.jpg">
-        <h2>{{ review.account }}</h2>
-        <p>{{ review.desc }}</p>
-        <p>{{ review.created_at | date: "yyyy-MM-dd HH:mm:ss" }}</p>
-      </a>
-    </div>
-    <div class="empty-tip" ng-show = "health_infor.reviews.length == 0">
-      <p>暂无评论</p>
-    </div>
-    <button class="button button-full button-balanced" ng-if="health_infor.reviews.length > 0">
-      全部评论
-    </button>
-    <form class="review-wrapper" name="form_review">
-      <textarea placeholder="我要评论..." ng-model="desc" ng-focus="focus = true" ng-blur="focus = false" required></textarea>
-      <input name="sub" value="发 表" class="subcls review-infor" ng-click="review(desc)" ng-disabled="form_review.$invalid" ng-show="focus">
-    </form>
-  </section>
-
-  <section ng-if="health_infor.recommended.length > 0">
-    <h3>推荐阅读:</h3>
-    <ul class="information-items">
-      <li class="information-item" ng-repeat="recommended in health_infor.recommended">
-        <a href="#/healthInformationDetail?id={{recommended.id}}">{{recommended.name}}</a>
-      </li>
-    </ul>
-  </section>
-
-  <section ng-if="health_infor.selected.length > 0">
-    <h3>频道精选:</h3>
-    <ul class="information-items">
-      <li class="information-item" ng-repeat="select in health_infor.selected">
-        <a href="#/healthInformationDetail?id={{select.id}}">{{select.name}}</a>
-      </li>
-    </ul>
-  </section>
-
-  <section ng-if="health_infor.hot_images.length > 0">
-    <h3>热门图片:</h3>
-    <div class="ad-picture">
+    <section ng-if="health_infor.selected.length > 0">
+      <div class="detail-normal-title">频道精选:</div>
       <ul class="information-items">
-        <li>
-          <img  style="width: 100%;" ng-src="{{ health_infor.hot_images[0].image_url }}" alt=""></li>
-        <li>
-          <img style="width: 100%;" ng-src="{{ health_infor.hot_images[1].image_url }}"></li>
+        <li class="information-item" ng-repeat="select in health_infor.selected">
+          <a href="#/healthInformationDetail?id={{select.id}}">{{select.name}}</a>
+        </li>
       </ul>
-    </div>
-  </section>
-</div>
+    </section>
+
+    <section ng-if="health_infor.hot_images.length > 0">
+      <div class="detail-normal-title">热门图片:</div>
+      <div class="ad-picture">
+        <ul class="information-items">
+          <li>
+            <img  style="width: 100%;" ng-src="{{ health_infor.hot_images[0].image_url }}" alt=""></li>
+          <li>
+            <img style="width: 100%;" ng-src="{{ health_infor.hot_images[1].image_url }}"></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</ion-content>
