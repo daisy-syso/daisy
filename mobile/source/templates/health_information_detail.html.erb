@@ -14,13 +14,13 @@
       <div>
         <ul style="padding: 0px;">
           <li>
-            <img class="ads-image" ng-src="{{ health_infor.image_url }} ">
+            <img class="detail-ads-image" ng-src="{{ health_infor.image_url }} ">
           </li>
         </ul>
       </div>
     </section>
 
-    <section>
+    <section id="top">
       <div class="information-title">{{health_infor.name}} </div>
       <div class="information-detail">
         <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
@@ -81,5 +81,6 @@
         </ul>
       </div>
     </section>
+    <div class="go-top" ng-click="goTop()">⬆️返回顶部</div>
   </div>
 </ion-content>

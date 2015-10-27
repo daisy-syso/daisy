@@ -17,8 +17,11 @@
   height: 100%;
   overflow: scroll;
   margin-top: 4%;
-  .ads-image{
+  .detail-ads-image{
     height: 120px;
+    width:100%;
+  }
+  .ads-image{
     width:100%;
     margin-left: 0px;
   }
@@ -242,14 +245,25 @@ header{
   }
 }
 #health_information_detail{
+  .go-top{
+    position: fixed;
+    bottom: 100px;
+    right: 10px;
+    padding: 20px 10px;
+    background: antiquewhite;
+  }
   h4{
     margin-bottom: 5px;
   }
   .information-title{
     text-align: center;
+    font-size: 22px;
   }
   .information-detail{
     padding: 10px;
+    .time-info{
+      font-size: 18px;
+    }
   }
   .detail-normal-title{
     font-size: 17.6px;

@@ -373,6 +373,9 @@ angular.module 'DaisyApp', [
             .success (data) ->
               console.info("log the read")
 
+          $scope.goTop = () ->
+            document.getElementById('health_information_detail').scrollTop = 0
+
           $scope.review = (desc) ->
             $loader.post("/api/reviews_new/",{
               item_type: 'Informations::Information',
