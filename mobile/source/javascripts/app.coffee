@@ -373,6 +373,10 @@ angular.module 'DaisyApp', [
             .success (data) ->
               console.info("log the read")
 
+          $loader.get(" /api/infors/hot/guessed.json")
+            .success (data) ->
+              $scope.guesses = data.data
+
           $scope.goTop = () ->
             document.getElementById('health_information_detail').scrollTop = 0
 

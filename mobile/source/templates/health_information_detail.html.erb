@@ -24,10 +24,21 @@
       <div class="information-title">{{health_infor.name}} </div>
       <div class="information-detail">
         <div class="time-info">{{ health_infor.created_at }}  {{ health_infor.source }}</div>
-        <hr>
-        <p class="infor-content" ng-bind-html="health_infor.content">
-        </p>
+        <hr />
+        <p class="infor-content" ng-bind-html="health_infor.content"></p>
       </div>
+    </section>
+
+    <section class="mt-20">
+      <div class="detail-normal-title">猜你喜欢:</div>
+      <ul class="guess-list">
+        <li ng-repeat="guess in guesses" class="guess-item">
+          <a href="#/healthInformationDetail?id={{guess.id}}">
+            <img ng-src="{{ guess.image_url }}" />
+            <p class="overflow-text"> {{ guess.name }}</p>
+          </a>
+        </li>
+      </ul>
     </section>
 
     <section ng-if="health_infor.reviews">
@@ -70,7 +81,7 @@
       </ul>
     </section>
 
-    <section ng-if="health_infor.hot_images.length > 0">
+    <section ng-if="health_infor.hot_images.length > 0" class="last-section">
       <div class="detail-normal-title">热门图片:</div>
       <div class="ad-picture">
         <ul class="information-items">

@@ -71,6 +71,9 @@
     line-height: 2;
     font-size: 22px;
     color: black;
+    .pull-left{
+      float: none !important;
+    }
     img{
       width: 97%;
       margin-left: -12px;
@@ -245,6 +248,9 @@ header{
   }
 }
 #health_information_detail{
+  .mt-20{
+    margin-top: 20px;
+  }
   .go-top{
     position: fixed;
     bottom: 100px;
@@ -252,6 +258,19 @@ header{
     padding: 20px 10px;
     background: antiquewhite;
   }
+  .guess-list{
+    width: 100%;
+    .guess-item{
+      display: inline-block;
+      width: 30%;
+      margin-left: 2%;
+      img{
+        height: 100px;
+        width: 100%;
+      }
+    }
+  }
+
   h4{
     margin-bottom: 5px;
   }
@@ -268,5 +287,16 @@ header{
   .detail-normal-title{
     font-size: 17.6px;
     margin-left: 5px;
+    margin-bottom: 10px;
   }
+}
+
+.last-section{
+  margin-bottom: 60px !important;
+}
+.overflow-text{
+  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
