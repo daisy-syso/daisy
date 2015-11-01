@@ -305,9 +305,11 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
-        '$scope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
-        ($scope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
+        '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
+        ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {}
+          $rootScope.footerHide = true
+          $rootScope.healthFooter = true
           $scope.afterHeight = false
           itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
 
@@ -364,8 +366,10 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/healthInformationDetail',
       templateUrl: "templates/health_information_detail.html"
       controller:[
-        '$scope', '$routeParams', '$loader', '$location'
-        ($scope, $routeParams, $loader, $location) ->
+        '$scope', '$rootScope', '$routeParams', '$loader', '$location'
+        ($scope, $rootScope, $routeParams, $loader, $location) ->
+          $rootScope.footerHide = true
+          $rootScope.healthFooter = true
           $loader.get("/api/infors/health_infors/#{$routeParams.id}.json")
             .success (data) ->
               $scope.health_infor = data.data
