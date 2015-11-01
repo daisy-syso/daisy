@@ -7,7 +7,7 @@ angular.module('DaisyApp').directive 'filter', [
       scope:
         filterData: "="
       link: (scope, element, attrs) ->
-        scope.current = 
+        scope.current =
           titles: {}
 
         scope.$watch 'filterData', (filterData) ->
@@ -45,18 +45,18 @@ angular.module('DaisyApp').directive 'filter', [
           return if column.url
           listScope = $route.current.scope
           if column.type
-            type = column.type
+            type = column.type || 'examinations/examinations'
             params = column.params || {}
           else
             type = listScope.type
-            params = angular.extend {}, 
+            params = angular.extend {},
               listScope.params, column.params
           listScope.redirectTo type, params
 
           keep = scope.current.menu.keep
           listScope[keep] = column if keep
 
-          scope.current.titles[scope.current.index] = 
+          scope.current.titles[scope.current.index] =
             column.filterTitle || column.title
 
           listScope.title = column.pageTitle

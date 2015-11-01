@@ -830,6 +830,13 @@ angular.module 'DaisyApp', [
                 $scope.moreData = false
               else
                 $scope.data = $scope.data.concat data.data
+
+        $scope.redirectTo = (type, params) ->
+          $scope.loadData('examinations/examinations', params)
+          $location.path("list/examinations/examinations")
+          $location.search(params)
+          $location.replace()
+          $location.keep = false
     ]
 
     $routeProvider.when '/list/manufactories/manufactories',
