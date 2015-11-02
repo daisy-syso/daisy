@@ -251,14 +251,6 @@ header{
   .mt-20{
     margin-top: 20px;
   }
-  .go-top{
-    position: fixed;
-    bottom: 100px;
-    right: 10px;
-    padding: 20px 10px;
-    background: rgba(82, 72, 58, 0.6);
-    color: white;
-  }
   .guess-list{
     width: 100%;
     .guess-item{
@@ -300,4 +292,13 @@ header{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.go-top{
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+  padding: 20px 10px;
+  // background: rgba(82, 72, 58, 0.6);
+  color: black;
 }
