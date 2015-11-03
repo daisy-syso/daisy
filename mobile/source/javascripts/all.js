@@ -1,6 +1,7 @@
 //= require app
 //= require_tree ./controllers
 //= require_tree ./directives
+//= require_tree ./filters
 //= require_tree ./providers
 //= require jquery-1.9.1.min
 //= require js/TouchSlide.1.1

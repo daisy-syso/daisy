@@ -31,7 +31,8 @@
       </div>
     </section>
 
-    <div class="list" id="{{infor_item.id}}" ng-repeat="infor_item in infor_items">
+
+    <div class="list" id="{{infor_item.id}}" ng-repeat="infor_item in infor_items | toArray">
       <div ng-class="{true: 'first-category', false: ''}[$index == 0]">
         <div class="category-information" style="">
           <h3 class="category-title">
