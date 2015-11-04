@@ -9,7 +9,7 @@
   }
 }
 .afterHeight {
-  height: 26px;
+  height: 28px;
 }
 #health_information_detail,
 #health_information{
@@ -67,7 +67,7 @@
     }
   }
   .infor-content{
-    text-indent: 20px;
+    // text-indent: 20px;
     line-height: 2;
     font-size: 22px;
     color: black;
@@ -76,8 +76,11 @@
     }
     img{
       max-width: 97%;
-      margin-left: -12px;
+      // margin-left: -12px;
       max-height: 150px;
+      clear: both;
+      display: block;
+      margin:auto;
     }
     p{
       margin-top: 8px;
@@ -212,6 +215,16 @@ header{
     padding: 10px;
     text-align: left;
     font-size: 18px;
+    li{
+      list-style: none;
+      display: inline;
+      margin-right: 6px;
+      // white-space: nowrap;
+      a{
+        white-space: nowrap;
+        font-size: 18px;
+      }
+    }
   }
 
   ul a{
@@ -228,14 +241,14 @@ header{
     margin-bottom: 10px;
   }
 
-  nav a{
-    margin-right: 10px;
-  }
+  // nav a{
+  //   margin-right: 6px;
+  // }
 
-  li{
-    list-style: none;
-    display: block;
-  }
+  // li{
+  //   list-style: none;
+  //   display: block;
+  // }
 
   a{
     color: black;
@@ -301,4 +314,9 @@ header{
   padding: 20px 10px;
   // background: rgba(82, 72, 58, 0.6);
   color: black;
+}
+
+.header-image{
+  width: 66%;
+  height: 100%;
 }

@@ -1,5 +1,5 @@
 <header class="bar bar-header bar-nav">
-  <h1 class="title">今日健康头条</h1>
+  <img class="header-image" src="images/adv/health.gif" />
 </header>
 
 <ion-content class="has-header" overflow-scroll="true">
@@ -8,14 +8,13 @@
   <!-- <div ng-class="{beforeHeight: before == 'yes', afterHight: before != 'yes'}"></div> -->
   <div id="health_information" >
     <nav>
-      <div style="text-align: center;">
-        <!-- <a href="">中国医院挂号网</a> -->
-      </div>
-      <div>
-        <a href="javascript:;" ng-click="gotoCategory({{information_type.id}})" ng-repeat="information_type in health_infors.information_types">
-          {{ information_type.name }}
-        </a>
-      </div>
+      <ul>
+        <li ng-repeat="information_type in health_infors.information_types">
+          <a href="javascript:;" ng-click="gotoCategory({{information_type.id}})">
+            {{ information_type.name }}
+          </a>
+        </li>
+      </ul>
     </nav>
 
     <section>
