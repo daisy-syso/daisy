@@ -118,6 +118,14 @@
     .information-item:nth-child(-n+2){
       a {
         color: #c6171e;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        img{
+          top: 2px;
+          left: 0px;
+        }
       }
     }
     .picture-ads:nth-child(-n+2){
