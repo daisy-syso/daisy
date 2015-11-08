@@ -1,6 +1,7 @@
 .health-information-detail-header{
   .custom-back{
     width: 40px;
+    padding-top: 6px !important;
   }
   .title{
     margin:0;
@@ -307,6 +308,15 @@ header{
 
 .last-section{
   margin-bottom: 60px !important;
+  .connect-way{
+    li{
+      width: 48%;
+      display: inline-block;
+    }
+    .qq-number{
+      text-align: center;
+    }
+  }
 }
 .overflow-text{
   word-break: break-all;
