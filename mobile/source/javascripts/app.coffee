@@ -886,7 +886,7 @@ angular.module 'DaisyApp', [
           $scope.params = angular.extend { label: label, query: query }, $scope.params
           console.log($scope.params)
 
-          $loader.get("/api/search.json", params: $scope.params)
+          $loader.get("/api/search_index.json", params: $scope.params)
             .success (data) ->
               $scope.data = data
 
