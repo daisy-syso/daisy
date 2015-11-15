@@ -891,7 +891,7 @@ angular.module 'DaisyApp', [
               $scope.data = data
 
           $scope.loadMore = () ->
-            url = "/api/search.json"
+            url = "/api/search_index.json"
             page = $scope.page += 1
             params = angular.extend { page: page }, $scope.params
             console.log($scope.params)
