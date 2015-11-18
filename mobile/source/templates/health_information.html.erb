@@ -1,6 +1,6 @@
-<header class="bar bar-header bar-nav">
+<header class="bar bar-header bar-nav custom-header">
   <img class="header-image" src="images/adv/health.gif" />
-  <div style="width: 30%;"><i class="icon ion-navicon pull-right"></i></div>
+  <div style="width: 30%;"><i class="icon ion-navicon pull-right custom-menu"></i></div>
 </header>
 
 <ion-content class="has-header" overflow-scroll="true">
@@ -45,36 +45,18 @@
           </ul>
         </div>
         <ul class="information-items">
-          <li class="information-item" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'picture-ads', false: 'picture-infors'}[itemWithPicture2(infor_item.name)]">
-
+          <li class="information-item picture-ads" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'two-picture-infor', false: ''}[twoPicture($index)]">
             <!-- the first two information items just use picture, others just word -->
-            <div ng-if="itemWithPicture2(infor_item.name)" style="height: 100%; width: 100%;">
-              <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}" ng-if="$index <= 1">
+            <div style="height: 100%; width: 100%;">
+              <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}" ng-if="twoPicture($index)" >
                 <img ng-src="{{information.image_url}}">
                 <p class="info-name">{{information.name}}</p>
               </a>
-                <!-- <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}">
-                  <img ng-src="{{information.image_url}}">
-                  <p class="info-name">{{information.name}}</p>
-                </a> -->
 
-              <a href="#/healthInformationDetail?id={{information.id}}" ng-if="$index > 1 ">
+              <a href="#/healthInformationDetail?id={{information.id}}" ng-if="!twoPicture($index)">
                 {{ information.name }}
               </a>
             </div>
-
-            <!-- the first information item is: picture + word, others just word -->
-            <div ng-if="!itemWithPicture2(infor_item.name)" class="information-wrapper">
-              <a class="item item-thumbnail-left" ng-if="$index == 0" ng-href="#/healthInformationDetail?id={{information.id}}">
-                <img ng-src="{{ information.image_url }}">
-                <h2 style="margin-top: 10px;">{{ information.name  }}</h2>
-              </a>
-
-              <a href="#/healthInformationDetail?id={{information.id}}" ng-if="$index != 0">
-                {{ information.name }}
-              </a>
-            </div>
-
           </li>
         </ul>
       </div>

@@ -1,3 +1,10 @@
+.custom-header{
+  height: 60px;
+  .custom-menu{
+    font-size: 41px;
+    padding-top:0px;
+  }
+}
 .health-information-detail-header{
   .custom-back{
     width: 40px;
@@ -17,7 +24,7 @@
   background-color:white;
   height: 100%;
   overflow: scroll;
-  margin-top: 4%;
+  margin-top: 6%;
   .detail-ads-image{
     height: 120px;
     width:100%;
@@ -115,6 +122,28 @@
       text-overflow: ellipsis;
       word-break: break-all;
       white-space: nowrap;
+    }
+    .two-picture-infor{
+      position: relative;
+      display: inline-block;
+      width: 46%;
+      height: 80px;
+      margin-right: 10px;
+      // border: 1px solid #ccc;
+      .image-item{
+        padding: 30px 0px;
+        img{
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .info-name{
+        width: 100%;
+        position: absolute;
+        bottom: 9px;
+        background-color: rgba(0, 0, 0, 0.16);
+        color: #FFFFFF;
+      }
     }
     .information-item:nth-child(-n+2){
       a {
