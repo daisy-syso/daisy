@@ -1,7 +1,7 @@
 source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -63,7 +63,7 @@ gem "squeel"
 
 gem 'settingslogic'
 
-gem 'rails_config'
+gem 'config'
 
 gem 'bcrypt'
 gem 'cancancan'
