@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017103624) do
+ActiveRecord::Schema.define(version: 20151121041219) do
 
   create_table "accounts", force: true do |t|
     t.string   "type"
@@ -776,6 +776,15 @@ ActiveRecord::Schema.define(version: 20151017103624) do
     t.datetime "updated_at"
   end
 
+  create_table "hamburgers", force: true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "url"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "health_information_types", force: true do |t|
     t.string   "name",       limit: 50
     t.string   "image_url"
@@ -953,6 +962,7 @@ ActiveRecord::Schema.define(version: 20151017103624) do
     t.boolean  "is_community"
     t.boolean  "is_other"
     t.boolean  "is_insurance"
+    t.boolean  "is_tumor"
     t.text     "backup"
     t.text     "light"
     t.integer  "status",                                                         default: 1
@@ -1007,6 +1017,7 @@ ActiveRecord::Schema.define(version: 20151017103624) do
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "top_number", default: 1
   end
 
   create_table "informations", force: true do |t|
@@ -1021,7 +1032,10 @@ ActiveRecord::Schema.define(version: 20151017103624) do
     t.integer  "reviews_count"
     t.integer  "read_count",                     default: 0
     t.boolean  "is_top",                         default: false
+    t.integer  "types",                          default: 0
   end
+
+  add_index "informations", ["name"], name: "name", using: :btree
 
   create_table "insurance_companies", force: true do |t|
     t.string "name"

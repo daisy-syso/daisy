@@ -71,6 +71,7 @@ module ResourcesHelper
             klass.all
           end
         end
+
         data = apply_scopes!(data)
         opts = parse_option_value options[:with] || {}
         opts[:meta] = meta

@@ -24,7 +24,6 @@ class Symptoms::Symptom < ActiveRecord::Base
   # has_and_belongs_to_many :diseases
 
   scope :query, -> (query) {
-    # debugger
     if query.present? 
       search(
         {
