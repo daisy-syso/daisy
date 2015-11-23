@@ -15,7 +15,7 @@
 <!-- <div id="nav-over"></div> -->
 <nav popover="homeData['subtitle']" class="popover-left"></nav>
 <div id="warmp" class="warmp">
-	
+
   <div class="bar bar-subheader" style="top:0;background:none;border:none;">
   <div class="row">
     <div class="col">
@@ -36,7 +36,7 @@
   </div>
 
   <div class="content" style="margin-bottom:42px;">
-	
+
 	<%=partial "ads"%>
   <%= partial "nav_box" %>
 
@@ -90,7 +90,7 @@
 
         <div class="row" style="margin: auto 0">
 
-          <a class="col col20" ng-repeat="app in apps" href="#/infors/apps"> 
+          <a class="col col20" ng-repeat="app in apps" ng-href="{{app.url}}">
             <img src="{{app.image_url}}" width="90%">
             <p style="text-align:center;width:90%;overflow:hidden;white-space:nowrap;">{{app.name}}</p>
           </a>
@@ -178,7 +178,7 @@
         <!-- <a class="more" href="#">更多>></a> -->
         <h3>猜你喜欢</h3>
       </div>
-    <%= partial 'related' %> 
-    </div> 
+    <%= partial 'related' %>
+    </div>
   </div>
 </div>
