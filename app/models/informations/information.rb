@@ -6,13 +6,13 @@ class Informations::Information < ActiveRecord::Base
 
   include Reviewable
 
-  # default_scope { where(types: 0) }   # 普通资讯
+  default_scope { where(types: 0) }   # 普通资讯
   scope :guessed, -> { unscope(:where).where types: 1 }  #猜你喜欢资讯
   scope :recommended, -> { unscope(:where).where types: 2 }  #推荐资讯
   scope :selected, -> { unscope(:where).where types: 3 }  #精选资讯
 
   def recommended
-    Informations::Information.where(types: 2).select('id, name').where.not(id: self.id).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
+    Informations::Information.select('id, name').where.not(id: self.id).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
   end
 
   def hot_images
@@ -20,6 +20,6 @@ class Informations::Information < ActiveRecord::Base
   end
 
   def selected
-    Informations::Information.where(types: 3).select('id, name').where.not(id: self.id).order("read_count desc").limit(8)
+    Informations::Information.select('id, name').where.not(id: self.id).order("read_count desc").limit(8)
   end
 end
