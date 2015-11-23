@@ -1,5 +1,30 @@
 .custom-header{
   height: 60px;
+  overflow: visible;
+  .hamburger-wrapper{
+    width: 30%;
+    position: relative;
+    .hamburger-items{
+      position: absolute;
+      top: 40px;
+      right: 0px;
+      background: #fff;
+      border-radius: 5px;
+      width: 170px;
+      .hamburger-item{
+        padding: 10px;
+        border-top: 1px solid #D4C8C8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+      }
+      img{
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
   .custom-menu{
     font-size: 41px;
     padding-top:0px;

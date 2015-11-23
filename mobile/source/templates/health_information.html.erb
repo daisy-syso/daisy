@@ -1,6 +1,14 @@
 <header class="bar bar-header bar-nav custom-header">
   <img class="header-image" src="images/adv/health.gif" />
-  <div style="width: 30%;"><i class="icon ion-navicon pull-right custom-menu"></i></div>
+  <div class="hamburger-wrapper">
+    <i class="icon ion-navicon pull-right custom-menu" ng-click="toggle()"></i>
+    <ul class="hamburger-items" ng-show="hamburgersOpen">
+      <li class="hamburger-item" ng-repeat="hamburger in hamburgers">
+        <img ng-src="{{hamburger.image_url}}">
+        <a ng-href="{{hamburger.url}}">{{hamburger.name}}</a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <ion-content class="has-header" overflow-scroll="true">

@@ -308,10 +308,14 @@ angular.module 'DaisyApp', [
         '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
         ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {}
+          $scope.hamburgersOpen = false
           $rootScope.footerHide = true
           $rootScope.healthFooter = true
           $scope.afterHeight = false
           itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
+
+          $scope.toggle = () ->
+            $scope.hamburgersOpen = !$scope.hamburgersOpen;
 
           $scope.showChildreninfors = (parent_id, children_id) ->
             $scope["#{parent_id}_current_category"] = children_id
@@ -324,6 +328,11 @@ angular.module 'DaisyApp', [
             $loader.get("/api/infors/hot.json")
               .success (data) ->
                 $scope.hotAds = data.data;
+
+          $scope.getHamburgers = () ->
+            $loader.get("/api/hamburgers.json")
+              .success (data) ->
+                $scope.hamburgers = data;
 
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
@@ -363,6 +372,7 @@ angular.module 'DaisyApp', [
 
           $scope.loadMore()
           $scope.getHotAds()
+          $scope.getHamburgers()
       ]
 
 
