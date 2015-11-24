@@ -10,4 +10,6 @@ class Informations::InformationTypeEntity < ApplicationEntity
 
   expose :children_items
 
+  expose :types_images
+
 end

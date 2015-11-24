@@ -13,4 +13,14 @@ class Informations::InformationType < ActiveRecord::Base
 		Informations::InformationType.select('id, name').where(id: self.parent_id).first
 	end
 
+  def types_images
+    # hash = {头条:5, 天天护理: 10, 更多: 7}
+    case self.name
+    when '头条'
+      Informations::Information.select('id, name, image_url').unscope(:where).where(types: 5).order("created_at desc").limit(2)
+    when '天天护理'
+      Informations::Information.select('id, name, image_url').unscope(:where).where(types: 6).order("created_at desc").limit(2)
+    end
+  end
+
 end
