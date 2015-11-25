@@ -55,7 +55,7 @@
         <ul class="information-items">
           <li class="information-item picture-ads" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'two-picture-infor', false: ''}[twoPicture($index)]">
             <!-- the first two information items just use picture, others just word -->
-            <div style="height: 100%; width: 100%;">
+            <div class="item-wrapper">
               <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}" ng-if="twoPicture($index)" >
                 <img ng-src="{{information.image_url}}">
                 <p class="info-name">{{information.name}}</p>

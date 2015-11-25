@@ -143,10 +143,19 @@
     }
     .information-item{
       padding: 5px 0px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: break-all;
-      white-space: nowrap;
+      .item-wrapper{
+        height: 100%;
+        width: 90%;
+        text-overflow: ellipsis;
+        word-break:break-all;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      &.two-picture-infor {
+        .item-wrapper{
+          width: 100% !important;
+        }
+      }
     }
     .two-picture-infor{
       position: relative;
