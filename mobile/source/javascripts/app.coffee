@@ -305,14 +305,14 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
-        '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
-        ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
+        '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout", "$templateCache"
+        ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout, $templateCache) ->
           $scope.infor_items = {}
           $scope.hamburgersOpen = false
           $rootScope.footerHide = true
           $rootScope.healthFooter = true
           $scope.afterHeight = false
-          itemShowWithPicture = ["健身减肥","美食","养生", "天天护理"]
+          itemShowWithPicture = ["头条", "天天护理"]
 
           $scope.toggle = () ->
             $scope.hamburgersOpen = !$scope.hamburgersOpen;
@@ -348,7 +348,8 @@ angular.module 'DaisyApp', [
             if name in itemShowWithPicture then true
 
           $scope.twoPicture = (index) ->
-            return index % 8 == 0 || index % 8 == 1;
+            # return index % 8 == 0 || index % 8 == 1;
+            return index == 0 || index == 1
 
           $scope.loadMore = (type) ->
             if $scope["#{type}_page"]
@@ -366,6 +367,9 @@ angular.module 'DaisyApp', [
                 if !type
                   $scope.health_infors = data;
                   for infor_item in data.data
+                    if(infor_item.types_images != null && infor_item.types_images.length == 2)
+                      for type_image in infor_item.types_images
+                        infor_item.latest_informations.splice(7, 0, type_image)
                     $scope.infor_items["type_#{infor_item.id}"] = infor_item
                 else
                   $scope.infor_items["type_#{type}"].latest_informations = $scope.infor_items["type_#{type}"].latest_informations.concat data.data[0].latest_informations

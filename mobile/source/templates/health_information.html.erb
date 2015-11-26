@@ -11,7 +11,7 @@
   </div>
 </header>
 
-<ion-content class="has-header" overflow-scroll="true">
+<ion-content class="has-header" overflow-scroll="true" cache-view="true">
   <div class="afterHeight"  ng-if="afterHeight">
   </div>
   <!-- <div ng-class="{beforeHeight: before == 'yes', afterHight: before != 'yes'}"></div> -->
@@ -53,10 +53,14 @@
           </ul>
         </div>
         <ul class="information-items">
-          <li class="information-item picture-ads" ng-repeat="information in infor_item.latest_informations" ng-class="{true: 'two-picture-infor', false: ''}[twoPicture($index)]">
+          <li class="information-item picture-ads"
+            ng-repeat="information in infor_item.latest_informations"
+            ng-class="{true: 'two-picture-infor', false: ''}[twoPicture($index)]">
             <!-- the first two information items just use picture, others just word -->
             <div class="item-wrapper">
-              <a class="image-item" ng-href="#/healthInformationDetail?id={{information.id}}" ng-if="twoPicture($index)" >
+              <a class="image-item"
+              ng-href="#/healthInformationDetail?id={{information.id}}"
+              ng-if="twoPicture($index)" >
                 <img ng-src="{{information.image_url}}">
                 <p class="info-name">{{information.name}}</p>
               </a>
@@ -68,7 +72,9 @@
           </li>
         </ul>
       </div>
-      <div class="load-more" ng-if="infor_item.latest_informations.length > 0" ng-click="loadMore({{infor_item.id}})">
+      <div class="load-more"
+        ng-if="infor_item.latest_informations.length > 0"
+        ng-click="loadMore({{infor_item.id}})">
         <a href="javascript:;">查看更多>></a>
       </div>
     </div>
