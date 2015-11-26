@@ -349,7 +349,7 @@ angular.module 'DaisyApp', [
 
           $scope.twoPicture = (index) ->
             # return index % 8 == 0 || index % 8 == 1;
-            return index == 0 || index == 1
+            return index == 0 || index == 1 || index == 7 || index == 8
 
           $scope.loadMore = (type) ->
             if $scope["#{type}_page"]
