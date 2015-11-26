@@ -347,9 +347,11 @@ angular.module 'DaisyApp', [
           $scope.itemWithPicture2 = (name) ->
             if name in itemShowWithPicture then true
 
-          $scope.twoPicture = (index) ->
-            # return index % 8 == 0 || index % 8 == 1;
-            return index == 0 || index == 1 || index == 7 || index == 8
+          $scope.twoPicture = (index, name) ->
+            if name && $scope.itemWithPicture2(name)
+              return index == 7 || index == 8 || index == 0 || index == 1
+            else
+              return index == 0 || index == 1
 
           $scope.loadMore = (type) ->
             if $scope["#{type}_page"]
