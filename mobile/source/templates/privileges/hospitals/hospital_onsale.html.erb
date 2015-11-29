@@ -90,7 +90,7 @@
       <p>地址：{{data.address}}</p>
       <a ng-href="#/mapNavigation?lng={{ data.hospital.lng}}&lat={{data.hospital.lat}}">到这里去 > </a>
       <div class="map" map map-data="data.hospital" ng-hide="data.is_foreign"></div>
-      <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
+      <!-- <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map> -->
     </li>
   </ul>
 </div>

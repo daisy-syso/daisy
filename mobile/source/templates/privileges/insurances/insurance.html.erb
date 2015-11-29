@@ -93,7 +93,7 @@
       <p>地址：{{data.insurance_company.address}}</p>
       <a ng-href="#/mapNavigation?lng={{ data.insurance_company.lng}}&lat={{data.insurance_company.lat}}">到这里去 > </a>
       <div class="map" map map-data="data.insurance_company" ng-hide="data.is_foreign"></div>
-      <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map>
+      <!-- <ui-gmap-google-map center='map.center' zoom='map.zoom' ng-show="data.is_foreign"></ui-gmap-google-map> -->
     </li>
   </ul>
 </div>

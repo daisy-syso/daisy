@@ -942,14 +942,14 @@ angular.module 'DaisyApp', [
 ]
 
 #  谷歌地图api 配置
-.config [
-  'uiGmapGoogleMapApiProvider'
-  (uiGmapGoogleMapApiProvider) ->
-    uiGmapGoogleMapApiProvider.configure
-      key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
-      v: '3.17',
-      libraries: 'weather,geometry,visualization'
-]
+# .config [
+#   'uiGmapGoogleMapApiProvider'
+#   (uiGmapGoogleMapApiProvider) ->
+#     uiGmapGoogleMapApiProvider.configure
+#       key: 'AIzaSyAp8bPIoYNs2eyclr873VwWrbvzCPyaCUs',
+#       v: '3.17',
+#       libraries: 'weather,geometry,visualization'
+# ]
 
 # .config [
 #   'cfpLoadingBarProvider'
