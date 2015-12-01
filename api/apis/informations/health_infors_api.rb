@@ -6,7 +6,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
       information_type = params[:type].blank? ? information_types : Informations::InformationType.where(id: params[:type])
       information_type.each do |it|
         parent_id = it.parent_id || it.id
-        pageset = (it.name == '头条' || it.name == '天天护理') ? 16 : 8
+        pageset = (it.name == '头条' || it.name == '天天护理') ? 12 : 8
         top_infors = "(select *, 1 as rank from informations where information_type_id = #{parent_id} and is_top is true and types = 0 order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit #{it.top_number})"
         if it.parent_id.blank?
           ids = it.children_items.map(&:id) + [it.id]
