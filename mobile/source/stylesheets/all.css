@@ -22,6 +22,7 @@
  *= require examination
  *= require strategy
  *= require health_information
+ *= require drugstore_site
  *= require_tree ./custorm
 */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

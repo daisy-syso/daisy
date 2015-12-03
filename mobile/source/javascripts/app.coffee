@@ -934,8 +934,13 @@ angular.module 'DaisyApp', [
               $scope.count -= 1
             else if type == "plus"
               $scope.count += 1
+      ]
 
-
+    $routeProvider.when '/drugstore_sites/show',
+      templateUrl: "templates/drugstore_sites/show.html"
+      controller: [
+        '$scope', '$routeParams'
+        ($scope, $routeParams) ->
 
       ]
 
