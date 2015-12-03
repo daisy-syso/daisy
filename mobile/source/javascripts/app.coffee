@@ -305,8 +305,8 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
-        '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout", "$templateCache"
-        ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout, $templateCache) ->
+        '$scope', '$rootScope', '$routeParams', '$loader', '$location', "$ionicScrollDelegate", "$timeout"
+        ($scope, $rootScope, $routeParams, $loader, $location, $ionicScrollDelegate, $timeout) ->
           $scope.infor_items = {}
           $scope.hamburgersOpen = false
           $rootScope.footerHide = true
@@ -373,6 +373,7 @@ angular.module 'DaisyApp', [
                       for type_image in infor_item.types_images
                         infor_item.latest_informations.splice(7, 0, type_image)
                     $scope.infor_items["type_#{infor_item.id}"] = infor_item
+                  $scope.show_last = true;
                 else
                   $scope.infor_items["type_#{type}"].latest_informations = $scope.infor_items["type_#{type}"].latest_informations.concat data.data[0].latest_informations
 
