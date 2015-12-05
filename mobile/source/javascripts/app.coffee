@@ -941,7 +941,9 @@ angular.module 'DaisyApp', [
       controller: [
         '$scope', '$routeParams'
         ($scope, $routeParams) ->
-
+          $scope.loadProducts = (category_id) ->
+            $(".category-item").removeClass("active")
+            event.currentTarget.classList.add("active")
       ]
 
     $routeProvider.otherwise redirectTo: '/home'
