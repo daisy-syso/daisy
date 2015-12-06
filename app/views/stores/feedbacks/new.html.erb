@@ -1,0 +1,6 @@
+
+<%= form_for [:stores, @feedback] do |f| %>
+  <%= f.text_area :content, rows: 3 %>
+  <br />
+  <%= f.submit '保存' %>
+<% end %>

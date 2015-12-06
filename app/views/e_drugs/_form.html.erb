@@ -15,11 +15,15 @@
   <%= f.input :ori_price, label: '原价', placeholder: "0.0" %>
   <%= f.input :price, label: '现价', placeholder: "0.0" %>
   <%= f.input :introduction, label: '介绍', placeholder: "药品效果" %>
-  <%#= f.input :drug_type_id, label: '药品类型' %>
+
   <%= f.input :brand, label: '品牌商标', placeholder: "同仁堂" %>
   <%= f.input :code, label: '国药准字', placeholder: "国药准字Z11020197" %>
   <%= f.input :expiry_date, label: '有效期', placeholder: "36个月" %>
   <%= f.input :spec, label: '规格', placeholder: "2.6g*9袋" %>
+
+  <%= f.input :drug_type_id do %>
+    <%= f.select :drug_type_id, DrugType.all.map { |r| [r.name, r.id] }, include_blank: true %>
+  <% end %>
 
   <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
   <img src="<%= @drug.image_url%>" />
@@ -30,8 +34,8 @@
 <% end %>
 
 <script type="text/javascript">
-  $("#drugs_drug_city_id").click(function(){
-    console.log('reflush it');
+  $('#e_drug_drug_type_id').change(function(e) {
+    var parent_id = e.target.value;
   });
-</script>
 
+</script>

@@ -2,8 +2,7 @@
 <%= @store.description %>
 
 <h3>药店动态</h3>
-<% @store.incidents.each do |incident| %>
-
+<% @incidents.each do |incident| %>
   <%= link_to incident.title, stores_path(@store.name, incident) %>
   <img src="<%=incident.image_url %>" width="300"/>
   <br>
@@ -16,9 +15,45 @@
 <%= @store.description %>
 
 <h3>联系方式</h3>
-<p><%= @store.address %></p>
-<p><%= @store.website %></p>
-<p>客服热线<%= @store.telephone %></p>
+<p>地址：<%= @store.address %></p>
+<p>网站：<%= @store.website %></p>
+<p>客服热线：<%= @store.telephone %></p>
 
 <h3>药店留言</h3>
-<%= @store.description %>
+<p>
+  <%= link_to '添加留言', stores_feedbacks_new_path %>
+</p>
+<ul id="feedbacks">
+  <% @feedbacks.each do |feedback| %>
+    <li>
+      <%= feedback.content %>
+      <br />
+      <%= feedback.created_at %>
+      <hr>
+    </li>
+  <% end %>
+</ul>
+<a href="#" id="get_more">加载更多</a>
+<script type="text/javascript">
+  var page = 2;
+  var last_page = false;
+
+  $("#get_more").click(function(){
+    if(!last_page){
+      $.get("/<%= @store.name %>/get_more_feedback", {
+        page: page,
+        per: 5
+      },function(data){
+        data.data.forEach(function(f){
+          $("#feedbacks").append(
+            "<li>"+f.content+"<br />"+f.created_at+"</li><hr>"
+          )
+          page = data.next_page;
+          last_page = data.last_page;
+        })
+      })
+    }else{
+      alert("已经是最后一页");
+    }
+  })
+</script>

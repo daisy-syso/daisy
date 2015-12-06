@@ -1,0 +1,23 @@
+<div class="row">
+  <h1><%= @drugstore.name %> 反馈</h1>
+</div>
+<div class="row">
+  <table class="table table-striped table-bordered table-hover table-condensed">
+    <thead>
+      <tr class="active">
+        <th>内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feedbacks.each do |feedback|%>
+        <tr>
+          <td><%= feedback.content %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @feedbacks %>
+
+  <%= link_to '返回', e_drugstores_path, class: 'btn btn-info' %>
+</div>
+

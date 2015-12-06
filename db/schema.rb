@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206032447) do
+ActiveRecord::Schema.define(version: 20151206100501) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -567,6 +567,7 @@ ActiveRecord::Schema.define(version: 20151206032447) do
     t.integer  "e_drugstore_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "drug_type_id",   limit: 4
   end
 
   add_index "e_drugs", ["e_drugstore_id"], name: "index_e_drugs_on_e_drugstore_id", using: :btree
@@ -723,6 +724,15 @@ ActiveRecord::Schema.define(version: 20151206032447) do
 
   add_index "favorites", ["account_id"], name: "index_favorites_on_account_id", using: :btree
   add_index "favorites", ["item_id", "item_type"], name: "index_favorites_on_item_id_and_item_type", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string   "content",        limit: 255
+    t.integer  "e_drugstore_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "feedbacks", ["e_drugstore_id"], name: "index_feedbacks_on_e_drugstore_id", using: :btree
 
   create_table "friendly_link_types", force: :cascade do |t|
     t.string "name", limit: 255

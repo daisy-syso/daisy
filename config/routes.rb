@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # resources :e_drugs
 
   resources :e_drugstores do
+    resources :feedbacks
     resources :incidents
     resources :e_drugs
   end
@@ -41,6 +42,10 @@ Rails.application.routes.draw do
     namespace :stores, path: '/:store_name' do
       root 'stores#index'
       get 'incident/:id', to: 'stores#incident'
+      get 'get_more_feedback', to: 'stores#get_more_feedback'
+      get 'feedbacks/new', to: 'feedbacks#new'
+      post 'feedbacks', to: 'feedbacks#create'
+      # post 'feedback', to: 'stores#feedback'
     end
   end
 

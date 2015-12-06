@@ -22,6 +22,8 @@
 <div class="alert alert-success" role="alert"><%= @drug.expiry_date %></div>
 <strong>规格:</strong>
 <div class="alert alert-success" role="alert"><%= @drug.spec %></div>
+<strong>分类:</strong>
+<div class="alert alert-success" role="alert"><%= DrugType.find(@drug.drug_type_id).name %></div>
 
 <%= link_to '编辑', edit_e_drugstore_e_drug_path(@drugstore.id, @drug.id), class: 'btn btn-default' %>
 <%= link_to '返回', e_drugstore_e_drugs_path(@drugstore.id), class: 'btn btn-info' %>

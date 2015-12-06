@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <%= f.input :title, label: '标题', placeholder: "标题" %>
-  <%= f.input :content, label: '内容', placeholder: "内容" %>
+  <%= f.input :content, as: :text, label: '内容', placeholder: "内容" %>
   <%= f.input :author, label: '作者', placeholder: "作者", input_html: {value: @current_editor.username } %>
   <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
   <img src="<%= @incident.image_url%>" />
