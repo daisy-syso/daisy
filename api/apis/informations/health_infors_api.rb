@@ -17,7 +17,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
           select_infos = part_infors + " union " + "(select *, 4 as rank from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0)"
         end
         info_sql = "select * from ( " + top_infors + " union " + select_infos + " ) as infors order by rank asc, str_to_date(infors.created_at,'%Y-%m-%d %H:%i:%s') desc limit #{pageset} offset #{((params[:page] || 1).to_i - 1) * pageset}"
-        it.latest_informations = Informations::Information.find_by_sql(info_sql)
+        it.latest_informations = Informations::Information.unscope(:where).find_by_sql(info_sql)
       end
       present title: "健康资讯"
       present information_types: information_types
@@ -27,7 +27,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
     show! Informations::Information
 
     get ":id/read" do
-      information =  Informations::Information.find(params[:id])
+      information =  Informations::Information.unscope(:where).find(params[:id])
       information.update_attributes(read_count: (information.read_count.to_i + 1))
       status 201
     end
