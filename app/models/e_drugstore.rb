@@ -4,4 +4,6 @@ class EDrugstore < ActiveRecord::Base
   belongs_to :editor
 
   has_many :e_drugs, dependent: :destroy
+  has_many :incidents, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 end

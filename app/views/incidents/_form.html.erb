@@ -1,0 +1,28 @@
+<%= simple_form_for [@drugstore, @incident], wrapper: :common_form do |f| %>
+  <% if @incident.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@incident.errors.count, "error") %> prohibited this incident from being saved:</h2>
+
+      <ul>
+      <% @incident.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.input :title, label: '标题', placeholder: "标题" %>
+  <%= f.input :content, label: '内容', placeholder: "内容" %>
+  <%= f.input :author, label: '作者', placeholder: "作者", input_html: {value: @current_editor.username } %>
+  <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
+  <img src="<%= @incident.image_url%>" />
+  <br />
+  <%= f.button :submit %>
+  <%= link_to '返回', e_drugstores_path, class: 'btn btn-info' %>
+<% end %>
+
+<script type="text/javascript">
+  $("#drugs_drug_city_id").click(function(){
+    console.log('reflush it');
+  });
+</script>
+

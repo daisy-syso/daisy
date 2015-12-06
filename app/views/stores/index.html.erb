@@ -1,0 +1,24 @@
+<h3>药店介绍</h3>
+<%= @store.description %>
+
+<h3>药店动态</h3>
+<% @store.incidents.each do |incident| %>
+
+  <%= link_to incident.title, stores_path(@store.name, incident) %>
+  <img src="<%=incident.image_url %>" width="300"/>
+  <br>
+<% end %>
+
+<h3>热销产品</h3>
+<%= @store.description %>
+
+<h3>药品目录</h3>
+<%= @store.description %>
+
+<h3>联系方式</h3>
+<p><%= @store.address %></p>
+<p><%= @store.website %></p>
+<p>客服热线<%= @store.telephone %></p>
+
+<h3>药店留言</h3>
+<%= @store.description %>

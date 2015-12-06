@@ -25,6 +25,8 @@
   <%= f.input :lng, label: '经度', placeholder: "116.407949" %>
   <%= f.input :lat, label: '纬度', placeholder: "39.926729" %>
   <%= f.input :business_license, label: '商业执照', placeholder: "京DA0509070" %>
+  <%= f.input :description, as: :text, label: '描述', placeholder: "药店描述" %>
+  <%= f.input :website, label: '网站', placeholder: "网站地址，如果网站存在" %>
 
   <%#= f.select :county_id, get_counties, label: '区县' %>
 

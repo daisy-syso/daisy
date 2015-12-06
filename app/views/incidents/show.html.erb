@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<strong>标题:</strong>
+<div class="alert alert-success" role="alert"><%= @incident.title %></div>
+<strong>内容:</strong>
+<div class="alert alert-success" role="alert"><%= @incident.content %></div>
+<strong>作者:</strong>
+<div class="alert alert-success" role="alert"><%= @incident.author %></div>
+<strong>图片:</strong>
+<div class="alert alert-success" role="alert">
+  <img src="<%= @incident.image_url%>" />
+</div>
+
+<%= link_to '编辑', edit_e_drugstore_incident_path(@drugstore.id, @incident.id), class: 'btn btn-default' %>
+<%= link_to '返回', e_drugstore_incidents_path(@drugstore.id), class: 'btn btn-info' %>

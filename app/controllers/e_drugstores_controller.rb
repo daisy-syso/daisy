@@ -50,6 +50,6 @@ class EDrugstoresController < ApplicationController
     end
 
     def drugstore_params
-      params.require(:e_drugstore).permit(:name, :address, :telephone, :image_url, :county_id, :city_id, :lng, :lat, :business_license)
+      params.require(:e_drugstore).permit(:name, :address, :telephone, :image_url, :county_id, :city_id, :lng, :lat, :business_license, :description, :website)
     end
 end

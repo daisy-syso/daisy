@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>药店管理</title>
+    <title><%= @store.name %></title>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -10,11 +10,7 @@
     <script src="http://api.map.baidu.com/api?v=1.5&ak=d3Yn1p4buKQifBg5mcBXqUOS" type="text/javascript"></script>
   </head>
   <body>
-    <div id="backend"></div>
-    <%= render "layouts/header" %>
-    <div class="container">
-      <%= yield %>
-    </div>
-    </div>
+    <%= render "layouts/stores/header" %>
+    <%= yield %>
   </body>
 </html>
