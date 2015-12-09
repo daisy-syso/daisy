@@ -5,6 +5,13 @@ class Stores::StoresController < StoresController
     @feedbacks = @store.feedbacks.order("created_at desc").page(1).per(5)
 
     @incidents = @store.incidents
+
+    @drug_type_ids = @store.e_drugs.pluck(:drug_type_id)
+
+    @drug_type = DrugType.find(@drug_type_ids.compact)
+
+    @drugs = @store.e_drugs.order("created_at desc").limit(1)#.compact
+    # debugger
   end
 
   def incident

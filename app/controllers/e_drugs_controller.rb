@@ -14,6 +14,15 @@ class EDrugsController < ApplicationController
     end
   end
 
+  def get_types
+    options = ""
+    drug_type = DrugType.where(parent_id: params[:parent_id])
+    drug_type.each do |s|
+      options << "<option value=#{s.id}>#{s.name}</option>"
+    end
+    render :text => options
+  end
+
   def index
     @drugs = @drugstore.e_drugs.all.page(params[:page]).per(params[:per])
   end
@@ -26,7 +35,9 @@ class EDrugsController < ApplicationController
   end
 
   def edit
-    
+    @drug_type_id = @drug.drug_type_id
+    @drug_type_id2 = @drug.drug_type_id2
+    @drug_type_id3 = @drug.drug_type_id3
   end
 
   def create
@@ -58,7 +69,7 @@ class EDrugsController < ApplicationController
     end
 
     def drugs_params
-      params.require(:e_drug).permit(:name, :manufactory, :ori_price, :price, :introduction, :image_url, :drug_type_id, :brand, :code, :spec, :expiry_date, :drug_type_id)
+      params.require(:e_drug).permit(:name, :manufactory, :ori_price, :price, :introduction, :image_url, :brand, :code, :spec, :expiry_date, :drug_type_id, :drug_type_id2, :drug_type_id3)
     end
 
     def set_drugstore

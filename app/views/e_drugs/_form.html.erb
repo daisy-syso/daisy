@@ -21,8 +21,16 @@
   <%= f.input :expiry_date, label: '有效期', placeholder: "36个月" %>
   <%= f.input :spec, label: '规格', placeholder: "2.6g*9袋" %>
 
-  <%= f.input :drug_type_id do %>
-    <%= f.select :drug_type_id, DrugType.all.map { |r| [r.name, r.id] }, include_blank: true %>
+  <%= f.input '第一分类' do %>
+    <%= f.select :drug_type_id, DrugType.where(parent_id: 0).map { |r| [r.name, r.id] }, {include_blank: true} %>
+  <% end %>
+
+  <%= f.input '第二分类' do %>
+    <%= f.select :drug_type_id2, DrugType.where(parent_id: @drug_type_id).map { |r| [r.name, r.id] }, {include_blank: false, selected: @drug_type_id2} %>
+  <% end %>
+
+  <%= f.input '第三分类' do %>
+    <%= f.select :drug_type_id3, DrugType.where(parent_id: @drug_type_id2).map { |r| [r.name, r.id] }, {include_blank: false, selected: @drug_type_id3} %>
   <% end %>
 
   <%= f.input :image_url, as: :file, label: '图片（尺寸小于1M）' %>
@@ -34,8 +42,20 @@
 <% end %>
 
 <script type="text/javascript">
-  $('#e_drug_drug_type_id').change(function(e) {
-    var parent_id = e.target.value;
+  $("#e_drug_drug_type_id").change(function(e){
+    $.get("<%= get_types_path(@drugstore, @drug) %>",{
+      parent_id: e.target.value
+    },function(data){
+      // debugger
+      $("#e_drug_drug_type_id2").html(data);
+      $("#e_drug_drug_type_id3").html('');
+    })
   });
-
+  $("#e_drug_drug_type_id2").change(function(e){
+    $.get("<%= get_types_path(@drugstore, @drug) %>",{
+      parent_id: e.target.value
+    },function(data){
+      $("#e_drug_drug_type_id3").html(data);
+    })
+  })
 </script>

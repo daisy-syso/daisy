@@ -24,8 +24,12 @@ Rails.application.routes.draw do
   resources :e_drugstores do
     resources :feedbacks
     resources :incidents
-    resources :e_drugs
+    resources :e_drugs do
+      get 'get_types'
+    end
   end
+
+  get 'get_types', to: 'e_drugs#get_types'
 
   resources :editors_session do
     collection do
@@ -45,7 +49,8 @@ Rails.application.routes.draw do
       get 'get_more_feedback', to: 'stores#get_more_feedback'
       get 'feedbacks/new', to: 'feedbacks#new'
       post 'feedbacks', to: 'feedbacks#create'
-      # post 'feedback', to: 'stores#feedback'
+
+      get 'drugtypes/:drugtype_id/drugs', to: 'drugtypes#index'
     end
   end
 

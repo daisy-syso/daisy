@@ -568,6 +568,8 @@ ActiveRecord::Schema.define(version: 20151206100501) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "drug_type_id",   limit: 4
+    t.integer  "drug_type_id2",  limit: 4
+    t.integer  "drug_type_id3",  limit: 4
   end
 
   add_index "e_drugs", ["e_drugstore_id"], name: "index_e_drugs_on_e_drugstore_id", using: :btree

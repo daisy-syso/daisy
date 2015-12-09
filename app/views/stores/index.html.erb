@@ -9,10 +9,16 @@
 <% end %>
 
 <h3>热销产品</h3>
-<%= @store.description %>
+<% @drugs.each do |drug| %>
+  <%= drug.name %>
+  <br>
+<% end %>
 
 <h3>药品目录</h3>
-<%= @store.description %>
+<% @drug_type.each do |drug_type| %>
+  <%= drug_type.name %>
+  <br>
+<% end %>
 
 <h3>联系方式</h3>
 <p>地址：<%= @store.address %></p>
