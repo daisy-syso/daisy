@@ -246,6 +246,12 @@ header{
   }
 }
 #health_information{
+  .app-name{
+    text-align:center;
+    width:90%;
+    overflow:hidden;
+    white-space:nowrap;
+  }
   .category-information{
     position: relative;
     font-size: 22px;

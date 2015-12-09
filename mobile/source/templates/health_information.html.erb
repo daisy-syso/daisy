@@ -107,5 +107,29 @@
         </ul>
       </div>
     </section>
+    <section ng-show="show_last">
+      <div class="card" style="margin-bottom:0;">
+        <div class="item item-text-wrap" style="padding:0">
+          <div class="row" style="margin: auto 0">
+            <div class="col col50">
+              <div class="health-apps-logo"></div>
+                <a href="">健康医疗APP商城</a>
+            </div>
+            <div class="col col50" style="text-align:right;">
+              <a href="#/infors/apps">更多热门APP</a>
+              <i class="ion ion-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="row" style="margin: auto 0">
+
+            <a class="col col20" ng-repeat="app in apps" ng-href="{{ app.url }}">
+              <img ng-src="{{app.image_url}}" width="90%">
+              <p class="app-name">{{app.name}}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </ion-content>
