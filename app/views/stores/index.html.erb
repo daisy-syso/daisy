@@ -10,13 +10,13 @@
 
 <h3>热销产品</h3>
 <% @drugs.each do |drug| %>
-  <%= drug.name %>
+  <%=link_to drug.name, stores_e_drug_path(@store.name, drug) %>
   <br>
 <% end %>
 
 <h3>药品目录</h3>
 <% @drug_type.each do |drug_type| %>
-  <%= drug_type.name %>
+  <%= link_to drug_type.name, drugs_stores_drugtype_path(@store.name, drug_type) %>
   <br>
 <% end %>
 

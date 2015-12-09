@@ -50,7 +50,15 @@ Rails.application.routes.draw do
       get 'feedbacks/new', to: 'feedbacks#new'
       post 'feedbacks', to: 'feedbacks#create'
 
-      get 'drugtypes/:drugtype_id/drugs', to: 'drugtypes#index'
+      # get 'drugtypes/:drugtype_id/drugs', to: 'drugtypes#index'
+
+      resources :drugtypes do
+        member do
+          get 'drugs'
+        end
+      end
+      resources :e_drugs
+      # get 'drugs', to: 'drugs#show'
     end
   end
 

@@ -1,8 +1,12 @@
-class Stores::DrugsController < StoresController
+class Stores::EDrugsController < StoresController
   before_action :set_store
 
   def index
 
+  end
+
+  def show
+    @drug = @store.e_drugs.find(params[:id])
   end
 
   private

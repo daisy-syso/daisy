@@ -10,8 +10,7 @@ class Stores::StoresController < StoresController
 
     @drug_type = DrugType.find(@drug_type_ids.compact)
 
-    @drugs = @store.e_drugs.order("created_at desc").limit(1)#.compact
-    # debugger
+    @drugs = @store.e_drugs.order("created_at desc").limit(12)
   end
 
   def incident
