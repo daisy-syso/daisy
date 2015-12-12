@@ -4,7 +4,7 @@ rails_env = ENV['RAILS_ENV'] || 'production'
 rails_root  = (rails_env == 'production' ? "/var/www/daisy/current" : `pwd`.chomp)
  
 working_directory rails_root
-worker_processes  (rails_env == 'production' ? 5 : 2)
+worker_processes  (rails_env == 'production' ? 2 : 2)
 preload_app       true
 timeout           30
 
