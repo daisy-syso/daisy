@@ -1,8 +1,8 @@
 class Stores::DrugtypesController < StoresController
   before_action :set_store
 
-  def index
-    
+  def drugs
+    @drugs = @store.e_drugs.where(drug_type_id: params[:id])
   end
 
   private

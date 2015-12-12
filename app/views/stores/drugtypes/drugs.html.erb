@@ -1,0 +1,15 @@
+<ul>
+  <% @drugs.each do |drug|%>
+    <li>
+      <div>
+        药品名称： <%= drug.name %>
+        <br/>
+        药品厂家： <%= drug.manufactory %>
+        <br/>
+        药品原价： <%= drug.ori_price %>
+        <br/>
+        药品现价： <%= drug.price %>
+      </div>
+    </li>
+  <% end %>
+</ul>
