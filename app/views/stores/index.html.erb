@@ -1,45 +1,115 @@
-<h3>药店介绍</h3>
-<%= @store.description %>
+<div class="drugstore-site">
+  <div class="drugstore">
+    <div class="module-title">药店介绍</div>
+    <div class="introduce">
+      <p><%= @store.description %></p>
+    </div>
+  </div>
 
-<h3>药店动态</h3>
-<% @incidents.each do |incident| %>
-  <%= link_to incident.title, stores_path(@store.name, incident) %>
-  <img src="<%=incident.image_url %>" width="300"/>
-  <br>
-<% end %>
+  <div class="drugstore">
+    <div class="module-title">药店动态</div>
+    <% unless @incidents.empty? %>
+      <div class="dynamic">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <% @incidents.each_with_index do |incident, index| %>
+              <div class="item <%= "active" if index.eql?(0) %>">
+                <%= link_to incident.title, stores_path(@store.name, incident) %>
+                <img src="<%=incident.image_url %>"/>
+                <div class="carousel-caption">
+                  <p></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    <% else %>
+      <p>暂无动态</p>
+    <% end %>
+  </div>
 
-<h3>热销产品</h3>
-<% @drugs.each do |drug| %>
-  <%=link_to drug.name, stores_e_drug_path(@store.name, drug) %>
-  <br>
-<% end %>
+  <div class="drugstore">
+    <div class="module-title">热销产品</div>
+    <div class="hot-product">
+      <ul class="nav nav-pills nav-justified">
+        <li role="presentation" class="category-item active"><a href="#">抗病毒</a></li>
+        <li role="presentation" class="category-item"><a href="#">抗纤维化</a></li>
+        <li role="presentation" class="category-item"><a href="#">脱发</a></li>
+      </ul>
+      <div class="product-list">
+        <% @drugs.each_slice(3) do |three_drugs| %>
+          <div class="container-fluid">
+            <div class="row">
+              <% three_drugs.each do |drug|%>
+                <div class="col-xs-6 col-sm-4 product-item">
+                  <img src="<%= drug.image_url%>">
+                  <h5><%=link_to drug.name, stores_e_drug_path(@store.name, drug) %></h5>
+                  <span class="product-price"><%= drug.price %></span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-<h3>药品目录</h3>
-<% @drug_type.each do |drug_type| %>
-  <%= link_to drug_type.name, drugs_stores_drugtype_path(@store.name, drug_type) %>
-  <br>
-<% end %>
+  <div class="drugstore">
+    <div class="module-title">药品目录</div>
+    <div class="catalog">
+      <% @drug_type.each_slice(2) do |two_drug_types| %>
+        <div class="container-fluid">
+          <div class="row">
+            <% two_drug_types.each do |drug_type| %>
+              <div class="col-md-6 catalog-item">
+                <%= link_to drug_type.name, drugs_stores_drugtype_path(@store.name, drug_type) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<h3>联系方式</h3>
-<p>地址：<%= @store.address %></p>
-<p>网站：<%= @store.website %></p>
-<p>客服热线：<%= @store.telephone %></p>
+  <div class="drugstore">
+    <div class="module-title">联系方式</div>
+    <div class="contact-way">
+      <p>地址：<%= @store.address %> </p>
+      <p>网站：<%= @store.website %></p>
+      <p>客服热线：<%= @store.telephone %></p>
+    </div>
+  </div>
 
-<h3>药店留言</h3>
-<p>
-  <%= link_to '添加留言', stores_feedbacks_new_path %>
-</p>
-<ul id="feedbacks">
-  <% @feedbacks.each do |feedback| %>
-    <li>
-      <%= feedback.content %>
-      <br />
-      <%= feedback.created_at %>
-      <hr>
-    </li>
-  <% end %>
-</ul>
-<a href="#" id="get_more">加载更多</a>
+  <div class="drugstore">
+    <div class="module-title">药店留言</div>
+     <%= link_to '添加留言', stores_feedbacks_new_path %>
+    <div class="messages">
+      <ul>
+        <% @feedbacks.each do |feedback| %>
+          <li>
+            <%= feedback.content %>
+            <br />
+            <%= feedback.created_at %>
+            <hr>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <a href="#" id="get_more">加载更多</a>
+  </div>
+</div>
+
 <script type="text/javascript">
   var page = 2;
   var last_page = false;
