@@ -73,7 +73,9 @@
           <div class="row">
             <% two_drug_types.each do |drug_type| %>
               <div class="col-md-6 catalog-item">
-                <%= link_to drug_type.name, drugs_stores_drugtype_path(@store.name, drug_type) %>
+                <h5>
+                  <%= link_to drug_type.name, drugs_stores_drugtype_path(@store.name, drug_type) %>
+                </h5>
               </div>
             <% end %>
           </div>
@@ -92,21 +94,21 @@
   </div>
 
   <div class="drugstore">
-    <div class="module-title">药店留言</div>
-     <%= link_to '添加留言', stores_feedbacks_new_path %>
+    <div class="module-title">
+      药店留言
+      <%= link_to '+ 添加留言', stores_feedbacks_new_path, class: "btn btn-primary pull-right" %>
+    </div>
     <div class="messages">
-      <ul>
+      <ul class="list-unstyled">
         <% @feedbacks.each do |feedback| %>
-          <li>
-            <%= feedback.content %>
-            <br />
-            <%= feedback.created_at %>
-            <hr>
+          <li class="message-item">
+            <span><%= feedback.content %></span>
+            <span class="pull-right"><%= time_ago_in_words(feedback.created_at) %>之前</span>
           </li>
         <% end %>
       </ul>
     </div>
-    <a href="#" id="get_more">加载更多</a>
+    <button href="javascript:;" class="btn btn-primary btn-block" id="get_more">加载更多</button>
   </div>
 </div>
 
