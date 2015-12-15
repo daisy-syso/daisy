@@ -15,10 +15,9 @@
           <div class="carousel-inner" role="listbox">
             <% @incidents.each_with_index do |incident, index| %>
               <div class="item <%= "active" if index.eql?(0) %>">
-                <%= link_to incident.title, stores_path(@store.name, incident) %>
                 <img src="<%=incident.image_url %>"/>
                 <div class="carousel-caption">
-                  <p></p>
+                  <p><%= link_to incident.title, stores_path(@store.name, incident) %></p>
                 </div>
               </div>
             <% end %>

@@ -1,0 +1,59 @@
+.container{
+  .drug-image{
+    width: 100%;
+    height: 90%;
+    min-height: 200px;
+    margin: 0 auto;
+  }
+  .drug-parameter{
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    margin-bottom: 8px;
+    .title {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      .drug-price{
+        font: 17px/21px "microsoft yahei";
+        color: #ff4800;
+        .origin-price{
+          text-decoration: line-through;
+        }
+      }
+      .drug-name{
+        font: 15px/20px "microsoft yahei";
+        color: #333;
+      }
+      .storegoods{
+        position: absolute;
+        right: 20px;
+        top: 25px;
+        text-align: center;
+      }
+    }
+    .detail{
+      ul{
+        padding: 0px;
+        li{
+          overflow: hidden;
+          // font-size: 0;
+          border-bottom: 1px solid #ddd;
+          .parameter-title{
+            display: inline-block;
+            width: 80px;
+            padding-left: 10px;
+            font: 12px/48px "microsoft yahei";
+            color: #999;
+          }
+          b{
+            display: inline-block;
+            margin-left: 20px;
+            font: 12px/48px "microsoft yahei";
+            color: #333;
+          }
+        }
+      }
+    }
+  }
+}
