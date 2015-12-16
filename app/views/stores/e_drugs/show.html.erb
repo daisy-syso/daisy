@@ -1,28 +1,32 @@
-<strong>药名:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.name %></div>
-<strong>工厂:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.manufactory %></div>
-<strong>原价:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.ori_price %></div>
-<strong>现价:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.price %></div>
-<strong>介绍:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.introduction %></div>
-<strong>图片:</strong>
-<div class="alert alert-success" role="alert">
-  <img src="<%= @drug.image_url%>" />
+<div class="container">
+  <div class="drug-image thumbnail">
+    <img src="<%= @drug.image_url%>" />
+  </div>
+
+  <div class="drug-parameter">
+    <div class="title">
+      <h4 class="drug-price">
+        <span class="origin-price">￥<%= @drug.ori_price %></span>
+        <span>￥<%= @drug.price %> </span>
+      </h4>
+      <p class="drug-name"><%= @drug.name %></p>
+      <a href="javascript:void(0);" class="storegoods"><i>☆</i><p>收藏</p></a>
+    </div>
+    <div class="detail">
+      <ul>
+        <li> <span class="parameter-title">规格</span> <b><%= @drug.spec %></b> </li>
+        <li> <span class="parameter-title">介绍</span> <b><%= @drug.introduction %></b> </li>
+        <li> <span class="parameter-title">品牌商标</span> <b><%= @drug.brand %></b> </li>
+        <li> <span class="parameter-title">工厂</span> <b><%= @drug.manufactory %></b> </li>
+        <li> <span class="parameter-title">国药准字</span> <b><%= @drug.code %></b> </li>
+        <li> <span class="parameter-title">有效期</span> <b><%= @drug.expiry_date %></b> </li>
+        <li>
+          <span class="parameter-title">分类</span>
+          <span class="label label-success"><%= DrugType.find(@drug.drug_type_id).name %></span>
+          <span class="label label-success"><%= DrugType.find(@drug.drug_type_id2).name %></span>
+          <span class="label label-success"><%= DrugType.find(@drug.drug_type_id3).name %></span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
-<strong>品牌商标:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.brand %></div>
-<strong>国药准字:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.code %></div>
-<strong>有效期:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.expiry_date %></div>
-<strong>规格:</strong>
-<div class="alert alert-success" role="alert"><%= @drug.spec %></div>
-<strong>分类一:</strong>
-<div class="alert alert-success" role="alert"><%= DrugType.find(@drug.drug_type_id).name %></div>
-<strong>分类二:</strong>
-<div class="alert alert-success" role="alert"><%= DrugType.find(@drug.drug_type_id2).name %></div>
-<strong>分类三:</strong>
-<div class="alert alert-success" role="alert"><%= DrugType.find(@drug.drug_type_id3).name %></div>
