@@ -23,8 +23,8 @@ class Informations::InformationType < ActiveRecord::Base
     end
   end
 
-  def hotest_images
-    Informations::Information.select('id, name, image_url').unscope(:where).where(types: 7).order("created_at desc").limit(2)
-  end
+  # def hotest_images
+  #   Informations::Information.select('id, name, image_url').unscope(:where).where(types: 7).order("created_at desc").limit(2)
+  # end
 
 end

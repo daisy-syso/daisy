@@ -12,6 +12,6 @@ class Informations::InformationTypeEntity < ApplicationEntity
 
   expose :types_images
 
-  expose :hotest_images
+  # expose :hotest_images
 
 end

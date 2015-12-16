@@ -19,8 +19,10 @@ class Informations::HealthInforsAPI < ApplicationAPI
         info_sql = "select * from ( " + top_infors + " union " + select_infos + " ) as infors order by rank asc, str_to_date(infors.created_at,'%Y-%m-%d %H:%i:%s') desc limit #{pageset} offset #{((params[:page] || 1).to_i - 1) * pageset}"
         it.latest_informations = Informations::Information.unscope(:where).find_by_sql(info_sql)
       end
-      present title: "健康资讯"
+      information_hotest_images = Informations::Information.select('id, name, image_url').unscope(:where).where(types: 7).order("created_at desc").limit(2)
+      present :title, "健康资讯"
       present information_types: information_types
+      present :information_hotest_images, information_hotest_images
       present :data, information_type, with: Informations::InformationTypeEntity
     end
 
