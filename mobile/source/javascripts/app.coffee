@@ -334,10 +334,10 @@ angular.module 'DaisyApp', [
               .success (data) ->
                 $scope.hamburgers = data
 
-          $scope.getAPPExamples = () ->
-            $loader.get("/api/infors/apps/examples.json")
+          $scope.getAPPs = () ->
+            $loader.get("/api/infors/apps.json")
               .success (data) ->
-                $scope.apps = data.apps
+                $scope.data = data
 
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
@@ -385,7 +385,7 @@ angular.module 'DaisyApp', [
           $scope.loadMore()
           $scope.getHotAds()
           $scope.getHamburgers()
-          $scope.getAPPExamples()
+          $scope.getAPPs()
       ]
 
 
