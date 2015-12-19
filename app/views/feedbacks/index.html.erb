@@ -6,12 +6,14 @@
     <thead>
       <tr class="active">
         <th>内容</th>
+        <th>时间</th>
       </tr>
     </thead>
     <tbody>
       <% @feedbacks.each do |feedback|%>
         <tr>
           <td><%= feedback.content %></td>
+          <td><%= feedback.created_at.strftime("%F %T") %></td>
         </tr>
       <% end %>
     </tbody>

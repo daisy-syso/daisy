@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206100501) do
+ActiveRecord::Schema.define(version: 20151219130708) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -570,11 +570,13 @@ ActiveRecord::Schema.define(version: 20151206100501) do
     t.integer  "drug_type_id",   limit: 4
     t.integer  "drug_type_id2",  limit: 4
     t.integer  "drug_type_id3",  limit: 4
+    t.integer  "sales",          limit: 4,   default: 0
   end
 
   add_index "e_drugs", ["e_drugstore_id"], name: "index_e_drugs_on_e_drugstore_id", using: :btree
   add_index "e_drugs", ["editor_id"], name: "index_e_drugs_on_editor_id", using: :btree
   add_index "e_drugs", ["name"], name: "index_e_drugs_on_name", using: :btree
+  add_index "e_drugs", ["sales"], name: "index_e_drugs_on_sales", using: :btree
 
   create_table "e_drugstores", force: :cascade do |t|
     t.string   "name",             limit: 255
@@ -1059,6 +1061,8 @@ ActiveRecord::Schema.define(version: 20151206100501) do
     t.boolean  "is_top",                            default: false
     t.integer  "types",               limit: 4,     default: 0
   end
+
+  add_index "informations", ["name"], name: "name", using: :btree
 
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name", limit: 255

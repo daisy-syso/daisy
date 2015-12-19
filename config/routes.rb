@@ -55,6 +55,8 @@ Rails.application.routes.draw do
       resources :drugtypes do
         member do
           get 'drugs'
+          get 'sub_drugs'
+          get 'subsub_drugs'
         end
       end
       resources :e_drugs

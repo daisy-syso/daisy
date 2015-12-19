@@ -10,7 +10,22 @@ class Stores::StoresController < StoresController
 
     @drug_type = DrugType.find(@drug_type_ids.compact)
 
-    @drugs = @store.e_drugs.order("created_at desc").limit(12)
+    # @drugs = @store.e_drugs
+
+    # @drugs = @store.e_drugs.order("sales desc").limit(12)
+
+    drug_type_id2s = @store.e_drugs.limit(3).pluck(:drug_type_id2).uniq
+
+    @hot_type_name = DrugType.where(id: drug_type_id2s).pluck(:name)
+
+    @type_drugs = []
+
+    drug_type_id2s.each do |drug_type_id2|
+      drugs = @store.e_drugs.where(drug_type_id2: drug_type_id2).order("sales desc").limit(12)
+
+      @type_drugs << drugs
+    end
+
   end
 
   def incident

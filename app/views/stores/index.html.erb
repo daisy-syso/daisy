@@ -42,23 +42,27 @@
     <div class="module-title">热销产品</div>
     <div class="hot-product">
       <ul class="nav nav-pills nav-justified">
-        <li role="presentation" class="category-item active"><a href="#">抗病毒</a></li>
-        <li role="presentation" class="category-item"><a href="#">抗纤维化</a></li>
-        <li role="presentation" class="category-item"><a href="#">脱发</a></li>
+        <% @hot_type_name.each do |name| %>
+          <li role="presentation" class="category-item active"><a href="#"><%= name%></a></li>
+        <% end %>
       </ul>
       <div class="product-list">
-        <% @drugs.each_slice(3) do |three_drugs| %>
-          <div class="container-fluid">
-            <div class="row">
-              <% three_drugs.each do |drug|%>
-                <div class="col-xs-6 col-sm-4 product-item">
-                  <img src="<%= drug.image_url%>">
-                  <h5><%=link_to drug.name, stores_e_drug_path(@store.name, drug) %></h5>
-                  <span class="product-price"><%= drug.price %></span>
-                </div>
-              <% end %>
+        <% @type_drugs.each do |type_drugs| %>
+          <% type_drugs.each_slice(3) do |three_drugs| %>
+            <div class="container-fluid">
+              <div class="row">
+                <% three_drugs.each do |drug|%>
+                  <div class="col-xs-6 col-sm-4 product-item">
+                    <img src="<%= drug.image_url%>">
+                    <h5><%=link_to drug.name, stores_e_drug_path(@store.name, drug) %></h5>
+                    <span class="product-price">价格：<%= drug.price %></span>
+                    <br />
+                    <span class="product-price">销量：<%= drug.sales %></span>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -122,8 +126,8 @@
         per: 5
       },function(data){
         data.data.forEach(function(f){
-          $("#feedbacks").append(
-            "<li>"+f.content+"<br />"+f.created_at+"</li><hr>"
+          $(".list-unstyled").append(
+            "<li class='message-item'><span>"+f.content+"</span><span class='pull-right'>"+f.created_at+"</span></li>"
           )
           page = data.next_page;
           last_page = data.last_page;

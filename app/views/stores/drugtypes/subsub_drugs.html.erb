@@ -1,14 +1,5 @@
 <%= @drug_type.name %>
 
-<% drug_types = DrugType.where(id: @drugs.pluck(:drug_type_id2).uniq ) %>
-<p>子分类</p>
-<ul>
-  <% drug_types.each do |drug_type| %>
-    <li>
-      <%= link_to drug_type.name, sub_drugs_stores_drugtype_path(@store.name, drug_type) %>
-    </li>
-  <% end %>
-</ul>
 <hr>
 <ul>
   <% @drugs.each do |drug|%>

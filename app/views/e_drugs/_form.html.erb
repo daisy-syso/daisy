@@ -20,6 +20,7 @@
   <%= f.input :code, label: '国药准字', placeholder: "国药准字Z11020197" %>
   <%= f.input :expiry_date, label: '有效期', placeholder: "36个月" %>
   <%= f.input :spec, label: '规格', placeholder: "2.6g*9袋" %>
+  <%= f.input :sales, label: '销量', placeholder: "100" %>
 
   <%= f.input '第一分类' do %>
     <%= f.select :drug_type_id, DrugType.where(parent_id: 0).map { |r| [r.name, r.id] }, {include_blank: true} %>
@@ -46,7 +47,6 @@
     $.get("<%= get_types_path(@drugstore, @drug) %>",{
       parent_id: e.target.value
     },function(data){
-      // debugger
       $("#e_drug_drug_type_id2").html(data);
       $("#e_drug_drug_type_id3").html('');
     })

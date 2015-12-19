@@ -20,6 +20,7 @@
         <li> <span class="parameter-title">工厂</span> <b><%= @drug.manufactory %></b> </li>
         <li> <span class="parameter-title">国药准字</span> <b><%= @drug.code %></b> </li>
         <li> <span class="parameter-title">有效期</span> <b><%= @drug.expiry_date %></b> </li>
+        <li> <span class="parameter-title">销量</span> <b><%= @drug.sales %></b> </li>
         <li>
           <span class="parameter-title">分类</span>
           <span class="label label-success"><%= DrugType.find(@drug.drug_type_id).name %></span>

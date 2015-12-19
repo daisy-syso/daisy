@@ -69,7 +69,7 @@ class EDrugsController < ApplicationController
     end
 
     def drugs_params
-      params.require(:e_drug).permit(:name, :manufactory, :ori_price, :price, :introduction, :image_url, :brand, :code, :spec, :expiry_date, :drug_type_id, :drug_type_id2, :drug_type_id3)
+      params.require(:e_drug).permit(:name, :manufactory, :ori_price, :price, :introduction, :image_url, :brand, :code, :spec, :expiry_date, :drug_type_id, :drug_type_id2, :drug_type_id3, :sales)
     end
 
     def set_drugstore
