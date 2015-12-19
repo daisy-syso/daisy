@@ -14,7 +14,7 @@ class Stores::StoresController < StoresController
 
     # @drugs = @store.e_drugs.order("sales desc").limit(12)
 
-    drug_type_id2s = @store.e_drugs.limit(3).pluck(:drug_type_id2).uniq
+    drug_type_id2s = @store.e_drugs.order("sales desc").pluck(:drug_type_id2).uniq
 
     @hot_type_name = DrugType.where(id: drug_type_id2s).pluck(:name)
 
