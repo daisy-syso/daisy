@@ -6,7 +6,11 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       title: "全国体检",
       filters: {
         city: city_filters,
-        type: type_filters("全国体检", :examination),        
+        type: type_filters("全国体检", :examination),
+        search_by: search_by_filters({
+          default: :examination,
+          examination: common_examination_filters
+        }),
         order_by: order_by_filters(Examinations::Examination),
         form: form_filters,
         query: form_query_filters,

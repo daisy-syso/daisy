@@ -462,6 +462,86 @@ module FilterHelper
       }
     end
 
+    def common_examination_filters
+      {
+        title: proc do
+          Examinations::Examination.all.where(id: params[:common_disease]).first.try(:name) || Examinations::Examination.where(id: params[:id]).first.try(:name) || "全部" 
+        end,
+        key: "common_examination",
+        template: "list",
+        children: [{
+          id: :examination,
+          title: "全部",
+          filterTitle: "全国体检"
+        }, {
+          title: "热门体检",
+          children: Examinations::ExaminationType.where(parent_id: 1).map do |type|
+            {
+              title: type.name,
+              params: { examination_type_id: type.id }
+            }
+          end
+          #params: { examination_parent_type: 1 }
+        }, {
+          title: "体检机构",
+          params: { examination_parent_type: 1 }
+        }, {
+          title: "商务体检套餐",
+          children: Examinations::ExaminationType.where(parent_id: 74).map do |type|
+            {
+              title: type.name,
+              params: { examination_type_id: type.id }
+            }
+          end
+          # params: { examination_parent_type: 74 }
+        }, {
+          title: "肿瘤检测",
+          children: Examinations::ExaminationType.where(parent_id: 65).map do |type|
+            {
+              title: type.name,
+              params: { examination_type_id: type.id }
+            } 
+          end
+          # params: { examination_parent_type: 65 }
+        }, {
+          title: "高发疾病检测",
+          children: Examinations::ExaminationType.where(parent_id: 93).map do |type|
+            {
+              title: type.name,
+              params: { examination_type_id: type.id }
+            }
+          end
+          # params: { examination_parent_type: 93 }
+        }, {
+          title: "适用人群套餐",
+          children: Examinations::ExaminationType.where(parent_id: 22).map do |type|
+            {
+              title: type.name,
+              params: { examination_type_id: type.id }
+            }
+          end
+          # params: { examination_parent_type: 22 }
+        }, {
+          type: "hospitals/hospital_news",
+          title: "体检诊疗攻略",
+          params: { hospital_type: 3 }
+        }, {
+          type: "examinations/examinations",
+          title: "体检价格攻略"
+        }],
+        current: proc { params[:disease_id] },
+        # class: :common_disease
+      }
+    end
+
+    # {
+    #   type: "examinations/examinations",
+    #   title: "全国体检",
+    # #  count: Examinations::Examinatio#n.count,
+    #   children: []
+    # }
+
+
     def hospital_type_filters
       {
         title: proc do
