@@ -111,7 +111,7 @@ class Informations::HealthInforsAPI < ApplicationAPI
         icon: "images/icons/1-8.png"
       }]
 
-      present btns
+      present labels
     end
   end
 
