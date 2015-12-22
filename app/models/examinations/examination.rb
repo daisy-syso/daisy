@@ -21,6 +21,18 @@ class Examinations::Examination < ActiveRecord::Base
     query.present? ? where{hospital_name.like("%#{query}%")} : all
   }
   scope :types, -> (type) {type.present? ? where("examination_type_one_id = ? or examination_type_two_id = ?", type, type) : all}
+# common_examination
+
+  scope :common_examination, -> (common_examination) {
+    debugger
+    common_examination ? where(examination_type_id: common_examination).distinct : all
+  }
+
+  scope :examination_type_id, -> (common_examination) {
+    # debugger
+    # common_examination ? where(examination_type_one_id: common_examination).distinct : all
+    common_examination ? where("examination_type_one_id = ? or examination_type_two_id = ?", common_examination, common_examination).distinct : all
+  }
 
   def self.demand_attrs
     {

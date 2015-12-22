@@ -7,6 +7,7 @@ class Examinations::ExaminationsAPI < ApplicationAPI
       filters: {
         city: city_filters,
         type: type_filters("全国体检", :examination),
+        examination_type_id: { scope_only: true },
         search_by: search_by_filters({
           default: :examination,
           examination: common_examination_filters

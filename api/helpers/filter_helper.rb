@@ -465,7 +465,8 @@ module FilterHelper
     def common_examination_filters
       {
         title: proc do
-          Examinations::Examination.all.where(id: params[:common_disease]).first.try(:name) || Examinations::Examination.where(id: params[:id]).first.try(:name) || "全部" 
+          Examinations::ExaminationType.where(id: params[:examination_type_id]).first.try(:name) || "全部" 
+          # Examinations::Examination.all.where(id: params[:common_disease]).first.try(:name) || Examinations::Examination.where(id: params[:id]).first.try(:name) || "全部" 
         end,
         key: "common_examination",
         template: "list",

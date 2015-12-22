@@ -1062,8 +1062,6 @@ ActiveRecord::Schema.define(version: 20151219130708) do
     t.integer  "types",               limit: 4,     default: 0
   end
 
-  add_index "informations", ["name"], name: "name", using: :btree
-
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "url",  limit: 255
