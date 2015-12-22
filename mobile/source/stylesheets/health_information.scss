@@ -385,13 +385,13 @@ header{
 .last-section{
   margin-bottom: 60px !important;
   .connect-way{
-    li{
-      width: 48%;
-      display: inline-block;
+    p{
+      font-size: 17.6px;
+      line-height: 30px;
     }
-    .qq-number{
-      text-align: center;
-    }
+  }
+  .disclaimer{
+    padding: 20px;
   }
 }
 .overflow-text{

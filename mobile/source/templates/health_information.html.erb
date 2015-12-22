@@ -93,24 +93,8 @@
     </section>
 
     <section class="last-section" ng-show="show_last">
-      <h3>合作赞助联系方式</h3>
-      <div class="connect-way">
-        <ul class="information-items">
-          <li>
-            <img src="images/adv/wechat.png" style="width: 100%;" alt="" />
-          </li>
-          <li>
-            <a href="tencent://message/?uin=3161177845">
-              <img src="images/adv/qq.png" style="width: 100%;" alt="" />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="last-section" ng-show="show_last">
-      <h3>健康医疗APP商城</h3>
-      <div class="list list-inset" ng-repeat="app_type in data.data" ng-if="app_type.name != '健康资讯'">
+      <h3>健康医疗APP大全</h3>
+      <div class="list list-inset" ng-repeat="app_type in data.data">
         <div class="item">
           <div class="row">
             <p class="col-33" style="font-size: 1.4em;">
@@ -131,6 +115,17 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="last-section" ng-show="show_last">
+      <h3>合作赞助联系方式</h3>
+      <div class="list list-inset">
+        <div class="connect-way item">
+          <p> 微信: 13921530318 </p>
+          <p> qq: 3161177845></p>
+        </div>
+      </div>
+      <p class="disclaimer">【免责声明：我们尊重原创，主要目的在于分享信息。版权原作者所有，如有侵犯您的权益请及时告知我们，我们将在24小时之内删除。】</p>
     </section>
   </div>
 </ion-content>
