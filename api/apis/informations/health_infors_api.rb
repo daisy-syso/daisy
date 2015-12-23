@@ -37,79 +37,86 @@ class Informations::HealthInforsAPI < ApplicationAPI
 
   namespace :precise_query do
     get do
-      labels = [{
-        title: "医院大全",
-        # link: "#/list/hospitals/all?type=3",
-        link: "#/list/hospitals/polyclinics?type=polyclinic&country=1",
-        icon: "images/icons/1-1.png"
-      }, {
-        title: "疾病查询",
-        link: "#/list/diseases/diseases",
-        icon: "images/icons/1-2.png"
-      }, {
-        title: "找医生",
-        link: "#/list/hospitals/doctors",
-        icon: "images/icons/1-3.png"
-      }, {
-        title: "身边药房",
-        link: "#/list/drugs/drugstores",
-        icon: "images/icons/1-6.png"
-      }, {
-        title: "药品团购",
-        link: "#/list/drugs/drugs",
-        icon: "images/icons/1-5.png"
-      }, {
-        title: "医疗团购",
-        link: "#/privileges/hospitals",
-        icon: "images/icons/2-2.png"
-      }, {
-        # title: "医保查询",
-        title: "最新优惠",
-        # link: "#/list/eldercares/nursing_rooms",
-        link: "#/privileges/newest",
-        icon: "images/icons/2-4.png"
-      }, {
-        title: "体检团购",
-        link: "#/list/examinations/examinations",
-        icon: "images/icons/2-3.png"
-      }, {
-        title: "特色科室",
-        link: "#/list/hospitals/characteristics",
-        icon: "images/icons/2-1.png"
-      }, {
-        title: "症状查询",
-        link: "#/list/symptoms/symptoms",
-        icon: "images/icons/2-5.png"
-      }, {
-        title: "诊疗攻略",
-        link: "#/list/price_search/strategy_list",
-        # title: "手机挂号",
-        # link: "#/list/hospitals/polyclinics",
-        icon: "images/icons/1-4.png"
-      }, {
-        title: "养老精选",
-        link: "#/list/eldercares/nursing_rooms",
-        # title: "医保查询",
-        # link: "#/list/social_securities/social_securities",
-        icon: "images/icons/1-7.png"
-      }, {
-        title: "月子团购",
-        # link: "#/list/maternals/maternal_halls",
-        link: "#/privileges/maternals/confinement_centers",
-        icon: "images/icons/2-6.png"
-      }, {
-        title: "海外医疗",
-        link: "#/list/hospitals/overseas?country=2",
-        icon: "images/icons/2-7.png"
-      }, {
-        title: "疾病保险",
-        link: "#/privileges/insurances",
-        icon: "images/icons/2-8.png"
-      }, {
-        title: "全部类别",
-        link: "#/list/menus",
-        icon: "images/icons/1-8.png"
-      }]
+      precise_query = PreciseQuery.all#.pluck(:title, :link, :icon)
+
+      labels = []
+      precise_query.each do |p|
+        labels << {
+          title: p.title,
+          link: p.link,
+          icon: p.icon
+        }
+      end
+
+      # labels = [
+      #   {
+      #     title: "医院大全",
+      #     link: "#/list/hospitals/polyclinics?type=polyclinic&country=1",
+      #     icon: "images/icons/1-1.png"
+      #   }, {
+      #     title: "疾病查询",
+      #     link: "#/list/diseases/diseases",
+      #     icon: "images/icons/1-2.png"
+      #   }, {
+      #     title: "找医生",
+      #     link: "#/list/hospitals/doctors",
+      #     icon: "images/icons/1-3.png"
+      #   }, {
+      #     title: "身边药房",
+      #     link: "#/list/drugs/drugstores",
+      #     icon: "images/icons/1-6.png"
+      #   }, {
+      #     title: "药品团购",
+      #     link: "#/list/drugs/drugs",
+      #     icon: "images/icons/1-5.png"
+      #   }, {
+      #     title: "医疗团购",
+      #     link: "#/privileges/hospitals",
+      #     icon: "images/icons/2-2.png"
+      #   }, {
+      #     # title: "医保查询",
+      #     title: "最新优惠",
+      #     # link: "#/list/eldercares/nursing_rooms",
+      #     link: "#/privileges/newest",
+      #     icon: "images/icons/2-4.png"
+      #   }, {
+      #     title: "体检团购",
+      #     link: "#/list/examinations/examinations",
+      #     icon: "images/icons/2-3.png"
+      #   }, {
+      #     title: "特色科室",
+      #     link: "#/list/hospitals/characteristics",
+      #     icon: "images/icons/2-1.png"
+      #   }, {
+      #     title: "症状查询",
+      #     link: "#/list/symptoms/symptoms",
+      #     icon: "images/icons/2-5.png"
+      #   }, {
+      #     title: "诊疗攻略",
+      #     link: "#/list/price_search/strategy_list",
+      #     icon: "images/icons/1-4.png"
+      #   }, {
+      #     title: "养老精选",
+      #     link: "#/list/eldercares/nursing_rooms",
+      #     icon: "images/icons/1-7.png"
+      #   }, {
+      #     title: "月子团购",
+      #     link: "#/privileges/maternals/confinement_centers",
+      #     icon: "images/icons/2-6.png"
+      #   }, {
+      #     title: "海外医疗",
+      #     link: "#/list/hospitals/overseas?country=2",
+      #     icon: "images/icons/2-7.png"
+      #   }, {
+      #     title: "疾病保险",
+      #     link: "#/privileges/insurances",
+      #     icon: "images/icons/2-8.png"
+      #   }, {
+      #     title: "全部类别",
+      #     link: "#/list/menus",
+      #     icon: "images/icons/1-8.png"
+      #   }
+      # ]
 
       present labels
     end

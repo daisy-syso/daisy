@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219130708) do
+ActiveRecord::Schema.define(version: 20151223123604) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -1062,6 +1062,8 @@ ActiveRecord::Schema.define(version: 20151219130708) do
     t.integer  "types",               limit: 4,     default: 0
   end
 
+  add_index "informations", ["name"], name: "name", using: :btree
+
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "url",  limit: 255
@@ -1307,6 +1309,14 @@ ActiveRecord::Schema.define(version: 20151219130708) do
     t.string   "url",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "precise_queries", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "link",       limit: 255
+    t.string   "icon",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "price_notifications", force: :cascade do |t|
