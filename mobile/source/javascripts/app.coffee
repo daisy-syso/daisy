@@ -339,6 +339,11 @@ angular.module 'DaisyApp', [
               .success (data) ->
                 $scope.data = data
 
+          $scope.preciseQuery = () ->
+            $loader.get("/api/infors/precise_query.json")
+              .success (data) ->
+                $scope.preciseCategories = data
+
           $scope.gotoCategory = (id) ->
             document.getElementById(id).scrollIntoView()
             $scope.afterHeight = true
@@ -386,6 +391,7 @@ angular.module 'DaisyApp', [
           $scope.getHotAds()
           $scope.getHamburgers()
           $scope.getAPPs()
+          $scope.preciseQuery()
       ]
 
 

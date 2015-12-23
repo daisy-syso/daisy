@@ -92,6 +92,20 @@
       </div>
     </section>
 
+     <section ng-if="preciseCategories.length">
+      <h3>精确查询</h3>
+      <div>
+        <ul class="preciseCategories">
+          <li ng-repeat="preciseCategory in preciseCategories" class="preciseCategory-item">
+            <a ng-href="{{ preciseCategory.link }}">
+              <img alt="" ng-src="{{ preciseCategory.icon }}">
+              <p class="preciseCategory-title">{{ preciseCategory.title }}</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="last-section" ng-show="show_last">
       <h3>健康医疗APP大全</h3>
       <div class="list list-inset" ng-repeat="app_type in data.data">

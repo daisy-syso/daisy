@@ -248,6 +248,18 @@ header{
   }
 }
 #health_information{
+  .preciseCategories{
+    margin: 10px;
+    .preciseCategory-item{
+      display: inline-block;
+      width: 20%;
+      text-align: center;
+    }
+    .preciseCategory-title{
+      margin-top: 5px;
+      text-align: center;
+    }
+  }
   .app-name{
     text-align:center;
     width:90%;
