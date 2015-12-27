@@ -8,7 +8,8 @@ class AccountsAPI < Grape::API
     end
   end
   post :sign_up do
-    account = Account.new(declared(params)[:account])
+    account_param = strong_params(params).require(:account).permit(:email, :username, :password)
+    account = Account.new account_param
     if account.save
       sign_in account
       present! account

@@ -1,5 +1,8 @@
 module GrapeHelper
-
+  def strong_params(params)
+    ActionController::Parameters.new(params)
+  end
+  
   def apply_scopes! resource
     resource = apply_scopes resource
     if params[:page]
