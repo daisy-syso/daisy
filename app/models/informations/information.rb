@@ -2,6 +2,9 @@ class Informations::Information < ActiveRecord::Base
 
   belongs_to :information_type, class_name: "Informations::InformationType", foreign_key: 'information_type_id'
 
+  has_many :disease_infos, class_name: "Diseases::DiseaseInfo"
+  has_many :disease_info_types, class_name: "Diseases::DiseaseInfoType", through: :disease_infos
+
   self.table_name = "informations"
 
   include Reviewable
