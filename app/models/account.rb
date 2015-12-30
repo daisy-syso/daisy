@@ -14,6 +14,7 @@ class Account < ActiveRecord::Base
   has_many :price_notifications, class_name: "UserInfos::PriceNotification"
   has_many :reviews, class_name: "UserInfos::Review"
   has_many :orders, class_name: "UserInfos::Order"
+  has_many :follows, class_name: "UserInfos::Follow"
 
   def favorite_items
     self.favorites.includes(:item).map(&:item)
