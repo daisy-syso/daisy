@@ -106,39 +106,32 @@
       </div>
     </section>
 
-    <section class="last-section" ng-show="show_last">
-      <h3>健康医疗APP大全</h3>
-      <div class="list list-inset" ng-repeat="app_type in data.data">
-        <div class="item">
-          <div class="row">
-            <p class="col-33" style="font-size: 1.4em;">
-              {{app_type.name}}
-            </p>
-            <a href="#/infors/app_types/{{app_type.id}}" class="col-offset-50">查看更多</a>
-          </div>
-          <div class="row test" drop-down ng-swipe-left="swipeLeft($index, app_type.app_informations.length)" ng-swipe-right="swipeRight($index)" style="overflow:hidden">
-            <div class="col-20 repeated-item" ng-repeat="app in app_type.app_informations.slice(start[$index],start[$index]+5)">
-            <!-- <div class="col-20" ng-repeat="app in app_type.app_informations" > -->
-              <a ng-href="{{app.url}}">
-                <div style="padding:5px;">
-                <img src="{{app.image_url}}" width="100%" style="display:block;">
-                  <p style="text-align:center;verflow:hidden;margin-top:5px;">{{app.name}}</p>
-                </div>
-              </a>
+    <section ng-show="show_last">
+      <div class="card" style="margin-bottom:0;">
+        <div class="item item-text-wrap" style="padding:0">
+          <div class="row" style="margin: auto 0">
+            <div class="col col50">
+              <div class="health-apps-logo"></div>
+              <a href="">健康医疗APP大全</a>
             </div>
+            <div class="col col50" style="text-align:right;">
+              <a href="#/infors/apps">更多热门APP</a>
+              <i class="ion ion-chevron-right"></i>
+            </div>
+          </div>
+
+          <div class="row" style="margin: auto 0">
+            <a class="col col20" ng-repeat="app in apps" ng-href="{{ app.url }}">
+              <img ng-src="{{app.image_url}}" width="90%">
+              <p class="app-name">{{app.name}}</p>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <section class="last-section" ng-show="show_last">
-      <h3>合作赞助联系方式</h3>
-      <div class="list list-inset">
-        <div class="connect-way item">
-          <p> 微信: 13921530318 </p>
-          <p> qq: 3161177845 </p>
-        </div>
-      </div>
+      <a class="cooperation" href="#/cooperation">合作-赞助-联系方式</a>
       <p class="disclaimer">【免责声明：我们尊重原创，主要目的在于分享信息。版权原作者所有，如有侵犯您的权益请及时告知我们，我们将在24小时之内删除。】</p>
     </section>
   </div>

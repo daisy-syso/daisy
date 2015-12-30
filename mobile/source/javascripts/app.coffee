@@ -334,10 +334,10 @@ angular.module 'DaisyApp', [
               .success (data) ->
                 $scope.hamburgers = data
 
-          $scope.getAPPs = () ->
-            $loader.get("/api/infors/apps.json")
+          $scope.getAPPExamples = () ->
+            $loader.get("/api/infors/apps/examples.json")
               .success (data) ->
-                $scope.data = data
+                $scope.apps = data.apps
 
           $scope.preciseQuery = () ->
             $loader.get("/api/infors/precise_query.json")
@@ -390,7 +390,7 @@ angular.module 'DaisyApp', [
           $scope.loadMore()
           $scope.getHotAds()
           $scope.getHamburgers()
-          $scope.getAPPs()
+          $scope.getAPPExamples()
           $scope.preciseQuery()
       ]
 
