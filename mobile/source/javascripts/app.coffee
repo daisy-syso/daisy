@@ -302,6 +302,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/cooperation',    templateUrl: "templates/cooperation.html"
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
