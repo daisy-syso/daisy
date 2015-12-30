@@ -5,6 +5,5 @@ class UserInfos::AboutmeAPI < Grape::API
       user = current_user!
       present user, with: ::AccountEntity
     end
-
   end
 end

@@ -19,6 +19,7 @@ class DaisyAPI < Grape::API
   mount UserInfos::FavoritesAPI
   mount UserInfos::PriceNotificationsAPI
   mount UserInfos::ReviewsAPI
+  mount UserInfos::AboutmeAPI
 
   mount Reviews::ReviewsAPI
   
