@@ -773,7 +773,7 @@ ActiveRecord::Schema.define(version: 20151230083117) do
   add_index "feedbacks", ["e_drugstore_id"], name: "index_feedbacks_on_e_drugstore_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "user_id",              limit: 4
+    t.integer  "account_id",           limit: 4
     t.integer  "disease_info_type_id", limit: 4
     t.string   "top_name",             limit: 255
     t.datetime "created_at",                       null: false
