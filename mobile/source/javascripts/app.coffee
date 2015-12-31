@@ -302,6 +302,7 @@ angular.module 'DaisyApp', [
     $routeProvider.when '/retrieve',  templateUrl: "templates/retrieve.html"
     $routeProvider.when '/favorites', templateUrl: "templates/favorites.html"
     $routeProvider.when '/search',    templateUrl: "templates/search.html"
+    $routeProvider.when '/cooperation',    templateUrl: "templates/cooperation.html"
     $routeProvider.when '/healthInformation',
       templateUrl: "templates/health_information.html"
       controller:[
@@ -334,10 +335,10 @@ angular.module 'DaisyApp', [
               .success (data) ->
                 $scope.hamburgers = data
 
-          $scope.getAPPs = () ->
-            $loader.get("/api/infors/apps.json")
+          $scope.getAPPExamples = () ->
+            $loader.get("/api/infors/apps/examples.json")
               .success (data) ->
-                $scope.data = data
+                $scope.apps = data.apps
 
           $scope.preciseQuery = () ->
             $loader.get("/api/infors/precise_query.json")
@@ -390,7 +391,7 @@ angular.module 'DaisyApp', [
           $scope.loadMore()
           $scope.getHotAds()
           $scope.getHamburgers()
-          $scope.getAPPs()
+          $scope.getAPPExamples()
           $scope.preciseQuery()
       ]
 
