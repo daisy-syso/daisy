@@ -1,6 +1,6 @@
 # Daisy
 
-## 关于我
+## 关于我[需登录]
 ```
 api/aboutme
 ```
@@ -177,7 +177,7 @@ response
 }
 ```
 
-## 我的关注
+## 我的关注[需登录]
 ```
 GET api/follows
 ```
@@ -202,7 +202,7 @@ response
 ```
 
 
-## 我的关注详情
+## 我的关注详情[需登录]
 ```
 GET api/followsfollows?disease_info_type_id=16
 ```
@@ -244,7 +244,7 @@ response
 }
 ```
 
-## 关注
+## 关注[需登录]
 ```
 POST api/follows
 ```
