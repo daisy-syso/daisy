@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223123604) do
+ActiveRecord::Schema.define(version: 20151230083117) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -271,6 +271,26 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.text    "detail",    limit: 65535
   end
 
+  create_table "disease_info_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "parent_id",  limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "disease_info_types", ["name"], name: "name", using: :btree
+  add_index "disease_info_types", ["parent_id"], name: "parent_id", using: :btree
+
+  create_table "disease_infos", force: :cascade do |t|
+    t.integer  "disease_info_type_id", limit: 4
+    t.integer  "information_id",       limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "disease_infos", ["disease_info_type_id"], name: "disease_id", using: :btree
+  add_index "disease_infos", ["information_id"], name: "info_id", using: :btree
+
   create_table "disease_types", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "parent_id",  limit: 4
@@ -407,6 +427,10 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.integer "typeid",    limit: 4
   end
 
+  add_index "drug_type", ["name"], name: "name", using: :btree
+  add_index "drug_type", ["parent_id"], name: "parent_id", using: :btree
+  add_index "drug_type", ["typeid"], name: "typeid", using: :btree
+
   create_table "drug_types", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.integer  "parent_id",  limit: 4
@@ -451,6 +475,7 @@ ActiveRecord::Schema.define(version: 20151223123604) do
 
   add_index "drugs", ["disease_id"], name: "index_drugs_on_disease_id", using: :btree
   add_index "drugs", ["drug_type_id"], name: "index_drugs_on_drug_type_id", using: :btree
+  add_index "drugs", ["drug_type_two_id"], name: "drug_type_two_id", using: :btree
   add_index "drugs", ["editor_id"], name: "index_drugs_on_editor_id", using: :btree
   add_index "drugs", ["extension"], name: "extension", using: :btree
   add_index "drugs", ["manufactory"], name: "manufactory", using: :btree
@@ -655,6 +680,8 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.text    "content",   limit: 65535
   end
 
+  add_index "examination_details", ["parent_id"], name: "parent_id", using: :btree
+
   create_table "examination_reminds", force: :cascade do |t|
     t.string  "name",      limit: 255
     t.text    "desc",      limit: 65535
@@ -715,8 +742,15 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.string  "image_url",               limit: 508
     t.string  "price",                   limit: 508
     t.integer "star",                    limit: 4
+    t.float   "lng",                     limit: 53
+    t.float   "lat",                     limit: 53
     t.integer "reviews_count",           limit: 4
   end
+
+  add_index "examinations_new", ["city_id"], name: "city_id", using: :btree
+  add_index "examinations_new", ["examination_type_two_id"], name: "examination_type_two_id", using: :btree
+  add_index "examinations_new", ["name"], name: "name", using: :btree
+  add_index "examinations_new", ["price"], name: "price", length: {"price"=>255}, using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "account_id", limit: 4
@@ -737,6 +771,14 @@ ActiveRecord::Schema.define(version: 20151223123604) do
   end
 
   add_index "feedbacks", ["e_drugstore_id"], name: "index_feedbacks_on_e_drugstore_id", using: :btree
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "account_id",           limit: 4
+    t.integer  "disease_info_type_id", limit: 4
+    t.string   "top_name",             limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
 
   create_table "friendly_link_types", force: :cascade do |t|
     t.string "name", limit: 255
@@ -821,6 +863,35 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "health_product_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "parent_id",  limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "health_product_types", ["name"], name: "name", using: :btree
+  add_index "health_product_types", ["parent_id"], name: "parent_id", using: :btree
+
+  create_table "health_products", force: :cascade do |t|
+    t.integer "health_product_types_id", limit: 4
+    t.string  "name",                    limit: 255
+    t.string  "brand",                   limit: 255
+    t.string  "address",                 limit: 255
+    t.string  "spec",                    limit: 255
+    t.string  "original_cost",           limit: 255
+    t.string  "member_price",            limit: 255
+    t.text    "abstract",                limit: 65535
+    t.text    "using_method",            limit: 65535
+    t.text    "fit_people",              limit: 65535
+    t.text    "basis",                   limit: 65535
+    t.string  "gender",                  limit: 255
+    t.string  "image_url",               limit: 255
+    t.text    "content",                 limit: 65535
+  end
+
+  add_index "health_products", ["name"], name: "name", using: :btree
 
   create_table "herbalist_doctor_charges", force: :cascade do |t|
     t.integer  "herbalist_doctor_type_id",   limit: 4
@@ -978,6 +1049,7 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.boolean  "is_community"
     t.boolean  "is_other"
     t.boolean  "is_insurance"
+    t.boolean  "is_tumor"
     t.text     "backup",                     limit: 65535
     t.text     "light",                      limit: 65535
     t.integer  "status",                     limit: 4,                              default: 1
@@ -1062,7 +1134,11 @@ ActiveRecord::Schema.define(version: 20151223123604) do
     t.integer  "types",               limit: 4,     default: 0
   end
 
+  add_index "informations", ["created_at"], name: "created_at", using: :btree
+  add_index "informations", ["information_type_id"], name: "information_type_id", using: :btree
+  add_index "informations", ["is_top"], name: "is_top", using: :btree
   add_index "informations", ["name"], name: "name", using: :btree
+  add_index "informations", ["types"], name: "types", using: :btree
 
   create_table "insurance_companies", force: :cascade do |t|
     t.string "name", limit: 255
