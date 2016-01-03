@@ -397,6 +397,20 @@ header{
 .last-section{
   margin-bottom: 60px !important;
   text-align: center;
+  .cooperation-bar{
+    clear: both;
+    border-top: 1px solid #dfdfdf;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 2px solid #ccc;
+    margin: 0 10px;
+    background: #E62418;
+    a {
+      color: white !important;
+    }
+  }
   .cooperation{
     font-size: 16px;
     color: #333;
