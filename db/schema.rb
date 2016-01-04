@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230083117) do
+ActiveRecord::Schema.define(version: 20160104040835) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -1593,5 +1593,27 @@ ActiveRecord::Schema.define(version: 20151230083117) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "video_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "iqiyi_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "album_name",        limit: 255
+    t.string   "pic_url",           limit: 255
+    t.string   "play_url",          limit: 255
+    t.integer  "tv_id",             limit: 4
+    t.datetime "create_time"
+    t.integer  "time_length",       limit: 4
+    t.string   "sub_title",         limit: 255
+    t.string   "html5_url",         limit: 255
+    t.string   "html5_play_url",    limit: 255
+    t.integer  "video_category_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
 end

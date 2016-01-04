@@ -25,6 +25,9 @@ gem 'rest-client'
 gem 'devise'
 gem 'devise-bootstrap-views'
 
+gem 'oj'
+gem 'whenever'
+
 # OmniAuth
 gem 'omniauth-weibo-oauth2'
 

@@ -88,6 +88,7 @@ GEM
     carrierwave-qiniu (0.1.8.2)
       carrierwave
       qiniu (~> 6.4.2)
+    chronic (0.10.2)
     coderay (1.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -207,6 +208,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    oj (2.14.0)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -372,6 +374,8 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -407,6 +411,7 @@ DEPENDENCIES
   meta_request
   mysql2
   newrelic_rpm
+  oj
   omniauth-weibo-oauth2
   pry-byebug
   pry-rails
@@ -427,6 +432,7 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
+  whenever
 
 BUNDLED WITH
    1.10.6

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  album_name: MyString
+  pic_url: MyString
+  play_url: MyString
+  tv_id: 1
+  create_time: 2016-01-04 12:08:35
+  time_length: 1
+  sub_title: MyString
+  html5_url: MyString
+
+two:
+  album_name: MyString
+  pic_url: MyString
+  play_url: MyString
+  tv_id: 1
+  create_time: 2016-01-04 12:08:35
+  time_length: 1
+  sub_title: MyString
+  html5_url: MyString

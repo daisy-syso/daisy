@@ -13,6 +13,7 @@ class DaisyAPI < Grape::API
   mount SearchAPI
   mount MenusAPI
   mount HamburgersAPI
+  mount VideosAPI
 
   mount MobileAPI
 

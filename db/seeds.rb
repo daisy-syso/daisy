@@ -1,8 +1,9 @@
-editor = Editor.new
-editor.email = 'admin@admin.com'
-editor.username = 'dasiy_manager'
-editor.telephone = '15201991025'
-editor.password = 'Daisy1234'
+editor = Editor.find_or_create_by(
+  email: 'admin@admin.com',
+  username: 'dasiy_manager',
+  telephone: '15201991025',
+  password: 'Daisy1234'
+)
 
 if editor.save
   editor.add_role :admin
