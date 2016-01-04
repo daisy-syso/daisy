@@ -79,19 +79,6 @@
       </div>
     </div>
 
-    <section ng-if="health_infors.information_hotest_images.length">
-      <h3>热门图片</h3>
-      <div class="ad-picture">
-        <ul class="information-item">
-          <li ng-repeat="hot_image in health_infors.information_hotest_images">
-            <a class="image-item" ng-href="#/healthInformationDetail?id={{hot_image.id}}">
-            <img  style="width: 100%;" alt="" ng-src="{{ hot_image.image_url }}">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
      <section ng-if="preciseCategories.length">
       <h3>精确查询</h3>
       <div>
@@ -130,8 +117,23 @@
       </div>
     </section>
 
+    <section ng-if="health_infors.information_hotest_images.length">
+      <h3>热门图片</h3>
+      <div class="ad-picture">
+        <ul class="information-item">
+          <li ng-repeat="hot_image in health_infors.information_hotest_images">
+            <a class="image-item" ng-href="#/healthInformationDetail?id={{hot_image.id}}">
+            <img  style="width: 100%;" alt="" ng-src="{{ hot_image.image_url }}">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
     <section class="last-section" ng-show="show_last">
-      <a class="cooperation" href="#/cooperation">合作-赞助-联系方式</a>
+      <div class="cooperation-bar">
+        <a class="cooperation" href="#/cooperation">合作-赞助-联系方式</a>
+      </div>
       <p class="disclaimer">【免责声明：我们尊重原创，主要目的在于分享信息。版权原作者所有，如有侵犯您的权益请及时告知我们，我们将在24小时之内删除。】</p>
     </section>
   </div>
