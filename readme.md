@@ -261,6 +261,23 @@ response 201
 }
 ```
 
+## 取消关注[需登录]
+```
+DELETE api/follows
+```
+```
+request
+{
+  "disease_info_type_ids": "15,16,17,18,19"
+}
+```
+```
+response 201
+{
+  "info": "已取消关注。"
+}
+```
+
 ## 获取视频分类
 ```
 GET api/video_categories
@@ -543,4 +560,16 @@ response 200
     }
   ]
 }
+```
+
+## 健康资讯
+```
+GET api/infors/health_infors.json
+```
+```
+response 200
+```
+多加两个关于视频的对象，
+video_category， 所属视频的分类，调用接口api/videos?video_category_id=#{video_category_id}&page=#{page}&per=#{per} 时使用。
+top_videos 每个分类的两个视频数据。
 ```

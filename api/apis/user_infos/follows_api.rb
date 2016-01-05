@@ -79,5 +79,23 @@ class UserInfos::FollowsAPI < Grape::API
       end
       present :info, message
     end
+
+    desc '取消关注'
+    params do
+      optional :disease_info_type_ids, type: String
+    end
+    delete do
+      current_user!
+
+      message = ""
+
+      follows = current_user!.follows.where(disease_info_type_id: params.disease_info_type_ids.split(',').map(&:to_i))
+
+      if follows.destroy_all
+        message += "已取消关注。"
+      end
+
+      present :info, message
+    end
   end
 end

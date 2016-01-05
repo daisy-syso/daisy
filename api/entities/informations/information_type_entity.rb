@@ -12,6 +12,8 @@ class Informations::InformationTypeEntity < ApplicationEntity
 
   expose :types_images
 
-  # expose :hotest_images
+  expose :top_videos
+
+  expose :video_category
 
 end
