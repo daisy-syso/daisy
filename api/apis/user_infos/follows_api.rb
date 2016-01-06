@@ -38,6 +38,12 @@ class UserInfos::FollowsAPI < Grape::API
 
     desc '全部分类'
     get 'all_disease_info_types' do
+      if current_user
+        disease_info_type_ids = current_user.follows.pluck(:disease_info_type_id)
+      else
+        disease_info_type_ids = []
+      end
+
       big_hash = {}
 
       Diseases::DiseaseInfoType.where(parent_id: nil).each do |follow|
@@ -47,7 +53,8 @@ class UserInfos::FollowsAPI < Grape::API
         disease_info_types.each do |disease_info_type|
           arr = {
             id: disease_info_type.id,
-            name: disease_info_type.name
+            name: disease_info_type.name,
+            has_followed: disease_info_type_ids.include?(disease_info_type.id)
           }
 
           if big_hash.keys.include? top_name.to_sym
