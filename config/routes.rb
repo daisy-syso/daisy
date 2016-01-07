@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   end
 
   constraints host: 'www.yyy.com' do
-    namespace :stores, path: '/' do
+    namespace :news, path: '/' do
+      resources :articles
+      
       get '/' => 'articles#index'
     end
   end
