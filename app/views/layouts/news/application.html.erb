@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>资讯</title>
+    <%= stylesheet_link_tag "news/application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://api.map.baidu.com/api?v=1.5&ak=d3Yn1p4buKQifBg5mcBXqUOS" type="text/javascript"></script>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

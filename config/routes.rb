@@ -19,7 +19,11 @@ Rails.application.routes.draw do
     get 'drugs'
   end
 
-  # resources :e_drugs
+  constraints host: 'www.yyy.com' do
+    namespace :stores, path: '/' do
+      get '/' => 'articles#index'
+    end
+  end
 
   resources :e_drugstores do
     resources :feedbacks
@@ -64,4 +68,9 @@ Rails.application.routes.draw do
     end
   end
 
+  constraints :subdomain => /^((.*))$/i  do
+    namespace :stores, path: '/:store_name' do
+      
+    end
+  end
 end
