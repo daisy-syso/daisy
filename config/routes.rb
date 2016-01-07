@@ -5,6 +5,13 @@ Rails.application.routes.draw do
       omniauth_callbacks: "accounts/omniauth_callbacks"
     }
 
+  constraints :host => 'www.jiankanghj.com' do
+    namespace :news, path: '/' do
+      resources :information
+      get '/', to: "information#index"
+    end
+  end
+
   # Mobile JSON API
   mount DaisyAPI => '/api'
 
@@ -12,35 +19,37 @@ Rails.application.routes.draw do
 
   # root to: "home#index"
 
-  root 'editors_session#login'
+  constraints :host => 'www.yiliaohj.com' do
+    root 'editors_session#login'
 
-  resources :editors do
-    get 'drugstores'
-    get 'drugs'
-  end
-
-  # resources :e_drugs
-
-  resources :e_drugstores do
-    resources :feedbacks
-    resources :incidents
-    resources :e_drugs do
-      get 'get_types'
+    resources :editors do
+      get 'drugstores'
+      get 'drugs'
     end
-  end
 
-  get 'get_types', to: 'e_drugs#get_types'
+    # resources :e_drugs
 
-  resources :editors_session do
-    collection do
-      get 'login'
-      get 'logout'
+    resources :e_drugstores do
+      resources :feedbacks
+      resources :incidents
+      resources :e_drugs do
+        get 'get_types'
+      end
     end
+
+    get 'get_types', to: 'e_drugs#get_types'
+
+    resources :editors_session do
+      collection do
+        get 'login'
+        get 'logout'
+      end
+    end
+
+    resources :drugs_drugs
+
+    resources :drugs_drugstores
   end
-
-  resources :drugs_drugs
-
-  resources :drugs_drugstores
 
   constraints :subdomain => /^(stores(.*))$/i  do
     namespace :stores, path: '/:store_name' do

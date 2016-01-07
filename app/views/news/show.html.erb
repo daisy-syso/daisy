@@ -1,0 +1,36 @@
+<img src="<%= @information.image_url %>">
+<br>
+<%= @information.name %>
+<br>
+<%= @information.created_at %>&nbsp;&nbsp;&nbsp;<%= @information.source %>
+<br>
+<hr>
+<%= @information.content.html_safe %>
+
+<br>
+<h1>猜你喜欢</h1>
+<% @guess_infos.each do |info|%>
+  <a href="<%= news_information_path(info.id) %>">
+    <img src="<%= info.image_url %>" width="200px">
+    <%= info.name %>
+    <br>
+  </a>
+<% end %>
+
+<br>
+<h1>热门评论</h1>
+
+<br>
+<h1>推荐阅读</h1>
+<% @recommended_infos.each do |info|%>
+  <a href="<%= news_information_path(info.id) %>">
+    <%= info.name %>
+    <br>
+  </a>
+<% end %>
+
+<br>
+<h1>热门图片</h1>
+<% @hot_images.each do |image| %>
+  <img src="<%= image.image_url %>">
+<% end %>
