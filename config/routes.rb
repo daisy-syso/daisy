@@ -1,16 +1,39 @@
 Rails.application.routes.draw do
+  
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :accounts,
-    controllers: {
-      omniauth_callbacks: "accounts/omniauth_callbacks"
-    }
 
   constraints :host => 'www.jiankanghj.com' do
     namespace :news, path: '/' do
+
       resources :information
+
+      get '/information_list', to: "information#information_list"
+
+      resources :video_category do
+        resources :videos
+      end
+      
       get '/', to: "information#index"
+
+      get '/accounts/mine', to: "accounts#mine"
+      
+      # devise_for :accounts, controllers: { sessions: "accounts/sessions" }
+      # resources :accounts do
+      #   collection do
+      #     get 'me'
+      #   end
+      # end
+
+      devise_for :accounts, controllers: { sessions: "accounts/sessions", registrations: "accounts/registrations", passwords: "accounts/passwords", confirmations: "accounts/confirmations" }
+
     end
   end
+
+  # devise_for :accounts,
+  #   controllers: {
+  #     omniauth_callbacks: "accounts/omniauth_callbacks"
+  #   }
 
   # Mobile JSON API
   mount DaisyAPI => '/api'

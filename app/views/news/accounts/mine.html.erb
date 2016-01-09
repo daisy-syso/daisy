@@ -1,0 +1,12 @@
+<br>
+<% @disease_info_types.each do |info| %>
+  大类别：<%= info.name %>
+  <br>
+  <% sub_disease_info_types = Diseases::DiseaseInfoType.where(parent_id: info.id) %>
+  <% sub_disease_info_types.each do |sub_info|%>
+    <a href="<%= news_information_list_path(disease_info_type_id: sub_info.id) %>"><%= sub_info.name %></a>
+    <br>
+  <% end %>
+  <hr>
+<% end %>
+<br>

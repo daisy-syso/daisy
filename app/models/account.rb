@@ -2,13 +2,13 @@ class Account < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :token_authenticatable
+         :recoverable, :rememberable, :trackable, :validatable
+         # :token_authenticatable
 
-  devise :omniauthable, :omniauth_providers => [:weibo]
+  # devise :omniauthable, :omniauth_providers => [:weibo]
 
-  validates_presence_of :username
-  validates_uniqueness_of :username
+  # validates_presence_of :username
+  # validates_uniqueness_of :username
 
   has_many :favorites, class_name: "UserInfos::Favorite"
   has_many :price_notifications, class_name: "UserInfos::PriceNotification"

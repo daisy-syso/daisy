@@ -1,0 +1,13 @@
+<%= @video_category.name %>
+<% @videos.each do |video| %>
+  <a href="<%= video.html5_play_url %>">
+    <div id="hotlinking">
+    <%= video.album_name %>
+    <img src="<%= video.pic_url %>"> 
+    <%= video.time_length/60 %>:<%= video.time_length%60 %>
+    <%= video.create_time.strftime("%F") %>
+    </div>
+  </a>
+  <br>
+<% end %>
+<%= paginate @videos %>

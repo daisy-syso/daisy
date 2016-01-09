@@ -18,8 +18,6 @@ class Informations::AppInforsAPI < ApplicationAPI
       present :app_type, app_type
       present :apps, apps
     end
-
-
   end
 
 end

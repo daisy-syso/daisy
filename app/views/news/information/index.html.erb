@@ -1,0 +1,82 @@
+<h1>导航条</h1>
+<% @information_types.each_with_index do |type, index| %>
+  <% if index % 6 == 0%>
+    <br>
+  <% else %>
+    <a href="#<%= type.name %>"> <%= type.name %> </a>
+  <% end %>
+<% end %>
+
+<h1>轮播图</h1>
+<div>
+  <% @infors.each do |image| %>
+    <a href="<%= news_information_path(image.id) %>">
+      <img src="<%= image.image_url %>" width="200px" />
+      <br>
+      <%= image.name %>
+    </a>
+    <hr>
+  <% end %>
+</div>
+
+<h1>主内容列表</h1>
+<% @information_lists.each do |information| %>
+  <div id="<%= information[:name] %>">
+    <span><%= information[:name]%></span>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span>
+      <% information[:sub_types].each do |sub_type| %>
+        <%= sub_type.name %>
+      <% end %>
+      <%# debugger %>
+      <% if information[:video_category].present? %>
+        <a href="<%= news_video_category_videos_path(information[:video_category].id) %>">视频</a>
+      <% end %>
+    </span>
+    <br>
+    <% information[:informations].each_with_index do |inf, index| %>
+      <a href="<%= news_information_path(inf.id) %>">
+        <% if index == 0 || index == 1 %>
+            <img src="<%= inf.image_url %>" width="150px" />
+            <%= inf.name %> 
+        <% else %>
+          <% if (index == 7) && (information[:name] == "头条" || information[:name] == "天天护理") %>
+            <% if information[:types_images].present? %>
+              <% information[:types_images].each do |image| %>
+                <img src="<%= inf.image_url %>" width="150px" />
+                <%= inf.name %> 
+              <% end %>  
+            <% end %>
+          <% end %>
+          <%= inf.name %>
+          <hr>
+        <% end %>
+      </a>
+    <% end %>
+    <a href="">加载更多</a>
+    <br>
+  </div>
+<% end %>
+
+<h1>精确查询</h1>
+<div>
+  <% @precise_queries.each do |query| %>
+    <a href="http://www.yiliaohj.com/mobiles/index.html<%= query.link %>">
+      <%= query.title %>
+      <img src="http://www.yiliaohj.com/mobiles/<%=query.icon%>">
+    </a>
+    <br>
+  <% end %>
+</div>
+
+<h2>热门图片</h2>
+<div>
+  <% @information_hotest_images.each do |image| %>
+    <img src="<%= image.image_url %>" width="100px">
+  <% end %>
+</div>
+
+<h1>合作-赞助-联系方式</h1>
+<div>
+  【免责声明：我们尊重原创，主要目的在于分享信息。版权原作者所有，如有侵犯您的权益请及时告知我们，我们将在24小时之内删除。】
+</div>

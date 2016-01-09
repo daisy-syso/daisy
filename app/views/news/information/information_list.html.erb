@@ -1,0 +1,6 @@
+<hr>
+<% @information.each do |inf| %>
+  <a href="<%= news_information_path(inf.information_id) %>"> <%= Informations::Information.find(inf.information_id).name %></a>
+  <br>
+<% end %>
+<hr>
