@@ -90,6 +90,43 @@
         white-space:nowrap;
       }
     }
-
+  }
+  .precise-queries{
+    .precise-query-item{
+      display: inline-block;
+      margin-right: 10px;
+      .query-title{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+      }
+    }
+  }
+  .information-hotest-images{
+    .information-hotest-image-item{
+      display: inline-block;
+      width: 47%;
+      margin-right: 1%;
+    }
+  }
+  .cooperation{
+    margin-bottom: 100px;
+    .disclaimer{
+      margin-top: 20px;
+    }
+    .cooperation-bar{
+      clear: both;
+      border-top: 1px solid #dfdfdf;
+      height: 44px;
+      line-height: 44px;
+      text-align: center;
+      font-size: 15px;
+      border-bottom: 2px solid #ccc;
+      background: #E62418;
+      a{
+        color: white;
+      }
+    }
   }
 }
