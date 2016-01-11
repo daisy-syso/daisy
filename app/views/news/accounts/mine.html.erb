@@ -1,12 +1,17 @@
 <br>
-<% @disease_info_types.each do |info| %>
-  大类别：<%= info.name %>
+<br>
+<br>
+<div>
+  欢迎回来：<%= @user.email %>| <%= link_to '退出', destroy_news_account_session_path, method: 'DELETE' %>
+  <a href="<%= news_accounts_following_list_path %>">添加关注</a>
+</div>
+<h1>我的关注</h1>
+<% @tt.each do |k,v| %>
+  <h2><%= k.to_s %></h2>
   <br>
-  <% sub_disease_info_types = Diseases::DiseaseInfoType.where(parent_id: info.id) %>
-  <% sub_disease_info_types.each do |sub_info|%>
-    <a href="<%= news_information_list_path(disease_info_type_id: sub_info.id) %>"><%= sub_info.name %></a>
-    <br>
-  <% end %>
+    <% v.each do |v0| %>
+      <a href="<%= news_information_list_path(disease_info_type_id: v0[:id]) %>"> <%= v0[:name] %> </a>
+      <br>
+    <% end %>
   <hr>
 <% end %>
-<br>

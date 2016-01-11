@@ -17,6 +17,11 @@ Rails.application.routes.draw do
       get '/', to: "information#index"
 
       get '/accounts/mine', to: "accounts#mine"
+
+      get '/accounts/follow', to: "accounts#follow"
+      get '/accounts/delete_follow', to: "accounts#delete_follow"
+
+      get '/accounts/following_list', to: "accounts#following_list"
       
       # devise_for :accounts, controllers: { sessions: "accounts/sessions" }
       # resources :accounts do
