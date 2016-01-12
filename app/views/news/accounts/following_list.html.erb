@@ -1,0 +1,19 @@
+<br>
+<br>
+<br>
+<h1>添加我的关注</h1> <%= link_to '返回', news_accounts_mine_path %>
+<%= flash[:alert] %>
+<% @big_hash.each do |k,v| %>
+  <h2><%= k.to_s %></h2>
+  <br>
+    <% v.each do |v0| %>
+      <%= v0[:name] %>
+      <% if v0[:has_followed] %>
+        <a href="<%= news_accounts_delete_follow_path(disease_info_type_id: v0[:id]) %>">取消关注</a>
+      <% else %>
+        <a href="<%= news_accounts_follow_path(disease_info_type_id: v0[:id]) %>">添加</a>
+      <% end %>
+      <br>
+    <% end %>
+  <hr>
+<% end %>

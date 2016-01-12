@@ -3,14 +3,27 @@ class Accounts::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource/sign_in
   # def create
-  #   super
+    # super
+
+    # debugger
+
+    # if news_account_signed_in?
+      # redirect_to news_accounts_mine_path
+    # else
+      # redirect_to
+    # end
+
   # end
+
+  def after_sign_in_path_for(resource)
+    news_accounts_mine_path
+  end
 
   # DELETE /resource/sign_out
   # def destroy
