@@ -1,36 +1,42 @@
-<img src="<%= @information.image_url %>">
-<br>
-<%= @information.name %>
-<br>
-<%= @information.created_at %>&nbsp;&nbsp;&nbsp;<%= @information.source %>
-<br>
-<hr>
-<%= @information.content.html_safe %>
+<div class="container news-show">
+  <div class="information-image"><img src="<%= @information.image_url %>"></div>
+  <h3><%= @information.name %></h3>
+  <div><%= @information.created_at %>&nbsp;&nbsp;&nbsp;<%= @information.source %></div>
+  <hr>
+  <div class="information-content"><%= @information.content.html_safe %></div>
 
-<br>
-<h1>猜你喜欢</h1>
-<% @guess_infos.each do |info|%>
-  <a href="<%= news_information_path(info.id) %>">
-    <img src="<%= info.image_url %>" width="200px">
-    <%= info.name %>
-    <br>
-  </a>
-<% end %>
+  <br>
+  <h3>猜你喜欢</h3>
+  <% @guess_infos.each do |info|%>
+    <a href="<%= news_information_path(info.id) %>">
+      <img src="<%= info.image_url %>" width="200px">
+      <%= info.name %>
+      <br>
+    </a>
+  <% end %>
 
-<br>
-<h1>热门评论</h1>
+  <br>
+  <h3>热门评论</h3>
 
-<br>
-<h1>推荐阅读</h1>
-<% @recommended_infos.each do |info|%>
-  <a href="<%= news_information_path(info.id) %>">
-    <%= info.name %>
-    <br>
-  </a>
-<% end %>
+  <br>
+  <h3>推荐阅读</h3>
+  <ul class="information-items list-unstyled">
+    <% @recommended_infos.each do |info|%>
+      <li class="information-item">
+        <a href="<%= news_information_path(info.id) %>">
+          <%= info.name %>
+          <br>
+        </a>
+      </li>
+    <% end %>
+  </ul>
 
-<br>
-<h1>热门图片</h1>
-<% @hot_images.each do |image| %>
-  <img src="<%= image.image_url %>">
-<% end %>
+  <h3>热门图片</h3>
+  <ul class="information-hotest-images list-unstyled last-section">
+    <% @hot_images.each do |image| %>
+      <li class="information-hotest-image-item">
+        <img src="<%= image.image_url %>">
+      </li>
+    <% end %>
+  </ul>
+</div>
