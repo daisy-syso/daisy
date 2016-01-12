@@ -26,10 +26,20 @@ namespace :videos do
           video_category = data.last["threeCtgs"].first["name"]
           video_category = VideoCategory.where(name: video_category).first
 
+          uuid = SecureRandom.uuid
+          path = File.join('/tmp', 'tmp.jpg')
+          File.open(path, "wb") { |f| f.write(URI.parse(video["picUrl"]).read) }
+
+          a,b,c = Qiniu::Storage.upload_with_put_policy(
+            $put_policy,     # 上传策略
+            path,     # 本地文件名
+            uuid,            # 最终资源名，可省略，缺省为上传策略 scope 字段中指定的Key值
+          )
+          
           if video_category.present?
             Video.find_or_create_by(
               album_name: video["albumName"],
-              pic_url: video["picUrl"],
+              pic_url: "http://7d9otw.com1.z0.glb.clouddn.com/#{uuid}",
               play_url: video["playUrl"],
               tv_id: video["tvIds"].first,
               create_time: video["createdTime"],

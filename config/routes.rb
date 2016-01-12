@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   constraints :host => 'www.jiankanghj.com' do
     namespace :news, path: '/' do
 
-      resources :information
+      resources :information do
+        member do
+          post 'comment'
+        end
+      end
 
       get '/information_list', to: "information#information_list"
 
@@ -22,13 +26,6 @@ Rails.application.routes.draw do
       get '/accounts/delete_follow', to: "accounts#delete_follow"
 
       get '/accounts/following_list', to: "accounts#following_list"
-      
-      # devise_for :accounts, controllers: { sessions: "accounts/sessions" }
-      # resources :accounts do
-      #   collection do
-      #     get 'me'
-      #   end
-      # end
 
       devise_for :accounts, controllers: { sessions: "accounts/sessions", registrations: "accounts/registrations", passwords: "accounts/passwords", confirmations: "accounts/confirmations" }
 
@@ -45,8 +42,6 @@ Rails.application.routes.draw do
 
   get "/mobiles" => redirect("/mobiles/index.html")
 
-  # root to: "home#index"
-
   constraints :host => 'www.yiliaohj.com' do
     root 'editors_session#login'
 
@@ -54,8 +49,6 @@ Rails.application.routes.draw do
       get 'drugstores'
       get 'drugs'
     end
-
-    # resources :e_drugs
 
     resources :e_drugstores do
       resources :feedbacks
@@ -87,8 +80,6 @@ Rails.application.routes.draw do
       get 'feedbacks/new', to: 'feedbacks#new'
       post 'feedbacks', to: 'feedbacks#create'
 
-      # get 'drugtypes/:drugtype_id/drugs', to: 'drugtypes#index'
-
       resources :drugtypes do
         member do
           get 'drugs'
@@ -97,7 +88,6 @@ Rails.application.routes.draw do
         end
       end
       resources :e_drugs
-      # get 'drugs', to: 'drugs#show'
     end
   end
 

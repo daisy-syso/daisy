@@ -20,7 +20,15 @@
 
   <br>
   <h3>热门评论</h3>
+  <% @comments.each do |comment| %>
+    <span><%= comment.content %></span>
+    <br>
+  <% end %>
 
+  <%= form_tag({:controller => 'information', :action => 'comment'}, :class => 'form-ajax') do -%>
+    <%= text_field_tag :content -%>
+    <%= submit_tag('提交') -%>
+  <% end %>
   <br>
   <h3>推荐阅读</h3>
   <ul class="information-items list-unstyled">
