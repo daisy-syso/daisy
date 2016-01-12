@@ -168,8 +168,10 @@
 .news-show{
   margin-top:70px;
   .information-image{
-    width: 100%;
-    max-height: 200px;
+    img{
+      width: 100%;
+      max-height: 200px;
+    }
   }
   .information-content{
     p {
@@ -179,5 +181,25 @@
         max-width: 100%;
       }
     }
+  }
+  .guess-list{
+    .guess-item{
+      display: inline-block;
+      width: 30%;
+      margin-left: 2%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      p{
+        color: gray;
+      }
+    }
+  }
+  .overflow-text{
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

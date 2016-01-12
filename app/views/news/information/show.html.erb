@@ -7,13 +7,16 @@
 
   <br>
   <h3>猜你喜欢</h3>
-  <% @guess_infos.each do |info|%>
-    <a href="<%= news_information_path(info.id) %>">
-      <img src="<%= info.image_url %>" width="200px">
-      <%= info.name %>
-      <br>
-    </a>
-  <% end %>
+  <ul class="guess-list list-unstyled">
+    <% @guess_infos.each do |info|%>
+    <li class="guess-item">
+      <a href="<%= news_information_path(info.id) %>">
+        <img src="<%= info.image_url %>">
+        <p class="overflow-text"><%= info.name %></p>
+      </a>
+    </li>
+    <% end %>
+  </ul>
 
   <br>
   <h3>热门评论</h3>
@@ -25,7 +28,6 @@
       <li class="information-item">
         <a href="<%= news_information_path(info.id) %>">
           <%= info.name %>
-          <br>
         </a>
       </li>
     <% end %>
