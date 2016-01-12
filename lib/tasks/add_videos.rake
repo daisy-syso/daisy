@@ -27,8 +27,8 @@ namespace :videos do
           video_category = VideoCategory.where(name: video_category).first
           if video_category.present?
             begin
-              video = Video.where(album_name: video["albumName"]).first
-              unless video
+              video_old = Video.where(album_name: video["albumName"]).first
+              unless video_old
                 uuid = SecureRandom.uuid
                 path = File.join('/tmp', 'tmp.jpg')
 
