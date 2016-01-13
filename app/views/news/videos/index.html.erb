@@ -1,13 +1,21 @@
+<br/><br/><br/>
 <%= @video_category.name %>
 <% @videos.each do |video| %>
-  <a href="<%= video.html5_play_url %>">
-    <div id="hotlinking">
+  <div id="hotlinking">
     <%= video.album_name %>
-    <img src="<%= video.pic_url %>"> 
+    <!-- <img src="<%#= video.pic_url %>">  -->
     <%= video.time_length/60 %>:<%= video.time_length%60 %>
     <%= video.create_time.strftime("%F") %>
-    </div>
-  </a>
+  </div>
   <br>
+  <object width="325" height="240">
+    <param name="movie" value="<%= video.swf %>"></param>
+    <param name="allowFullScreen" value="true"></param>
+    <param name="allowscriptaccess" value="always"></param>
+    <embed src="<%= video.swf %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="325" height="240"></embed>
+  </object>
+  <br>
+  <hr>
 <% end %>
 <%= paginate @videos %>
+<br><br><br>

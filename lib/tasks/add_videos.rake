@@ -36,6 +36,20 @@ namespace :videos do
                   File.open(path, "wb") { |f| f.write(URI.parse(video["picUrl"]).read) }
                 end
 
+                uurl = "http://expand.video.iqiyi.com/api/fb?apiKey=eefa2897acae4ebf998c6695740a954c&rec=0&playurl=#{video["playUrl"]}"
+
+                conn = Faraday.new(:url => uurl) do |faraday|
+                  faraday.request  :url_encoded
+                  faraday.response :logger
+                  faraday.adapter  Faraday.default_adapter
+                end
+
+                response = conn.get
+                response.body
+                data2 = Oj.load(response.body)["data"]
+
+                swf = data2["swf"]
+
                 a,b,c = Qiniu::Storage.upload_with_put_policy(
                   $put_policy,     # 上传策略
                   path,     # 本地文件名
@@ -47,6 +61,7 @@ namespace :videos do
                   pic_url: "http://7d9otw.com1.z0.glb.clouddn.com/#{uuid}",
                   play_url: video["playUrl"],
                   tv_id: video["tvIds"].first,
+                  swf: swf,
                   create_time: video["createdTime"],
                   time_length: video["timeLength"],
                   sub_title: video["subTitle"],
