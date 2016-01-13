@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109055048) do
+ActiveRecord::Schema.define(version: 20160112153439) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "type",                   limit: 255
@@ -1046,6 +1046,13 @@ ActiveRecord::Schema.define(version: 20160109055048) do
   end
 
   add_index "incidents", ["e_drugstore_id"], name: "index_incidents_on_e_drugstore_id", using: :btree
+
+  create_table "information_comments", force: :cascade do |t|
+    t.text     "content",        limit: 65535
+    t.integer  "information_id", limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "information_type", force: :cascade do |t|
     t.string   "name",       limit: 255

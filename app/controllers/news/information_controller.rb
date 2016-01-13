@@ -1,5 +1,12 @@
 class News::InformationController < NewsController
-  before_action :set_information, only: [:show]
+  before_action :set_information, only: [:show, :comment]
+
+  def comment
+    comment = @information.information_comments.new(content: params[:content])
+    if comment.save
+      redirect_to news_information_path(@information)
+    end
+  end
 
   def index
     @information_types = Informations::InformationType.select("id, name, parent_id, top_number").where(parent_id: nil).order("created_at desc")
@@ -88,6 +95,8 @@ class News::InformationController < NewsController
     @recommended_infos = Informations::Information.unscope(:where).select('id, name').where.not(id: params[:id]).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
 
     @hot_images = Informations::Information.unscope(:where).select('id, name, image_url').where.not(id: params[:id], image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
+
+    @comments = @information.information_comments.all.page(1).per(5)
   end
 
   private
