@@ -1,3 +1,4 @@
+# encoding: utf-8
 class News::InformationController < NewsController
   before_action :set_information, only: [:show, :comment]
 
@@ -22,19 +23,18 @@ class News::InformationController < NewsController
     @information_types.each do |it|
       parent_id = it.parent_id || it.id
       pageset = (it.name == '头条' || it.name == '天天护理') ? 12 : 8
-      top_infors = "(select *, 1 as rank from informations where information_type_id = #{parent_id} and is_top is true and types = 0 order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit #{it.top_number})"
+      top_infors = "(select * from informations where information_type_id = #{parent_id} and is_top is true and types = 0 order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit #{it.top_number})"
       if it.parent_id.blank?
         ids = it.children_items.map(&:id) + [it.id]
-        select_infos = "(select *, 2 as rank from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0)"
+        select_infos = "(select * from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0"
       else
-        part_infors = "(select *, 3 as rank from informations where information_type_id = #{it.id} and is_top is not true and types = 0)"
+        part_infors = "(select * from informations where information_type_id = #{it.id} and is_top is not true and types = 0)"
         ids = (it.parent_item.children_items.map(&:id) + [it.parent_item.id]).delete_if{|i| i == it.id}
-        select_infos = part_infors + " union " + "(select *, 4 as rank from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0)"
+        select_infos = part_infors + " union " + "(select * from informations where information_type_id in (#{ids.join(',')}) and is_top is not true and types = 0"
       end
-      info_sql = "select * from ( " + top_infors + " union " + select_infos + " ) as infors order by rank asc, str_to_date(infors.created_at,'%Y-%m-%d %H:%i:%s') desc limit #{pageset} offset #{((params[:page] || 1).to_i - 1) * pageset}"
+      info_sql = top_infors + " union " + select_infos + " order by str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc limit #{pageset} offset #{((params[:page] || 1).to_i - 1) * pageset})"
 
       # Informations::Information.where().order("created_at desc").page(params[:page]).per(per)
-      
       it.latest_informations = Informations::Information.unscope(:where).find_by_sql(info_sql)
 
       video_category2 = case it.name
@@ -72,7 +72,7 @@ class News::InformationController < NewsController
       when '天天护理'
         Informations::Information.select('id, name, image_url').unscope(:where).where(types: 6).order("created_at desc").limit(2)
       end
-      
+
       @information_lists << {
         id: it.id,
         name: it.name,
