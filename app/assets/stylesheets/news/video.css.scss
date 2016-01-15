@@ -1,0 +1,22 @@
+.videos{
+  margin-top: 70px;
+  padding: 10px;
+  .video{
+    width: 100%;
+    border-bottom: 10px solid #E0D7D7;
+    .video-detail{
+      .album-name{
+
+      }
+      .time-about{
+        color: #B7B3B3;
+        .spent-time{
+          margin-right: 10px;
+        }
+        .create-time{
+
+        }
+      }
+    }
+  }
+}

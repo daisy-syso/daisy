@@ -1,21 +1,29 @@
-<br/><br/><br/>
-<%= @video_category.name %>
-<% @videos.each do |video| %>
-  <div id="hotlinking">
-    <%= video.album_name %>
-    <!-- <img src="<%#= video.pic_url %>">  -->
-    <%= video.time_length/60 %>:<%= video.time_length%60 %>
-    <%= video.create_time.strftime("%F") %>
-  </div>
-  <br>
-  <object width="325" height="240">
-    <param name="movie" value="<%= video.swf %>"></param>
-    <param name="allowFullScreen" value="true"></param>
-    <param name="allowscriptaccess" value="always"></param>
-    <embed src="<%= video.swf %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="325" height="240"></embed>
-  </object>
-  <br>
-  <hr>
-<% end %>
-<%= paginate @videos %>
-<br><br><br>
+<div class="videos">
+  <h3 class="category-name"><%= @video_category.name %></h3>
+  <% @videos.each do |video| %>
+    <div class="video">
+      <div class="video-content">
+        <object width="325" height="240">
+          <param name="movie" value="<%= video.swf %>"></param>
+          <param name="allowFullScreen" value="true"></param>
+          <param name="allowscriptaccess" value="always"></param>
+          <embed src="<%= video.swf %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="325" height="240"></embed>
+        </object>
+      </div>
+      <div class="video-detail">
+        <h4 class="album-name"><%= video.album_name %></h4>
+        <!-- <img src="<%#= video.pic_url %>">  -->
+        <p class="time-about">
+          <span class="spent-time">
+            时长: <%= video.time_length/60 %>:<%= video.time_length%60 %>
+          </span>
+          <span class="create-time">
+            发布时间: <%= video.create_time.strftime("%F") %>
+          </span>
+        </p>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+  <%= paginate @videos %>
+</div>
