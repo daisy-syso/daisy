@@ -43,7 +43,7 @@
         <h3><%= information[:name]%></h3>
         <ul class="infor-sub-types list-unstyled">
           <% information[:sub_types].each do |sub_type| %>
-            <li> <%= sub_type.name %></li>
+            <li class="sub-type" data-id="<%= sub_type.id %>"> <%= sub_type.name %></li>
           <% end %>
           <% if information[:video_category].present? %>
             <a href="<%= news_video_category_videos_path(information[:video_category].id) %>">视频</a>
@@ -68,7 +68,7 @@
         <% end %>
       </ul>
       <div class="load-more">
-        <a href="">查看更多</a>
+        <a data-current-type="<%= information[:id] %>" data-current-page="1" href="javascript:;">查看更多</a>
       </div>
       <br>
     </div>
