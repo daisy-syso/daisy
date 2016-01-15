@@ -1,10 +1,10 @@
 .videos{
   margin-top: 70px;
-  padding: 10px;
   .video{
     width: 100%;
     border-bottom: 10px solid #E0D7D7;
     .video-detail{
+      margin-left: 10px;
       .album-name{
 
       }
@@ -18,5 +18,8 @@
         }
       }
     }
+  }
+  .paginate-wrapper{
+    margin-bottom: 100px;
   }
 }
