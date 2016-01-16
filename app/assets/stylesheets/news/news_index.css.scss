@@ -216,4 +216,19 @@
       }
     }
   }
+  .form-ajax{
+    textarea {
+      height: 60px;
+      border: 1px solid #E2DEDE;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  .comments{
+    .comment-item{
+      background-color: #F5F4F4;
+      padding: 5px 10px 10px;
+      border: 2px solid #fff;
+    }
+  }
 }
