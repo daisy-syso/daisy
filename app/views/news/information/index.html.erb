@@ -87,7 +87,7 @@
     </div>
   <% end %>
 
-  <h1>精确查询</h1>
+  <h3>精确查询</h3>
   <ul class="precise-queries list-unstyled">
     <% @precise_queries.each do |query| %>
       <li class="precise-query-item">
@@ -100,11 +100,11 @@
   </ul>
 
   <h3>健康医疗APP大全</h3>
-  <span>更多热门APP></span>
-  <ul class="information-hotest-images list-unstyled last-section">
+  <ul class="hot-apps list-unstyled">
     <% @apps.each do |app| %>
-      <li>
-        <img src="<%= app.image_url %>" width="100px">
+      <li class="hot-app">
+        <img src="<%= app.image_url %>">
+        <p class="overflow-text app-name"><%= app.name %></p>
       </li>
     <% end %>
   </ul>
