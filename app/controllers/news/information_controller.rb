@@ -3,7 +3,16 @@ class News::InformationController < NewsController
   before_action :set_information, only: [:show, :comment]
 
   def comment
-    comment = @information.information_comments.new(content: params[:content])
+    arr = []
+    File.open(File.expand_path('../../../../db/alias_name.txt', __FILE__)) do |file|
+      file.each do |row|
+        arr << row.strip
+      end
+    end
+
+    alias_name = arr.sample
+
+    comment = @information.information_comments.new(content: params[:content], alias_name: alias_name)
     if comment.save
       redirect_to news_information_path(@information)
     end
@@ -17,6 +26,8 @@ class News::InformationController < NewsController
     @precise_queries = PreciseQuery.all
 
     @infors = Informations::Information.where(is_top: true).where.not(image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(4)
+
+    @apps = Informations::AppInformation.group(:type_id).order(:type_id).first(5)
 
     @information_lists = []
 
@@ -96,7 +107,7 @@ class News::InformationController < NewsController
 
     @hot_images = Informations::Information.unscope(:where).select('id, name, image_url').where.not(id: params[:id], image_url: nil).order("str_to_date(created_at,'%Y-%m-%d %H:%i:%s') desc").limit(8)
 
-    @comments = @information.information_comments.all.page(1).per(5)
+    @comments = @information.information_comments.all.order("created_at desc").page(1).per(5)
   end
 
   private
