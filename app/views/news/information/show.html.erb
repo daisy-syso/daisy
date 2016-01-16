@@ -12,7 +12,7 @@
     <li class="guess-item">
       <a href="<%= news_information_path(info.id) %>">
         <img src="<%= info.image_url %>">
-        <p class="overflow-text"><%= info.name %></p>
+        <p class="overflow-tex"><%= info.name %></p>
       </a>
     </li>
     <% end %>
@@ -21,6 +21,7 @@
   <br>
   <h3>热门评论</h3>
   <% @comments.each do |comment| %>
+    <span><%= comment.alias_name %>:</span>
     <span><%= comment.content %></span>
     <br>
   <% end %>

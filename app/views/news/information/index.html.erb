@@ -52,6 +52,19 @@
       </div>
       <br>
 
+      <% if information[:video_category].present? %>
+        <ul class="information-items list-unstyled">
+          <% Video.where(video_category_id: information[:video_category].id).order("created_at desc").limit(4).each do |video| %>
+            <li class="information-item-with-image">
+              <a href="<%= video.html5_play_url %>">
+                <img src="<%= video.pic_url %>"  class="information-image" />
+                <p class="information-name"><%= video.album_name %></p>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <ul class="information-items list-unstyled">
         <% information[:informations].each_with_index do |inf, index| %>
           <% condition = (index == 0 || index == 1) || ((index == 7 || index == 6) && (information[:name] == '头条' || information[:name] == '天天护理')) %>
@@ -82,6 +95,16 @@
           <img src="http://www.yiliaohj.com/mobiles/<%=query.icon%>">
           <p class="query-title"><%= query.title %></p>
         </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3>健康医疗APP大全</h3>
+  <span>更多热门APP></span>
+  <ul class="information-hotest-images list-unstyled last-section">
+    <% @apps.each do |app| %>
+      <li>
+        <img src="<%= app.image_url %>" width="100px">
       </li>
     <% end %>
   </ul>
