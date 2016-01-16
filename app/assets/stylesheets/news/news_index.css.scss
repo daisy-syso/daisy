@@ -193,6 +193,9 @@
     }
   }
   .information-content{
+    img {
+      max-width: 100% !important;
+    }
     p {
       font-size: 22px;
       line-height: 28px;
