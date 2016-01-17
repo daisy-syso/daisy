@@ -1,0 +1,13 @@
+<br>
+<br>
+<br>
+<br>
+<%= @video.album_name %>
+
+<br>
+<object>
+  <param name="movie" value="<%= @video.swf %>"></param>
+  <param name="allowFullScreen" value="true"></param>
+  <param name="allowscriptaccess" value="always"></param>
+  <embed src="<%= @video.swf %>" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>
+</object>

@@ -56,7 +56,7 @@
         <ul class="information-items list-unstyled">
           <% Video.where(video_category_id: information[:video_category].id).order("created_at desc").limit(4).each do |video| %>
             <li class="information-item-with-image">
-              <a href="<%= video.html5_play_url %>">
+              <a href="<%= news_video_category_video_path(information[:video_category].id, video.id) %>">
                 <img src="<%= video.pic_url %>"  class="information-image" />
                 <p class="information-name"><%= video.album_name %></p>
               </a>
