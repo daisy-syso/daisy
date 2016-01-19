@@ -6,6 +6,12 @@
   .video{
     width: 45%;
     margin: 2%;
+    .video-content{
+      img {
+        width: 100%;
+        height: 140px;
+      }
+    }
     // border-bottom: 10px solid #E0D7D7;
     display: inline-block;
     .video-detail{
