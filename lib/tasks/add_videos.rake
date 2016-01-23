@@ -36,7 +36,9 @@ namespace :videos do
                   File.open(path, "wb") { |f| f.write(URI.parse(video["picUrl"]).read) }
                 end
 
-                uurl = "http://expand.video.iqiyi.com/api/fb?apiKey=eefa2897acae4ebf998c6695740a954c&rec=0&playurl=#{video["playUrl"]}"
+                # uurl = "http://expand.video.iqiyi.com/api/fb?apiKey=eefa2897acae4ebf998c6695740a954c&rec=0&playurl=#{video["playUrl"]}"
+                uurl = "http://expand.video.iqiyi.com/api/video/info.json?apiKey=eefa2897acae4ebf998c6695740a954c&tvId=#{video["tvIds"].first}"
+                
 
                 conn = Faraday.new(:url => uurl) do |faraday|
                   faraday.request  :url_encoded
@@ -47,7 +49,7 @@ namespace :videos do
                 response = conn.get
                 response.body
                 data2 = Oj.load(response.body)["data"]
-
+                
                 swf = data2["swf"]
 
                 a,b,c = Qiniu::Storage.upload_with_put_policy(
