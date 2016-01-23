@@ -16,8 +16,8 @@ changeSubType = ->
 
 loadMore = ->
   $(".load-more a").on "click", () ->
-    currentType =  $(this).data("current-type")
-    currentPage =  Number($(this).data("current-page")) + 1
+    currentType =  $(this).attr("data-current-type")
+    currentPage =  Number($(this).attr("data-current-page")) + 1
     $(this).attr("data-current-page", "#{currentPage}")
 
     $.ajax
@@ -26,17 +26,16 @@ loadMore = ->
       success: (data) =>
         infors = data.data[0].latest_informations
         htmlList = ""
-        templte = "<li> <a href='/information/$id$'>$name$</a></li>"
-        infors.forEach (info) ->
-          htmlList += template.temp(info)
+        _.templateSettings = {
+          interpolate: /\{\{\=(.+?)\}\}/g,
+          evaluate: /\{\{(.+?)\}\}/g
+        }
+        template = _.template($("#information_item").html())
+        htmlfrag = template({infors: infors})
 
-        $(this).parents(".infor-module").find(".information-items li:last").append(htmlList)
+        $(this).parents(".infor-module").find(".information-items li:last").append(htmlfrag)
 
 ready = () ->
-  String.prototype.temp = (obj) ->
-    return this.replace /\$\w+\$/gi, (matchs) ->
-      returns = obj[matchs.replace(/\$/g, "")]
-      return (returns + "") == "undefined"? "": returns;
   changeSubType()
   loadMore()
 
