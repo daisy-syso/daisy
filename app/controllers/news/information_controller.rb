@@ -96,6 +96,32 @@ class News::InformationController < NewsController
     end
   end
 
+  def more_information
+    name = params[:name] || '头条' 
+    it = Informations::InformationType.where(name: name).first
+
+    per = (it.name == '头条' || it.name == '天天护理') ? 12 : 8
+    page = params[:page] || 2
+
+    informations = Informations::Information.unscope(:where).where(is_top: false, information_type_id: it.id).order("created_at desc").page(page).per(per)
+
+    results = []
+
+    informations.each do |i|
+      results << {
+        id: i.id,
+        name: i.name
+      }
+    end
+
+    render :json =>  {
+      data: results, 
+      current_page: informations.current_page,
+      last_page: informations.last_page?,
+      next_page: informations.next_page
+    }.to_json
+  end
+
   def information_list
     @information = Diseases::DiseaseInfo.where(disease_info_type_id: params[:disease_info_type_id]).all
   end
