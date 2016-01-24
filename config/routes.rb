@@ -10,7 +10,6 @@ Rails.application.routes.draw do
         collection do
           get 'more_information'
         end
-        
 
         member do
           post 'comment'
@@ -20,7 +19,15 @@ Rails.application.routes.draw do
       get '/information_list', to: "information#information_list"
 
       resources :video_category do
-        resources :videos
+        # member do
+        #   get 'more_videos'
+        # end
+
+        resources :videos do
+          collection do
+            get 'more_videos'
+          end
+        end
       end
       
       get '/', to: "information#index"

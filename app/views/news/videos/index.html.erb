@@ -1,26 +1,45 @@
 <div class="videos">
   <h3 class="category-name"><%= @video_category.name %></h3>
-  <% @videos.each do |video| %>
-    <div class="video">
-      <div class="video-content">
-        <a href="<%= news_video_category_video_path(@video_category.id, video.id) %>">
-          <img src="<%= video.pic_url %>"  class="information-image" />
-        </a>
+  <div id="video_block">
+    <% @videos.each do |video| %>
+      <div class="video">
+        <div class="video-content">
+          <a href="<%= news_video_category_video_path(@video_category.id, video.id) %>">
+            <img src="<%= video.pic_url %>"  class="information-image" />
+          </a>
+        </div>
+        <div class="video-detail">
+          <h4 class="album-name"><%= video.album_name %></h4>
+          <p class="time-about">
+            <span class="spent-time">
+              时长: <%= video.time_length/60 %>:<%= video.time_length%60 %>
+            </span>
+            <span class="create-time">
+              发布时间: <%= video.create_time.strftime("%F") %>
+            </span>
+          </p>
+        </div>
       </div>
-      <div class="video-detail">
-        <h4 class="album-name"><%= video.album_name %></h4>
-        <p class="time-about">
-          <span class="spent-time">
-            时长: <%= video.time_length/60 %>:<%= video.time_length%60 %>
-          </span>
-          <span class="create-time">
-            发布时间: <%= video.create_time.strftime("%F") %>
-          </span>
-        </p>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <div class="paginate-wrapper">
-    <%= paginate @videos %>
+      <button id="more">查看更多</button>
   </div>
 </div>
+
+<script type="text/javascript">
+  var page = 2;
+  $('#more').click(function(){
+    url = "/video_category/<%= @video_category.id %>/videos/more_videos?page=" + page;
+    $.get(url, function(data){
+      $("#video_block").append(data);
+      page = page + 1;
+    })
+  })
+</script>
+
+<style>
+.paginate-wrapper{
+  text-align: center;
+}
+</style>
