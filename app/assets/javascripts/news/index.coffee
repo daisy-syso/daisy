@@ -1,18 +1,18 @@
 changeSubType = ->
   $(".sub-type").on "click", () ->
     # get the sub-type id
-    subTypeId = $(this).data("id")
+    subTypeName = $(this).data("name")
     # set the current sub-type id to the load more
     $loadMore = $(this).parents(".infor-module").find(".load-more")
-    $loadMore.attr("data-current-type", subTypeId)
+    $loadMore.attr("data-current-type", subTypeName)
     # set the current page
     $loadMore.attr("data-current-page", 1)
     # get the data
     $.ajax
       method: 'GET',
-      url: "api/infors/health_infors.json?type=#{subTypeId}",
+      url: "information/more_information?type=#{subTypeName}",
       success: (data) =>
-        infors = data.data[0].latest_informations
+        infors = data.data
 
 loadMore = ->
   $(".load-more a").on "click", () ->
@@ -22,9 +22,9 @@ loadMore = ->
 
     $.ajax
       method: 'GET',
-      url: "api/infors/health_infors.json?page=#{currentPage}&type=#{currentType}",
+      url: "information/more_information?page=#{currentPage}&name=#{currentType}",
       success: (data) =>
-        infors = data.data[0].latest_informations
+        infors = data.data
         htmlList = ""
         _.templateSettings = {
           interpolate: /\{\{\=(.+?)\}\}/g,
