@@ -103,7 +103,7 @@ class News::InformationController < NewsController
     per = (it.name == '头条' || it.name == '天天护理') ? 12 : 8
     page = params[:page] || 2
 
-    informations = Informations::Information.unscope(:where).where(is_top: false, information_type_id: it.id).order("created_at desc").page(page).per(per)
+    informations = Informations::Information.unscope(:where).where(types: 0, is_top: false, information_type_id: it.id).order("created_at desc").page(page).per(per)
 
     results = []
 

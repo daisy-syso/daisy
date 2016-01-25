@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  # constraints :host => 'www.jiankanghj.com' do
+  constraints :host => 'www.jiankanghj.com' do
     namespace :news, path: '/' do
 
       resources :information do
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       devise_for :accounts, controllers: { sessions: "accounts/sessions", registrations: "accounts/registrations", passwords: "accounts/passwords", confirmations: "accounts/confirmations" }
 
     end
-  # end
+  end
 
   # devise_for :accounts,
   #   controllers: {
