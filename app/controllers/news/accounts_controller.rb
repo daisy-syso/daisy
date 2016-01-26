@@ -70,6 +70,11 @@ class News::AccountsController < NewsController
   end
 
   def following_list
+    unless news_account_signed_in?
+      redirect_to new_news_account_session_url
+      return 
+    end
+    
     big_hash = {}
 
     disease_info_type_ids = current_news_account.follows.pluck(:disease_info_type_id)
