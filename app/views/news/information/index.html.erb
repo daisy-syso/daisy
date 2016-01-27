@@ -52,20 +52,6 @@
       </div>
       <br>
 
-      <% if information[:video_category].present? %>
-        <ul class="information-items list-unstyled">
-          <% Video.where(video_category_id: information[:video_category].id).order("created_at desc").limit(4).each do |video| %>
-            <li class="information-item-with-image video-item">
-              <a href="<%= news_video_category_video_path(information[:video_category].id, video.id) %>">
-                <img src="<%= video.pic_url %>"  class="information-image" />
-                <%= image_tag("video-flag.jpg", class: "video-flag") %>
-                <p class="information-name"><%= video.album_name %></p>
-              </a>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-
       <ul class="information-items list-unstyled">
         <% information[:informations].each_with_index do |inf, index| %>
           <% condition = (index == 0 || index == 1) || ((index == 7 || index == 6) && (information[:name] == '头条' || information[:name] == '天天护理')) %>
@@ -79,6 +65,21 @@
               <% end %>
             </a>
           </li>
+
+          <% if index == 6 && information[:video_category].present? %>
+            <ul class="information-items list-unstyled video-items">
+              <% Video.where(video_category_id: information[:video_category].id).order("created_at desc").limit(4).each do |video| %>
+                <li class="information-item-with-image video-item">
+                  <a href="<%= news_video_category_video_path(information[:video_category].id, video.id) %>">
+                    <img src="<%= video.pic_url %>"  class="information-image" />
+                    <%= image_tag("video-flag.jpg", class: "video-flag") %>
+                    <p class="information-name"><%= video.album_name %></p>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+
         <% end %>
       </ul>
       <div class="load-more">
