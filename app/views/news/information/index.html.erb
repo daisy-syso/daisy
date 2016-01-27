@@ -54,7 +54,8 @@
 
       <ul class="information-items list-unstyled">
         <% information[:informations].each_with_index do |inf, index| %>
-          <% condition = (index == 0 || index == 1) || ((index == 7 || index == 6) && (information[:name] == '头条' || information[:name] == '天天护理')) %>
+          <%# condition = (index == 0 || index == 1) || ((index == 7 || index == 6) && (information[:name] == '头条' || information[:name] == '天天护理')) %>
+          <% condition = (index == 0 || index == 1) %>
           <li class="information-item<%= '-with-image' if condition  %>">
             <a href="<%= news_information_path(inf.id) %>">
               <% if condition %>
