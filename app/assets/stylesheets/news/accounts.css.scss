@@ -1,0 +1,27 @@
+.signup,
+.signin {
+  width: 90%;
+  margin: 100px auto;
+  .control-label{
+    font-size: 22px;
+  }
+  .form-control{
+    height: 46px;
+  }
+}
+.mine-info,
+.follow-list{
+  width: 90%;
+  margin: 74px auto;
+  position: relative;
+  .follow-item{
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  .back-button{
+    position: absolute;
+    right: 0px;
+    top: -2px;
+  }
+}

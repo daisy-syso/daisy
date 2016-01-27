@@ -1,17 +1,22 @@
-<br>
-<br>
-<br>
-<div>
-  欢迎回来：<%= @user.email %>| <%= link_to '退出', destroy_news_account_session_path, method: 'DELETE' %>
-  <a href="<%= news_accounts_following_list_path %>">添加关注</a>
-</div>
-<h1>我的关注</h1>
-<% @tt.each do |k,v| %>
-  <h2><%= k.to_s %></h2>
-  <br>
-    <% v.each do |v0| %>
-      <a href="<%= news_information_list_path(disease_info_type_id: v0[:id]) %>"> <%= v0[:name] %> </a>
-      <br>
+<div class="mine-info">
+  <div>
+    欢迎回来：<%= @user.email %>| <%= link_to '退出', destroy_news_account_session_path, method: 'DELETE' %>
+    <a href="<%= news_accounts_following_list_path %>">添加关注</a>
+  </div>
+  <h3>我的关注</h3>
+  <% if @tt.blank? %>
+    <p>暂无关注</p>
+  <% else %>
+    <% @tt.each do |k,v| %>
+      <h3><%= k.to_s %></h3>
+      <ul class="list-unstyled">
+        <% v.each do |v0| %>
+          <li class="follow-item">
+            <a href="<%= news_information_list_path(disease_info_type_id: v0[:id]) %>"> <%= v0[:name] %> </a>
+          </li>
+        <% end %>
+      </ul>
+      <hr>
     <% end %>
-  <hr>
-<% end %>
+  <% end %>
+</div>
