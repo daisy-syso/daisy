@@ -93,6 +93,10 @@
       font-size: 15px;
       border-bottom: 2px solid #ccc;
       background: rgba(129, 230, 145, 0.67);
+      a {
+        width: 100%;
+        display: inline-block;
+      }
     }
   }
   .information-items{
