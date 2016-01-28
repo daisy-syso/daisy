@@ -27,6 +27,16 @@
   }
 }
 
+// footer
+.custom-footer {
+  min-height: 40px !important;
+  .tab-item{
+    width: 49%;
+    display: inline-block;
+    text-align: Center;
+  }
+}
+
 // news index and neww show page common css
 .news-index, .news-show {
   .overflow-text{
