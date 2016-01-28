@@ -1,3 +1,4 @@
+// header
 .custom-header{
   height: 60px;
   overflow: visible;
@@ -12,8 +13,21 @@
       width: 100%;
     }
   }
+  .btn-group {
+    float: right;
+    padding: 14px;
+    .hamburger {
+      font-size: 28px;
+    }
+    .dropdown-menu{
+      // overwrite the drop css
+      right: 0px;
+      left: inherit;
+    }
+  }
 }
 
+// news index and neww show page common css
 .news-index, .news-show {
   .overflow-text{
     word-break: break-all;
@@ -59,6 +73,8 @@
   }
 }
 
+
+// news index
 .news-index{
   margin-top: 45px;
   .information-types{
@@ -201,6 +217,8 @@
   }
 }
 
+
+// news show
 .news-show{
   margin-top:70px;
   .information-image{
