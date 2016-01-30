@@ -67,7 +67,7 @@
             </a>
           </li>
 
-          <% if index == 6 && information[:video_category].present? %>
+          <% if index == 5 && information[:video_category].present? %>
             <ul class="information-items list-unstyled video-items">
               <% Video.where(video_category_id: information[:video_category].id).order("created_at desc").limit(4).each do |video| %>
                 <li class="information-item-with-image video-item">
